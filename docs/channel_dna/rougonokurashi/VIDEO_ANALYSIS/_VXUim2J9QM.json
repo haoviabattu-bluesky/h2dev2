@@ -1,0 +1,31 @@
+{
+  "topics": [
+    "年金",
+    "老後資金",
+    "繰り上げ受給",
+    "再雇用",
+    "定年退職",
+    "退職金",
+    "住民税",
+    "健康保険",
+    "社会保険",
+    "60歳定年",
+    "62歳受給",
+    "老後破産"
+  ],
+  "hook_type": "Đặt câu hỏi trực diện đánh trúng nỗi sợ tài chính khi chạm mốc 60 tuổi kèm theo tình huống thực tế giật mình của nhân vật",
+  "structure": "Kể chuyện theo trình tự: Thực tế phũ phàng tuổi 59 -> Nỗi sợ gánh nặng thuế và sinh hoạt phí sau thôi việc -> Trải nghiệm 2 năm tái tuyển dụng hạ bớt cái tôi -> Quyết định nhận lương hưu tuổi 62 kết hợp làm thêm nhẹ nhàng.",
+  "emotional_beats": [
+    "Mơ mộng nghỉ hưu sớm",
+    "Bàng hoàng trước con số chi phí thực tế",
+    "Tổn thương lòng tự trọng khi làm nhân viên hợp đồng",
+    "Nhẹ nhõm khi giảm bớt áp lực trách nhiệm",
+    "Thấu hiểu và an tâm với lựa chọn cân bằng tuổi già"
+  ],
+  "title_formula": "【漫画】[Hành động cấm kỵ tuổi tác]！[Độ tuổi cụ thể]で[Lựa chọn bất ngờ]が最強な理由",
+  "notes": "Video đánh trúng tâm lý người xem độ tuổi 50-60 tại Nhật Bản về khoảng cách giữa việc nghỉ việc và nhận lương hưu, phân tích chi tiết các bẫy chi phí như thuế cư trú, bảo hiểm y tế năm đầu sau nghỉ việc.",
+  "video_id": "_VXUim2J9QM",
+  "title": "【漫画】60歳で辞めるな！62歳で年金受給が最強な理由",
+  "view_count": 95000,
+  "duration_min": 22.7
+}

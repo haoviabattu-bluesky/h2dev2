@@ -1,0 +1,26 @@
+{
+  "topics": [
+    "筋肉の減少",
+    "サルコペニア",
+    "朝食",
+    "タンパク質",
+    "アナボリックレジスタンス",
+    "高齢者の食事",
+    "卵",
+    "ギリシャヨーグルト"
+  ],
+  "hook_type": "Mệnh lệnh cảnh báo gián đoạn hành vi ('Hãy dừng bữa sáng đó lại') kết hợp chỉ ra nguy cơ cơ bắp đang âm thầm bị teo đi.",
+  "structure": "Đưa ra 12 dấu hiệu tự kiểm tra teo cơ, giải thích cơ chế khoa học/nghiên cứu về hấp thụ đạm buổi sáng, gợi ý thực đơn dễ làm kèm 2 câu chuyện người thật thành công và kết thúc bằng thử thách 7 ngày.",
+  "emotional_beats": [
+    "Báo động",
+    "Thấu hiểu",
+    "Hy vọng",
+    "Quyết tâm"
+  ],
+  "title_formula": "[Độ tuổi mục tiêu]へ：[Số lượng]の[Giải pháp tự nhiên]が[Lợi ích cốt lõi]——[Kích thích tò mò]",
+  "notes": "Tiêu đề ghi '5 loại thực phẩm tự nhiên' nhưng thực tế nội dung tập trung vào thói quen bổ sung đạm bữa sáng (trứng, sữa chua Hy Lạp, natto, cá, đậu phụ) và nhấn mạnh vào cơ chế sinh học người già.",
+  "video_id": "HYd5dTEJyVI",
+  "title": "75歳以上の方へ：5つの天然食品が筋肉の消失を止める可能性——ほとんどの方がご存知ない",
+  "view_count": 487,
+  "duration_min": 20.5
+}

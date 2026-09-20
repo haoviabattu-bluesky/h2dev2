@@ -1,0 +1,206 @@
+# -*- coding: utf-8 -*-
+r"""prompt_doan.py — B5W nhánh `image.prompts_by = "fable_doan"`: bộ não (Fable, claude -p) viết prompt ảnh
+THEO ĐOẠN kịch bản, một lượt ra cả `img_prompts.txt` (marker @REF/@REF2/@REF12/@GROK) + `img_doan.txt`
+(ảnh ↔ số đoạn) để `sinh_neo.py` đặt neo → ảnh hiện đúng lúc câu của nó vang lên.
+
+VÌ SAO CÓ FILE NÀY (anh duyệt phương án 2026-09-20, docs/PHUONG_AN_LANE_G_BUOC2_3.md C1)
+- Nhánh B5W cũ (`ai_steps.write_img_prompts`) dựng storyboard TỪ voice.srt → bắt buộc có giọng TRƯỚC ảnh.
+  Anh muốn giọng là bước CUỐI (chọn sau khi xem video) → nội dung ảnh phải bám KỊCH BẢN, không bám SRT.
+- Satori đã chứng minh: "não ghi MỘT CON SỐ (ảnh thuộc đoạn nào) → máy đặt neo" khớp lời hơn chia đều
+  (memory anh-lech-loi-neo-theo-doan). Ở đây gộp luôn vào lúc viết prompt — 1 lượt LLM, không phải 2.
+- Fable 0đ (gói), thay Gemini.
+
+ĐẦU VÀO: script.txt (LOCK PASS) · characters.json {"characters":[{name,age,gender,look,ref_marker}]} ·
+profile.image (style_suffix, seconds_per_image, blocklist) · voice.char_rate (ước thời lượng, KHÔNG cần audio).
+ĐẦU RA: img_prompts.txt · img_doan.txt · artifact_meta.json (fingerprint theo sha script).
+
+KHÔNG sửa script.txt (NO_TEXT_MUTATION_AFTER_FINAL_SOL_PASS). Field-driven — lane không khai prompts_by
+đi nhánh cũ y nguyên.
+"""
+import json
+import re
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import claude_p_bridge  # noqa: E402
+import gate_common      # noqa: E402
+import profiles         # noqa: E402
+import sinh_neo         # noqa: E402
+from llm_client import LLMError  # noqa: E402
+
+TAGS = ("MAIN", "MENTOR", "BOTH", "NONE", "CHILD")
+# gpti2 edit bê cả bối cảnh master → phải nói thẳng "giữ mặt, đổi cảnh" (cùng câu ai_steps đang dùng)
+REF_TAIL = ("the SAME person as the reference image with an identical face, but in a COMPLETELY NEW scene: "
+            "do not reuse the background, room, furniture or framing of the reference image")
+# mỗi ảnh cần ≥ ~4 s lời để neo không dính nhau (sinh_neo đòi ≥1 s, assemble chuyển cảnh 0,5 s)
+GIAY_TOI_THIEU_MOI_ANH = 4.0
+MAX_HOI_LAI = 1
+
+
+def _n_anh(prof, script_text):
+    chars = len("".join(script_text.split()))
+    secs = chars / profiles.char_rate(prof) * 60
+    spi = float((prof.get("image", {}) or {}).get("seconds_per_image", 14) or 14)
+    return max(20, int(round(secs / spi))), secs
+
+
+def _tran_anh_moi_doan(doan, prof):
+    """Số ảnh tối đa mỗi đoạn để mỗi ảnh còn ≥ GIAY_TOI_THIEU_MOI_ANH giây lời."""
+    cr = profiles.char_rate(prof) / 60.0          # chữ / giây
+    return [max(1, int(len("".join(d.split())) / (cr * GIAY_TOI_THIEU_MOI_ANH))) for d in doan]
+
+
+def _doc_characters(d: Path):
+    f = d / "characters.json"
+    if not f.exists():
+        raise SystemExit(f"✗ B5W(fable_doan): thiếu {f} — lớp 1 phải viết hồ sơ nhân vật trước (name/age/gender/look/ref_marker)")
+    data = json.loads(f.read_text(encoding="utf-8"))
+    chars = data.get("characters") or []
+    main = next((c for c in chars if c.get("ref_marker") == "@REF"), None)
+    mentor = next((c for c in chars if c.get("ref_marker") == "@REF2"), None)
+    if not main:
+        raise SystemExit("✗ characters.json: cần 1 nhân vật ref_marker=\"@REF\" (nhân vật chính 俺)")
+    return main, mentor, chars
+
+
+def _prompt(prof, doan, n, main, mentor, tran):
+    img = prof.get("image", {}) or {}
+    style = img.get("style_suffix", "")
+    block = ", ".join(prof.get("blocklist") or []) or "gore, nudity, babies"
+    ds = "\n".join(f"[{i}] ({tran[i-1]} max) {p}" for i, p in enumerate(doan, 1))
+    men = (f"MENTOR (tag MENTOR): '{mentor.get('look')}'" if mentor else "MENTOR: (none in this episode — never use tag MENTOR/BOTH)")
+    return (
+        "You write image prompts for an AI image generator, for a narrated Japanese manga-style story video.\n"
+        f"The script below is split into {len(doan)} numbered paragraphs. Each paragraph shows in parentheses the MAXIMUM "
+        f"number of images it may receive (a hard cap — the narration is too short for more).\n"
+        f"Write EXACTLY {n} lines total, in paragraph order (paragraph numbers must never decrease), covering the story "
+        f"from the first paragraph to the last; every paragraph with real action or a new place should get at least one "
+        f"image, short transitional paragraphs may get zero.\n\n"
+        "LINE FORMAT (strict, no numbering, no markdown, no blank lines):\n"
+        "<paragraph number>|<TAG>|<English prompt 25-45 words starting with WIDE/MEDIUM/CLOSE-UP/DETAIL>\n"
+        "TAG is exactly one of: MAIN (the narrator's face is clearly visible), MENTOR (the mentor's face is visible, "
+        "narrator not visible), BOTH (both faces visible in one frame), NONE (scenery / objects / hands / people from "
+        "behind or far away — no recognisable face), CHILD (any child or baby visible).\n"
+        f"MAIN CHARACTER (tag MAIN): '{main.get('look')}'\n{men}\n"
+        "Rules: when a tagged person appears, describe them with the SAME wording as above (age, hair, glasses, clothes). "
+        "Prefer NONE for wide establishing shots and objects (cheaper), use MAIN/MENTOR/BOTH for emotional beats and dialogue. "
+        f"Keep faces to at most 40% of all lines. Do NOT put any text, letters, numbers, signs or speech bubbles in the image. "
+        f"Never depict: {block}.\n"
+        f"Every prompt must END with this exact style suffix: '{style}'.\n\n"
+        f"SCRIPT PARAGRAPHS:\n{ds}")
+
+
+def _parse(text, n_doan):
+    rows, loi = [], []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        m = re.match(r"^\s*\[?(\d+)\]?\s*\|\s*([A-Z]+)\s*\|\s*(.+)$", s)
+        if not m:
+            loi.append(f"dòng không đúng khuôn: {s[:80]}")
+            continue
+        d, tag, p = int(m.group(1)), m.group(2).upper(), m.group(3).strip()
+        if tag not in TAGS:
+            loi.append(f"tag lạ {tag!r}: {s[:60]}")
+        if not 1 <= d <= n_doan:
+            loi.append(f"số đoạn {d} ngoài 1..{n_doan}: {s[:60]}")
+        if len(p.split()) < 12:
+            loi.append(f"prompt quá ngắn: {s[:60]}")
+        rows.append((d, tag, p))
+    return rows, loi
+
+
+def _kiem(rows, n, tran, mentor):
+    loi = []
+    if len(rows) != n:
+        loi.append(f"cần ĐÚNG {n} dòng, nhận {len(rows)}")
+    for i in range(1, len(rows)):
+        if rows[i][0] < rows[i - 1][0]:
+            loi.append(f"số đoạn giảm ở dòng {i+1}: {rows[i-1][0]} → {rows[i][0]}")
+            break
+    dem = {}
+    for d, _, _ in rows:
+        dem[d] = dem.get(d, 0) + 1
+    qua = [f"đoạn {d}: {c} ảnh > trần {tran[d-1]}" for d, c in dem.items() if 1 <= d <= len(tran) and c > tran[d - 1]]
+    loi += qua[:8]
+    if not mentor and any(t in ("MENTOR", "BOTH") for _, t, _ in rows):
+        loi.append("dùng tag MENTOR/BOTH nhưng tập không khai mentor")
+    face = sum(1 for _, t, _ in rows if t in ("MAIN", "MENTOR", "BOTH"))
+    if rows and face / len(rows) > 0.5:
+        loi.append(f"quá nhiều cảnh thấy mặt: {face}/{len(rows)} (> 50%) — đổi cảnh xa/đồ vật sang NONE")
+    return loi
+
+
+def _ghi(d: Path, rows, prof):
+    style = (prof.get("image", {}) or {}).get("style_suffix", "")
+    prompts, doan_lines = [], []
+    for i, (dn, tag, p) in enumerate(rows, 1):
+        p = p.rstrip(" .")
+        if style and style.lower() not in p.lower():
+            p = f"{p}, {style}"
+        if tag == "MAIN":
+            line = f"@REF {p}, {REF_TAIL}"
+        elif tag == "MENTOR":
+            line = f"@REF2 {p}, {REF_TAIL}"
+        elif tag == "BOTH":
+            line = f"@REF12 {p}, {REF_TAIL.replace('the SAME person', 'the SAME two people')}"
+        elif tag == "CHILD":
+            line = f"@GROK {p}"
+        else:
+            line = p
+        prompts.append(line)
+        doan_lines.append(f"{i:03d}.png|{dn}")
+    (d / "img_prompts.txt").write_text("\n".join(prompts) + "\n", encoding="utf-8")
+    (d / "img_doan.txt").write_text("\n".join(doan_lines) + "\n", encoding="utf-8")
+    gate_common.ghi_fingerprint(d)
+    return prompts
+
+
+def viet(prof, slug_dir):
+    """Trả (số prompt, thống kê). Ném SystemExit khi Fable không ra bản hợp lệ sau MAX_HOI_LAI lượt hỏi lại."""
+    d = Path(slug_dir)
+    script = (d / "script.txt").read_text(encoding="utf-8")
+    doan = sinh_neo.doc_doan(d / "script.txt")
+    main, mentor, chars = _doc_characters(d)
+    n, secs = _n_anh(prof, script)
+    tran = _tran_anh_moi_doan(doan, prof)
+    if sum(tran) < n:
+        n = sum(tran)          # kịch bản nhiều đoạn ngắn → hạ số ảnh, không ép nhồi
+    print(f"[B5W] fable_doan: {len(doan)} đoạn · ≈{secs/60:.1f}' · {n} ảnh · nhân vật: {main.get('name')}"
+          + (f" + {mentor.get('name')}" if mentor else " (không mentor)"))
+    prompt = _prompt(prof, doan, n, main, mentor, tran)
+    model = claude_p_bridge.brain_model_of(prof)
+    rows, loi = [], []
+    for luot in range(MAX_HOI_LAI + 1):
+        q = prompt if not loi else (prompt + "\n\nYOUR PREVIOUS ANSWER WAS REJECTED — fix ALL of these and return the "
+                                    "full list again:\n- " + "\n- ".join(loi[:12]))
+        try:
+            r = claude_p_bridge.ask(q, model=model, timeout=1500, min_chars=n * 30)
+        except LLMError as e:
+            raise SystemExit(f"✗ B5W(fable_doan): claude -p lỗi: {e}")
+        rows, loi = _parse(r.text, len(doan))
+        loi += _kiem(rows, n, tran, mentor)
+        print(f"   lượt {luot+1}: {len(rows)} dòng · {r.elapsed:.0f}s" + (f" · {len(loi)} lỗi" if loi else " · hợp lệ"))
+        if not loi:
+            break
+        for x in loi[:6]:
+            print("     -", x)
+    if loi:
+        raise SystemExit(f"✗ B5W(fable_doan): sau {MAX_HOI_LAI+1} lượt vẫn {len(loi)} lỗi khuôn → BLOCK (không tự vá tay).")
+    prompts = _ghi(d, rows, prof)
+    tk = {t: sum(1 for _, x, _ in rows if x == t) for t in TAGS}
+    print(f"[B5W] ghi img_prompts.txt + img_doan.txt: {len(prompts)} ảnh · MAIN {tk['MAIN']} · MENTOR {tk['MENTOR']} · "
+          f"BOTH {tk['BOTH']} · NONE {tk['NONE']} · CHILD {tk['CHILD']} · đoạn có ảnh {len({r[0] for r in rows})}/{len(doan)}")
+    return len(prompts), tk
+
+
+if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--profile", required=True)
+    ap.add_argument("--slug", required=True, help="thư mục tập")
+    a = ap.parse_args()
+    viet(profiles.load(a.profile), a.slug)

@@ -1,0 +1,29 @@
+================================================================================
+BÁO CÁO BƯỚC 3 — chay_buoc3.py
+Tab: Lopezzapa68 · STT: 21 · Slug: simbot2-21-HD-ADEBz5oM · Bắt đầu: 16:07 14/09 · Kết thúc: 16:25
+Kết quả: ĐẠT (tổng 18.1 phút)
+================================================================================
+
+MỤC 1 — TỪNG BƯỚC ĐÃ CHẠY (thứ tự thật)
+  A. đọc trạng thái: OK (0.0′) — STATUS-IMG='Img done - 126/126 ảnh (15:38 14/09)' · VIDEO='(trống)'
+  B. tìm thư mục tập: OK (0.0′) — E:\CLAUDE\YOUTUBE\h2dev\assets\satori_jp\simbot2-21-HD-ADEBz5oM
+  C. tải ảnh: OK (0.0′) — thử 1 lần
+  D. đếm ảnh: OK (0.0′) — 126/126
+  D+. dọn Drive: OK (0.0′) — đã xoá vĩnh viễn jobs+results/simbot2-21-HD-ADEBz5oM
+  E. img_doan.txt: BỎ QUA (đã có sẵn)
+  F. ghép video: OK (17.6′) — thử 1 lần
+  G. giao hàng: OK (0.5′) — thử 1 lần
+  H. ghi cột VIDEO: OK (0.0′)
+
+MỤC 2 — SỐ LIỆU ĐO ĐƯỢC
+  - Thư mục tập: E:\CLAUDE\YOUTUBE\h2dev\assets\satori_jp\simbot2-21-HD-ADEBz5oM
+  - Số ảnh: 126/126 prompt
+  - Đã dọn Drive (clean-job) sau khi tải đủ ảnh
+  - Số lần thử lại: bước F thử 1/3 lần
+  - Thư mục giao hàng: Lopezzapa68\simbot2-21-HD-ADEBz5oM
+
+MỤC 4 — ĐƯỜNG DẪN GIAO HÀNG
+  Lopezzapa68\simbot2-21-HD-ADEBz5oM
+
+================================================================================
+HẾT

@@ -1,0 +1,80 @@
+{
+  "id": "samurai-history-jp",
+  "market": "JP",
+  "language": "ja",
+  "niche": "Lịch sử samurai / chiến trận Nhật — kể chuyện hùng tráng",
+  "competitor": "",
+  "_status": "MẪU nhân vật thứ 2 (đối lập với satori-jp-obaa) để kiểm chứng tool đa nhân vật. Giọng + char_rate ĐÃ ĐO THẬT. CÒN THIẾU: 3 skill của ngách này (script/image/thumbnail) — xem _todo.",
+  "_todo": [
+    "viết skills/youtube-script-samurai-jp/SKILL.md (copy khung satori, đổi genre + ngôi kể)",
+    "viết skills/youtube-image-samurai-jp/SKILL.md",
+    "chốt kênh đối thủ + BGM trống trận"
+  ],
+  "narrator": {
+    "gender": "male",
+    "age_band": "40s",
+    "persona": "võ tướng trầm hùng, ăn to nói lớn, kể chuyện chiến trận dứt khoát",
+    "point_of_view": "三人称 語り部",
+    "register": "だ・である体 (dứt khoát, hùng biện)"
+  },
+  "voice": {
+    "id": "elevenlabs_D3L9PtKnIVJXdgK444Ey",
+    "name": "Ryu - Characters (samurai, deep powerful dramatic)",
+    "speed": 1.0,
+    "fx": "boom",
+    "char_rate": 317.5,
+    "char_rate_note": "đo thật 230 chữ → 43.5s",
+    "char_rate_measured_at": "2026-09-08"
+  },
+  "script": {
+    "skill": "skills/youtube-script-samurai-jp/SKILL.md",
+    "target_minutes": 25,
+    "two_pass": true,
+    "gate": {
+      "comma_per_sentence": [
+        0.8,
+        1.8
+      ],
+      "chars_per_breath": [
+        8.0,
+        16.0
+      ],
+      "dialogue_ratio_max": 0.3,
+      "require_next_ep_teaser": true
+    }
+  },
+  "image": {
+    "skill": "skills/youtube-image-samurai-jp/SKILL.md",
+    "character_sheet": "a Japanese samurai general in his 40s, weathered sun-darkened face, topknot with grey streaks, dark lacquered armor with faded family crest, scar across left eyebrow",
+    "style_suffix": "cinematic ultra-realistic color, dramatic side lighting, volumetric dust, 8K, authentic Sengoku-era Japanese setting, 16:9, no text",
+    "seconds_per_image": 11,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 24
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail-satori-jp/SKILL.md",
+    "palette": [
+      "RED",
+      "YELLOW",
+      "WHITE"
+    ],
+    "banner": true
+  },
+  "assemble": {
+    "zoom": 1.18,
+    "transition": "cut",
+    "xfade": 0.25,
+    "bgm": "",
+    "bgm_volume": 0.12
+  },
+  "blocklist": [
+    "gore",
+    "severed limb",
+    "blood spray",
+    "decapitation",
+    "child soldier",
+    "naked"
+  ],
+  "slug_dir": "assets/samurai_jp"
+}

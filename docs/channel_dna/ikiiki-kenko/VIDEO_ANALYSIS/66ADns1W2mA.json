@@ -1,0 +1,35 @@
+{
+  "topics": [
+    "高齢者",
+    "70代",
+    "筋肉の衰え",
+    "タンパク質",
+    "寝たきり予防",
+    "サルコペニア",
+    "卵",
+    "鶏胸肉",
+    "納豆",
+    "鮭",
+    "ギリシャヨーグルト",
+    "豆腐",
+    "食事習慣",
+    "腸内環境",
+    "必須アミノ酸",
+    "オメガ3脂肪酸"
+  ],
+  "hook_type": "Chỉ ra các dấu hiệu suy giảm thể lực quen thuộc ở tuổi 70 (chân nặng, mệt khi leo cầu thang) và cảnh báo nguy cơ nằm liệt giường tiềm ẩn do mất cơ âm thầm.",
+  "structure": "Mở đầu cảnh báo thực trạng mất cơ và thiếu hụt đạm ở người già qua ca bệnh thực tế, sau đó đếm ngược top 5 thực phẩm giàu dinh dưỡng kèm câu chuyện bệnh nhân và nghiên cứu y khoa, cuối cùng tổng kết giải pháp và đưa lời khuyên bác sĩ.",
+  "emotional_beats": [
+    "Lo lắng",
+    "Thức tỉnh",
+    "Đồng cảm",
+    "Nhẹ nhõm",
+    "Hy vọng"
+  ],
+  "title_formula": "[Đối tượng mục tiêu] + [Mốc tuổi] + [Số lượng] + [Giải pháp/Hành động] + [Lợi ích/Kết quả bất ngờ]",
+  "notes": "Video kết hợp nhuần nhuyễn giữa phong cách bác sĩ lâm sàng, các câu chuyện người thật cụ thể (tên, tuổi, nghề nghiệp) và trích dẫn nghiên cứu từ các hiệp hội y khoa Nhật Bản (Nhật Bản Động mạch xơ cứng học hội, Nhật Bản Lão niên y học hội, Nhật Bản Tuần hoàn khí học hội) để tạo dựng niềm tin tuyệt đối.",
+  "video_id": "66ADns1W2mA",
+  "title": "高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた",
+  "view_count": 40000,
+  "duration_min": 18.9
+}

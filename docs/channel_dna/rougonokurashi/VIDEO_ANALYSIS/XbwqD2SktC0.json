@@ -1,0 +1,29 @@
+{
+  "topics": [
+    "定年退職",
+    "60歳退職",
+    "65歳退職",
+    "再雇用",
+    "年金",
+    "退職金",
+    "老後資金",
+    "老後の孤独",
+    "高年齢求職者給付金",
+    "再就職"
+  ],
+  "hook_type": "Mở đầu bằng câu hỏi so sánh trực diện giữa hai sự lựa chọn đối lập (nghỉ hưu tuổi 60 vs 65) và hé lộ sự thật tàn nhẫn đằng sau cả hai để kích thích trí tò mò.",
+  "structure": "Phát triển qua cấu trúc đối chiếu song song: nhân vật chính nghỉ hưu tuổi 60 đối mặt với khủng hoảng tài chính và cô đơn, trong khi người đồng nghiệp làm tới 65 tuổi kiệt quệ sức khỏe và mất thời gian bên gia đình; kết bài bằng sự thức tỉnh và giải pháp cân bằng (làm việc nhẹ kết hợp kết nối xã hội).",
+  "emotional_beats": [
+    "Hưng phấn tận hưởng tự do",
+    "Hoang mang lo sợ vì tiền vơi và cô đơn",
+    "Vỡ mộng trước thực tế tìm việc tuổi già",
+    "Xót xa và đồng cảm với bi kịch của đồng nghiệp",
+    "Thức tỉnh và an yên tìm thấy sự cân bằng"
+  ],
+  "title_formula": "【漫画】[Độ tuổi]で[Quyết định nghỉ việc]した男…[Mốc thời gian]後、[Đối tượng đối lập]との差に[Từ cảm xúc cực đoan: 絶望しました]",
+  "notes": "Đánh trúng nỗi sợ lớn nhất của nhóm khán giả trung niên - cao niên: mâu thuẫn giữa 'bảo toàn tài chính' và 'sức khỏe/thời gian sống'; lồng ghép khéo léo thủ thuật nhận trợ cấp thất nghiệp thực tế (nghỉ việc lúc 64 tuổi 11 tháng).",
+  "video_id": "XbwqD2SktC0",
+  "title": "【漫画】60歳で定年退職した男…5年後、65歳まで働いた同僚との差に絶望しました",
+  "view_count": 299000,
+  "duration_min": 24.2
+}

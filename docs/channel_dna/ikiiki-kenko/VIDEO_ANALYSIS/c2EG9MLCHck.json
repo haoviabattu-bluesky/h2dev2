@@ -1,0 +1,29 @@
+{
+  "topics": [
+    "70代の過ごし方",
+    "要介護予防",
+    "筋肉量の減少",
+    "前頭葉",
+    "セロトニン",
+    "日光浴",
+    "散歩習慣",
+    "社会的孤立",
+    "認知機能低下",
+    "健康寿命"
+  ],
+  "hook_type": "Cảnh báo khẩn cấp kết hợp tương phản giữa hai tương lai đối lập của tuổi 70 (tự do nghỉ ngơi thụ động dẫn đến nằm liệt giường vs. chủ động tích lũy để sống thọ khỏe mạnh).",
+  "structure": "Mở đầu bằng bảng tự kiểm tra 12 dấu hiệu cảnh báo, tiếp nối bằng giải thích cơ chế khoa học về suy giảm cơ bắp, não bộ và sự cô đơn, sau đó đưa ra phác đồ hành động 3 trụ cột kèm lộ trình thay đổi 12 tuần và thử thách 7 ngày.",
+  "emotional_beats": [
+    "Báo động giật mình",
+    "Lo lắng tự soi chiếu",
+    "Thức tỉnh vỡ lẽ",
+    "Được khích lệ",
+    "Tự tin quyết tâm"
+  ],
+  "title_formula": "[Số lượng]の兆候が[Độ tuổi/Đối tượng]の未来をひそかに[Hậu quả âm thầm]",
+  "notes": "Tiêu đề ghi '5 dấu hiệu' (5つの兆候) nhưng kịch bản thực tế lại liệt kê tới 12 dấu hiệu, cho thấy sự lệch pha giữa tiêu đề câu view và nội dung bài giảng. Kịch bản có chứa các mã phân mục kiểu outline kịch bản (6A, 6B, 6D) bị đọc thẳng vào lời thoại.",
+  "video_id": "c2EG9MLCHck",
+  "title": "5つの兆候が70代以降のあなたの未来をひそかに傷つけている",
+  "view_count": 698,
+  "duration_min": 23.4
+}

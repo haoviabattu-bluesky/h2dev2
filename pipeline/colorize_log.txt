@@ -1,0 +1,22 @@
+001.png <- sub03_ushijima_young_major_general.jpg (portrait) OK 56s
+002.png <- sub04_yahara_hiromichi_portrait.jpg FAIL Gpti2Error gpti2 edit that bai sau 5 lan: Submit edit HTTP 400: {"error":{"message":"A reference image is truncated or corrupt — the file header is valid but the image data is incomplete. Re-upload that file and retry. Problem is with reference image #1. Details: 228 KB image/jpeg 691×1000 — JPEG thiếu EOI (23356 (27s)
+003.png <- sub01_commanders_okinawa_1945-02.jpg (landscape) OK 55s
+004.png <- sub05_minoru_ota_portrait.jpg (portrait) OK 48s
+005.png <- sub02_ushijima_portrait_highres.jpg (portrait) OK 62s
+006.png <- sub09_shuri_castle_rubble_1945.jpg (landscape) OK 55s
+002.png <- sub04_yahara_hiromichi_portrait.jpg (portrait) OK 62s
+007.png <- sub11_japanese_girl_white_flag_1945-06.png FAIL Gpti2Error gpti2 edit that bai sau 5 lan: Job that bai: {'code': 'content_policy_violation', 'message': 'Azure từ chối mô tả này nhưng không cho biết vướng ở nhóm nào. Thường là do từ ngữ gợi bạo lực, gợi dục, nhắc tên người thật hoặc nhân vật có bản quyền (67s)
+008.png <- sub10_landing_beachhead_okinawa.jpg FAIL Gpti2Error gpti2 edit that bai sau 5 lan: Submit edit HTTP 400: {"error":{"message":"Images must be valid PNG, JPEG or WebP.","type":"invalid_request_error","code":"invalid_image"}} (30s)
+009.png <- sub12_riflemen_yaeju_dake_escarpment_1945-06-14.jpg (landscape) OK 54s
+010.png <- sub13_rifleman_big_apple_hill_combat.jpg (landscape) OK 56s
+011.png <- sub14_demolition_crew_cave_okinawa.jpg FAIL Gpti2Error gpti2 edit that bai sau 5 lan: Submit edit HTTP 400: {"error":{"message":"Images must be valid PNG, JPEG or WebP.","type":"invalid_request_error","code":"invalid_image"}} (31s)
+012.png <- sub16_marine_destroyed_power_plant.jpg (landscape) OK 62s
+013.png <- sub15_corsair_fighter_okinawa.jpg (portrait) OK 63s
+014.png <- sub17_american_tanks_okinawa.jpg (landscape) OK 63s
+015.png <- sub06_buckner_last_photo_1945-06-18.jpg (landscape) OK 55s
+016.png <- sub07_mabuni_suicide_site_1945.jpg FAIL Gpti2Error gpti2 edit that bai sau 5 lan: Job that bai: {'code': 'content_policy_violation', 'message': 'Azure từ chối mô tả này nhưng không cho biết vướng ở nhóm nào. Thường là do từ ngữ gợi bạo lực, gợi dục, nhắc tên người thật hoặc nhân vật có bản quyền (64s)
+017.png <- sub08_pow_at_graves_1945-06-28.jpg (landscape) OK 54s
+TONG: 11.0 phut cho 12 anh
+008.png <- sub10_landing_beachhead_okinawa.jpg (landscape) OK 72s
+011.png <- sub14_demolition_crew_cave_okinawa.jpg (landscape) OK 70s
+016.png <- sub07_mabuni_suicide_site_1945.jpg FAIL Gpti2Error gpti2 edit that bai sau 5 lan: Job that bai: {'code': 'content_policy_violation', 'message': 'Azure từ chối mô tả này nhưng không cho biết vướng ở nhóm nào. Thường là do từ ngữ gợi bạo lực, gợi dục, nhắc tên người thật hoặc nhân vật có bản quyền (65s)

@@ -1,0 +1,41 @@
+{
+  "topics": [
+    "足の健康",
+    "下肢血流",
+    "65歳以上",
+    "ビーツ",
+    "一酸化窒素",
+    "さつまいも",
+    "血糖値",
+    "足裏センサー",
+    "ケール",
+    "ビタミンK",
+    "動脈硬化",
+    "ルテイン",
+    "とうもろこし",
+    "オメガ6脂肪酸",
+    "慢性炎症",
+    "トマト缶",
+    "ビスフェノールA",
+    "塩分",
+    "むくみ",
+    "アイスバーグレタス",
+    "栄養置換効果",
+    "転倒予防"
+  ],
+  "hook_type": "Thấu hiểu và khen ngợi sự kiên trì nấu nướng chăm sóc sức khỏe của người cao tuổi, sau đó cảnh báo sốc về nguy cơ mất khả năng đi lại âm thầm kèm số liệu nghiên cứu.",
+  "structure": "Mở đầu đồng cảm và giải thích cơ chế lão hóa mạch máu/thần kinh chân -> Trình bày 3 thực phẩm bảo vệ (hạng 6 đến 4) kèm cơ chế và case study -> Chuyển tiếp kêu gọi tương tác -> Trình bày 3 thực phẩm quen thuộc gây hại âm thầm (hạng 3 đến 1) -> Tóm tắt, hướng dẫn 5 bước hành động cụ thể và lời khuyên y tế.",
+  "emotional_beats": [
+    "đồng cảm và trân trọng",
+    "lo lắng trước nguy cơ tiềm ẩn",
+    "bất ngờ trước hiểu lầm thực phẩm phổ biến",
+    "an tâm và nhẹ nhõm khi có giải pháp",
+    "được trao quyền và có động lực thay đổi"
+  ],
+  "title_formula": "【Từ cảnh báo mạnh】+ [Độ tuổi mục tiêu] + [Vấn đề/bộ phận bị tổn hại ngầm] + [Số lượng thực phẩm đối lập: X hại và Y bảo vệ]",
+  "notes": "Đảo ngược thứ tự xếp hạng thông thường (giới thiệu thực phẩm tốt trước từ 6-4 rồi mới đến thực phẩm xấu gây sốc từ 3-1 để giữ chân người xem); liên tục chèn call-to-action yêu cầu bình luận tình trạng thực tế của bản thân ở mỗi phân đoạn.",
+  "video_id": "l0N9WnXkMbA",
+  "title": "【放置厳禁】65歳以上の足をひそかに壊す3つの食品と守る3つの食品",
+  "view_count": 681,
+  "duration_min": 31.4
+}

@@ -1,0 +1,30 @@
+{
+  "topics": [
+    "がんリスク",
+    "がん予防",
+    "超加工食品",
+    "座りすぎ",
+    "DNA修復",
+    "ナチュラルキラー細胞",
+    "睡眠",
+    "IGF-1",
+    "ストレス管理",
+    "コルチゾール",
+    "時間制限食",
+    "オートファジー"
+  ],
+  "hook_type": "Cảnh báo phản trực giác về việc khám sức khỏe bình thường vẫn có thể mắc bệnh do cơ chế sửa chữa DNA âm thầm suy giảm từ tuổi 50.",
+  "structure": "Mở đầu nêu cơ chế suy giảm tự nhiên của tế bào sau tuổi 50, phân tích chi tiết bảng xếp hạng 5 thói quen kèm bằng chứng y khoa, chỉ ra 5 sai lầm phổ biến, nêu dẫn chứng thực tế và kết luận bằng các bước hành động ngay.",
+  "emotional_beats": [
+    "Hoang mang và cảnh giác",
+    "Khai sáng nhờ dữ liệu khoa học",
+    "Nhẹ nhõm và hy vọng",
+    "Quyết tâm hành động"
+  ],
+  "title_formula": "【Từ cảnh báo】 + Giới hạn độ tuổi mục tiêu + Hành động giảm rủi ro bệnh + Số lượng thói quen + Tên 2 yếu tố nguy cơ cụ thể",
+  "notes": "Sử dụng lối thuyết minh phong cách bác sĩ kết hợp các hình ảnh ẩn dụ đời thường (công nhân dọn rác, máy móc dính bụi, bảo vệ ca đêm) để giải thích cơ chế sinh học phức tạp cho người cao tuổi.",
+  "video_id": "sHQfJS9e8Zc",
+  "title": "【要注意】60代までにがんリスクを下げる5つの習慣 超加工食品と座りすぎの危険な関係",
+  "view_count": 148,
+  "duration_min": 25.4
+}

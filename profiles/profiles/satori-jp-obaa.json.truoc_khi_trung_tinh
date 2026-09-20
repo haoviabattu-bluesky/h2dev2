@@ -1,0 +1,81 @@
+{
+  "id": "satori-jp-obaa",
+  "market": "JP",
+  "language": "ja",
+  "niche": "Satori (悟り系) câu chuyện người già Nhật — ngôi 1 cụ bà",
+  "competitor": "https://www.youtube.com/@simbot2",
+  "narrator": {
+    "gender": "male",
+    "age_band": "74 tuổi",
+    "persona": "Cụ ông Nhật 74 tuổi góa vợ, thời trẻ là thợ may (仕立て職人) khu phố cổ Osaka, ngoài 30 chuyển sang nghề y tá bệnh viện, ngoài 50 mở một viện dưỡng lão nhỏ ở ngoại ô Kanto và làm giám đốc hơn mười năm, nay là cư dân một viện ở Nagano sau khi trẹo khớp háng; tính cách chất phác, ít nói, chiêm nghiệm và giàu lòng trắc ẩn. Bối cảnh cụ thể của mỗi tập do characters.json quy định trong khung tiểu sử này.",
+    "point_of_view": "一人称 私",
+    "register": "です・ます体 + ございます (khiêm nhường, lịch sự cổ)"
+  },
+  "voice": {
+    "id": "elevenlabs_jWxWvPtq4PJFwe66Y9xi",
+    "name": "Ado - Mature & Soothing",
+    "speed": 0.92,
+    "fx": "old-med",
+    "char_rate": 270.0,
+    "char_rate_measured_at": "2026-09-10",
+    "char_rate_speed": 0.92,
+    "char_rate_from": "video thật simbot2-sYRr33eHYSM"
+  },
+  "script": {
+    "skill": "skills/youtube-script-satori-jp/SKILL.md",
+    "target_minutes": 30,
+    "two_pass": true,
+    "gate": {
+      "comma_per_sentence": [
+        2.5,
+        6.0
+      ],
+      "chars_per_breath": [
+        4.5,
+        9.0
+      ],
+      "dialogue_ratio_max": 0.15,
+      "require_next_ep_teaser": true
+    }
+  },
+  "image": {
+    "skill": "skills/youtube-image-satori-jp/SKILL.md",
+    "character_sheet": "A 74-year-old Japanese elderly man, formerly an Osaka tailor who later worked as hospital nurse and ran a small Kanto nursing home, now a resident at a modest care home in rural Nagano; short thinning gray hair, wire-rimmed reading glasses, wearing a modest wool vest over a checkered shirt, gentle weathered face, pensive contemplative look",
+    "style_suffix": "cinematic ultra-realistic color, photorealistic, 8K, warm emotional lighting, authentic Japanese setting, 16:9, no text",
+    "seconds_per_image": 15,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 24
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail-satori-jp/SKILL.md",
+    "palette": [
+      "WHITE",
+      "YELLOW",
+      "RED"
+    ],
+    "banner": true
+  },
+  "assemble": {
+    "zoom": 1.12,
+    "transition": "xfade",
+    "xfade": 0.6,
+    "bgm": "assets/satori_jp/_bgm/bgm1.mp3",
+    "bgm_volume": 0.09
+  },
+  "blocklist": [
+    "baby",
+    "infant",
+    "newborn",
+    "toddler body",
+    "bathing",
+    "sento",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse close-up"
+  ],
+  "slug_dir": "assets/satori_jp",
+  "series_bible": "docs/SERIES_shizuko_shukatsu.md"
+}

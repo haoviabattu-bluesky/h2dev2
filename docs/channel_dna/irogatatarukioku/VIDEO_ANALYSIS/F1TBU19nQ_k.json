@@ -1,0 +1,31 @@
+{
+  "topics": [
+    "サイパンの戦い",
+    "AIカラー化",
+    "ガラパン",
+    "南洋興発",
+    "松江春",
+    "アメリカ丸",
+    "民間人",
+    "バンザイクリフ",
+    "スーサイドクリフ",
+    "キャンプ・ススペ",
+    "ガイ・ガバルドン",
+    "慰霊"
+  ],
+  "hook_type": "Mở đầu bằng phân tích bức ảnh màu yên bình của thị trấn Garapan rồi lật mở sự thật kinh hoàng rằng toàn bộ cuộc sống này sẽ bị xóa sổ chỉ sau 1 năm",
+  "structure": "Dẫn dắt tuyến tính qua 15 bức ảnh AI màu: từ đời sống trù phú trước chiến tranh, cuộc đổ bộ thảm khốc, khoảnh khắc lính Mỹ cứu dân thường, bi kịch Banzai Cliff đến trại tập trung Susupe và sự hồi sinh/tưởng niệm ngày nay.",
+  "emotional_beats": [
+    "Hoài niệm bình yên",
+    "Bàng hoàng",
+    "Cảm động trước tình người thời chiến",
+    "Bi thương tột cùng",
+    "Lắng đọng suy ngẫm"
+  ],
+  "title_formula": "【Năm + Địa danh】Mô tả chi tiết ảnh gây xúc động mạnh + Quy mô bi kịch ｜ Nghịch cảnh tương phản thời gian ｜ Khẳng định công nghệ phục dựng (AIフルカラー復元)",
+  "notes": "Cố ý chèn 1 bức ảnh màu hiện đại của Banzai Cliff ở cao trào để đối chiếu sự im lặng của thiên nhiên với bi kịch lịch sử 80 năm trước, tăng tối đa sự ám ảnh.",
+  "video_id": "F1TBU19nQ_k",
+  "title": "【1944年サイパン】銃を提げた海兵隊員が手を引いた少年は、2万6000人が隠れた島から出てきた｜島の暮らしは1年で消えた｜実際の写真をAIフルカラー復元",
+  "view_count": 16000,
+  "duration_min": 28.6
+}

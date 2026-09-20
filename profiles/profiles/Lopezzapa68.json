@@ -1,0 +1,120 @@
+{
+  "id": "Lopezzapa68",
+  "market": "JP",
+  "language": "ja",
+  "niche": "Sức khỏe người già Nhật bản",
+  "competitor": "",
+  "slug_dir": "assets/out",
+  "narrator": {
+    "gender": "female",
+    "age_band": "73 tuổi",
+    "persona": "Bà cụ 73 tuổi góa chồng, chất phác, đôn hậu, bùi ngùi kể lại biến cố mất đi bạn đời và bài học thủ tục thừa kế.",
+    "point_of_view": "一人称 私（わたし）",
+    "register": "丁寧語（です・ます調）、穏やかで温かみのあるおばあちゃんの語り口"
+  },
+  "voice": {
+    "id": "elevenlabs_JBFqnCBsd6RMkjVDRZzb",
+    "name": "George - Warm, Captivating Storyteller",
+    "speed": 0.92,
+    "fx": "old-med",
+    "char_rate": 273.9,
+    "pace": true,
+    "char_rate_measured_at": "2026-09-10",
+    "char_rate_speed": 0.92,
+    "char_rate_from": "video thật simbot2-TISOm_7M_vM"
+  },
+  "script": {
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 30.0,
+    "two_pass": true,
+    "gate": {
+      "comma_per_sentence": [
+        2.5,
+        5.0
+      ],
+      "chars_per_breath": [
+        5.0,
+        9.5
+      ],
+      "dialogue_ratio_max": 0.15,
+      "require_next_ep_teaser": true
+    }
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "A 73-year-old Japanese elderly woman, neat short gray permed hair, gentle wrinkled face with sorrowful eyes, wearing a modest dark knitted cardigan and blouse",
+    "style_suffix": "gentle watercolor anime style, soft natural sunlight, cozy Japanese interior, calming pastel color palette, nostalgic atmosphere, 16:9, no text",
+    "seconds_per_image": 14,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 24,
+    "qc_sample": 12
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "palette": [
+      "WHITE",
+      "YELLOW",
+      "RED"
+    ],
+    "banner": "70代の私が毎日続ける！健康寿命をのばす朝の習慣",
+    "dedicated_bg": true
+  },
+  "assemble": {
+    "zoom": 1.12,
+    "transition": "xfade",
+    "xfade": 0.6,
+    "qc_sample": 12
+  },
+  "blocklist": [
+    "baby",
+    "infant",
+    "newborn",
+    "naked",
+    "blood",
+    "gore",
+    "deformed hands",
+    "horror",
+    "grotesque"
+  ],
+  "channel": {
+    "handle": "@Lopezzapa68",
+    "display_name": "人生の夕暮れ",
+    "channel_id": "UC9huXCiBIXBfUh11D7ZsFSA"
+  },
+  "seo_tags": {
+    "source": "FlowHandoff_local/shared/BAO_CAO_MAY2_TAG_RESEARCH_lopezzapa68.md (máy 2, 2026-09-17)",
+    "channel_keywords": [
+      "老後", "シニア", "老後生活", "家族", "夫婦", "親子",
+      "人生", "高齢者", "人生相談", "年金", "定年", "オーディオブック"
+    ],
+    "episodes": {
+      "stt4": {
+        "video_id": "IAP0CQPJpJ4",
+        "title": "老人ホームを八十八日で帰った理由",
+        "top_priority_tags": ["老人ホーム", "施設", "親孝行", "老後", "老後生活"],
+        "video_tags": ["老人ホーム", "施設", "老後", "シニア", "老後生活", "一人暮らし", "親孝行", "高齢者", "老後の生き方", "人生相談"]
+      },
+      "stt6": {
+        "video_id": "UQn9QNfH0qs",
+        "title": "六十八歳・元和裁士が明かす、老いた女が男を探す本当の理由",
+        "top_priority_tags": ["老後", "一人暮らし", "見守り"],
+        "video_tags": ["老後", "シニア", "一人暮らし", "見守り", "高齢者", "実話"],
+        "note": "competitor pool mỏng (13 query, chỉ 1 video liên quan trung bình) — tag phần lớn do Claude suy luận nội dung, CHƯA verify qua đối thủ"
+      },
+      "stt7": {
+        "video_id": "IyxrKf9-6Fw",
+        "title": "「母さん、その金は僕でも下ろせない」——夫が遺した三行の遺言",
+        "top_priority_tags": ["相続", "通帳", "家族", "シニア"],
+        "video_tags": ["老後", "シニア", "朗読", "相続", "通帳", "家族", "感動する話"],
+        "note": "competitor pool mỏng (9 query, chỉ 1 video liên quan trung bình) — tag phần lớn do Claude suy luận nội dung, CHƯA verify qua đối thủ"
+      },
+      "stt11": {
+        "video_id": "Qe_aMy_oz80",
+        "title": "元旦の朝、46歳の息子に通帳代わりのノートを渡したら…大人の男が涙した「親の終活」の真実",
+        "top_priority_tags": ["通帳", "終活", "母子", "老後"],
+        "video_tags": ["老後", "シニア", "高齢者", "通帳", "終活", "息子", "母子", "人生相談"]
+      }
+    }
+  }
+}

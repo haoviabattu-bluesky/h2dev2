@@ -1,0 +1,31 @@
+{
+  "topics": [
+    "だるさ",
+    "慢性炎症",
+    "腸内環境",
+    "タイトジャンクション",
+    "リポポリサッカライド",
+    "LPS",
+    "ロイテリ菌",
+    "ロイテリン",
+    "水溶性食物繊維",
+    "リーキーガット",
+    "乳酸菌",
+    "ビタミンD"
+  ],
+  "hook_type": "Cảnh báo khẩn cấp và phủ nhận quan niệm 'do tuổi tác', kết hợp bảng kiểm 15 triệu chứng mệt mỏi để người xem tự đối chiếu và giật mình nhận ra nguy cơ.",
+  "structure": "Liệt kê 15 dấu hiệu nhận biết viêm mạn tính -> Giải thích cơ chế rò rỉ ruột giải phóng độc tố LPS gây viêm toàn thân -> Bóc tách ngộ nhận về sữa chua thông thường và giới thiệu chủng khuẩn Reuteri -> Lộ trình cải thiện 12 tuần, nghiên cứu đối chứng và cam kết hành động.",
+  "emotional_beats": [
+    "Lo lắng",
+    "Giác ngộ",
+    "Vỡ lẽ",
+    "Hy vọng",
+    "Chủ động"
+  ],
+  "title_formula": "[Số lượng] + [Triệu chứng thông thường] + 実は [Bản chất bệnh lý bất ngờ] —— [Khai thác điểm mù/Đa số không biết]",
+  "notes": "Phân tích cơ chế sinh học phân tử (LPS, màng tế bào vi khuẩn, Reuterin) rất chi tiết chuẩn phong cách bác sĩ giảng dạy, tuy nhiên thiếu vắng câu chuyện ca bệnh thực tế (case study) của người cao tuổi để tạo kết nối cảm xúc mạnh mẽ hơn.",
+  "video_id": "Z1W_jiYi3cs",
+  "title": "5つのだるさが実は慢性炎症のサイン——ほとんどの方がご存知ない",
+  "view_count": 172,
+  "duration_min": 23.1
+}

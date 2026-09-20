@@ -1,0 +1,80 @@
+{
+  "id": "satori-jp-obaa",
+  "market": "JP",
+  "language": "ja",
+  "niche": "Satori (悟り系) câu chuyện người già Nhật — ngôi 1 cụ bà",
+  "competitor": "https://www.youtube.com/@simbot2",
+  "narrator": {
+    "gender": "female",
+    "age_band": "70-80",
+    "persona": "cụ bà ~75 tuổi kể chuyện đời mình, ấm áp, chậm, hơi yếu",
+    "point_of_view": "一人称 私",
+    "register": "です・ます体 + ございます (khiêm nhường, lịch sự cổ)"
+  },
+  "voice": {
+    "id": "elevenlabs_jWxWvPtq4PJFwe66Y9xi",
+    "name": "Ado - Mature & Soothing",
+    "speed": 0.92,
+    "fx": "old-med",
+    "char_rate": 275.8,
+    "char_rate_measured_at": "2026-09-07",
+    "char_rate_note": "đo thật 256 chữ → 48,4s (assets/_voice_test/elderly_female_current.mp3)"
+  },
+  "script": {
+    "skill": "skills/youtube-script-satori-jp/SKILL.md",
+    "target_minutes": 30,
+    "two_pass": true,
+    "gate": {
+      "comma_per_sentence": [
+        2.5,
+        6.0
+      ],
+      "chars_per_breath": [
+        4.5,
+        9.0
+      ],
+      "dialogue_ratio_max": 0.15,
+      "require_next_ep_teaser": true
+    }
+  },
+  "image": {
+    "skill": "skills/youtube-image-satori-jp/SKILL.md",
+    "character_sheet": "an 80-year-old Japanese woman, silver hair in a low bun, thin gold-rimmed glasses, navy cotton kimono-style blouse, gentle tired eyes, deep wrinkles",
+    "style_suffix": "cinematic ultra-realistic color, photorealistic, 8K, warm emotional lighting, authentic Japanese setting, 16:9, no text",
+    "seconds_per_image": 15,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 24
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail-satori-jp/SKILL.md",
+    "palette": [
+      "WHITE",
+      "YELLOW",
+      "RED"
+    ],
+    "banner": true
+  },
+  "assemble": {
+    "zoom": 1.12,
+    "transition": "xfade",
+    "xfade": 0.6,
+    "bgm": "assets/satori_jp/_bgm/bgm1.mp3",
+    "bgm_volume": 0.09
+  },
+  "blocklist": [
+    "baby",
+    "infant",
+    "newborn",
+    "toddler body",
+    "bathing",
+    "sento",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse close-up"
+  ],
+  "slug_dir": "assets/satori_jp",
+  "series_bible": "docs/SERIES_shizuko_shukatsu.md"
+}

@@ -1,0 +1,496 @@
+[00:00] Ở tiếng Việt này là ngôn ngữ thì anh em cứ đỡ tiếng Việt nha
+[00:02] Cái này không ảnh hưởng gì đâu
+[00:03] Rồi còn chỗ địa điểm thì mọi người lứt cho em là chọn là Nhật Bản nha
+[00:07] Ví dụ em làm Nhật Bản thì em chọn Nhật Bản
+[00:10] Còn anh em làm Hang Walk thì em chọn Hang thôi
+[00:12] Hay là US thì mọi người chọn Hoa Cây thôi
+[00:15] Đây, đây, đây, đây, Nhật Bản đây mọi người
+[00:18] Đó thì mọi người chọn vào
+[00:20] Thì cái này cũng khét là quan trọng nha mọi người
+[00:22] Để tính thì em sẽ giải thích kể cho mọi người
+[00:23] Sau khi chọn xong rồi thì mọi người vào ca đạch nữa nha
+[00:26] Cái chỗ này thì hoàn toàn nó bắn hiểu Việt Nam thôi
+[00:28] Bởi vì mọi người chưa set ở trong cái studio nè
+[00:31] Đây, bây giờ mọi người vào cái studio nha
+[00:35] Rồi anh em bấm vào ca đạch nè
+[00:37] Mọi người bấm xuống chỗ kênh nha
+[00:39] Đây, chỗ vị trí địa lý nè
+[00:40] Mọi người chọn là Nhật Bản nha
+[00:42] Thì ở ngoài kia nó sẽ quen bên nhặt nha mọi người
+[00:46] Thì cái này giống như lần trước em hướng dẫn mọi người thôi
+[00:49] Còn cái đơn vị tiền tợ thì mọi người đỡ Việt Nam hay là cái diện được
+[00:52] Ê, anh em đỡ Việt Nam thôi
+[00:54] Ê, cái chỗ đó nó không quan trọng đâu nha mọi người
+[00:56] Cái video này thì em hướng dẫn lại cho anh em người mới hoàn toàn nha
+[00:59] Thì anh em nào để biết rồi thì anh em tâm cảm nha
+[01:01] Bởi vì có khía nhiều anh em vẫn chưa hiểu rãi
+[01:04] Đây, mọi người thót ra thì mọi người thấy nó để diện Nhật Bản rồi nha
+[01:07] Về ở trên góc bên trái này mọi người thấy em bỏ đen không?
+[01:09] Giber, cái chỗ đó là nó để re Nhật Bản rồi
+[01:12] Bởi vì lúc nãy em set cái địa điểm nè mọi người
+[01:15] Cái thật ra cái chỗ này thì mọi người set hay không set cũng được
+[01:18] Nhưng mà em kêu là set nha
+[01:20] Bởi vì sao?
+[01:21] Bởi vì khi mọi người set re cái Nhật Bản như này rồi
+[01:24] Thì khi mọi người xem cơn đối thủ, xem video
+[01:27] Về đi tương tác đi ngắm cơn á
+[01:29] Thì lúc đó nó sẽ đề sức re cái trang chủ
+[01:31] Cũng như là bên tay phải mọi người
+[01:33] Là toàn là những cái video
+[01:36] Cũng như là cùng chủ đề về
+[01:38] Các cái bên Nhật Bản nha mọi người
+[01:40] Nói chung là bên thị trường Nhật Bản thôi
+[01:42] Đấy, tới nơi em sẽ test
+[01:44] Em sẽ ngắm cơn cho mọi người thấy nha
+[01:46] Nên là cái chỗ đó cũng cực kì là cần thiết nha mọi người
+[01:48] Rồi tiếp theo là từ chính cơn này
+[01:50] Bây giờ thì mình sẽ chỉnh LVT
+[01:52] Tên cơn cũng như là ID cơn thôi
+[01:54] Còn cái anh Bia thì đối với em thì
+[01:57] Rất dạ đe số các cơn của em thì không để anh Bia
+[02:00] Còn em thích thì em có thể tạo anh Bia để cũng được
+[02:02] Đây như cơn đối thủ thì nó có anh Bia nè mọi người
+[02:04] Thì tự ý mọi người thôi
+[02:06] Còn em thì em không để nha
+[02:08] Rồi em sẽ dịch cái cơn đối thủ re
+[02:10] Về 1 tâm lý
+[02:12] Học chơi đen tối nè
+[02:14] Cái tên cơn của nó nha mọi người
+[02:16] Thì mọi người có thể chọn lọc
+[02:18] Từ cái cơn này mọi người chọn lọc re thêm
+[02:20] Một 2 cơn đối thủ khác nữa nha
+[02:22] Thì em quý dụ 1 cơn này thôi
+[02:24] Thì em sẽ copy tên cơn nè
+[02:26] We are con yet me
+[02:28] Mọi người dùng chat givety cũng được nha
+[02:30] Đây copy tên cơn 1 người dán vào
+[02:32] Về 1 người trai đã câu lợn như này nha
+[02:34] Chỗ này thì mọi người là Bia cơn
+[02:36] Lái Bia cơn đối thủ thì mọi người ghi Bia thôi
+[02:38] Nhập 1 người dán Bia cơn đối thủ vào
+[02:40] Còn hiện tại thì em 1 làm demo thôi
+[02:42] Thì em sửa lại 1 nha
+[02:44] Rồi trai nó chạy thôi mọi người
+[02:46] Bây giờ đợi nó gain re nè
+[02:48] Rất rất nhiều nè
+[02:50] Thì mọi người nếu thấy chưa hay
+[02:52] Thấy nó trùng lẹp với cơn khác
+[02:54] Mọi người có thể dán câu lợn này vào
+[02:56] Đây
+[02:58] Để cho nó gain re 1 lần nữa
+[03:00] Thì hiện tại thì em thấy ok rồi
+[03:02] Không bị trùng lẹp nha
+[03:04] Bởi vì em tết cả 1 cái cơn đối thủ thôi
+[03:06] Còn nếu mọi người lấy nhiều cơn cho nó tổng hộp
+[03:08] Mọi người có thể cho nó chạy lại 1 lần nữa cho nó ok nha
+[03:10] Rồi thì bây giờ em sẽ
+[03:12] Ví dụ lấy thành cái tên cơn này luôn nha
+[03:14] Mọi người
+[03:16] Nè
+[03:21] Thật ra quen đơn giản rồi mọi người
+[03:23] Video
+[03:25] Tên cơn chứng lúc trước
+[03:27] Em cũng kể cả hướng dẫn rồi
+[03:29] Nhưng mà để hướng dẫn lại nữa cho ok luôn
+[03:31] Xin trong này em nói về các quán đề ngâm cơn luôn nha
+[03:33] Ngâm cơn theo chính sách
+[03:35] Hiện tại 2026 luôn nha mọi người
+[03:37] Rồi mọi người dán iD vào nữa nha
+[03:39] Thì chỗ này thì mọi người
+[03:41] Dán tiếng Nhật hay là tiếng Anh gì cũng được
+[03:43] Em thì hay để tiếng Anh như này
+[03:45] Rồi ok bây giờ
+[03:47] Tiếng theo là cái tạo
+[03:49] Logo cho cơn nha mọi người
+[03:51] Cái chỗ LVTA này
+[03:53] Mình không cần làm giống theo đối thủ nha
+[03:55] Đây đối thủ thì nó
+[03:57] Theo cái chủ đạo
+[03:59] Mèo cơn của nó là mèo tím
+[04:01] Mọi người có đợi không
+[04:03] Thì kể nó nha
+[04:05] Cái này thì mọi người làm như nào cũng được
+[04:07] Mọi người có thể làm như câu lợn như em nè
+[04:09] Thì con kết mi nó sẽ tự động
+[04:11] Re luôn nè mọi người
+[04:13] Nếu mọi người chưa thấy ơn ấy
+[04:15] Mấy cơn kết ra được rồi
+[04:17] Nói chung là làm demo thôi
+[04:19] Cho mọi người hiểu thì em sẽ lấy cái này luôn nha mọi người
+[04:21] Rồi em bấm tải về
+[04:23] Thì bây giờ vào thay đỡ thôi
+[04:25] Mọi người bỏ vào thì tự động khóp luôn nha
+[04:27] Thì nếu mà chưa khóp thì em tránh trần vừa cái hình tròn nha
+[04:29] Đấy như thế này là ok nè mọi người
+[04:31] Sau đó thì mình sức bản luôn thôi
+[04:33] Còn anh bia này
+[04:35] Mọi người muốn làm thêm cho nó đẹp
+[04:37] Thì mọi người làm thôi
+[04:39] Còn theo em thì em không có làm nha mọi người
+[04:41] Tự ý mọi người thôi
+[04:43] Nói không cần thiết đâu mọi người
+[04:45] Rồi bây giờ thì em sẽ lưu lại nha
+[04:47] Như này thì ok hết rồi đấy
+[04:49] Tổ mô té đồ kia thì em không để nha mọi người
+[04:51] Với vì chính sách hiện tại
+[04:53] Nên anh em sợ bám
+[04:55] Để nhiều thông tin bé thì
+[04:57] Càng bị lọc vào để ý
+[04:59] Và nó sẽ quyết hơn mọi người
+[05:01] Chứ không phải để càng nhiều là top đâu nha mọi người
+[05:03] Ở thời điểm lúc trước thì mình làm
+[05:05] Càng nhiều thì càng top
+[05:07] Nhưng mà hiện tại thì mình phải chạy theo chính sách của nó thôi
+[05:09] Với vì nó quyết rất là canh nha
+[05:11] Sau khi lưu lọc lại thì cân mới
+[05:13] Tên cân logo thì nó để
+[05:15] Nhận diện rồi nha mọi người
+[05:17] Bây giờ thì tiếp tục là
+[05:19] Cái đec cân, chỗ cái đec năng cao
+[05:21] Về các điều kiện sử dụng nha mọi người
+[05:23] Thì đây, chỗ này thì mọi người
+[05:25] Chọn theo em nha
+[05:27] Ở trên thì mọi người không dành trang thì em nha
+[05:29] Rồi còn là ở dưới thì để
+[05:31] Mạc định thôi
+[05:33] Rồi tiếp theo là chỗ này cực cực quan trọng nữa nha mọi người
+[05:35] Em nhắc lại là mọi người phải
+[05:37] Sát minh, đủ, xanh, bè dòng
+[05:39] Mọi người mới ngâm cân rồi mọi người làm nha
+[05:41] Đây, cái chỗ số điện thoại này
+[05:43] Mọi người có thể dùng số hôn thoại của mình
+[05:45] Hay là số hôn thoại của người thăng
+[05:47] Một số thì có thể là sát minh được 2 cân
+[05:49] 2 cân trong vòng 1 năm nha mọi người
+[05:51] Sau 1 năm thì mọi người có thể
+[05:53] Sát minh lại thêm 1 cân khác
+[05:55] Hay là cân nào đó được cũng được
+[05:57] Nói giới hạn là
+[05:59] Trong vòng 1 năm thì 1 số hôn thoại
+[06:01] Cá thể sát minh toi đây được 2 cân thôi
+[06:03] Đấy mọi người, cái hiểu đơn giản là như vậy nha
+[06:05] Rồi thì tiếp theo là
+[06:07] Trong bè này thì mọi người
+[06:09] Tiếp tục là các thể sát minh
+[06:11] Bè video, giáy tờ thị thân
+[06:13] Như em trước giờ làm thì
+[06:15] Em quét bằng cái
+[06:17] Hai mạc của cái giáy phép live
+[06:19] Nói châu nem đến 8 tiếng thì nó về thôi
+[06:21] Mọi người, nó xanh thôi
+[06:23] Rồi cái này thì tự í mọi người
+[06:25] Nhưng mà mọi người phải sát minh nha
+[06:27] Mọi người phải làm đủ cách
+[06:29] Sao cho nó xanh hết bè dòng
+[06:31] Còn cái quét trên này thì
+[06:33] Học thổng tích cực
+[06:35] Các cái cơn ở trong youtube này
+[06:37] Thì tầm 1, 2 tháng nó mưa xanh được
+[06:39] Hãy nên cái bước đó thì bỏ quen đi
+[06:41] Mọi người quyết bằng cái khuôn mạc
+[06:43] Thật là giáy tờ thị thân là được rồi nha
+[06:45] Còn cái bước 2, cái số hôn thoại thì em nói lại luôn
+[06:47] Thì nếu như mọi người hót số hôn thoại rồi
+[06:49] Mọi người bạn biên người thân
+[06:51] Cũng không đủ
+[06:53] Thì mọi người có thể đi thơ xìm nha
+[06:55] Mọi người nói chung là
+[06:57] Làm sao để sát minh là được
+[06:59] Chứ không có ảnh hưởng chỗ đá đâu
+[07:01] Nói chung là số điện thoại này cũng được
+[07:03] Chứ nó không có ảnh hưởng gì đến cơn
+[07:05] Nên là show này quyết gì đâu nha mọi người
+[07:07] Rồi đó là nói về các quán đề
+[07:09] Cá đệch cơn
+[07:11] Về bây giờ thì em sẽ tiếp tới cái phần show nha
+[07:13] Từ khóa cơn, mô tẻ
+[07:15] Cũng như là từ khóa video nha mọi người
+[07:17] Nè còn 1 cái cạ đệch năng cao
+[07:19] Ở trong chó độ mạc đẩn này nữa
+[07:21] Mọi người nếu mà làm các cái dạng trước lý
+[07:23] Hay xuất khế, mọi người cứ
+[07:25] Để làm 1 mọi người về vlog nha
+[07:27] Em thì hãy để như vậy thôi mọi người
+[07:29] Còn cái 2 cái chỗ này
+[07:31] Sét về ngôn ngữ đúng với cái quát gia
+[07:33] Mọi người làm nha
+[07:35] Ví dụ em làm nhặt thì em phải
+[07:37] Sét về nhặt nha mọi người
+[07:40] Em cứ gặn chỗ này 1 tí nữa
+[07:42] Rồi em sẽ nói về cái show nha mọi người
+[07:45] Mọi người phải để tất cả là tiến nhặt nha
+[07:47] Anh em làm thị trường khác thì
+[07:49] Cứ chọn theo thôi
+[07:51] Ở dưới này thì bọc của mình
+[07:53] Mọi người có thể để không hay cơ cơ bản
+[07:55] Mọi người để cơ bản đi
+[07:57] Rồi ok em lưu lại thôi
+[07:59] Về bây giờ quen chỗ cái phần quyền
+[08:01] Em có riêng 1 video em nói rồi
+[08:03] Thì em có thể xem lại nha
+[08:05] Quảng lý quyền thì mọi người có thể
+[08:07] Át những mêo khác vào
+[08:09] Để mọi người quảng lấy thôi
+[08:11] Về tránh trường hợp
+[08:13] Cái mêo của mọi người bị decay là sao đấy
+[08:15] Mọi người quảng có mêo khác
+[08:17] Mọi người quảng lấy, mọi người vào được
+[08:19] Nói chung phần này em có 1 video riêng
+[08:21] Để em nói rõ rồi
+[08:23] Thì em có thể xem lại show nha
+[08:25] Rồi tiếp tục thì bây giờ nói về cái chỗ show
+[08:27] Từ khó kênh, từ khó video
+[08:29] Một video nói về cái chỗ này
+[08:31] Áp dụng theo chính sách mới hiện tại luôn rồi
+[08:33] Sẵn đây thì em cũng nhắc lại luôn cho mọi người
+[08:35] Thì là hiện tại thì mọi người có thể
+[08:37] Để mô tẻ
+[08:39] Nói chung các từ khóa, mọi người có thể
+[08:41] Để nhưng mà ít thôi, hoặc là mọi người không để luôn nha
+[08:43] Đấy, cho mọi người đừng cả nhét quế nhiều
+[08:45] Kiểu như mọi người thấy
+[08:47] Tối nay là nem trem, mọi người để tầm
+[08:49] 400 mê nem trem luôn vừa đâu
+[08:51] Thì như phải không top đâu nha mọi người
+[08:53] Mọi người phải để tầm
+[08:55] Vài cái, hoặc là mọi người không để luôn
+[08:57] Bây giờ, ví dụ em xem cái cân đối thủ này nha
+[08:59] Này, cài
+[09:01] Mọi người cài cái ít tinh sinh
+[09:03] WIG AWAY vào
+[09:05] Em đang dùng bản furry luôn á
+[09:07] Thì mọi người thấy cái từ khó kênh của nó
+[09:09] Thì chỉ có vài cái thôi
+[09:11] Về video tan nè
+[09:13] Thì cái này là thể từ khó cho video nha mọi người
+[09:15] Thì em có thể dịch ra để đọc cái nghĩa của nó
+[09:17] Các cái từ khó này là gì nè
+[09:19] Thì mọi người có biết thì sẽ biết là
+[09:21] Tâm lý nè
+[09:23] Giao tiếp này kia nè mọi người
+[09:25] Chọn lạc vài cái thôi
+[09:27] Theo em thì như thế này
+[09:29] Cân đối thủ như thế này nó đợi rất ít rồi
+[09:31] Thì em lấy tầm vài cái thôi
+[09:33] Em bào bớt nha mọi người
+[09:35] Vì dụ như vậy
+[09:37] Mọi người có thể ngồi 1 cân đối thủ này
+[09:39] Mọi người tìm lạc rê thêm
+[09:41] 2 cân đối thủ nữa
+[09:43] Rồi mọi người tổng hộp lại
+[09:45] Xong mọi người chọn lạc rê vài cái thôi nha
+[09:47] Cái này thì hôm trước em có hướng dẫn rồi
+[09:49] Thì em có thể xem ký lại
+[09:51] Tiếp theo thì chỗ mô té này
+[09:53] Mọi người có thể để các cái thịt tan nha
+[09:55] Đây em lúc xuống cho mọi người xin cân đối thủ nè
+[09:57] Nó có vài cái thịt san san này mọi người thấy không
+[09:59] Ghi dấu thanh vài trước
+[10:01] Nói về cưỡng phân tích
+[10:03] Tâm lý hạc này kia nè mọi người
+[10:05] Thì em có bi bảo vào luôn nha
+[10:07] Còn cái mô té này
+[10:09] Thì em nghĩ nó không cần thiết đâu
+[10:11] Theo em thì mọi người không nên đỡ
+[10:13] Nói chung là em làm sao thì
+[10:15] Em chia xin mọi người như vậy
+[10:17] Em hiện tại em đang làm thì em chỉ để
+[10:19] Các cái tự khóa
+[10:21] Mỗi mô té như thế này thôi nha mọi người
+[10:23] Chứ các cái cân với em
+[10:25] Thì không có để quét nhiều thông tin
+[10:27] Giới thiệu này kia trong mô té nha
+[10:29] Ở áp dụng theo chính sách hiện tại
+[10:31] Mọi người cứ đỡ càng nhiều
+[10:33] Thì con bót AI nó cứ
+[10:35] Đưa mọi người vào danh sách quét thôi
+[10:37] Nói chung cái này thì
+[10:39] Không có công thức nào mà chính xác kìa mọi người
+[10:41] Phải làm về thực tế
+[10:43] Nói chung là trải nghiệm mọi người mới rả thôi
+[10:45] Còn em muốn để thì cường đế cường được
+[10:47] Bởi vì ngoài kia cũng có rất nhiều cân
+[10:49] Các cân thì không để
+[10:51] Nhưng vẫn sống bình thường thôi mọi người
+[10:53] Nói chung vang điểm mọi người làm
+[10:55] Mọi người cứ đi theo những cái niệm làm trước thôi
+[10:57] Rồi bây giờ đến với tự khóa cân nha
+[10:59] Tự khóa cân là cái này mọi người
+[11:01] Tự khóa cân có nghĩa là
+[11:03] Khi mọi người theo sọt
+[11:05] Sọt tìm kiếm
+[11:07] Thì nó theo cái tự khóa
+[11:09] Thì nó sẽ hiển cái tên con của mọi người
+[11:11] Để sất cái cân của mọi người rea
+[11:13] Ê thường thì WiccAui
+[11:15] Nó sẽ hiển rea 1 cái
+[11:17] Bởa ngò trang chủ như này mọi người chỉ cần bấm vào
+[11:19] Mọi người có bay được
+[11:21] Nhưng mà chắc cái cân này video ít quen
+[11:23] Sao nó không hiển này mọi người
+[11:25] Hay là em bị lát nha
+[11:27] Hiện tại em đang lót thử rea mà nó không có hiển
+[11:29] Rồi tiếp tục em giả thích thêm về cái chỗ
+[11:31] Tự khóa thì cái cân
+[11:33] Đó là em vừa nói
+[11:35] Cái đó là sọt là rea tên con của mọi người nha
+[11:37] Còn cái thỉ tự khóa video
+[11:39] Bởi vì mọi người theo sọt
+[11:41] Một cái tự khóa nào đó thì nó sẽ
+[11:43] Để sất rea hiển cái video của mọi người thôi
+[11:45] Nó mọi người cứ hiểu đơn giản như vậy nha
+[11:47] Anh em người mới thì chỉ cần ném đơn giản như vậy thôi
+[11:49] Là mọi người rõ thôi
+[11:51] Chứ không phải là lý thiết quén nhiều đâu nha mọi người
+[11:53] Nó chỉ như rõ thôi
+[11:55] Ngồi rea các cái tự khóa đó thì nó sẽ giúp tảy
+[11:57] Cái đời sất phân phói của mọi người
+[11:59] Hiển lên nữa nha chứ không phải là
+[12:01] Sọt không đâu, nhưng cơ bản thì mọi người cứ
+[12:03] Ném về mọi người hiểu rõ về trước như vậy
+[12:05] Stile
+[12:07] Để em copy cái thịt
+[12:09] Mọi người đang bắt kiếm tiền
+[12:11] Thế bắt style phổ độc trụ
+[12:13] Thế bắt style phổ độc trụ
+[12:15] Thế bắt kiếm tiền thôi
+[12:17] Lúc nãy ở ngồi răng chủ nó không hiểu nên
+[12:19] Nên em qua đây em copy nha mọi người
+[12:21] Mọi người có thể boy down
+[12:23] Cái tự khóa rồi mọi người copy thôi
+[12:25] Ngay thì em đang dùng bản
+[12:30] Free nha mọi người
+[12:32] Đấy thì nó back năng cấp này
+[12:34] Nó chung mọi người cứ text thôi mọi người copy
+[12:36] Rồi thì mọi người wear gián thôi là được
+[12:38] Anh em boy down xong con transfer
+[12:40] Rồi mọi người wear lại setting cơn mọi người gián vào này
+[12:42] Đó nó wear thôi
+[12:44] Thường là talk down hồi răng chủ
+[12:46] Thì cái attention nó sẽ hiểu lên
+[12:48] Mọi người bấm vào mọi người chỉ cần copy 1 phát thôi
+[12:50] Là nó sẽ được
+[12:52] Nhưng mà hiện tại thì cơn này
+[12:54] Nó ít video wear hay là em đang bị lack
+[12:56] Không biết nữa
+[12:58] Nên là nó không có hiểu chỗ này
+[13:00] Lúc trước em có hướng giáo mọi người
+[13:02] Cách lái như em vừa nói
+[13:04] Bấm vào phát thì nó hiểu thôi
+[13:06] Rồi tóm lại thì mọi người nói chung làm sao
+[13:08] Từ khóa nó vào đó là được nha
+[13:10] Nhưng mà mọi người lưới là em nói rồi
+[13:12] Anh em bả ít thôi, cho đừng gặp bảo hết nhiều nha
+[13:14] Tầm vài từ thôi, em nghĩ là mọi người đang đỡ
+[13:16] Tối đây là 4 đen em từ khóa
+[13:18] Để cao nhất nha
+[13:20] Hay cả mọi người không để luôn cũng được
+[13:22] Mọi người cứ tìm
+[13:24] Các cái ngắt khác, các chủ đề khác
+[13:26] Mọi người lúc trước em sẽ
+[13:28] Các nhiều kênh, hà đau, các bả, cái gì đâu
+[13:30] Nó vẫn đề sức, phong phói rất cao luôn
+[13:32] Như em hiện tại gần răng có vài kênh
+[13:34] Bả chỉ có vài từ khóa thôi
+[13:36] Nó vẫn làm rất bình thường thôi
+[13:38] Rồi bây giờ nói về việc ngâm cân nha
+[13:40] Mọi người thấy cái chỗ gấp trái
+[13:42] Hiện là
+[13:44] Giver, Nhật Bản
+[13:46] Lúc nãy em xét rồi
+[13:48] Rồi về lại với cân đối thủ thì em copy
+[13:50] Tên cân đối thủ
+[13:52] Về lại với cân mới lập
+[13:54] Sọt
+[13:56] Bây giờ mọi người bấm vào
+[13:58] Xem video đối thủ
+[14:00] Mọi người thấy có quản cáo không
+[14:02] Về từ bây giờ mọi người
+[14:04] Tất cả những cái đề sức
+[14:06] Mọi người thấy không?
+[14:08] Nó chỉ hiện ra
+[14:10] Thị trường Nhật Bản thôi
+[14:12] Đó là vấn đề tại sao em báo
+[14:14] Mọi người nên xét cái địa điểm
+[14:16] Ở ngoài là Nhật Bản nha
+[14:18] Mọi người thấy chưa?
+[14:20] EUTO là Thị trường Nhật Bản
+[14:22] Mọi người
+[14:24] Từ đó mọi người có thể
+[14:26] Chọn có thêm những cân
+[14:28] Đối thủ khác
+[14:30] Cũng như là tự tìm
+[14:32] Mọi người thật sự cái cách này
+[14:34] Rất là hay nha
+[14:36] Em cũng hay tìm ngắt
+[14:38] Lập cách từ tự đòi sức như này
+[14:40] Mọi người rất là đơn giản
+[14:42] Nhưng mà mọi người phải làm
+[14:44] Mọi người phải bắt tay vào mọi người
+[14:46] Thực chiến thì nó mới reo
+[14:48] Mọi người mới biết được nha
+[14:50] Mọi người thấy bên tỷ vãi em ông
+[14:52] Nó hiện cái ngắt trước lấy ông bữa em xe
+[14:54] Mọi người nữa kia này
+[14:56] Cái bè à nhăn vật
+[14:58] Mọi người thấy hiện này nó vẫn đang trên rất cao không
+[15:00] Thì 5 cân thì rất là đơn giản thôi
+[15:02] Mọi người cứ xem video của đối thủ
+[15:04] Ví dụ như video này đúng không
+[15:06] Mọi người xem vài phút
+[15:08] Mọi người bấm like video, đen ký cân
+[15:10] Cũng như là cân bình
+[15:12] Mọi người lên các yên tây
+[15:14] Mọi người kêu nó tạo cân bình thôi
+[15:16] Mọi người có thể xem lại video trước kia nha
+[15:18] Em có hướng dẫn cách tạo cân bình
+[15:20] Thì mọi người đừng có sợ bám nhiều bé nha
+[15:22] Mọi người cứ cắt vài phút
+[15:24] Mọi người tương tác như vậy thôi
+[15:26] Một ngày mọi người xem vài video
+[15:28] Tốt cũng được DOT
+[15:30] Bên n捻 cân nữa nha
+[15:32] M告訴 t Navij
+[15:33] Thì nó sẽ đồ sức qua
+[15:35] Cân đối thủ khác
+[15:37] Kênh giúp cân
+[15:39] Clichkeit về những çık do
+[15:42] Nếu điều kể l subconscious
+[15:44] Mọi người thể vào cuối cùng
+[15:46] L buoy m misf Cost
+[15:48] M Wheel
+[15:54] Ciennent
+[15:56] Đên ent
+[15:58] Nhưng các bạn sẽ dễ dỡ bị gãy view. Cũng như là kênh mọi người bị dính xà bám là không có tỷ lợ là phân phói, không có luật hiển thởi luôn.
+[16:05] Đó là lý do tại sao nhiều niềm làm set up, set tinh kênh các thứ rất là tự tin rồi đang view luôn.
+[16:11] Sao đã không có cái gì được hết. Sao anh em lại trẻ biết là vấn đề bị từ đâu.
+[16:16] Nên là cái chỗ ngâm kênh này em vướng dõng rất là kể luôn.
+[16:20] Anh em phải lưu ấy làm theo. Anh em đừng có non, vội, mọi người làm kênh rồi.
+[16:25] Nếu mà kênh cổ thì mọi người dành thời gian tầm 2-3 ngày để mọi người ngâm tương tác các thứ cùng chủ đề cho nó OK.
+[16:34] Rồi mọi người mới lanh video nha.
+[16:36] Còn đối với cái kênh mè hoàn toàn mới, cái kênh mè mọi người tạo từ cái gò mêo ké nhăn hay là cái gò mêo ở đâu đó của mọi người.
+[16:44] Mọi người tạo thành cái kênh mới.
+[16:46] Đối với cái kênh mới thì mọi người nên ngâm tầm 5 ngày nha.
+[16:50] Cái kênh mới thì nó sẽ OK hơn nha mọi người.
+[16:52] Chứ kênh mới mà mọi người cứ sợ 3 mục phát liền luôn thì nó sẽ rất khó, được phân phối, mắc thời gian lắm nha mọi người.
+[16:59] Thì có thể nó đưa mọi người vào danh sách sợ 3 nữa.
+[17:03] Sau đó thì nó sẽ không được đề sức đâu nha.
+[17:05] Thì nó trong cái thành youtube này có thực toàn đánh giá hết mọi người.
+[17:09] Mọi người làm một cái gì đó bất thường, hay là một cái gì đó rất là vui phạm thì nó chung là đã biết hết đấy.
+[17:15] Nên là em phải làm tránh châu và chứng ngay từ đều nha.
+[17:18] Đó là lý do tại sao em luôn nhắc là anh em phải làm chứng ngay từ đều và chọn ngắt.
+[17:23] Đó là một phần quan trọng để mọi người quyết định là cân mọi người lên được hay không.
+[17:27] 70, 80% là cái chỗ setting cân cũng như là chọn ngắt nha mọi người.
+[17:32] Rồi thì video này thì em tỏng hộp lại và em lên lại mới nhắc cho mọi người.
+[17:36] Về việc setting cân, setup cân cũng như là ngâm cân này kia, cell cân nữa.
+[17:42] Mọi người đặc biệt là anh em mới thì phải siêm kỷ nha.
+[17:46] Nếu như em chưa hiểu thì có thể siêm kỷ lại còn chưa hiểu nữa thì mọi người có thể nhắc em.
+[17:51] Ê, em sẽ giải thích thêm cho mọi người.
+[17:53] Về đi kèm với video này thì em xe thêm mọi người một cái ngắt tâm lý hợp và bân nhặt nữa đó.
+[17:58] Thì em có thể làm nha.
+[18:00] Mọi người không phải bám theo ở thị trường nhặt,
+[18:03] nhưng mọi người có thể áp dụng theo cái mở em để hướng giá mọi người.
+[18:07] Nó là nhân bản thị trường, mọi người đi em sang hàng,
+[18:10] hay là đi em về thị trường việc mọi người làm.
+[18:12] Nói chung nhân bản thị trường rất là nhiều cái để mọi người làm luôn.
+[18:15] Cảm ơn mọi người đã xem video đến đây nha.

@@ -1,0 +1,209 @@
+{
+  "id": "toshi-densetsu-jp",
+  "market": "JP",
+  "language": "ja",
+  "source_lang": "en,ja",
+  "niche": "都市伝説 / 宇宙 / ミステリー — kể chuyện tài liệu ngôi 3, 5 chương",
+  "competitor": "https://www.youtube.com/channel/UCoFEha9rNMFqUio-4GQITfw",
+  "slug_dir": "assets/toshi-densetsu-jp",
+  "folder_pattern": "ep{nn:02d}-*",
+  "narrator": {
+    "gender": "male",
+    "age_band": "40-50",
+    "persona": "Người dẫn phim tài liệu nam 40-50 tuổi: trầm, điềm tĩnh, nhịp đều, không kịch hoá. Kể chuyện của NGƯỜI KHÁC bằng giọng điều tra viên đang lần theo hồ sơ — tin vào sức nặng của mốc thời gian và con số, không tin vào cảm thán.",
+    "point_of_view": "三人称・語り手（自分の身の上話は一切しない）",
+    "register": "です・ます調、断定を避ける説明体"
+  },
+  "voice": {
+    "id": "elevenlabs_JKne0OHHjFFwcwWzlGj0",
+    "name": "Akira - Calm Deep Japanese Male",
+    "speed": 1.15,
+    "fx": "none",
+    "calib_style": "doc",
+    "char_rate": 380.3,
+    "pace": false,
+    "char_rate_measured_at": "2026-09-16",
+    "char_rate_speed": 1.15,
+    "char_rate_from": "video thật ep05-bermuda-triangle"
+  },
+  "script": {
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 31.5,
+    "two_pass": true,
+    "structure": "chapters5",
+    "gate": {
+      "comma_per_sentence": [
+        0.8,
+        2.2
+      ],
+      "chars_per_breath": [
+        9.0,
+        22.0
+      ],
+      "dialogue_ratio_max": 0.08,
+      "require_next_ep_teaser": false,
+      "check_arithmetic": true,
+      "hedge_min_per_10min": 2.0,
+      "reversal_max_gap_sec": 300,
+      "fact_anchor_per_min": 0.8,
+      "chapter_markers": [
+        "第1章",
+        "第2章",
+        "第3章",
+        "第4章",
+        "第5章"
+      ],
+      "require_japan_hook_chapter": 4,
+      "title_len": [
+        30,
+        45
+      ],
+      "reversal_per_min": 0.5,
+      "hook_chars": [
+        650,
+        1150
+      ],
+      "hook_anchor_per_1000": 18.0,
+      "_hook_note": "Do tu 4 video doi thu 2026-09-11: 3 video nhieu view nhat = 681-1068 chu, 20,6-24,4 neo/1000 chu (neo = con so + danh tu katakana). Video it view nhat chi 7,8. Mo dau cu cua ep03: 486 chu / 12,3 -> lan man, user bat loi."
+    },
+    "mode": "documentary",
+    "ctx_label": "TU LIEU GOC — moi ten/ngay/so lieu PHAI lay dung tu day, cam bia them",
+    "_target_note": "31,5 = 10.546 chu @334,8 (char_rate DO LAI 2026-09-11 tu chinh giong Akira speed 1.15 tren ep03). So cu 28,0 duoc dat khi rate con ghi 374,9 -> hai con so lech 12%, kich ban viet dung theo rate cu lai bi B4Q bao \"lech 16%\" roi kich hoat vong XOA kich ban. Doi thu: cau chuyen DON dai 1851-2760s = 30,8-46 phut, nen 28,0 von da chat hon thuc te doi thu (chinh ghi chu cu da noi vay). 31,5 nam o day duoi khoang do."
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "",
+    "style_suffix": "cinematic dark documentary still, deep navy and black palette, volumetric light, photorealistic, 16:9, no text, no watermark",
+    "ref_lock": false,
+    "ref_quality": "low",
+    "thumbnail_only": true,
+    "workers": 8,
+    "qc_sample": 4
+  },
+  "body": {
+    "mode": "stock_clips",
+    "seconds_per_scene": [
+      3.7,
+      5.0
+    ],
+    "cuts_per_min": [
+      12,
+      16
+    ],
+    "stock_sources": "nasa,pexels",
+    "stock_dir": "assets/stock",
+    "reuse_max": 6,
+    "license_policy": "permissive",
+    "evidence_license_policy": "pd",
+    "title_blocklist": [
+      "\\b(square|street|avenue|highway)\\b",
+      "certificate",
+      "\\blogo\\b",
+      "\\bposter\\b",
+      "\\bmap of\\b",
+      "\\bchart\\b",
+      "\\bdiagram\\b",
+      "\\bgraph\\b",
+      "\\bscreenshot\\b"
+    ],
+    "_broll_note": "B-roll duoc phep KHONG minh hoa loi, nhung KHONG duoc mang CHU cua mot cau chuyen khac. Do that tap 1: mot canh roi vao bieu do El Nino cua NOAA co dong chu tieng Anh giua video ke ve da vu tru.",
+    "stock_per_episode": true,
+    "_stock_note": "stock_per_episode: moi tap 1 kho rieng trong thu muc tap. chon_nguon() khong doi chieu noi dung clip voi loi doc, nen kho dung chung lan de tai = canh thien ha chay duoi doan ke ve chiec Cessna. pexels: co PEXELS_API_KEY trong pipeline/.env, giay phep free commercial no-attribution -> nam trong permissive nhung KHONG phai pd (anh bang chung van chi PD).",
+    "_stock_sources_note": "BO commons khoi b-roll (2026-09-10). Do that: query nao commons CO ket qua thi dinh 429 lien tuc, cho toi 600s/lan -> 23 PHUT cho MOT tu khoa roi van chua xong, trong khi pexels tra 6/6 clip HD trong 24 giay. Commons van gia tri cho ANH TU LIEU LICH SU, nhung phan do nay do SPACE_RESEARCH giao qua evidence.json, khong phai b-roll.",
+    "ai_fill_images": true,
+    "ai_fill_quality": "low"
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "palette": [
+      "YELLOW",
+      "RED",
+      "WHITE"
+    ],
+    "two_tier": true,
+    "dedicated_bg": true,
+    "require_face": false,
+    "_note": "Do that 11/12 thumbnail top cua ngach KHONG co mat nguoi that (NICHE_KIT §3 quy tac 7)",
+    "wrap": true,
+    "max_font": 150,
+    "side_width": 0.68,
+    "art_style": "cinematic dark space photography, deep navy and black palette with a faint violet nebula glow and scattered stars, volumetric light shaft, heavy contrast, photorealistic, 8K, shallow depth of field",
+    "template": {
+      "bo_cuc": "chu don TRAI, chu the o 1/3 PHAI, nua duoi de trong",
+      "tiers": [
+        {
+          "color": "YELLOW",
+          "role": "tien de — dieu da duoc cong nhan/da biet",
+          "max_chars": 12
+        },
+        {
+          "color": "RED",
+          "role": "cu soc — phat hien chinh, dat trong 「」 hoac che bang ●●",
+          "max_chars": 14
+        }
+      ],
+      "wrap": true,
+      "max_font": 150,
+      "side_width": 0.68,
+      "_note": "MO-TIP KHOA CHO CA KENH (user chot 2026-09-10). Moi tap CHI doi: thumb_bg_subject.txt (1 dong chu the) + 2 dong chu. Cam doi mau/so tang/bo cuc giua cac tap."
+    }
+  },
+  "assemble": {
+    "zoom": 1.0,
+    "transition": "cut",
+    "xfade": 0.0,
+    "qc_sample": 12,
+    "sub_font": "Yu Gothic",
+    "sub_size": 32,
+    "sub_margin": 7,
+    "sub_outline": 3,
+    "_sub_note": "Do that tren khung hinh kenh mau: 2-3 dong, cao/dong 7.4-8.1%, khoi 17-27%, day cach 4.3%. Bo (32,7) do duoc 7.6%/18.7%/4.5%. Mac dinh cu (18,45) chi ra 4.3% = nua co chu cua ho.",
+    "burn_subs": false,
+    "_burn_note": "Mac dinh KHONG chay phu de vao hinh (user chot 2026-09-11): YouTube tu bat CC, file .srt giao kem de tu up lam CC chuan cua minh; khan gia Nhat nghe hieu nen chu chi che hinh. Chay phu de la KHONG GO DUOC — muon bo phai dung lai ca video. Bat lai: burn_subs=true.",
+    "lac_toi_da": 0.03
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "blood",
+    "gore",
+    "corpse",
+    "real politician",
+    "real celebrity face"
+  ],
+  "_note": "Lane A — mở 2026-09-10. KHÔNG có nhân vật lặp lại giữa các video ⇒ ref_lock=false, KHÔNG chạy QC B5RQ. Ảnh AI CHỈ dùng cho thumbnail (image.thumbnail_only), thân video là clip stock (body.mode). char_rate PHẢI đo bằng calibrate.py --style doc trước khi viết chữ nào; mục tiêu 356-383 chữ/phút, nếu đo ra thấp hơn thì nâng voice.speed rồi ĐO LẠI, đừng suy diễn tuyến tính.",
+  "research": {
+    "nguon": "SPACE_RESEARCH",
+    "_note": "Hop dong nhan hang nghien cuu. Cong B0 = pipeline/qc_hoso.py doc CHINH khoi nay lam nguong, nen sua hop dong = sua o day, KHONG sua trong code cong.",
+    "files_required": [
+      "series_ctx.txt",
+      "competitor.txt",
+      "stock_queries.txt"
+    ],
+    "competitor_ratio": [
+      0.85,
+      1.3
+    ],
+    "title_options_min": 3,
+    "source_coverage_min": 0.9,
+    "blocks_required": [
+      "【CHƯA KIỂM CHỨNG",
+      "懐疑論",
+      "MÓC VỀ"
+    ],
+    "stock_queries_min": 12,
+    "stock_by_chapter": true,
+    "deliver_stock": true,
+    "deliver_evidence": true,
+    "evidence_min": 8
+  },
+  "publish": {
+    "upload_channel": "shinya_shiryoshitsu",
+    "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+    "_note": "B11 giao_hang.py gom DUNG 3 file (final.mp4 / thumbnail.png / listting.txt) vao <upload_dir>/<upload_channel>/ep<N>-<ten tap>/. Doi kenh hoac doi cho = doi field nay, khong sua code.",
+    "review_vi": true
+  }
+}

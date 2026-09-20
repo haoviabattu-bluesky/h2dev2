@@ -1,0 +1,34 @@
+{
+  "topics": [
+    "特攻",
+    "神風特別攻撃隊",
+    "敷島隊",
+    "関行男",
+    "知覧特攻基地",
+    "万世飛行場",
+    "荒木幸雄",
+    "子犬を抱いた特攻隊員",
+    "穴沢利夫",
+    "鳥浜トメ",
+    "学徒出陣",
+    "上原良司",
+    "戦艦ミズーリ",
+    "写真カラー化",
+    "太平洋戦争"
+  ],
+  "hook_type": "Mở đầu bằng việc giới thiệu trước về bức ảnh xúc động nhất (5 thiếu niên ôm cún con cười trước giờ xuất kích 2 tiếng) và định hướng người xem tập trung vào cảm xúc, hơi thở thời đại qua ảnh phục dựng AI màu thay vì tính chính xác kỹ thuật.",
+  "structure": "Dẫn nhập từ đợt cảm tử đầu tiên của Seki Yukio, mở rộng sang các mảnh đời tại căn cứ Chiran/Bansei với trọng tâm là bức ảnh thiếu niên ôm cún con, đối chiếu góc nhìn nhân đạo từ phía chiến hạm Mỹ và cuộc sống hậu chiến của những người sống sót.",
+  "emotional_beats": [
+    "chấn động",
+    "xót xa thương cảm",
+    "ấm áp ngắn ngủi",
+    "bi tráng đau thương",
+    "hoài niệm sâu lắng"
+  ],
+  "title_formula": "【Chủ đề bi kịch】+ Thời khắc định mệnh + Chi tiết đời thường ngây thơ (tuổi tác, hành động) —— Kết cục tàn khốc đối lập ｜ Định danh bức ảnh ｜ Yếu tố công nghệ phục dựng AI",
+  "notes": "Khai thác triệt để thủ pháp tương phản giữa sự hồn nhiên đời thường của người lính trẻ (ôm cún con, thư gửi người yêu) và sự tàn khốc không lối về của chiến tranh; lồng ghép góc nhìn đa chiều qua cả tư liệu phía quân đội Mỹ.",
+  "video_id": "hDkgnTPJw5g",
+  "title": "【特攻】出撃2時間前、17歳は子犬を抱いて笑っていた——翌朝、この写真に写る全員が帰らなかった｜残された最後の一枚｜実際の写真をAIフルカラー復元",
+  "view_count": 107000,
+  "duration_min": 23.5
+}

@@ -1,0 +1,101 @@
+{
+  "video_tags": {
+    "老後": {
+      "n_videos": 8,
+      "total_views": 839000,
+      "video_ids": [
+        "XbwqD2SktC0",
+        "O84L0zOtrxo",
+        "K8tTrxijqEo",
+        "_VXUim2J9QM",
+        "EANADckKWT4",
+        "dY3HfjtmvXI",
+        "e_Zo7Ht5OH8",
+        "WblFD81yjOI"
+      ],
+      "avg_views": 104875
+    },
+    "年金": {
+      "n_videos": 8,
+      "total_views": 839000,
+      "video_ids": [
+        "XbwqD2SktC0",
+        "O84L0zOtrxo",
+        "K8tTrxijqEo",
+        "_VXUim2J9QM",
+        "EANADckKWT4",
+        "dY3HfjtmvXI",
+        "e_Zo7Ht5OH8",
+        "WblFD81yjOI"
+      ],
+      "avg_views": 104875
+    },
+    "お金": {
+      "n_videos": 8,
+      "total_views": 839000,
+      "video_ids": [
+        "XbwqD2SktC0",
+        "O84L0zOtrxo",
+        "K8tTrxijqEo",
+        "_VXUim2J9QM",
+        "EANADckKWT4",
+        "dY3HfjtmvXI",
+        "e_Zo7Ht5OH8",
+        "WblFD81yjOI"
+      ],
+      "avg_views": 104875
+    }
+  },
+  "top_tags": [
+    {
+      "tag": "老後",
+      "n_videos": 8,
+      "total_views": 839000,
+      "video_ids": [
+        "XbwqD2SktC0",
+        "O84L0zOtrxo",
+        "K8tTrxijqEo",
+        "_VXUim2J9QM",
+        "EANADckKWT4",
+        "dY3HfjtmvXI",
+        "e_Zo7Ht5OH8",
+        "WblFD81yjOI"
+      ],
+      "avg_views": 104875
+    },
+    {
+      "tag": "年金",
+      "n_videos": 8,
+      "total_views": 839000,
+      "video_ids": [
+        "XbwqD2SktC0",
+        "O84L0zOtrxo",
+        "K8tTrxijqEo",
+        "_VXUim2J9QM",
+        "EANADckKWT4",
+        "dY3HfjtmvXI",
+        "e_Zo7Ht5OH8",
+        "WblFD81yjOI"
+      ],
+      "avg_views": 104875
+    },
+    {
+      "tag": "お金",
+      "n_videos": 8,
+      "total_views": 839000,
+      "video_ids": [
+        "XbwqD2SktC0",
+        "O84L0zOtrxo",
+        "K8tTrxijqEo",
+        "_VXUim2J9QM",
+        "EANADckKWT4",
+        "dY3HfjtmvXI",
+        "e_Zo7Ht5OH8",
+        "WblFD81yjOI"
+      ],
+      "avg_views": 104875
+    }
+  ],
+  "n_videos_with_tags": 8,
+  "n_videos_total": 8
+}

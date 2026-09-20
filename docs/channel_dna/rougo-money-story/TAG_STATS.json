@@ -1,0 +1,330 @@
+{
+  "video_tags": {
+    "#50代": {
+      "n_videos": 1,
+      "total_views": 176000,
+      "video_ids": [
+        "bgUqNHYZbq0"
+      ],
+      "avg_views": 176000
+    },
+    "シニア": {
+      "n_videos": 2,
+      "total_views": 273000,
+      "video_ids": [
+        "bgUqNHYZbq0",
+        "_EhPtM6cRFk"
+      ],
+      "avg_views": 136500
+    },
+    "#老後生活": {
+      "n_videos": 2,
+      "total_views": 226000,
+      "video_ids": [
+        "bgUqNHYZbq0",
+        "DfIBG3fJW6o"
+      ],
+      "avg_views": 113000
+    },
+    "老後の楽しみ": {
+      "n_videos": 2,
+      "total_views": 234000,
+      "video_ids": [
+        "BeIZhu1I4Tw",
+        "ASBVa_H_leI"
+      ],
+      "avg_views": 117000
+    },
+    "一人旅": {
+      "n_videos": 2,
+      "total_views": 206000,
+      "video_ids": [
+        "BeIZhu1I4Tw",
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 103000
+    },
+    "シニア旅行": {
+      "n_videos": 1,
+      "total_views": 140000,
+      "video_ids": [
+        "BeIZhu1I4Tw"
+      ],
+      "avg_views": 140000
+    },
+    "孤独": {
+      "n_videos": 2,
+      "total_views": 137000,
+      "video_ids": [
+        "_EhPtM6cRFk",
+        "0DinnkWTJmg"
+      ],
+      "avg_views": 68500
+    },
+    "夫婦関係": {
+      "n_videos": 1,
+      "total_views": 97000,
+      "video_ids": [
+        "_EhPtM6cRFk"
+      ],
+      "avg_views": 97000
+    },
+    "シニアライフ": {
+      "n_videos": 2,
+      "total_views": 171000,
+      "video_ids": [
+        "ASBVa_H_leI",
+        "AOe-E69mLzA"
+      ],
+      "avg_views": 85500
+    },
+    "シニア漫画": {
+      "n_videos": 3,
+      "total_views": 211000,
+      "video_ids": [
+        "ASBVa_H_leI",
+        "AOe-E69mLzA",
+        "0DinnkWTJmg"
+      ],
+      "avg_views": 70333
+    },
+    "老後の趣味": {
+      "n_videos": 1,
+      "total_views": 77000,
+      "video_ids": [
+        "AOe-E69mLzA"
+      ],
+      "avg_views": 77000
+    },
+    "暇つぶし": {
+      "n_videos": 1,
+      "total_views": 77000,
+      "video_ids": [
+        "AOe-E69mLzA"
+      ],
+      "avg_views": 77000
+    },
+    "シニア趣味": {
+      "n_videos": 1,
+      "total_views": 66000,
+      "video_ids": [
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 66000
+    },
+    "定年後": {
+      "n_videos": 1,
+      "total_views": 66000,
+      "video_ids": [
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 66000
+    },
+    "60代": {
+      "n_videos": 1,
+      "total_views": 66000,
+      "video_ids": [
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 66000
+    },
+    "#60代": {
+      "n_videos": 1,
+      "total_views": 50000,
+      "video_ids": [
+        "DfIBG3fJW6o"
+      ],
+      "avg_views": 50000
+    },
+    "#シニア": {
+      "n_videos": 1,
+      "total_views": 50000,
+      "video_ids": [
+        "DfIBG3fJW6o"
+      ],
+      "avg_views": 50000
+    },
+    "老後の生活": {
+      "n_videos": 1,
+      "total_views": 40000,
+      "video_ids": [
+        "0DinnkWTJmg"
+      ],
+      "avg_views": 40000
+    }
+  },
+  "top_tags": [
+    {
+      "tag": "シニア漫画",
+      "n_videos": 3,
+      "total_views": 211000,
+      "video_ids": [
+        "ASBVa_H_leI",
+        "AOe-E69mLzA",
+        "0DinnkWTJmg"
+      ],
+      "avg_views": 70333
+    },
+    {
+      "tag": "シニア",
+      "n_videos": 2,
+      "total_views": 273000,
+      "video_ids": [
+        "bgUqNHYZbq0",
+        "_EhPtM6cRFk"
+      ],
+      "avg_views": 136500
+    },
+    {
+      "tag": "老後の楽しみ",
+      "n_videos": 2,
+      "total_views": 234000,
+      "video_ids": [
+        "BeIZhu1I4Tw",
+        "ASBVa_H_leI"
+      ],
+      "avg_views": 117000
+    },
+    {
+      "tag": "#老後生活",
+      "n_videos": 2,
+      "total_views": 226000,
+      "video_ids": [
+        "bgUqNHYZbq0",
+        "DfIBG3fJW6o"
+      ],
+      "avg_views": 113000
+    },
+    {
+      "tag": "一人旅",
+      "n_videos": 2,
+      "total_views": 206000,
+      "video_ids": [
+        "BeIZhu1I4Tw",
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 103000
+    },
+    {
+      "tag": "シニアライフ",
+      "n_videos": 2,
+      "total_views": 171000,
+      "video_ids": [
+        "ASBVa_H_leI",
+        "AOe-E69mLzA"
+      ],
+      "avg_views": 85500
+    },
+    {
+      "tag": "孤独",
+      "n_videos": 2,
+      "total_views": 137000,
+      "video_ids": [
+        "_EhPtM6cRFk",
+        "0DinnkWTJmg"
+      ],
+      "avg_views": 68500
+    },
+    {
+      "tag": "#50代",
+      "n_videos": 1,
+      "total_views": 176000,
+      "video_ids": [
+        "bgUqNHYZbq0"
+      ],
+      "avg_views": 176000
+    },
+    {
+      "tag": "シニア旅行",
+      "n_videos": 1,
+      "total_views": 140000,
+      "video_ids": [
+        "BeIZhu1I4Tw"
+      ],
+      "avg_views": 140000
+    },
+    {
+      "tag": "夫婦関係",
+      "n_videos": 1,
+      "total_views": 97000,
+      "video_ids": [
+        "_EhPtM6cRFk"
+      ],
+      "avg_views": 97000
+    },
+    {
+      "tag": "老後の趣味",
+      "n_videos": 1,
+      "total_views": 77000,
+      "video_ids": [
+        "AOe-E69mLzA"
+      ],
+      "avg_views": 77000
+    },
+    {
+      "tag": "暇つぶし",
+      "n_videos": 1,
+      "total_views": 77000,
+      "video_ids": [
+        "AOe-E69mLzA"
+      ],
+      "avg_views": 77000
+    },
+    {
+      "tag": "シニア趣味",
+      "n_videos": 1,
+      "total_views": 66000,
+      "video_ids": [
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 66000
+    },
+    {
+      "tag": "定年後",
+      "n_videos": 1,
+      "total_views": 66000,
+      "video_ids": [
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 66000
+    },
+    {
+      "tag": "60代",
+      "n_videos": 1,
+      "total_views": 66000,
+      "video_ids": [
+        "_G9s-Ig6-E8"
+      ],
+      "avg_views": 66000
+    },
+    {
+      "tag": "#60代",
+      "n_videos": 1,
+      "total_views": 50000,
+      "video_ids": [
+        "DfIBG3fJW6o"
+      ],
+      "avg_views": 50000
+    },
+    {
+      "tag": "#シニア",
+      "n_videos": 1,
+      "total_views": 50000,
+      "video_ids": [
+        "DfIBG3fJW6o"
+      ],
+      "avg_views": 50000
+    },
+    {
+      "tag": "老後の生活",
+      "n_videos": 1,
+      "total_views": 40000,
+      "video_ids": [
+        "0DinnkWTJmg"
+      ],
+      "avg_views": 40000
+    }
+  ],
+  "n_videos_with_tags": 8,
+  "n_videos_total": 8
+}

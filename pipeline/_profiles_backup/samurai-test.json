@@ -1,0 +1,79 @@
+{
+  "id": "samurai-test",
+  "market": "JP",
+  "language": "ja",
+  "niche": "chuyện lịch sử samurai Nhật, người kể là võ tướng già hồi tưởng",
+  "competitor": "",
+  "slug_dir": "assets/out",
+  "narrator": {
+    "gender": "male",
+    "age_band": "50s",
+    "persona": "Võ tướng 55 tuổi dạn dày sương gió, khí chất hào sảng, giọng nói sang sảng đầy uy lực khi hồi tưởng về khói lửa sa trường.",
+    "point_of_view": "一人称「儂（わし）」 / 武将の回想視点",
+    "register": "重厚な武士言葉（〜じゃ、〜である、〜のう体）"
+  },
+  "voice": {
+    "id": "elevenlabs_D3L9PtKnIVJXdgK444Ey",
+    "name": "Ryu - Characters",
+    "speed": 1.0,
+    "fx": "boom",
+    "char_rate": 300.0,
+    "char_rate_note": "CHƯA ĐO — chạy calibrate.py trước khi làm video",
+    "pace": true
+  },
+  "script": {
+    "skill": "skills/youtube-script-samurai-test/SKILL.md",
+    "target_minutes": 25.0,
+    "two_pass": true,
+    "gate": {
+      "comma_per_sentence": [
+        1.2,
+        2.2
+      ],
+      "chars_per_breath": [
+        9.0,
+        16.0
+      ],
+      "dialogue_ratio_max": 0.2,
+      "require_next_ep_teaser": true
+    }
+  },
+  "image": {
+    "skill": "skills/youtube-image-samurai-test/SKILL.md",
+    "character_sheet": "55-year-old grizzled Japanese samurai, prominent scar across left cheek, silver-streaked topknot, wearing distinctive dark indigo jinbaori vest over battle-worn black lacquered armor.",
+    "style_suffix": "cinematic historical ukiyo-e inspired digital art, dramatic chiaroscuro lighting, atmospheric battlefield fog, Sengoku era muted colors, masterwork, highly detailed, 16:9, no text",
+    "seconds_per_image": 14,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 24,
+    "qc_sample": 12
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail-samurai-test/SKILL.md",
+    "palette": [
+      "WHITE",
+      "YELLOW",
+      "RED"
+    ],
+    "banner": "老将が語る、戦国乱世の真実",
+    "dedicated_bg": true
+  },
+  "assemble": {
+    "zoom": 1.12,
+    "transition": "xfade",
+    "xfade": 0.6,
+    "qc_sample": 12
+  },
+  "blocklist": [
+    "baby",
+    "infant",
+    "newborn",
+    "naked",
+    "blood",
+    "gore",
+    "modern clothing",
+    "modern technology",
+    "distorted face",
+    "extra limbs"
+  ]
+}

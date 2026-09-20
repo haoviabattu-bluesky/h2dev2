@@ -1,0 +1,101 @@
+════════════════════════════════════════════════════════════════════════
+COPY TOÀN BỘ PHẦN DƯỚI ĐÂY, DÁN VÀO PHIÊN CLAUDE CODE Ở DỰ ÁN h2dev
+════════════════════════════════════════════════════════════════════════
+
+Tôi mở ngách YouTube MỚI cho thị trường Nhật, song song với kênh satori người già
+đang chạy. Phần nghiên cứu đã làm xong ở dự án khác, kết quả đã copy sang đây:
+
+    E:\CLAUDE\YOUTUBE\h2dev\docs\laneA_from_research\
+
+ĐỌC TRƯỚC, theo đúng thứ tự này:
+  1. LANE_A_HANDOFF.md      ← BẢN CHÍNH, tự chứa, đọc kỹ toàn bộ 12 mục
+  2. LANE_A_NICHE_KIT.md    ← 8 mục nghiên cứu ngách (khán giả, từ khoá, tiêu đề,
+                               thumbnail, nhịp giữ chân, khoảng trống, checklist)
+  3. LANE_A_BLUEPRINT.md    ← cấu trúc sản xuất chi tiết
+  4. data/thumbs/thumbsheet.png  ← MỞ ẢNH NÀY RA XEM, đây là 12 thumbnail top của
+                                   ngách, công thức thumbnail rút ra từ chính nó
+
+Dữ liệu gốc kèm theo (dùng khi cần đối chiếu, đừng gọi lại API YouTube):
+  data/titles.json       63 tiêu đề + view + thời lượng, 4 kênh đối thủ
+  data/transcripts.json  4 kịch bản ĐẦY ĐỦ của video 146k/125k/99k/99k view
+  data/comments.json     190 comment gốc kèm số like
+  tools/                 stockfetch.py (tải tư liệu hình public domain),
+                         topic_gap.py (dò khoảng trống đề tài), + 2 file đề tài
+
+──────────────────────────────────────────────────────────────────────
+TÓM TẮT NGÁCH (chi tiết trong LANE_A_HANDOFF.md)
+──────────────────────────────────────────────────────────────────────
+Ngách   : 都市伝説 / vũ trụ / bí ẩn — kể chuyện tài liệu, MỘT giọng dẫn
+Kênh mẫu: 今夜も都市伝説 (27 ngày tuổi · 6.300 sub · 666.347 view)
+Mô hình : lấy chuyện đã nổi bằng TIẾNG ANH → kể lại tiếng Nhật
+          → chương 4 LUÔN móc câu chuyện về Nhật Bản (có ở 4/4 video mẫu)
+
+BỐN ĐIỂM KHÁC HẲN SATORI — đừng bê nguyên SOP cũ sang:
+  1. KHÔNG có nhân vật lặp lại  →  BỎ REF-LOCK, BỎ cổng QC B5RQ
+  2. Giọng NAM TRẦM ngôi 3 (không phải cụ bà ngôi 1)
+     → phải tạo entry mới trong channels.json + ĐO LẠI char-rate trước khi viết
+     → tốc độ mục tiêu 356-383 ký tự/phút (satori chỉ 309)
+  3. Thân video = CLIP STOCK cắt 12-16 lần/phút (KHÔNG phải ảnh AI)
+     nhưng THUMBNAIL = ẢNH AI. Đừng lẫn hai cái.
+  4. Cấu trúc 5 chương đánh số 第1章…第5章 (không phải mạch satori)
+
+ĐỊNH LƯỢNG BẮT BUỘC cho 1 video 25-30 phút:
+  · 8.900-11.500 ký tự, 5 chương
+  · `しかし / だが / ところが` mỗi ≤90 giây, không được đứt nhịp
+  · ~1 mốc năm hoặc số có đơn vị mỗi phút
+  · gọi `あなた` chỉ ở đầu và cuối, giữa video thì không
+  · tiêu đề 30-45 ký tự (khoảng 45-60 cho view thấp hơn 2,4 lần — số đo thật)
+
+──────────────────────────────────────────────────────────────────────
+VIỆC CẦN LÀM
+──────────────────────────────────────────────────────────────────────
+A. Dựng quy trình sản xuất cho ngách này, TÁI DÙNG TỐI ĐA pipeline sẵn có
+   (fetch_script / tts / assemble / thumbnail_text / các cổng QC).
+   Nêu rõ: khâu nào dùng lại nguyên, khâu nào sửa, khâu nào làm mới.
+
+B. Làm VIDEO ĐẦU TIÊN: đề tài 多元宇宙 (Multiverse).
+   Checklist 12 mục đã viết sẵn ở LANE_A_HANDOFF.md §10 — bám đúng nó:
+   tiêu đề, hook 30 giây, mô tả thumbnail, 5 chương, móc-về-Nhật
+   (華厳宗 重々無尽 + 唯識), nguồn tư liệu, mẫu câu an toàn, CTA, chỉ số cần đạt.
+   Lý do chọn: chỉ 1 video tiếng Nhật trong tháng qua mà được 31.694 view.
+
+C. Việc mới duy nhất phải viết thêm: công cụ GHÉP CLIP STOCK theo timestamp
+   phụ đề (đọc voice.srt → chọn clip từ kho → cắt 4-5 giây/cảnh → nối +
+   cháy phụ đề). Video 30 phút cần ~360-480 cảnh nhưng chỉ ~80-120 clip khác
+   nhau vì tái dùng chéo.
+
+──────────────────────────────────────────────────────────────────────
+BA ĐIỀU BẮT BUỘC NHỚ
+──────────────────────────────────────────────────────────────────────
+1. THÊM CỔNG KIỂM SỐ HỌC vào QC kịch bản (B3Q).
+   Khán giả ngách này soi số rất kỹ — một comment 44 like của kênh mẫu bắt lỗi
+   sai phép nhân của họ. Mọi phép tính / đơn vị / quy đổi phải kiểm tay.
+
+2. CƠ HỘI VƯỢT KÊNH MẪU: hai comment nhiều like nhất của họ đều ĐÒI TẤM ẢNH
+   mà video đã hứa ("đưa ảnh ra đây" 86 like · "không đưa được thì đừng gọi là
+   chương trình" 55 like). Họ nói mà không đưa được bằng chứng hình.
+   → Dùng tools/stockfetch.py lấy ảnh NASA/Wikimedia public domain và ĐƯA ẢNH
+     NGUỒN THẬT kèm chú thích ngay trong video. Thắng đúng chỗ họ bị chê.
+
+3. AN TOÀN NỘI DUNG: ngách này bị gắn cờ nếu viết như tin tức thật.
+   Bắt buộc dùng mẫu câu: 〜という説がある / 〜とされています /
+   〜かもしれません / もし本当だったら？  (kênh mẫu dùng 8-23 lần mỗi video).
+
+──────────────────────────────────────────────────────────────────────
+ĐỪNG TỐN CÔNG THỬ LẠI
+──────────────────────────────────────────────────────────────────────
+· Retention của đối thủ KHÔNG lấy được. Đã thử 4 client InnerTube
+  (WEB/ANDROID/TVHTML5/EMBED, cả /next lẫn /player), trang watch, và cả phiên
+  Chrome đã đăng nhập — video kênh mẫu không có biểu đồ "most replayed".
+  Chỉ có retention video của CHÍNH MÌNH trong Studio sau khi đăng.
+· Internet Archive tải quá chậm (~2,5 MB/phút) — dùng NASA + Wikimedia.
+· Tìm "apollo" trên Internet Archive trả về cả băng ghi CSPAN/FOXNEWS CÓ BẢN
+  QUYỀN. Tool đã lọc licenseurl sẵn, đừng bỏ bộ lọc đó.
+
+──────────────────────────────────────────────────────────────────────
+Mọi con số trong tài liệu là quan sát TƯƠNG QUAN, chưa phải nhân quả.
+Chỉ sau 5 video đầu mới biết công thức nào thật sự có tác dụng.
+
+Bắt đầu bằng việc đọc LANE_A_HANDOFF.md rồi trình bày cho tôi kế hoạch
+sản xuất trước khi viết kịch bản.
+════════════════════════════════════════════════════════════════════════

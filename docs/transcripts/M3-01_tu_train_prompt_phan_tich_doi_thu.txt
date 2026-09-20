@@ -1,0 +1,514 @@
+[00:00] Mọi người sẽ dán câu lỡ này vào nha.
+[00:02] Tí nữa, em sẽ cứ nhóm mọi người làm theo phim cách giống đối thủ luôn trên nó.
+[00:08] Cái chỗ hình ảnh này thì mọi người sẽ nhớ xem kể nha.
+[00:10] Em đi trên lại, cưỡng tầm 2 bè lặng, bè 4 lặng luôn nè mọi người.
+[00:14] Mọi người nhìn hình ảnh của đối thủ này.
+[00:17] Cái này không phải ánh gấp lâu nha mọi người.
+[00:19] Cái này có edict làm signal hơn rồi đấy.
+[00:22] Cái này thì mọi người tự ý edict sau.
+[00:24] Còn giữ như phim cách như đối thủ này thì em sẽ làm giống luôn.
+[00:28] Mọi người cứ nhập phôm này vào, xong rồi mọi người cứ cho nó chạy đây.
+[00:32] Đỡ cho nó phân tích vì nó tạo ve trước nha.
+[00:34] Trước tiên thì nó phân tích nha.
+[00:36] Mình muốn re một phôm mát tơ hay đại đủ thì mình phải trên cho nó hẹp.
+[00:44] Về làm đi làm lại nha mọi người.
+[00:46] Chứ không thể nào mè một lần nó re được kẻ đâu nha.
+[00:48] Đấy, nó cho re phôm mát tơ sức khỏe nè.
+[00:51] Hình ảnh sức khỏe nè.
+[00:53] Thì như cái cân của đối thủ mọi người thì mọi người thấy nó chỉ có một ảnh đúng không?
+[00:57] Thì từ mọi người thôi.
+[00:59] Bây giờ thì em hướng dẫn mọi người làm nhiều ảnh.
+[01:02] Mọi người, nếu làm một ảnh thì mọi người làm re, mọi người lấy một trong những ảnh đó.
+[01:07] Mọi người làm thôi.
+[01:08] Nhưng mà em khiêng thì mọi người cứ làm nhiều ảnh về nhiều video vào, ghép lại với nhau nha.
+[01:12] Chính sách thì này nó cũng nhé lại rồi, mọi người yên tâm đây.
+[01:15] Vở vì mọi người cũng biết mà cái nền tảng của nó tạo re thì nó cạnh tranh rất khóc liệt
+[01:21] với những nền tảng khác như tích tóc này kia.
+[01:23] Nhưng không bao giờ mà nó tự đạt đổ chiến con của mình kìa mọi người.
+[01:26] Rồi, bây giờ re được cái form đầu tiên của hình ảnh đó đúng không?
+[01:29] Thì em sẽ copy nè.
+[01:30] Em tiếp tục em dịch về em sót nè.
+[01:32] Mọi người xem nha nha.
+[01:34] Mình sẽ kiểm tra xem thử nó đài đổ các ý theo mình muốn chưa nha.
+[01:37] Mọi người cứ đặt wea nha.
+[01:39] Chúc mọi người mà làm không dịch, không kiểm tra wea thì nó rất là dỡ nha mọi người.
+[01:45] Nó không được đúng ý mình đâu.
+[01:47] Đấy, như này thì em thấy cũng khé được rồi.
+[01:49] Việc cũng khé đài đổ.
+[01:51] Nó cũng có chỗ input để nhập cái kịch bản vào để nó tạo re video từng phần nè.
+[01:56] Nhưng mà bây giờ thì chưa đâu nha.
+[01:59] Cái chỗ nánh này trên đây, trên lại bel làng nha mọi người.
+[02:02] Thì tiếp tục em chỉ nhập cái form này vào.
+[02:04] Đây, câu lo này vào nha.
+[02:06] Mọi người cũng nhập theo em nha.
+[02:07] Tiếp tục là kêu nó là tạo re một phiên bản bành tiếng hàng
+[02:11] và xuyên suốt theo kịch bản
+[02:13] và đại lo là phải có một cái input
+[02:16] để đều vào là 10 lem đến bel, 10 ảnh nè.
+[02:20] Nói chung cái này thì mình, lúc mình trên nó,
+[02:22] mình để có form mình trên tạo re,
+[02:24] mình có thể từ chính nha mọi người.
+[02:27] Quý dụ là mọi người muốn một cái phần đó tạo re 10 ảnh thôi,
+[02:31] thì mọi người có thể thay thế vào 8 đến 10 ảnh.
+[02:33] Đấy, nó kiểu như vậy nha.
+[02:35] Về cái chỗ này thì phải làm nhiều nha mọi người.
+[02:39] Để cho nó en chắc nha.
+[02:41] Mọi người thấy cơn đó thôi không?
+[02:43] Thì như cái cơn này nó edict nè,
+[02:45] mọi người thấy nó chỉ có một ảnh thôi.
+[02:47] Xong rồi nó cho con AI nhép miệng, nó làm,
+[02:51] nó chạy kéo video thôi.
+[02:53] Mọi người muốn một ảnh thôi cũng được thôi,
+[02:55] nhưng mà mọi người ghi nhiều vào.
+[02:57] Cái chỗ này này mọi người ghi nhiều vào,
+[02:59] xong rồi nếu mọi người muốn edict giống như cơn đối thủ này,
+[03:01] mọi người tự chọn ra một ảnh nè,
+[03:03] mẹ đẹp đấy, mọi người làm thôi.
+[03:05] Còn mọi người muốn làm nhiều thì cứ thế,
+[03:07] mọi người lấy làm thôi, tất kìa đó, nó re hết.
+[03:10] Rồi bây giờ thì em xịp ám cho nó chạy nha.
+[03:12] Tiếp tục nó sẽ tạo lại cái form
+[03:14] tạo hình ảnh nè, master tiếp nè.
+[03:16] Bây giờ là nó phù hợp với cái con AI nè.
+[03:20] Điểu như là phải đúng với cái định dạng là
+[03:22] mình dùng con AI nè, mình tạo ảnh,
+[03:24] con vít, hay con dít mi.
+[03:26] Mọi người dùng cái nào thì mọi người
+[03:28] thay thế nó vào nha.
+[03:30] Để cho nó tạo chính xác 100% luôn.
+[03:32] Như này là bản chưa đâu nha.
+[03:34] Mọi người tới nữa em sẽ tiếp tục
+[03:36] trên lại một lần nữa nha.
+[03:38] Đấy em cứ để cho nó phân tích và nó tạo lại.
+[03:40] Mọi người có thể dịch ra nha.
+[03:42] Thì nó chung là từ cái này nó re thôi mọi người.
+[03:46] Nhưng mình nó sẽ có nhiều thứ hơn.
+[03:48] Bởi vì mình mới yêu cầu thêm nè.
+[03:50] Nên là mình không chết nhiều nữa nha.
+[03:52] Nó vẫn đài đủ như cái lúc nãy là được rồi.
+[03:54] Cái quan trọng là bây giờ tiếp tục em sẽ quay lại.
+[03:58] Em sẽ tiếp tục là copy cái form đó nha.
+[04:02] Copy form vừa rồi á.
+[04:04] Gián vào và mình kiềm theo với câu lợn như này nha mọi người.
+[04:06] Thì tất kìa những câu lợn này
+[04:08] em cũng sẽ để ở phòng mô thể cho mọi người.
+[04:10] Ở dưới video mọi người lứt xuống là thấy.
+[04:12] Mọi người yên tâm nha.
+[04:15] Quang trọng là mọi người cứ xem kỷ và biết cách làm kỷ nè.
+[04:17] Thật sự rắc rắc ít ai mà có thể hướng dẫn
+[04:21] chơi tiếp như em đâu nha mọi người.
+[04:23] Rồi bây giờ thì như thế này cho cho mọi người quay lại
+[04:25] với con đối thủ nè.
+[04:27] Mọi người bấm chấp em là nút chụp mạng hình nha.
+[04:29] Mọi người cách hình ảnh trong video re.
+[04:31] Rồi mọi người dáng vào.
+[04:33] Như con đối thủ nè ná bởi vì nó chỉ có một ảnh thôi.
+[04:35] Nên là em chụp một ảnh thôi.
+[04:37] Nếu mà em quý vụ nha như mọi người làm kỳ nhật bản
+[04:39] hay là những kỳ khác.
+[04:41] Những cái chủ đề khác.
+[04:43] Nếu có nhiều đoạn khác nhau
+[04:45] thì mọi người tua lại những cái đoạn đó.
+[04:47] Mọi người chụp 1 video vậy.
+[04:49] Mọi người chụp tầm 4 nêm ảnh khác nhau cho em nha.
+[04:51] Xong rồi mọi người dáng hết vào
+[04:53] 4 nêm ảnh luôn.
+[04:55] Xong rồi cứ để nó phân tích.
+[04:57] Đúng với cái sợ tai phim cách của
+[04:59] cái chủ đề đó luôn.
+[05:01] 1 trêm 1 trêm luôn nha mọi người.
+[05:03] Rồi bây giờ như con này
+[05:05] chỉ có 1 ảnh 1 loại thôi.
+[05:07] Nên là em đã đến như vậy.
+[05:09] Bây giờ chỉ việc bấm chạy thôi.
+[05:11] Mọi người làm quốc chia nào thì thay vào.
+[05:13] Nhật bản hay là việc thì mọi người thay vào.
+[05:15] Nhớ là như vậy nha.
+[05:17] Còn đây thì em đang trên cái ngắt hàng quát này
+[05:19] thì em đã ở hàng quát.
+[05:21] Cái form này thì em cũng sẽ để
+[05:23] mô tẻ cho mọi người tham khảo luôn.
+[05:25] Mọi người có thể dùng để làm luôn cũng được.
+[05:27] Nói chung là em cứ ưu tiên
+[05:29] hướng đến cho mọi người tự làm được trước để nha.
+[05:31] Mọi người mới biết được nha mọi người.
+[05:33] Thì sau này em cứ việc chia sĩ
+[05:35] các cây mới thì em cứ chia cho mọi người
+[05:37] và mọi người làm thôi.
+[05:39] Thật sự rất nhiều cây ngon.
+[05:41] Nhưng quan trọng là mọi người bị fomowad
+[05:43] về mọi người không biết cách nào làm
+[05:45] để cho nó chấn.
+[05:47] Nhưng những cái dạng như này
+[05:49] mọi người không nên tự tạo kịch bản
+[05:51] em nói đi nói lại rất nhiều rồi.
+[05:53] Mọi người phải bám theo và mọi người sao
+[05:55] nấu nó lại.
+[05:57] Mọi người phải an theo những người đi trước nha.
+[05:59] Mọi người đã làm bán content rồi
+[06:01] thì mình chỉ việc đi copy thôi mọi người.
+[06:03] Những công thức này mọi người thấy không
+[06:05] em biết bao nhiêu cơn từ chưa đến đây
+[06:07] không bao giờ mèo bị thấp.
+[06:09] Kiếm rất nhiều rồi nên em muốn chia sĩ
+[06:11] được cho mọi người.
+[06:13] Đãi như vậy xong rồi mọi người có thể copy lại
+[06:15] về mọi người dịch ra đặt nữa nha.
+[06:17] Nhưng mà lúc này thì mọi người không cần dịch đâu.
+[06:19] Rồi tiếp theo cái bước form
+[06:21] cuối cùng của mình là form tạo thông.
+[06:23] Mọi người dáng câu lệnh yêu cầu
+[06:25] đơn giản như vậy thôi.
+[06:27] Mọi người muốn làm thông
+[06:29] giống như đối thủ này luôn.
+[06:31] Thì hôm sau em sẽ lên video riêng nữa.
+[06:33] Em sẽ hướng dẫn mọi người trên
+[06:35] tạo bàn AI luôn.
+[06:37] Giống 1 têm phần têm đối thủ cái form chữ
+[06:39] luôn nha mọi người.
+[06:41] Mọi người hay gặp cái vấn đề về form chữ
+[06:43] mọi người không biết được nó dùng form chữ nào.
+[06:45] Nhưng mà em có cách hôm sau
+[06:47] em hướng dẫn mọi người dùng AI
+[06:49] tạo ra luôn nha.
+[06:51] Rồi cái đây là form thông.
+[06:53] Mọi người có thể dáng vào công cầu AI
+[06:55] nha mọi người.
+[06:57] Đến như thế thì mình đã có được
+[06:59] ok hết rồi.
+[07:01] Bây giờ thì em sẽ lước lại.
+[07:03] Em sẽ copy lại cái form
+[07:05] kịch bản của em.
+[07:07] Mọi người mở 1 cái nào đấy.
+[07:09] Để mọi người lưu vào cho nó dỡ nhớ nha.
+[07:15] Đây, đây, đây.
+[07:17] Em đang sort lại.
+[07:19] Em đang dịch ra nè.
+[07:22] Dịch lại cái form kịch bản nha mọi người.
+[07:24] Mọi người lưu ý là làm như em nha.
+[07:26] Mọi người sẽ copy cái chỗ này nè.
+[07:28] Để cho cái lúc mọi người trên
+[07:30] mọi người làm việc
+[07:32] Mọi người sẽ thấy được tiếng việc
+[07:34] mọi người dỡ nhớ và mọi người thay thế vào.
+[07:36] Ví dụ mọi người thấy cái chỗ tiếng việc này
+[07:38] mọi người chỉ thần
+[07:40] xóa cái chỗ tiếng việc này.
+[07:42] Mọi người thay vào cái tiêu đề.
+[07:44] Còn ở dưới thì mọi người thay vào
+[07:46] cái kịch bản gốc của đối thủ.
+[07:48] Nhiều khi anh em đã
+[07:50] nguyên cái chỗ
+[07:52] hàng quốc như thế nhưng mà nhiều khi
+[07:54] mọi người bị quên nè.
+[07:56] Mọi người dịch được mà mọi người cứ dịch ra thôi.
+[07:58] Mọi người thay thế vào.
+[08:00] Mình để làm rồi thì làm cho nó rõ ràng, tránh châu luôn nha.
+[08:02] Nghe từ nào luôn nha mọi người.
+[08:04] Rồi em sẽ chú thích thêm cho này là form
+[08:06] lái kịch bản nha.
+[08:08] Xảnh em cũng sẽ để mô tẻ cho mọi người luôn nè.
+[08:10] Mình ghi rõ ràng để cho nên em lái luôn.
+[08:12] Để mọi người tham khảo thêm
+[08:14] hay là mọi người tự trên ra luôn nha.
+[08:16] Rồi tiếp tục thì em sẽ
+[08:18] lúc xuống lại cái form
+[08:21] tạo hình ảnh nha.
+[08:23] Tạo hình ảnh đây là form
+[08:25] copy để tạo cuối cùng nha mọi người.
+[08:27] Mình trên cuối cùng nha mọi người.
+[08:29] Còn về dọng đọc này kia
+[08:31] mọi người cứ dùng 11 lab
+[08:33] hay là cơ loan thôi.
+[08:35] Nhưng mà em nghĩ dùng 11 lab nha.
+[08:37] Thì nói chung mọi người dùng tuen
+[08:39] thì cứ liên hợi em thôi.
+[08:41] Trước giờ em qué rõ rồi đúng không?
+[08:43] Mọi người dùng 11 lab trên web
+[08:45] thì thật sự nó tốn rất nhiều chi phí luôn.
+[08:47] Nó gấp kẻ 1 trèm
+[08:49] mấy trèm lần chi phí sau dùng tuen.
+[08:51] Anh em thì dùng tuen bên em thì
+[08:53] dùng tuen 1 năm nha mọi người.
+[08:55] Quang trọng là bây giờ chỉ sợ
+[08:57] các 1 ngày nào đó thì nó web tuen.
+[08:59] Bên web họ bờ lóc và chẳng API
+[09:01] thì bên tuen sẽ không làm được nữa.
+[09:03] Lúc đó thì không còn tuen nữa làm nữa
+[09:05] thì thật sự đốt tiền ở trên web luôn mọi người.
+[09:07] Lúc trước mà chưa có tuen
+[09:09] thì em đã đốt tiền, biết bao nhiêu tiền
+[09:11] ở trên web luôn ấy.
+[09:13] Chi phí rất là lớn nha mọi người.
+[09:15] Nếu mà mọi người làm những cái dạng như
+[09:17] Sotori hay là nó chung là
+[09:19] có kịch bản dài như cái dạng xuất kế này
+[09:21] thì mọi người đốt tiền rất là nhiều luôn.
+[09:23] Tốn rất là nhiều credit.
+[09:25] Rồi thì quay lại với forum
+[09:27] thì mọi người cứ copy vào
+[09:29] xong là mọi người làm...
+[09:31] Đây, như cái chỗ này thì em cũng chú thích ra tiếng việc luôn
+[09:33] cho mọi người dễ hiểu nha.
+[09:38] Đây là cách em trên forum
+[09:40] trước giờ luôn ấy nha mọi người.
+[09:42] Mọi người phải làm theo
+[09:44] các nhu cầu thì mọi người
+[09:46] làm theo như em nha.
+[09:48] Cái gì thì em hướng dẫn hết cho mọi người luôn ấy.
+[09:50] Thì hiện tại thì em cũng đang thử nghiệm
+[09:52] và đi về học hình
+[09:54] riêp luôn nha mọi người, riêp bên trung ấy
+[09:56] thì em đã xem thử vài hôm nữa
+[09:58] và nó lên được.
+[10:00] Thì em sâu luôn cái cân cho mọi người xem luôn.
+[10:02] Sâu trên khóa bầu rồ này luôn nha mọi người.
+[10:04] Mọi người ai thích làm thêm thì
+[10:06] mọi người làm nó cũng giống như kiểu
+[10:08] dạng sinh tồn với mọi người.
+[10:10] Nhưng mẹ này thì là
+[10:12] về dạng học hình, việc sốc.
+[10:14] Cái ngắt này thì chưa ai biết, chưa ai làm luôn nha mọi người.
+[10:16] Em đang thử nghiệm
+[10:18] vài video rồi, nó có view rồi,
+[10:20] nên trên 10k view rồi mọi người.
+[10:22] Nhưng để vài hôm nữa nó lên được ok thì
+[10:24] em sâu về xe cho mọi người luôn.
+[10:26] Anh em thích làm thì anh em làm thêm.
+[10:28] Riêp thì mình để mình chiếm thêm thôi mọi người.
+[10:30] Hay là mình làm
+[10:32] người mới làm để cho các kinh nghiệm thôi.
+[10:34] Làm view việc mà mình
+[10:36] kiếm được sâu là được rồi.
+[10:38] Chứ nó không bàyn được cái
+[10:40] rubber mall về cái danh thu thì
+[10:42] sẽ không bao giờ bàyn được cái view ngọa đâu mọi người.
+[10:44] Rồi đơn giản sâu bia như vậy nha mọi người
+[10:46] thì em để trên được
+[10:48] bia cái forum về mọi người lưỡi.
+[10:50] Xong rồi thì mọi người dịch riêp, mọi người
+[10:52] đọc que nha để mọi người biết được cái cách
+[10:54] nó trên như nào, nó phân tích như nào
+[10:56] về mình hoảng hành, mình
+[10:58] cho nó chạy như nào.
+[11:00] Về bây giờ tiếp tục em sẽ làm
+[11:02] cái đồ mo về cái dạng cây này luôn nha.
+[11:04] Em đã
+[11:06] có kịch bản
+[11:08] để các forum lát kịch bản rồi đó
+[11:10] em có copy này, em bỏ vào cái
+[11:12] chát điều tây, em tạo một cái tab mới nha mọi người.
+[11:14] Rồi em ví dụ nha, bây giờ em sẽ
+[11:16] lấy một cái kịch bản nào đây.
+[11:18] Bây giờ quý dụ em đang làm luôn nha mọi người.
+[11:20] Thì hôm trước em có hướng dẫn mọi người
+[11:22] cách thót không view là mọi người lấy những cái video
+[11:24] nèm trên các trị số vbh
+[11:26] là cao á, đây như video này đúng không?
+[11:28] Đó, thì mọi người vào
+[11:30] rồi đầu tiên thì mình sẽ copy
+[11:32] cái tutor nha
+[11:34] Rồi em lướt xuống ở dưới nè
+[11:36] thay thế vào này thôi.
+[11:38] Mọi người boy đi ăn xong rồi mọi người
+[11:40] control var được thôi, tiếp tục
+[11:42] em sẽ lấy cái kịch bản
+[11:44] Mọi người chết cũng biết rồi đúng không?
+[11:46] Nói em nhớ thiểu quen nhiều rồi.
+[11:48] Rồi mọi người copy
+[11:51] toàn bộ kịch bản bỏ vào
+[11:53] Rồi bây giờ mọi người bấm cho nó chạy
+[11:55] Thì nó sẽ tự động là
+[11:57] tạo rea cho mình cái kịch bản luôn nha mọi người.
+[11:59] Đúng
+[12:01] với cái yêu cầu của forum luôn nha
+[12:03] Bây giờ đợi một tí để nó tạo
+[12:08] rea xong cái phần 1 nha mọi người.
+[12:10] Nói biết rất là nhiều luôn nè
+[12:12] bởi vì lúc nãy
+[12:14] em cá triên cái dạng này thì
+[12:16] theo đối thủ là 4 đến 10 phút
+[12:18] 1 phần như này mọi người thấy nó
+[12:20] viết rất là dài, như này thì cũng tầm
+[12:22] là nem đến 7 phút rồi
+[12:24] mọi người chứ không đơn giản đâu nha
+[12:26] Rồi bây giờ thì nó sẽ gần
+[12:28] và nó sẽ hỏi mình nè. Mình muốn tạo
+[12:30] tiếp tục thì mình cứ bấm tiếp tục luôn.
+[12:32] Nó sẽ tạo ra phần 2 tiếp nha.
+[12:34] Mọi người ghi tiếp tục bàn tiếng việc
+[12:36] nó cũng được nha mọi người.
+[12:38] Rồi em gần lại nha, bởi vì đang làm
+[12:40] đồ mô nè, làm sơ để
+[12:42] mọi người hiểu được cái quy trình thôi.
+[12:44] Bây giờ làm hết thì không có thời gian đâu mọi người ạ.
+[12:46] Rồi tiếp theo thì em chỉ quý vụ
+[12:48] nè, bây giờ cái chỗ quan trọng
+[12:50] là cái chỗ hình ảnh nè.
+[12:52] Hình ảnh giống đối thủ đúng không?
+[12:55] Bây giờ em copy
+[12:57] bỏ vào cái form hình ảnh
+[12:59] xong rồi nha.
+[13:01] Ở dưới này thì thay thế kịch bản đúng không?
+[13:03] Ừ em copy thiếu nè.
+[13:05] Chỗ này em copy thiếu em quay lại
+[13:07] em copy lại nha.
+[13:10] Em copy thiếu cái đoạn này
+[13:12] để em copy lại
+[13:14] dễ hiểu nha mọi người.
+[13:16] Rồi em bây giờ thì em copy
+[13:18] riêng cái phần 1 nha.
+[13:20] Em sẽ tạo ảnh cho phần 1 trước.
+[13:22] Mọi người em kêu mọi người là
+[13:24] tạo từng phần từng phần thôi chứ
+[13:26] bởi vì phùn cái kịch bản thì nó rất là dài.
+[13:29] Mọi người Nazi tạo ria không được hay đâu
+[13:31] phải phân tích từng phần từng phần nha.
+[13:33] Đó thì 2 cái đoạn trên
+[13:35] thì nó phân tích cho mình trước nè.
+[13:37] Xong rồi ở dưới này mọi người thấy không?
+[13:39] Nazi tạo ria các cái Rome nè.
+[13:41] Thì tí nữa thì em sẽ dùng con vít nha.
+[13:43] Vì con hôm bữa giờ em có hướng dẫn mọi người rồi.
+[13:45] Thì con đã tạo rất là néc luôn.
+[13:47] Về cái đồng bộ, cái tính đen đồng bộ luôn.
+[13:51] Chắc là cả nhiều anh em chưa biết được
+[13:53] cái tính đen đồng bộ đó.
+[13:55] Thì tí nữa em sẽ tra nó tham chiếu
+[13:57] về tên cho mọi người xem luôn nha.
+[13:59] Mọi người muốn nó đồng bộ thì tra nó
+[14:01] đồng bộ luôn cũng được.
+[14:03] Đó thì nó tạo rất là nhiều nha.
+[14:05] Sau khi mà xem rồi,
+[14:07] bây giờ em sẽ copy form 1 nè.
+[14:09] Đây copy phần ở dưới nha mọi người.
+[14:11] Mở con vít lên.
+[14:14] Mọi người nhớ tỉnh thông số
+[14:16] cái không hình nha.
+[14:18] Mọi người thấy chưa?
+[14:20] Nó tạo reform cắt nhau vật.
+[14:22] Nó trong các cái
+[14:24] hình tượng giống đối thủ luôn.
+[14:26] Mọi người thấy chưa?
+[14:28] Đen nó phải như vài nha mọi người.
+[14:30] Hình ảnh này thấy đẹp hơn luôn.
+[14:32] Nét hơn luôn.
+[14:34] Bây giờ thì tiếp tục cái phần 2.
+[14:36] Bây giờ em chưa...
+[14:38] em đang tết thôi.
+[14:40] Mình chưa cho nó đồng bộ
+[14:42] nhan quặc nha mọi người.
+[14:44] Tới nữa em sẽ trên cho
+[14:46] đồng bộ nhan quặc sau.
+[14:48] Mọi người thấy chưa?
+[14:50] Nó reo rất là giống
+[14:52] phim cách người hàng quắc luôn.
+[14:54] Không khác gì kể nha mọi người.
+[14:57] Con này thật sự tạo rất là đẹp luôn.
+[14:59] Không cần những con
+[15:01] make tiền khác đâu.
+[15:03] Bây giờ mình đã muốn cho nó làm
+[15:05] đồng bộ nhan quặc thì mọi người
+[15:07] xem giúp em nè.
+[15:09] Nó là một nhân vật. Mọi người kéo
+[15:11] bên trái cho em nè.
+[15:13] Đợi cho nó tham chiếu nha.
+[15:15] Đợi cho nó xử lý rồi xong rồi.
+[15:17] Bây giờ mọi người...
+[15:19] Dưới này,
+[15:21] BN vừa tạo ra nhân vật khác nha.
+[15:23] Lúc đó thì chưa đồng bộ.
+[15:25] Bây giờ để đồng bộ xong rồi,
+[15:27] mọi người copy forum thứ 4 nè.
+[15:29] Mọi người sẽ bỏ vào, mọi người trên.
+[15:31] Mọi người thấy
+[15:33] nó sẽ tạo ra nhân vật nam
+[15:35] với bác sĩ nam đấy.
+[15:37] Mọi người tham chiếu bên này.
+[15:39] Ui!
+[15:43] Đêm nhằm mọi người.
+[15:45] Cái này chắc chắn là
+[15:47] nhân vật nữ.
+[15:49] Chắc chắn luôn.
+[15:51] Nhân vật, một nhân vật nữ.
+[15:53] Đó là không sao nha.
+[15:55] Nếu mà nhân vật phụ nữ,
+[15:57] mọi người kiếp nhiều bản vào,
+[15:59] mọi người cứ bảo vào video của mọi người.
+[16:01] Đây, em dùng cái forum nem
+[16:03] ở dưới là nhân vật nam nha.
+[16:05] Đã bảo mọi người,
+[16:07] bởi vì kia là nhân vật nữ,
+[16:09] nên nhân sĩ không giống được, không đồng bộ được nha.
+[16:11] Đây, mọi người hết chưa?
+[16:13] Đó, nó để giống được cái ở trên rồi nè mọi người.
+[16:15] Tiếp tục em sẽ làm thêm 1 cái nữa nè.
+[16:17] Mọi người thấy không?
+[16:19] 2 cái ảnh này là nó chưa lúc nè,
+[16:21] chưa trên nha.
+[16:23] Chưa cho nó tham chiếu.
+[16:25] Còn cái dưới này,
+[16:27] nó lúc nè bảo vào tham chiếu,
+[16:30] xong rồi nha mọi người.
+[16:32] Đây, em dịch nè xem thử cái này,
+[16:34] nhân vật nam hay nữ, nam đúng không?
+[16:36] Mọi người xem.
+[16:41] Thật sự, video này em hướng dẫn rất là chỉ tiếc cho mọi người luôn.
+[16:43] Nên em cứ thế mà làm thôi.
+[16:45] Bất kỳ, bất kỳ, bất kỳ,
+[16:47] kỳ nào cũng đựng cung vạy nha mọi người.
+[16:49] Đã, mọi người thấy chưa?
+[16:52] Cái khuôn mạc về cái nhân vật,
+[16:54] vẫn là cái ông đó thôi.
+[16:56] Rất giống nha mọi người.
+[17:01] Rồi, đơn giản như vạy thôi nha mọi người.
+[17:03] Thì, video em hướng dẫn
+[17:05] và mô cho mọi người đến vạy thôi.
+[17:07] Còn cách edict này kia thì
+[17:09] quen đơn giản với mọi người luôn rồi đúng không?
+[17:11] Nên em hướng dẫn hết rồi.
+[17:13] Và em cũng nói thêm là mọi người
+[17:15] muốn sống sót trong cái chính sách
+[17:17] về thị trường năm 2026
+[17:19] thì mọi người nên edict nhiều vào.
+[17:21] Và đặc biệt là phải dùng
+[17:23] nhiều video tự nhiên hơn.
+[17:25] Mọi người cách ghép lại với nhau.
+[17:27] Nếu mà mọi người làm
+[17:29] nha, em quý dụ nha,
+[17:31] mọi người làm cái dạng cư xuất khỉ này,
+[17:33] thì mọi người lên những cái nguồn bí xe bay
+[17:35] cả những cái hình ảnh
+[17:37] râu củ vẻ
+[17:39] trong bệnh viện đồ này kia đấy.
+[17:41] Mọi người cứ tải về mọi người ghép vào thôi.
+[17:43] Như vậy là rất là ok luôn nha.
+[17:45] Chứ không phải mọi người
+[17:47] cần phải dùng hết cái AI đâu.
+[17:49] AI thì mọi người chỉ cần dọn đọc thôi.
+[17:51] Nói là không bao giờ mọi người bị quyết nha.
+[17:53] Thì như em đây, bên em làm
+[17:55] đang làm hơn 10 cân.
+[17:57] Đâu bị quyết cân nào đâu. Mọi người cứ lên cân tích tóc em đấy.
+[17:59] Em sâu rất là nhiều luôn.
+[18:01] Nói là em chia sẻ thêm vạy để mọi người
+[18:03] lưu ít được nha. Mọi người phải
+[18:05] xem được hết video và cũng như là
+[18:07] em nói nha.
+[18:09] Rồi ok video hôm nay.
+[18:11] Đến đây là như vậy nha mọi người.
+[18:13] Thì em sẽ để tất cả cái tài nghiêng
+[18:15] mà nãy giờ em hướng dẫn. Cũng như trên đó.
+[18:17] Thì ở dưới mô tẻ.
+[18:19] Nên cái mô tẻ thì mọi người lứt xuống
+[18:21] ở dưới video nên em ở dưới khung video.
+[18:23] Em đỡ như vậy thì cho mọi người dễ thấy.
+[18:25] Đó là trên mây tính nha.
+[18:27] Còn mọi người dùng điện thoại thì
+[18:29] nó vẫn là có cái mô tẻ.
+[18:31] Mọi người bấm vào cái mô tẻ thì nó sẽ thấy.
+[18:33] Còn trên mây tính thì mọi người chỉ cần
+[18:35] mọi người thấy rồi. Rồi em cảm ơn mọi người
+[18:37] để video đến đây nha. Thì hôm sau
+[18:39] các những cái cây hay những cái update mới
+[18:41] thì em sẽ update liên tục cho mọi người nha.

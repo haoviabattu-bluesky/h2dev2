@@ -1,0 +1,16 @@
+{
+  "_doc": "Hồ sơ TỪNG KÊNH. Mỗi kênh = 1 nhân vật kể chuyện NHẤT QUÁN (giọng+tuổi+giới cố định cho mọi video của kênh). Kênh mới = thêm 1 entry. tts.py --channel <id> tự nạp voice/age/speed. Xem docs/SOP_SATORI_JP.md.",
+  "satori-jp-obaa": {
+    "market": "JP",
+    "language": "ja",
+    "niche": "Satori 노후 / câu chuyện người già (ngôi 1)",
+    "competitor": "https://www.youtube.com/@simbot2",
+    "narrator": "cụ bà ~70-75 tuổi (nữ), giọng ấm chậm hơi yếu",
+    "voice": "ado",
+    "age": "med",
+    "speed": 0.92,
+    "bgm": "assets/satori_jp/_bgm/bgm1.mp3",
+    "note": "Nhân vật NHẤT QUÁN toàn kênh. Giọng bà cụ = Ado (nữ mature) + age=med (làm già). Tạm chốt 2026-09-07; script kênh này viết ngôi 1 NỮ.",
+    "slug_dir": "assets/satori_jp"
+  }
+}

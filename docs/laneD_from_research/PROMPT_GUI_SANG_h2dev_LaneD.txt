@@ -1,0 +1,100 @@
+════════════════════════════════════════════════════════════════════════
+COPY TOÀN BỘ PHẦN DƯỚI ĐÂY, DÁN VÀO PHIÊN CLAUDE CODE Ở DỰ ÁN h2dev
+════════════════════════════════════════════════════════════════════════
+
+Tôi chọn kênh CỤ THỂ để clone/reup, không phải chỉ nghiên cứu ngách chung chung.
+Kết quả nghiên cứu đã copy sang đây:
+
+    E:\CLAUDE\YOUTUBE\h2dev\docs\laneD_from_research\
+
+ĐỌC FILE NÀY TRƯỚC, đọc kỹ toàn bộ 14 mục:
+    LANE_D_HANDOFF.md
+
+MỞ ẢNH NÀY RA XEM (toàn bộ 15 thumbnail thật của kênh mẫu, xác nhận template cố định):
+    data/thumbsheet_all.png
+
+──────────────────────────────────────────────────────────────────────
+TÓM TẮT
+──────────────────────────────────────────────────────────────────────
+Kênh clone: 色でたどる戦争の記録 (UCaj1dslbibbHEnOAOh0tyYw)
+  15 ngày tuổi · 877 sub · 15 video · trend ĐANG LÊN (1,57)
+
+Định dạng: 1 ảnh chiến tranh THẬT (WWII) được AI tô màu lại, kể chuyện 23-29
+  phút xoay quanh đúng 1 người/1 nhóm cụ thể trong ảnh, kèm số liệu chính xác.
+  ĐÂY LÀ PIPELINE HÌNH ẢNH THỨ 3, khác hẳn Lane A (clip stock) và Lane C
+  (manga AI vẽ) — ảnh phải là ảnh THẬT, không sinh được bằng AI từ đầu.
+
+Công thức đã giải mã bằng bằng chứng thật (không suy diễn): 3 tập hit
+  (41k-53k view) đều có 1 NHÂN VẬT CỤ THỂ + SỐ LIỆU CHÍNH XÁC (17 tuổi ôm
+  chó con trước giờ cảm tử, 123.511 trẻ mồ côi, 85% dân bị dồn hàng rào).
+  Chủ đề trừu tượng/thể chế (hoà ước, bom bóng bay kỹ thuật) chỉ 362-650 view.
+
+──────────────────────────────────────────────────────────────────────
+KHÁC BIỆT LỚN NHẤT VỚI LANE A/C — ĐỌC KỸ TRƯỚC KHI BẮT ĐẦU
+──────────────────────────────────────────────────────────────────────
+Đây là lane DUY NHẤT phụ thuộc ảnh tư liệu CÓ THẬT, không bịa được (kênh
+lịch sử). §7 của LANE_D_HANDOFF.md đã điều tra thật 6 nguồn ảnh (miễn phí:
+PICRYL/GetArchive gộp từ NARA, 沖縄県公文書館, Thư viện Quốc hội Mỹ, NDL
+Digital Collection; có xin phép: 昭和館; có phí: Getty/Kyodo/Mainichi) —
+đọc bảng đó TRƯỚC khi chọn đề tài video đầu tiên.
+
+Chia đề tài ra 2 nhóm độ khó nguồn khác hẳn nhau:
+  - Nhóm A (chủ đề Mỹ-Nhật trên chiến trường): tìm ảnh RẤT DỄ, quân đội Mỹ
+    chụp có hệ thống, đã public domain xác nhận → LÀM VIDEO ĐẦU TIÊN Ở ĐÂY
+  - Nhóm B (đời thường dân Nhật thuần, vd đúng 2 tập hit lớn nhất của kênh
+    gốc): khó hơn, cần xin phép bảo tàng hoặc dò NDL — để sau khi pipeline
+    tô màu đã ổn định
+
+──────────────────────────────────────────────────────────────────────
+VIỆC CẦN LÀM
+──────────────────────────────────────────────────────────────────────
+A. THỬ NGHIỆM BƯỚC TÔ MÀU AI TRƯỚC TIÊN (bắt buộc, chưa ai làm thử lần
+   nào) — lấy 3-5 ảnh thật từ nguồn Nhóm A, thử tô màu bằng 1-2 công cụ
+   ứng viên (dịch vụ tô màu chuyên dụng, hoặc gpti2/imgstudio edit với
+   prompt "colorize giữ nguyên 100% bố cục") — SO SÁNH chất lượng, đây là
+   bước MỚI HOÀN TOÀN, rủi ro kỹ thuật lớn nhất của cả pipeline.
+
+B. Đo lại char-rate giọng đọc — nhịp gốc CHỈ ~260 ký tự/phút, chậm hơn hẳn
+   Satori (309)/Lane C (318). KHÔNG dùng thẳng tham số cũ.
+
+C. Làm VIDEO ĐẦU TIÊN từ Nhóm A (vd 1 câu chuyện cụ thể trong trận Okinawa
+   — nguồn 沖縄県公文書館 đã xác nhận 22.131 ảnh có sẵn, miễn phí, không
+   cần xin phép). Checklist 9 mục đầy đủ ở LANE_D_HANDOFF.md §12.
+
+D. Thumbnail: copy khung (nền đen + dải màu dọc + ảnh tô màu + chữ đậm)
+   nhưng ĐỔI TAGLINE RIÊNG — không copy nguyên văn "カラーでよみがえる"
+   hay "実際の写真をAIフルカラー復元" của kênh gốc (tránh trùng thương
+   hiệu). 3 phương án tên kênh + mô tả + hashtag/tag SEO có sẵn ở §11.
+
+──────────────────────────────────────────────────────────────────────
+BA ĐIỀU BẮT BUỘC NHỚ
+──────────────────────────────────────────────────────────────────────
+1. NGUỒN ẢNH PHẢI TRÍCH DẪN — ghi rõ mỗi ảnh lấy từ đâu (bảng §7) trong
+   ghi chú sản xuất, để tra soát lại nếu có khiếu nại bản quyền.
+
+2. QC THÊM (khác mọi lane trước): kiểm tính xác thực lịch sử (số liệu
+   phải khớp sử liệu thật, không bịa cho ấn tượng — đây là kênh dễ bị
+   fact-check nhất), kiểm nội dung chính trị (tránh chủ động khơi mào
+   dù bình luận khán giả có thể lái sang đó), kiểm văn phong mô tả ảnh
+   (tránh liệt kê máy móc — kênh gốc đã có 1 comment thật nghi ngờ nội
+   dung là AI viết).
+
+3. Rủi ro pháp lý ảnh: luật bản quyền CŨ của Nhật (ảnh công bố trước 1956
+   đã hết hạn bảo hộ) cho căn cứ dùng nhiều ảnh báo chí WWII, nhưng CHƯA
+   có xác nhận pháp lý chính thức cho từng case cụ thể — hỏi người hiểu
+   luật SHTT trước khi sản xuất quy mô lớn, đừng tự suy diễn là an toàn.
+
+──────────────────────────────────────────────────────────────────────
+CHƯA LÀM — đừng tưởng đã xong
+──────────────────────────────────────────────────────────────────────
+· Bước tô màu AI chưa thử nghiệm lần nào — rủi ro kỹ thuật lớn nhất.
+· Chưa đo lại char-rate giọng đọc cho nhịp chậm mới.
+· Chưa xin phép bất kỳ kho lưu trữ nào cần permission (Nhóm B).
+· Chưa có xác nhận pháp lý chính thức về bản quyền ảnh cho case cụ thể.
+· Mọi số liệu là quan sát từ 1 kênh 15 ngày tuổi — mẫu rất nhỏ, cần theo
+  dõi thêm sau khi kênh gốc chạy thêm vài tuần và sau 3-5 video đầu của
+  chính mình.
+
+Bắt đầu bằng việc đọc LANE_D_HANDOFF.md rồi thử nghiệm Bước A (tô màu AI)
+trước khi viết kịch bản đầu tiên.
+════════════════════════════════════════════════════════════════════════

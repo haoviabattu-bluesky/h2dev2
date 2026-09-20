@@ -1,0 +1,149 @@
+{
+  "id": "irogatatarukioku",
+  "market": "JP",
+  "language": "ja",
+  "source_lang": "en,ja",
+  "niche": "色が語る記憶 — clone 色でたどる戦争の記録: 1 ảnh WW2 THẬT (B&W) được AI tô màu, kể chuyện quanh đúng 1 người/nhóm cụ thể trong ảnh, chốt bằng số liệu chính xác",
+  "competitor": "https://www.youtube.com/channel/UCaj1dslbibbHEnOAOh0tyYw",
+  "slug_dir": "assets/irogatatarukioku",
+  "folder_pattern": "ep{nn:02d}-*",
+  "channel": {
+    "name": "色が語る記憶",
+    "handle": "@irogatatarukioku",
+    "url": "https://www.youtube.com/channel/UCtRuxojb7218QeFBf5TBCQQ"
+  },
+  "narrator": {
+    "gender": "male",
+    "age_band": "45-55",
+    "persona": "Người kể chuyện tài liệu nam trung niên, trầm, điềm tĩnh, tôn trọng — như đang thuyết minh trước 1 bức ảnh tư liệu trong bảo tàng. Mô tả CHI TIẾT những gì thấy trong ảnh trước khi kể bối cảnh. Không kịch hoá, không phán xét chính trị.",
+    "point_of_view": "三人称・語り手（自分の身の上話は一切しない）",
+    "register": "です・ます調、断定を避ける説明体（〜という／〜とされる／〜かもしれない）"
+  },
+  "voice": {
+    "id": "elevenlabs_W8wofKLOWnsM57L8hIx2",
+    "name": "Koji - Warm Japanese Business Narrator",
+    "speed": 0.85,
+    "fx": "none",
+    "calib_style": "doc",
+    "char_rate": 276.3,
+    "pace": false,
+    "char_rate_measured_at": "2026-09-16",
+    "char_rate_speed": 0.85,
+    "char_rate_from": "calibrate.py --style doc, mau Sputnik 302 chu -> 65.7s (rieng cua Lane D, KHONG dung chung voi toshi-densetsu-jp du cung giong)",
+    "_note": "Muc tieu tham khao tu LANE_D_HANDOFF.md la ~260 chu/phut (uoc luong tu transcript doi thu) -> do that 276 la khop, KHONG can chinh them.",
+    "char_rate_note": "đo thật 302 chữ (doc) → 65.6s"
+  },
+  "script": {
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 21.0,
+    "two_pass": true,
+    "structure": "lane_d_photo_essay",
+    "mode": "documentary",
+    "ctx_label": "TU LIEU GOC (series_ctx.txt cua SPACE_RESEARCH) — moi ten/ngay/so lieu PHAI lay dung tu day, cam bia them. Anh + caption lay tu photos.json.",
+    "gate": {
+      "comma_per_sentence": [
+        0.0,
+        1.0
+      ],
+      "chars_per_breath": [
+        9.0,
+        31.0
+      ],
+      "dialogue_ratio_max": 0.05,
+      "require_next_ep_teaser": false,
+      "check_arithmetic": true,
+      "hedge_min_per_10min": 2.0,
+      "fact_anchor_per_min": 0.8,
+      "chapter_markers": [],
+      "require_japan_hook_chapter": 0,
+      "title_len": [
+        30,
+        47
+      ],
+      "photo_count_range": [
+        12,
+        20
+      ],
+      "photo_hold_sec_range": [
+        60,
+        200
+      ]
+    },
+    "_gate_note": "Do THAT tu 2 video kenh mau (4J5Il-hMN6E 15 anh/1549s ~103s/anh; hDkgnTPJw5g ~9 doan tho/1409s) + do transcript that (296 cau, comma/cau trung binh 0.135, chars/breath median 17 p10-p90 9-31). KHONG dung chung gate voi toshi-densetsu-jp (5 chuong 第◯章) hay Lopezzapa68 (tam tinh nhieu dau phay) — cam vay muon.",
+    "_target_note": "21' = dai AN TOAN cho TAP DAU theo dung de xuat goc cua LANE_D_HANDOFF.md muc 12 item 7 ('20-25 phut cho tap dau, ngan hon kenh goc 1 chut de giam rui ro trong luc pipeline to mau chua on dinh'). Tu tap 2 tro di, neu pipeline chay on co the nang len 23-29' (dai chuan kenh mau, da do that 2 video mau ~1409-1549s). Ho so d02-ushijima-mitsuru von chuan bi 18 anh cho dai day hon nhung van dung tot cho 21' (photo_count_range gate van 12-20)."
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "",
+    "ref_lock": false,
+    "ref_quality": "",
+    "thumbnail_only": false,
+    "_note": "KHONG dung gen_images.py/ai_steps.write_img_prompts (sinh anh tu prompt) — anh la ANH THAT co san trong photos.json cua ho so SPACE_RESEARCH, chi TO MAU qua gpti2_edit.py quality=medium (da verify lane-d-colorize-test). B5 cua lane nay la buoc THU CONG/rieng, khong goi qua make_video.py b5_images."
+  },
+  "body": {
+    "mode": "ai_images",
+    "photo_source": "real_pd_archival_colorized",
+    "evidence_license_policy": "pd",
+    "seconds_per_image": 0,
+    "colorize": {
+      "tool": "ima2",
+      "tool_fallback": "pipeline/gpti2_edit.py (quality=medium) — chi dung khi ima2 quota bi siet/429",
+      "quality": "high",
+      "prompt_note": "colorize giu nguyen 100% bo cuc/chi tiet anh goc, uoc luong mau tu nhien theo boi canh 1940s, KHONG ve lai/them/bot — xem docs/laneD_from_research/colorize_test/COMPARE_peleliu.png",
+      "_note_chot_2026-09-16": "Da doi tu gpti2_edit.py sang ima2 tu ep04 tro di — mien phi (quota ChatGPT Plus OAuth), verify chat luong ngang hoac hon gpti2. Goi qua duong dan tuyet doi C:\\Users\\admin\\AppData\\Roaming\\npm\\ima2.cmd. Size chon theo ty le khung anh goc, xem docs/SOP_LANE_D.md muc 6."
+    },
+    "assemble_note": "BAT BUOC dung --anchors (khong dung sync_durations mac dinh): sync_durations() chia DEU anh theo tong thoi luong audio, mu ve anh nao ung voi doan van nao -> do that EP1 la 4/8 moc lech hinh/loi (B8Q sync_score 2.9/5). Phai tao file anchors.txt (dong 'ten_anh.png|cau neo nguyen van trong script.txt', neo la 1 cau/cum tu XUAT HIEN DUNG 1 LAN trong script) roi chay assemble.py --anchors anchors.txt --srt <srt da gion nhip>. anchor_durations() tra vi tri neo trong SRT da noi de lay dung mocs thoi gian theo CAU VAN, khong phai theo so dem. Da fix EP1 tu 2.9 len 3.8/5, 0 diem yeu. Anh mo dau/ket phai co 1 anh neo vao cau ket (bookend) neu script co cau quay lai nhac anh dau."
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "palette": [
+      "WHITE",
+      "RED",
+      "BLACK"
+    ],
+    "dedicated_bg": true,
+    "require_face": true,
+    "template": {
+      "bo_cuc": "chu TRAI + mat NGUYEN VEN sac net PHAI (khong bi chu de len), nen trai lap bang chinh anh do phong to lam mo",
+      "generator": "pipeline/thumbnail_text.py",
+      "command": "py -3.13 pipeline/thumbnail_text.py --bg <ep>/img/000.png --text <ep>/thumb_text.txt --out <ep>/thumbnail_final.png --side left --wrap --fit-height --subject-side right",
+      "_note_chot_2026-09-16": "Anh 000.png la chan dung DOC (vd 1024x1536/1536x2048). Cover-crop cu (khong --fit-height) ep khung ngang 1280x720 len anh doc thi KHONG CON BIEN NGANG de day mat sang mot ben -> mat luon ket GIUA khung du --side la gi, dung dung vao vung chu (da dinh that ep02-05, anh nguoi dung phai ve lai). --fit-height scale theo CHIEU CAO (giu tron kho doc, khong cat dau/vai), ghim ca khoi mat ve --subject-side right, phan trong ben trai lap bang chinh anh do phong to lam nen mo cho chu dung rieng. CHI dung cover-crop cu (bo --fit-height) cho anh NHOM/CANH RONG kieu ep01 (nhieu nguoi dan trai chieu ngang) — anh do fit-height se ghim mat theo goc, cat mat nguoi khac.",
+      "ngoai_le": "ep01 (anh nhom nhieu si quan) giu cover-crop mac dinh (bo --fit-height), van --side left --wrap — bo cuc da dung, khong doi."
+    }
+  },
+  "assemble": {
+    "zoom": 1.12,
+    "transition": "xfade",
+    "xfade": 0.6,
+    "sub_font": "Yu Gothic",
+    "sub_size": 32,
+    "sub_margin": 7,
+    "sub_outline": 3
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "gore",
+    "corpse close-up"
+  ],
+  "research": {
+    "nguon": "SPACE_RESEARCH",
+    "_note": "Hop dong nhan ANH THAT cho Lane D (khac Lane A nhan stock clip). Cong B0 = pipeline/qc_hoso.py doc CHINH khoi nay lam nguong, sua hop dong = sua o day, KHONG sua code cong. File anh PHAI ten `evidence.json` (dung schema qc_hoso.py doc san: file/caption/source/license, cong them credit/note tuy y) — KHONG dung ten `photos.json` (cong khong tim thay se coi nhu THIEU FILE). Moi anh trong lane nay deu la anh 'bang chung' (photo_source=real_pd_archival_colorized), khac Lane A chi coi anh bang chung la phu.",
+    "files_required": [
+      "series_ctx.txt",
+      "evidence.json"
+    ],
+    "title_options_min": 2,
+    "source_coverage_min": 0.9,
+    "deliver_evidence": true,
+    "evidence_min": 12,
+    "evidence_dir": "photos"
+  },
+  "publish": {
+    "upload_channel": "irogatatarukioku"
+  },
+  "_note": "Lane D — mo 2026-09-10, profile viet 2026-09-11 sau khi do that char_rate + gate tu 2 video kenh mau. Ho so dau tien: SPACE_RESEARCH output/_READY/d02-ushijima-mitsuru (Sheet tab irogatatarukioku, DONE-READY). KHONG co REF-LOCK (moi tap nguoi that khac nhau). B5 (anh) la buoc THU CONG rieng — xem docs/SOP_LANE_D.md."
+}

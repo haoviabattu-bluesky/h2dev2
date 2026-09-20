@@ -1,0 +1,28 @@
+{
+  "topics": [
+    "喉の痰",
+    "血圧薬",
+    "ACE阻害薬",
+    "咽喉頭逆流症",
+    "サイレント逆流",
+    "後鼻漏",
+    "副鼻腔炎",
+    "脱水",
+    "腸内細菌",
+    "高齢者の健康"
+  ],
+  "hook_type": "Kêu gọi thực hiện ngay hành động thể chất (nuốt nước bọt) để kích hoạt sự tự nhận thức về triệu chứng khó chịu quen thuộc.",
+  "structure": "Mở đầu bằng kiểm tra triệu chứng và cơ chế lão hóa của niêm mạc, sau đó đếm ngược 5 nguyên nhân từ bất ngờ đến nguy hiểm nhất (kèm giải pháp vi mô từng phần), phân tích tương tác kép giữa thuốc huyết áp và trào ngược, kết thúc bằng lộ trình hành động cụ thể từ tối nay.",
+  "emotional_beats": [
+    "thấu cảm sâu sắc với sự khó chịu chịu đựng nhiều năm",
+    "bất ngờ khi biết các nguyên nhân tiềm ẩn ít được bác sĩ giải thích",
+    "hoang mang trước tác dụng phụ của thuốc điều trị quen thuộc",
+    "nhẹ nhõm và tự tin khi có giải pháp can thiệp rõ ràng"
+  ],
+  "title_formula": "ご注意：[Độ tuổi] + [Triệu chứng khó chịu dai dẳng], [Số lượng]つの隠れた原因と[Yếu tố bất ngờ/Tên thuốc]との関係",
+  "notes": "Kịch bản liên tục lồng ghép các câu hỏi tương tác bình luận (Yes/No hoặc triệu chứng sáng/cả ngày) để giữ chân người xem cao tuổi và tăng tương tác thuật toán.",
+  "video_id": "YbDaVO9McTQ",
+  "title": "ご注意：55歳以上の喉にへばりつく痰、5つの隠れた原因と血圧薬との関係",
+  "view_count": 11,
+  "duration_min": 32.5
+}

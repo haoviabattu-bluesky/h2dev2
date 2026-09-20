@@ -1,0 +1,4263 @@
+{
+  "video_tags": {
+    "高齢者の健康": {
+      "n_videos": 19,
+      "total_views": 271149,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "JCyxahsO0ew",
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "YZNmQJxGuRc",
+        "Og9pQzoKllo",
+        "aWXuORPaoH0",
+        "jzVHUk-E9S8",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "c2EG9MLCHck",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI",
+        "p4Rp10Rw19M",
+        "Z1W_jiYi3cs",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 14271
+    },
+    "シニアの食事": {
+      "n_videos": 6,
+      "total_views": 113767,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "4Q0fF3Ud57Q",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "HYd5dTEJyVI",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 18961
+    },
+    "長寿の秘訣": {
+      "n_videos": 3,
+      "total_views": 138000,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "JCyxahsO0ew",
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 46000
+    },
+    "健康長寿": {
+      "n_videos": 17,
+      "total_views": 196764,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "Og9pQzoKllo",
+        "aWXuORPaoH0",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "c2EG9MLCHck",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI",
+        "p4Rp10Rw19M",
+        "Z1W_jiYi3cs",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 11574
+    },
+    "老後の健康管理": {
+      "n_videos": 5,
+      "total_views": 134276,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "JCyxahsO0ew",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 26855
+    },
+    "免疫力アップ": {
+      "n_videos": 4,
+      "total_views": 78276,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 19569
+    },
+    "筋肉量を維持する方法": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "腸内環境を整える": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "認知症予防": {
+      "n_videos": 4,
+      "total_views": 69794,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "c2EG9MLCHck",
+        "zsmkBbNWE6I",
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 17448
+    },
+    "100歳まで元気に生きる食事": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "百寿者が食べていた食品": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "青魚の健康効果": {
+      "n_videos": 2,
+      "total_views": 73100,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 36550
+    },
+    "大豆製品と骨密度": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "玄米と血糖値": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "梅干しの効果": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "はちみつの免疫効果": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "ごぼう 食物繊維 腸活": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "白湯を飲む習慣 効果": {
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    "シニア健康法": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "健康寿命": {
+      "n_videos": 2,
+      "total_views": 70000,
+      "video_ids": [
+        "JCyxahsO0ew",
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 35000
+    },
+    "予防医学": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "生活習慣病": {
+      "n_videos": 4,
+      "total_views": 66276,
+      "video_ids": [
+        "JCyxahsO0ew",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 16569
+    },
+    "60代70代健康": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "アンチエイジング": {
+      "n_videos": 2,
+      "total_views": 61900,
+      "video_ids": [
+        "JCyxahsO0ew",
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 30950
+    },
+    "夜間頻尿改善": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "夜間頻尿原因": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "頻尿対策": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "尿漏れ改善": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "ふくらはぎマッサージ": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "かかと上げ運動": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "足のむくみ解消": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "足上げ健康法": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "睡眠の質改善": {
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    "シニアの栄養": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "老後の食事": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "筋力低下": {
+      "n_videos": 4,
+      "total_views": 82391,
+      "video_ids": [
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 20598
+    },
+    "寝たきり予防": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "高齢者ケア": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "シニアライフ": {
+      "n_videos": 5,
+      "total_views": 107391,
+      "video_ids": [
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 21478
+    },
+    "老年期の体づくり": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "70代のタンパク質": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "高齢者の筋肉維持": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "高タンパク食品": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "筋肉を守る食事": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "シニアの筋力アップ": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "寝たきりにならない食べ物": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "70歳からの食生活": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "高齢者におすすめの食品": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "筋肉の衰えを防ぐ方法": {
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    "老化予防": {
+      "n_videos": 3,
+      "total_views": 41391,
+      "video_ids": [
+        "4Q0fF3Ud57Q",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 13797
+    },
+    "60代の健康管理": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "70代の体の変化": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "介護予防": {
+      "n_videos": 5,
+      "total_views": 80391,
+      "video_ids": [
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "YZNmQJxGuRc",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 16078
+    },
+    "筋肉を増やす食べ物": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "タンパク質の吸収": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "サルコペニア予防": {
+      "n_videos": 5,
+      "total_views": 54985,
+      "video_ids": [
+        "4Q0fF3Ud57Q",
+        "YZNmQJxGuRc",
+        "Uaj9mNJgm6g",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 10997
+    },
+    "消化力低下": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "腸内環境改善": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "粉豆腐の効果": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "鮭缶の栄養": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "鰹節タンパク質": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "新型栄養失調": {
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    "シニアの健康管理": {
+      "n_videos": 3,
+      "total_views": 36000,
+      "video_ids": [
+        "966fNPIqSi4",
+        "aWXuORPaoH0",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 12000
+    },
+    "70代の生活習慣": {
+      "n_videos": 2,
+      "total_views": 30100,
+      "video_ids": [
+        "966fNPIqSi4",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 15050
+    },
+    "老後の健康": {
+      "n_videos": 3,
+      "total_views": 39694,
+      "video_ids": [
+        "966fNPIqSi4",
+        "YZNmQJxGuRc",
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 13231
+    },
+    "高齢者医療": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "老化防止": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "高齢者 筋肉維持": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "タンパク質不足 高齢者": {
+      "n_videos": 2,
+      "total_views": 30100,
+      "video_ids": [
+        "966fNPIqSi4",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 15050
+    },
+    "サルコペニア 予防": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "70代 食事 筋力": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "筋力低下 原因": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "高たんぱく食品 シニア": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "納豆 筋肉 効果": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "転倒予防 食事": {
+      "n_videos": 2,
+      "total_views": 25715,
+      "video_ids": [
+        "966fNPIqSi4",
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 12858
+    },
+    "筋肉を守る食べ物": {
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    "シニア健康": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "60代健康": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "70代健康": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "高齢者の食事": {
+      "n_videos": 9,
+      "total_views": 30597,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "aWXuORPaoH0",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 3400
+    },
+    "タンパク質不足": {
+      "n_videos": 2,
+      "total_views": 14694,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 7347
+    },
+    "筋肉を守る食品": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "高齢者筋肉": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "筋肉食品ランキング": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "タンパク質の摂り方": {
+      "n_videos": 2,
+      "total_views": 18800,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 9400
+    },
+    "筋肉量低下": {
+      "n_videos": 2,
+      "total_views": 14694,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 7347
+    },
+    "骨粗しょう症予防": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "転倒予防食事": {
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    "60歳からの健康": {
+      "n_videos": 10,
+      "total_views": 20679,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "c2EG9MLCHck",
+        "p4Rp10Rw19M",
+        "Z1W_jiYi3cs",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 2068
+    },
+    "糖尿病予防": {
+      "n_videos": 3,
+      "total_views": 10276,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 3425
+    },
+    "健康診断": {
+      "n_videos": 3,
+      "total_views": 10276,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 3425
+    },
+    "食事療法": {
+      "n_videos": 3,
+      "total_views": 10276,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 3425
+    },
+    "男性の寿命": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "87歳の壁": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "テストステロン": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "エストロゲン": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "フレイル予防": {
+      "n_videos": 3,
+      "total_views": 14900,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "Uaj9mNJgm6g",
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 4967
+    },
+    "血管の若返り": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "孤独と健康": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "タンパク質摂取": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "動脈硬化予防": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "シニア男性の健康習慣": {
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    "健康維持": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "タンパク質抵抗性": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "サルコペニア": {
+      "n_videos": 2,
+      "total_views": 6600,
+      "video_ids": [
+        "aWXuORPaoH0",
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 3300
+    },
+    "筋肉減少": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "天然食品で筋肉": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "高齢者の筋肉": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "タンパク質吸収": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "筋肉を取り戻す": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "衛星細胞の活性化": {
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    "老後の体力維持": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "健康寿命を延ばす方法": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "60代の体の変化": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "高齢者の筋肉低下": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "老化を遅らせる方法": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "免疫力を上げる食事": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "高齢者におすすめの食べ物": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "60代が毎日食べるべき食材": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "卵の栄養と高齢者": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "ヨーグルトの選び方シニア": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "緑の野菜と腸内環境": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "バナナのエネルギー補給": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "身近な食材で体力回復": {
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    "シニアの健康": {
+      "n_videos": 8,
+      "total_views": 11097,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1387
+    },
+    "老後の生活習慣": {
+      "n_videos": 7,
+      "total_views": 10403,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1486
+    },
+    "60代の健康": {
+      "n_videos": 7,
+      "total_views": 10382,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "zsmkBbNWE6I",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1483
+    },
+    "70代の健康": {
+      "n_videos": 9,
+      "total_views": 11588,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1288
+    },
+    "健康寿命を延ばす": {
+      "n_videos": 7,
+      "total_views": 10697,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1528
+    },
+    "シニアの生活": {
+      "n_videos": 4,
+      "total_views": 9790,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 2448
+    },
+    "慢性腎臓病": {
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    "腎臓に優しい食事": {
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    "クレアチニンを下げる方法": {
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    "GFRを上げる方法": {
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    "カリウム制限": {
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    "リン制限": {
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    "腎臓に良い食べ物": {
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    "粉ゼラチン 効果": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "ゼラチン 高齢者": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "ゼラチン タンパク質": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "ゼラチン 睡眠": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "グリシン 睡眠 効果": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "コラーゲンペプチド 目の乾き": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "ドライアイ 対策 食事": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "タンパク質不足 筋肉": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "ロコモティブシンドローム 予防": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "味噌汁 ゼラチン 入れ方": {
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    "血圧を下げる方法": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "動脈硬化を防ぐ食事": {
+      "n_videos": 2,
+      "total_views": 850,
+      "video_ids": [
+        "l0N9WnXkMbA",
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 425
+    },
+    "足の血流を良くする食べ物": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "足のむくみ 原因": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "足の冷え 食事": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "ビーツ 効能": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "さつまいも 血糖値": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "ケール ビタミンK": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "トマト缶 BPA": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "末梢神経障害 食事": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "足のしびれ 高齢者": {
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    "70代の過ごし方": {
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    "老後の孤独": {
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    "生涯現役": {
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    "前頭前野の衰え": {
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    "筋肉の貯金": {
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    "セロトニンと睡眠": {
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    "廃用症候群": {
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    "鶏むね肉 タンパク質": {
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    "高野豆腐 栄養": {
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    "納豆 筋肉": {
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    "節約 健康食品": {
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    "70代 筋肉を増やす": {
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    "転倒予防 高齢者": {
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    "高齢者の栄養": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "朝食タンパク質": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "筋肉を守る朝ごはん": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "アナボリックレジスタンス": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "朝食改善": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "高タンパク朝食": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "筋肉減少対策": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "筋肉合成スイッチ": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "65歳からの食事": {
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    "記憶力を高める方法": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "脳の健康を保つ": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "物忘れ 対策": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "物忘れ 原因": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "記憶力低下 サイン": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "脳トレ 高齢者": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "記憶力アップ 60秒": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "軽度認知障害 予防": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "前頭前野 活性化": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "ワーキングメモリ 鍛える": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "脳トレ 記憶力": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "60秒 脳トレ 高齢者": {
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    "腸内環境": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "リーキーガット症候群": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "慢性炎症": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "乳酸菌": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "ロイテリ菌": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "腸活": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "腸内フローラ": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "タイトジャンクション": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "プロバイオティクス": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "抗炎症": {
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    "がん予防": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "がんリスクを下げる方法": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "超加工食品 がん": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "睡眠不足 がんリスク": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "座りすぎ がん": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "ストレス コルチゾール がん": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "時間制限食事法": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "オートファジー 効果": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "大腸がん予防": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "免疫力を高める習慣": {
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    "足のしびれ 糖尿病": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "糖尿病 足 サイン": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "足の異変 糖尿病": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "糖尿病性神経障害": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "足の冷え 糖尿病": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "足のむくみ 糖尿病": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "血糖値 下げる 生活習慣": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "糖尿病予備群": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "足の傷が治らない": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "糖尿病 皮膚 変色": {
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    "喉の痰": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "喉の痰 原因": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "後鼻漏 原因": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "喉頭咽頭逆流": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "サイレント逆流": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "ACE阻害薬 咳": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "血圧の薬 咳": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "喉のイガイガ 高齢者": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "脱水 痰": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "腸内細菌 気道": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    "鼻うがい 効果": {
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    }
+  },
+  "top_tags": [
+    {
+      "tag": "高齢者の健康",
+      "n_videos": 19,
+      "total_views": 271149,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "JCyxahsO0ew",
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "YZNmQJxGuRc",
+        "Og9pQzoKllo",
+        "aWXuORPaoH0",
+        "jzVHUk-E9S8",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "c2EG9MLCHck",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI",
+        "p4Rp10Rw19M",
+        "Z1W_jiYi3cs",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 14271
+    },
+    {
+      "tag": "健康長寿",
+      "n_videos": 17,
+      "total_views": 196764,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "Og9pQzoKllo",
+        "aWXuORPaoH0",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "c2EG9MLCHck",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI",
+        "p4Rp10Rw19M",
+        "Z1W_jiYi3cs",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 11574
+    },
+    {
+      "tag": "60歳からの健康",
+      "n_videos": 10,
+      "total_views": 20679,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "c2EG9MLCHck",
+        "p4Rp10Rw19M",
+        "Z1W_jiYi3cs",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 2068
+    },
+    {
+      "tag": "高齢者の食事",
+      "n_videos": 9,
+      "total_views": 30597,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "aWXuORPaoH0",
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 3400
+    },
+    {
+      "tag": "70代の健康",
+      "n_videos": 9,
+      "total_views": 11588,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1288
+    },
+    {
+      "tag": "シニアの健康",
+      "n_videos": 8,
+      "total_views": 11097,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1387
+    },
+    {
+      "tag": "健康寿命を延ばす",
+      "n_videos": 7,
+      "total_views": 10697,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "zsmkBbNWE6I",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1528
+    },
+    {
+      "tag": "老後の生活習慣",
+      "n_videos": 7,
+      "total_views": 10403,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1486
+    },
+    {
+      "tag": "60代の健康",
+      "n_videos": 7,
+      "total_views": 10382,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "zsmkBbNWE6I",
+        "p4Rp10Rw19M",
+        "sHQfJS9e8Zc",
+        "ELaeDwNFs0Y",
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 1483
+    },
+    {
+      "tag": "シニアの食事",
+      "n_videos": 6,
+      "total_views": 113767,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "4Q0fF3Ud57Q",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "HYd5dTEJyVI",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 18961
+    },
+    {
+      "tag": "老後の健康管理",
+      "n_videos": 5,
+      "total_views": 134276,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "JCyxahsO0ew",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 26855
+    },
+    {
+      "tag": "シニアライフ",
+      "n_videos": 5,
+      "total_views": 107391,
+      "video_ids": [
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 21478
+    },
+    {
+      "tag": "介護予防",
+      "n_videos": 5,
+      "total_views": 80391,
+      "video_ids": [
+        "4Q0fF3Ud57Q",
+        "966fNPIqSi4",
+        "YZNmQJxGuRc",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 16078
+    },
+    {
+      "tag": "サルコペニア予防",
+      "n_videos": 5,
+      "total_views": 54985,
+      "video_ids": [
+        "4Q0fF3Ud57Q",
+        "YZNmQJxGuRc",
+        "Uaj9mNJgm6g",
+        "zsmkBbNWE6I",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 10997
+    },
+    {
+      "tag": "筋力低下",
+      "n_videos": 4,
+      "total_views": 82391,
+      "video_ids": [
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 20598
+    },
+    {
+      "tag": "免疫力アップ",
+      "n_videos": 4,
+      "total_views": 78276,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 19569
+    },
+    {
+      "tag": "認知症予防",
+      "n_videos": 4,
+      "total_views": 69794,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "c2EG9MLCHck",
+        "zsmkBbNWE6I",
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 17448
+    },
+    {
+      "tag": "生活習慣病",
+      "n_videos": 4,
+      "total_views": 66276,
+      "video_ids": [
+        "JCyxahsO0ew",
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 16569
+    },
+    {
+      "tag": "シニアの生活",
+      "n_videos": 4,
+      "total_views": 9790,
+      "video_ids": [
+        "Uaj9mNJgm6g",
+        "FFxfW-kPutY",
+        "l0N9WnXkMbA",
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 2448
+    },
+    {
+      "tag": "長寿の秘訣",
+      "n_videos": 3,
+      "total_views": 138000,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "JCyxahsO0ew",
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 46000
+    },
+    {
+      "tag": "老化予防",
+      "n_videos": 3,
+      "total_views": 41391,
+      "video_ids": [
+        "4Q0fF3Ud57Q",
+        "aWXuORPaoH0",
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 13797
+    },
+    {
+      "tag": "老後の健康",
+      "n_videos": 3,
+      "total_views": 39694,
+      "video_ids": [
+        "966fNPIqSi4",
+        "YZNmQJxGuRc",
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 13231
+    },
+    {
+      "tag": "シニアの健康管理",
+      "n_videos": 3,
+      "total_views": 36000,
+      "video_ids": [
+        "966fNPIqSi4",
+        "aWXuORPaoH0",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 12000
+    },
+    {
+      "tag": "フレイル予防",
+      "n_videos": 3,
+      "total_views": 14900,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "Uaj9mNJgm6g",
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 4967
+    },
+    {
+      "tag": "糖尿病予防",
+      "n_videos": 3,
+      "total_views": 10276,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 3425
+    },
+    {
+      "tag": "健康診断",
+      "n_videos": 3,
+      "total_views": 10276,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 3425
+    },
+    {
+      "tag": "食事療法",
+      "n_videos": 3,
+      "total_views": 10276,
+      "video_ids": [
+        "Og9pQzoKllo",
+        "c2EG9MLCHck",
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 3425
+    },
+    {
+      "tag": "青魚の健康効果",
+      "n_videos": 2,
+      "total_views": 73100,
+      "video_ids": [
+        "kN6wHIqYA0Q",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 36550
+    },
+    {
+      "tag": "健康寿命",
+      "n_videos": 2,
+      "total_views": 70000,
+      "video_ids": [
+        "JCyxahsO0ew",
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "アンチエイジング",
+      "n_videos": 2,
+      "total_views": 61900,
+      "video_ids": [
+        "JCyxahsO0ew",
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 30950
+    },
+    {
+      "tag": "70代の生活習慣",
+      "n_videos": 2,
+      "total_views": 30100,
+      "video_ids": [
+        "966fNPIqSi4",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 15050
+    },
+    {
+      "tag": "タンパク質不足 高齢者",
+      "n_videos": 2,
+      "total_views": 30100,
+      "video_ids": [
+        "966fNPIqSi4",
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 15050
+    },
+    {
+      "tag": "転倒予防 食事",
+      "n_videos": 2,
+      "total_views": 25715,
+      "video_ids": [
+        "966fNPIqSi4",
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 12858
+    },
+    {
+      "tag": "タンパク質の摂り方",
+      "n_videos": 2,
+      "total_views": 18800,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "タンパク質不足",
+      "n_videos": 2,
+      "total_views": 14694,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 7347
+    },
+    {
+      "tag": "筋肉量低下",
+      "n_videos": 2,
+      "total_views": 14694,
+      "video_ids": [
+        "YZNmQJxGuRc",
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 7347
+    },
+    {
+      "tag": "サルコペニア",
+      "n_videos": 2,
+      "total_views": 6600,
+      "video_ids": [
+        "aWXuORPaoH0",
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 3300
+    },
+    {
+      "tag": "動脈硬化を防ぐ食事",
+      "n_videos": 2,
+      "total_views": 850,
+      "video_ids": [
+        "l0N9WnXkMbA",
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 425
+    },
+    {
+      "tag": "筋肉量を維持する方法",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "腸内環境を整える",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "100歳まで元気に生きる食事",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "百寿者が食べていた食品",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "大豆製品と骨密度",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "玄米と血糖値",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "梅干しの効果",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "はちみつの免疫効果",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "ごぼう 食物繊維 腸活",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "白湯を飲む習慣 効果",
+      "n_videos": 1,
+      "total_views": 68000,
+      "video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "avg_views": 68000
+    },
+    {
+      "tag": "シニア健康法",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "予防医学",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "60代70代健康",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "夜間頻尿改善",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "夜間頻尿原因",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "頻尿対策",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "尿漏れ改善",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "ふくらはぎマッサージ",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "かかと上げ運動",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "足のむくみ解消",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "足上げ健康法",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "睡眠の質改善",
+      "n_videos": 1,
+      "total_views": 56000,
+      "video_ids": [
+        "JCyxahsO0ew"
+      ],
+      "avg_views": 56000
+    },
+    {
+      "tag": "シニアの栄養",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "老後の食事",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "寝たきり予防",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "高齢者ケア",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "老年期の体づくり",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "70代のタンパク質",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "高齢者の筋肉維持",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "高タンパク食品",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "筋肉を守る食事",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "シニアの筋力アップ",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "寝たきりにならない食べ物",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "70歳からの食生活",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "高齢者におすすめの食品",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "筋肉の衰えを防ぐ方法",
+      "n_videos": 1,
+      "total_views": 41000,
+      "video_ids": [
+        "66ADns1W2mA"
+      ],
+      "avg_views": 41000
+    },
+    {
+      "tag": "60代の健康管理",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "70代の体の変化",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "筋肉を増やす食べ物",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "タンパク質の吸収",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "消化力低下",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "腸内環境改善",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "粉豆腐の効果",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "鮭缶の栄養",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "鰹節タンパク質",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "新型栄養失調",
+      "n_videos": 1,
+      "total_views": 35000,
+      "video_ids": [
+        "4Q0fF3Ud57Q"
+      ],
+      "avg_views": 35000
+    },
+    {
+      "tag": "高齢者医療",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "老化防止",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "高齢者 筋肉維持",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "サルコペニア 予防",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "70代 食事 筋力",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "筋力低下 原因",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "高たんぱく食品 シニア",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "納豆 筋肉 効果",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "筋肉を守る食べ物",
+      "n_videos": 1,
+      "total_views": 25000,
+      "video_ids": [
+        "966fNPIqSi4"
+      ],
+      "avg_views": 25000
+    },
+    {
+      "tag": "シニア健康",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "60代健康",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "70代健康",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "筋肉を守る食品",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "高齢者筋肉",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "筋肉食品ランキング",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "骨粗しょう症予防",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "転倒予防食事",
+      "n_videos": 1,
+      "total_views": 14000,
+      "video_ids": [
+        "YZNmQJxGuRc"
+      ],
+      "avg_views": 14000
+    },
+    {
+      "tag": "男性の寿命",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "87歳の壁",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "テストステロン",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "エストロゲン",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "血管の若返り",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "孤独と健康",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "タンパク質摂取",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "動脈硬化予防",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "シニア男性の健康習慣",
+      "n_videos": 1,
+      "total_views": 9400,
+      "video_ids": [
+        "Og9pQzoKllo"
+      ],
+      "avg_views": 9400
+    },
+    {
+      "tag": "健康維持",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "タンパク質抵抗性",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "筋肉減少",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "天然食品で筋肉",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "高齢者の筋肉",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "タンパク質吸収",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "筋肉を取り戻す",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "衛星細胞の活性化",
+      "n_videos": 1,
+      "total_views": 5900,
+      "video_ids": [
+        "aWXuORPaoH0"
+      ],
+      "avg_views": 5900
+    },
+    {
+      "tag": "老後の体力維持",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "健康寿命を延ばす方法",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "60代の体の変化",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "高齢者の筋肉低下",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "老化を遅らせる方法",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "免疫力を上げる食事",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "高齢者におすすめの食べ物",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "60代が毎日食べるべき食材",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "卵の栄養と高齢者",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "ヨーグルトの選び方シニア",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "緑の野菜と腸内環境",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "バナナのエネルギー補給",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "身近な食材で体力回復",
+      "n_videos": 1,
+      "total_views": 5100,
+      "video_ids": [
+        "jzVHUk-E9S8"
+      ],
+      "avg_views": 5100
+    },
+    {
+      "tag": "慢性腎臓病",
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    {
+      "tag": "腎臓に優しい食事",
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    {
+      "tag": "クレアチニンを下げる方法",
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    {
+      "tag": "GFRを上げる方法",
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    {
+      "tag": "カリウム制限",
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    {
+      "tag": "リン制限",
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    {
+      "tag": "腎臓に良い食べ物",
+      "n_videos": 1,
+      "total_views": 4800,
+      "video_ids": [
+        "Uaj9mNJgm6g"
+      ],
+      "avg_views": 4800
+    },
+    {
+      "tag": "粉ゼラチン 効果",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "ゼラチン 高齢者",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "ゼラチン タンパク質",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "ゼラチン 睡眠",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "グリシン 睡眠 効果",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "コラーゲンペプチド 目の乾き",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "ドライアイ 対策 食事",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "タンパク質不足 筋肉",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "ロコモティブシンドローム 予防",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "味噌汁 ゼラチン 入れ方",
+      "n_videos": 1,
+      "total_views": 4100,
+      "video_ids": [
+        "FFxfW-kPutY"
+      ],
+      "avg_views": 4100
+    },
+    {
+      "tag": "血圧を下げる方法",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "足の血流を良くする食べ物",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "足のむくみ 原因",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "足の冷え 食事",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "ビーツ 効能",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "さつまいも 血糖値",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "ケール ビタミンK",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "トマト缶 BPA",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "末梢神経障害 食事",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "足のしびれ 高齢者",
+      "n_videos": 1,
+      "total_views": 715,
+      "video_ids": [
+        "l0N9WnXkMbA"
+      ],
+      "avg_views": 715
+    },
+    {
+      "tag": "70代の過ごし方",
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    {
+      "tag": "老後の孤独",
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    {
+      "tag": "生涯現役",
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    {
+      "tag": "前頭前野の衰え",
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    {
+      "tag": "筋肉の貯金",
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    {
+      "tag": "セロトニンと睡眠",
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    {
+      "tag": "廃用症候群",
+      "n_videos": 1,
+      "total_views": 700,
+      "video_ids": [
+        "c2EG9MLCHck"
+      ],
+      "avg_views": 700
+    },
+    {
+      "tag": "鶏むね肉 タンパク質",
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    {
+      "tag": "高野豆腐 栄養",
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    {
+      "tag": "納豆 筋肉",
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    {
+      "tag": "節約 健康食品",
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    {
+      "tag": "70代 筋肉を増やす",
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    {
+      "tag": "転倒予防 高齢者",
+      "n_videos": 1,
+      "total_views": 694,
+      "video_ids": [
+        "zsmkBbNWE6I"
+      ],
+      "avg_views": 694
+    },
+    {
+      "tag": "高齢者の栄養",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "朝食タンパク質",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "筋肉を守る朝ごはん",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "アナボリックレジスタンス",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "朝食改善",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "高タンパク朝食",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "筋肉減少対策",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "筋肉合成スイッチ",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "65歳からの食事",
+      "n_videos": 1,
+      "total_views": 491,
+      "video_ids": [
+        "HYd5dTEJyVI"
+      ],
+      "avg_views": 491
+    },
+    {
+      "tag": "記憶力を高める方法",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "脳の健康を保つ",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "物忘れ 対策",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "物忘れ 原因",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "記憶力低下 サイン",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "脳トレ 高齢者",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "記憶力アップ 60秒",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "軽度認知障害 予防",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "前頭前野 活性化",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "ワーキングメモリ 鍛える",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "脳トレ 記憶力",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "60秒 脳トレ 高齢者",
+      "n_videos": 1,
+      "total_views": 400,
+      "video_ids": [
+        "p4Rp10Rw19M"
+      ],
+      "avg_views": 400
+    },
+    {
+      "tag": "腸内環境",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "リーキーガット症候群",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "慢性炎症",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "乳酸菌",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "ロイテリ菌",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "腸活",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "腸内フローラ",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "タイトジャンクション",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "プロバイオティクス",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "抗炎症",
+      "n_videos": 1,
+      "total_views": 176,
+      "video_ids": [
+        "Z1W_jiYi3cs"
+      ],
+      "avg_views": 176
+    },
+    {
+      "tag": "がん予防",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "がんリスクを下げる方法",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "超加工食品 がん",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "睡眠不足 がんリスク",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "座りすぎ がん",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "ストレス コルチゾール がん",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "時間制限食事法",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "オートファジー 効果",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "大腸がん予防",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "免疫力を高める習慣",
+      "n_videos": 1,
+      "total_views": 175,
+      "video_ids": [
+        "sHQfJS9e8Zc"
+      ],
+      "avg_views": 175
+    },
+    {
+      "tag": "足のしびれ 糖尿病",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "糖尿病 足 サイン",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "足の異変 糖尿病",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "糖尿病性神経障害",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "足の冷え 糖尿病",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "足のむくみ 糖尿病",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "血糖値 下げる 生活習慣",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "糖尿病予備群",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "足の傷が治らない",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "糖尿病 皮膚 変色",
+      "n_videos": 1,
+      "total_views": 135,
+      "video_ids": [
+        "ELaeDwNFs0Y"
+      ],
+      "avg_views": 135
+    },
+    {
+      "tag": "喉の痰",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "喉の痰 原因",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "後鼻漏 原因",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "喉頭咽頭逆流",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "サイレント逆流",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "ACE阻害薬 咳",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "血圧の薬 咳",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "喉のイガイガ 高齢者",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "脱水 痰",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "腸内細菌 気道",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    },
+    {
+      "tag": "鼻うがい 効果",
+      "n_videos": 1,
+      "total_views": 78,
+      "video_ids": [
+        "YbDaVO9McTQ"
+      ],
+      "avg_views": 78
+    }
+  ],
+  "n_videos_with_tags": 20,
+  "n_videos_total": 20
+}

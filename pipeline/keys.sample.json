@@ -1,0 +1,16 @@
+{
+  "_huong_dan": "Doi API key thi sua file NAY roi chay lai tool - KHONG can build lai exe. Khoa 'gpti2' nhan nhieu key (RPM tinh theo TUNG key nen tool tu luan phien). Xoa mot khoa di = dung key mac dinh trong code.",
+  "ramclouds": "sk-ue0LE9lhUveoGFrt3Ah2SFJb82nPD9FVoe7jiihO3n6RnMeJ",
+  "ns24": "",
+  "gpti2": [
+    "sk--GUch2kmDgSCGJ2uvFFCb652ULRqyvzTOMT1iP8GlZQ",
+    "sk-2ypgRERBvYZTlka9elCCiJ4dBfLDaHhKzZAy7dYfjQg",
+    "sk-YGVr-OzozR6zawnFNDG5DCn_PDiAbNZkj9LVOHaOFcA"
+  ],
+  "grok": "sk-ue0LE9lhUveoGFrt3Ah2SFJb82nPD9FVoe7jiihO3n6RnMeJ",
+  "openspeaker": "sk_vdplz671t7nq190rwxrwd52lj30z1giekav30rh0mkaqzleo",
+  "sol": "sk-f8cb1a67a6a3f23b-7vhgv7-844b67c4",
+  "sol_base_url": "http://localhost:20128/v1",
+  "sol_backup": "sk-up-0ef5398f1893e50f6a8d9055c7b9e7cb4f847dac7601d09f",
+  "sol_backup_base_url": "https://api.ns24.io/v1"
+}

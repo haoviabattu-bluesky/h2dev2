@@ -1,0 +1,31 @@
+{
+  "topics": [
+    "87歳の壁",
+    "生存率",
+    "男性の健康",
+    "染色体",
+    "テストステロン",
+    "エストロゲン",
+    "フレイル",
+    "タンパク質",
+    "粗食",
+    "孤独",
+    "動脈硬化",
+    "健康寿命",
+    "朝のルーティン"
+  ],
+  "hook_type": "Kêu gọi dừng lại khẩn cấp và cảnh báo về sự thật tàn khốc của tỷ lệ sống sót ở tuổi 87 giữa nam và nữ, kết hợp bài kiểm tra nhanh 14 triệu chứng nguy hiểm.",
+  "structure": "Mở đầu với bài kiểm tra 14 dấu hiệu và thống kê chênh lệch sinh tồn nam-nữ ở tuổi 87; tiếp theo phân tích nguyên nhân sinh học (gen XY, testosterone) cùng 3 sai lầm chết người, rồi đưa ra lộ trình giải pháp 4 thói quen nhỏ cụ thể và tổng kết nghiên cứu.",
+  "emotional_beats": [
+    "Bàng hoàng và lo sợ",
+    "Vỡ lẽ khi nhận ra sai lầm",
+    "Hy vọng trước các giải pháp khả thi",
+    "Quyết tâm thay đổi lối sống"
+  ],
+  "title_formula": "[Độ tuổi / Bức tường tuổi tác] + が + [Đối tượng cụ thể] + だけを襲う—— + [Hầu hết mọi người không biết] + の + [Sự thật về chỉ số sống còn/thống kê]",
+  "notes": "Video kết hợp giải thích cơ chế sinh học sâu (thiếu bản sao lưu ở nhiễm sắc thể X/Y, tác dụng ức chế miễn dịch của testosterone) với các 'micro-habits' (hành động nhỏ dễ làm) nhưちょいたしタンパク質 (thêm một chút đạm) và ちょこちょこ動き (vận động ngắt quãng) để người cao tuổi dễ tiếp thu.",
+  "video_id": "Og9pQzoKllo",
+  "title": "87歳の壁が男性だけを襲う——ほとんどの方がご存知ない生存率の真実",
+  "view_count": 9000,
+  "duration_min": 23.2
+}

@@ -1,0 +1,80 @@
+{
+  "id": "Lopezzapa68",
+  "market": "JP",
+  "language": "ja",
+  "niche": "sức khỏe người già",
+  "competitor": "",
+  "slug_dir": "assets/out",
+  "narrator": {
+    "gender": "female",
+    "age_band": "73 tuổi",
+    "persona": "Cụ bà 73 tuổi từng bán đồ ăn ở chợ suốt 40 năm, tính tình chất phác, bộc trực nhưng mang nhiều chiêm nghiệm xót xa sau biến cố tình bạn vì lỡ lời.",
+    "point_of_view": "一人称：私（わたし）",
+    "register": "丁寧語（です・ます調）、親しみやすく穏やかな語り口"
+  },
+  "voice": {
+    "id": "elevenlabs_JBFqnCBsd6RMkjVDRZzb",
+    "name": "George - Warm, Captivating Storyteller",
+    "speed": 0.92,
+    "fx": "old-med",
+    "char_rate": 259.3,
+    "pace": true,
+    "char_rate_speed": 0.92,
+    "char_rate_measured_at": "2026-09-09",
+    "char_rate_from": "video that simbot2-vU5PWT2zLDs (37.3 phut, co gian nhip)"
+  },
+  "script": {
+    "skill": "skills/youtube-script-Lopezzapa68/SKILL.md",
+    "target_minutes": 30.0,
+    "two_pass": true,
+    "gate": {
+      "comma_per_sentence": [
+        2.5,
+        5.0
+      ],
+      "chars_per_breath": [
+        5.0,
+        9.5
+      ],
+      "dialogue_ratio_max": 0.15,
+      "require_next_ep_teaser": true
+    }
+  },
+  "image": {
+    "skill": "skills/youtube-image-Lopezzapa68/SKILL.md",
+    "character_sheet": "A 73-year-old Japanese elderly woman, short perm gray hair, wire-rim reading glasses, wearing a warm knit cardigan and modest blouse, thoughtful and slightly regretful facial expression.",
+    "style_suffix": "warm cinematic lighting, soft nostalgic Japanese lifestyle photography, gentle depth of field, natural photorealistic texture, 16:9, no text",
+    "seconds_per_image": 15,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 24,
+    "qc_sample": 12
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail-Lopezzapa68/SKILL.md",
+    "palette": [
+      "WHITE",
+      "YELLOW",
+      "RED"
+    ],
+    "banner": "血管と胃腸が若返る！70代が実践する朝の健康習慣",
+    "dedicated_bg": true
+  },
+  "assemble": {
+    "zoom": 1.12,
+    "transition": "xfade",
+    "xfade": 0.6,
+    "qc_sample": 12
+  },
+  "blocklist": [
+    "baby",
+    "infant",
+    "newborn",
+    "naked",
+    "blood",
+    "gore",
+    "hospital bed",
+    "syringe",
+    "grotesque"
+  ]
+}

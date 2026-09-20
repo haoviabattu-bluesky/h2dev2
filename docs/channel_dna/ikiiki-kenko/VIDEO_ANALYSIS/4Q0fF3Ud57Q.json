@@ -1,0 +1,32 @@
+{
+  "topics": [
+    "タンパク質",
+    "筋肉減少",
+    "サルコペニア",
+    "消化機能",
+    "新型栄養失調",
+    "腸内環境",
+    "胃酸",
+    "粉豆腐",
+    "レジスタントプロテイン",
+    "鮭の水煮缶",
+    "アスタキサンチン",
+    "鰹節",
+    "握力",
+    "高齢者の健康"
+  ],
+  "hook_type": "Cảnh báo khẩn cấp kêu gọi dừng ngay thói quen ăn uống quen thuộc ('dừng việc cho quả trứng luộc vào miệng'), đối chiếu nghịch lý ăn nhiều đạm nhưng cơ bắp vẫn teo.",
+  "structure": "Bắt đầu bằng nghịch lý và bài tự kiểm tra 12 dấu hiệu suy giảm tiêu hóa, sau đó giải thích cơ chế sinh lý và đưa ra 3 siêu thực phẩm rẻ tiền kèm lưu ý, mốc thời gian hồi phục và 2 ca bệnh thực tế thành công.",
+  "emotional_beats": [
+    "Hoang mang và lo lắng trước nguy cơ ăn đạm gây độc và teo cơ",
+    "Nhẹ nhõm và được thấu hiểu khi biết đó không phải lỗi của bản thân",
+    "Hy vọng và hào hứng trước giải pháp từ thực phẩm truyền thống giá rẻ",
+    "Tin tưởng và có động lực mạnh mẽ qua dẫn chứng nghiên cứu và câu chuyện hồi phục thực tế"
+  ],
+  "title_formula": "[Cảnh báo khẩn cấp] + [Số lượng] [Thói quen tưởng chừng tốt nhưng gây hại âm thầm] + [Đối tượng mục tiêu bắt buộc phải xem]",
+  "notes": "Sử dụng lối so sánh đời thường (dạ dày như cối đá xay bột bị mòn), trích dẫn nghiên cứu khoa học uy tín (Bộ Y tế Lao động, Hội Lão khoa Nhật Bản) và lồng ghép khéo léo thử thách 21 ngày với các thực phẩm bình dân dưới 100-500 yên.",
+  "video_id": "4Q0fF3Ud57Q",
+  "title": "ご注意ください：3つの一見体に良さそうな食習慣が、密かに筋肉を削り続けています——60代以上の方は必見",
+  "view_count": 35000,
+  "duration_min": 35.0
+}

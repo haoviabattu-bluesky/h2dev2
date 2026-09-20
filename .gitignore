@@ -1,0 +1,40 @@
+# === Bí mật — TUYỆT ĐỐI không commit ===
+.env
+*.env
+**/keys.json
+!**/keys.sample.json
+**/*credential*
+**/*service-account*
+
+# === Chrome/browser profile — không bao giờ share giữa máy (App-Bound Encryption) ===
+chrome_profile/
+ai33_profile/
+flow_profile/
+
+# === Output nặng (ảnh/video/audio đã render) — máy 2 tự sinh, không kéo qua git ===
+assets/
+
+# === Cache/hàng chuyển máy nặng — dùng Syncthing (tools/syncthing/), không dùng git ===
+FlowHandoff_local/
+scratch_analysis/
+tools/_grab_work/
+tools/_backup_giao_viec/
+tools/syncthing/
+tools/dist/
+tools/build/
+pipeline/dist/
+pipeline/build/
+pipeline/models/
+profiles/_voice_test/
+profiles/_video_backup_*/
+**/_voice_check/
+
+# === Build/cache Python thông thường ===
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+.cache_pixabay/
+
+# === File tạm/backup có tiền tố _bak trong pipeline ===
+pipeline/_bak_*.py

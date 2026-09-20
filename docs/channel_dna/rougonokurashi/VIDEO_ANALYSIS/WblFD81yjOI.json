@@ -1,0 +1,27 @@
+{
+  "topics": [
+    "年金繰り下げ",
+    "独身高齢者",
+    "賃貸更新拒否",
+    "孤独死",
+    "見守りサービス",
+    "保証人",
+    "国民健康保険料",
+    "居場所作り"
+  ],
+  "hook_type": "Mở đầu bằng tâm lý tự tin, đắc thắng của nhân vật về tính toán tài chính nhận lương hưu muộn, rồi lập tức giáng xuống cú sốc bị từ chối gia hạn hợp đồng thuê nhà.",
+  "structure": "Cấu trúc 4 hồi theo trình tự thời gian: Kỳ vọng đắc thắng khi hoãn lương hưu tuổi 70 -> Hiện thực phũ phàng khi bị chủ nhà từ chối và chật vật tìm phòng trọ mới -> Nhận lương hưu tăng nhưng vỡ mộng vì thuế/phí ăn mòn và sự cô độc -> Tìm thấy sự an ủi qua cộng đồng người cao tuổi và đúc kết chiêm nghiệm.",
+  "emotional_beats": [
+    "Tự mãn đắc thắng",
+    "Bàng hoàng lo âu",
+    "Bất lực tủi thân",
+    "Vỡ mộng hụt hẫng",
+    "Thức tỉnh và nhẹ nhõm"
+  ],
+  "title_formula": "【漫画】+ [Hành vi/Lựa chọn tưởng là khôn ngoan] + [Đối tượng cụ thể] + … + [Hiện thực tàn khốc chờ đón]",
+  "notes": "Khai thác sâu sắc hai nỗi đau thực tế của xã hội già hóa Nhật Bản: nghịch lý hoãn nhận lương hưu làm tăng mức đóng bảo hiểm/thuế và rào cản người cao tuổi độc thân bị kỳ thị thuê nhà vì nỗi sợ 'cái chết cô độc' (孤独死).",
+  "video_id": "WblFD81yjOI",
+  "title": "【漫画】70歳まで年金を繰り下げた独身男…老後に待っていた残酷な現実",
+  "view_count": 10000,
+  "duration_min": 24.5
+}

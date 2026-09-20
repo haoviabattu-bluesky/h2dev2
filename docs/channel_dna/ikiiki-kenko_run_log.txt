@@ -1,0 +1,52 @@
+[K1] Crawl catalog https://www.youtube.com/channel/UCBODlDy5sXo_49pC7KPr7vQ ...
+  → 20 video, 1s
+[K1] Crawl transcript 20 video ...
+  ✓ kN6wHIqYA0Q [api]: 12,045 ký tự — 70歳以上の方へ：長寿者が密かに続けていた9つの食習慣——ほとんどの方がご存知ない
+  ✓ JCyxahsO0ew [api]: 5,449 ký tự — 夜間頻尿・尿漏れで悩む方へ。ふくらはぎケアと食事改善で夜中のトイレ回数をゼロに近づける方法を医師が解
+  ✓ 66ADns1W2mA [api]: 5,804 ký tự — 高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた
+  ✓ 4Q0fF3Ud57Q [api]: 9,642 ký tự — ご注意ください：3つの一見体に良さそうな食習慣が、密かに筋肉を削り続けています——60代以上の方は必
+  ✓ 966fNPIqSi4 [api]: 6,432 ký tự — 高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた
+  ✓ YZNmQJxGuRc [api]: 6,577 ký tự — ご注意ください：4つの一見無害な節約食品が密かに筋肉を傷つけています—シニアの方は必見
+  ✓ Og9pQzoKllo [api]: 8,055 ký tự — 87歳の壁が男性だけを襲う——ほとんどの方がご存知ない生存率の真実
+  ✓ aWXuORPaoH0 [api]: 6,268 ký tự — 75歳以上の方へ：5つの天然食品が筋肉の消失を止める可能性——ほとんどの方がご存知ない
+  ✓ jzVHUk-E9S8 [api]: 5,461 ký tự — 医師が警告：60歳以降に毎日食べ続けると、体の力を静かに奪っていく5つの食べ物の落とし穴
+  ✓ Uaj9mNJgm6g [api]: 7,164 ký tự — 【要注意】60歳以上が知らずに選ぶ6つのタンパク質が腎臓に負担をかけている
+  ✓ FFxfW-kPutY [api]: 5,317 ký tự — 実は、粉ゼラチンを毎日足すだけで筋肉・睡眠・目の潤いが変わる【9割が知らない食事の裏技】
+  ✓ c2EG9MLCHck [api]: 7,994 ký tự — 5つの兆候が70代以降のあなたの未来をひそかに傷つけている
+  ✓ l0N9WnXkMbA [api]: 9,650 ký tự — 【放置厳禁】65歳以上の足をひそかに壊す3つの食品と守る3つの食品
+  ✓ zsmkBbNWE6I [api]: 4,922 ký tự — ご注意ください：4つの一見無害な節約食品が密かに筋肉を傷つけています—シニアの方は必見
+  ✓ HYd5dTEJyVI [api]: 5,993 ký tự — 75歳以上の方へ：5つの天然食品が筋肉の消失を止める可能性——ほとんどの方がご存知ない
+  ✓ p4Rp10Rw19M [api]: 9,061 ký tự — ご注意：5つの見落としが60歳以降の記憶力をひそかに衰えさせている
+  ✓ Z1W_jiYi3cs [api]: 7,903 ký tự — 5つのだるさが実は慢性炎症のサイン——ほとんどの方がご存知ない
+  ✓ sHQfJS9e8Zc [api]: 7,676 ký tự — 【要注意】60代までにがんリスクを下げる5つの習慣 超加工食品と座りすぎの危険な関係
+  ✓ ELaeDwNFs0Y [api]: 7,065 ký tự — 放置厳禁　60歳以上の足に現れる13の糖尿病サイン　見逃すと後悔する
+  ✓ YbDaVO9McTQ [api]: 9,718 ký tự — ご注意：55歳以上の喉にへばりつく痰、5つの隠れた原因と血圧薬との関係
+  → 20/20 video có transcript, 31s
+[K2] Gọi Gemini phân tích từng video (task=short) ...
+  ✓ kN6wHIqYA0Q phân tích xong
+  ✓ JCyxahsO0ew phân tích xong
+  ✓ 66ADns1W2mA phân tích xong
+  ✓ 4Q0fF3Ud57Q phân tích xong
+  ✓ 966fNPIqSi4 phân tích xong
+  ✓ YZNmQJxGuRc phân tích xong
+  ✓ Og9pQzoKllo phân tích xong
+  ✓ aWXuORPaoH0 phân tích xong
+  ✓ jzVHUk-E9S8 phân tích xong
+  ✓ Uaj9mNJgm6g phân tích xong
+  ✓ FFxfW-kPutY phân tích xong
+  ✓ c2EG9MLCHck phân tích xong
+  ✓ l0N9WnXkMbA phân tích xong
+  ✓ zsmkBbNWE6I phân tích xong
+  ✓ HYd5dTEJyVI phân tích xong
+  ✓ p4Rp10Rw19M phân tích xong
+  ✓ Z1W_jiYi3cs phân tích xong
+  ✓ sHQfJS9e8Zc phân tích xong
+  ✓ ELaeDwNFs0Y phân tích xong
+  ✓ YbDaVO9McTQ phân tích xong
+  → 20/20 video (100%) phân tích được, 150s
+[K2] Gọi Gemini tổng hợp CHANNEL_DNA.md (task=analysis) ...
+  ✓ ramclouds:gemini-3.8-flash (lần 1): 14,247 chữ · 33s · out_tok=6632
+  → xong, 33s
+  ✓ QC DNA: 14247 ký tự, 11/11 đề mục ĐẠT
+
+✓ TỔNG: 215s → e:\CLAUDE\YOUTUBE\h2dev\docs\channel_dna\ikiiki-kenko

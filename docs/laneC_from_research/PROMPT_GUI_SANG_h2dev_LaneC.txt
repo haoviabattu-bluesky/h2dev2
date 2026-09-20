@@ -1,0 +1,79 @@
+════════════════════════════════════════════════════════════════════════
+COPY TOÀN BỘ PHẦN DƯỚI ĐÂY, DÁN VÀO PHIÊN CLAUDE CODE Ở DỰ ÁN h2dev
+════════════════════════════════════════════════════════════════════════
+
+Tôi chọn kênh CỤ THỂ để clone/reup, không phải chỉ nghiên cứu ngách chung chung.
+Kết quả nghiên cứu đã copy sang đây:
+
+    E:\CLAUDE\YOUTUBE\h2dev\docs\laneC_from_research\
+
+ĐỌC FILE NÀY TRƯỚC, đọc kỹ toàn bộ 12 mục:
+    LANE_C_HANDOFF.md
+
+MỞ ẢNH NÀY RA XEM (thumbnail thật của kênh mẫu, công thức multi-panel):
+    data/thumbsheet.png
+
+──────────────────────────────────────────────────────────────────────
+TÓM TẮT
+──────────────────────────────────────────────────────────────────────
+Kênh clone: 他人の人生【タニジン】
+  32 ngày tuổi · 5.550 sub · trend ĐANG LÊN MẠNH (2,07)
+  5 video gần nhất: 42k / 352k / 429k / 216k / 513k view — không phải may mắn 1 lần
+
+Định dạng: manga 3 người thứ 3, MỖI VIDEO 1 NGƯỜI/1 NGHỀ ĐỘC LẬP
+  (không cần giữ nhân vật nhất quán GIỮA các video — chỉ cần nhất quán
+  TRONG 1 video, ~15-20 khung tranh)
+
+Công thức truyện: định kiến nghề cũ → va chạm thực tế phũ phàng → dữ liệu/số
+  liệu thật của nghề mới → tỉnh ngộ → hoà giải gia đình. KHÔNG có kẻ ác,
+  KHÔNG báo thù (khác thể loại スカッと) — gần với triết lý 悟り đã quen thuộc.
+
+Vì sao đây là lựa chọn RẺ NHẤT trong mọi lane đã nghiên cứu:
+  · Không REF-LOCK xuyên video (khác satori/Lane A/B)
+  · Video NGẮN NHẤT: chỉ 17-20 phút (~5.600 ký tự)
+  · Tốc độ đọc ~318 ký tự/phút — GẦN BẰNG giọng satori hiện tại (309)
+  · Khán giả TRÙNG nhân khẩu học kênh satori đang chạy (50-70 tuổi,
+    quan tâm hậu nghỉ hưu) — không phải học khán giả mới
+
+──────────────────────────────────────────────────────────────────────
+VIỆC CẦN LÀM
+──────────────────────────────────────────────────────────────────────
+A. Tạo entry mới trong channels.json: giọng NAM điềm tĩnh (khác cụ bà satori),
+   PHẢI ĐO LẠI char-rate trước khi viết kịch bản đầu tiên.
+
+B. Làm VIDEO ĐẦU TIÊN — đề tài: 警備員 (bảo vệ), 62 tuổi cựu trưởng phòng.
+   Checklist 12 mục đầy đủ ở LANE_C_HANDOFF.md §10 — bám đúng nó.
+   Lý do chọn đề tài: trống nhất trong 18 đề tài đã quét (§7).
+
+C. Việc mới phải làm: layout thumbnail MULTI-PANEL (3-4 khung tranh manga
+   ghép ngang + chữ đè lên khung đầu) — khác hẳn kiểu 1-ảnh-2-tầng-chữ đã
+   quen. Prompt ảnh AI mẫu có sẵn ở §5, nhưng CHƯA render thử — làm thử
+   trước khi chốt quy trình.
+
+──────────────────────────────────────────────────────────────────────
+HAI ĐIỀU BẮT BUỘC NHỚ
+──────────────────────────────────────────────────────────────────────
+1. QC THÊM 2 CỔNG (khác satori):
+   - Kiểm PHÉP TÍNH trong kịch bản (khán giả đã bắt lỗi kênh mẫu tính sai
+     một phép trừ, 39 like)
+   - Kiểm TÍNH THỰC TẾ NGHỀ NGHIỆP: lương/giờ làm/độ vất vả phải khớp dữ
+     liệu thật (tra Indeed Japan / 求人ボックス trước khi viết). Người
+     trong nghề thật đã bắt lỗi kênh mẫu mô tả sai (32 like: "đây là
+     chuyện hư cấu, thực tế vất vả hơn nhiều").
+
+2. Đây là chủ đề ĐỜI THƯỜNG, rủi ro chính sách THẤP hơn hẳn ngách bí ẩn/
+   vũ trụ đã bàn giao trước — không tuyên bố siêu nhiên/âm mưu gì cả.
+
+──────────────────────────────────────────────────────────────────────
+CHƯA LÀM — đừng tưởng đã xong
+──────────────────────────────────────────────────────────────────────
+· Chưa xác minh số liệu nghề nghiệp thật (lương bảo vệ ở Nhật) — PHẢI tra
+  trước khi viết, đừng bịa số cho ấn tượng.
+· Chưa test giọng nam mới, chưa đo char-rate.
+· Chưa render thử layout thumbnail multi-panel.
+· Mọi số liệu trong tài liệu là quan sát từ 1 kênh 32 ngày tuổi — mẫu nhỏ,
+  cần theo dõi thêm sau 3-5 video đầu của chính mình.
+
+Bắt đầu bằng việc đọc LANE_C_HANDOFF.md rồi trình bày kế hoạch sản xuất
+trước khi viết kịch bản.
+════════════════════════════════════════════════════════════════════════

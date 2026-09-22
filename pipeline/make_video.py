@@ -20,6 +20,7 @@ import shutil
 import subprocess
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -105,6 +106,8 @@ class Job:
         # ~300 ảnh × 50đ, tiêu tiền cho thứ bên kia đang vẽ miễn phí, mà chạy xong mới biết.
         self.den = den
         self.dry = dry
+        self.anh_mau = 0        # --anh-mau N: B5 chỉ vẽ N ảnh đầu rồi DỪNG chờ người xem (không ghi state B5)
+        self.sample_only = False  # --sample-only: lane có image.sample_gate LUÔN dừng sau mẫu dù QC vision PASS (C2)
         if force_from:
             i = STEPS.index(force_from)
             # `--den` giới hạn CHẠY tới đâu — trạng thái các bước SAU `den` không hề bị đụng tới
@@ -670,9 +673,10 @@ class Job:
                     "trọng hơn nếu nội dung đã đủ an toàn và đúng — phân biệt rõ SAI (bắt buộc "
                     "sửa) và CHƯA HAY (bỏ qua được). Output CHỈ kịch bản hoàn chỉnh, không kèm "
                     f"giải thích.\n\n=== BÁO CÁO QC ===\n{text}\n\n=== KỊCH BẢN ===\n{script}")
+                # SỬA tại chỗ = việc của patch_model (Opus), không phải model viết (Fable) — quy tắc 2026-09-22
                 r = claude_p_bridge.ask(brief, timeout=1500, min_chars=int(len(script) * 0.7),
                                         require_sentence_end=True, max_chars=int(len(script) * 1.08),
-                                        model=claude_p_bridge.brain_model_of(self.p))
+                                        model=claude_p_bridge.patch_model_of(self.p))
                 fixed = r.text
             except Exception as e:
                 print(f"  (sửa thất bại: {type(e).__name__} {e}) — giữ bản gốc, chạy tiếp.")
@@ -771,12 +775,13 @@ class Job:
         print(f"  → {v} · {len(j.get('issues') or [])} issue · {r.elapsed:.0f}s · {rep.name}")
         fixed_ap_dung = False
         if v == "FIX":
-            print(f"[B3R] FIX — sửa TẠI CHỖ 1 lần bằng {model} …")
+            pm = claude_p_bridge.patch_model_of(self.p)   # chấm = final_review_model; SỬA = patch_model (quy tắc 2026-09-22)
+            print(f"[B3R] FIX — sửa TẠI CHỖ 1 lần bằng {pm} …")
             brief = ("Sửa TẠI CHỖ kịch bản tiếng Nhật dưới đây đúng những issue trong báo cáo (giữ văn phong, độ dài ±5%, "
                      "KHÔNG viết lại từ đầu, KHÔNG thêm dữ kiện ngoài TƯ LIỆU). Output CHỈ kịch bản hoàn chỉnh.\n\n"
                      f"=== BÁO CÁO ===\n{json.dumps(j, ensure_ascii=False)}\n\n=== TƯ LIỆU ===\n{ctx}\n\n=== KỊCH BẢN ===\n{script}")
             try:
-                r2 = claude_p_bridge.ask(brief, model=model, timeout=1500, min_chars=int(len(script) * 0.85),
+                r2 = claude_p_bridge.ask(brief, model=pm, timeout=1500, min_chars=int(len(script) * 0.85),
                                          require_sentence_end=True, max_chars=int(len(script) * 1.08))
                 sf.with_suffix(".pre_b3r.txt").write_text(script, encoding="utf-8")
                 sf.write_text(r2.text, encoding="utf-8")
@@ -1325,7 +1330,7 @@ class Job:
         # đầu tiên dùng burn_subs=false (kenko-chiebukuro) mới lộ ra — không lane nào khác dính vì
         # satori/toshi trước đó không đi qua đúng nhánh này với burn_subs=false.
         r = qc_visual.qc_video(self.f("final.mp4"), srt if srt.exists() else None, sec, sample,
-                               want_sub=self.chay_phu_de())
+                               want_sub=self.chay_phu_de(), voice=self.voice_audio())
         n = qc_visual.report("B8Q VIDEO HOÀN CHỈNH", r)
         self.f("qc_video.json").write_text(json.dumps(r, ensure_ascii=False, indent=1),
                                            encoding="utf-8")
@@ -1388,38 +1393,56 @@ class Job:
         """Master REF-LOCK của TỪNG nhân vật trong characters.json (khuôn qc_character.py:
         {"characters":[{name, age, gender:"M"/"F", look, ref_marker:"@REF"/"@REF2", master:"_ref/001.png"}]}).
         Thiếu ảnh master → vẽ (gpti2 medium, nền xám trơn, style của lane) → QC tuổi/giới bằng vision
-        (qc_character.py --img) tối đa 2 lượt. Trả (master_@REF, master_@REF2 | None)."""
+        (qc_character.py --img) tối đa 2 lượt. @REF và @REF2 ĐỘC LẬP (khác thư mục, khác prompt) →
+        vẽ+QC SONG SONG (2 luồng) thay vì lần lượt — đo thật 2026-09-21: 6 master (3 tập) tuần tự mất
+        ~3,5' dù gpti2 cho 24 luồng, vì mỗi lượt `run()` chỉ gửi ĐÚNG 1 ảnh (workers=24 vô dụng khi có
+        1 ảnh/lượt gọi) — sự lãng phí nằm ở việc GỌI TUẦN TỰ, không phải ở worker count. Trả
+        (master_@REF, master_@REF2 | None)."""
         cf = self.f("characters.json")
         if not cf.exists():
             raise SystemExit("✗ image.characters_from_bible=true nhưng thiếu characters.json (lớp 1 viết trước B5W)")
         data = json.loads(cf.read_text(encoding="utf-8"))
         chars = data.get("characters") or []
-        out = {}
-        for c in chars:
-            mk = c.get("ref_marker")
-            if mk not in ("@REF", "@REF2"):
-                continue
+        can_ve = [c for c in chars if c.get("ref_marker") in ("@REF", "@REF2")]
+
+        def _lam(c):
+            mk = c["ref_marker"]
             sub = "_ref" if mk == "@REF" else "_ref2"
             master = self.f(c.get("master") or f"{sub}/001.png")
-            if not master.exists():
-                mp = self.f(f"master_prompt{'' if mk == '@REF' else '2'}.txt")
-                # ⚠️ KHÔNG dùng chữ "character reference sheet": gpti2 vẽ ra BẢNG NHIỀU Ô (front/side/biểu cảm), rồi mọi ảnh
-                # @REF edit từ master đó cũng thành trang manga nhiều ô (đo thật ep01 Lane G 2026-09-21: 6/14 ảnh mẫu là collage).
-                mp.write_text(
-                    f"ONE single full-frame picture, exactly ONE person, medium bust portrait: {c.get('look')}. Neutral calm "
-                    f"expression, facing camera, even soft lighting, plain light-grey studio background, no text, no panels, "
-                    f"no grid, no multiple views. "
-                    f"{(self.p.get('image') or {}).get('style_suffix', '')}", encoding="utf-8")
-                for k in range(2):
-                    run(pycmd("gen_images.py", "--prompts", mp, "--out", master.parent, "--quality", "medium"),
-                        f"B5.0 master {c.get('name')} ({mk})")
-                    if self.dry or self._master_ok(master, c):
-                        break
-                    if k == 0:
-                        print("  ↻ master lệch tuổi/giới → vẽ lại 1 lần")
-                        master.unlink(missing_ok=True)
-                c["master"] = str(master.relative_to(self.dir)).replace("\\", "/")
-            out[mk] = master
+            if master.exists():
+                return mk, master
+            mp = self.f(f"master_prompt{'' if mk == '@REF' else '2'}.txt")
+            # ⚠️ KHÔNG dùng chữ "character reference sheet": gpti2 vẽ ra BẢNG NHIỀU Ô (front/side/biểu cảm), rồi mọi ảnh
+            # @REF edit từ master đó cũng thành trang manga nhiều ô (đo thật ep01 Lane G 2026-09-21: 6/14 ảnh mẫu là collage).
+            # ⚠️ style_suffix của lane thường có cụm "everyday Japanese settings: living room, bank
+            # counter…" (cho ẢNH CẢNH) — nếu chỉ nối vào cuối, model gpti2 đọc thấy mô tả PHÒNG cụ
+            # thể ở gần cuối prompt nên VẼ THEO ĐÓ thay vì "plain grey background" đã dặn phía trước
+            # (đo thật 2026-09-21: 4/6 master của Lane F dính nền phòng khách dù prompt có "plain
+            # light-grey studio background"). Thêm câu ĐÈ LẠI sau cùng — model ưu tiên chỉ dẫn gần
+            # cuối, nên câu chốt phải là câu MẠNH NHẤT, không phải câu nêu bối cảnh chung của lane.
+            mp.write_text(
+                f"ONE single full-frame picture, exactly ONE person, medium bust portrait: {c.get('look')}. Neutral calm "
+                f"expression, facing camera, even soft lighting, plain light-grey studio background, no text, no panels, "
+                f"no grid, no multiple views. "
+                f"{(self.p.get('image') or {}).get('style_suffix', '')} "
+                f"IMPORTANT override for THIS portrait only: IGNORE any specific room/scene/setting mentioned above — "
+                f"the background MUST stay a single flat plain light-grey studio backdrop, no furniture, no windows, "
+                f"no room details of any kind.", encoding="utf-8")
+            for k in range(2):
+                run(pycmd("gen_images.py", "--prompts", mp, "--out", master.parent, "--quality", "medium"),
+                    f"B5.0 master {c.get('name')} ({mk})")
+                if self.dry or self._master_ok(master, c):
+                    break
+                if k == 0:
+                    print(f"  ↻ master {c.get('name')} lệch tuổi/giới → vẽ lại 1 lần")
+                    master.unlink(missing_ok=True)
+            c["master"] = str(master.relative_to(self.dir)).replace("\\", "/")
+            return mk, master
+
+        out = {}
+        with ThreadPoolExecutor(max_workers=max(1, len(can_ve))) as ex:
+            for mk, master in ex.map(_lam, can_ve):
+                out[mk] = master
         cf.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
         if "@REF" not in out:
             raise SystemExit("✗ characters.json không có nhân vật ref_marker=\"@REF\"")
@@ -1461,6 +1484,12 @@ class Job:
     def listing_external(self):
         """publish.listing_external: tiêu đề/mô tả/thumbnail do DỰ ÁN KHÁC lo → bỏ B7/B9, B10/B11 không đòi."""
         return bool((self.p.get("publish", {}) or {}).get("listing_external"))
+
+    def sample_gate(self):
+        """image.sample_gate=N (C2, docs/PHUONG_AN_LANE_F_BUOC2_3.md): trước khi vẽ cả loạt, vẽ N
+        ảnh mẫu rồi QC vision (khớp prompt + KHÔNG collage/nhiều ô) — bắt lỗi KIỂU ẢNH hệ thống
+        sớm. 0/thiếu = tắt (nhánh B5 cũ y nguyên)."""
+        return int((self.p.get("image", {}) or {}).get("sample_gate") or 0)
 
     def body_mode(self):
         """Thân video dựng bằng gì: 'ai_images' (satori) hay 'stock_clips' (ngách kể tài liệu).
@@ -1720,6 +1749,46 @@ class Job:
             print("[B5] --dry-run: DỪNG trước khi gen ảnh (chưa tốn tiền).")
             return
         imgdir.mkdir(exist_ok=True)
+        sg = self.sample_gate()
+        sample_status = (self.state.get("B5S") or {}).get("status")
+        # C2 (docs/PHUONG_AN_LANE_F_BUOC2_3.md): lane khai image.sample_gate=N và ĐANG vẽ mẻ đầu
+        # (chưa có ảnh nào) → tự đặt số mẫu = N, KỂ CẢ khi không truyền tay --anh-mau. Đã có
+        # logs/B5S_sample.json PASS từ lượt trước (hoặc lane không khai sample_gate) thì bỏ qua,
+        # vẽ thẳng cả loạt như cũ.
+        n_mau = self.anh_mau or (sg if sg and sample_status != "PASS" and not any(imgdir.glob("*.png")) else 0)
+        if n_mau:
+            # VẼ MẪU TRƯỚC (bài học ep01 Lane G 2026-09-21: 40% ảnh ra trang manga nhiều ô, phát hiện sau khi đã vẽ
+            # cả 94 ảnh → đốt 15.800đ thay vì 8.700đ). Vẽ master + N ảnh đầu rồi QUYẾT ĐỊNH tiếp theo.
+            run(self.gen_cmd(pf, imgdir, n_face, sheet) + ["--limit", str(n_mau)], f"B5 vẽ {n_mau} ảnh MẪU")
+            co = sorted(imgdir.glob("*.png"))
+            if not sg:
+                # Nhánh CŨ (--anh-mau tay, lane không khai sample_gate): LUÔN dừng, người tự xem
+                # rồi tự chạy lại lệnh thường — giữ nguyên hành vi, không đổi cho lane khác.
+                print(f"[B5] --anh-mau: đã vẽ {len(co)} ảnh mẫu → XEM {imgdir}\\001.png … {co[-1].name if co else ''} "
+                      f"(+ master _ref/_ref2). Ảnh ra nhiều ô/collage, sai tuổi, sai phong cách → sửa img_prompts.txt / "
+                      f"characters.json, xoá ảnh hỏng rồi chạy lại. Đạt → chạy lại lệnh thường (không --anh-mau) để vẽ nốt.")
+                return
+            # Nhánh MỚI (sample_gate khai trong profile): QC vision tự động (khớp prompt + KHÔNG
+            # collage/nhiều ô — field single_scene mới trong qc_visual.IMG_SCHEMA).
+            wf = self.f("world.txt")
+            world = wf.read_text(encoding="utf-8") if wf.exists() else ""
+            mau_prompts = lines[:n_mau]
+            r = qc_visual.qc_images(imgdir, mau_prompts, world, sample=len(mau_prompts))
+            n_van_de = qc_visual.report("B5S ẢNH MẪU", r)
+            hard = [x for x in r["problems"] if "thiếu" in x or "HỎNG" in x or "TRÙNG" in x]
+            dat = not (hard or r["infra"] or r.get("vision_bad"))
+            self.f("logs").mkdir(exist_ok=True)
+            (self.f("logs") / "B5S_sample.json").write_text(
+                json.dumps(r, ensure_ascii=False, indent=1), encoding="utf-8")
+            self.done("B5S", status="PASS" if dat else "FAIL", n=len(mau_prompts),
+                      vision_bad=len(r.get("vision_bad") or []), problems=n_van_de)
+            if self.sample_only or not dat:
+                ly_do = "cờ --sample-only (dừng lại chờ người xem, đúng thiết kế)" if dat else \
+                        f"{n_van_de} vấn đề — đọc logs/B5S_sample.json hoặc report ở trên"
+                print(f"[B5S] DỪNG trước khi vẽ cả loạt ({ly_do}). Sửa xong (nếu có lỗi) thì xoá "
+                      f"ảnh mẫu hỏng + chạy lại lệnh thường (không --sample-only) để vẽ nốt.")
+                return
+            print(f"[B5S] {len(mau_prompts)} ảnh mẫu ĐẠT (khớp prompt, không collage) → vẽ tiếp cả loạt luôn trong lượt này")
         # 3 key gpti2 xoay round-robin theo chỉ số ảnh → 8 luồng/key = 24 luồng.
         # Đo thật: 123 ảnh với 5 luồng = 969s (0 lỗi). Skill gpti2: 20 luồng × 39 ảnh = 211s, không 429.
         run(self.gen_cmd(pf, imgdir, n_face, sheet), "B5 gen ảnh")
@@ -1866,6 +1935,37 @@ class Job:
         cmd += [str(x) for x in (th.get("extra_flags") or [])]
         return cmd
 
+    def _ensure_face_json(self, bg):
+        """`thumbnail_text.py` bắt buộc `face.json` cạnh `bg` (gate 2026-09-18) nhưng không tự
+        sinh — thiếu bước gọi `face_box.py` này làm B7 chết ngay lần đầu chạy lại sau khi thêm gate
+        (đo thật ep08-fatima-akita, Lane A không có mặt người trong nền). Chỉ chạy khi CHƯA có sẵn
+        (không phá `face_debug.png` một tập đã duyệt tay). Cờ layout PHẢI khớp cờ dựng chữ thật —
+        chỉ lấy đúng tập con face_box.py hiểu, KHÔNG truyền nguyên `_thumb_flags()` (--wrap/--max-size
+        làm face_box.py lỗi argparse).
+        """
+        fj = bg.parent / "face.json"
+        if fj.exists():
+            return
+        th = self.p.get("thumbnail", {}) or {}
+        extra = [str(x) for x in (th.get("extra_flags") or [])]
+        cmd = ["--side", "left" if bg.parent.name == "_thumb" else "center"]
+        if th.get("side_width"):
+            cmd += ["--side-width", str(th["side_width"])]
+        if "--fit-height" in extra:
+            cmd += ["--fit-height"]
+        if "--subject-side" in extra:
+            i = extra.index("--subject-side")
+            if i + 1 < len(extra):
+                cmd += ["--subject-side", extra[i + 1]]
+        flat = bool(th.get("flat_bg")) and bg.parent.name == "_thumb"
+        if flat or "--flat-bg" in extra:
+            cmd += ["--flat-bg"]
+        elif th.get("photo_scale"):
+            cmd += ["--photo-scale", str(th["photo_scale"])]
+        if not th.get("require_face", True):
+            cmd += ["--allow-no-face"]
+        run(pycmd("face_box.py", bg) + cmd, f"B7 face_box ({bg.parent.name}/{bg.name})")
+
     def b7_thumb(self):
         if self.listing_external():
             if (self.only and self.only != "B7") or (self.den and STEPS.index("B7") > STEPS.index(self.den)):
@@ -1999,6 +2099,7 @@ class Job:
         best = None
         for bg in cands:
             # nền RIÊNG dựng sẵn chủ thể lệch phải → chữ dồn sang TRÁI cho khỏi đè mặt
+            self._ensure_face_json(bg)
             run(pycmd("thumbnail_text.py", "--bg", bg, "--text", tf, "--out", out)
                 + self._thumb_flags(bg), f"B7 thumb ({bg.parent.name}/{bg.name})")
             # Kênh không dùng mặt người làm nền thumbnail (ngách kể tài liệu) thì đừng đòi mặt.
@@ -2028,6 +2129,7 @@ class Job:
         nbad, bg = best
         if nbad:
             print(f"[B7] không nền nào đạt hẳn → dùng {bg.name} ({nbad} vấn đề)")
+            self._ensure_face_json(bg)
             run(pycmd("thumbnail_text.py", "--bg", bg, "--text", tf, "--out", out)
                 + self._thumb_flags(bg), "B7 thumbnail")
         print(f"[B7] nền: {bg.name}")
@@ -2091,6 +2193,21 @@ class Job:
                     cmd += ["--font", str(a["sub_font"])]
         elif srt.exists() and self.chay_phu_de():
             cmd += ["--srt", srt]
+        tt = a.get("tate", {}) or {}
+        if tt.get("enabled"):
+            # C4 (docs/PHUONG_AN_LANE_F_BUOC2_3.md): hộp chữ dọc 縦書き thay phụ đề ngang. Cần SRT
+            # bám kịch bản (B4a) — nhánh sync=anchors ở trên đã thêm --srt vào cmd; nhánh khác thì
+            # tự thêm ở đây nếu có file.
+            if "--srt" not in cmd and srt.exists():
+                cmd += ["--srt", srt]
+            if "--srt" not in cmd:
+                raise SystemExit("✗ B8: assemble.tate.enabled cần voice.srt (chạy B4 trước)")
+            cmd += ["--tate", "--tate-side", str(tt.get("side", "left"))]
+            for khoa, co in (("font_narration", "--tate-font-narration"), ("font_dialogue", "--tate-font-dialogue"),
+                             ("font_size", "--tate-size"), ("max_chars_per_col", "--tate-max-chars"),
+                             ("max_cols", "--tate-max-cols")):
+                if tt.get(khoa) is not None:
+                    cmd += [co, str(tt[khoa])]
         if a.get("bgm") and (ROOT / a["bgm"]).exists():
             cmd += ["--bgm", ROOT / a["bgm"], "--bgm-volume", a.get("bgm_volume", 0.09)]
         run(cmd, "B8 ghép video")
@@ -2136,6 +2253,13 @@ def main():
                     help="ĐỔI GIỌNG SAU KHI XEM (Lane G, anh chốt 2026-09-20 'giọng là bước cuối'): xoá voice.*/anchors/"
                          "final rồi chạy lại B4→B4Q→neo→B8→B8Q→B10→B11; GIỮ img_prompts/img_doan/ảnh (không gọi Fable/gpti2 lại). "
                          "Dùng kèm --voice/--voice-speed để đổi giọng.")
+    ap.add_argument("--anh-mau", type=int, default=0, metavar="N",
+                    help="B5 chỉ vẽ master + N ảnh đầu rồi DỪNG để người xem (luật 'vẽ 5 ảnh mẫu trước khi vẽ loạt', "
+                         "Lane G 2026-09-21). Đạt → chạy lại không có cờ này, gen_images tự vẽ nốt phần còn thiếu.")
+    ap.add_argument("--sample-only", action="store_true",
+                    help="lane khai image.sample_gate (C2, Lane F): B5 vẽ mẫu + QC vision tự động rồi LUÔN DỪNG "
+                         "(dù QC PASS) để người xem — dùng cho tập đầu của lane mới. Bỏ cờ này từ tập sau: QC PASS "
+                         "thì tự vẽ tiếp cả loạt trong cùng lượt chạy, không cần mắt người.")
     ap.add_argument("--minutes-from-source", action="store_true",
                     help="độ dài tập BÁM THEO video gốc (bỏ qua nếu đã truyền --minutes)")
     args = ap.parse_args()
@@ -2147,6 +2271,8 @@ def main():
               minutes_auto=args.minutes_from_source,
               img_workers=args.img_workers, asm_jobs=args.assemble_jobs,
               den=args.den or None)
+    job.anh_mau = max(0, int(args.anh_mau or 0))
+    job.sample_only = bool(args.sample_only)
     if args.redo_voice:
         # Khác --from B4: KHÔNG pop B5W/B5P/B5/B5Q → prompt/ảnh giữ nguyên, chỉ giọng + những gì phụ thuộc giọng làm lại.
         xoa = ["voice.mp3", "voice.srt", "voice.stt.srt", "voice_paced.wav", "voice_paced.srt", "anchors.txt",
@@ -2229,6 +2355,14 @@ def main():
                 try:
                     job.b4q_qc(force=args.force_qc)
                 except SystemExit:
+                    # C3 (docs/PHUONG_AN_LANE_F_BUOC2_3.md, bảo vệ script khi B4 chạy Ở MÁY 2):
+                    # lane flow=lean đã có script.lock.json (PASS/ESCALATE) từ máy 1 — KHÔNG được
+                    # rơi vào nhánh "viết lại kịch bản" bên dưới (nó xoá script.txt rồi gọi lại B3,
+                    # mà máy 2 thường không có claude -p/Fable để viết lại, và dù có thì cũng ghi
+                    # đè bản đã Sol PASS). B4Q hỏng ở đây luôn là lỗi GIỌNG (credit/độ dài/nghỉ sai
+                    # chỗ), không phải lỗi kịch bản → dừng ngay, báo lại máy 1, không tự sửa.
+                    if lean:
+                        raise
                     if job.rate_fixed and thuong > 0:
                         thuong -= 1
                         luot -= 1          # lượt này KHÔNG tính vào ngân sách

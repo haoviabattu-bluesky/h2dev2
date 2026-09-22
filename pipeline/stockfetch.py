@@ -23,7 +23,7 @@ from pathlib import Path
 
 import requests
 
-from stock_sources import UA, TIMEOUT, archive, commons, nasa, pexels
+from stock_sources import UA, TIMEOUT, archive, commons, nasa, pexels, nara
 
 # Wikimedia đòi User-Agent MÔ TẢ ĐƯỢC + có cách liên hệ; UA trình duyệt giả bị siết sớm hơn.
 UA = {"User-Agent": "h2dev-stockfetch/1.1 (YouTube documentary b-roll; contact via project owner)"}
@@ -157,6 +157,8 @@ def main() -> int:
                 items += commons(args.q, args.n)
             elif s == "archive":
                 items += archive(args.q, max(args.n // 2, 2))
+            elif s == "nara":
+                items += nara(args.q, args.n, "image") + nara(args.q, max(args.n // 2, 2), "video")
             elif s == "pexels":
                 # KHÔNG truyền key ở đây: để `pexels()` tự xoay vòng mọi key PEXELS_API_KEY*
                 # trong .env. Truyền một key cụ thể là khoá cứng vào đúng hạn mức của key đó.

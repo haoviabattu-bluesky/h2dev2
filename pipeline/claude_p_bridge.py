@@ -35,6 +35,14 @@ def brain_model_of(prof):
     return ((prof.get("script", {}) or {}).get("brain_model") or os.environ.get("BRAIN_MODEL") or "opus")
 
 
+def patch_model_of(prof):
+    """Model cho S4 (patch tại chỗ theo Sol/máy, lean_script.patch): `profile.script.patch_model`, không khai
+    thì = brain_model. Tách khỏi S2 để Fable chỉ VIẾT (S2), còn sửa là việc của model khác — A/B replay 9 lượt
+    patch thật Lane F/G 2026-09-22: Opus 5 ngang Fable (Sol PASS 7/9, số câu đổi ngoài phạm vi Sol trích tương
+    đương), anh chốt đổi S4 sang Opus để giảm tải quota Fable."""
+    return ((prof.get("script", {}) or {}).get("patch_model") or brain_model_of(prof))
+
+
 def _claude_version(path):
     """Trả tuple version của 1 binary claude (vd (2,1,278)); lỗi → (0,)."""
     try:

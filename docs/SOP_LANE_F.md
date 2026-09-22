@@ -256,8 +256,13 @@ lệch) → viết `viec_tay` trích câu + câu thay → vòng sau PASS ngay; l
 `publish.sheet_tab = teinengo-real`. Hashtag/tag seed trong profile `publish` (từ `branding/KENH.json`
 + `TAG_STATS.json`: 老後 · 年金 · お金 lặp 8/8 video kênh mẫu). Category People & Blogs, 2–3 video/tuần.
 
-## 5b. PHÂN VAI — y hệt Lane E §5b: máy 1 (Claude Code) chỉ BƯỚC 1; bước 2 vẽ ảnh (máy 1 tự vẽ ima2
-ở tập 1, hoặc máy 2 khi anh bảo giao); bước 3 ghép video = agent khác theo `docs/QUY_TRINH_RENDER_VIDEO.md`.
+## 5b. PHÂN VAI (cập nhật 2026-09-21, thay bản cũ nói "ima2" — đã bỏ ima2, xem `docs/PHUONG_AN_LANE_F_BUOC2_3.md`)
+Máy 1 (Claude Code) làm tới `characters.json` + B5W (Fable/Opus 5 viết prompt theo đoạn) + B5P (WARN) rồi
+đóng gói qua `pipeline/dong_goi_may2.py --job teinengo-real <slug>` → **MÁY 2** vẽ ảnh (gpti2, cổng B5S
+5 ảnh mẫu trước khi vẽ cả loạt) + ghép video (chữ DỌC 縦書き overlay, `tate_text.py`, KHÔNG phải phụ đề
+ngang) khi anh đã chốt giọng. Chi tiết đầy đủ + 5 quyết định Q1–Q5 (kiểu vẽ theo kênh mẫu · 縦書き ·
+10s/ảnh · ep đầu 2 chặng có người xem · master vẽ ở máy 2): `docs/PHUONG_AN_LANE_F_BUOC2_3.md`. Việc máy
+2: `FlowHandoff_local/shared/GIAO_VIEC_MAY2_LANE_F.md`.
 
 ## 6. CÒN TREO (nói thẳng)
 - Voice clone anh đã duyệt 2026-09-20. Chưa có TEMPLATE.md/MASTER_REFERENCE thumbnail — chốt sau tập 1 (thumbnail hiện NGOÀI phạm vi §2b).

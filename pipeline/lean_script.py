@@ -38,16 +38,23 @@ KANJI_NUM = "一二三四五六七八九十"
 
 # ============================================================ S1Q — hồ sơ đủ chưa (0 LLM)
 def s1q_ho_so(d: Path, prof, competitor: str, ctx: str):
-    """Trả list lỗi BLOCK (rỗng = đủ). Kiểm trước khi tốn lượt Fable nào."""
+    """Trả list lỗi BLOCK (rỗng = đủ). Kiểm trước khi tốn lượt Fable nào.
+
+    `script.ctx_required=false` (satori — kể chuyện hư cấu, không có tư liệu nguồn) → bỏ hẳn phần kiểm
+    series_ctx.txt (qc_facts ở S3 tự bỏ qua khi ctx rỗng, xem do_tat_dinh: `if nguon:`).
+    Dòng tư liệu chấp nhận 2 khuôn: `[Dn]` (khuôn chuẩn §2 file này) HOẶC `〔出典:` (khuôn SPACE_RESEARCH
+    dùng cho Lane A/D, đã có sẵn hàng trăm hồ sơ theo khuôn này — không bắt viết lại)."""
     loi = []
     if len(competitor.replace("\n", "")) < 3000:
         loi.append(f"competitor.txt quá ngắn ({len(competitor):,} ký tự) — cần transcript kênh mẫu ≥3.000")
+    if not (prof.get("script", {}) or {}).get("ctx_required", True):
+        return loi
     if not ctx.strip():
         loi.append("thiếu series_ctx.txt — mọi địa điểm/giá/số liệu sẽ không có nguồn để đối chiếu")
     else:
-        dong_d = re.findall(r"^\[D\d+\]", ctx, re.M)
-        if not dong_d:
-            loi.append("series_ctx.txt không có dòng tư liệu dạng [Dn] …")
+        co_nguon = re.search(r"^\[D\d+\]", ctx, re.M) or re.search(r"出典", ctx)
+        if not co_nguon:
+            loi.append("series_ctx.txt không có dòng tư liệu dạng [Dn] … hoặc 〔出典: …〕")
         if "http" not in ctx:
             loi.append("series_ctx.txt không có URL nguồn nào")
     return loi
@@ -128,11 +135,19 @@ def _nums(text):
 
 
 _KD = {"〇": 0, "零": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
-_KU = {"十": 10, "百": 100, "千": 1000, "万": 10000}
+_KU_NHO = {"十": 10, "百": 100, "千": 1000}       # đơn vị TRONG 1 nhóm 4 chữ số (<10.000)
+_KU_LON = {"万": 10000}                          # đơn vị NHÂN CẢ NHÓM — extend thêm 億 nếu cần sau
 
 
 def kanji_to_int(s):
-    """一・二・三 / 千二百 / 六千 / 八千 / 一万二千 → int. Có '・' (thập phân, vd 一・二) → trả float."""
+    """一・二・三 / 千二百 / 六千 / 八千 / 一万二千 → int. Có '・' (thập phân, vd 一・二) → trả float.
+
+    Bài học đắt (2026-09-21, phát hiện lúc ep01 teinengo-real bị ESCALATE oan bởi lỗi「SỐ HỌC」giả):
+    bản CŨ gộp 十/百/千/万 vào MỘT biến `total` chung, nên số dạng "AA十B万…" (十 đứng TRƯỚC 万 trong
+    cùng 1 nhóm) bị tính SAI cả bậc số — vd 「二十一万二千」(= 212.000) ra 12.020, 「十三万一千」
+    (= 131.000) ra 31.010 (kiểm tay: 二十一万 bị tách thành +20 rồi +1×10.000 = 10.020 thay vì đúng
+    ra (20+1)×10.000 = 210.000). Đúng phải là: 十/百/千 CỘNG DỒN vào 1 "nhóm nhỏ" (0–9.999), tới khi
+    gặp 万 mới NHÂN CẢ NHÓM đó với 10.000 rồi cộng vào tổng — xem thuật toán chuẩn bên dưới."""
     if "・" in s:
         a, b = s.split("・", 1)
         try:
@@ -141,16 +156,21 @@ def kanji_to_int(s):
             return None
     if s.isdigit():
         return int(s)
-    total, cur = 0, 0
+    total, nhom, cur = 0, 0, 0
     for c in s:
         if c in _KD:
             cur = cur * 10 + _KD[c]
-        elif c in _KU:
-            total += (cur if cur else 1) * _KU[c]
+        elif c in _KU_NHO:
+            nhom += (cur if cur else 1) * _KU_NHO[c]
             cur = 0
+        elif c in _KU_LON:
+            nhom += cur
+            cur = 0
+            total += (nhom if nhom else 1) * _KU_LON[c]
+            nhom = 0
         else:
             return None
-    return total + cur
+    return total + nhom + cur
 
 
 FACT_UNITS = r"(?:歩|万円|円|リットル|ミリリットル|ミリ|キロカロリー|キロ|年間|％|%|割|度|グラム|時間)"
@@ -429,7 +449,7 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes):
     return text, m, viec_fact, viec_len, warn
 
 
-# ============================================================ S4 — patch có ràng buộc (Fable)
+# ============================================================ S4 — patch có ràng buộc (model = script.patch_model, mặc định = brain_model)
 PRESERVE = ("PHẢI GIỮ NGUYÊN: mọi con số/địa điểm/thông tin thực tế · trình tự thời gian · quan hệ nhân–quả · các bước "
             "ngoặt cảm xúc · mục cuối (cú lật) và kết/payoff · các câu thoại ngắn đối đáp · câu CTA mời bình luận · câu "
             "outro nguyên văn ở cuối · marker mục (1つ目…/第N位) nếu bài có. KHÔNG thêm tình tiết, dữ kiện, lời khuyên, cảnh báo mới.")
@@ -467,7 +487,7 @@ def patch(prof, text, viec, kieu, ns, log, n_patch):
         hi, diff_max = max(int(cur * 1.05), ns["hi"]), 0.40
     prompt = (nv + "\n\nOUTPUT: toàn văn kịch bản sau khi sửa, tiếng Nhật, không lời dẫn/giải thích/tiêu đề, "
               "giữ nguyên cách chia đoạn.\n\n=== KỊCH BẢN ===\n" + text)
-    r = claude_p_bridge.ask(prompt, model=claude_p_bridge.brain_model_of(prof), timeout=1500,
+    r = claude_p_bridge.ask(prompt, model=claude_p_bridge.patch_model_of(prof), timeout=1500,
                             min_chars=lo, max_chars=hi, require_sentence_end=True)
     new = ai_steps.normalize_paragraphs(ai_steps.strip_markers(r.text))
     ty = _tyle_doan_doi(text, new)
@@ -611,7 +631,10 @@ def run(job, force=False):
         sf.write_text(text, encoding="utf-8")
 
     # ---- S5 Sol (lời cuối) + vòng patch Sol
-    k = 0
+    # Sol KHÔNG tất định: 2026-09-22 chấm lại bản ep10 Lane G đã LOCK PASS → 2/2 lần ra FIX với 1 lỗi [NẶNG] timeline
+    # thật. Khoá chỉ khi PASS `sol_pass_need` lần LIÊN TIẾP trên cùng bản (mặc định 2; profile script.sol_pass_need=1 tắt).
+    need = int((prof.get("script") or {}).get("sol_pass_need") or 2)
+    k, streak = 0, 0
     while True:
         k += 1
         out = d / (f"qc_sol_report_{k}.txt")
@@ -619,6 +642,10 @@ def run(job, force=False):
         v, rep = sol_qc(prof, text, title, out, ns, m)
         bench["sol_calls"] += 1
         log.append(f"sol{k} {v}")
+        streak = streak + 1 if v == "PASS" else 0
+        if v == "PASS" and streak < need:
+            print(f"   PASS {streak}/{need} — chấm lại cùng bản để chắc (Sol không tất định)")
+            continue
         if v == "PASS":
             meta = ket("PASS", sol_report=out.name, sol_rounds=k, chars=m["chars"], minutes=m["minutes"],
                        final_char_deviation=round((m["chars"] - ns["target"]) / ns["target"] * 100, 1))

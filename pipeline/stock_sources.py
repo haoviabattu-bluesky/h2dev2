@@ -126,6 +126,40 @@ def archive(query: str, n: int) -> list[dict]:
     return out
 
 
+# ---------- NARA (Lưu trữ Quốc gia Mỹ): public domain, CẦN key miễn phí ----------
+# Đăng ký tài khoản tại https://catalog.archives.gov → My Account → API key → ghi NARA_API_KEY vào
+# .env. Không có key thì endpoint trả HTML của web app (không phải 401) — đo thật 2026-09-21.
+# Kho ảnh/phim WW2 gốc (Signal Corps, Navy, Marine Corps) — nguồn chính cho lane ảnh chiến tranh.
+def nara(query: str, n: int, media: str = "image") -> list[dict]:
+    key = os.environ.get("NARA_API_KEY", "").strip()
+    if not key:
+        raise RuntimeError("thiếu NARA_API_KEY trong .env (đăng ký miễn phí tại catalog.archives.gov)")
+    r = _get("https://catalog.archives.gov/api/v2/records/search",
+             params={"q": query, "limit": min(n * 3, 100), "availableOnline": "true",
+                     "typeOfMaterials": "Moving Images" if media == "video"
+                     else "Photographs and other Graphic Materials"},
+             headers={**UA, "x-api-key": key})
+    if "json" not in r.headers.get("content-type", ""):
+        raise RuntimeError("NARA trả HTML thay vì JSON — key sai hoặc endpoint đổi")
+    want = (".mp4", ".mov") if media == "video" else (".jpg", ".jpeg", ".png", ".tif", ".tiff")
+    out = []
+    for hit in (r.json().get("body", {}).get("hits", {}).get("hits") or []):
+        rec = hit.get("_source", {}).get("record", {}) or {}
+        naid = str(rec.get("naId") or hit.get("_id") or "")
+        title = rec.get("title", "")
+        for obj in (rec.get("digitalObjects") or []):
+            u = obj.get("objectUrl") or ""
+            if not u.lower().endswith(want):
+                continue
+            out.append({"src": "nara", "id": f"{naid}_{obj.get('objectId', '')}", "title": title,
+                        "url": u, "license": "Public domain (U.S. federal government work)",
+                        "credit": f"U.S. National Archives / NAID {naid}"})
+            break                         # 1 file/record là đủ, khỏi kéo cả cuộn phim
+        if len(out) >= n:
+            break
+    return out
+
+
 # ---------- Pexels / Pixabay: cần key miễn phí ----------
 _PEXELS_LUOT = itertools.count()
 

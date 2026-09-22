@@ -65,12 +65,30 @@ def _doc_characters(d: Path):
     return main, mentor, chars
 
 
-def _prompt(prof, doan, n, main, mentor, tran):
+def _tate_note(prof):
+    """C5 (docs/PHUONG_AN_LANE_F_BUOC2_3.md): lane khai assemble.tate.enabled → dặn Fable chừa 1
+    bên khung trống cho hộp chữ dọc 縦書き (tate_text.py overlay sau, KHÔNG phải model tự vẽ chữ).
+    Lane không khai → chuỗi rỗng, không đổi hành vi."""
+    tt = (prof.get("assemble", {}) or {}).get("tate") or {}
+    if not tt.get("enabled"):
+        return ""
+    ben = "LEFT" if (tt.get("side") or "left").lower() != "right" else "RIGHT"
+    return (f" Keep the {ben} third of the frame visually simple and uncluttered (no face, no busy "
+            f"detail there) — a vertical text caption box will be overlaid there afterwards.")
+
+
+def _prompt(prof, doan, n, main, mentor, tran, others=()):
     img = prof.get("image", {}) or {}
     style = img.get("style_suffix", "")
     block = ", ".join(prof.get("blocklist") or []) or "gore, nudity, babies"
+    tate = _tate_note(prof)
     ds = "\n".join(f"[{i}] ({tran[i-1]} max) {p}" for i, p in enumerate(doan, 1))
     men = (f"MENTOR (tag MENTOR): '{mentor.get('look')}'" if mentor else "MENTOR: (none in this episode — never use tag MENTOR/BOTH)")
+    # Nhân vật lặp lại KHÔNG khoá mặt (vợ, bạn cũ...): không có master REF nên tag NONE, nhưng vẫn bắt Fable dùng
+    # cùng một mô tả mỗi lần xuất hiện — kẻo vợ 62 tuổi tập này ra 5 khuôn mặt khác nhau (ep05 Lane G, 2026-09-21).
+    kh = "".join(f"OTHER RECURRING PERSON (no face lock → tag NONE, prefer from behind/side/far, but ALWAYS reuse this "
+                 f"exact description): {c.get('name')} — '{c.get('look')}'" + chr(10)
+                 for c in others if c.get("look"))
     return (
         "You write image prompts for an AI image generator, for a narrated Japanese manga-style story video.\n"
         f"The script below is split into {len(doan)} numbered paragraphs. Each paragraph shows in parentheses the MAXIMUM "
@@ -83,11 +101,11 @@ def _prompt(prof, doan, n, main, mentor, tran):
         "TAG is exactly one of: MAIN (the narrator's face is clearly visible), MENTOR (the mentor's face is visible, "
         "narrator not visible), BOTH (both faces visible in one frame), NONE (scenery / objects / hands / people from "
         "behind or far away — no recognisable face), CHILD (any child or baby visible).\n"
-        f"MAIN CHARACTER (tag MAIN): '{main.get('look')}'\n{men}\n"
+        f"MAIN CHARACTER (tag MAIN): '{main.get('look')}'\n{men}\n{kh}"
         "Rules: when a tagged person appears, describe them with the SAME wording as above (age, hair, glasses, clothes). "
         "Prefer NONE for wide establishing shots and objects (cheaper), use MAIN/MENTOR/BOTH for emotional beats and dialogue. "
         f"Keep faces to at most 40% of all lines. Do NOT put any text, letters, numbers, signs or speech bubbles in the image. "
-        f"Never depict: {block}.\n"
+        f"Never depict: {block}.{tate}\n"
         f"Every prompt must END with this exact style suffix: '{style}'.\n\n"
         f"SCRIPT PARAGRAPHS:\n{ds}")
 
@@ -171,7 +189,8 @@ def viet(prof, slug_dir):
         n = sum(tran)          # kịch bản nhiều đoạn ngắn → hạ số ảnh, không ép nhồi
     print(f"[B5W] fable_doan: {len(doan)} đoạn · ≈{secs/60:.1f}' · {n} ảnh · nhân vật: {main.get('name')}"
           + (f" + {mentor.get('name')}" if mentor else " (không mentor)"))
-    prompt = _prompt(prof, doan, n, main, mentor, tran)
+    others = [c for c in chars if c.get("ref_marker") not in ("@REF", "@REF2")]
+    prompt = _prompt(prof, doan, n, main, mentor, tran, others)
     model = claude_p_bridge.brain_model_of(prof)
     rows, loi = [], []
     for luot in range(MAX_HOI_LAI + 1):
@@ -181,6 +200,12 @@ def viet(prof, slug_dir):
             r = claude_p_bridge.ask(q, model=model, timeout=1500, min_chars=n * 30)
         except LLMError as e:
             raise SystemExit(f"✗ B5W(fable_doan): claude -p lỗi: {e}")
+        # Lưu bản thô MỌI lượt (kể cả lượt hỏng) — trước đây chỉ ghi khi thành công nên lượt hỏng
+        # KHÔNG có gì để soi lại tại sao (đo thật ep01 teinengo-real 2026-09-21: BLOCK sau 2 lượt mà
+        # không biết model trả gì). logs/ đã tồn tại từ B55 (qc_img_doan) nên mkdir an toàn ở đây.
+        logdir = d / "logs"
+        logdir.mkdir(exist_ok=True)
+        (logdir / f"B5W_raw_attempt{luot + 1}.txt").write_text(r.text, encoding="utf-8")
         rows, loi = _parse(r.text, len(doan))
         loi += _kiem(rows, n, tran, mentor)
         print(f"   lượt {luot+1}: {len(rows)} dòng · {r.elapsed:.0f}s" + (f" · {len(loi)} lỗi" if loi else " · hợp lệ"))

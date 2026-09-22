@@ -20,18 +20,18 @@
     "register": "です・ます調、断定を避ける説明体（〜という／〜とされる／〜かもしれない）"
   },
   "voice": {
-    "id": "elevenlabs_W8wofKLOWnsM57L8hIx2",
-    "name": "Koji - Warm Japanese Business Narrator",
+    "id": "elevenlabs_GrOHehwczl9z1CoA5mGN",
+    "name": "Takuya - Calm Japanese Male Narrator",
     "speed": 0.85,
     "fx": "none",
     "calib_style": "doc",
-    "char_rate": 276.3,
+    "char_rate": 280.9,
     "pace": false,
-    "char_rate_measured_at": "2026-09-16",
+    "char_rate_measured_at": "2026-09-21",
     "char_rate_speed": 0.85,
-    "char_rate_from": "calibrate.py --style doc, mau Sputnik 302 chu -> 65.7s (rieng cua Lane D, KHONG dung chung voi toshi-densetsu-jp du cung giong)",
-    "_note": "Muc tieu tham khao tu LANE_D_HANDOFF.md la ~260 chu/phut (uoc luong tu transcript doi thu) -> do that 276 la khop, KHONG can chinh them.",
-    "char_rate_note": "đo thật 302 chữ (doc) → 65.6s"
+    "char_rate_from": "calibrate.py --style doc, mau Sputnik 302 chu -> 64.5s (rieng cua Lane D, KHONG dung chung voi toshi-densetsu-jp du cung giong)",
+    "_note": "Doi tu Koji sang Takuya 2026-09-21 (user chon sau khi nghe 5 mau so sanh — Koji nghe 'chan', Takuya tram/cham rai hop tai lieu lich su). char_rate gan nhu khong doi (276.3->280.9) nen script cu KHONG can viet lai do dai.",
+    "char_rate_note": "đo thật 302 chữ (doc) → 64.5s"
   },
   "script": {
     "skill": "skills/youtube-script/SKILL.md",
@@ -67,10 +67,39 @@
       "photo_hold_sec_range": [
         60,
         200
-      ]
+      ],
+      "list_item_count": 0,
+      "_list_item_count_note": "0 = tieu su lien tuc, khong phai danh sach N muc."
     },
     "_gate_note": "Do THAT tu 2 video kenh mau (4J5Il-hMN6E 15 anh/1549s ~103s/anh; hDkgnTPJw5g ~9 doan tho/1409s) + do transcript that (296 cau, comma/cau trung binh 0.135, chars/breath median 17 p10-p90 9-31). KHONG dung chung gate voi toshi-densetsu-jp (5 chuong 第◯章) hay Lopezzapa68 (tam tinh nhieu dau phay) — cam vay muon.",
-    "_target_note": "21' = dai AN TOAN cho TAP DAU theo dung de xuat goc cua LANE_D_HANDOFF.md muc 12 item 7 ('20-25 phut cho tap dau, ngan hon kenh goc 1 chut de giam rui ro trong luc pipeline to mau chua on dinh'). Tu tap 2 tro di, neu pipeline chay on co the nang len 23-29' (dai chuan kenh mau, da do that 2 video mau ~1409-1549s). Ho so d02-ushijima-mitsuru von chuan bi 18 anh cho dai day hon nhung van dung tot cho 21' (photo_count_range gate van 12-20)."
+    "_target_note": "21' = dai AN TOAN cho TAP DAU theo dung de xuat goc cua LANE_D_HANDOFF.md muc 12 item 7 ('20-25 phut cho tap dau, ngan hon kenh goc 1 chut de giam rui ro trong luc pipeline to mau chua on dinh'). Tu tap 2 tro di, neu pipeline chay on co the nang len 23-29' (dai chuan kenh mau, da do that 2 video mau ~1409-1549s). Ho so d02-ushijima-mitsuru von chuan bi 18 anh cho dai day hon nhung van dung tot cho 21' (photo_count_range gate van 12-20).",
+    "flow": "lean",
+    "_flow_note": "Bat 2026-09-22 (anh duyet Duong 2, cung dot Lane A). Gate cu GIU NGUYEN. Lane nay KHONG co chapter_markers nen budget.sections dung khuon 3 phan don gian, chi la goi y viet.",
+    "engine": "claude_p",
+    "_engine_note": "Doi 2026-09-22 (truoc do 100% Gemini viet+sua). B3F (qc_facts) van chay nguyen qua series_ctx.txt khuon out_dien cua SPACE_RESEARCH.",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
+    "_patch_model_note": "S4 LUON Opus 5, Fable chi viet o S2 - quy tac chung moi lane claude_p (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md sec 0a). Fable het quota luc khai field nay - neu dinh 'Fable limit' thi doi brain_model tam sang claude-opus-5 nhu 3 lane kia, patch_model giu nguyen.",
+    "sol_qc": true,
+    "structure_block": "video TAI LIEU ANH THAT ngoi thu 3 ke tieu su/so phan MOT NGUOI trong mot tran danh/su kien WW2 Nhat Ban (narrator nhu dang thuyet minh truoc anh tu lieu trong bao tang - mo ta CHI TIET nhung gi thay trong anh truoc khi ke boi canh). KHONG chia chuong co marker (khac Lane A) - mach ke LIEN TUC theo 3 khoi:\n   - Dao dau (~10% chu): gioi thieu nhan vat qua MOT buc anh cu the (mo ta anh truoc, roi ten/tuoi/chuc vu/thoi diem), goi so phan sap xay ra ma chua noi ro - mo vong lap.\n   - Than bai (~70% chu): dien bien theo THOI GIAN THAT (ngay thang cu the lay tu series_ctx.txt), moi doan gan voi 1 anh/1 moc - quyet dinh, hanh dong, boi canh tran danh, doi thoai/thu tu neu co nguon. Mat do neo so lieu deu theo gate.fact_anchor_per_min, hedge cho chi tiet chua chac chan theo gate.hedge_min_per_10min - KHONG bia chi tiet ngoai series_ctx.txt.\n   - Ket (~20% chu): ket cuc cua nhan vat + DAU VET CON LAI toi ngay nay (di vat/tam bia/hoi uc gia dinh/anh luu tru) - khong phan xet chinh tri, giu giong ton trong, ket bang 1 cau suy ngam mo cho nguoi xem.\n   Ti le UOC LUONG theo cau truc tieu su pho quat (khong do duoc ranh gioi ro nhu A vi lane nay khong co chapter marker - 11 tap da san xuat chi co doan van tu do 11-24 doan/tap). Day la goi y PROMPT viet, KHONG phai nguong gate hau kiem (lean chi gate TONG chu).",
+    "budget": {
+      "tol": 0.1,
+      "sections": [
+        {
+          "label": "導入（人物紹介）",
+          "ratio": 0.1
+        },
+        {
+          "label": "本編（時系列の展開）",
+          "ratio": 0.7
+        },
+        {
+          "label": "結び（結末と現在への接点）",
+          "ratio": 0.2
+        }
+      ],
+      "_sections_note": "UOC LUONG cau truc tieu su 3 phan pho quat (do paragraph dau/cuoi cua 11 tap da san xuat chi ra intro/outro rieng le ~6-15%/3-11%, nhung do la 1 DOAN khong phai 1 KHOI mo dau/ket - khong du de suy ra ranh gioi khoi nhu A). Chi dung lam PROMPT GUIDE (ngan_sach khong gate tung section) - hieu chinh lai tol/ratio sau khi co 2-3 tap lean that, so bench.jsonl final_char_deviation."
+    }
   },
   "image": {
     "skill": "skills/youtube-image-prompts/SKILL.md",
@@ -145,5 +174,14 @@
   "publish": {
     "upload_channel": "irogatatarukioku"
   },
-  "_note": "Lane D — mo 2026-09-10, profile viet 2026-09-11 sau khi do that char_rate + gate tu 2 video kenh mau. Ho so dau tien: SPACE_RESEARCH output/_READY/d02-ushijima-mitsuru (Sheet tab irogatatarukioku, DONE-READY). KHONG co REF-LOCK (moi tap nguoi that khac nhau). B5 (anh) la buoc THU CONG rieng — xem docs/SOP_LANE_D.md."
+  "_note": "Lane D — mo 2026-09-10, profile viet 2026-09-11 sau khi do that char_rate + gate tu 2 video kenh mau. Ho so dau tien: SPACE_RESEARCH output/_READY/d02-ushijima-mitsuru (Sheet tab irogatatarukioku, DONE-READY). KHONG co REF-LOCK (moi tap nguoi that khac nhau). B5 (anh) la buoc THU CONG rieng — xem docs/SOP_LANE_D.md.",
+  "script_qc": {
+    "lens": "plain",
+    "domain_focus": "Day la video TAI LIEU ANH THAT ke tieu su 1 nguoi trong WW2 Nhat Ban, ngoi thu 3, giong thuyet minh bao tang - KHONG phai truyen ca nhan hu cau, KHONG phai video y khoa/danh sach. Soi tinh hop ly: moc thoi gian co theo dung thu tu khong, mo ta anh co khop boi canh ke ngay sau khong, doan ket co thuc su noi duoc voi dao dau (tra loi dieu da goi mo) khong, giong co giu ton trong/khong phan xet chinh tri xuyen suot khong.",
+    "lane_rules": [
+      "Viec du kien co dung nguon hay khong da co may (qc_facts, doi chieu series_ctx.txt) kiem rieng - Sol khong can soi lai tung con so/ngay thang, chi soi MACH KE co hop ly khong.",
+      "Hedge (chua xac nhan) cho chi tiet KHONG CHAC CHAN la DUNG THIET KE (nguon su lieu WW2 nhieu cho mau thuan), khong phai loi lap lung.",
+      "Day la nguoi THAT da mat trong chien tranh - khong de nghi them thoai/tinh tiet KHONG co trong nguon de 'kich tinh hoa'."
+    ]
+  }
 }

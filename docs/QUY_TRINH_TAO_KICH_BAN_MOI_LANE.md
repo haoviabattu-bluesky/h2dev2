@@ -16,10 +16,34 @@ làm**). Đọc file này là đủ để một lane bật luồng mới; không
 | S1 hồ sơ tập: `competitor.txt` · `series_ctx.txt` · `title.txt` | **Claude Code (tab lane)** — tay | việc duy nhất tốn đầu người trước khi bấm chạy |
 | S2 viết khung + viết toàn văn ĐÚNG NGÂN SÁCH | **Fable 5.1** (`claude -p`, 0đ trong gói) | model duy nhất được chạm `script.txt` |
 | S3 đo tất định: độ dài · phẩy/hơi/thoại · dấu 、(tự gỡ) · N mục có marker · outro (tự thay nguyên văn) · CTA giữa (nếu lane khai) · số liệu ↔ `SỐ ĐƯỢC PHÉP` (cả kanji) · phép cộng tổng tiền · tên↔tuổi nhất quán · đoạn trùng · bám gốc (WARN) | **Máy** (0 LLM) | máy kiểm hết những gì máy kiểm được — Sol không phải đếm chữ |
-| S5 chấm tính hợp lý/hợp lệ: nhân quả · dòng thời gian · động cơ · câu Nhật lạ · lời hứa tiêu đề · thứ máy mù | **GPT-5.6-sol** (9router local) | lens theo lane (§1.3); PASS = 0 [NẶNG] và <3 [VỪA] |
-| S4 patch tại chỗ theo danh sách việc (máy hoặc Sol) | **Fable** | ràng buộc: MUST PRESERVE · trần 1,05×/sàn 0,9× · đổi ≤40% đoạn (nén ≤70%) · không mất số |
+| S5 chấm tính hợp lý/hợp lệ: nhân quả · dòng thời gian · động cơ · câu Nhật lạ · lời hứa tiêu đề · thứ máy mù | **GPT-5.6-sol** (9router local) | lens theo lane (§1.3); PASS = 0 [NẶNG] và <3 [VỪA]; **khoá chỉ khi PASS 2 lần LIÊN TIẾP cùng bản** (`sol_pass_need`, 2026-09-22 — Sol không tất định: bản ep10 Lane G đã LOCK PASS chấm lại 2/2 ra FIX với lỗi timeline [NẶNG] thật) |
+| S4 patch tại chỗ theo danh sách việc (máy hoặc Sol) | **Opus 5** (`script.patch_model`, anh chốt 2026-09-22) — không khai thì = `brain_model` | ràng buộc: MUST PRESERVE · trần 1,05×/sàn 0,9× · đổi ≤40% đoạn (nén ≤70%) · không mất số. **Fable chỉ VIẾT (S2), không sửa** — 3 vai tách: Fable=tác giả · Sol=giám khảo · Opus=thợ vá. A/B replay 9 lượt patch thật (`pipeline/bench_patch_model.py`): Opus ngang Fable (Sol PASS 7/9; 2 FIX ở ep10 mà bản Fable đã PASS chấm lại cũng FIX), số câu đổi ngoài phạm vi Sol trích tương đương, 110–180s/lượt |
 | Lớp 3: đọc bản KHOÁ, đối chiếu tư liệu + luật lane | **Claude Code (tab lane)** | thấy lỗi → `viec_tay.txt`, KHÔNG sửa tay (§4) |
 | Prompt ảnh · phụ đề · map ảnh↔câu · dịch · analyzer | Gemini | ngoài luồng master, **cấm ghi `script.txt`** |
+
+### 0a. QUY TẮC PHÂN VAI MODEL — bắt buộc mọi lane dùng `engine: claude_p` (anh chốt 2026-09-22)
+
+**Model viết (Fable) chỉ chạm kịch bản ĐÚNG MỘT LẦN — lần VIẾT. Mọi lượt SỬA sau đó là model khác.**
+
+| Vai | Field profile | Model | Chạm `script.txt` khi nào |
+|---|---|---|---|
+| TÁC GIẢ | `script.brain_model` | Fable 5.1 (hết quota → Opus 5 tạm) | **S2 duy nhất** (2 lượt kỹ thuật: khung + toàn văn; luồng cũ thêm 1 lượt "viết lại nếu ngắn" — vẫn là VIẾT, chưa phải sửa) |
+| THỢ VÁ | `script.patch_model` | Opus 5 | **mọi lượt sửa tại chỗ**: S4 lean (theo máy/Sol) · B3S FIX luồng cũ · B3R FIX luồng cũ |
+| GIÁM KHẢO khác hãng | `script_qc` (Sol) | GPT-5.6-sol | không chạm — chỉ chấm |
+| GIÁM KHẢO cùng hãng (luồng cũ) | `script.final_review_model` | Fable/Opus | không chạm — chỉ chấm; nếu FIX thì THỢ VÁ sửa |
+| Máy | — | 0 LLM | S3: 、/outro/marker tự sửa |
+| Gemini | — | — | prompt ảnh/phụ đề/dịch, **cấm ghi `script.txt`** |
+
+Lý do: (1) giảm tải quota Fable — Fable gánh cả viết + sửa + B5W là hết hạn mức giữa chừng (dính thật 21/09 cả F lẫn G);
+(2) 3 vai độc lập: model tự sửa bài mình có xu hướng bảo tồn lập luận/văn phong của chính nó; (3) đo thật Opus vá ngang Fable
+(§0 bảng S4). **Lane mới khai profile PHẢI có đủ `brain_model` + `patch_model`** — thiếu `patch_model` thì code mặc định
+= `brain_model` (Fable sửa luôn) → vi phạm quy tắc âm thầm. Code đọc field: `claude_p_bridge.brain_model_of()` /
+`patch_model_of()`; các chỗ gọi: `lean_script.patch` · `make_video.b3s_sol` (FIX) · `make_video.b3r_final_review` (FIX).
+Ngoài kịch bản, B5W `prompt_doan.py` vẫn dùng `brain_model` (viết prompt ảnh là VIẾT, không phải sửa).
+
+Kiểm tra 2026-09-22: 3 lane `claude_p` (E `kenko-chiebukuro`, F `teinengo-real`, G `teinengo-tanoshimi`) — F/G đã khai
+`patch_model`; E dùng alias `opus` cho cả 2 vai (không có Fable nên không vi phạm). Lane Gemini (A/D/satori-ramcloud) không
+liên quan; satori não-Claude (`brain_channel.py`) là agent riêng, không qua bảng này.
 
 ---
 
@@ -45,6 +69,7 @@ làm**). Đọc file này là đủ để một lane bật luồng mới; không
   "mode": "story",
   "engine": "claude_p",
   "brain_model": "claude-fable-5-1",
+  "patch_model": "claude-opus-5",
   "final_review_model": "claude-fable-5-1",
   "outro_line": "ご視聴いただきありがとうございました。…",
   "sol_qc": true,
@@ -61,6 +86,8 @@ làm**). Đọc file này là đủ để một lane bật luồng mới; không
 | `structure` | nhánh trong `ai_steps._cau_truc_block` | có sẵn: `manga_list` (G) · `list_countdown` (E) · khối riêng qua `structure_block` (F) — thêm nhánh mới nếu khác hẳn, **không thêm `if profile_id`** |
 | `budget.sections` | lane TRUYỆN: chặng + tỉ lệ (thay `mo_dau/ket`, đi cùng `list_item_count: 0`) | đếm chữ từng chặng trên transcript kênh mẫu/tập đã đạt (Lane F: 5/8/22/20/15/20/10%) |
 | `fact_exempt_units` | đơn vị số được MIỄN đối chiếu tư liệu ở S3 (số hư cấu có chủ đích) | lane tiền cá nhân: `["万円","円"]`; lane khác bỏ field |
+| `patch_model` | model S4 (patch tại chỗ) — tách khỏi `brain_model` (S2) | `claude-opus-5` (chốt 2026-09-22, A/B ngang Fable, giữ quota Fable cho S2); bỏ field = dùng `brain_model` |
+| `sol_pass_need` | số lần Sol PASS LIÊN TIẾP trên cùng bản mới khoá | mặc định 2 (Sol không tất định); `1` = tắt (không khuyến nghị) |
 | `outro_line` | câu cuối nguyên văn; máy tự thay nếu Fable viết lệch | lấy từ CHANNEL_DNA §CTA (câu lặp ở 8/8 video) |
 | `gate.list_order` | `auto` / `ascending` (1つ目…) / `countdown` (第5位→第1位) | kênh mẫu dùng kiểu nào cho dạng bài nào |
 | `gate.hook_marker` + `hook_chars` | ranh giới phần mở đầu để đo | marker đầu mục 1 của kênh mẫu |
@@ -211,3 +238,5 @@ trở lại. Lane G sau 2 tập: S2 viết đúng ngân sách +1,6%; mỗi patch
 | Bản viết tốt bị vứt vì 1 dấu 、 | gate trước tự gỡ | S3 tự gỡ 、 và tự thay outro, không tính lỗi |
 | Chạy lại viết lại từ đầu, mất bản đã sửa | không có lock | lean dùng lại `script.txt` khi có lock; `--force-qc` mới viết lại |
 | Cột D dài dòng / "chờ anh duyệt" | đẩy việc lên anh | §5: `Done` |
+| Bản đã LOCK PASS vẫn còn lỗi timeline [NẶNG] (ep10 G) | Sol không tất định — 1 lần PASS có phần may | `sol_pass_need`=2: khoá chỉ khi PASS 2 lần liên tiếp; đừng kết luận model patch kém chỉ vì 1 lần Sol FIX |
+| Fable hết quota giữa chừng (`You've reached your Fable limit`) | 1 model gánh cả S2+S4+B5W | S4 = Opus 5 qua `patch_model`; Fable chỉ giữ S2 |

@@ -144,3 +144,7 @@ py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-tanoshimi --slug ep01
 **Tổng ≈ 15.800đ + 55' máy** — gấp đôi dự kiến vì em không vẽ thử 5 ảnh trước khi vẽ cả loạt.
 **Còn treo:** ~10–20% ảnh cảnh vật vẫn có thể ra collage (gpti2 bias "manga") → thử đổi đầu prompt sang "single-panel anime illustration" hoặc bỏ chữ "manga"; B5Q "không khớp prompt" ở 042 (prompt "no face visible" nhưng ảnh có mặt) — vision đúng, prompt lỗi nhỏ.
 **Luật mới cho tập sau (ghi SOP §2):** B5 vẽ **5 ảnh mẫu** (`gen_images --limit 5`) → lớp 3 xem → mới vẽ 94. Đã làm ở tập này thì tiết kiệm được ~7.000đ.
+
+**2026-09-21 06:36 — anh chốt: video Lane G PHẢI cháy phụ đề tiếng Nhật** → `assemble.burn_subs=true` (profile), B8 nhánh anchors
+truyền `--burn-sub --font Yu Gothic`; ghép lại 4,8' (không vẽ ảnh) → B8Q ĐẠT 3,9 · B10 0 nặng · giao lại. Đã soi khung 5:00: chữ
+trắng viền đen đáy khung, đúng câu đang đọc. `phude.srt` vẫn giao kèm.

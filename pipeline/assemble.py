@@ -1,5 +1,10 @@
-"""assemble.py — ghép ảnh thành video 16:9: Ken Burns + SYNC ảnh theo câu narration (SRT) +
+"""assemble.py — ghép ảnh thành video 16:9: ảnh ĐỨNG YÊN + SYNC ảnh theo câu narration (SRT) +
 CROSSFADE chuyển cảnh mềm + burn phụ đề + mix nhạc nền. Thay ~toàn bộ việc dựng tay CapCut.
+
+⛔ CẤM Ken Burns zoom/pan (chốt 2026-09-21, mọi lane, xem CLAUDE.md mục 🎞️ CHUYỂN CẢNH): ảnh phải
+đứng yên hoàn toàn trong lúc hiển thị, giật/rung do zoom/pan gây nhức mắt. Chỉ hiệu ứng CHUYỂN CẢNH
+(xfade/fade/cut giữa 2 ảnh) mới được dùng. `--zoom` mặc định = 1.0 (tắt hẳn zoompan, không chỉ đặt
+hệ số 0). Muốn bật lại chuyển động nhẹ phải NÓI RÕ lý do và tối đa 1.03-1.04, không hơn.
 
 Dùng (đủ bộ):
   py -3.13 assemble.py --img <dir> --audio voice.mp3 --srt voice.srt --bgm bgm.mp3 --out final.mp4
@@ -7,7 +12,7 @@ Tùy chọn:
   --transition xfade|fade|cut  (mặc định xfade = crossfade mềm)
   --xfade 0.6                  (thời lượng crossfade giây)
   --sync                       (BẬT mặc định khi có --srt: ảnh đổi đúng ranh giới câu)
-  --bgm-volume 0.09 · --zoom 1.12 · --size 1920x1080 · --fps 30
+  --bgm-volume 0.09 · --zoom 1.0 (đứng yên, mặc định) · --size 1920x1080 · --fps 30
 
 Cơ chế sync: chia N ảnh theo M cue trong SRT → mỗi ảnh hiển thị đúng đoạn narration của nó (đổi cảnh
 rơi vào ranh giới câu, không cắt giữa câu, nhịp bám lời đọc). Không SRT → chia đều theo audio.
@@ -246,19 +251,27 @@ def check_aspect(imgs, W, H, fit, tol=0.03):
 
 def render_clip(img, dur, W, H, fps, zoom, zoom_in, out, threads=2, fit="cover"):
     frames = max(1, int(round(dur * fps)))
-    zstep = (zoom - 1.0) / frames if zoom > 1.0 else 0
-    if zoom_in:
-        zexpr = f"min(zoom+{zstep:.6f},{zoom})"
-    else:  # zoom-out: bắt đầu ở zoom, giảm dần (đa dạng hướng cho đỡ đơn điệu)
-        zexpr = f"if(eq(on,0),{zoom},max(zoom-{zstep:.6f},1.0))"
-    # Kích thước làm việc = khung ra × zoom + chút dư cho pan mượt (zoompan chạy theo pixel nguyên,
-    # đưa đúng 1080p vào thì zoom ra ảnh mềm + pan giật). CHỈ CẦN thế là đủ.
-    # ⚠️ Bản cũ scale lên W*2 = 3840×2160: ảnh gốc gpti2 chỉ 2560×1440 nên KHÔNG thêm chi tiết nào,
-    # mà mỗi frame phải xử lý ~2,5× số pixel → đó là toàn bộ 18 phút của bước B8 (đo thật 2026-09-08).
-    sw, sh = int(W * (zoom + 0.13)) // 2 * 2, int(H * (zoom + 0.13)) // 2 * 2
-    vf = (f"{fit_filter(fit, sw, sh)},"
-          f"zoompan=z='{zexpr}':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
-          f"s={W}x{H}:fps={fps},format=yuv420p")
+    # ⛔ CẤM Ken Burns zoom/pan (chốt 2026-09-21, mọi lane): ảnh phải ĐỨNG YÊN HOÀN TOÀN, chỉ hiệu
+    # ứng CHUYỂN CẢNH (xfade/fade/cut) giữa 2 ảnh mới được dùng — xem CLAUDE.md mục 🎞️ CHUYỂN CẢNH.
+    # zoom<=1.0 (mặc định) → BỎ HẲN filter zoompan, không chỉ đặt hệ số 0, vì zoompan tự nó vẫn
+    # resample lại từng khung (bo tròn pixel z=1.0 vẫn có thể rung nhẹ) — scale tĩnh 1 lần là sạch.
+    if zoom <= 1.0:
+        sw, sh = W, H
+        vf = f"{fit_filter(fit, sw, sh)},format=yuv420p"
+    else:
+        zstep = (zoom - 1.0) / frames
+        if zoom_in:
+            zexpr = f"min(zoom+{zstep:.6f},{zoom})"
+        else:  # zoom-out: bắt đầu ở zoom, giảm dần (đa dạng hướng cho đỡ đơn điệu)
+            zexpr = f"if(eq(on,0),{zoom},max(zoom-{zstep:.6f},1.0))"
+        # Kích thước làm việc = khung ra × zoom + chút dư cho pan mượt (zoompan chạy theo pixel
+        # nguyên, đưa đúng 1080p vào thì zoom ra ảnh mềm + pan giật). CHỈ CẦN thế là đủ.
+        # ⚠️ Bản cũ scale lên W*2 = 3840×2160: ảnh gốc gpti2 chỉ 2560×1440 nên KHÔNG thêm chi tiết
+        # nào, mà mỗi frame phải xử lý ~2,5× số pixel → đó là toàn bộ 18 phút bước B8 (đo 2026-09-08).
+        sw, sh = int(W * (zoom + 0.13)) // 2 * 2, int(H * (zoom + 0.13)) // 2 * 2
+        vf = (f"{fit_filter(fit, sw, sh)},"
+              f"zoompan=z='{zexpr}':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
+              f"s={W}x{H}:fps={fps},format=yuv420p")
     # Clip trung gian sẽ bị encode LẠI ở bước crossfade → preset chậm là công toi. crf thấp hơn
     # (18) để lần encode cuối không bị cộng dồn mất nét.
     subprocess.run([FF, "-y", "-loop", "1", "-i", str(img), "-t", f"{dur}",
@@ -313,6 +326,16 @@ def main():
     ap.add_argument("--burn-sub", action="store_true",
                     help="CHÁY phụ đề vào hình (mặc định KHÔNG — up .srt lên YouTube làm CC)")
     ap.add_argument("--font", default="Meiryo")
+    ap.add_argument("--tate", action="store_true",
+                    help="cháy hộp chữ DỌC 縦書き (tate_text.py, Lane F/teinengo-real) thay vì phụ đề "
+                         "ngang — cần --srt. KHÔNG dùng chung với --burn-sub trong cùng lane (2 cơ chế "
+                         "khác nhau vẽ chữ vào cùng vùng hình, dễ chồng lên nhau).")
+    ap.add_argument("--tate-side", default="left", choices=["left", "right"])
+    ap.add_argument("--tate-font-narration", default="Yu Mincho")
+    ap.add_argument("--tate-font-dialogue", default="Yu Gothic")
+    ap.add_argument("--tate-size", type=int, default=42)
+    ap.add_argument("--tate-max-chars", type=int, default=14)
+    ap.add_argument("--tate-max-cols", type=int, default=2)
     ap.add_argument("--bgm", default="")
     ap.add_argument("--bgm-volume", type=float, default=0.10)
     ap.add_argument("--transition", default="xfade", choices=["xfade", "fade", "cut"])
@@ -320,7 +343,10 @@ def main():
     ap.add_argument("--sec", type=float, default=8.0, help="giây/ảnh khi KHÔNG có audio")
     ap.add_argument("--fps", type=int, default=30)
     ap.add_argument("--size", default="1920x1080")
-    ap.add_argument("--zoom", type=float, default=1.12)
+    ap.add_argument("--zoom", type=float, default=1.0,
+                     help="1.0 = ảnh đứng yên hoàn toàn (mặc định, chốt 2026-09-21 — CẤM Ken Burns "
+                          "giật/rung, chỉ dùng hiệu ứng CHUYỂN CẢNH --transition). >1.0 chỉ bật tay "
+                          "khi thật sự cần, tối đa 1.03-1.04 kiểu Lane E, không hơn.")
     ap.add_argument("--fit", default="cover", choices=["cover", "blur", "pad", "stretch"],
                     help="ảnh khác tỉ lệ khung: cover=cắt viền (mặc định) · blur=nền mờ (không méo, "
                          "không viền) · pad=viền đen · stretch=kéo méo mặt, chỉ khi lệch <3%%")
@@ -410,6 +436,25 @@ def main():
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
 
+    if args.tate:
+        # Hộp chữ dọc 縦書き (tate_text.py) — TRACK RIÊNG dựng bằng variable-duration concat (cùng kỹ
+        # thuật render_clip/build_silent_concat ở trên), overlay lên video nền bằng ĐÚNG 1 filter
+        # `overlay` (không chèn hàng trăm filter enable=between() vào filter_complex vốn đã lớn).
+        if not args.srt:
+            raise SystemExit("--tate cần --srt đi kèm (đọc cue để biết chữ + thời điểm).")
+        import tate_text
+        tate_path = tmp / "tate_track.mov"
+        t_tate = time.time()
+        tate_text.build_track(args.srt, tate_path, W, H, args.fps, args.tate_side,
+                              args.tate_font_narration, args.tate_font_dialogue, args.tate_size,
+                              args.tate_max_chars, args.tate_max_cols,
+                              total_dur=audio_len, tmp_dir=tmp / "tate_frames")
+        print(f"  -> tate track {time.time()-t_tate:.0f}s")
+        tate_idx = inputs.count("-i")
+        inputs += ["-i", str(tate_path.resolve())]
+        fc.append(f"{vin}[{tate_idx}:v]overlay=eof_action=pass[vt]")
+        vin = vmap = "[vt]"
+
     # ⚠️ --srt có HAI vai: (1) đồng bộ đổi cảnh theo ranh giới câu — LUÔN dùng; (2) CHÁY chữ vào
     # hình — chỉ khi --burn-sub. User chốt 2026-09-11: MẶC ĐỊNH KHÔNG cháy phụ đề (YouTube tự bật
     # CC từ file .srt mình up kèm; khán giả Nhật nghe hiểu, chữ cháy chỉ che hình).
@@ -438,7 +483,7 @@ def main():
     if amap:
         cmd += ["-map", amap, "-c:a", "aac", "-b:a", "192k"]
     # chi copy duoc khi da co san silent.mp4 va khong burn phu de
-    copy_ok = (not (args.srt and args.burn_sub)) and not fused
+    copy_ok = (not (args.srt and args.burn_sub)) and not fused and not args.tate
     cmd += (["-c:v", "copy"] if copy_ok else
             ["-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p"])
     if args.audio:
@@ -450,6 +495,7 @@ def main():
     print(f"✓ Video: {out} ({n} ảnh, transition={args.transition})"
           + (" + audio" if args.audio else "")
           + (" + phụ đề CHÁY" if (args.srt and args.burn_sub) else "")
+          + (" + chữ dọc 縦書き" if args.tate else "")
           + (" + nhạc nền" if args.bgm else ""))
     print(f"  TONG B8: {(time.time()-t_all)/60:.1f} phut")
 

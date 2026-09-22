@@ -1,112 +1,142 @@
 {
- "id": "satori-jp-obaa",
- "market": "JP",
- "language": "ja",
- "niche": "Satori (悟り系) câu chuyện người già Nhật — ngôi 1 cụ bà",
- "competitor": "https://www.youtube.com/@simbot2",
- "narrator": {
-  "gender": "",
-  "age_band": "65-85",
-  "persona": "Người kể là MỘT NGƯỜI GIÀ NHẬT kể chuyện đời mình, giọng ấm, chậm, chiêm nghiệm, giàu lòng trắc ẩn. KÊNH KHÔNG CỐ ĐỊNH một người kể: giới tính, tuổi, nghề nghiệp và toàn bộ tiểu sử là CỦA TỪNG TẬP — lấy từ voice.json (giọng do detect_voice chọn theo video gốc) và characters.json (nhân vật do Claude viết cho tập đó). TUYỆT ĐỐI KHÔNG ghi tiểu sử của một tập vào đây.",
-  "point_of_view": "一人称 私",
-  "register": "です・ます体 + ございます (khiêm nhường, lịch sự cổ)",
-  "note_2026_09_11": "User chốt hướng 3: kênh rời rạc, mỗi tập một người kể riêng (kênh gốc simbot2 cũng vậy). Trước đó bộ não đã bẻ hồ sơ kênh cho khớp cốt truyện một tập (viện dưỡng lão Nagano) — nay brain_channel._kiem_profile() tự khôi phục nếu bị sửa."
- },
- "voice": {
-  "id": "elevenlabs_jWxWvPtq4PJFwe66Y9xi",
-  "name": "Ado - Mature & Soothing",
-  "speed": 0.92,
-  "fx": "old-med",
-  "char_rate": 270.0,
-  "char_rate_measured_at": "2026-09-10",
-  "char_rate_speed": 0.92,
-  "char_rate_from": "video thật simbot2-sYRr33eHYSM"
- },
- "script": {
-  "skill": "skills/youtube-script-satori-jp/SKILL.md",
-  "target_minutes": 30,
-  "two_pass": true,
-  "gate": {
-   "comma_per_sentence": [
-    2.5,
-    6.0
-   ],
-   "chars_per_breath": [
-    4.5,
-    9.0
-   ],
-   "dialogue_ratio_max": 0.15,
-   "require_next_ep_teaser": true
+  "id": "satori-jp-obaa",
+  "market": "JP",
+  "language": "ja",
+  "niche": "Satori (悟り系) câu chuyện người già Nhật — ngôi 1 cụ bà",
+  "competitor": "https://www.youtube.com/@simbot2",
+  "narrator": {
+    "gender": "",
+    "age_band": "65-85",
+    "persona": "Người kể là MỘT NGƯỜI GIÀ NHẬT kể chuyện đời mình, giọng ấm, chậm, chiêm nghiệm, giàu lòng trắc ẩn. KÊNH KHÔNG CỐ ĐỊNH một người kể: giới tính, tuổi, nghề nghiệp và toàn bộ tiểu sử là CỦA TỪNG TẬP — lấy từ voice.json (giọng do detect_voice chọn theo video gốc) và characters.json (nhân vật do Claude viết cho tập đó). TUYỆT ĐỐI KHÔNG ghi tiểu sử của một tập vào đây.",
+    "point_of_view": "一人称 私",
+    "register": "です・ます体 + ございます (khiêm nhường, lịch sự cổ)",
+    "note_2026_09_11": "User chốt hướng 3: kênh rời rạc, mỗi tập một người kể riêng (kênh gốc simbot2 cũng vậy). Trước đó bộ não đã bẻ hồ sơ kênh cho khớp cốt truyện một tập (viện dưỡng lão Nagano) — nay brain_channel._kiem_profile() tự khôi phục nếu bị sửa."
   },
-  "sol_qc": true
- },
- "image": {
-  "skill": "skills/youtube-image-satori-jp/SKILL.md",
-  "character_sheet": "An elderly Japanese narrator; exact age, gender and appearance are defined PER EPISODE in characters.json + the REF-LOCK master portraits. Use this only as a neutral fallback: a dignified elderly Japanese person, gentle weathered face, modest everyday clothing",
-  "style_suffix": "cinematic ultra-realistic color, photorealistic, 8K, warm emotional lighting, authentic Japanese setting, 16:9, no text",
-  "seconds_per_image": 15,
-  "ref_lock": true,
-  "ref_quality": "low",
-  "workers": 24
- },
- "thumbnail": {
-  "skill": "skills/youtube-thumbnail-satori-jp/SKILL.md",
-  "text_engine": "opus_dual_qc",
-  "_text_engine_note": "CHỐT 2026-09-17 sau so sánh trực tiếp trên ep01: Opus viết 3 phương án + Opus context MỚI QC tiếng Nhật/sự thật (pipeline/write_thumb_text_opus.py) THAY cho ai_steps.write_thumb_text() 1 lượt Gemini cũ — bắt được lỗi suy diễn/gán sai trách nhiệm mà bản cũ không tự soi ra. Chỉ bật cho lane này (đã verify); lane khác muốn dùng thì tự thêm field này sau khi test riêng.",
-  "palette": [
-   "WHITE",
-   "YELLOW",
-   "RED"
+  "voice": {
+    "id": "elevenlabs_jWxWvPtq4PJFwe66Y9xi",
+    "name": "Ado - Mature & Soothing",
+    "speed": 0.92,
+    "fx": "old-med",
+    "char_rate": 270.0,
+    "char_rate_measured_at": "2026-09-10",
+    "char_rate_speed": 0.92,
+    "char_rate_from": "video thật simbot2-sYRr33eHYSM"
+  },
+  "script": {
+    "skill": "skills/youtube-script-satori-jp/SKILL.md",
+    "target_minutes": 30,
+    "two_pass": true,
+    "gate": {
+      "comma_per_sentence": [
+        2.5,
+        6.0
+      ],
+      "chars_per_breath": [
+        4.5,
+        9.0
+      ],
+      "dialogue_ratio_max": 0.15,
+      "require_next_ep_teaser": true,
+      "list_item_count": 0,
+      "_list_item_count_note": "0 = truyen ke doi lien tuc, khong phai danh sach N muc."
+    },
+    "sol_qc": true,
+    "ctx_required": false,
+    "_ctx_required_note": "Lane satori la truyen HU CAU (phong tac 70/30 tu simbot2, KHONG co series_ctx.txt/research) - S1Q bo kiem tu lieu nguon, S3 tu bo qua qc_facts khi ctx rong (xem lean_script.do_tat_dinh: if nguon).",
+    "flow": "lean",
+    "_flow_note": "Bat 2026-09-22 (anh duyet Duong 2 + xac nhan ap dung TU TAP TIEP THEO, khong dong vao tap 11 dang do tren duong ong cu brain_channel.py). Tu tap sau, satori chay qua make_video.py --profile satori-jp-obaa (lean) THAY the brain_channel.py - agent do NIEM (khong dung nua, khong xoa file). Gate cu (comma_per_sentence/chars_per_breath/dialogue_ratio_max/require_next_ep_teaser) GIU NGUYEN.",
+    "engine": "claude_p",
+    "_engine_note": "Doi 2026-09-22. Fable viet 1 lan (S2), Opus sua (S4), Sol cham (script_qc lens=story da co san tu truoc).",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
+    "_patch_model_note": "S4 LUON Opus 5, Fable chi viet o S2 - quy tac chung moi lane claude_p (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md sec 0a). Fable het quota luc khai field nay - neu dinh 'Fable limit' luc chay that thi doi brain_model tam sang claude-opus-5 nhu cac lane kia, patch_model giu nguyen.",
+    "structure_block": "video KE CHUYEN DOI ngoi thu nhat (nguoi gia Nhat ke lai chuyen doi minh), phong tac 70/30 tu ban goc Han (simbot2) - PHAI doc nhu chuyen cua nguoi Nhat that, khong de lo dau vet ban goc. KHONG chia chuong/muc (khac Lane F/G) - mach ke LIEN TUC theo 3 khoi:\n   - Dao dau (~12% chu): boi canh hien tai cua nhan vat (tuoi, hoan canh song, noi dau/thieu thon cu the) - mo mot cau hoi/an so se duoc giai o cuoi (vd vi sao con khong ve, vi sao tien bien mat...).\n   - Than bai (~68% chu): dien bien theo THOI GIAN, cac su kien/gap go/doi thoai day cam xuc, moi tinh tiet phai NHAT QUAN voi cac doan khac (tuoi/nam/noi o/nghe nghiep khong duoc da nhau - day la loi S3/Sol bat nhieu nhat). So tien PHAI la muc gia THAT o Nhat, KHONG quy doi may moc tu won Han (x0,1).\n   - Ket (~20% chu): giai quyet an so da mo o dau, cam xuc lang dong, khong ket luan tuyet doi hoa/loi khuyen sai.\n   Ti le UOC LUONG theo cau truc tu su ca nhan pho quat (khong do duoc ranh gioi ro vi lane nay khong co marker chuong/muc - cac tap da san xuat chi la doan van tu do). Day la goi y PROMPT viet, KHONG phai nguong gate hau kiem (lean chi gate TONG chu).",
+    "budget": {
+      "tol": 0.1,
+      "sections": [
+        {
+          "label": "導入（現在の境遇）",
+          "ratio": 0.12
+        },
+        {
+          "label": "本編（時系列の展開）",
+          "ratio": 0.68
+        },
+        {
+          "label": "結び（謎の解消と余韻）",
+          "ratio": 0.2
+        }
+      ],
+      "_sections_note": "UOC LUONG cau truc tu su 3 phan pho quat (do paragraph dau/cuoi cua 12 tap da san xuat qua nhieu/qua nho de suy ra ranh gioi khoi - satori co toi 11-132 doan/tap). Chi dung lam PROMPT GUIDE - hieu chinh lai sau khi co 2-3 tap lean that, so bench.jsonl final_char_deviation."
+    }
+  },
+  "image": {
+    "skill": "skills/youtube-image-satori-jp/SKILL.md",
+    "character_sheet": "An elderly Japanese narrator; exact age, gender and appearance are defined PER EPISODE in characters.json + the REF-LOCK master portraits. Use this only as a neutral fallback: a dignified elderly Japanese person, gentle weathered face, modest everyday clothing",
+    "style_suffix": "cinematic ultra-realistic color, photorealistic, 8K, warm emotional lighting, authentic Japanese setting, 16:9, no text",
+    "seconds_per_image": 15,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 24
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail-satori-jp/SKILL.md",
+    "text_engine": "opus_dual_qc",
+    "_text_engine_note": "CHỐT 2026-09-17 sau so sánh trực tiếp trên ep01: Opus viết 3 phương án + Opus context MỚI QC tiếng Nhật/sự thật (pipeline/write_thumb_text_opus.py) THAY cho ai_steps.write_thumb_text() 1 lượt Gemini cũ — bắt được lỗi suy diễn/gán sai trách nhiệm mà bản cũ không tự soi ra. Chỉ bật cho lane này (đã verify); lane khác muốn dùng thì tự thêm field này sau khi test riêng.",
+    "palette": [
+      "WHITE",
+      "YELLOW",
+      "RED"
+    ],
+    "banner": true,
+    "art_style": "close-up cinematic portrait of the elderly Japanese narrator, positioned off-center in the frame with the other half left as clean uncluttered background/environment for text overlay, single strong dramatic light source (window light, lamp, or salon mirror lights) creating shadow and mood, holding or near ONE meaningful object tied to the episode's twist (a bank passbook, an old letter, a family photo — pick what fits THIS episode's plot), facial expression matching the emotional peak of the episode (shock, quiet grief, stern warning, conflicted worry — pick what fits), authentic Japanese interior or setting matching the story, cinematic ultra-realistic color, photorealistic, 8K, warm emotional lighting",
+    "side_width": 0.6,
+    "max_font": 200,
+    "extra_flags": [
+      "--subject-side",
+      "right",
+      "--fit-height",
+      "--fit-each"
+    ],
+    "_senior_typography_note": "HARD LOCK user 2026-09-17 (ep1): text structure 3+1 PREFERRED / 4+1 FALLBACK; banner đỏ dưới BẮT BUỘC (model quyết banner NÓI GÌ, không quyết banner CÓ HAY KHÔNG); senior typography: fit TỪNG DÒNG (--fit-each), khối sát, FONT SIZE > khoảng trống, so MASTER_REFERENCE; màu KHÔNG gán cứng theo số dòng. Toàn bộ luật ở lane_dir/TEMPLATE.md.",
+    "lane_dir": "docs/thumbnail_lanes/satori_jp",
+    "_lane_dir_note": "TEMPLATE.md (hard lock) + MASTER_REFERENCE.png (human approved 2026-09-17) + golden/. Load TRUOC khi viet thumb_text/gen nen; Final QC phai so voi MASTER_REFERENCE."
+  },
+  "assemble": {
+    "zoom": 1.12,
+    "transition": "xfade",
+    "xfade": 0.6,
+    "bgm": "assets/satori_jp/_bgm/bgm1.mp3",
+    "bgm_volume": 0.09
+  },
+  "blocklist": [
+    "baby",
+    "infant",
+    "newborn",
+    "toddler body",
+    "bathing",
+    "sento",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse close-up"
   ],
-  "banner": true,
-  "art_style": "close-up cinematic portrait of the elderly Japanese narrator, positioned off-center in the frame with the other half left as clean uncluttered background/environment for text overlay, single strong dramatic light source (window light, lamp, or salon mirror lights) creating shadow and mood, holding or near ONE meaningful object tied to the episode's twist (a bank passbook, an old letter, a family photo — pick what fits THIS episode's plot), facial expression matching the emotional peak of the episode (shock, quiet grief, stern warning, conflicted worry — pick what fits), authentic Japanese interior or setting matching the story, cinematic ultra-realistic color, photorealistic, 8K, warm emotional lighting",
-  "side_width": 0.6,
-  "max_font": 200,
-  "extra_flags": [
-   "--subject-side",
-   "right",
-   "--fit-height",
-   "--fit-each"
-  ],
-  "_senior_typography_note": "HARD LOCK user 2026-09-17 (ep1): text structure 3+1 PREFERRED / 4+1 FALLBACK; banner đỏ dưới BẮT BUỘC (model quyết banner NÓI GÌ, không quyết banner CÓ HAY KHÔNG); senior typography: fit TỪNG DÒNG (--fit-each), khối sát, FONT SIZE > khoảng trống, so MASTER_REFERENCE; màu KHÔNG gán cứng theo số dòng. Toàn bộ luật ở lane_dir/TEMPLATE.md.",
-  "lane_dir": "docs/thumbnail_lanes/satori_jp",
-  "_lane_dir_note": "TEMPLATE.md (hard lock) + MASTER_REFERENCE.png (human approved 2026-09-17) + golden/. Load TRUOC khi viet thumb_text/gen nen; Final QC phai so voi MASTER_REFERENCE."
- },
- "assemble": {
-  "zoom": 1.12,
-  "transition": "xfade",
-  "xfade": 0.6,
-  "bgm": "assets/satori_jp/_bgm/bgm1.mp3",
-  "bgm_volume": 0.09
- },
- "blocklist": [
-  "baby",
-  "infant",
-  "newborn",
-  "toddler body",
-  "bathing",
-  "sento",
-  "naked",
-  "nude",
-  "blood",
-  "gore",
-  "corpse close-up"
- ],
- "slug_dir": "assets/satori_jp",
- "folder_pattern": "simbot2-{nn:02d}-*",
- "series_bible": "docs/SERIES_shizuko_shukatsu.md",
- "publish": {
-  "upload_channel": "Lopezzapa68"
- },
- "script_qc": {
-  "lens": "story",
-  "domain_focus": "LƯU Ý RIÊNG LANE SATORI (người già Nhật kể chuyện đời, phóng tác 70/30 từ video Hàn simbot2): ưu tiên nghiêm ngặt nhất lăng kính #1 (mâu thuẫn dữ kiện giữa các đoạn), #2 (tiền không được là quy đổi 1:10 từ won; giá phải là mức thật ở Nhật) và #3 (dấu vết Hàn: từ dịch sát, phong tục, thủ tục không có ở Nhật). Lương hưu Nhật trả 2 tháng/lần ngày 15 tháng chẵn. Chỉ chặn ở lỗi SAI; văn phong tâm tình chậm, nhiều dấu 、 là chủ ý của lane, không phải lỗi."
- },
- "assets": {
-  "skip": [
-   "TIEU_DE_MO_TA.txt",
-   "thumb_text.txt"
-  ],
-  "_note": "Anh chot 2026-09-19: lane nay KHONG lam tieu de/mo ta/tags/thumbnail — du an rieng lo. Buoc 1 cua Claude = kich ban + QC + anh REF + prompt anh (img_prompts/img_doan) + giong noi."
- }
+  "slug_dir": "assets/satori_jp",
+  "folder_pattern": "simbot2-{nn:02d}-*",
+  "series_bible": "docs/SERIES_shizuko_shukatsu.md",
+  "publish": {
+    "upload_channel": "Lopezzapa68"
+  },
+  "script_qc": {
+    "lens": "story",
+    "domain_focus": "LƯU Ý RIÊNG LANE SATORI (người già Nhật kể chuyện đời, phóng tác 70/30 từ video Hàn simbot2): ưu tiên nghiêm ngặt nhất lăng kính #1 (mâu thuẫn dữ kiện giữa các đoạn), #2 (tiền không được là quy đổi 1:10 từ won; giá phải là mức thật ở Nhật) và #3 (dấu vết Hàn: từ dịch sát, phong tục, thủ tục không có ở Nhật). Lương hưu Nhật trả 2 tháng/lần ngày 15 tháng chẵn. Chỉ chặn ở lỗi SAI; văn phong tâm tình chậm, nhiều dấu 、 là chủ ý của lane, không phải lỗi."
+  },
+  "assets": {
+    "skip": [
+      "TIEU_DE_MO_TA.txt",
+      "thumb_text.txt"
+    ],
+    "_note": "Anh chot 2026-09-19: lane nay KHONG lam tieu de/mo ta/tags/thumbnail — du an rieng lo. Buoc 1 cua Claude = kich ban + QC + anh REF + prompt anh (img_prompts/img_doan) + giong noi."
+  }
 }

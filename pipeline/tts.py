@@ -139,6 +139,28 @@ def clean(text):
     return re.sub(r"\n{3,}", "\n\n", text).strip()
 
 
+def ap_yomi(text, path):
+    """Sidecar `yomi.txt` (mỗi dòng `表示=読み`): thay chữ hiển thị bằng cách đọc TRƯỚC khi gửi TTS.
+    Vì sao: TTS đọc sai kanji hiếm/tên riêng (他人様, 満州…) mà không cổng nào bắt được — STT nghe
+    lại đúng cái TTS đọc sai, srt_from_script lại nắn phụ đề về script nên mọi thứ "khớp". Sửa ở
+    NGUỒN: script.txt giữ nguyên (caption ra kanji), chỉ text gửi provider đổi. Ý mượn từ Dual Text
+    `<表示|読み>` của hypit, thu về sidecar để không đụng 39 file đang đọc script.txt
+    (plans/260921-1415-muon-hypit-openmontage). Trả (text, {mục: số lần thay})."""
+    muc = []
+    for ln in Path(path).read_text(encoding="utf-8").splitlines():
+        ln = ln.strip()
+        if not ln or ln.startswith("#") or "=" not in ln:
+            continue
+        a, _, b = ln.partition("=")
+        if a.strip():
+            muc.append((a.strip(), b.strip()))
+    tk = {}
+    for a, b in sorted(muc, key=lambda x: -len(x[0])):   # mục dài trước, kẻo mục ngắn cắt đôi mục dài
+        tk[a] = text.count(a)
+        text = text.replace(a, b)
+    return text, tk
+
+
 def chunks(text, max_chars=1800):
     parts, cur = [], ""
     for para in re.split(r"\n\s*\n", text):
@@ -353,6 +375,7 @@ def main():
     ap.add_argument("--rate", default="-8%", help='edge: vd --rate=-8% (dạng có dấu =)')
     ap.add_argument("--pitch", default="")
     ap.add_argument("--no-srt", action="store_true", help="không xuất phụ đề")
+    ap.add_argument("--yomi", default="", help="file 表示=読み; mặc định yomi.txt cạnh --script nếu có")
     ap.add_argument("--profile", default="", help="id profile trong pipeline/profiles/<id>.json (nhân vật+giọng+fx)")
     ap.add_argument("--channel", default="", help="[cũ] id kênh trong channels.json")
     args = ap.parse_args()
@@ -361,6 +384,12 @@ def main():
     resolve_voice_conf(args, prof_id)
 
     text = clean(Path(args.script).read_text(encoding="utf-8"))
+    yomi = Path(args.yomi) if args.yomi else Path(args.script).parent / "yomi.txt"
+    if yomi.exists():
+        text, tk = ap_yomi(text, yomi)
+        khong = [a for a, n in tk.items() if n == 0]
+        print(f"[yomi] {len(tk)} mục · thay {sum(tk.values())} lần" +
+              (f" · ⚠️ 0 lần (không có trong script): {', '.join(khong)}" if khong else ""))
     if not text:
         raise SystemExit("Script rỗng.")
     out = Path(args.out)

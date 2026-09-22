@@ -49,6 +49,8 @@
     "engine": "claude_p",
     "_engine_note": "Giống Lane E (anh chốt 2026-09-17 mô hình 'Claude viết, Gemini chấm'): PASS 0 + PASS 1 qua claude -p (claude_p_bridge.py); nén/hội thoại/phẩy + QC B3Q/B3F vẫn Gemini.",
     "brain_model": "claude-opus-5",
+    "patch_model": "claude-opus-5",
+    "_patch_model_note": "Anh chốt 2026-09-22: S4 (patch tại chỗ theo Sol/máy, lean_script.patch) dùng Opus 5 CỐ ĐỊNH — Fable chỉ VIẾT (S2). Căn cứ: A/B replay 9 lượt patch thật Lane F/G (harness pipeline/bench_patch_model.py): Sol PASS 7/9 với Opus, 2 FIX ở ep10 mà bản Fable ĐÃ PASS chấm lại cũng FIX (Sol không tất định); số câu đổi ngoài phạm vi Sol trích Opus ≈ Fable. Khi quota Fable về: đổi brain_model/final_review_model lại claude-fable-5-1, GIỮ patch_model=claude-opus-5.",
     "final_review_model": "claude-opus-5",
     "_brain_model_note": "2026-09-21 anh chốt: Fable HẾT QUOTA → mọi lượt claude -p (viết/patch kịch bản lean, prompt_doan B5W) dùng Opus 5 (`claude-opus-5`, verify `claude -p --model claude-opus-5` trả 'OK Opus 5'). Đổi lại Fable khi quota về: brain_model=claude-fable-5-1. Lịch sử: Anh chốt 2026-09-20: ưu tiên Fable 5.1 (có trong gói) viết kịch bản (PASS 0 + PASS 1 + sửa FIX của B3S) VÀ nghiệm thu cuối (bước B3R mới, sau B3S). A/B thật cùng prompt Hồi 1+2: Fable 70s/1.380 chữ/neo 6,5 ✓ vs Opus 5 68s/1.279 chữ/neo 4,7 ✗ — cả 2 qua gate nhịp; Fable giàu chi tiết neo hơn, câu ngắn kịch hơn. BẮT BUỘC claude CLI ≥2.1.251 — claude_p_bridge.find_claude() tự chọn binary mới nhất (bản npm 2.1.145 trên PATH không có Fable và alias opus của nó = Opus 4.7). B3S (GPT-5.6-sol) VẪN GIỮ làm lớp khác hãng; B3R cùng họ với model viết nên chỉ là lớp cuối, không thay B3S.",
     "outro_line": "ご視聴いただきありがとうございました。いいねとコメントもお待ちしています。",

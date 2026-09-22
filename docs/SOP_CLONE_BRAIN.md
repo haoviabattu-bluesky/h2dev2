@@ -7,6 +7,13 @@
 > Chốt ngày 2026-09-11 sau 8 lượt chạy thật trên kênh simbot2. Mọi con số trong file này là **đo
 > thật**, không phải ước lượng.
 
+> ⚠️ **NIÊM từ tập SAU tập 11 (anh chốt 2026-09-22):** satori chuyển sang `script.flow=lean` qua
+> `make_video.py --profile satori-jp-obaa` (Fable viết 1 lần S2 → Opus vá S4 → Sol chấm S5), thay cho
+> `brain_channel.py` — lý do: agent ở nhánh này tự viết+tự sửa lặp, không tách vai viết/sửa/chấm, ngược
+> nguyên tắc chung mọi lane (xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §0a). Tập 11 đang dở (đã giao
+> máy 2, nửa sau quy trình chưa nghiệm thu) vẫn chạy NỐT theo file này — không đổi pipeline giữa chừng.
+> File này giữ lại tham khảo lịch sử, không dùng cho tập mới. Xem memory `lane-satori-lean-flow-2026-09-22`.
+
 ---
 
 ## ⭐ THẺ CHẠY — QUY TRÌNH CHUẨN MỘT VIDEO (đọc cái này trước, phần dưới là lý do)

@@ -604,6 +604,11 @@ Chạy riêng: `py -3.13 qc_final.py --slug <thư mục tập> --profile <id>`
 
 ## 8e. LANE NÀY CHIA 3 BƯỚC — BƯỚC 3 GIAO CHO AGENT KHÁC (anh chốt 2026-09-12/16)
 
+**⚠️ Đã có ngoại lệ mới — đọc §8f trước khi áp dụng nguyên văn mục này.** §8e mô tả mô hình CŨ (giao
+máy 2/agent khác). Từ 2026-09-21 anh đã cho phép tab Lane A **tự làm luôn bước 2+3** (xem §8f) — mô
+hình giao việc dưới đây vẫn là LỰA CHỌN HỢP LỆ (vd khi muốn chạy song song, tách khỏi máy 1), không
+phải đã lỗi thời, nhưng không còn là ĐƯỜNG DUY NHẤT nữa.
+
 **Bước 1** (tab này): tư liệu → kịch bản → giọng → khớp hình → ra đơn ảnh, dừng ở `--den B5K`.
 **Bước 2**: máy 2 vẽ ảnh qua Google Flow. **Bước 3**: agent riêng (hiện là deepseek) tải ảnh về,
 ghép, chấm cảnh, giao hàng, ghi cột G. Hồ sơ giao việc bước 3 — tự chứa, có lệnh copy-paste, sổ xử
@@ -677,6 +682,29 @@ sửa JSON, không sửa code**. Chạy sau B10 chứ không phải trước: th
 ⚠️ `credits.txt` đầy đủ (36 KB / 241 nguồn) KHÔNG nhét vừa ô mô tả 5.000 ký tự của YouTube →
 `listting.txt` chỉ chứa bản rút gọn theo đúng thứ luật đòi: **CC BY liệt kê từng tác giả** (3–6
 file/tập), PD/NASA/CC0 và Pexels gộp mỗi loại một dòng. Sổ đầy đủ vẫn nằm trong thư mục tập.
+
+## 8f. ⭐ NGOẠI LỆ TỰ RENDER — anh chốt 2026-09-21 (vụ sửa "rung giật")
+
+Sau khi phát hiện + vá xong 2 lỗi thật (zoom hardcode phớt lờ `profile.assemble.zoom`, nhịp cắt
+100% "cut" không đệm gây cảm giác giật) và bật `burn_subs=true`, anh yêu cầu Claude Code tự chạy
+render thử tập 1 để kiểm — việc này đụng đúng luật cấm ở `CLAUDE.md`. Claude Code đã DỪNG lại hỏi
+lại thay vì tự chạy, và anh xác nhận rõ 2 lần: **"với lane A này thì anh cho phép em được quyền tự
+tải, tạo ảnh bằng gpti2 và chạy render video nhé, anh cho phép."**
+
+**Phạm vi ngoại lệ (đọc kỹ trước khi dùng):**
+- Chỉ áp dụng cho **lane `toshi-densetsu-jp` (Lane A)**, tab này. KHÔNG tự suy diễn sang lane khác —
+  lane khác vẫn theo đúng luật CẤM ở `CLAUDE.md`, muốn xin ngoại lệ tương tự phải hỏi lại đúng tab đó.
+- Được phép: `stockfetch.py`/`soi_kho.py` (tải+soi kho, vốn dĩ vẫn chạy trong Bước 1 từ trước) ·
+  `sinh_anh_canh.py` (vẽ ảnh gpti2, KHÔNG cần `--chi-don` ra đơn cho máy 2 nữa) ·
+  `make_video.py --from B8` trở đi (ghép, chấm cảnh, sinh gói đăng, nghiệm thu, giao hàng) — tức là
+  TOÀN BỘ 3 bước giờ chạy được trong 1 tab.
+- Đường máy 2 (§6d, §8e, `goi_buoc2_3.py`) **vẫn dùng được** — không phải đã gỡ bỏ, chỉ không còn là
+  đường bắt buộc. Chọn đường nào tuỳ tình huống (máy 2 rảnh/máy 1 rảnh, muốn chạy song song nhiều tập).
+- Tiền vẽ ảnh gpti2 (~50đ/ảnh) vẫn là TIỀN THẬT dù chạy trong tab này — vẫn áp đúng thói quen cũ:
+  báo số ảnh + giá trước khi bấm vẽ loạt lớn, vẽ thử vài ảnh trước khi vẽ cả lô (xem memory
+  `ve-thu-5-anh-truoc-khi-ve-loat`).
+- Render xong 1 tập vẫn phải qua đủ B8Q/B10 như cũ — ngoại lệ chỉ bỏ rào "ai được BẤM nút chạy",
+  không bỏ rào "phải qua cổng QC nào".
 
 ## 9. CHỈ SỐ CẦN ĐẠT (video 1)
 ≥5.000 view / 7 ngày · giữ chân 30 giây đầu ≥60% · ≥15 comment.

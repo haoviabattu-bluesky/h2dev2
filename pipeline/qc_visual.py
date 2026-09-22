@@ -201,7 +201,7 @@ def mech_images(imgdir, n_expected=0, min_kb=120):
 
 
 IMG_SCHEMA = ('{"matches_prompt":<bool>,"era_ok":<bool>,"people_count":<int>,'
-              '"readable_text":<bool>,"artifacts":<bool>,"note":"<= 15 words"}')
+              '"readable_text":<bool>,"artifacts":<bool>,"single_scene":<bool>,"note":"<= 15 words"}')
 
 
 def qc_images(imgdir, prompts, world="", sample=12, workers=4):
@@ -222,7 +222,10 @@ def qc_images(imgdir, prompts, world="", sample=12, workers=4):
                f"WORLD it must fit: {world[:300] or 'unspecified'}\n"
                "matches_prompt = the image really shows what the prompt asks. "
                "era_ok = nothing anachronistic vs the world. readable_text = any legible words/signs "
-               "visible. artifacts = deformed hands/faces/objects.\n"
+               "visible. artifacts = deformed hands/faces/objects. "
+               "single_scene = this is ONE continuous illustrated scene (false if it looks like a "
+               "comic/manga PAGE with multiple panels, a grid of smaller images, a character "
+               "reference sheet with several poses, or any visible panel borders/gutters).\n"
                f"Reply ONLY compact JSON: {IMG_SCHEMA}")
         try:
             return i, f.name, _vision(ask, f)
@@ -244,6 +247,8 @@ def qc_images(imgdir, prompts, world="", sample=12, workers=4):
                 why.append("méo mó/dị dạng")
             if d.get("readable_text") is True:
                 why.append("có chữ đọc được")
+            if d.get("single_scene") is False:
+                why.append("NHIỀU Ô/collage (không phải 1 cảnh liền)")
             if why:
                 bad.append((name, ", ".join(why), (d.get("note") or "")[:60]))
     res["vision_checked"] = len(tasks)
@@ -325,10 +330,65 @@ def _frame(mp4, t, out):
     return out.exists() and out.stat().st_size > 2000
 
 
+# Ngưỡng tiếng BẢN GHÉP (khác qc_audio đo trên voice.mp3 TRƯỚC khi trộn BGM — xem plans/260921-1415).
+VO_GHEP_DB = -0.5      # đỉnh chạm mức này sau amix = vỡ tiếng do BGM cộng dồn
+NHO_GHEP_DB = -30.0
+MAT_TIENG_S = 8.0      # im lâu hơn mức này GIỮA video = rụng tiếng (nghỉ cố ý sau pace ≤ ~3 s)
+BGM_LAN_DB = 3.0       # bản ghép to hơn giọng gốc quá mức này = BGM lấn
+
+
+def kiem_tieng_ghep(mp4, voice=None):
+    """Đo TIẾNG của final.mp4 SAU khi trộn BGM. Mọi phép đo âm khác của dự án (qc_audio) chạy ở
+    B4Q trên voice.mp3, tức là trước amix (assemble.py:470) — vỡ tiếng/BGM lấn/mất tiếng sinh ra ở
+    chính bước trộn thì không cổng nào bắt. Tất định, 0 đồng; lỗi ffmpeg → infra, không PASS ảo."""
+    import numpy as np
+    import qc_audio
+    out = {"problems": [], "infra": []}
+    try:
+        mx, mean = qc_audio.do_muc(mp4)
+        a, sr = qc_audio.doc_song(mp4)
+    except Exception as e:
+        out["infra"].append(f"không đo được tiếng bản ghép: {type(e).__name__} {e}")
+        return out
+    out["max_db"], out["mean_db"] = mx, mean
+    if mx is None or mean is None:
+        out["infra"].append("volumedetect không trả số")
+        return out
+    if mx >= VO_GHEP_DB:
+        out["problems"].append(f"VỠ TIẾNG bản ghép: đỉnh {mx:+.1f} dB (BGM cộng dồn lên giọng)")
+    if mean < NHO_GHEP_DB:
+        out["problems"].append(f"tiếng bản ghép quá nhỏ: trung bình {mean:.1f} dB")
+    # Mất tiếng: có BGM nền thì im KHÔNG BAO GIỜ xuống -45 dB, nên ngưỡng phải tương đối — lấy
+    # mức "đang nói" (p90 đường bao) trừ 25 dB, không thấp hơn ngưỡng tuyệt đối của qc_audio.
+    dur = len(a) / sr
+    win = max(1, int(sr * 0.02))
+    env = np.abs(a[: len(a) // win * win]).reshape(-1, win).max(axis=1)
+    p90 = 20 * np.log10(max(float(np.percentile(env, 90)), 1e-6))
+    th = max(qc_audio.LANG_DB, p90 - 25)
+    out["nguong_lang_db"] = round(th, 1)
+    lang = [(t, d) for t, d in qc_audio.khoang_lang(a, sr, nguong_db=th)
+            if d >= MAT_TIENG_S and t > 5 and t + d < dur - 5]
+    out["lang_dai"] = [(round(t, 1), round(d, 1)) for t, d in lang]
+    for t, d in lang[:5]:
+        out["problems"].append(f"MẤT TIẾNG {d:.0f}s: {t:.0f}s→{t + d:.0f}s (im dưới {th:.0f} dB)")
+    if voice and Path(voice).exists():
+        try:
+            _, mv = qc_audio.do_muc(voice)
+        except Exception as e:
+            out["infra"].append(f"không đo được voice gốc: {e}")
+            mv = None
+        if mv is not None:
+            out["voice_mean_db"] = mv
+            if mean - mv > BGM_LAN_DB:
+                out["problems"].append(f"BGM LẤN GIỌNG: bản ghép {mean:.1f} dB vs giọng gốc "
+                                       f"{mv:.1f} dB (+{mean - mv:.1f} dB)")
+    return out
+
+
 SYNC_SCHEMA = ('{"matches":<bool>,"score":<1-5>,"subtitle_visible":<bool>,"why":"<= 15 words"}')
 
 
-def qc_video(mp4, srt=None, audio_sec=0, samples=8, workers=4, want_sub=True):
+def qc_video(mp4, srt=None, audio_sec=0, samples=8, workers=4, want_sub=True, voice=None):
     """QC bản GHÉP: luồng/thời lượng/khung đen + **ẢNH CÓ KHỚP LỜI ĐANG ĐỌC KHÔNG**.
 
     Đây là câu hỏi cuối cùng người xem đặt ra. Cách kiểm: lấy k mốc thời gian, trích khung hình,
@@ -346,6 +406,10 @@ def qc_video(mp4, srt=None, audio_sec=0, samples=8, workers=4, want_sub=True):
     if audio_sec and abs(info["duration"] - audio_sec) > 3:
         out["problems"].append(f"video {info['duration']:.0f}s vs giọng {audio_sec:.0f}s → lệch "
                                f"{info['duration']-audio_sec:+.0f}s")
+    t = kiem_tieng_ghep(mp4, voice)
+    out["tieng"] = {k: v for k, v in t.items() if k not in ("problems", "infra")}
+    out["problems"] += t["problems"]
+    out["infra"] += t["infra"]
     cues = sb.parse_cues(srt) if srt and Path(srt).exists() else []
     dur = info["duration"]
     times = [dur * (i + 0.5) / samples for i in range(samples)]
@@ -449,6 +513,7 @@ def main():
     ap.add_argument("--look", default="")
     ap.add_argument("--world", default="")
     ap.add_argument("--audio-sec", type=float, default=0)
+    ap.add_argument("--voice", default="", help="voice.mp3 gốc để so BGM lấn (chỉ what=video)")
     ap.add_argument("--sample", type=int, default=12)
     # Video KHÔNG cháy phụ đề (mặc định của dự án từ 2026-09-11: up .srt lên YouTube làm CC thay vì
     # đốt chữ vào hình). Không có cờ này thì tiêu chí "khung có thấy phụ đề không" báo lỗi OAN cho
@@ -467,7 +532,8 @@ def main():
             if a.prompts else []
         r = qc_images(a.dir, pr, a.world, a.sample)
     else:
-        r = qc_video(a.mp4, a.srt or None, a.audio_sec, a.sample, want_sub=not a.no_sub)
+        r = qc_video(a.mp4, a.srt or None, a.audio_sec, a.sample, want_sub=not a.no_sub,
+                     voice=a.voice or None)
     report(a.what.upper(), r)
     print(json.dumps({k: v for k, v in r.items() if k != "samples"}, ensure_ascii=False)[:600])
 

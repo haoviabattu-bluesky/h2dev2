@@ -12,5 +12,7 @@
   "sol": "sk-f8cb1a67a6a3f23b-7vhgv7-844b67c4",
   "sol_base_url": "http://localhost:20128/v1",
   "sol_backup": "sk-up-0ef5398f1893e50f6a8d9055c7b9e7cb4f847dac7601d09f",
-  "sol_backup_base_url": "https://api.ns24.io/v1"
+  "sol_backup_base_url": "https://api.ns24.io/v1",
+  "sol_backup2": "sk-d4108f8b284a42b48df72bf4",
+  "sol_backup2_base_url": "https://hhtechapi.net/v1"
 }

@@ -1,21 +1,31 @@
 """sol_client.py — gọi GPT-5.6-sol để làm QC ĐỘC LẬP thumbnail (đọc chữ tiếng Nhật + ảnh, chấm
-PASS/FIX/REMAKE) và viết PROMPT ảnh cho gpti2 khi ảnh nền cần sửa nội dung.
+PASS/FIX/REMAKE), viết PROMPT ảnh cho gpti2 khi ảnh nền cần sửa nội dung, VÀ (2026-09-20) chấm
+kịch bản độc lập ở luồng lean (qc_script_sol.py — dùng CHUNG client này).
 
-HAI ĐƯỜNG, tự động fallback (verify thật 2026-09-17):
+BA ĐƯỜNG, tự động fallback theo thứ tự (verify thật 2026-09-17 cho #1/#2; #3 verify 2026-09-22):
   1. CHÍNH: proxy 9router LOCAL (`http://localhost:20128/v1`, model `cx/gpt-5.6-sol` — CÓ prefix
      `cx/`), non-stream, chỉ chạy được trên máy đã bật 9router ở cổng 20128.
-  2. DỰ PHÒNG: proxy ns24.io (`https://api.ns24.io/v1`, model `gpt-5.6-sol` — KHÔNG prefix), dùng
+  2. DỰ PHÒNG 1: proxy ns24.io (`https://api.ns24.io/v1`, model `gpt-5.6-sol` — KHÔNG prefix), dùng
      khi #1 lỗi (9router tắt/máy khác/connection refused/timeout/HTTP khác 200). ns24 đã dùng sẵn
      trong dự án cho Gemini (`llm_client.py`) — key này CHÍNH LÀ key `ns24` mặc định ở đó.
      ⚠️ ns24/ramclouds BẮT BUỘC `stream:true` (gọi non-stream trả HTTP 200 + SSE rỗng, mất trắng nội
      dung mà không báo lỗi — bài học thật đã ghi ở `llm_client.py`) + BẮT BUỘC User-Agent (thiếu bị
      Cloudflare chặn 403 code 1010). Cả 2 điều đã áp dụng ở nhánh dự phòng bên dưới.
+  3. DỰ PHÒNG 2: proxy hhtechapi.net (`https://hhtechapi.net/v1`, model `gpt-5.6-sol` — KHÔNG
+     prefix), dùng khi CẢ #1 lẫn #2 đều lỗi. New-API gateway khác hẳn ns24/9router (đề phòng cả 2
+     cùng hết quota/cùng bị chặn một lúc — quan sát thật 2026-09-21: Fable ở 9router hết quota cùng
+     lúc dính nhiều nơi). Non-stream chuẩn OpenAI, ĐÃ verify multimodal (đọc đúng chữ Nhật trên
+     thumbnail_final.png thật) + text thường, không cần User-Agent riêng. Key mượn từ dự án khác
+     (memory `hhtechapi-portal`), đăng ký RIÊNG không liên quan ns24/9router — hỏng đồng thời cả 3
+     khó xảy ra hơn hỏng đồng thời 2.
 
-Vì sao "độc lập" (áp dụng cho CẢ 2 đường): mọi bước sinh/chấm ảnh khác trong pipeline (qc_visual.py)
+Vì sao "độc lập" (áp dụng cho CẢ 3 đường): mọi bước sinh/chấm ảnh khác trong pipeline (qc_visual.py)
 đều dùng Gemini qua ramclouds — cùng 1 nhà cung cấp/1 lối tư duy chấm điểm thì lỗi hệ thống của
 Gemini sẽ lọt qua cả 2 lớp. GPT-5.6-sol là model KHÁC HẲN — dùng làm lớp chấm THỨ HAI cho khâu
-thumbnail (khâu duy nhất người xem thấy TRƯỚC KHI bấm play, đáng đầu tư 1 lớp QC riêng). Proxy nào
-đưa tới model đó không quan trọng — chỉ là đường dây, không đổi bản chất "model thứ 2".
+thumbnail (khâu duy nhất người xem thấy TRƯỚC KHI bấm play, đáng đầu tư 1 lớp QC riêng) và cho kịch
+bản (lean flow, "lời cuối" trước khoá). Proxy nào đưa tới model đó không quan trọng — chỉ là đường
+dây, không đổi bản chất "model thứ 2"; càng nhiều đường dây độc lập càng giảm rủi ro CẢ 2 cùng hết
+quota một lúc (đã xảy ra thật với Fable ở claude -p, xem memory `opus-s4-patch-ab-test`).
 """
 import base64
 import json
@@ -37,6 +47,15 @@ BACKUP_BASE_URL = keys.get("sol_backup_base_url", env="SOL_BACKUP_BASE_URL",
 BACKUP_API_KEY = keys.get("sol_backup", env="SOL_BACKUP_API_KEY",
                            default="sk-up-0ef5398f1893e50f6a8d9055c7b9e7cb4f847dac7601d09f")
 BACKUP_MODEL = keys.get("sol_backup_model", env="SOL_BACKUP_MODEL", default="gpt-5.6-sol")
+
+# Dự phòng 2 — hhtechapi.net (New-API gateway khác hẳn ns24/9router, key riêng không chung tài
+# khoản với 2 đường trên — xem docstring module). Verify thật 2026-09-22: text + multimodal OK,
+# non-stream, không cần User-Agent riêng.
+BACKUP2_BASE_URL = keys.get("sol_backup2_base_url", env="SOL_BACKUP2_BASE_URL",
+                             default="https://hhtechapi.net/v1")
+BACKUP2_API_KEY = keys.get("sol_backup2", env="SOL_BACKUP2_API_KEY",
+                            default="sk-d4108f8b284a42b48df72bf4")
+BACKUP2_MODEL = keys.get("sol_backup2_model", env="SOL_BACKUP2_MODEL", default="gpt-5.6-sol")
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
@@ -95,42 +114,64 @@ def _chat_backup(text, image_path, max_tokens, timeout):
     return text_out, usage
 
 
+def _chat_backup2(text, image_path, max_tokens, timeout):
+    """hhtechapi.net — non-stream chuẩn OpenAI, không cần User-Agent riêng (verify 2026-09-22)."""
+    payload = {"model": BACKUP2_MODEL, "messages": [{"role": "user", "content": _content(text, image_path)}],
+               "max_tokens": max_tokens}
+    headers = {"Authorization": f"Bearer {BACKUP2_API_KEY}", "Content-Type": "application/json"}
+    r = httpx.post(f"{BACKUP2_BASE_URL}/chat/completions", headers=headers, json=payload, timeout=timeout)
+    if r.status_code != 200:
+        raise RuntimeError(f"sol backup2(hhtechapi) HTTP {r.status_code}: {r.text[:500]}")
+    data = r.json()
+    return data["choices"][0]["message"]["content"], data.get("usage", {})
+
+
 def chat(text, image_path=None, max_tokens=2000, timeout=180):
-    """Gửi 1 lượt chat (kèm ảnh nếu có) tới GPT-5.6-sol. Thử proxy CHÍNH (9router local) trước,
-    LỖI GÌ CŨNG (connection refused/timeout/HTTP khác 200) tự chuyển sang proxy DỰ PHÒNG (ns24)
-    — không cần người gọi biết đang dùng đường nào. Chỉ ném lỗi khi CẢ HAI đều hỏng."""
+    """Gửi 1 lượt chat (kèm ảnh nếu có) tới GPT-5.6-sol. Thử proxy CHÍNH (9router local) trước, LỖI GÌ
+    CŨNG (connection refused/timeout/HTTP khác 200) tự chuyển sang DỰ PHÒNG 1 (ns24) rồi DỰ PHÒNG 2
+    (hhtechapi.net) — không cần người gọi biết đang dùng đường nào. Chỉ ném lỗi khi CẢ BA đều hỏng."""
     try:
-        content, usage = _chat_primary(text, image_path, max_tokens, timeout)
-        return content, usage
+        return _chat_primary(text, image_path, max_tokens, timeout)
     except Exception as e_primary:
         print(f"  ! sol primary (9router) lỗi: {type(e_primary).__name__} {e_primary} "
-              f"→ thử dự phòng ns24…", file=sys.stderr)
+              f"→ thử dự phòng 1 (ns24)…", file=sys.stderr)
         try:
             return _chat_backup(text, image_path, max_tokens, timeout)
         except Exception as e_backup:
-            raise RuntimeError(
-                f"sol_client: CẢ HAI đường đều lỗi.\n  primary(9router): {e_primary}\n"
-                f"  backup(ns24): {e_backup}") from e_backup
+            print(f"  ! sol backup1 (ns24) lỗi: {type(e_backup).__name__} {e_backup} "
+                  f"→ thử dự phòng 2 (hhtechapi)…", file=sys.stderr)
+            try:
+                return _chat_backup2(text, image_path, max_tokens, timeout)
+            except Exception as e_backup2:
+                raise RuntimeError(
+                    f"sol_client: CẢ BA đường đều lỗi.\n  primary(9router): {e_primary}\n"
+                    f"  backup1(ns24): {e_backup}\n  backup2(hhtechapi): {e_backup2}") from e_backup2
 
 
 def selftest():
-    """`py -3.13 sol_client.py` — kiểm cả 2 đường (chính + dự phòng) độc lập."""
+    """`py -3.13 sol_client.py` — kiểm cả 3 đường (chính + 2 dự phòng) độc lập."""
     sys.stdout.reconfigure(encoding="utf-8")
     ok = True
     try:
         content, usage = _chat_primary("Reply with exactly: OK", None, 10, 30)
-        print(f"✓ CHÍNH  {BASE_URL} model={MODEL} → {content!r}")
+        print(f"✓ CHÍNH    {BASE_URL} model={MODEL} → {content!r}")
     except Exception as e:
         ok = False
-        print(f"✗ CHÍNH  {BASE_URL}: {type(e).__name__} {e}")
+        print(f"✗ CHÍNH    {BASE_URL}: {type(e).__name__} {e}")
     try:
         content, usage = _chat_backup("Reply with exactly: OK", None, 10, 30)
-        print(f"✓ DỰ PHÒNG {BACKUP_BASE_URL} model={BACKUP_MODEL} → {content!r}")
+        print(f"✓ DỰ PHÒNG1 {BACKUP_BASE_URL} model={BACKUP_MODEL} → {content!r}")
     except Exception as e:
         ok = False
-        print(f"✗ DỰ PHÒNG {BACKUP_BASE_URL}: {type(e).__name__} {e}")
+        print(f"✗ DỰ PHÒNG1 {BACKUP_BASE_URL}: {type(e).__name__} {e}")
+    try:
+        content, usage = _chat_backup2("Reply with exactly: OK", None, 10, 30)
+        print(f"✓ DỰ PHÒNG2 {BACKUP2_BASE_URL} model={BACKUP2_MODEL} → {content!r}")
+    except Exception as e:
+        ok = False
+        print(f"✗ DỰ PHÒNG2 {BACKUP2_BASE_URL}: {type(e).__name__} {e}")
     if not ok:
-        print("  (còn ít nhất 1 đường sống thì chat() vẫn hoạt động — chỉ FAIL khi cả 2 đều hỏng)")
+        print("  (còn ít nhất 1 đường sống thì chat() vẫn hoạt động — chỉ FAIL khi cả 3 đều hỏng)")
     sys.exit(0 if ok else 1)
 
 

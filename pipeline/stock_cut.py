@@ -796,7 +796,7 @@ def phu_caption(video: Path, cap_png: Path, H, threads=2):
     tam.replace(video)
 
 
-def render_canh(c, stock_dir: Path, out: Path, W, H, fps, tmp: Path, threads=2):
+def render_canh(c, stock_dir: Path, out: Path, W, H, fps, tmp: Path, threads=2, zoom_profile=None):
     # Cảnh có thể lấy file từ thư mục KHÁC kho stock (ảnh tự vẽ) — `goc` ghi rõ ở từng cảnh thay
     # vì bắt render tự đoán, để `scenes.json` đọc lại vẫn dựng đúng.
     src = Path(c["goc"]) / c["file"] if c.get("goc") else stock_dir / c["file"]
@@ -821,7 +821,8 @@ def render_canh(c, stock_dir: Path, out: Path, W, H, fps, tmp: Path, threads=2):
                     fit = "blur"
             except Exception:
                 pass
-        render_clip(src, c["dur"], W, H, fps, 1.10 if fit == "cover" else 1.03,
+        zoom = (1.10 if fit == "cover" else 1.03) if zoom_profile is None else zoom_profile
+        render_clip(src, c["dur"], W, H, fps, zoom,
                     zoom_in=(c["i"] % 2 == 0), out=out, threads=threads, fit=fit)
     else:
         vf = (f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
@@ -1012,6 +1013,13 @@ def main():
             print(f"   {c['t0']:7.1f}s +{c['dur']:.1f}s  {c['kieu']:5s} {c['file'][:44]}")
         return 0
 
+    # `render_canh()` từng HARDCODE zoom 1.10/1.03 cho ảnh tĩnh, bỏ qua hẳn `profile.assemble.zoom`
+    # — kênh khai zoom=1.0 (muốn ảnh đứng yên) vẫn bị Ken Burns áp lên do code không đọc field này.
+    # Đã vá 2026-09-21 (bài học "rung giật" của Lane A): zoom=1.0 (hoặc field vắng nếu không dùng
+    # profile) ⇒ giữ đúng mức nhẹ cũ 1.10/1.03; profile khai zoom khác 1.0 (kể cả 1.0 tường minh)
+    # thì DÙNG ĐÚNG con số đó cho mọi ảnh tĩnh, không phân biệt cover/blur nữa.
+    asm = (prof.get("assemble", {}) or {}) if args.profile else {}
+    zoom_still = asm.get("zoom") if "zoom" in asm else None
     W, H = (int(x) for x in args.size.split("x"))
     jobs = args.jobs or max(2, (__import__("os").cpu_count() or 4) // 3)
     tmp = Path(tempfile.mkdtemp(prefix="stock_"))
@@ -1020,7 +1028,8 @@ def main():
     done, lock = [0], threading.Lock()
 
     def _one(i):
-        render_canh(ke_hoach[i], stock_dir, clips[i], W, H, args.fps, tmp, args.clip_threads)
+        render_canh(ke_hoach[i], stock_dir, clips[i], W, H, args.fps, tmp, args.clip_threads,
+                    zoom_profile=zoom_still)
         with lock:
             done[0] += 1
             if done[0] % 10 == 0 or done[0] == len(ke_hoach):
@@ -1030,8 +1039,29 @@ def main():
         list(ex.map(_one, range(len(ke_hoach))))
     print(f"\n  → {len(ke_hoach)} cảnh trong {time.time()-t0:.0f}s ({jobs} luồng)")
 
+    # Chuyển cảnh: mặc định cũ CẮT THẲNG 100% (transition="cut") giữa 350-450 cảnh/tập ~4,35s mỗi
+    # cảnh — nhịp cắt dày đặc này là thứ anh gọi "rung giật" (không phải camera rung, mà nhịp edit
+    # dồn dập không có gì đệm giữa 2 cảnh). "mix" (2026-09-21) gọi ĐÚNG skill `video-chuyen-canh`
+    # (`them_chuyen_canh_vao_clip.py`, vendor vào pipeline/) — hoạt động trên chuỗi clip ĐÃ RENDER
+    # SẴN (từng mảnh encode riêng rồi concat demuxer, KHÔNG dựng 1 filter_complex khổng lồ cho
+    # 400+ input — an toàn ở quy mô này, xem docstring của script). "fade" (dip-to-black đơn giản,
+    # có sẵn trong `build_silent_concat`) giữ làm phương án dự phòng nhẹ hơn nếu "mix" gặp sự cố.
+    transition = asm.get("transition", "cut") if args.profile else "cut"
     silent = tmp / "silent.mp4"
-    build_silent_concat(clips, silent, tmp)
+    if transition == "mix":
+        them_ccc = Path(__file__).resolve().parent / "them_chuyen_canh_vao_clip.py"
+        ratio = str(asm.get("mix_ratio", 0.6))
+        mix = str(asm.get("mix_blend", "0.55,0.35,0.10,0"))
+        # KHÔNG truyền --srt/--audio ở đây — chữ cháy + mux tiếng vẫn để nguyên bước mux cuối của
+        # chính stock_cut.py (đã tune đúng sub_size/margin/outline riêng của lane này); script này
+        # chỉ lo phần chuyển cảnh, trả về video CÂM chưa phụ đề.
+        cmd = [sys.executable, str(them_ccc), "--clips"] + [str(c) for c in clips] + [
+            "--out", str(silent), "--ratio", ratio, "--mix", mix,
+            "--jobs", str(jobs), "--threads", str(args.clip_threads)]
+        subprocess.run(cmd, check=True)
+    else:
+        fade_each = float(asm.get("fade_each", 0.15)) if transition == "fade" else 0.0
+        build_silent_concat(clips, silent, tmp, fade_each=fade_each, fps=args.fps)
 
     # Mux 1 lần: phụ đề cháy + giọng + nhạc nền.
     inputs = ["-i", str(silent.resolve()), "-i", str(audio.resolve())]

@@ -39,6 +39,10 @@ def main():
     ap.add_argument("--subject-side", choices=["left", "center", "right"], default="right")
     ap.add_argument("--photo-scale", type=float, default=1.0)
     ap.add_argument("--flat-bg", action="store_true")
+    ap.add_argument("--allow-no-face", action="store_true",
+                    help="lane khong dung mat nguoi lam nen (profile.thumbnail.require_face=false, "
+                         "vd ngach ke tai lieu Lane A) — khong detect duoc mat thi KHONG loi, tu suy "
+                         "zone cam-chu tu --side/--side-width/--subject-side thay vi hop mat that.")
     args = ap.parse_args()
 
     bg_path = Path(args.bg)
@@ -66,8 +70,36 @@ def main():
     faces = cascade.detectMultiScale(gray)
 
     if len(faces) == 0:
-        print(f"LỖI: KHÔNG detect được khuôn mặt nào trong {bg_path} (sau khi load_bg -> {TW}x{TH})")
-        sys.exit(1)
+        if not args.allow_no_face:
+            print(f"LỖI: KHÔNG detect được khuôn mặt nào trong {bg_path} "
+                  f"(sau khi load_bg -> {TW}x{TH})")
+            sys.exit(1)
+        # Lane KHÔNG dùng mặt người (vd Lane A: "No text, no watermark, no recognizable real
+        # person's face" ngay trong prompt sinh nền) — không có mặt để detect là ĐÚNG THIẾT KẾ,
+        # không phải lỗi. Suy zone-cấm-chữ từ CHÍNH công thức bố cục side/side-width mà
+        # thumbnail_text.py dùng để cắt cột chữ (xem max_w ở đó) — vùng CÒN LẠI (phần dành cho chủ
+        # thể) là zone cấm chữ đè lên, full chiều cao vì không biết chủ thể cao thấp thế nào khi
+        # không detect được mặt.
+        if args.side == "left":
+            zx = int(round(TW * args.side_width))
+            zw = TW - zx
+        elif args.side == "right":
+            zx = 0
+            zw = int(round(TW * (1 - args.side_width)))
+        else:
+            zx = zw = 0   # side=center: không có cột chủ thể cố định → không giới hạn thêm
+        zy, zh = 0, TH
+        x = y = w = h = 0
+        face_json = bg_path.parent / "face.json"
+        face_json.write_text(
+            '{"x": %d, "y": %d, "w": %d, "h": %d, "src": "%s", "no_face": true, '
+            '"zone": {"x": %d, "y": %d, "w": %d, "h": %d}}'
+            % (x, y, w, h, bg_path.name, zx, zy, zw, zh),
+            encoding="utf-8",
+        )
+        print(f"KHÔNG có mặt (--allow-no-face) → zone suy từ side={args.side} "
+              f"side-width={args.side_width}: x={zx} y={zy} w={zw} h={zh}")
+        return
 
     # chọn face có diện tích LỚN NHẤT
     fx, fy, fw, fh = max(faces, key=lambda f: f[2] * f[3])

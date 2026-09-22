@@ -36,6 +36,7 @@
   KHÔNG tiêu đề/mô tả/tags/thumbnail, KHÔNG sinh ảnh, KHÔNG video. Phần chuẩn bị ảnh (characters.json,
   img_prompts.txt) chỉ khi anh bảo. Quy trình chi tiết tới mốc này: `docs/SOP_LANE_F.md` §2b.
 - ✅ 2026-09-20 **tập 3 (`ep03-kuriage-koukai`) LEAN → PASS, `Done`** (3 lượt, ~25').
+- 📝 2026-09-21 **PHƯƠNG ÁN bước 2+3 (ảnh + video ở MÁY 2)**: `docs/PHUONG_AN_LANE_F_BUOC2_3.md` — chờ anh chốt 5 điểm (kiểu vẽ theo kênh mẫu · chữ dọc 縦書き · 10s/ảnh · ep01 vẽ 2 chặng · master ở máy 2). Khung hình thật kênh mẫu: `docs/laneF_visual_ref/`. Chưa code, chưa tốn tiền.
 - ✅ 2026-09-20 **tập 2 (`ep02-saikoyou-hanbun`) chạy LEAN → Sol PASS, LOCK, cột D `Done`** — benchmark SOP §2d; tiền đề tập phải ghim đầu series_ctx.
 - ✅ 2026-09-20 **tập 1 test xong tới B3R** (`ep01-fuufu-nenkin-sa`, cột D `script-qc-done`, bài học SOP §2c). CHƯA giọng/prompt ảnh/tiêu đề/thumbnail — chờ anh duyệt kịch bản + mở rộng phạm vi.
 

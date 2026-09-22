@@ -311,18 +311,32 @@ viết lại từ đầu, chính sách dừng vòng lặp). Ví dụ đã khai t
 Lane mới/lane muốn đổi sang luồng gọn (Fable viết đúng ngân sách → máy đo → Sol lời cuối → patch ≤2 → khoá SHA256 → Claude Code
 đọc bản khoá → sheet D = `Done`) → đọc **`docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md`** (field profile cần khai, khuôn `series_ctx.txt`,
 lệnh chạy, 3 trạng thái, kênh `viec_tay.txt`). Thiết kế + số đo: `docs/QUY_TRINH_KICH_BAN_GON.md`. Lane không khai `flow` chạy luồng cũ y nguyên.
+**Quy tắc phân vai model (anh chốt 2026-09-22, mọi lane `engine: claude_p`): model VIẾT (`brain_model`, Fable) chạm kịch bản
+ĐÚNG 1 LẦN ở S2; mọi lượt SỬA (S4/B3S FIX/B3R FIX) = `patch_model` (Opus 5); Sol chỉ chấm.** Lane mới PHẢI khai cả 2 field —
+chi tiết + bảng vai ở file trên §0a.
 
 ## 🎞️ CHUYỂN CẢNH — skill toàn cục `video-chuyen-canh` (2026-09-20, mọi lane ảnh AI dùng chung)
-Mọi lane ảnh AI: B8 `assemble.py` hiện dựng 100 % crossfade 0,6 s + Ken Burns 1,12 (đo thật ep08).
+⛔ **ẢNH ĐỨNG YÊN HOÀN TOÀN — TUYỆT ĐỐI KHÔNG zoom/pan/rung dưới bất kỳ hình thức nào (chốt
+2026-09-21, nâng lên mức tuyệt đối, áp dụng MỌI LANE, không còn ngoại lệ Lane E cũ):** Ken Burns
+(dù mạnh hay nhẹ) gây cảm giác giật/rung nhức mắt khi xem nhiều ảnh liên tiếp — **CẤM DÙNG, ở BẤT
+KỲ mức zoom nào >1.0**, kể cả khi bàn giao cho agent bước 3 dựng video. Chỉ được phép dùng **hiệu
+ứng CHUYỂN CẢNH** giữa 2 ảnh (crossfade/xfade, zoom-từ-đen, mờ-vào, đẩy ngang, cắt thẳng — xem skill
+`video-chuyen-canh` bên dưới); các option Ken Burns tồn tại trong công cụ (assemble.py `--zoom`,
+`ghep_anh_co_chuyen_canh.py --zoom-mode/--pulse-*`) phải luôn để giá trị TẮT (`--zoom 1.0`), không
+lane nào được bật lại, kể cả Lane E (`docs/SOP_LANE_E.md` cần đọc lại theo mốc mới này). Lane
+mới/agent bước 3 nhận việc dựng video phải đọc đúng dòng này trước khi chọn tham số `--zoom`.
+- `pipeline/assemble.py` đã đổi default **`--zoom 1.0`** (2026-09-21): ảnh tĩnh tuyệt đối, bỏ hẳn
+  filter `zoompan` khi zoom≤1.0 (không chỉ đặt hệ số 0) — code thật ở `render_clip()`.
+
 Muốn video có nhịp như kênh mẫu → gọi skill `C:\Users\admin\.claude\skills\video-chuyen-canh\SKILL.md`:
 - "đo công thức chuyển cảnh của <video>" → `scripts/do_chuyen_canh.py`, ghi mục mới vào
   `references/cong-thuc-da-do.md` (§1 = kênh POV Hàn đã đo, §2 = chính ep08 của lane D).
 - "dựng tập X có chuyển cảnh theo công thức <tên>" → sinh `timeline.csv` từ `anchor_durations`/
-  `sync_durations` của `pipeline/assemble.py`, chạy `scripts/ghep_anh_co_chuyen_canh.py --fit blur
-  --fit-audio` + tham số trong references, xuất `final_fx.mp4` CẠNH final.mp4 (không ghi đè), rồi đo
-  lại nghiệm thu: số khung = timeline, số khung đen = số zoom-từ-đen trong kế hoạch.
+  `sync_durations` của `pipeline/assemble.py`, chạy `scripts/ghep_anh_co_chuyen_canh.py --zoom 1.0
+  --fit blur --fit-audio` + tham số trong references (LUÔN giữ `--zoom 1.0`, bỏ mọi `--zoom-mode`/
+  `--pulse-*` khác mặc định), xuất `final_fx.mp4` CẠNH final.mp4 (không ghi đè), rồi đo lại nghiệm
+  thu: số khung = timeline, số khung đen = số zoom-từ-đen trong kế hoạch.
 - Clip Veo/Grok đã dựng sẵn → `scripts/them_chuyen_canh_vao_clip.py` (giữ nguyên tổng khung).
-- Lane E (khán giả già): dùng `--zoom-mode alt --zoom 1.04` hoặc `pulse --pulse-step 1.03`, KHÔNG 1,12.
 Chưa nối vào make_video.py — muốn nối thì thêm `transition: "mix"` vào khối `assemble` của profile
 và rẽ nhánh ở `b8_assemble`, giữ nguyên nhánh xfade cũ.
 ⚠️ Nhắc rào "Claude chỉ làm Bước 1": việc dựng `final_fx.mp4` là bước 3 — Claude Code chỉ đo công thức,
@@ -380,6 +394,11 @@ sinh `timeline.csv` và viết spec; chạy ghép là việc của agent bước
 ## ⛔ CẤM TUYỆT ĐỐI
 - **Claude Code (mọi tab/lane) CHỈ LÀM BƯỚC 1 — ĐẦU NÃO: viết kịch bản, lên phương án, phân loại/
   chọn asset, viết spec thuật toán, kiểm tra/nghiệm thu (anh chốt 2026-09-16).**
+  **⭐ NGOẠI LỆ DUY NHẤT ĐÃ CHO PHÉP: lane `toshi-densetsu-jp` (Lane A) — anh chốt 2026-09-21, tab
+  Lane A được tự tải kho stock, tự vẽ ảnh gpti2 (bước 2) VÀ tự chạy render/ghép `final.mp4` (bước 3)
+  cho CHÍNH lane này. Chi tiết + lý do xem `docs/SOP_TOSHI_DENSETSU_JP.md` §Ngoại lệ tự render.
+  KHÔNG áp dụng cho bất kỳ lane nào khác — lane khác vẫn theo đúng luật CẤM dưới đây, không suy diễn
+  "Lane A làm được thì lane mình cũng làm được".**
   ⭐ **NGƯỢC LẠI, chính vì bước 2/3 chỉ là công cụ cơ học (không hiểu nội dung), MỌI thứ cần NỘI DUNG
   hay tiêu chuẩn thẩm mỹ (kịch bản, tiêu đề, mô tả, hashtag, mốc chương, prompt ảnh...) BẮT BUỘC bước
   1 viết xong và để lại thành file, KHÔNG được để trống rồi trông chờ bước 2/3 tự sinh** (chốt

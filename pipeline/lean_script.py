@@ -581,7 +581,10 @@ def run(job, force=False):
     sf = d / "script.txt"
     co_lock = (d / gate_common.LOCK_NAME).exists()
     se_viet_moi = force or not (sf.exists() and ((job.state.get("B3") or {}).get("flow") == "lean" or co_lock))
-    if se_viet_moi and force and (d / hook_stage.HOOK_DIR / "hook_lock.json").exists():
+    # 2026-09-23 (vá review dọn hook, V2): (a) dùng hook_stage.doc_lock(d) thay vì kiểm cứng đường
+    # dẫn "hook/hook_lock.json" — đổi tên file lock thì cảnh báo này không được lặng lẽ biến mất;
+    # (b) bỏ vế `se_viet_moi and` thừa: se_viet_moi = force or (...) nên `force` đã hàm ý se_viet_moi.
+    if force and hook_stage.doc_lock(d):
         print("[H1-H4] ⚠️ --force: bỏ qua hook đã khoá, viết hook MỚI (tốn lượt LLM + gọi lại H1–H3)")
     if se_viet_moi:
         hook = hook_stage.ensure_locked(d, prof, ctx=ctx, title=_title(d), mode="upstream", force=force)

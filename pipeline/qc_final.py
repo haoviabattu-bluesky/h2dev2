@@ -291,8 +291,15 @@ def kiem_hook(S: Path, prof, ra):
         if not hook_stage.bat_dau_bang_hook(sc, hook):
             _loi(ra, "hook", "cao", "script.txt không bắt đầu bằng hook đã khoá", "S3 phải bắt lỗi này — kiểm lại lean_script")
     t = hook_stage._title(S)
-    if t and (m.get("promise") or {}).get("title") not in ("", t):
-        _loi(ra, "hook", "cao", f"title.txt ≠ title lúc khoá hook ({(m.get('promise') or {}).get('title')!r})", "HOOK_STALE — khoá lại")
+    locked_title = (m.get("promise") or {}).get("title")
+    # 2026-09-23 (vá review dọn hook, V5): `if t and ...` bỏ qua HOÀN TOÀN trường hợp title.txt bị
+    # XOÁ sau khi khoá (t rỗng) — lúc khoá CÓ title mà giờ đọc không ra thì phải báo lỗi riêng, không
+    # được để phép kiểm biến mất im lặng.
+    if locked_title and not t:
+        _loi(ra, "hook", "cao", "title.txt đã mất sau khi khoá hook (lúc khoá có title, giờ đọc rỗng)",
+             "khôi phục title.txt rồi khoá lại (HOOK_STALE)")
+    elif t and locked_title not in ("", t):
+        _loi(ra, "hook", "cao", f"title.txt ≠ title lúc khoá hook ({locked_title!r})", "HOOK_STALE — khoá lại")
 
 
 def kiem(slug_dir, profile_id):

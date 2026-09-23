@@ -41,6 +41,11 @@ def _writer_chat(prof, prompt, **kwargs):
                 if k in ("system", "model", "timeout", "min_chars", "require_sentence_end", "max_chars")}
         keep.setdefault("model", claude_p_bridge.brain_model_of(prof))
         return claude_p_bridge.ask(prompt, **keep)
+    # 2026-09-23 (vá review dọn hook, V4): llm_client.chat() KHÔNG có tham số `max_chars` (chỉ
+    # claude_p_bridge.ask mới nhận) — lane/profile KHÔNG khai script.engine="claude_p" mà vẫn gọi
+    # _writer_chat kèm max_chars (hook_stage.viet_candidates, hook_storyboard.sinh) sẽ TypeError
+    # ngay khi rơi vào nhánh này. Lọc bỏ kwargs mà chat() không nhận trước khi gọi.
+    kwargs.pop("max_chars", None)
     return chat(prompt, **kwargs)
 ROOT = OUT_ROOT
 LANG_NAME = {"ja": "Japanese (日本語)", "ko": "Korean (한국어)", "en": "English"}

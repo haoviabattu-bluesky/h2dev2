@@ -101,3 +101,47 @@ def test_qc_hoso_kiem_hook(tmp_path):
     kq = []
     H.kiem_hook_ho_so(kq, "HOOK 30 GIÂY ĐẦU:\n1978年10月21日、セスナが消えた。\n\nKHUNG N CHƯƠNG:", prof)
     assert kq == []
+
+
+# ---------------------------------------------------------------------------
+# Vá review dọn hook (6 điểm Minor, 2026-09-23).
+# ---------------------------------------------------------------------------
+
+def test_writer_chat_khong_claude_p_loc_max_chars(monkeypatch):
+    """V4: profile KHÔNG khai script.engine="claude_p" mà vẫn gọi _writer_chat kèm max_chars
+    (đúng như hook_stage.viet_candidates/hook_storyboard.sinh đang làm) không được TypeError —
+    llm_client.chat() không có tham số này, _writer_chat phải tự lọc bỏ trước khi gọi."""
+    captured = {}
+
+    def fake_chat(prompt, **kwargs):
+        captured.update(kwargs)
+        return type("R", (), {"text": "ok"})()
+    monkeypatch.setattr(ai_steps, "chat", fake_chat)
+    prof = {"id": "x", "script": {}}  # không khai engine → rơi vào nhánh chat() thường
+    r = ai_steps._writer_chat(prof, "prompt", task="short", max_chars=500, min_chars=10)
+    assert r.text == "ok"
+    assert "max_chars" not in captured
+    assert captured.get("min_chars") == 10
+
+
+def test_qc_final_kiem_hook_lock_hong_khong_nem(tmp_path):
+    """V1: hook_lock.json hỏng → qc_final.kiem_hook không ném, báo lỗi 'thiếu hook' như chưa khoá."""
+    import qc_final as F
+    (tmp_path / "hook").mkdir()
+    (tmp_path / "hook" / "hook_lock.json").write_text("{broken", encoding="utf-8")
+    ra = []
+    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    assert any("hook_lock" in x["msg"] for x in ra)
+
+
+def test_qc_final_kiem_hook_title_mat_sau_khoa(tmp_path):
+    """V5: lúc khoá CÓ title.txt, sau đó title.txt bị xoá (t rỗng) → phải ra lỗi 'title.txt đã
+    mất', không được để phép kiểm title-drift biến mất im lặng."""
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。")
+    (tmp_path / "title.txt").unlink()
+    ra = []
+    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    assert any("title.txt đã mất" in x["msg"] for x in ra)

@@ -742,7 +742,9 @@ def test_ensure_locked_patch_hook_nem_khong_lam_sap(monkeypatch, tmp_path):
     hook = HS.ensure_locked(d, PROF, ctx="", title="T")  # không được ném ra ngoài
     assert hook == good.strip()
     qc = json.loads((d / "hook/hook_qc.json").read_text(encoding="utf-8"))
-    assert qc["state"] == "PASS_LEAN"
+    # V3 (vá review dọn hook, 2026-09-23): patch_hook ném → PASS_PATCH_ERROR, KHÔNG còn PASS_LEAN
+    # (PASS_LEAN giờ chỉ dành riêng cho nhánh FIX×3 coi-như-PASS theo luật lean).
+    assert qc["state"] == "PASS_PATCH_ERROR"
     assert any("lỗi" in l and "RuntimeError" in l for l in qc["log"])
 
 
@@ -794,3 +796,31 @@ def test_cli_thu_muc_tap_khong_ton_tai(tmp_path, monkeypatch):
         HS.main(["--profile", "x", "--slug", "ep_khong_co"])
     msg = str(e.value)
     assert str(tmp_path / "assets/_t/ep_khong_co") in msg
+
+
+# ---------------------------------------------------------------------------
+# Vá review dọn hook (6 điểm Minor, 2026-09-23) — V1 doc_lock hỏng không nổ,
+# V6 cache short-circuit không đụng ffmpeg shim.
+# ---------------------------------------------------------------------------
+
+def test_doc_lock_hong_tra_none_khong_nem(tmp_path):
+    """V1: hook_lock.json ghi dở/hỏng → doc_lock coi như CHƯA KHOÁ (None), không ném
+    JSONDecodeError; kiem_stale vẫn hành xử y hệt trường hợp 'chưa có lock'."""
+    hd = tmp_path / "hook"; hd.mkdir()
+    (hd / "hook_lock.json").write_text("{broken", encoding="utf-8")
+    assert HS.doc_lock(tmp_path) is None
+    assert HS.kiem_stale(tmp_path) == (False, ["chưa có hook lock"])
+
+
+def test_phan_tich_nguon_cache_khong_goi_ffmpeg_shim(monkeypatch, tmp_path):
+    """V6: nhánh dùng lại hook/source.json (cache, force=False) KHÔNG được gọi _ffmpeg_tren_path
+    (đọc cache không cần đụng yt_dlp/PATH)."""
+    hd = tmp_path / "hook"; hd.mkdir()
+    cached = {"video_id": "vidX", "hook_kind": "B"}
+    (hd / "source.json").write_text(json.dumps(cached), encoding="utf-8")
+
+    def _boom():
+        raise AssertionError("cache short-circuit KHÔNG được gọi _ffmpeg_tren_path")
+    monkeypatch.setattr(HS, "_ffmpeg_tren_path", _boom)
+    src = HS.phan_tich_nguon(tmp_path, PROF)
+    assert src == cached

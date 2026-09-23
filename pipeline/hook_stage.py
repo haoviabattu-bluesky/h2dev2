@@ -147,7 +147,16 @@ def khoa(d, text, mode="upstream", extra=None):
 
 def doc_lock(d):
     p = Path(d) / HOOK_DIR / "hook_lock.json"
-    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception as e:
+        # 2026-09-23 (vá review dọn hook, V1): hook_lock.json ghi dở/hỏng (tiến trình bị ngắt giữa
+        # chừng) không được ném thẳng JSONDecodeError vào qc_final.kiem_hook (cổng B10) hay
+        # Job.kiem_lock — coi như CHƯA KHOÁ (None), cùng kiểu vá đã làm cho nguon_cua_tap.
+        print(f"  ! hook_lock.json hỏng, coi như chưa khoá hook: {type(e).__name__} {str(e)[:100]}")
+        return None
 
 
 def doc_hook(d):
@@ -399,14 +408,20 @@ def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
 
 def phan_tich_nguon(d, prof, proxy=None, force=False):
     import fetch_script, llm_client, qc_visual
-    # V2 (vá lần 4, 2026-09-23): gọi LƯỜI ở đây — TRƯỚC fetch_script.lay_meta_video() bên dưới —
-    # thay vì lúc import module (xem FFMPEG_SHIM/docstring _ffmpeg_tren_path). Idempotent, và từ vá
-    # lần 4 hàm này tự xoá memo yt_dlp nếu module đã lỡ được nạp trước đó trong cùng tiến trình.
-    _ffmpeg_tren_path()
     d = Path(d); hd = d / HOOK_DIR; hd.mkdir(parents=True, exist_ok=True)
     out_p = hd / "source.json"
     if out_p.exists() and not force:
+        # V6 (vá review dọn hook, 2026-09-23): lời gọi chỉ-đọc-cache KHÔNG được đụng tới
+        # yt_dlp/PATH — trước đây _ffmpeg_tren_path() (tạo shim, ghi đĩa, sửa PATH tiến trình)
+        # chạy TRƯỚC cả nhánh cache này nên vẫn "đụng" dù chẳng cần tải gì cả.
         return json.loads(out_p.read_text(encoding="utf-8"))
+    # V2 (vá lần 4, 2026-09-23): gọi LƯỜI ở đây — TRƯỚC fetch_script.lay_meta_video() bên dưới —
+    # thay vì lúc import module (xem FFMPEG_SHIM/docstring _ffmpeg_tren_path). Idempotent, và từ vá
+    # lần 4 hàm này tự xoá memo yt_dlp nếu module đã lỡ được nạp trước đó trong cùng tiến trình.
+    # V6 (vá review dọn hook, 2026-09-23): CHUYỂN XUỐNG SAU nhánh cache ở trên — vẫn giữ TRƯỚC lần
+    # gọi fetch_script.lay_meta_video() đầu tiên bên dưới (đây là lý do tồn tại của hàm), chỉ đổi
+    # thứ tự so với nhánh short-circuit cache.
+    _ffmpeg_tren_path()
     src = {"video_id": None, "url": None, "title": "", "description": "", "thumb_path": None, "transcript_0_30s": "",
            "hook_4_nhip": {}, "hook_kind": "none", "score_0_12": 0, "video_hook_verdict": "khong_soi_duoc",
            "promise_match": {"verdict": "NA", "ly_do": "không có video nguồn"}}
@@ -611,8 +626,12 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
             # `chosen`, một ứng viên ĐÃ qua check() (hoặc bản trước đã hợp lệ). Ném ở đây trước sẽ
             # làm ensure_locked chết TRƯỚC khi ghi hook_qc.json/khoá → mất cả hook đang có lẫn dấu
             # vết. Giữ nguyên `chosen`, ghi log, chốt luôn (không lặp thêm vì model sửa vừa thất bại).
+            # V3 (vá review dọn hook, 2026-09-23): trước đây cũng gán "PASS_LEAN" như nhánh FIX×3 ở
+            # trên — 2 nghĩa khác hẳn nhau (luật lean cho qua vs model sửa ném lỗi) bị gộp chung 1
+            # state, người đọc hook_qc.json không phân biệt được tập khoẻ mạnh với tập có sự cố.
+            # Đổi riêng cho nhánh NÀY (patch ném) thành PASS_PATCH_ERROR; nhánh FIX×3 giữ PASS_LEAN.
             qc["log"].append(f"patch{vong} lỗi ({type(e).__name__}: {e}) → giữ bản trước")
-            text = chosen; qc["state"] = "PASS_LEAN"; break
+            text = chosen; qc["state"] = "PASS_PATCH_ERROR"; break
         qc["patches"] += 1
         if check(new, prof, ctx):
             qc["log"].append(f"patch{vong} trượt tất định, giữ bản trước")

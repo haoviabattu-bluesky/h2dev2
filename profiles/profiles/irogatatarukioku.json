@@ -99,6 +99,15 @@
         }
       ],
       "_sections_note": "UOC LUONG cau truc tieu su 3 phan pho quat (do paragraph dau/cuoi cua 11 tap da san xuat chi ra intro/outro rieng le ~6-15%/3-11%, nhung do la 1 DOAN khong phai 1 KHOI mo dau/ket - khong du de suy ra ranh gioi khoi nhu A). Chi dung lam PROMPT GUIDE (ngan_sach khong gate tung section) - hieu chinh lai tol/ratio sau khi co 2-3 tap lean that, so bench.jsonl final_char_deviation."
+    },
+    "hook": {
+      "enabled": false,
+      "patterns": [
+        "H27",
+        "H28",
+        "H29"
+      ],
+      "closer": "K16"
     }
   },
   "image": {

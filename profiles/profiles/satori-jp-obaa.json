@@ -52,7 +52,11 @@
     "_patch_model_note": "S4 LUON Opus 5, Fable chi viet o S2 - quy tac chung moi lane claude_p (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md sec 0a). Fable het quota luc khai field nay - neu dinh 'Fable limit' luc chay that thi doi brain_model tam sang claude-opus-5 nhu cac lane kia, patch_model giu nguyen.",
     "hook": {
       "enabled": true,
-      "patterns": ["H22", "H23"],
+      "patterns": [
+        "H22",
+        "H23",
+        "H38"
+      ],
       "closer": "K12"
     },
     "_hook_note": "2026-09-23, KENH THU DAU TIEN bat tinh nang hook (cac lane khac van enabled=false mac dinh). Can cu: E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\docs\\HOOK_SIMBOT2_vs_SATORI_JP.html doc 15 video kenh mau @simbot2 (chinh la `competitor` cua lane nay) - 15/15 video mo bang cau thoai nghich ly/tu thu (dung kieu H22/H23 trong E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\patterns.json) va 15/15 dung khung khoa K12 (cong thuc simbot2: tu gioi thieu 1 cau -> hua N dieu -> giau dieu cuoi -> hoi thang khan gia). Ban tieng Nhat cua minh da lam mat khung do: 9/15 tap day cau thoai ra sau giay 18-40 (mat hook), 8/15 tap khong co loi hua 'N dieu' trong 90 giay dau. patterns=[H22,H23] + closer=K12 nam trong PROMPT_VIET (hook_stage.doc_kho_hook) de ep model bam dung cong thuc kenh mau thay vi ta canh/thoi tiet mo dau.",

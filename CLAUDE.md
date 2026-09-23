@@ -316,6 +316,7 @@ lệnh chạy, 3 trạng thái, kênh `viec_tay.txt`). Thiết kế + số đo: 
 chi tiết + bảng vai ở file trên §0a.
 **HOOK 20–30s bắt buộc mọi tập (2026-09-23):** khoá TRƯỚC S2 bằng `pipeline/hook_stage.py`, đọc
 `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b; phương án gốc `docs/PHUONG_AN_HOOK_VIDEO.md`.
+**Dựng CLIP hook (ảnh → clip Grok 6s → ghép vào đầu video cũ): `docs/QUY_TAC_VIDEO_HOOK.md`** — 7 bước, 4 thứ phải khớp (mức tiếng/fps/kiểu phụ đề/điểm nối), bảng kiểu hook từng lane. Nguyên tắc nội dung (10 nguyên tắc + khung 9 kênh mẫu): `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
 
 ## 🎞️ CHUYỂN CẢNH — skill toàn cục `video-chuyen-canh` (2026-09-20, mọi lane ảnh AI dùng chung)
 ⛔ **ẢNH ĐỨNG YÊN HOÀN TOÀN — TUYỆT ĐỐI KHÔNG zoom/pan/rung dưới bất kỳ hình thức nào (chốt

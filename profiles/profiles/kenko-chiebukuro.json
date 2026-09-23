@@ -80,6 +80,17 @@
       "list_order": "countdown",
       "_gate_note": "comma_per_sentence + chars_per_breath ĐO TỪ 3 TRANSCRIPT THẬT (kN6wHIqYA0Q/JCyxahsO0ew/aWXuORPaoH0, data/ikiki_transcripts_final.json) nhưng transcript là dạng ASR gần như KHÔNG có dấu phẩy thật (đo thô ra 0.15-0.30 phẩy/câu — không tin được) — 2 số này đã HIỆU CHỈNH theo văn phong 'câu dài trang trọng' mô tả trong writing_style của channel_analysis_ikiki.json, tham chiếu chéo với toshi-densetsu-jp (nhịp tài liệu gần nhất đã có). title_len [35,55] và hook_chars [550,750] là ĐO THẬT đáng tin (không phụ thuộc dấu câu): title đo trên 5 tiêu đề HIT (37-51 ký tự), hook đo trên 120 giây đầu của 3 video thật (596-650 chữ). CẦN ĐO LẠI comma/breath khi có kịch bản đầu tiên qua B3Q để xác nhận.",
       "_hook_marker_note": "2 kiểu đếm đã thấy trong 4 tập đã xong: 第五位/第四位…第一位 (ep01/ep02) và 五つ目/四つ目…一つ目 (ep04) — cùng là countdown 5→1, khác chữ đếm. Cả 2 marker đều liệt kê để máy đo không bỏ sót."
+    },
+    "hook": {
+      "enabled": false,
+      "patterns": [
+        "H30",
+        "H31",
+        "H32",
+        "H33",
+        "H34"
+      ],
+      "closer": "K18"
     }
   },
   "script_qc": {

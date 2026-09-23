@@ -115,7 +115,15 @@
       "万円",
       "円"
     ],
-    "_fact_exempt_note": "Lean S3: miễn đối chiếu số có đơn vị tiền (退職金/貯金/通帳 hư cấu). % / 歩 / 年間 vẫn đối chiếu tư liệu. Nhất quán tiền do _tong_tien + Sol + B3R."
+    "_fact_exempt_note": "Lean S3: miễn đối chiếu số có đơn vị tiền (退職金/貯金/通帳 hư cấu). % / 歩 / 年間 vẫn đối chiếu tư liệu. Nhất quán tiền do _tong_tien + Sol + B3R.",
+    "hook": {
+      "enabled": false,
+      "patterns": [
+        "H23",
+        "H35"
+      ],
+      "closer": "K19"
+    }
   },
   "image": {
     "skill": "skills/youtube-image-prompts/SKILL.md",

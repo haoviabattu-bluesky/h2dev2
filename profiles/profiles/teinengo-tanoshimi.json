@@ -91,6 +91,14 @@
       ],
       "_cta_mid_note": "Luật lane (handoff §3.6): 1 câu mời コメント ở 35–70% bài (ngoài outro). S3 coi thiếu = VIỆC patch; Sol được báo luật này trong extra_note. Lane không có luật → không khai.",
       "_gate_note": "ĐO 2026-09-20 trên 8 transcript thật kênh mẫu (docs/channel_dna/rougo-money-story/_raw/transcripts.json, 40k–176k view) + 3 bản có timestamp (laneG_from_research/data/transcripts_okane.json). ĐO THẬT đáng tin: title_len 33–45 ký tự trên 7 HIT (video MISS 986v dài 52) → [33,50]; hook_chars = số chữ TRƯỚC marker mục 1 (1つ目/第5位) = 1365–2092 ở 6/8 video (1 outlier 4105, 2 video không có marker) → [1200,2300], tức Hồi 1+2 chiếm 19–29% kịch bản; hook_anchor: video TOP 176k chỉ 7,6 neo/1000 (manga story không dày số liệu) → ngưỡng 6,0, KHÔNG dùng 18 của toshi; chữ/câu 17–22 (ASR có 。 đáng tin). HIỆU CHỈNH (ASR gần như không có 、: đo thô 0,04–0,18 phẩy/câu, không tin được): comma_per_sentence [0.5,2.5] + chars_per_breath [7,18] suy từ câu ngắn 17–22 chữ có 0–2 phẩy; dialogue_ratio_max 0.40 ước từ 20–36% câu mang đuôi hội thoại ở 3 transcript (ASR không có 「」 nên không đo thẳng). list_item_count 5 (4/7 HIT là 5選, 3/7 là 7選 — đổi 7 theo tập nếu cần); list_order auto: kênh mẫu dùng 1つ目 cho THÓI QUEN (7選 老けない/疲労回復/生き方) và 第5位→第1位 cho XẾP HẠNG địa điểm (神社/温泉地/暇つぶし). CẦN ĐO LẠI comma/breath/dialogue bằng B3Q sau kịch bản đầu tiên."
+    },
+    "hook": {
+      "enabled": false,
+      "patterns": [
+        "H30",
+        "H34"
+      ],
+      "closer": "K03"
     }
   },
   "image": {

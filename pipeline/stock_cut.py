@@ -659,11 +659,23 @@ def gan_bang_chung(ke_hoach, evid, stock_dir: Path, chinh_sach="pd"):
         if not chon:
             print(f"  ! không có cảnh nào ở mốc {e['at']} → bỏ qua")
             continue
+        # VÁ 2026-09-23 — GHI SAI NGUỒN, nặng hơn thiếu nguồn.
+        # Bản cũ chỉ ghi đè `license`/`credit` và KHÔNG ghi đè `title`, lại còn lấy giá trị của
+        # CHÍNH CẢNH BỊ THAY THẾ làm mặc định. Hậu quả đo thật ở ep05-bermuda-triangle:
+        # ev01_tbm_avenger_1945.jpg (ảnh máy bay TBM Avenger 1945, Public domain, nguồn Wikimedia)
+        # đi vào credits.txt với title+credit của clip Pexels nó thay — "the sun setting over the
+        # ocean with a ship in the distance — Manav .". Nguồn chân lý là MANIFEST của chính file
+        # bằng chứng (`rec` dưới đây), không phải cảnh cũ; `e` (evidence.json) chỉ được quyền ghi
+        # đè tường minh. Manifest ảnh bằng chứng không có field `title` → lùi về `caption` rồi tên
+        # file, không bao giờ mượn của cảnh khác.
+        rec = man.get(p.name) or {}
+        ttl = e.get("title") or rec.get("title") or rec.get("caption") or e.get("caption") or p.name
+        cre = e.get("credit") or rec.get("credit") or ""
         for c in chon:
             c.update({"kieu": "still" if p.suffix.lower() in STILL_EXT else "video",
                       "file": p.name, "vao": 0.0, "bangchung": True,
-                      "caption": e.get("caption", ""), "license": e.get("license", c["license"]),
-                      "credit": e.get("credit", c["credit"])})
+                      "caption": e.get("caption", ""), "license": e.get("license") or lic,
+                      "credit": cre, "title": ttl})
         print(f"  ⭐ bằng chứng {e['at']} ({sec:.0f}s): {p.name} — {len(chon)} cảnh")
     return ke_hoach
 

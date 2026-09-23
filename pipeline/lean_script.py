@@ -25,6 +25,7 @@ from pathlib import Path
 import ai_steps
 import claude_p_bridge
 import gate_common
+import hook_stage  # H1-H4 hook thuong nguon (anh chot 2026-09-23)
 import profiles
 import qc_facts
 import qc_numbers
@@ -108,18 +109,19 @@ def budget_block(ns):
             f"Viết ĐỦ MẠCH, giàu chi tiết đời thường và cảm xúc trong đúng ngân sách đó.")
 
 
-def viet(prof, competitor: str, ctx: str, minutes: float, ns, log: list):
-    """S2a khung (giấu bản gốc) + S2b viết đúng ngân sách. Trả text đã normalize."""
+def viet(prof, competitor: str, ctx: str, minutes: float, ns, log: list, hook: str = ""):
+    """S2a khung (giấu bản gốc) + S2b viết đúng ngân sách. Trả text đã normalize.
+    hook: đoạn mở đầu 20-30s đã khoá ở H1-H4 (hook_stage.py) — S2 viết THÂN nối tiếp từ đây, không viết lại mở đầu."""
     skill = ai_steps._skill_text(prof, "script")
     source = competitor
     if not (prof.get("script", {}) or {}).get("use_raw_source"):
-        source = ai_steps.extract_beats(prof, competitor)
+        source = ai_steps.extract_beats(prof, competitor, hook_locked=hook)
         log.append(f"S2a khung {len(source)} ký tự")
     sdp = so_duoc_phep(ctx)
     ctx_prompt = ctx
     if sdp:
         ctx_prompt = (f"⚠️ CHỈ những con số sau được xuất hiện trong kịch bản (số khác → diễn đạt định tính): {sdp}\n\n" + ctx)
-    prompt = ai_steps._pass1_prompt(prof, source, minutes, ctx_prompt, budget_block=budget_block(ns))
+    prompt = ai_steps._pass1_prompt(prof, source, minutes, ctx_prompt, budget_block=budget_block(ns), hook_locked=hook)
     r = ai_steps._writer_chat(prof, prompt, system=skill, task="script",
                               min_chars=int(ns["target"] * 0.6), max_chars=int(ns["target"] * 1.45),
                               require_sentence_end=True)
@@ -361,11 +363,16 @@ def _go_cau_trung(text, min_len=12):
     return "\n".join(out_paras), n_xoa
 
 
-def do_tat_dinh(prof, text, ctx, competitor, minutes):
-    """Trả (text_sau_tu_sua, metrics, viec_fact[], viec_len[], warn[]). Tự sửa tất định: 、cắt cụm, outro."""
+def do_tat_dinh(prof, text, ctx, competitor, minutes, hook=""):
+    """Trả (text_sau_tu_sua, metrics, viec_fact[], viec_len[], warn[]). Tự sửa tất định: 、cắt cụm, outro.
+    hook: đoạn mở đầu đã khoá (H1-H4) — rỗng thì hành xử y hệt luồng cũ (tập chưa có hook / lane chưa bật hook)."""
     g = profiles.gate(prof)
     sc = prof.get("script", {}) or {}
     tu_sua = []
+    # 2026-09-23: giữ bản GỐC (trước mọi tự-sửa) riêng cho 2 phép kiểm hook bên dưới — _go_cau_trung (dedup câu
+    # trùng) chạy TRƯỚC và xoá y hệt đoạn "kể lại hook" (>=12 chữ trùng nguyên văn) nếu Fable chép lại hook,
+    # làm ke_lai_hook() đo trên `text` cuối luôn ra ~0 dù Fable THẬT SỰ đã kể lại — đo trên bản gốc mới đúng ý đồ.
+    text_goc = text
     text = ai_steps._go_cat_neu_ja(prof, text)
     text, doi = _outro_fix(text, sc.get("outro_line") or "")
     if doi:
@@ -445,6 +452,15 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes):
         elif x["kind"] in ("sot_ngon_ngu_nguon",):
             viec_len.append(x["msg"][:120])
     warn += _bam_goc(text, competitor)
+    if hook:
+        if not hook_stage.bat_dau_bang_hook(text_goc, hook):
+            viec_len.append("HOOK: script không bắt đầu bằng đoạn mở đầu đã khoá — chép lại NGUYÊN VĂN hook làm đoạn đầu, "
+                            "xoá mọi đoạn đứng trước nó")
+        kl = hook_stage.ke_lai_hook(text_goc, hook)
+        if kl > 0.5:
+            warn.append(f"thân kể lại hook ({kl:.0%} bigram hook xuất hiện lại ngay sau hook) — nối tiếp, đừng nhắc lại")
+    if not hook:
+        warn.append("chưa có hook đã khoá (tập cũ?) — cổng mở đầu do hook_stage đảm nhận, chạy `hook_stage.py --mode repair`")
     m["tu_sua"] = tu_sua
     return text, m, viec_fact, viec_len, warn
 
@@ -452,7 +468,8 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes):
 # ============================================================ S4 — patch có ràng buộc (model = script.patch_model, mặc định = brain_model)
 PRESERVE = ("PHẢI GIỮ NGUYÊN: mọi con số/địa điểm/thông tin thực tế · trình tự thời gian · quan hệ nhân–quả · các bước "
             "ngoặt cảm xúc · mục cuối (cú lật) và kết/payoff · các câu thoại ngắn đối đáp · câu CTA mời bình luận · câu "
-            "outro nguyên văn ở cuối · marker mục (1つ目…/第N位) nếu bài có. KHÔNG thêm tình tiết, dữ kiện, lời khuyên, cảnh báo mới.")
+            "outro nguyên văn ở cuối · marker mục (1つ目…/第N位) nếu bài có · ĐOẠN MỞ ĐẦU ĐÃ KHOÁ (hook, đoạn đầu tiên) — "
+            "giữ nguyên từng chữ, không thêm gì phía trước. KHÔNG thêm tình tiết, dữ kiện, lời khuyên, cảnh báo mới.")
 
 
 def _tyle_doan_doi(a, b):
@@ -502,7 +519,7 @@ def patch(prof, text, viec, kieu, ns, log, n_patch):
 
 
 # ============================================================ S5 — Sol (lời cuối)
-def sol_qc(prof, text, title, out, ns, m):
+def sol_qc(prof, text, title, out, ns, m, hook=""):
     muc_txt = f"đủ {ns['n']} mục" if ns.get("n") else f"đủ {len(ns.get('sections') or [])} chặng theo ngân sách"
     note = (f"(Máy đã kiểm và ĐẠT: tổng {m['chars']:,} chữ trong {ns['lo']:,}–{ns['hi']:,} · {muc_txt} · nhịp/phẩy/thoại · "
             f"mọi số liệu/địa danh khớp tư liệu · outro/CTA có. Đừng lặp lại các mục đó — tập trung vào tính hợp lý của "
@@ -513,7 +530,8 @@ def sol_qc(prof, text, title, out, ns, m):
     for r in ((prof.get("script_qc") or {}).get("lane_rules") or []):
         note += f"LUẬT LANE: {r} "
     note = note.rstrip() + ")"
-    return qc_script_sol.run(text, title, profile_id=prof["id"], out=str(out), extra_note=note)
+    return qc_script_sol.run(text, title, profile_id=prof["id"], out=str(out), extra_note=note,
+                              hook_block=(qc_script_sol.NOI_TU_HOOK.format(hook=hook) if hook else ""))
 
 
 def _title(d: Path):
@@ -556,23 +574,33 @@ def run(job, force=False):
         print("[S1Q] ⚠️ chưa có title.txt — Sol sẽ không kiểm 'lời hứa tiêu đề có được trả' (ep01: đây là lỗi nặng nhất Sol bắt)")
     print(f"[S1Q] ✓ hồ sơ đủ · ngân sách {ns['target']:,} chữ = mở đầu {ns['mo_dau']:,} + {ns['n']}×{ns['moi_muc']:,} + kết {ns['ket']:,} (±{int(ns['tol']*100)}%)")
 
-    # ---- S2
+    # ---- H1–H4 (hook thượng nguồn, anh chốt 2026-09-23) — chỉ khi S2 sắp VIẾT MỚI; tập đã có script + lock → repair mode riêng
     sf = d / "script.txt"
     co_lock = (d / gate_common.LOCK_NAME).exists()
+    se_viet_moi = force or not (sf.exists() and ((job.state.get("B3") or {}).get("flow") == "lean" or co_lock))
+    if se_viet_moi:
+        hook = hook_stage.ensure_locked(d, prof, ctx=ctx, title=_title(d), mode="upstream", force=force)
+        bench["hook_sol_rounds"] = (hook_stage.doc_lock(d) or {}).get("sol_rounds", 0)
+    else:
+        hook = hook_stage.doc_hook(d)
+        if not hook:
+            print("[H4] ⚠️ tập đã có script.txt mà chưa có hook — dùng `py -3.13 hook_stage.py --profile … --slug … --mode repair`")
+
+    # ---- S2
     if sf.exists() and ((job.state.get("B3") or {}).get("flow") == "lean" or co_lock) and not force:
         # có lock (kể cả ESCALATE): bản đã qua vòng trước và/hoặc người đã sửa tay → chấm lại, KHÔNG viết lại từ đầu
         text = sf.read_text(encoding="utf-8")
         print(f"[S2] dùng script.txt đã có ({ai_steps.measure(text)['chars']:,} chữ) — chạy tiếp S3→Sol (không viết lại)")
     else:
         print(f"[S2] Fable viết đúng ngân sách …")
-        text = viet(prof, competitor, ctx, minutes, ns, log)
+        text = viet(prof, competitor, ctx, minutes, ns, log, hook=hook)
         bench["fable_calls"] += 2 if not (prof.get("script", {}) or {}).get("use_raw_source") else 1
         (d / "script_pass1_raw.txt").write_text(text, encoding="utf-8")
         sf.write_text(text, encoding="utf-8")
     title = _title(d)
 
     def do_va_ghi(text):
-        text, m, vf, vl, warn = do_tat_dinh(prof, text, ctx, competitor, minutes)
+        text, m, vf, vl, warn = do_tat_dinh(prof, text, ctx, competitor, minutes, hook=hook)
         (d / "do.json").write_text(json.dumps({"metrics": {k: v for k, v in m.items() if k != "markers"}, "viec_fact": vf, "viec_len": vl, "warn": warn},
                                               ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"[S3] {m['chars']:,} chữ ≈ {m['minutes']}' · phẩy/câu {m['comma_per_sentence']} · hơi {m['chars_per_breath']} · thoại {m['dialogue_ratio']:.0%}"
@@ -639,7 +667,7 @@ def run(job, force=False):
         k += 1
         out = d / (f"qc_sol_report_{k}.txt")
         print(f"[S5] Sol lần {k} (lens {bench['lens']}) …")
-        v, rep = sol_qc(prof, text, title, out, ns, m)
+        v, rep = sol_qc(prof, text, title, out, ns, m, hook=hook)
         bench["sol_calls"] += 1
         log.append(f"sol{k} {v}")
         streak = streak + 1 if v == "PASS" else 0

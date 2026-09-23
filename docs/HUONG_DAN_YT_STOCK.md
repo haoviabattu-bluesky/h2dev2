@@ -68,6 +68,29 @@ py -3.13 yt_stock.py credits --tap "E:\CLAUDE\YOUTUBE\h2dev\assets\toshi-densets
 3. **Máy chưa cài JS runtime** ⇒ yt-dlp in WARNING "No supported JavaScript runtime". Không phải
    lỗi, nhưng tải hỏng thì đó là nghi phạm đầu tiên.
 
+## 5b. Đã chạy thật lần đầu (hook ep05, 2026-09-23) — 4 điều học được
+
+1. **Kênh `footagefarm` KHÔNG dùng được dù khai CC BY**: bản trên YouTube là reel xem thử, có
+   watermark `FOOTAGE FARM <mã>` **chắn ngang giữa khung** + timecode cháy ở đáy. `--crop-bottom`
+   không cứu được watermark giữa khung. Nhìn contact sheet là loại ngay, đừng tải.
+2. **Kho dùng được đã verify**: `PublicResourceOrg` (United News · STORY OF NAVAL AVIATION — sạch,
+   không watermark), `Archives New Zealand`, `Time Capsule Project`. Vẫn phải soi từng đoạn: nhiều
+   phim có thẻ tiêu đề tiếng Anh ở đầu cuộn, và cảnh chiến sự thường không hợp câu chuyện.
+3. **Độ phân giải bị chặn ở 360p vì máy chưa có JS runtime** (bẫy #3 ở trên, tốn kém hơn tưởng):
+   không giải được `nsig` ⇒ format adaptive 720p+ không hiện ra, `web`/`ios`/`mweb` trả thẳng
+   "No video formats found", `android` còn đúng 1 format 360p. Client **`tv_embedded` lên được
+   480p** → dùng `--clients tv_embedded,android`. Muốn nét hơn thì phải cài Deno.
+4. **Soi bằng mắt = contact sheet, không mở từng video**: tải bản 360p rồi rút 12 khung trải đều
+   thành 1 ảnh lưới — nhìn một lần là biết có watermark / có chữ / đúng đề tài không.
+
+## 5c. Tư liệu của HOOK phải tự khai để được ghi nguồn
+
+Hook 20–30s đầu không nằm trong `scenes.json` của thân video ⇒ `credits.txt` không thấy nó. Script
+dựng hook phải ghi `<tập>\hook\hook_shots.json` = `[{"file": "<tên file trong kho>", "n": <số cảnh>}]`;
+`yt_stock.py credits` tự gộp vào. Thiếu bước này là **thiếu ghi nguồn cho CC BY** ở đúng 30 giây mà
+người xem gặp đầu tiên. Mẫu chạy thật:
+`E:\CLAUDE\YOUTUBE\h2dev\assets\toshi-densetsu-jp\ep05-bermuda-triangle\hook\_dung_hook_v2.py`.
+
 ## 6. Quy trình dùng khi làm tập mới (chen vào B5 của lane kể tài liệu)
 
 1. Soạn `stock_queries.txt` như cũ → chạy `stockfetch.py` (NASA/Wikimedia/Pexels) như cũ.

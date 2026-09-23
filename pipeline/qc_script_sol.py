@@ -74,7 +74,7 @@ của bạn cho ĐÚNG chủ đề đang đọc, đừng chỉ so khớp với d
      ghép như て+しまう/ていく/てくる/てきている, hoặc cắt giữa định ngữ và danh từ nó bổ nghĩa) làm câu
      mất tự nhiên khi đọc thành tiếng không? Liệt kê CHÍNH XÁC từng câu bị lỗi kiểu này nếu có.
 
-{domain_focus}
+{domain_focus}{hook_block}
 
 QUY TẮC ĐÁNH GIÁ:
 PASS = dùng được ngay, không có lỗi đáng kể ở cả 6 lăng kính trên.
@@ -162,7 +162,7 @@ TIÊU ĐỀ VIDEO: {title}
    - Dấu 、 chèn sai chỗ cắt cụm động từ ghép (て+しまう/ていく/てくる) hoặc cắt giữa định ngữ và danh từ;
      đoạn lặp ý; câu hứa mà không thực hiện. Liệt kê CHÍNH XÁC từng câu nếu có.
 
-{domain_focus}
+{domain_focus}{hook_block}
 
 QUY TẮC ĐÁNH GIÁ — tách SAI khỏi CHƯA HAY:
 PASS = không còn lỗi SAI (mâu thuẫn dữ kiện, số học, dấu vết Hàn, logic gãy); góp ý văn phong không tính.
@@ -213,7 +213,7 @@ Soi mọi khía cạnh khiến người xem thấy "không hợp lý": mạch tr
 mốc thời gian/tuổi/năm đá nhau, con số tiền không cộng lại được hoặc lệch giữa các đoạn, chi tiết đời sống/thủ
 tục Nhật sai thực tế, câu chữ tối nghĩa, lặp ý, câu hứa mà không trả, kết luận không đi ra từ câu chuyện.
 Chỉ liệt kê điểm KHÔNG HỢP LÝ (phải sửa) — góp ý "có thể hay hơn" ghi riêng ở cuối, ngắn gọn, không tính vào verdict.
-Không đòi hỏi thể loại/cấu trúc khác với thứ kịch bản đang là (đây không phải video y khoa hay video danh sách).
+Không đòi hỏi thể loại/cấu trúc khác với thứ kịch bản đang là (đây không phải video y khoa hay video danh sách).{hook_block}
 
 MỨC ĐỘ — gắn cho TỪNG điểm, đây là thứ quyết định verdict (sàn hội tụ, thêm 2026-09-20 sau khi đo 3 lượt 7→6→4 điểm
 mà không lượt nào PASS vì mỗi lần đọc lại tìm ra điểm nhỏ hơn):
@@ -239,6 +239,57 @@ KẾT LUẬN: [1-2 câu]
 
 === KỊCH BẢN ===
 {script}
+"""
+
+# Lens thứ 4 — "hook" (thêm 2026-09-23, dự án HOOK VIDEO 20-30s): hook được viết và KHOÁ
+# TRƯỚC KHI viết thân kịch bản (xem docs/PHUONG_AN_HOOK_VIDEO.md) — nên nó cần MỘT lượt
+# chấm RIÊNG, không đợi tới lúc script xong mới soi. Khác 3 lens trên (REMAKE tồn tại vì
+# viết lại cả kịch bản không phải chuyện nhỏ), hook chỉ ~150 chữ nên KHÔNG CÓ REMAKE — dở
+# tệ tới đâu thì cũng chỉ "sửa tại chỗ" (FIX), không có lý do viết lại từ đầu ở quy mô này.
+# run_hook() chấm 3 ỨNG VIÊN cùng lúc (không phải 1) vì hook là chỗ quyết định giữ/bỏ
+# người xem trong vài giây đầu — so sánh chéo 3 bản ra được ứng viên tốt nhất, chấm rời
+# từng cái một sẽ mất khả năng so sánh này.
+#
+# NOI_TU_HOOK là khối CHÈN ĐƯỢC vào 3 lens cũ (qua tham số hook_block của run(), xem dưới)
+# để khi sol chấm TOÀN VĂN kịch bản (sau khi thân đã viết xong), nó soi thêm: thân bài có
+# kể lại hook không (lặp ý), có RESET câu chuyện ngay sau hook không (tả lại thời tiết/giới
+# thiệu kênh — lỗi thật thường gặp khi model viết thân không nhớ hook đã nói gì), và câu
+# hỏi/lời hứa hook mở ra có được trả đúng chỗ không. Đây là bài toán "hook + thân phải khớp
+# nhau" — không đưa riêng cho lens hook (lens hook chấm khi CHƯA có thân) mà đưa vào 3 lens
+# CŨ (chấm sau khi có thân) qua {hook_block} nhét vào giữa template, KHÔNG tự .format() ở
+# đây vì bản thân NOI_TU_HOOK còn chứa {hook} — Task 9 (lean_script.py) sẽ tự
+# NOI_TU_HOOK.format(hook=hook) trước khi truyền hook_block cho run().
+NOI_TU_HOOK = """
+7. NỐI TỪ HOOK (đoạn mở đầu đã KHOÁ trước khi viết thân — nguyên văn dưới đây):
+{hook}
+   - Thân bài có KỂ LẠI thông tin hook vừa nói không (lặp sự kiện/câu thoại)? Có RESET câu chuyện (tả thời tiết,
+     giới thiệu kênh, mở lại từ đầu) ngay sau hook không?
+   - Câu hỏi/lời hứa hook mở ra có được TRẢ đúng chỗ trong thân không? Có phá promise của hook không?
+   - Lỗi ở mục này = SAI (không phải chưa hay)."""
+
+HOOK_TMPL = """Bạn là biên tập viên chấm HOOK 20–30 GIÂY ĐẦU của video YouTube kể chuyện tiếng Nhật. Có 3 ứng viên;
+hãy chọn 1 và chấm. Đây là LƯỢT DUY NHẤT.
+
+TIÊU ĐỀ (promise): {title}
+CHỮ THUMBNAIL (promise): {thumb_text}
+LỜI HỨA/SỰ THẬT CỦA TẬP (core_event · payoff · reveal · timeline — hook KHÔNG được bịa ngoài đây, KHÔNG spoil reveal):
+{promise_text}
+
+3 ỨNG VIÊN:
+{candidates}
+
+Chấm TỪNG ứng viên theo checklist (mỗi ô PASS/FAIL):
+TITLE_MATCH · THUMB_MATCH · STORY_TRUTH (sự kiện có trong lời hứa/sự thật ở trên) · NO_FAKE_DRAMA · NO_SPOILER ·
+OPEN_LOOP (câu cuối để ngỏ) · EMOTIONAL_STAKE · KHONG_CAN_SETUP (hiểu được ngay) · SU_KIEN_0_5S (3–5 giây đầu đã có
+sự kiện) · KHONG_CHAO_HOI · KHONG_CAU_THUA · DU_4_NHIP (event → contradiction → stake → open loop) ·
+RETENTION ("tắt title/thumb, chỉ nghe 30s: có muốn biết chuyện gì tiếp không?").
+
+OUTPUT BẮT BUỘC:
+KẾT QUẢ: [PASS / FIX]   (PASS = ứng viên được chọn không FAIL ô nào; FIX = ứng viên tốt nhất còn FAIL ≤3 ô, sửa tại chỗ được)
+CHỌN: [1 / 2 / 3]
+LÝ DO CHỌN: [1–2 câu]
+CHECKLIST ỨNG VIÊN ĐƯỢC CHỌN: [mỗi ô 1 dòng: TÊN_Ô: PASS/FAIL — lý do ngắn]
+VIỆC PHẢI SỬA (nếu FIX): [đánh số; mỗi việc: trích câu tiếng Nhật | nghĩa Việt → sửa thành gì, ngắn]
 """
 
 LENS_TMPL = {"medical": PROMPT_TMPL, "story": STORY_TMPL, "plain": PLAIN_TMPL}
@@ -277,14 +328,17 @@ def parse_verdict(text):
     return m.group(1).upper() if m else "UNKNOWN"
 
 
-def run(script_text, title, profile_id=None, out=None, extra_note=""):
-    """`extra_note` (flow=lean): 1 đoạn nói rõ máy ĐÃ kiểm gì (độ dài/số mục/số liệu) để sol không tốn chỗ lặp lại."""
+def run(script_text, title, profile_id=None, out=None, extra_note="", hook_block=""):
+    """`extra_note` (flow=lean): 1 đoạn nói rõ máy ĐÃ kiểm gì (độ dài/số mục/số liệu) để sol không tốn chỗ lặp lại.
+    `hook_block` (2026-09-23, dự án HOOK VIDEO): NOI_TU_HOOK đã .format(hook=...) sẵn từ nơi gọi (lean_script.py) —
+    truyền chuỗi RỖNG (mặc định) thì 3 template không đổi MỘT KÝ TỰ nào so với trước khi có tính năng hook, vì
+    {hook_block} chỉ thế chỗ bằng rỗng, không kèm dòng trống thừa nào khác."""
     domain_focus = load_domain_focus(profile_id)
     if extra_note:
         domain_focus = (domain_focus + chr(10) + extra_note).strip()
     lens = load_lens(profile_id)
     print(f"[qc_script_sol] lens={lens} profile={profile_id or '-'}", file=sys.stderr)
-    prompt = LENS_TMPL[lens].format(title=title, domain_focus=domain_focus, script=script_text)
+    prompt = LENS_TMPL[lens].format(title=title, domain_focus=domain_focus, script=script_text, hook_block=hook_block)
     text, usage = sol_client.chat(prompt, max_tokens=6000, timeout=300)
     verdict = parse_verdict(text)
     print(text)
@@ -292,6 +346,24 @@ def run(script_text, title, profile_id=None, out=None, extra_note=""):
     if out:
         Path(out).write_text(text, encoding="utf-8")
     return verdict, text
+
+
+def run_hook(candidates_text, title, thumb_text, promise_text, profile_id=None, out=None):
+    """Chấm 3 ứng viên HOOK 20-30s (lens riêng, KHÔNG đi qua LENS_TMPL/load_lens vì hook được chấm
+    TRƯỚC khi có kịch bản, không phải theo profile.script_qc.lens của toàn văn). Không có REMAKE —
+    xem lý do ở comment khối NOI_TU_HOOK/HOOK_TMPL phía trên. `profile_id` nhận cho ĐỒNG NHẤT chữ ký
+    với run() (Task 7 gọi cả 2 hàm cùng chỗ) nhưng hiện chưa dùng — hook không có domain_focus riêng."""
+    prompt = HOOK_TMPL.format(title=title or "(chưa chốt)", thumb_text=thumb_text or "(chưa có)",
+                              promise_text=promise_text or "(không có — dùng tư liệu tập)", candidates=candidates_text)
+    text, usage = sol_client.chat(prompt, max_tokens=3000, timeout=240)
+    m = re.search(r"CHỌN\s*[:：]\s*([123])", text)
+    chon = int(m.group(1)) if m else 1
+    verdict = "PASS" if re.search(r"KẾT QUẢ\s*[:：]\s*PASS", text, re.I) else "FIX"
+    print(text)
+    print(f"\n[verdict={verdict} chon={chon}] usage={json.dumps(usage)}", file=sys.stderr)
+    if out:
+        Path(out).write_text(text, encoding="utf-8")
+    return verdict, chon, text
 
 
 def main():

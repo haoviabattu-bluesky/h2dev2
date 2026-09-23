@@ -516,3 +516,25 @@ def test_khung_hinh_0_30s_ffmpeg_location_va_cookie(monkeypatch, tmp_path):
     else:
         pytest.skip("_ffmpeg_tren_path() trả None trong test này — không kiểm được nhánh shim")
     assert opts0.get("cookiefile") == str(cookie_file)
+
+
+# ---------------------------------------------------------------------------
+# Task 6 (2026-09-23): Sol lens `hook` + khối "NỐI TỪ HOOK" cho 3 lens cũ.
+# run_hook() chấm 3 ứng viên hook 20-30s, chọn 1, trả PASS/FIX (không REMAKE — hook
+# chỉ ~150 chữ, sửa tại chỗ luôn đủ). NOI_TU_HOOK là khối chèn được vào 3 lens cũ qua
+# tham số hook_block của run() để khi chấm TOÀN VĂN, sol soi thêm việc thân bài có nối
+# đúng với hook đã khoá không (không lặp/không reset/không phá promise).
+# ---------------------------------------------------------------------------
+
+def test_run_hook_parse(monkeypatch):
+    import qc_script_sol as Q, sol_client
+    monkeypatch.setattr(sol_client, "chat", lambda *a, **k: ("KẾT QUẢ: FIX\nCHỌN: 2\nLÝ DO: x\n1. TITLE_MATCH: PASS", {}))
+    v, chon, txt = Q.run_hook("=== HOOK 1 ===\na\n=== HOOK 2 ===\nb", "T", "A|B", "core_event: X")
+    assert v == "FIX" and chon == 2 and "CHỌN" in txt
+
+
+def test_lens_cu_co_hook_block():
+    import qc_script_sol as Q
+    for t in Q.LENS_TMPL.values():
+        assert "{hook_block}" in t
+    assert "NỐI TỪ HOOK" in Q.NOI_TU_HOOK

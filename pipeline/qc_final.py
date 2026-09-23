@@ -48,26 +48,55 @@ def _probe(mp4):
     r = subprocess.run([FF, "-i", str(mp4)], capture_output=True, text=True).stderr
     wh = re.search(r"(\d{3,5})x(\d{3,5})", r)
     fps = re.search(r"(\d+(?:\.\d+)?) fps", r)
+    # 2026-09-23 (vá review cuối, Việc 2): thêm `dur` vào ĐÚNG lần probe này — trước đây kiem_video()
+    # gọi thêm `media_seconds()` (assemble.py) để lấy thời lượng, tức PHÂN TÍCH CÙNG output ffmpeg
+    # HAI LẦN bằng hai hàm khác nhau. Gộp về một chỗ để test chỉ cần monkeypatch `_probe` là đủ, và
+    # kiem_hook() (Việc 2b) dùng lại được luôn, không phải gọi ffmpeg kiểu khác.
+    dur_m = re.search(r"Duration: (\d+):(\d+):(\d+\.\d+)", r)
+    dur = (int(dur_m.group(1)) * 3600 + int(dur_m.group(2)) * 60 + float(dur_m.group(3))) if dur_m else 0.0
     return {"w": int(wh.group(1)) if wh else 0, "h": int(wh.group(2)) if wh else 0,
             "fps": float(fps.group(1)) if fps else 0.0,
-            "co_tieng": "Audio:" in r, "raw": r}
+            "co_tieng": "Audio:" in r, "dur": dur, "raw": r}
 
 
 def kiem_video(S: Path, ra):
-    mp4 = S / "final.mp4"
+    # 2026-09-23 (vá review cuối, Việc 2a): đo ĐÚNG FILE SẼ GIAO — `giao_hang.chon_video_nguon()`
+    # ưu tiên `final_with_hook.mp4` (đủ kích thước) giống hệt lúc B11 chép đi; trước bản vá này
+    # hàm này LUÔN mở `final.mp4` nên một tập có thể qua B10 xanh rồi B11 lại giao bản KHÁC (có/không
+    # hook) mà không phép kiểm nào đo tới. Dùng CHUNG một hàm chọn nguồn với `giao_hang.py`, không
+    # chép logic lần hai.
+    import giao_hang
+    mp4, co_hook = giao_hang.chon_video_nguon(S)
     if not mp4.exists():
-        _loi(ra, "video", "cao", "KHÔNG có final.mp4", "chạy lại B8")
+        _loi(ra, "video", "cao", f"KHÔNG có {mp4.name}", "chạy lại B8")
         return None
+    print(f"  · B10 đo file SẼ GIAO: {mp4.name}" + ("  (bản có hook)" if co_hook else ""))
     info = _probe(mp4)
-    dur = media_seconds(mp4)
+    dur = info["dur"]
     if not info["co_tieng"]:
         _loi(ra, "video", "cao", "video KHÔNG có luồng âm thanh", "chạy lại B8")
     if info["h"] < 1080:
         _loi(ra, "video", "vua", f"khung ra {info['w']}x{info['h']} (dưới 1080p)")
+    # 2026-09-23 (Việc 2a, hệ quả trực tiếp của việc đổi file đo): `final_with_hook.mp4` ở chế độ
+    # REPAIR dài HƠN voice_paced.wav/voice.mp3 đúng bằng T_hook (§9.5 GIAO_VIEC_BUOC3_AGENT.md —
+    # hook_final.mp4 có tiếng RIÊNG, ghép trước toàn bộ final.mp4 giữ nguyên) — không cộng bù thì
+    # MỌI tập chế độ vá đã bật hook sẽ bị báo nhầm "lệch giọng" ~20-30s dù ghép đúng. Chế độ UPSTREAM
+    # thì KHÔNG cộng: hook đã nằm sẵn trong voice gốc từ trước khi có final_with_hook.mp4 (âm thanh
+    # giữ nguyên từ giây 0, chỉ đổi phần HÌNH 0–T_hook).
+    them_hook = 0.0
+    if co_hook:
+        import hook_stage
+        khoa = hook_stage.doc_lock(S) or {}
+        if khoa.get("mode") == "repair":
+            try:
+                them_hook = float(json.loads((S / "hook" / "render_info.json")
+                                              .read_text(encoding="utf-8")).get("T_hook") or 0)
+            except Exception:
+                them_hook = 0.0
     for ten in ("voice_paced.wav", "voice.mp3"):
         f = S / ten
         if f.exists():
-            lech = dur - media_seconds(f)
+            lech = dur - (media_seconds(f) + them_hook)
             if abs(lech) > 3:
                 _loi(ra, "video", "cao", f"video lệch giọng {lech:+.0f}s ({ten})", "dựng lại B8")
             break
@@ -305,12 +334,65 @@ def kiem_hook(S: Path, prof, ra):
     # có đủ hook_final.mp4 mà bước 3 QUÊN ghép ra final_with_hook.mp4, vẫn lọt qua B10 với 0 phát
     # hiện, rồi B11 giao đi bản `final.mp4` KHÔNG có hook. Áp dụng cho CẢ HAI chế độ upstream/repair
     # — hook là nội dung của final_with_hook.mp4 dù được dựng bằng cách nào.
-    if not (S / "final_with_hook.mp4").exists():
+    #
+    # 2026-09-23 (Việc 2b, vá review cuối): "tồn tại" là quá yếu — thêm ĐỦ KÍCH THƯỚC (dùng CHUNG
+    # ngưỡng với giao_hang.chon_video_nguon, không gõ số 1.000.000 ở hai nơi) và THỜI LƯỢNG phải
+    # LỚN HƠN final.mp4 (bản ghép luôn dài hơn bản gốc vì có thêm 20–30 giây mở đầu — thiếu 2 phép
+    # kiểm này thì một bản ghép hỏng/rỗng/cụt vẫn báo "có hook" trót lọt).
+    import giao_hang
+    mp4_hook, mp4_thuong = S / "final_with_hook.mp4", S / "final.mp4"
+    if not mp4_hook.exists():
         _loi(ra, "hook", "cao", "kênh đã bật hook + tập đã khoá hook nhưng KHÔNG có final_with_hook.mp4",
              "bước 3 dựng final_with_hook.mp4 — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9")
+    else:
+        kt = mp4_hook.stat().st_size
+        if kt < giao_hang.NGUONG_VIDEO_HOP_LE:
+            _loi(ra, "hook", "cao",
+                 f"final_with_hook.mp4 chỉ {kt} byte (< ngưỡng {giao_hang.NGUONG_VIDEO_HOP_LE} byte) — nghi ghi dở/rỗng",
+                 "bước 3 dựng lại final_with_hook.mp4 cho đủ, đừng giao bản dở dang")
+        elif mp4_thuong.exists():
+            d_hook, d_thuong = _probe(mp4_hook)["dur"], _probe(mp4_thuong)["dur"]
+            if not (d_hook > d_thuong):
+                _loi(ra, "hook", "cao",
+                     f"final_with_hook.mp4 ({d_hook:.0f}s) KHÔNG dài hơn final.mp4 ({d_thuong:.0f}s) — "
+                     "bản ghép phải dài hơn vì có thêm đoạn mở đầu 20–30 giây",
+                     "bước 3 kiểm lại lệnh ghép hook vào đầu — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5")
     if not (S / "hook" / "render_info.json").exists():
         _loi(ra, "hook", "cao", "thiếu hook/render_info.json — bước 3 chưa ghi nhận số khung/thời lượng hook",
              "bước 3 ghi render_info.json sau khi dựng final_with_hook.mp4 — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.6")
+    # 2026-09-23 (Việc 2c, vá review cuối): tài liệu bước 3 (GIAO_VIEC_BUOC3_AGENT.md mục 9) coi
+    # hook/hook_storyboard.json + hook/grok_jobs.csv là ĐẦU VÀO BẮT BUỘC của khâu dựng hook_final.mp4
+    # — thiếu chúng trước đây chỉ lộ ra GIÁN TIẾP ở tận bước sau (bước 3 không có gì để dựng, hoặc
+    # dựng bừa). Bắt sớm ngay ở đây.
+    if not (S / "hook" / "hook_storyboard.json").exists():
+        _loi(ra, "hook", "cao", "thiếu hook/hook_storyboard.json — đầu vào bắt buộc của bước 3 (dựng hook_final.mp4)",
+             "chạy hook_storyboard.py --profile <lane> --slug <tập>")
+    if not (S / "hook" / "grok_jobs.csv").exists():
+        _loi(ra, "hook", "cao", "thiếu hook/grok_jobs.csv — đầu vào bắt buộc của bước 3 (dựng hook_final.mp4)",
+             "chạy hook_storyboard.py --profile <lane> --slug <tập>")
+    # 2026-09-23 (Việc 3, vá review cuối): chế độ VÁ ghép đoạn mở đầu vào TRƯỚC thân, nên mọi mốc
+    # chương trong TIEU_DE_MO_TA.txt (dựng theo mốc của THÂN — publish_kit.py chạy TRƯỚC khi có
+    # đoạn mở đầu nên không tự dời được, xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5) đều lệch sớm
+    # đúng bằng độ dài đã dời phụ đề. Thiếu khoá ghi nhận "đã dời" thì không ai biết mốc chương còn
+    # đúng hay đã lệch — người xem thấy NGAY nên xếp mức cao.
+    if m.get("mode") == "repair":
+        mo_ta = S / "TIEU_DE_MO_TA.txt"
+        if mo_ta.exists() and re.search(r"^\d{1,2}:\d{2}(?::\d{2})?\s+.+$",
+                                         mo_ta.read_text(encoding="utf-8", errors="replace"), re.MULTILINE):
+            co_khoa = False
+            ri = S / "hook" / "render_info.json"
+            if ri.exists():
+                try:
+                    co_khoa = "listing_shifted_s" in json.loads(ri.read_text(encoding="utf-8"))
+                except Exception:
+                    co_khoa = False
+            if not co_khoa:
+                _loi(ra, "hook", "cao",
+                     "chế độ vá + TIEU_DE_MO_TA.txt có mốc chương nhưng hook/render_info.json thiếu "
+                     "khoá 'listing_shifted_s' — không biết mốc chương đã được dời theo đoạn mở đầu "
+                     "chưa (mọi chương sẽ hiện lệch sớm nếu chưa dời)",
+                     "bước 3 dời mốc chương rồi ghi listing_shifted_s vào render_info.json — xem "
+                     "docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5")
     t = hook_stage._title(S)
     locked_title = (m.get("promise") or {}).get("title")
     # 2026-09-23 (vá review dọn hook, V5): `if t and ...` bỏ qua HOÀN TOÀN trường hợp title.txt bị

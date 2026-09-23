@@ -400,10 +400,11 @@ def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
         # Đã có clip từ lần chạy trước thì dùng lại, khỏi tải lại (không cache phức tạp hơn 1 glob).
         clip = next((f for f in sorted(out_dir.glob("src_0_30s.*")) if f.stat().st_size > 10_000), None)
         if not clip:
-            # vá lần 3 (2026-09-23): gọi lại đây chỉ để cứu trường hợp thư mục shim (FFMPEG_SHIM,
-            # đã tạo LÚC IMPORT module — xem mục 4 docstring _ffmpeg_tren_path) bị xoá giữa phiên
-            # chạy dài; idempotent nên gọi lại không hại gì. Việc PATH có shim TỪ TRƯỚC lúc import
-            # mới là điều kiện quyết định (yt_dlp nhớ kết quả dò trong cùng tiến trình).
+            # vá lần 3 (2026-09-23), chú thích sửa lại ở vá lần 4 (2026-09-23, vá review cuối) cho
+            # khớp code thật: từ vá lần 4, `_ffmpeg_tren_path()` KHÔNG còn chạy lúc import module
+            # nữa (xem FFMPEG_SHIM/V2 ở trên) — gọi Ở ĐÂY, ngay trước khi cần, mới là nơi shim thật
+            # sự được tạo lần đầu. Idempotent nên gọi lại nhiều lần (kể cả khi thư mục shim đã có từ
+            # trước) không hại gì; memo dò-ffmpeg của yt_dlp cũng tự xoá được (V1) nên gọi MUỘN vẫn ăn.
             shim = _ffmpeg_tren_path()
             import yt_dlp
             from yt_dlp.utils import download_range_func
@@ -595,6 +596,13 @@ def viet_candidates(d, prof, src, title, ctx, mode="upstream"):
                    "min_chars": muc * 2, "max_chars": muc * 6}
     model_hook = cau_hinh(prof).get("model") or ""
     if model_hook:
+        if (prof.get("script", {}) or {}).get("engine") != "claude_p":
+            # 2026-09-23 (vá review cuối, Việc 4): kênh khai script.hook.model mà KHÔNG dùng
+            # engine="claude_p" thì tham số này bị bỏ qua LẶNG LẼ (nhánh Gemini/llm_client.chat()
+            # chỉ dùng `model` khi đi kèm `provider`, xem chú thích ngay trên) — người khai tưởng
+            # đã ghim đúng model mà thật ra không đổi gì. In cảnh báo để không ai tưởng nhầm.
+            print(f"  ! script.hook.model={model_hook!r} bị BỎ QUA — kênh không khai script.engine="
+                  f"\"claude_p\" (đang ở nhánh Gemini, model chỉ có tác dụng khi đi kèm `provider`)")
         kwargs_viet["model"] = model_hook
     r = ai_steps._writer_chat(prof, prompt, **kwargs_viet)
     (d / HOOK_DIR).mkdir(exist_ok=True)

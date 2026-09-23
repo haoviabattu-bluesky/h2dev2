@@ -59,6 +59,11 @@ ROOT = Path(__file__).resolve().parent.parent
 TRAN_MO_TA = 5000
 GOC_KENH = r"E:\CLAUDE\YOUTUBE\CHANEL"
 TEN_FILE = {".mp4": "final.mp4", ".png": "thumbnail.png", ".txt": "listting.txt"}
+# 2026-09-23 (vá review cuối, Việc 2a): NGƯỠNG DÙNG CHUNG — trước bản vá này số 1.000.000 chỉ nằm
+# trong `chon_video_nguon()`, còn `qc_final.py::kiem_hook()` không hề kiểm kích thước. Đưa lên cấp
+# module để cả hai file dùng CHUNG một hằng số, không gõ tay số này ở hai nơi (sẽ lệch nhau khi
+# một bên đổi mà quên bên kia).
+NGUONG_VIDEO_HOP_LE = 1_000_000  # byte — dưới ngưỡng này coi là file ghi dở/rỗng
 TEN_TOM_TAT = "tomtat.txt"
 TEN_SRT = "phude.srt"            # phụ đề tiếng Nhật — tự tải lên YouTube làm CC
 TEN_REVIEW = "review-vi.mp4"     # bản xem thử có phụ đề Việt, KHÔNG đăng
@@ -191,21 +196,20 @@ def tom_tat_viet(slug: Path, tieu_de: str, force=False) -> str:
 def chon_video_nguon(slug: Path):
     """(mp4: Path, co_hook: bool) — file VIDEO NGUỒN sẽ chép đi, ưu tiên `final_with_hook.mp4`.
 
-    2026-09-23 (vá review HOOK, Việc 1): tách riêng + kiểm kích thước file hook ≥ 1 MB.
-    Nếu file hook nhỏ hơn (ghi dở) thì fallback sang `final.mp4` + in cảnh báo.
+    2026-09-23 (vá review HOOK, Việc 1): tách riêng + kiểm kích thước file hook ≥ ngưỡng
+    `NGUONG_VIDEO_HOP_LE`. Nếu file hook nhỏ hơn (ghi dở) thì fallback sang `final.mp4` + in cảnh báo.
+    2026-09-23 (vá review cuối, Việc 2a): `qc_final.py::kiem_video()`/`kiem_hook()` giờ GỌI THẲNG
+    hàm này để đo đúng file sẽ giao — đừng đổi chữ ký (mp4, co_hook) mà không sửa cả hai chỗ gọi.
     """
     mp4_hook = Path(slug) / "final_with_hook.mp4"
     mp4_normal = Path(slug) / "final.mp4"
 
-    # 2026-09-23: chặn file video rỗng — ngưỡng an toàn 1 MB
-    THRESHOLD = 1_000_000
-
     if mp4_hook.exists():
-        kích_thước = mp4_hook.stat().st_size
-        if kích_thước >= THRESHOLD:
+        kich_thuoc = mp4_hook.stat().st_size
+        if kich_thuoc >= NGUONG_VIDEO_HOP_LE:
             return mp4_hook, True
         else:
-            print(f"  ⚠️ {mp4_hook.name} tồn tại nhưng chỉ {kích_thước} byte (< 1 MB) — "
+            print(f"  ⚠️ {mp4_hook.name} tồn tại nhưng chỉ {kich_thuoc} byte (< {NGUONG_VIDEO_HOP_LE} byte) — "
                   f"hình như ghi dở. Giao bản {mp4_normal.name} thay thế.")
             return mp4_normal, False
 

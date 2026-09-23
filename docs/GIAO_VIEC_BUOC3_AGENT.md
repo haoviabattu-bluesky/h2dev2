@@ -382,6 +382,12 @@ với timeline lấy từ mốc `t0`/`t1` của từng shot trong `hook_storyboa
   `voice_paced.srt` cộng thêm `T_hook + 17/30` giây → ghi ra `<tập>\final_with_hook.srt`. **upstream**
   → phụ đề cũ đã đúng mốc (hook nằm trong voice.mp3 gốc), chỉ copy `voice_paced.srt` thành
   `final_with_hook.srt` không cần dịch mốc.
+- **Mốc chương (2026-09-23, vá review cuối)**: `<tập>\TIEU_DE_MO_TA.txt` được `publish_kit.py` dựng
+  khối `Timestamps:` theo mốc của `voice_paced.srt` — tức mốc của THÂN video, dựng TRƯỚC khi có
+  đoạn mở đầu nên không tự dời được. Ở chế độ **repair**, mọi mốc chương KHÁC `00:00` trong khối đó
+  phải được **dời đi đúng bằng lượng đã dời phụ đề ở trên** (`T_hook + 17/30` giây) — không dời thì
+  người xem thấy MỌI chương lệch sớm ngay khi bấm vào. Chế độ **upstream** thì KHÔNG cần dời (mốc
+  chương đã đúng, giống lý do phụ đề không cần dịch mốc ở trên).
 
 **9.6 Nghiệm thu:**
 - Đếm khung `final_with_hook.mp4` phải = khung(`hook_final.mp4`) + khung(`final.mp4` tính từ
@@ -392,6 +398,9 @@ với timeline lấy từ mốc `t0`/`t1` của từng shot trong `hook_storyboa
   được mang chữ/nhãn tiếng nước khác lọt vào (chữ tiếng Anh, watermark AI...), mặt nhân vật khớp
   REF/REF2 nếu có dùng REF-LOCK.
 - Ghi `<tập>\hook\render_info.json` dạng `{"T_hook": ..., "frames": ..., "mode": "upstream|repair"}`.
+  Chế độ **repair** có dời mốc chương (mục 9.5) thì thêm khoá `"listing_shifted_s": <số giây đã
+  dời>` vào CÙNG file này — `pipeline\qc_final.py::kiem_hook` (2026-09-23, vá review cuối) đòi khoá
+  này khi tập chạy chế độ vá VÀ `TIEU_DE_MO_TA.txt` có khối mốc chương, thiếu = báo lỗi mức "cao".
 - Cột **G** của sheet trỏ tới `final_with_hook.mp4` (không phải `final.mp4`) cho tập nào đã dựng
   hook.
 - **BẮT BUỘC cả hai file** `<tập>\final_with_hook.mp4` VÀ `<tập>\hook\render_info.json` trước khi
@@ -399,7 +408,10 @@ với timeline lấy từ mốc `t0`/`t1` của từng shot trong `hook_storyboa
   nếu kênh đã bật `script.hook.enabled` và tập đã khoá hook mà thiếu MỘT trong hai file này — áp
   dụng cho CẢ tập mới (upstream) lẫn tập chạy chế độ vá/sửa (patch/fix), không có ngoại lệ theo chế
   độ. Thiếu `final_with_hook.mp4` mà chỉ giao `final.mp4` (không có hook) cũng bị B10 bắt lỗi y hệt
-  thiếu file, vì đó chính là dữ liệu B10 kiểm.
+  thiếu file, vì đó chính là dữ liệu B10 kiểm. **Từ 2026-09-23 (vá review cuối)**, B10 còn đòi
+  `final_with_hook.mp4` đủ kích thước (≥ `giao_hang.NGUONG_VIDEO_HOP_LE`) VÀ dài hơn `final.mp4`,
+  cùng `hook\hook_storyboard.json` + `hook\grok_jobs.csv` phải tồn tại (đầu vào bắt buộc của chính
+  bước 3 này) — thiếu/không đạt bất kỳ điều nào cũng bị chặn cứng mức "cao".
 - Khâu giao hàng (`pipeline\giao_hang.py`) tự chọn `final_with_hook.mp4` làm NGUỒN copy khi file đó
   tồn tại (thay vì `final.mp4`) — TÊN FILE ĐÍCH ở thư mục giao hàng (`E:\CLAUDE\YOUTUBE\CHANEL\...`)
   vẫn giữ nguyên quy ước cũ, chỉ đổi file NGUỒN, không phải đổi tên đích thành `final_with_hook.mp4`.

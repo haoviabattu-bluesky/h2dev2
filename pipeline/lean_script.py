@@ -444,7 +444,14 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook=""):
         else:
             warn.append(f"số học: {x['msg'][:120]}")
     # máy móc qc_script: trùng/lặp → việc; mở đầu → warn
-    for x in qc_script.mechanical(text, prof.get("language", "ja"), g, warn_no_marker=True):
+    # 2026-09-23 (vá review cuối, Việc 1): `warn_no_marker` KHÔNG được truyền vô điều kiện — mục
+    # `mo_dau_khong_do` chỉ có nghĩa khi cổng mở đầu THẬT SỰ do hook_stage canh (script.hook.enabled=
+    # true). 4 kênh irogatatarukioku/satori-jp-obaa/teinengo-real/toshi-densetsu-jp chưa bật hook
+    # (không khai gate.hook_marker) nhưng vẫn bị bật cảnh báo này ở MỌI tập, rồi `warn` bị ghi thẳng
+    # vào do.json/escalation — báo sai "mở đầu do hook_stage kiểm" trong khi không có cổng nào đang
+    # canh. Dòng print tương ứng (bên dưới, ~462) đã được đóng công tắc ở lần vá trước, dòng này bị
+    # sót — sửa cho khớp: chỉ warn khi hook_stage.is_enabled(prof).
+    for x in qc_script.mechanical(text, prof.get("language", "ja"), g, warn_no_marker=hook_stage.is_enabled(prof)):
         if x["kind"] in ("cau_trung_lap", "cau_gan_trung"):
             viec_len.append(f"TRÙNG: {x['msg'][:120]}")
         elif x["kind"] in ("mo_dau_qua_dai", "mo_dau_qua_ngan", "mo_dau_noi_suong", "mo_dau_khong_do", "lap_y_ke_lai", "cum_lap", "doan_vun", "nhieu_moc_tuoi"):

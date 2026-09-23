@@ -81,7 +81,7 @@ def test_mo_dau_warn_no_marker():
 PROF_HOOK_ON = {"id": "x", "script": {"hook": {"enabled": True}}}
 
 
-def test_qc_final_kiem_hook(tmp_path):
+def test_qc_final_kiem_hook(tmp_path, monkeypatch):
     import qc_final as F, hook_stage as HS
     (tmp_path / "title.txt").write_text("T", encoding="utf-8")
     (tmp_path / "script.txt").write_text("khác。", encoding="utf-8")
@@ -93,11 +93,16 @@ def test_qc_final_kiem_hook(tmp_path):
     F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert any("không bắt đầu" in x["msg"] for x in ra)
     (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
-    # 2026-09-23 (vá review cuối, Việc 1b): kiem_hook() nay CŨNG đòi final_with_hook.mp4 +
-    # hook/render_info.json ở mọi chế độ (kể cả upstream) — tập "sạch hoàn toàn" phải có đủ 2 thứ
-    # này mới còn ra == [] như trước bản vá.
-    (tmp_path / "final_with_hook.mp4").write_bytes(b"x")
+    # 2026-09-23 (vá review cuối, Việc 1b + Việc 2): kiem_hook() nay đòi ĐỦ NĂM thứ: final.mp4,
+    # final_with_hook.mp4 (≥ ngưỡng chung + DÀI HƠN final.mp4), hook/render_info.json,
+    # hook/hook_storyboard.json, hook/grok_jobs.csv — tập "sạch hoàn toàn" phải có đủ mới còn
+    # ra == [] như trước bản vá. Monkeypatch `_probe` để khỏi cần ffmpeg thật/file mp4 thật.
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
     (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "grok_jobs.csv").write_text("shot,prompt\n1,a\n", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 40.0 if "with_hook" in str(mp4) else 15.0})
     ra = []
     F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert ra == []
@@ -283,6 +288,31 @@ def test_do_tat_dinh_in_canh_bao_khi_hook_bat(monkeypatch, capsys):
     L.do_tat_dinh(prof, "晩秋の風。隣人はそう言った。", "", "", 1, hook="")
     out = capsys.readouterr().out
     assert "chưa có hook đã khoá" in out
+
+
+# 2026-09-23 (vá review cuối, Việc 1): warn_no_marker (qc_script.mechanical) phải theo CÔNG TẮC
+# hook_stage.is_enabled(prof), không truyền True vô điều kiện — kênh TẮT hook (4 kênh đang chạy
+# thật: irogatatarukioku/satori-jp-obaa/teinengo-real/toshi-densetsu-jp) không có `hook_marker` nên
+# trước bản vá này luôn dính "mo_dau_khong_do" trong `warn` dù cổng đó không tồn tại.
+def test_do_tat_dinh_khong_warn_mo_dau_khong_do_khi_hook_tat(monkeypatch):
+    import lean_script as L, ai_steps, profiles
+    monkeypatch.setattr(ai_steps, "check", _CHECK_OK)
+    monkeypatch.setattr(ai_steps, "_go_cat_neu_ja", lambda prof, t: t)
+    monkeypatch.setattr(profiles, "target_chars", lambda prof, minutes=None, speed=None: 100)
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {"gate": {}}}  # hook tắt, không có gate.hook_marker
+    _, m, vf, vl, warn = L.do_tat_dinh(prof, "晩秋の風。隣人はそう言った。", "", "", 1, hook="")
+    assert not any("mo_dau_khong_do" in w or "lane không có marker chương" in w for w in warn)
+
+
+def test_do_tat_dinh_co_warn_mo_dau_khong_do_khi_hook_bat_va_khong_co_marker(monkeypatch):
+    import lean_script as L, ai_steps, profiles
+    monkeypatch.setattr(ai_steps, "check", _CHECK_OK)
+    monkeypatch.setattr(ai_steps, "_go_cat_neu_ja", lambda prof, t: t)
+    monkeypatch.setattr(profiles, "target_chars", lambda prof, minutes=None, speed=None: 100)
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300},
+            "script": {"gate": {}, "hook": {"enabled": True}}}  # hook BẬT, lane không khai gate.hook_marker
+    _, m, vf, vl, warn = L.do_tat_dinh(prof, "晩秋の風。隣人はそう言った。", "", "", 1, hook="")
+    assert any("lane không có marker chương" in w for w in warn)
 
 
 def test_job_kiem_lock_bo_qua_hook_khi_tat(tmp_path, monkeypatch):
@@ -601,3 +631,214 @@ def test_kiem_hook_trong_goi_khong_co_hook_thi_im_lang(capsys):
     DH._kiem_hook_trong_goi(duoi, thieu=[])
     out = capsys.readouterr().out
     assert out == ""
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23), Việc 2: qc_final.kiem_video() đo ĐÚNG FILE SẼ GIAO + bù T_hook cho
+# chế độ repair khi so lệch giọng. Toàn bộ test OFFLINE: monkeypatch `_probe`/`media_seconds`,
+# không gọi ffmpeg thật (file .mp4 chỉ là byte giả để qua được check tồn tại/kích thước).
+# ---------------------------------------------------------------------------
+
+def test_kiem_video_do_dung_file_khi_co_hook(tmp_path, monkeypatch, capsys):
+    """Việc 2a: có final_with_hook.mp4 hợp lệ → kiem_video() phải đo file ĐÓ (không phải final.mp4),
+    và in rõ tên file đang đo."""
+    import qc_final as F
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"w": 1920, "h": 1080, "fps": 30.0, "co_tieng": True,
+                                                   "dur": 40.0 if "with_hook" in str(mp4) else 15.0})
+    capsys.readouterr()
+    ra = []
+    v = F.kiem_video(tmp_path, ra)
+    out = capsys.readouterr().out
+    assert "final_with_hook.mp4" in out
+    assert v["dur"] == 40.0
+    assert ra == []
+
+
+def test_kiem_video_khong_co_hook_giu_nguyen_final(tmp_path, monkeypatch):
+    """Đối chứng: không có final_with_hook.mp4 → hành xử y hệt trước bản vá (đo final.mp4)."""
+    import qc_final as F
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"w": 1920, "h": 1080, "fps": 30.0, "co_tieng": True, "dur": 15.0})
+    ra = []
+    v = F.kiem_video(tmp_path, ra)
+    assert v["dur"] == 15.0
+
+
+def test_kiem_video_khong_co_file_nao_bao_loi_dung_ten(tmp_path, monkeypatch):
+    """KHÔNG có cả final.mp4 lẫn final_with_hook.mp4 → báo thiếu ĐÚNG tên file lẽ ra phải có
+    (final.mp4, vì không có bản hook nào để ưu tiên)."""
+    import qc_final as F
+    ra = []
+    v = F.kiem_video(tmp_path, ra)
+    assert v is None
+    assert any("final.mp4" in x["msg"] and x["sev"] == "cao" for x in ra)
+
+
+def test_kiem_video_repair_cong_bu_t_hook_khong_bao_lech_gia(tmp_path, monkeypatch):
+    """Việc 2a: chế độ repair, final_with_hook.mp4 dài hơn voice_paced.wav đúng bằng T_hook (đoạn
+    mở đầu có tiếng RIÊNG, ghép trước final.mp4 giữ nguyên) → KHÔNG được báo 'lệch giọng' nếu đã
+    cộng bù đúng T_hook."""
+    import json as _json
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    HS.khoa(tmp_path, "hook。", mode="repair")
+    (tmp_path / "hook" / "render_info.json").write_text(_json.dumps({"T_hook": 25.0}), encoding="utf-8")
+    (tmp_path / "voice_paced.wav").write_bytes(b"v")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"w": 1920, "h": 1080, "fps": 30.0, "co_tieng": True,
+                                                   "dur": 40.0 if "with_hook" in str(mp4) else 15.0})
+    monkeypatch.setattr(F, "media_seconds", lambda f: 15.0)   # thân voice_paced.wav ~15s, giống final.mp4
+    ra = []
+    F.kiem_video(tmp_path, ra)
+    assert not any("lệch giọng" in x["msg"] for x in ra)
+
+
+def test_kiem_video_upstream_khong_cong_bu_t_hook(tmp_path, monkeypatch):
+    """Đối chứng: chế độ upstream KHÔNG cộng bù T_hook (hook đã nằm sẵn trong voice gốc từ trước) —
+    nếu lỡ cộng bù vào đây thì lệch giả ~25s và test này sẽ bắt được."""
+    import json as _json
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    HS.khoa(tmp_path, "hook。")   # mode mặc định upstream
+    (tmp_path / "hook" / "render_info.json").write_text(_json.dumps({"T_hook": 25.0}), encoding="utf-8")
+    (tmp_path / "voice_paced.wav").write_bytes(b"v")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"w": 1920, "h": 1080, "fps": 30.0, "co_tieng": True, "dur": 41.0})
+    monkeypatch.setattr(F, "media_seconds", lambda f: 40.0)   # upstream: voice đã bao gồm hook, gần bằng dur video
+    ra = []
+    F.kiem_video(tmp_path, ra)
+    assert not any("lệch giọng" in x["msg"] for x in ra)
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23), Việc 2b+2c: qc_final.kiem_hook() đòi final_with_hook.mp4 đủ kích
+# thước + dài hơn final.mp4 + có hook_storyboard.json/grok_jobs.csv.
+# ---------------------------------------------------------------------------
+
+def test_qc_final_kiem_hook_qua_nho_bi_bat(tmp_path):
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。")
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 500_000)   # dưới ngưỡng 1.000.000
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert any("500000" in x["msg"] and x["sev"] == "cao" for x in ra)
+
+
+def test_qc_final_kiem_hook_khong_dai_hon_bi_bat(tmp_path, monkeypatch):
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。")
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "grok_jobs.csv").write_text("a,b\n1,2\n", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 15.0})   # cả hai bằng nhau — KHÔNG dài hơn
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert any("KHÔNG dài hơn" in x["msg"] and x["sev"] == "cao" for x in ra)
+
+
+def test_qc_final_kiem_hook_thieu_storyboard_hoac_grok_jobs(tmp_path, monkeypatch):
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。")
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 40.0 if "with_hook" in str(mp4) else 15.0})
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    cao = [x["msg"] for x in ra if x["sev"] == "cao"]
+    assert any("hook_storyboard.json" in m for m in cao)
+    assert any("grok_jobs.csv" in m for m in cao)
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23), Việc 3: mốc chương lệch ở tập chạy chế độ vá.
+# ---------------------------------------------------------------------------
+
+def _script_kv_hoan_chinh(tmp_path, monkeypatch, mode):
+    """Dựng đủ file để kiem_hook() không còn phát hiện nào TRỪ phép kiểm listing_shifted_s
+    (dùng chung cho 3 test Việc 3 bên dưới)."""
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。", mode=mode)
+    if mode == "repair":
+        (tmp_path / "hook" / "hook_final.mp4").write_bytes(b"x")
+    else:
+        (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "grok_jobs.csv").write_text("a,b\n1,2\n", encoding="utf-8")
+    (tmp_path / "TIEU_DE_MO_TA.txt").write_text(
+        "Tiêu đề\n\nTimestamps:\n0:00 Mở đầu\n1:20 Chương 1\n", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 40.0 if "with_hook" in str(mp4) else 15.0})
+    return F
+
+
+def test_qc_final_kiem_hook_repair_thieu_listing_shifted_s(tmp_path, monkeypatch):
+    F = _script_kv_hoan_chinh(tmp_path, monkeypatch, "repair")
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")   # thiếu listing_shifted_s
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert any("listing_shifted_s" in x["msg"] and x["sev"] == "cao" for x in ra)
+
+
+def test_qc_final_kiem_hook_repair_co_listing_shifted_s_thi_dat(tmp_path, monkeypatch):
+    import json as _json
+    F = _script_kv_hoan_chinh(tmp_path, monkeypatch, "repair")
+    (tmp_path / "hook" / "render_info.json").write_text(_json.dumps({"listing_shifted_s": 26.6}), encoding="utf-8")
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert ra == []
+
+
+def test_qc_final_kiem_hook_upstream_khong_can_listing_shifted_s(tmp_path, monkeypatch):
+    """Đối chứng: chế độ upstream có mốc chương trong TIEU_DE_MO_TA.txt nhưng KHÔNG cần
+    listing_shifted_s (mốc chương của upstream vốn đã đúng, không bị dời)."""
+    F = _script_kv_hoan_chinh(tmp_path, monkeypatch, "upstream")
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert not any("listing_shifted_s" in x["msg"] for x in ra)
+    assert ra == []
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23), Việc 4c: hook_stage.viet_candidates() cảnh báo khi script.hook.model
+# được khai mà kênh không dùng engine="claude_p" (tham số bị bỏ qua lặng lẽ ở nhánh Gemini).
+# ---------------------------------------------------------------------------
+
+def test_viet_candidates_canh_bao_model_khong_claude_p(monkeypatch, tmp_path, capsys):
+    import hook_stage as HS, ai_steps
+    monkeypatch.setattr(HS, "cau_hinh", lambda prof: {"model": "some-model", "tol": 0.1})
+    monkeypatch.setattr(HS, "so_chu_muc_tieu", lambda prof: 100)
+    monkeypatch.setattr(ai_steps, "_skill_text", lambda prof, kind: "")
+    monkeypatch.setattr(ai_steps, "_writer_chat", lambda prof, prompt, **k: type("R", (), {"text": "hook text"})())
+    prof = {"id": "x", "language": "ja", "narrator": {}, "script": {}}   # KHÔNG khai engine="claude_p"
+    capsys.readouterr()
+    HS.viet_candidates(tmp_path, prof, {"score_0_12": 10}, "T", "", mode="upstream")
+    out = capsys.readouterr().out
+    assert "some-model" in out and "BỎ QUA" in out
+
+
+def test_viet_candidates_khong_canh_bao_khi_claude_p(monkeypatch, tmp_path, capsys):
+    """Đối chứng: kênh khai engine="claude_p" thì KHÔNG in cảnh báo (model có tác dụng thật)."""
+    import hook_stage as HS, ai_steps
+    monkeypatch.setattr(HS, "cau_hinh", lambda prof: {"model": "some-model", "tol": 0.1})
+    monkeypatch.setattr(HS, "so_chu_muc_tieu", lambda prof: 100)
+    monkeypatch.setattr(ai_steps, "_skill_text", lambda prof, kind: "")
+    monkeypatch.setattr(ai_steps, "_writer_chat", lambda prof, prompt, **k: type("R", (), {"text": "hook text"})())
+    prof = {"id": "x", "language": "ja", "narrator": {}, "script": {"engine": "claude_p"}}
+    capsys.readouterr()
+    HS.viet_candidates(tmp_path, prof, {"score_0_12": 10}, "T", "", mode="upstream")
+    out = capsys.readouterr().out
+    assert "BỎ QUA" not in out

@@ -65,6 +65,14 @@ innertube
 JOB_FILES = ["script.txt", "script.lock.json", "characters.json", "img_prompts.txt",
              "img_doan.txt", "state.json", "title.txt", "series_ctx.txt", "competitor.txt"]
 
+# 2026-09-23 (vá review HOOK, Việc 2): file TRONG thư mục con `hook/` cần cho máy 2 vẽ ẢNH SHOT HOOK
+# (xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.1 — `hook/flow_prompts/shot_NN.txt` + `hook/grok_jobs.csv`
+# là đơn máy 1 để sẵn cho máy 2 vẽ CÙNG ĐỢT với ảnh thân video). JOB_FILES ở trên chỉ liệt kê file
+# nằm Ở GỐC thư mục tập — không đụng thư mục con nào — nên trước bản vá này `hook/` không bao giờ
+# theo gói sang máy 2: hook bị rơi mất hoàn toàn mà không cổng nào biết (giống bài học cũ ở
+# drive_handoff.py về `_ref/`, xem docstring đầu file drive_handoff.py mục 2).
+HOOK_FILES_GOC = ["hook_locked.txt", "hook_lock.json", "hook_storyboard.json", "grok_jobs.csv"]
+
 
 def svc(doc_thoi=True):
     from google.oauth2.service_account import Credentials
@@ -173,6 +181,46 @@ def _ghi_sheet_h(prof, slug, n, cost):
     print(f"  ✓ ghi {tab}!{COT_H}{dong} = {gia_tri}")
 
 
+def _dong_goi_hook(job_dir: Path, dst: Path) -> int:
+    """Copy các file trong `hook/` (nếu tập thật sự có) vào gói giao máy 2 — lý do ở HOOK_FILES_GOC.
+
+    2026-09-23 (vá review HOOK, Việc 2): áp đúng luật "vận chuyển phải tự chứng minh" của dự án
+    (xem drive_handoff.py::doi_chieu — CHƯA verify thì CHƯA coi là xong) — copy xong ĐỐI CHIẾU LẠI
+    từng file vừa copy phải có mặt ở đích, đúng kích thước nguồn, không dựa vào giả định
+    shutil.copy2 luôn thành công trọn vẹn. Tập KHÔNG có `hook/` (đa số tập, tính năng đang bật dần
+    từng kênh) → trả 0, KHÔNG báo lỗi gì — giữ gói giao y như trước khi có tính năng hook.
+    """
+    src_hook = job_dir / "hook"
+    if not src_hook.is_dir():
+        return 0
+    dst_hook = dst / "hook"
+    dst_hook.mkdir(parents=True, exist_ok=True)
+    can_doi_chieu = []          # [(src, dst)] — dùng để tự kiểm ngay sau khi copy
+    for name in HOOK_FILES_GOC:
+        s = src_hook / name
+        if s.exists():
+            d = dst_hook / name
+            shutil.copy2(s, d)
+            can_doi_chieu.append((s, d))
+    fp_src = src_hook / "flow_prompts"
+    if fp_src.is_dir():
+        fp_dst = dst_hook / "flow_prompts"
+        fp_dst.mkdir(parents=True, exist_ok=True)
+        for f in sorted(fp_src.glob("*")):
+            if f.is_file():
+                d = fp_dst / f.name
+                shutil.copy2(f, d)
+                can_doi_chieu.append((f, d))
+    # Tự kiểm: thiếu 1 file ở đây là máy 2 vẽ THIẾU ảnh shot hook mà không cổng nào biết cho tới
+    # tận lúc nghiệm thu B10 (hoặc tệ hơn, không ai biết luôn vì B10 chỉ soi final_with_hook.mp4).
+    thieu = [str(d.relative_to(dst)) for s, d in can_doi_chieu
+             if not d.exists() or d.stat().st_size != s.stat().st_size]
+    if thieu:
+        raise SystemExit(f"✗ đóng gói hook THẤT BẠI, {len(thieu)} file không khớp sau khi copy: "
+                         f"{', '.join(thieu)}")
+    return len(can_doi_chieu)
+
+
 def cmd_job(profile_id, slug):
     prof = profiles.load(profile_id)
     job_dir = ROOT / prof["slug_dir"] / slug
@@ -216,6 +264,9 @@ def cmd_job(profile_id, slug):
     if (job_dir / "logs").is_dir():
         shutil.copytree(job_dir / "logs", dst / "logs", dirs_exist_ok=True)
 
+    n_hook = _dong_goi_hook(job_dir, dst)
+    n_copied += n_hook
+
     n, n_face, cost = _dem_anh(job_dir)
     n_scene = n - n_face
     kenh = (prof.get("publish") or {}).get("upload_channel", profile_id)
@@ -248,6 +299,9 @@ def cmd_job(profile_id, slug):
     )
     (dst / "_BANGIAO.txt").write_text(bg, encoding="utf-8")
     print(f"✓ đóng gói {dst} ({n_copied} file + logs/) · {n} ảnh ≈ {cost:,}đ")
+    if n_hook:
+        print(f"  ✓ hook/: {n_hook} file đã đóng gói + đối chiếu khớp kích thước "
+              f"(máy 2 vẽ ảnh shot hook cùng đợt — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.1)")
 
     try:
         _ghi_sheet_h(prof, slug, n, cost)

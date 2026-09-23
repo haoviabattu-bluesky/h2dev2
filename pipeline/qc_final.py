@@ -267,7 +267,9 @@ def kiem_du_kien(S: Path, ra):
 
 
 def kiem_hook(S: Path, prof, ra):
-    """Mọi tập phải có hook khoá (anh chốt 2026-09-23). upstream: script bắt đầu bằng hook; repair: có hook_final.mp4.
+    """Mọi tập phải có hook khoá (anh chốt 2026-09-23). upstream: script bắt đầu bằng hook; repair: có
+    hook_final.mp4. CẢ HAI chế độ đều bắt buộc có `final_with_hook.mp4` + `hook/render_info.json`
+    (file THẬT SỰ đi giao — xem Việc 1b bên dưới).
 
     Cố ý CHẠY BẤT KỂ `publish.listing_external` — hook là NỘI DUNG của chính video (nằm trong
     final.mp4), không phải phần đóng gói đăng tải (thumbnail/tiêu đề/mô tả) mà dự án khác lo.
@@ -296,6 +298,19 @@ def kiem_hook(S: Path, prof, ra):
         sc = (S / "script.txt").read_text(encoding="utf-8") if (S / "script.txt").exists() else ""
         if not hook_stage.bat_dau_bang_hook(sc, hook):
             _loi(ra, "hook", "cao", "script.txt không bắt đầu bằng hook đã khoá", "S3 phải bắt lỗi này — kiểm lại lean_script")
+    # 2026-09-23 (vá review cuối, Việc 1b): file THẬT SỰ đi giao là `final_with_hook.mp4`
+    # (giao_hang.py ưu tiên nó), không phải `hook/hook_final.mp4` (chỉ là đoạn hook ~25s trung
+    # gian, chưa ghép vào thân). Trước bản vá này, `kiem_hook()` chỉ soi hook_final.mp4 ở chế độ
+    # repair — tập chạy chế độ VÁ (giữ nguyên kịch bản/ảnh/video cũ, chỉ thêm hook vào đầu) có thể
+    # có đủ hook_final.mp4 mà bước 3 QUÊN ghép ra final_with_hook.mp4, vẫn lọt qua B10 với 0 phát
+    # hiện, rồi B11 giao đi bản `final.mp4` KHÔNG có hook. Áp dụng cho CẢ HAI chế độ upstream/repair
+    # — hook là nội dung của final_with_hook.mp4 dù được dựng bằng cách nào.
+    if not (S / "final_with_hook.mp4").exists():
+        _loi(ra, "hook", "cao", "kênh đã bật hook + tập đã khoá hook nhưng KHÔNG có final_with_hook.mp4",
+             "bước 3 dựng final_with_hook.mp4 — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9")
+    if not (S / "hook" / "render_info.json").exists():
+        _loi(ra, "hook", "cao", "thiếu hook/render_info.json — bước 3 chưa ghi nhận số khung/thời lượng hook",
+             "bước 3 ghi render_info.json sau khi dựng final_with_hook.mp4 — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.6")
     t = hook_stage._title(S)
     locked_title = (m.get("promise") or {}).get("title")
     # 2026-09-23 (vá review dọn hook, V5): `if t and ...` bỏ qua HOÀN TOÀN trường hợp title.txt bị

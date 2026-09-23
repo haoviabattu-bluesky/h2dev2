@@ -365,6 +365,28 @@ def chay_local(cmd, goc):
     return 0
 
 
+# 2026-09-23 (vá review HOOK, Việc 2): `cay_local()`/`cay_drive()` đệ quy MỌI thư mục con (không
+# lọc theo tên thư mục, chỉ lọc theo đuôi file) nên `hook/` đã tự động nằm trong phép đối chiếu
+# CÂY chung — không cần sửa 2 hàm đó. Cái còn THIẾU là một dòng KHẲNG ĐỊNH RIÊNG cho hook, đúng
+# luật "vận chuyển phải tự chứng minh" của dự án (xem docstring đầu file, mục 3 — verify-job có
+# rồi nhưng gộp chung vào danh sách thiếu dài, dễ đọc lướt qua đúng lúc thiếu đúng phần hook).
+def _kiem_hook_trong_goi(duoi, thieu):
+    """Lọc riêng phần `hook/` trong phép đối chiếu CÂY đã có ở doi_chieu_local()/doi_chieu(), in
+    một dòng RÕ RÀNG thay vì để lẫn vào danh sách thiếu chung chung. Tập không có `hook/` ở nguồn
+    (đa số tập, tính năng đang bật dần từng kênh) → không in gì, không báo lỗi gì cả."""
+    hook_co = sorted(t for t in duoi if t == "hook" or t.startswith("hook/"))
+    if not hook_co:
+        return
+    hook_thieu = [t for t in thieu if t == "hook" or t.startswith("hook/")]
+    if hook_thieu:
+        print(f"\n⚠️  RIÊNG hook/: THIẾU {len(hook_thieu)}/{len(hook_co)} file — máy 2 sẽ KHÔNG vẽ "
+              f"được ảnh shot hook nếu gửi gói này:")
+        for t in hook_thieu:
+            print("   -", t)
+    else:
+        print(f"  ✓ hook/: {len(hook_co)} file đã đối chiếu khớp — máy 2 đủ đơn vẽ ảnh shot hook.")
+
+
 def doi_chieu_local(remote_dir, local_dir, ten_goi="job"):
     """So cay LOCAL voi cay LOCAL (thay cho doi_chieu tren Drive)."""
     tren = set(cay_local(remote_dir))
@@ -374,6 +396,7 @@ def doi_chieu_local(remote_dir, local_dir, ten_goi="job"):
     print(f"Local: {len(tren)} file · Nguon: {len(duoi)} file")
     for t in them:
         print(f"   + chi co trong thu muc dong bo (khong sao): {t}")
+    _kiem_hook_trong_goi(duoi, thieu)
     if thieu:
         print(f"\n✗ THIEU {len(thieu)} file — {ten_goi} CHUA san sang:")
         for t in thieu:
@@ -416,6 +439,7 @@ def doi_chieu(drive, folder_id, local_dir, ten_goi="job"):
     print(f"Drive: {len(tren)} file · Local: {len(duoi)} file")
     for t in them:
         print(f"   + chi co tren Drive (khong sao): {t}")
+    _kiem_hook_trong_goi(duoi, thieu)
     if thieu:
         print(f"\n✗ THIEU {len(thieu)} file tren Drive — {ten_goi} CHUA san sang:")
         for t in thieu:

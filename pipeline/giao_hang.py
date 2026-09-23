@@ -188,6 +188,18 @@ def tom_tat_viet(slug: Path, tieu_de: str, force=False) -> str:
     return ra
 
 
+def chon_video_nguon(slug: Path):
+    """(mp4: Path, co_hook: bool) — file VIDEO NGUỒN sẽ chép đi, ưu tiên `final_with_hook.mp4`.
+
+    2026-09-23 (vá review HOOK, Việc 1a): tách riêng thành hàm nhỏ để test được mà không phải dựng
+    cả main() (argparse + profiles.load + ffmpeg…). Xem lý do đầy đủ ở chỗ gọi trong main().
+    """
+    mp4_hook = Path(slug) / "final_with_hook.mp4"
+    if mp4_hook.exists():
+        return mp4_hook, True
+    return Path(slug) / "final.mp4", False
+
+
 def _pad_ep(n):
     """So tap luon 2 chu so: ep7 -> ep07. Khong pad thi `ep10` sap truoc `ep7` khi liet ke thu muc,
     va lech voi cac lane dang dat ten ep01..ep04. Chuoi khong phai so thi giu nguyen."""
@@ -241,7 +253,15 @@ def main():
     dich = goc / kenh / nhan
     dich.mkdir(parents=True, exist_ok=True)
 
-    mp4 = slug / "final.mp4"
+    # 2026-09-23 (vá review HOOK, Việc 1a): tập đã dựng xong hook (bước 3 ghép `final_with_hook.mp4`
+    # ngay cạnh `final.mp4`, xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5) thì phải GIAO BẢN CÓ HOOK —
+    # trước đây hàm này chỉ biết mỗi `final.mp4`, nên tập chạy chế độ vá (giữ nguyên video cũ, chỉ
+    # thêm hook vào đầu) bị giao đi ĐÚNG bản KHÔNG có hook mà không ai hay. Tên file ĐÍCH vẫn giữ
+    # nguyên `final.mp4` (quy ước cột TEN_FILE không đổi) — chỉ đổi NGUỒN chép.
+    mp4, co_hook = chon_video_nguon(slug)
+    if co_hook:
+        print(f"  · tập có {mp4.name} → giao BẢN CÓ HOOK (nguồn = {mp4.name}, đích vẫn "
+              f"tên {TEN_FILE['.mp4']})")
     png = next((slug / t for t in ("thumbnail_final.png", "thumb_final.png")
                 if (slug / t).exists()), None)
     txt = slug / "TIEU_DE_MO_TA.txt"

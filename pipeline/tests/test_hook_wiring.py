@@ -1,6 +1,8 @@
 # Test Task 8 (2026-09-23): _pass1_prompt(hook_locked=) + extract_beats Beat 0.
 # Toàn bộ test OFFLINE — monkeypatch ai_steps._writer_chat, không gọi LLM thật.
 import json
+from pathlib import Path
+
 import pytest
 import ai_steps
 
@@ -91,6 +93,11 @@ def test_qc_final_kiem_hook(tmp_path):
     F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert any("không bắt đầu" in x["msg"] for x in ra)
     (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    # 2026-09-23 (vá review cuối, Việc 1b): kiem_hook() nay CŨNG đòi final_with_hook.mp4 +
+    # hook/render_info.json ở mọi chế độ (kể cả upstream) — tập "sạch hoàn toàn" phải có đủ 2 thứ
+    # này mới còn ra == [] như trước bản vá.
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x")
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
     ra = []
     F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert ra == []
@@ -399,3 +406,171 @@ def test_sinh_hook_storyboard_neu_can_loi_khong_lam_hong_b5w(monkeypatch, capsys
     make_video.Job._sinh_hook_storyboard_neu_can(fake)   # không được ném ra ngoài
     out = capsys.readouterr().out
     assert "hook_storyboard.py --profile lane-x --slug ep01" in out
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23), Việc vaB2: nối HOOK vào khâu giao hàng (giao_hang.py/qc_final.py)
+# và khâu đóng gói máy 2 (dong_goi_may2.py/drive_handoff.py) — trước bản vá này 3 chỗ đều không
+# biết `final_with_hook.mp4`/thư mục `hook/` tồn tại.
+# ---------------------------------------------------------------------------
+
+def test_chon_video_nguon_uu_tien_final_with_hook(tmp_path):
+    """Việc 1a: tập có final_with_hook.mp4 → giao_hang.py phải chọn ĐÚNG file đó làm nguồn chép
+    (đích vẫn tên final.mp4 — không đổi quy ước tên file, chỉ đổi nguồn)."""
+    import giao_hang as G
+    (tmp_path / "final.mp4").write_bytes(b"khong hook")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"co hook")
+    mp4, co_hook = G.chon_video_nguon(tmp_path)
+    assert co_hook is True
+    assert mp4 == tmp_path / "final_with_hook.mp4"
+    assert mp4.read_bytes() == b"co hook"
+
+
+def test_chon_video_nguon_khong_co_hook_giu_nguyen_final(tmp_path):
+    """Đối chứng: tập KHÔNG có final_with_hook.mp4 → hành xử y hệt trước khi có tính năng hook."""
+    import giao_hang as G
+    (tmp_path / "final.mp4").write_bytes(b"khong hook")
+    mp4, co_hook = G.chon_video_nguon(tmp_path)
+    assert co_hook is False
+    assert mp4 == tmp_path / "final.mp4"
+
+
+def test_qc_final_kiem_hook_thieu_final_with_hook(tmp_path):
+    """Việc 1b: kênh bật + tập đã khoá hook (upstream, script.txt đã bắt đầu đúng bằng hook) nhưng
+    THIẾU final_with_hook.mp4 → phải ra phát hiện mức 'cao' (không được lọt B10 với 0 phát hiện,
+    đúng đúng sự cố có thật mô tả trong yêu cầu vá)."""
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。")
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    cao = [x for x in ra if x["sev"] == "cao"]
+    assert cao and any("final_with_hook.mp4" in x["msg"] for x in cao)
+
+
+def test_qc_final_kiem_hook_repair_cung_doi_final_with_hook(tmp_path):
+    """Việc 1b: áp dụng cho CẢ hai chế độ — repair có đủ hook/hook_final.mp4 (phép kiểm cũ ĐẠT) mà
+    vẫn thiếu final_with_hook.mp4 + hook/render_info.json thì vẫn phải bị bắt (trước bản vá chỉ
+    nhánh upstream mới có 2 phép kiểm mới này)."""
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。", mode="repair")
+    (tmp_path / "hook" / "hook_final.mp4").write_bytes(b"x")
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    cao = [x for x in ra if x["sev"] == "cao"]
+    assert any("final_with_hook.mp4" in x["msg"] for x in cao)
+    assert any("render_info.json" in x["msg"] for x in cao)
+
+
+def test_qc_final_kiem_hook_tat_van_bo_qua_du_thieu_final_with_hook(tmp_path):
+    """Đối chứng cho phép kiểm mới: kênh TẮT hook (script.hook.enabled vắng/False) → kiem_hook()
+    vẫn phải im lặng tuyệt đối dù thư mục tập không có gì (đã có test_qc_final_kiem_hook_tat_bo_qua_het
+    kiểm ý này ở mức tổng quát; test này khẳng định lại RÕ cho đúng câu chữ yêu cầu vá 'kênh tắt →
+    không phát hiện gì')."""
+    import qc_final as F
+    ra = []
+    F.kiem_hook(tmp_path, {"id": "x", "script": {}}, ra)
+    assert ra == []
+
+
+def _tap_co_hook_day_du(tap: Path) -> None:
+    """Dựng 1 thư mục `hook/` đầy đủ file (giống bước 1 thật để lại) — dùng chung cho các test
+    đóng gói máy 2 bên dưới."""
+    hook = tap / "hook"
+    (hook / "flow_prompts").mkdir(parents=True)
+    (hook / "hook_locked.txt").write_text("hook。", encoding="utf-8")
+    (hook / "hook_lock.json").write_text("{}", encoding="utf-8")
+    (hook / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (hook / "grok_jobs.csv").write_text("shot,prompt\n1,a\n", encoding="utf-8")
+    (hook / "flow_prompts" / "shot_01.txt").write_text("prompt 1", encoding="utf-8")
+    (hook / "flow_prompts" / "shot_02.txt").write_text("prompt 2", encoding="utf-8")
+
+
+def test_dong_goi_hook_gop_du_file_khi_tap_co_hook(tmp_path):
+    """Việc 2: tập CÓ thư mục hook/ → dong_goi_may2._dong_goi_hook() phải copy đủ 4 file gốc +
+    toàn bộ flow_prompts/ sang gói giao, và đối chiếu khớp kích thước (luật 'vận chuyển phải tự
+    chứng minh')."""
+    import dong_goi_may2 as D
+    job_dir = tmp_path / "job"
+    dst = tmp_path / "goi"
+    job_dir.mkdir()
+    dst.mkdir()
+    _tap_co_hook_day_du(job_dir)
+
+    n = D._dong_goi_hook(job_dir, dst)
+    assert n == 6  # 4 file gốc + 2 file trong flow_prompts/
+    for ten in D.HOOK_FILES_GOC:
+        d = dst / "hook" / ten
+        assert d.exists()
+        assert d.read_bytes() == (job_dir / "hook" / ten).read_bytes()
+    assert (dst / "hook" / "flow_prompts" / "shot_01.txt").exists()
+    assert (dst / "hook" / "flow_prompts" / "shot_02.txt").exists()
+
+
+def test_dong_goi_hook_khong_co_hook_thi_khong_tao_gi_khong_loi(tmp_path):
+    """Đối chứng: tập KHÔNG có hook/ → gói giao giữ nguyên như cũ, không tạo thư mục hook/ rỗng,
+    không báo lỗi gì."""
+    import dong_goi_may2 as D
+    job_dir = tmp_path / "job"
+    dst = tmp_path / "goi"
+    job_dir.mkdir()
+    dst.mkdir()
+    (job_dir / "script.txt").write_text("nội dung", encoding="utf-8")   # tập bình thường, không hook
+
+    n = D._dong_goi_hook(job_dir, dst)
+    assert n == 0
+    assert not (dst / "hook").exists()
+
+
+def test_dong_goi_hook_thieu_file_sau_copy_thi_bao_loi(tmp_path, monkeypatch):
+    """Tự kiểm: nếu 1 file bị hỏng/không khớp kích thước ngay sau khi copy (mô phỏng lỗi đĩa nửa
+    chừng) thì phải SystemExit — không được lặng lẽ báo '✓ đóng gói' như đã đủ."""
+    import dong_goi_may2 as D
+    job_dir = tmp_path / "job"
+    dst = tmp_path / "goi"
+    job_dir.mkdir()
+    dst.mkdir()
+    _tap_co_hook_day_du(job_dir)
+
+    goc = D.shutil.copy2
+
+    def _copy2_hong(src, dst_path):
+        goc(src, dst_path)
+        if Path(dst_path).name == "hook_lock.json":
+            Path(dst_path).write_bytes(b"")   # giả lập copy hỏng: rỗng, khác kích thước nguồn
+    monkeypatch.setattr(D.shutil, "copy2", _copy2_hong)
+
+    with pytest.raises(SystemExit, match="hook_lock.json"):
+        D._dong_goi_hook(job_dir, dst)
+
+
+def test_kiem_hook_trong_goi_bao_dat_khi_du(capsys):
+    """Việc 2 (drive_handoff.py): phép tự kiểm hook trong doi_chieu/doi_chieu_local — đủ file thì
+    in dòng khẳng định rõ ràng, không lẫn vào danh sách thiếu chung."""
+    import drive_handoff as DH
+    duoi = {"script.txt", "hook/hook_locked.txt", "hook/grok_jobs.csv"}
+    DH._kiem_hook_trong_goi(duoi, thieu=[])
+    out = capsys.readouterr().out
+    assert "hook/" in out and "2" in out
+    assert "THIẾU" not in out.upper() and "THIEU" not in out
+
+
+def test_kiem_hook_trong_goi_bao_thieu_khi_thieu(capsys):
+    import drive_handoff as DH
+    duoi = {"script.txt", "hook/hook_locked.txt", "hook/grok_jobs.csv"}
+    thieu = ["hook/grok_jobs.csv"]
+    DH._kiem_hook_trong_goi(duoi, thieu)
+    out = capsys.readouterr().out
+    assert "hook/grok_jobs.csv" in out
+    assert "THIẾU" in out.upper()
+
+
+def test_kiem_hook_trong_goi_khong_co_hook_thi_im_lang(capsys):
+    """Tập không có hook/ ở nguồn → không in gì cả (giữ log sạch cho ~90% tập chưa dùng hook)."""
+    import drive_handoff as DH
+    duoi = {"script.txt", "img_prompts.txt"}
+    DH._kiem_hook_trong_goi(duoi, thieu=[])
+    out = capsys.readouterr().out
+    assert out == ""

@@ -111,11 +111,15 @@ def fetch_channel_keywords(channel_url_or_id, proxy=None):
     return tags, meta.get("title", "")
 
 
-def build_tag_stats(rows, proxy=None, sleep_s=0.3, log=print):
+def build_tag_stats(rows, proxy=None, sleep_s=0.3, log=print, channel_url=""):
     """rows: list [{"id","title","view_count",...}, ...] (định dạng channel_analyzer.py candidates).
     Trả dict {"video_tags": {tag: {"n_videos", "total_views", "avg_views", "video_ids":[...]}},
               "top_tags": [...sắp theo avg_views giảm dần...],
-              "n_videos_with_tags": int, "n_videos_total": int}.
+              "n_videos_with_tags": int, "n_videos_total": int,
+              "channel_keywords": [...] (chỉ khi truyền channel_url), "channel_title": str}.
+    channel_url: truyền vào thì gom thêm Channel keywords (chủ kênh tự khai trong Studio) — dùng làm
+    gợi ý điền Channel keywords lúc setup kênh mới thay vì hardcode tay. Thiếu nó thì TAG_STATS chỉ
+    có tag CỦA TỪNG VIDEO (thiếu sót đã phát hiện ở kênh どっこい日本史 2026-09-23).
     Lỗi từng video KHÔNG dừng cả lô — ghi log rồi bỏ qua (đúng kiểu crawl_transcripts đã làm)."""
     agg = {}
     n_ok = 0
@@ -142,12 +146,21 @@ def build_tag_stats(rows, proxy=None, sleep_s=0.3, log=print):
     top_tags = sorted(agg.items(), key=lambda kv: (kv[1]["n_videos"], kv[1]["avg_views"]),
                        reverse=True)
     top_tags = [{"tag": t, **v} for t, v in top_tags]
-    return {
+    out = {
         "video_tags": agg,
         "top_tags": top_tags,
         "n_videos_with_tags": n_ok,
         "n_videos_total": len(rows),
     }
+    if channel_url:
+        try:
+            kws, ch_title = fetch_channel_keywords(channel_url, proxy=proxy)
+            out["channel_keywords"] = kws
+            out["channel_title"] = ch_title
+            log(f"  → {len(kws)} channel keyword ({ch_title})")
+        except Exception as e:
+            log(f"  ✗ channel keywords lỗi: {type(e).__name__} {str(e)[:100]}")
+    return out
 
 
 # ---------------------------------------------------------------------- CLI

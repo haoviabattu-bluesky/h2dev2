@@ -34,11 +34,18 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 
 # ---------------------------------------------------------------- K1: crawl
-def crawl_catalog(channel_url, n_candidates, proxy=None):
+def crawl_catalog(channel_url, n_candidates, proxy=None, meta_lang=""):
     """Trả (tong_so_video_kenh, candidates): candidates = list [{"id","title","view_count",
     "duration"}] ứng viên. Kênh có <= n_candidates video → lấy HẾT; nhiều hơn → lấy top
     n_candidates theo view_count giảm dần (bước chọn lọc --n-select xảy ra ở nơi khác, sau khi
-    đã biết video nào lấy được transcript)."""
+    đã biết video nào lấy được transcript).
+
+    meta_lang: mã ngôn ngữ gốc của kênh ("ja", "ko"...). Mặc định "" = giữ hành vi cũ. YouTube trả
+    TIÊU ĐỀ ĐÃ TỰ DỊCH theo ngôn ngữ giao diện (kênh Nhật ra title tiếng Anh) → phân tích công thức
+    tiêu đề/độ dài tiêu đề trên bản dịch là SAI (đã dính thật ở kênh どっこい日本史 2026-09-23: DNA kết
+    luận "tiêu đề Nhật 38-52 ký tự" trong khi title Nhật thật median 36). Đặt meta_lang thì crawl
+    THÊM 1 lượt với extractor_args youtube:lang=<mã> để lấy title gốc rồi ghép theo video id —
+    PHẢI ghép chứ không thay hẳn, vì lượt crawl có lang=... trả view_count = None."""
     import yt_dlp
     opts = {"quiet": True, "no_warnings": True, "extract_flat": True, "noprogress": True,
             "playlistend": 500}
@@ -47,11 +54,24 @@ def crawl_catalog(channel_url, n_candidates, proxy=None):
     url = channel_url.rstrip("/") + "/videos"
     with yt_dlp.YoutubeDL(opts) as y:
         info = y.extract_info(url, download=False)
+    titles_native = {}
+    if meta_lang:
+        opts_native = dict(opts, extractor_args={"youtube": {"lang": [meta_lang]}})
+        try:
+            with yt_dlp.YoutubeDL(opts_native) as y:
+                info_native = y.extract_info(url, download=False)
+            titles_native = {e["id"]: e.get("title") or ""
+                             for e in (info_native or {}).get("entries") or [] if e}
+            print(f"  → lấy {len(titles_native)} tiêu đề gốc (lang={meta_lang}), thay bản dịch")
+        except Exception as e:
+            print(f"  ✗ không lấy được tiêu đề gốc lang={meta_lang}, dùng bản YouTube trả mặc "
+                  f"định: {type(e).__name__} {str(e)[:100]}")
     rows = []
     for e in (info or {}).get("entries") or []:
         if not e:
             continue
-        rows.append({"id": e.get("id"), "title": e.get("title") or "",
+        rows.append({"id": e.get("id"),
+                     "title": titles_native.get(e.get("id")) or e.get("title") or "",
                      "view_count": e.get("view_count") or 0,
                      "duration": e.get("duration") or 0})
     total = len(rows)
@@ -60,14 +80,14 @@ def crawl_catalog(channel_url, n_candidates, proxy=None):
     return total, candidates
 
 
-def crawl_tag_stats(candidates, out_dir, proxy=None):
+def crawl_tag_stats(candidates, out_dir, proxy=None, channel_url=""):
     """Gom Video Tags (từ HTML /watch) của toàn bộ pool candidates + Channel Tags của kênh →
     out_dir/TAG_STATS.json. THUẦN PHỤ, không phải bước bắt buộc của K1/K2: lỗi (mạng, IP chặn,
     kênh không khai tag) chỉ in cảnh báo rồi trả None, KHÔNG raise — không được làm gãy pipeline
     DNA chính. Dùng candidates (pool đầy đủ, KHÔNG chỉ n-select) vì tag không cần transcript."""
     import yt_tags
     try:
-        stats = yt_tags.build_tag_stats(candidates, proxy=proxy)
+        stats = yt_tags.build_tag_stats(candidates, proxy=proxy, channel_url=channel_url)
     except Exception as e:
         print(f"  ✗ TAG_STATS bỏ qua: {type(e).__name__} {str(e)[:120]}")
         return None
@@ -207,6 +227,9 @@ def main():
     ap.add_argument("--n-select", type=int, default=10,
                     help="số video CHỌN LỌC (view cao nhất, có transcript) đưa vào phân tích Gemini")
     ap.add_argument("--langs", default="ja,en")
+    ap.add_argument("--meta-lang", default="",
+                    help="mã ngôn ngữ GỐC của kênh (vd ja) để lấy TIÊU ĐỀ GỐC thay vì bản YouTube "
+                         "tự dịch — bắt buộc khi muốn phân tích công thức/độ dài tiêu đề")
     ap.add_argument("--niche-hint", default="")
     ap.add_argument("--proxy", default="",
                     help="proxy HTTP(S) cho cả crawl catalog lẫn transcript, dùng khi IP bị "
@@ -224,13 +247,14 @@ def main():
 
     t0 = time.time()
     print(f"[K1] Crawl catalog {args.channel_url} ...")
-    total, candidates = crawl_catalog(args.channel_url, args.n_candidates, proxy=proxy)
+    total, candidates = crawl_catalog(args.channel_url, args.n_candidates, proxy=proxy,
+                                      meta_lang=args.meta_lang)
     print(f"  → kênh có {total} video · lấy {len(candidates)} ứng viên (view cao nhất), "
           f"{time.time()-t0:.0f}s")
 
     if not args.no_tags:
         print(f"[K1] Gom Video Tags/Channel Tags ({len(candidates)} video, không cần transcript) ...")
-        crawl_tag_stats(candidates, out_dir, proxy=proxy)
+        crawl_tag_stats(candidates, out_dir, proxy=proxy, channel_url=args.channel_url)
 
     t1 = time.time()
     print(f"[K1] Crawl transcript {len(candidates)} video ứng viên ...")

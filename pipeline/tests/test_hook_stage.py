@@ -970,6 +970,22 @@ def test_doc_kho_hook_json_hong_tra_rong_khong_nem(tmp_path, monkeypatch):
     assert HS.doc_kho_hook(["H22"]) == ""
 
 
+def test_doc_kho_hook_moi_id_deu_sai_thi_dung_han(tmp_path, monkeypatch):
+    """Gõ sai HẾT id (vd "H2" thay "H22") = lỗi khai profile, phải DỪNG chứ không im lặng
+    trả rỗng — im lặng thì hook vẫn viết ra và cả lane chạy như thể chưa bật kho bao giờ."""
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
+    with pytest.raises(SystemExit) as e:
+        HS.doc_kho_hook(["H2", "H98"])
+    assert "H2" in str(e.value) and "script.hook.patterns" in str(e.value)
+
+
+def test_doc_kho_hook_thieu_kho_van_im_lang_du_id_sai(tmp_path, monkeypatch):
+    """Nhưng kho KHÔNG ĐỌC ĐƯỢC thì vẫn trả rỗng, không ném: kho nằm ở dự án khác,
+    sự cố bên đó không được làm gãy dây chuyền bên này."""
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", tmp_path / "khong_ton_tai.json")
+    assert HS.doc_kho_hook(["H2"]) == ""
+
+
 def test_doc_kho_hook_rong_khi_khong_co_id():
     assert HS.doc_kho_hook([]) == ""
 

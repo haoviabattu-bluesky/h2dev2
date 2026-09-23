@@ -542,9 +542,14 @@ def doc_kho_hook(ids, closer_id=""):
     `ids` (khớp `patterns[].id` trong kho): in `id · name · kind`, `mechanism`, `template`, `avoid`.
     Nếu có `closer_id` (khớp `closers[].id`): thêm `mechanism` + `template` của thiết bị khoá đó.
 
-    Kho không tồn tại / JSON hỏng / id không có trong kho → in CẢNH BÁO tiếng Việt rồi trả chuỗi
-    RỖNG, KHÔNG NÉM — kho nằm ở dự án khác, thiếu/hỏng kho không được phép làm gãy dây chuyền viết
-    hook ở đây (cùng triết lý với `phan_tich_nguon`/`nguon_cua_tap` trong file này)."""
+    Kho không tồn tại / JSON hỏng → in CẢNH BÁO tiếng Việt rồi trả chuỗi RỖNG, KHÔNG NÉM — kho nằm
+    ở dự án khác, thiếu/hỏng kho không được phép làm gãy dây chuyền viết hook ở đây (cùng triết lý
+    với `phan_tich_nguon`/`nguon_cua_tap` trong file này).
+
+    NGOẠI LỆ (2026-09-23): kho ĐỌC ĐƯỢC mà KHÔNG id nào của kênh khớp thì DỪNG HẲN (SystemExit).
+    Đó là lỗi khai profile (gõ "H2" thay "H22"), không phải sự cố hạ tầng — im lặng trả rỗng thì
+    hook vẫn viết ra bình thường và cả lane chạy như thể chưa bật kho, cảnh báo chỉ hiện thoáng ở
+    console rồi mất. Khớp được MỘT PHẦN thì vẫn chạy, chỉ cảnh báo id hỏng."""
     ids = list(ids or [])
     if not ids and not closer_id:
         return ""
@@ -574,6 +579,10 @@ def doc_kho_hook(ids, closer_id=""):
                           f"  template: {c.get('template', '')}")
         else:
             print(f"  ! thiết bị khoá hook {closer_id!r} không có trong kho hook, bỏ qua")
+    if ids and not khoi:
+        raise SystemExit(f"LỖI KHAI PROFILE: không kiểu hook nào trong {ids} có trong kho "
+                         f"{HOOK_LIBRARY_PATH}. Sửa script.hook.patterns trong profile "
+                         f"(id đúng dạng H01..H23), hoặc để rỗng nếu không muốn dùng kho.")
     return ("\n".join(khoi) + phan_closer).strip()
 
 

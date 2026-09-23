@@ -6,8 +6,8 @@
 > cùng ngày (ghi ở §0). Báo cáo hiện trạng đã làm trước đó (6 lane, 30 giây đầu thật) không lặp lại ở đây.
 > ⚠️ **Cập nhật 2026-09-23 (vá review cuối):** tính năng KHÔNG bật đồng loạt — công tắc
 > `script.hook.enabled` mặc định **TẮT** cho mọi kênh, đang **bật dần từng kênh sau khi chạy thử**
-> (đã bật + ghim `script.hook.model: "claude-fable-5-1"` cho `teinengo-tanoshimi`/`teinengo-real`/
-> `kenko-chiebukuro` sau A/B thật — xem §1 mục 6 và ghi chú field ở §2). §0–§9 dưới đây mô tả THIẾT
+> (kênh đầu tiên bật thật là `satori-jp-obaa`, kèm `script.hook.patterns`/`closer` lấy từ kho
+> `HOOK_LIBRARY` — xem §1 mục 6 và ghi chú field ở §2). §0–§9 dưới đây mô tả THIẾT
 > KẾ đầy đủ của tính năng; phần "mặc định bắt buộc mọi tập" ở các mục cũ đã bị thay bằng opt-in
 > theo kênh, đọc kèm ghi chú sửa ở §1.
 
@@ -33,9 +33,12 @@
 4. **Model viết chạm hook 1 lần** (brain_model = Fable), sửa = patch_model (Opus 5), Sol chỉ chấm — đúng luật phân vai
    `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §0a. Claude Code = lớp 3 đọc bản khoá, không sửa tay.
    Field `script.hook.model` (mặc định `""` = im lặng dùng `script.brain_model` của kênh — nguyên
-   tắc "ai viết kịch bản thì viết hook") cho phép GHIM model viết HOOK khác brain_model khi cần —
-   3 kênh `teinengo-tanoshimi`/`teinengo-real`/`kenko-chiebukuro` đã ghim `claude-fable-5-1` vì A/B
-   thật: Opus viết hook — cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá
+   tắc "ai viết kịch bản thì viết hook") cho phép GHIM model viết HOOK khác brain_model khi cần.
+   ⚠️ **Hiện KHÔNG kênh nào khai field này** (2026-09-23): 3 kênh `teinengo-tanoshimi`/
+   `teinengo-real`/`kenko-chiebukuro` từng ghim `claude-fable-5-1` ở đây, nay `brain_model` của cả
+   3 đã là Fable nên field thành thừa và đã gỡ khỏi profile — code vẫn giữ field cho kênh SAU NÀY
+   có `brain_model` khác Fable mà vẫn muốn Fable viết hook. Lý do ghim ban đầu là A/B thật: Opus
+   viết hook — cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá
    cứu (2 vòng chấm + 2 lượt vá); Fable viết — cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt
    vá). Field này KHÔNG đụng patch_model — mọi lượt SỬA hook vẫn dùng patch_model như luật chung.
 5. **Sau `HOOK_LOCKED`, `script.txt` bắt buộc bắt đầu bằng đúng chuỗi hook** (so sau khi normalize) — máy đo ở S3, sai = việc.

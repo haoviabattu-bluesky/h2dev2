@@ -1659,6 +1659,69 @@ class Job:
         lane "chỉ làm kịch bản" dừng được đúng chỗ (`--den B5P`) mà vẫn có nội dung ảnh, đúng luật
         "cấm để bước 2/3 tự sinh nội dung, Bước 1 phải viết xong để lại thành file" (CLAUDE.md).
 
+        2026-09-23 (vá review cuối, Việc 1+2 — nối hook_storyboard vào luồng bình thường): sau khi
+        ghi xong tài sản của bước này, gọi thêm `self._sinh_hook_storyboard_neu_can()` — xem
+        docstring của hàm đó để biết lý do đặt ĐÚNG ở đây (characters.json đã có ở điểm này) và các
+        ràng buộc an toàn (không phá B5W nếu hook lỗi).
+        """
+        self._b5w_ghi_prompt(sheet)
+        self._sinh_hook_storyboard_neu_can()
+
+    def _sinh_hook_storyboard_neu_can(self):
+        """2026-09-23 (vá review cuối, Việc 1+2): gọi `hook_storyboard.sinh()` ngay sau bước ghi
+        tài sản (characters.json + prompt ảnh) để MỌI tập chạy luồng bình thường (lean_script.run →
+        make_video.py) đều có đủ 5 file mà `docs/GIAO_VIEC_BUOC3_AGENT.md` mục 9 đòi hỏi ở khâu
+        bước 3 (`hook_locked.txt`, `hook_lock.json`, `hook_storyboard.json`, `flow_prompts\\shot_NN.txt`,
+        `grok_jobs.csv`) — trước bản vá này, storyboard CHỈ sinh khi gọi tay `hook_stage.py`, nên mọi
+        tập chạy luồng bình thường bị giao thiếu 2/5 file, khâu bước 3 buộc phải DỪNG theo đúng
+        luật của chính tài liệu đó.
+
+        ĐẶT Ở ĐÂY (cuối `b5w_write_prompts`, KHÔNG đặt ở `hook_stage.khoa()` lúc khoá hook) vì
+        `hook_storyboard.sinh()` đọc `characters.json` để giữ continuity khuôn mặt nhân vật
+        (@REF/@REF2), mà hook bị khoá TRƯỚC KHI viết thân — lúc đó `characters.json` CHƯA TỒN TẠI
+        (nó là tài sản sinh CÙNG ĐỢT với `img_prompts.txt`/`img_doan.txt`/`thumb_text.txt`, xem
+        `masters_from_bible()` ở trên: "characters.json (lớp 1 viết trước B5W)" — tức đã có sẵn
+        trên đĩa ngay khi `b5w_write_prompts` bắt đầu chạy, do Claude Code/bộ não viết TRƯỚC khi
+        gọi tiếp make_video.py). Sinh storyboard sớm hơn mốc này sẽ chạy với ghi chú "(chưa có
+        characters.json)" của chính `hook_storyboard.sinh()` mà vẫn gắn nhãn REF/REF2 cho các
+        shot — tức trỏ tới ảnh gốc nhân vật CHƯA TỒN TẠI, trái luật dự án "phải tạo ảnh master
+        nhân vật TRƯỚC khi giao khâu vẽ ảnh" (memory `ref-lock-tao-truoc-khi-giao-may2`).
+
+        Điều kiện chạy (bỏ qua ÊM, không in gì, cho ~90% tập chưa dùng tính năng hook):
+        - `hook_stage.is_enabled(self.p)` — công tắc BẬT/TẮT THEO TỪNG KÊNH, mặc định TẮT.
+        - `hook_stage.doc_lock(self.dir)` khác None — tập phải có hook ĐÃ KHOÁ (H1–H4 xong).
+        Không rẽ theo `body_mode()`/`id` kênh — hook độc lập với AI-images hay stock-clips
+        (hàng rào #2 CLAUDE.md: khác biệt lane chỉ qua field profile).
+
+        Idempotent, KHÔNG tốn thêm lượt model khi gọi lại nhiều lần (đã đọc lại code xác nhận):
+        `hook_storyboard.sinh()` mở `hook_storyboard.json` đã có, so `hook_sha256` với
+        `hook_lock.json["sha256"]`, khớp thì `return sb` NGAY — dòng này nằm TRƯỚC lệnh gọi
+        `ai_steps._writer_chat()` trong hàm đó, nên B5W chạy lại (resume, hoặc bị skip rồi gọi lại
+        do sửa code) không sinh thêm request nào tới model.
+
+        Lỗi khi sinh storyboard (model trả JSON hỏng cả 3 lần, mạng đứt, hạ tầng...) KHÔNG được
+        làm hỏng bước ghi tài sản — B5W (viết ảnh/characters) là việc CHÍNH, storyboard hook chỉ là
+        việc PHỤ đi kèm. Bắt cả `Exception` lẫn `SystemExit` (hook_storyboard.sinh ném SystemExit
+        khi thiếu hook khoá hoặc storyboard không hợp lệ sau 3 lần — SystemExit không phải
+        subclass của Exception nên phải bắt riêng), in cảnh báo kèm lệnh chạy tay để vá sau, rồi
+        đi tiếp bình thường.
+        """
+        import hook_stage
+        if not hook_stage.is_enabled(self.p) or not hook_stage.doc_lock(self.dir):
+            return
+        try:
+            import hook_storyboard
+            hook_storyboard.sinh(self.dir, self.p)
+        except (Exception, SystemExit) as e:
+            print(f"  ⚠️ hook_storyboard.sinh() lỗi ({type(e).__name__}: {str(e)[:200]}) — bỏ qua, "
+                  f"KHÔNG chặn B5W. Chạy tay lại khi cần: "
+                  f"py -3.13 hook_storyboard.py --profile {self.p.get('id')} --slug {self.slug}")
+
+    def _b5w_ghi_prompt(self, sheet=""):
+        """Thân cũ của B5W (tách ra 2026-09-23 để `b5w_write_prompts` gọi thêm
+        `_sinh_hook_storyboard_neu_can()` sau khi hàm này ghi xong tài sản — xem docstring 2 hàm
+        trên). Nội dung/hành vi giữ NGUYÊN, không đổi 1 dòng logic viết prompt.
+
         Stamp fingerprint (gate_common) ngay sau khi viết — lần sau resume (kể cả sau khi script
         bị sửa lại vì REMAKE) còn biết prompt có bám đúng script hiện tại hay không.
         """

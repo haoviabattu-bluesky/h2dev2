@@ -25,6 +25,18 @@ def validate(sb, hook, char_rate):
     shots = sb.get("shots") or []
     if not 4 <= len(shots) <= 7:
         loi.append(f"cần 4–7 shot, có {len(shots)}")
+    # 2026-09-23 (vá review cuối, Việc 3a): model có thể trả JSON HỢP LỆ nhưng THIẾU khoá t0/t1
+    # (vd chỉ có {"n":1,"voice":"…"}) — trước đây truy cập thẳng s["t0"] ném KeyError ra NGOÀI
+    # vòng lặp 3 lần của sinh() (chỉ json.loads được bọc try/except), người vận hành nhận traceback
+    # thay vì được thử lại kèm "LẦN TRƯỚC SAI: …". Coi thiếu khoá là 1 lỗi HỢP LỆ trong danh sách
+    # trả về rồi DỪNG SỚM — mọi phép kiểm dựa trên t0/t1 bên dưới (tổng thời lượng, độ dài từng
+    # shot, liên tục giữa 2 shot) không tính được khi thiếu mốc, tính bừa chỉ ra lỗi phái sinh gây
+    # nhiễu (vd "tổng 0.0s ngoài 20–30s").
+    thieu_moc = [s for s in shots if s.get("t0") is None or s.get("t1") is None]
+    if thieu_moc:
+        for s in thieu_moc:
+            loi.append(f"cảnh {s.get('n', '?')} thiếu trường t0/t1")
+        return loi
     if shots:
         tong = shots[-1]["t1"] - shots[0]["t0"]
         if not 18 <= tong <= 32:
@@ -70,19 +82,43 @@ def sinh(d, prof, force=False):
     chars = (d / "characters.json").read_text(encoding="utf-8")[:4000] if (d / "characters.json").exists() else "(chưa có characters.json — mô tả nhân vật theo hook)"
     prompt = PROMPT.format(hook=hook, cr=cr, tong=ai_steps.measure(hook)["chars"] / cr * 60, chars=chars)
     sb = None
+    r = None
+    # 2026-09-23 (vá review cuối, Việc 3b): tích luỹ lỗi + phản hồi thô để có gì ghi vào
+    # hook_storyboard.err.json khi hết 3 lượt vẫn không đạt (xem nhánh `else` bên dưới).
+    loi_theo_lan = []
     for lan in range(3):
         r = ai_steps._writer_chat(prof, prompt, task="short", max_chars=20000)
         try:
             sb = json.loads(re.sub(r"^```[a-z]*\n?|\n?```$", "", r.text.strip()))
         except Exception as e:
-            print(f"  ! JSON storyboard hỏng lần {lan+1}: {e}"); continue
-        loi = validate(sb, hook, cr)
+            loi = [f"JSON hỏng: {type(e).__name__} {e}"]
+            print(f"  ! JSON storyboard hỏng lần {lan+1}: {e}")
+            loi_theo_lan.append({"lan": lan + 1, "loi": loi})
+            prompt = prompt + "\n\nLẦN TRƯỚC SAI: " + " · ".join(loi) + " — sửa đúng."
+            continue
+        # Việc 3a: validate() giờ không còn ném KeyError khi thiếu t0/t1, nhưng vẫn bọc thêm 1 lớp
+        # try/except ở ĐÂY (như brief gợi ý "và/hoặc") — phòng lỗi khác chưa lường hết (vd model
+        # trả "shots" không phải list-of-dict) cũng không làm crash cả vòng lặp thử lại.
+        try:
+            loi = validate(sb, hook, cr)
+        except Exception as e:
+            loi = [f"validate() lỗi: {type(e).__name__} {str(e)[:150]}"]
         if not loi:
             break
         print(f"  ! storyboard lần {lan+1}: " + " · ".join(loi))
+        loi_theo_lan.append({"lan": lan + 1, "loi": loi})
         prompt = prompt + "\n\nLẦN TRƯỚC SAI: " + " · ".join(loi) + " — sửa đúng."
     else:
-        raise SystemExit("✗ storyboard không hợp lệ sau 3 lần — người xem hook/hook_storyboard.err.json")
+        # 2026-09-23 (vá review cuối, Việc 3b): trước đây câu thông báo nhắc mở
+        # hook/hook_storyboard.err.json nhưng KHÔNG CÓ dòng code nào ghi file đó — người vận hành
+        # mở ra thấy không tồn tại. Ghi THẬT: phản hồi thô của model ở LẦN CUỐI + toàn bộ lỗi đã
+        # tích luỹ qua các lần, để biết chính xác model sai kiểu gì mà sửa prompt/đổi model.
+        (d / "hook").mkdir(parents=True, exist_ok=True)
+        err = {"hook": hook, "raw_response_lan_cuoi": r.text if r is not None else None,
+               "loi_theo_lan": loi_theo_lan}
+        (d / "hook" / "hook_storyboard.err.json").write_text(
+            json.dumps(err, ensure_ascii=False, indent=2), encoding="utf-8")
+        raise SystemExit("✗ storyboard không hợp lệ sau 3 lần — xem hook/hook_storyboard.err.json")
     sb["hook_sha256"] = lock["sha256"]
     sb["duration_target_s"] = round(sb["shots"][-1]["t1"], 1)
     out.write_text(json.dumps(sb, ensure_ascii=False, indent=2), encoding="utf-8")

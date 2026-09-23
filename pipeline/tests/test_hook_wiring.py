@@ -321,3 +321,81 @@ def test_qc_final_kiem_hook_dung_prof_that_khong_chi_dict_id(tmp_path):
     ra = []
     F.kiem_hook(tmp_path, prof, ra)
     assert ra == []   # tắt → bỏ qua hẳn, dù thư mục rỗng hoàn toàn (không hook_lock.json)
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23), Việc 1+2: nối hook_storyboard.sinh() vào Job.b5w_write_prompts()
+# (khâu ghi tài sản của bước 1), thay vì chỉ chạy khi gọi tay hook_stage.py. Toàn bộ test dùng
+# self giả (duck-typing, giống test_job_kiem_lock_* ở trên) — không dựng Job thật.
+# ---------------------------------------------------------------------------
+
+def test_b5w_write_prompts_goi_ca_ghi_prompt_va_hook_storyboard():
+    """b5w_write_prompts() phải gọi CẢ 2 theo ĐÚNG THỨ TỰ: thân ghi tài sản (_b5w_ghi_prompt)
+    TRƯỚC, rồi mới _sinh_hook_storyboard_neu_can() — vì hàm sau cần characters.json đã có (do thân
+    ghi tài sản, hoặc do lớp 1 ghi trước đó, để lại trên đĩa)."""
+    import make_video
+    goi = []
+    fake = type("FakeJob", (), {})()
+    fake._b5w_ghi_prompt = lambda sheet="": goi.append(("ghi_prompt", sheet))
+    fake._sinh_hook_storyboard_neu_can = lambda: goi.append(("hook_storyboard",))
+    make_video.Job.b5w_write_prompts(fake, sheet="S")
+    assert goi == [("ghi_prompt", "S"), ("hook_storyboard",)]
+
+
+def test_sinh_hook_storyboard_neu_can_bo_qua_khi_tat(monkeypatch, tmp_path):
+    """Kênh KHÔNG bật script.hook.enabled → không được gọi hook_storyboard.sinh() (giữ log sạch
+    cho ~90% tập chưa dùng tính năng này)."""
+    import make_video, hook_stage, hook_storyboard
+    monkeypatch.setattr(hook_stage, "is_enabled", lambda p: False)
+    monkeypatch.setattr(hook_stage, "doc_lock", lambda d: {"sha256": "x"})  # dù có lock cũng phải bỏ qua
+    calls = []
+    monkeypatch.setattr(hook_storyboard, "sinh", lambda *a, **k: calls.append(1))
+    fake = type("FakeJob", (), {})()
+    fake.dir = tmp_path; fake.p = {"id": "x", "script": {}}; fake.slug = "ep01"
+    make_video.Job._sinh_hook_storyboard_neu_can(fake)
+    assert calls == []
+
+
+def test_sinh_hook_storyboard_neu_can_bo_qua_khi_chua_khoa_hook(monkeypatch, tmp_path):
+    """Kênh bật hook nhưng tập CHƯA khoá hook (hook_stage.doc_lock trả None, vd tập cũ trước khi
+    có tính năng) → không được gọi hook_storyboard.sinh() (sinh() sẽ tự raise nếu bị gọi thiếu
+    hook, nhưng ở đây phải chặn TRƯỚC khi gọi, không dựa vào chính sinh() tự chặn)."""
+    import make_video, hook_stage, hook_storyboard
+    monkeypatch.setattr(hook_stage, "is_enabled", lambda p: True)
+    monkeypatch.setattr(hook_stage, "doc_lock", lambda d: None)
+    calls = []
+    monkeypatch.setattr(hook_storyboard, "sinh", lambda *a, **k: calls.append(1))
+    fake = type("FakeJob", (), {})()
+    fake.dir = tmp_path; fake.p = {"id": "x", "script": {"hook": {"enabled": True}}}; fake.slug = "ep01"
+    make_video.Job._sinh_hook_storyboard_neu_can(fake)
+    assert calls == []
+
+
+def test_sinh_hook_storyboard_neu_can_goi_dung_tham_so_khi_bat_va_da_khoa(monkeypatch):
+    """Đối chứng: BẬT + ĐÃ khoá hook → phải gọi hook_storyboard.sinh(self.dir, self.p) đúng 1 lần."""
+    import make_video, hook_stage, hook_storyboard
+    monkeypatch.setattr(hook_stage, "is_enabled", lambda p: True)
+    monkeypatch.setattr(hook_stage, "doc_lock", lambda d: {"sha256": "x"})
+    calls = []
+    monkeypatch.setattr(hook_storyboard, "sinh", lambda d, p: calls.append((d, p)))
+    fake = type("FakeJob", (), {})()
+    fake.dir = "GIA_DIR"; fake.p = {"id": "x", "script": {"hook": {"enabled": True}}}; fake.slug = "ep01"
+    make_video.Job._sinh_hook_storyboard_neu_can(fake)
+    assert calls == [("GIA_DIR", fake.p)]
+
+
+def test_sinh_hook_storyboard_neu_can_loi_khong_lam_hong_b5w(monkeypatch, capsys):
+    """Lỗi khi sinh storyboard (kể cả SystemExit — hook_storyboard.sinh dùng SystemExit cho lỗi
+    nghiệp vụ) KHÔNG được văng ra ngoài, chỉ in cảnh báo kèm lệnh chạy tay để vá sau."""
+    import make_video, hook_stage, hook_storyboard
+    monkeypatch.setattr(hook_stage, "is_enabled", lambda p: True)
+    monkeypatch.setattr(hook_stage, "doc_lock", lambda d: {"sha256": "x"})
+
+    def _boom(d, p):
+        raise SystemExit("✗ storyboard không hợp lệ sau 3 lần")
+    monkeypatch.setattr(hook_storyboard, "sinh", _boom)
+    fake = type("FakeJob", (), {})()
+    fake.dir = "GIA_DIR"; fake.p = {"id": "lane-x", "script": {"hook": {"enabled": True}}}; fake.slug = "ep01"
+    make_video.Job._sinh_hook_storyboard_neu_can(fake)   # không được ném ra ngoài
+    out = capsys.readouterr().out
+    assert "hook_storyboard.py --profile lane-x --slug ep01" in out

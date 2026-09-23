@@ -283,9 +283,13 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
       `thumbnail.png` + `listting.txt`
 - [ ] Ô **G** đúng dòng đã ghi đường dẫn thuần
 - [ ] Đã **đưa đường dẫn** cho chủ dự án trong câu trả lời, kèm số đo thời gian và kết quả các cổng
-- [ ] Nếu thư mục tập có `<thư mục tập>\hook\` (bước 1 đã khoá hook) → làm thêm **mục 9 dưới đây**
-      (dựng `hook_final.mp4` + `final_with_hook.mp4`) TRƯỚC khi báo xong; tập không có thư mục
-      `hook\` thì bỏ qua mục 9, không phải lỗi.
+- [ ] Nếu tập có `<thư mục tập>\hook\hook_storyboard.json` (bước 1 đã khoá hook VÀ đã sinh
+      storyboard) → làm thêm **mục 9 dưới đây** (dựng `hook_final.mp4` + `final_with_hook.mp4`)
+      TRƯỚC khi báo xong; không có file này thì bỏ qua mục 9, không phải lỗi.
+      ⚠️ 2026-09-23: điều kiện đổi từ "có thư mục `hook\`" sang "có `hook\hook_storyboard.json`" —
+      từ bản vá này, thư mục `hook\` LUÔN tồn tại ngay khi kênh bật tính năng hook (chứa
+      `hook_locked.txt`/`hook_lock.json` từ lúc khoá hook, TRƯỚC KHI viết thân), nên chỉ dựa vào
+      "có thư mục `hook\`" sẽ kích hoạt mục 9 sớm hơn lúc storyboard thật sự sẵn sàng.
 
 ---
 
@@ -300,6 +304,15 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
 Đầu vào (bước 1 đã để sẵn trong `<tập>\hook\`): `hook_locked.txt` · `hook_lock.json` (`mode`
 upstream|repair) · `hook_storyboard.json` · `flow_prompts\shot_NN.txt` · `grok_jobs.csv`. Thiếu bất
 kỳ file nào → DỪNG, báo lane (xem mục 11).
+
+> 2026-09-23: `hook_storyboard.json` + `flow_prompts\shot_NN.txt` + `grok_jobs.csv` nay được
+> **TỰ ĐỘNG sinh** bởi luồng bình thường của bước 1 (`make_video.py` gọi `hook_storyboard.sinh()`
+> ngay ở bước ghi tài sản B5W, ngay sau khi có `characters.json`) — không còn cần ai chạy tay.
+> Lệnh `py -3.13 E:\CLAUDE\YOUTUBE\h2dev\pipeline\hook_storyboard.py --profile <lane> --slug <tập>`
+> giờ CHỈ dùng khi cần **sinh lại tay** (vd storyboard cũ lỗi, muốn ép sinh lại bằng `--force`, hoặc
+> đang gỡ lỗi riêng bước này) — nếu vẫn thiếu `hook_storyboard.json` sau khi bước 1 báo xong thì đó
+> là dấu hiệu bước 1 gặp lỗi khi sinh (xem cảnh báo trong log B5W), chạy lại lệnh trên rồi đối
+> chiếu `hook\hook_storyboard.err.json` (nếu có) trước khi báo lane.
 
 **9.1 Ảnh shot — do MÁY 2 vẽ, bạn chỉ kiểm đủ** — đây KHÔNG phải ngoại lệ của luật mục 1: bạn vẫn
 không bao giờ tự vẽ ảnh, kể cả ảnh shot hook. `<tập>\hook\flow_prompts\shot_NN.txt` và

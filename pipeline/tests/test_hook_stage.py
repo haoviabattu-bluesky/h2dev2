@@ -87,3 +87,49 @@ def test_video_prompt_co_khoi_hook():
     import channel_analyzer as CA
     for k in ("hook_0_30s", "hook_4_nhip", "hook_kind", "hook_score_0_12", "promise_match", "{description}", "{dau_0_30s}"):
         assert k in CA.VIDEO_PROMPT
+
+
+# Task 3: hook_stage phép đo tất định
+import hook_stage as HS
+
+PROF = {"id": "x", "language": "ja", "voice": {"char_rate": 300.0}, "script": {}}
+
+
+def test_so_chu_muc_tieu_va_cau_hinh():
+    assert HS.so_chu_muc_tieu(PROF) == 150
+    p2 = {**PROF, "script": {"hook": {"ratio_30s": 0.4, "banned_openers": ["X"]}}}
+    assert HS.so_chu_muc_tieu(p2) == 120 and HS.cau_hinh(p2)["banned_openers"] == ["X"]
+
+
+def test_cat_0_30s():
+    segs = [{"start": 0, "text": "あ"}, {"start": 29.9, "text": "い"}, {"start": 30.0, "text": "う"}]
+    assert HS.cat_0_30s(segs) == "あ い"
+
+
+def test_tach_candidates():
+    t = "=== HOOK 1 ===\n一\n=== HOOK 2 ===\n二\n三\n=== HOOK 3 ===\n四"
+    assert HS.tach_candidates(t) == ["一", "二\n三", "四"]
+
+
+def test_check_bat_loi():
+    ngan = "短い。"
+    assert any("độ dài" in v for v in HS.check(ngan, PROF))
+    chao = "こんにちは。" + "あ" * 150
+    assert any("chào hỏi" in v for v in HS.check(chao, PROF))
+    khong_neo = "そのとき私は何も知らなかった。" * 8
+    assert any("neo" in v for v in HS.check(khong_neo[:160], PROF))
+
+
+def test_check_dat():
+    ok = "「三年前に引っ越しました」と隣人は言った。五十年の友が消えていた。私はその理由を知らずにいた。多くの問題があった。しかし、それはすぐに明らかになった。家族の事情が複雑だった。誰もが苦しんでいた。これが人生なのだと感じた。時間は止まらない。結局、私たちは皆同じ道を歩いているのだ。"
+    ok = ok[:139]
+    assert HS.check(ok, PROF) == []
+
+
+def test_bat_dau_va_ke_lai():
+    hook = "「三年前に引っ越しました」隣人は言った。五十年の友が消えた。"
+    script = hook + "\n\n私は箱を抱えたまま立ち尽くした。"
+    assert HS.bat_dau_bang_hook(script, hook)
+    assert not HS.bat_dau_bang_hook("晩秋の風が。" + script, hook)
+    assert HS.ke_lai_hook(hook + "\n\n" + hook, hook) > 0.8
+    assert HS.ke_lai_hook(script, hook) < 0.3

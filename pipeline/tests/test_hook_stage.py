@@ -133,3 +133,46 @@ def test_bat_dau_va_ke_lai():
     assert not HS.bat_dau_bang_hook("晩秋の風が。" + script, hook)
     assert HS.ke_lai_hook(hook + "\n\n" + hook, hook) > 0.8
     assert HS.ke_lai_hook(script, hook) < 0.3
+
+
+# Task 4: LOCK + promise snapshot + HOOK_STALE
+def _tap(tmp_path, title="T1", ctx="[D1] x\n", thumb="A|B"):
+    d = tmp_path
+    (d / "title.txt").write_text(title, encoding="utf-8")
+    (d / "series_ctx.txt").write_text(ctx, encoding="utf-8")
+    (d / "thumb_text.txt").write_text(thumb, encoding="utf-8")
+    return d
+
+
+def test_khoa_va_stale(tmp_path):
+    d = _tap(tmp_path)
+    meta = HS.khoa(d, "hook文。", mode="upstream")
+    assert (d / "hook/hook_locked.txt").read_text(encoding="utf-8") == "hook文。\n"
+    assert meta["stale"] is False and len(meta["sha256"]) == 64 and meta["promise"]["title"] == "T1"
+    assert HS.kiem_stale(d) == (False, [])
+    (d / "title.txt").write_text("T2", encoding="utf-8")
+    stale, ly_do = HS.kiem_stale(d)
+    assert stale and any("title" in r for r in ly_do)
+
+
+def test_stale_theo_promise_txt(tmp_path):
+    d = _tap(tmp_path)
+    (d / "hook").mkdir()
+    (d / "hook/promise.txt").write_text("core_event: A\npayoff: B\n", encoding="utf-8")
+    HS.khoa(d, "hook文。")
+    (d / "series_ctx.txt").write_text("[D1] sửa chính tả\n", encoding="utf-8")   # ctx đổi nhưng promise.txt không
+    assert HS.kiem_stale(d) == (False, [])
+    (d / "hook/promise.txt").write_text("core_event: KHÁC\n", encoding="utf-8")
+    assert HS.kiem_stale(d)[0]
+
+
+def test_stale_hook_sua_tay(tmp_path):
+    d = _tap(tmp_path)
+    HS.khoa(d, "hook文。")
+    (d / "hook/hook_locked.txt").write_text("đổi", encoding="utf-8")
+    stale, ly_do = HS.kiem_stale(d)
+    assert stale and any("hook_locked.txt" in r for r in ly_do)
+
+
+def test_chua_co_lock(tmp_path):
+    assert HS.kiem_stale(tmp_path) == (False, ["chưa có hook lock"])

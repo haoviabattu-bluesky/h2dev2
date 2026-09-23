@@ -96,3 +96,78 @@ def ke_lai_hook(script, hook, cua_so=600):
         return 0.0
     bd = {doan[i:i + 2] for i in range(len(doan) - 1)}
     return len(bh & bd) / len(bh)
+
+
+# Task 4: LOCK + promise snapshot + HOOK_STALE
+def _sha_text(t):
+    return hashlib.sha256(t.encode("utf-8")).hexdigest()
+
+
+def _sha_file(p):
+    return _sha_text(Path(p).read_text(encoding="utf-8")) if Path(p).exists() else None
+
+
+def _title(d):
+    for name in ("title.txt", "listting.txt"):
+        f = Path(d) / name
+        if f.exists():
+            for l in f.read_text(encoding="utf-8").splitlines():
+                if l.strip():
+                    return l.strip()
+    return ""
+
+
+def promise_snapshot(d, mode="upstream"):
+    d = Path(d)
+    snap = {"title": _title(d),
+            "thumb_text": (d / "thumb_text.txt").read_text(encoding="utf-8").strip() if (d / "thumb_text.txt").exists() else ""}
+    pr = d / HOOK_DIR / "promise.txt"
+    if pr.exists():
+        snap["promise_sha256"] = _sha_file(pr)
+    elif mode == "repair":
+        snap["script_sha256"] = _sha_file(d / "script.txt")
+    else:
+        snap["ctx_sha256"] = _sha_file(d / "series_ctx.txt")
+    return snap
+
+
+def khoa(d, text, mode="upstream", extra=None):
+    import datetime as _dt
+    d = Path(d)
+    hd = d / HOOK_DIR
+    hd.mkdir(exist_ok=True)
+    text = text.strip() + ("\n" if not text.endswith("\n") else "")
+    (hd / "hook_locked.txt").write_text(text, encoding="utf-8")
+    meta = {"state": "LOCKED", "mode": mode, "at": _dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
+            "sha256": _sha_text(text), "chars": ai_steps.measure(text)["chars"],
+            "promise": promise_snapshot(d, mode), "stale": False, "source": "hook_locked.txt", **(extra or {})}
+    (hd / "hook_lock.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    return meta
+
+
+def doc_lock(d):
+    p = Path(d) / HOOK_DIR / "hook_lock.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def doc_hook(d):
+    p = Path(d) / HOOK_DIR / "hook_locked.txt"
+    return p.read_text(encoding="utf-8").strip() if p.exists() else ""
+
+
+def kiem_stale(d):
+    d = Path(d)
+    m = doc_lock(d)
+    if not m:
+        return False, ["chưa có hook lock"]
+    ly_do = []
+    if _sha_file(d / HOOK_DIR / "hook_locked.txt") != m.get("sha256"):
+        ly_do.append("hook_locked.txt bị sửa tay sau khi khoá")
+    now = promise_snapshot(d, m.get("mode", "upstream"))
+    for k, v in (m.get("promise") or {}).items():
+        if now.get(k) != v:
+            ly_do.append(f"promise '{k}' đã đổi sau khi khoá hook → HOOK_STALE, chạy lại H1–H4")
+    if ly_do:
+        m["stale"] = True
+        (d / HOOK_DIR / "hook_lock.json").write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
+    return bool(ly_do), ly_do

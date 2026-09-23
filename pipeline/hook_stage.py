@@ -14,6 +14,11 @@ import ai_steps, profiles  # noqa: E402
 HOOK_DIR = "hook"
 MAX_PATCH_HOOK = 2
 MAC_DINH = {
+    # 2026-09-23 (Việc 2, vá review cuối): công tắc BẬT/TẮT tính năng hook THEO TỪNG KÊNH — mặc
+    # định TẮT, kênh nào muốn dùng phải tự khai `script.hook.enabled: true` trong profile. Trước
+    # đây tính năng tự áp dụng cho MỌI kênh chỉ cần `script.flow == "lean"` — tập kế tiếp của cả 6
+    # kênh sẽ cùng lúc là "tập thật đầu tiên" chạy tính năng mới, không bật dần được.
+    "enabled": False,
     "ratio_30s": 0.5, "tol": 0.15, "neo_ratio": 0.4,
     "banned_openers": {
         "ja": ["こんにちは", "こんばんは", "皆さん", "みなさん", "チャンネル登録", "ご視聴", "私の名前は", "俺の名前は",
@@ -31,6 +36,14 @@ def cau_hinh(prof):
     h["banned_openers"] = list(MAC_DINH["banned_openers"].get(lang, MAC_DINH["banned_openers"]["ja"]))
     h.update((prof.get("script", {}) or {}).get("hook") or {})
     return h
+
+
+def is_enabled(prof):
+    """2026-09-23 (Việc 2): True chỉ khi profile khai `script.hook.enabled: true` tường minh.
+    Đây là NGÃ RẼ DUY NHẤT giữa kênh đã bật/chưa bật hook — mọi nơi gọi (lean_script.run,
+    make_video.Job.kiem_lock, qc_final.kiem_hook) đều phải qua đúng hàm này, không tự suy luận
+    theo tên/`id` kênh (xem CLAUDE.md hàng rào #2: khác biệt lane chỉ đi qua field profile)."""
+    return bool(cau_hinh(prof).get("enabled"))
 
 
 def so_chu_muc_tieu(prof):
@@ -69,8 +82,14 @@ def check(text, prof, ctx=""):
     if ai_steps.MARKER_PAT.search(text):
         viec.append("hook chứa marker/ký hiệu — phải là pure prose")
     if ctx:
+        # 2026-09-23 (Việc 3b, vá review cuối): trước đây gọi KHÔNG truyền exempt_units, trong khi
+        # lean_script.py (đo thân bài) truyền sc.get("fact_exempt_units") — 2 cổng CÙNG một hàm mà
+        # dùng 2 luật khác nhau. Lane teinengo-real khai fact_exempt_units=["万円","円"] vì số tiền
+        # của nhân vật là hư cấu; hook lấy con số tiền làm điểm neo (đúng khuyến khích của chính
+        # PROMPT_VIET) mà không được miễn thì bị đánh trượt cả 3 ứng viên oan.
         from lean_script import _so_lieu_ngoai_tu_lieu
-        for x in _so_lieu_ngoai_tu_lieu(text, ctx):
+        exempt = tuple((prof.get("script", {}) or {}).get("fact_exempt_units") or ())
+        for x in _so_lieu_ngoai_tu_lieu(text, ctx, exempt):
             viec.append(f"số ngoài tư liệu: {x}")
     return viec
 
@@ -165,6 +184,23 @@ def doc_hook(d):
 
 
 def kiem_stale(d):
+    """2026-09-23 (Việc 1, vá review cuối): thứ tự pipeline thật là hook khoá TRƯỚC — còn
+    `thumb_text.txt` (B7) và `title.txt` (B9) mãi sau này mới được ghi. Lúc `promise_snapshot()`
+    chụp lúc khoá, hai trường này là chuỗi rỗng; lần đầu chúng được ghi thật thì trước đây bị coi
+    là 'đã đổi' → HOOK_STALE ngay giữa vận hành bình thường (make_video.Job.kiem_lock dừng ở B4/
+    B5W, qc_final.kiem_hook báo `cao` ở B10) cho một tập hoàn toàn không có vấn đề gì.
+    Sửa: coi "chưa có giá trị (rỗng/None) → có giá trị" là LẦN GHI ĐẦU TIÊN, không phải thay đổi —
+    in 1 dòng thông báo rồi RE-BASELINE lại đúng trường đó trong hook_lock.json, đi tiếp bình
+    thường. Chỉ khi một trường ĐANG có giá trị A đổi sang giá trị B (cả hai đều khác rỗng/None)
+    mới coi là lỗi thời thật.
+    ⚠️ Kẽ hở đã cân nhắc (không sửa ở đây, ghi lại để không quên): (1) tổng quát hoá từ "chuỗi
+    rỗng" sang "falsy" (None lẫn "") — áp dụng luôn cho ctx_sha256/script_sha256/promise_sha256
+    (giá trị khởi tạo có thể là None khi file nguồn chưa tồn tại lúc khoá); (2) một khi đã
+    re-baseline, hook_lock.json không còn giữ dấu vết "giá trị gốc lúc khoá là rỗng" — nếu B7/B9
+    ghi đè bằng nội dung SAI ngay lần đầu, cổng này sẽ coi lần ghi sai đó là baseline mới và không
+    còn cách nào phát hiện qua so sánh promise nữa (chỉ còn phép kiểm khác, vd B10 title-drift, bắt
+    được nếu có sửa TIẾP sau đó); (3) không thread-safe giữa 2 tiến trình gọi đồng thời — không mới
+    so với phần còn lại của file, không xử lý thêm ở đây."""
     d = Path(d)
     m = doc_lock(d)
     if not m:
@@ -173,11 +209,21 @@ def kiem_stale(d):
     if _sha_file(d / HOOK_DIR / "hook_locked.txt") != m.get("sha256"):
         ly_do.append("hook_locked.txt bị sửa tay sau khi khoá")
     now = promise_snapshot(d, m.get("mode", "upstream"))
-    for k, v in (m.get("promise") or {}).items():
-        if now.get(k) != v:
-            ly_do.append(f"promise '{k}' đã đổi sau khi khoá hook → HOOK_STALE, chạy lại H1–H4")
-    if ly_do:
-        m["stale"] = True
+    promise = dict(m.get("promise") or {})
+    re_baseline = False
+    for k, v in promise.items():
+        nv = now.get(k)
+        if nv == v:
+            continue
+        if not v and nv:
+            print(f"  [hook] promise '{k}' vừa được ghi LẦN ĐẦU sau khi khoá hook ({nv!r}) — "
+                  f"cập nhật lại baseline, KHÔNG coi là lỗi thời")
+            m["promise"][k] = nv
+            re_baseline = True
+            continue
+        ly_do.append(f"promise '{k}' đã đổi sau khi khoá hook → HOOK_STALE, chạy lại H1–H4")
+    if ly_do or re_baseline:
+        m["stale"] = bool(ly_do)
         (d / HOOK_DIR / "hook_lock.json").write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
     return bool(ly_do), ly_do
 
@@ -673,6 +719,14 @@ def main(argv=None):
         raise SystemExit(f"✗ không thấy thư mục tập {d}")
     if a.mode == "repair" and not (d / "script.txt").exists():
         raise SystemExit(f"✗ repair mode cần {d / 'script.txt'} đã có")
+    # 2026-09-23 (Việc 2, vá review cuối): kênh chưa khai script.hook.enabled=true vẫn được phép
+    # CHẠY TAY CLI này (người vận hành cố ý gọi để bật thử/khắc phục) — chỉ nhắc 1 dòng, không chặn.
+    # In ra STDERR (không phải print thường/stdout) — `--only source` in JSON THUẦN ra stdout để
+    # người vận hành/script khác parse được, dòng nhắc lẫn vào đó sẽ làm hỏng `json.loads()`.
+    if not is_enabled(prof):
+        print(f"[hook] ⚠️ profile '{a.profile}' chưa khai script.hook.enabled=true — "
+              f"chạy tay theo yêu cầu, KHÔNG tự động trong pipeline lean_script cho tới khi bật",
+              file=sys.stderr)
     if a.only == "source":
         src = phan_tich_nguon(d, prof, proxy=a.proxy or None, force=a.force)
         print(json.dumps({k: src[k] for k in ("video_id", "hook_kind", "score_0_12", "video_hook_verdict", "promise_match")},

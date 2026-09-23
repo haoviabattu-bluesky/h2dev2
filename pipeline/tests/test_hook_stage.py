@@ -824,3 +824,48 @@ def test_phan_tich_nguon_cache_khong_goi_ffmpeg_shim(monkeypatch, tmp_path):
     monkeypatch.setattr(HS, "_ffmpeg_tren_path", _boom)
     src = HS.phan_tich_nguon(tmp_path, PROF)
     assert src == cached
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23) — Việc 1: promise rỗng→có giá trị LẦN ĐẦU không phải HOOK_STALE.
+# ---------------------------------------------------------------------------
+
+def test_kiem_stale_rebaseline_lan_dau_khong_phai_loi_thoi(tmp_path):
+    """Thứ tự pipeline thật: hook khoá TRƯỚC khi title.txt (B9)/thumb_text.txt (B7) tồn tại.
+    Lần đầu 2 trường này được ghi (rỗng → có giá trị) không được coi là lỗi thời — chỉ re-baseline
+    lại promise trong hook_lock.json. Sửa TIẾP một trường ĐANG có giá trị mới thật sự là lỗi thời."""
+    d = tmp_path
+    (d / "series_ctx.txt").write_text("[D1] x\n", encoding="utf-8")
+    # LÚC KHOÁ: cố ý KHÔNG có title.txt lẫn thumb_text.txt (đúng thứ tự thật của pipeline).
+    meta = HS.khoa(d, "hook文。", mode="upstream")
+    assert meta["promise"]["title"] == "" and meta["promise"]["thumb_text"] == ""
+    assert HS.kiem_stale(d) == (False, [])
+
+    # B7 ghi thumb_text.txt LẦN ĐẦU → không lỗi thời, và lock phải được cập nhật lại (re-baseline).
+    (d / "thumb_text.txt").write_text("A|B", encoding="utf-8")
+    assert HS.kiem_stale(d) == (False, [])
+    assert HS.doc_lock(d)["promise"]["thumb_text"] == "A|B"
+
+    # B9 ghi title.txt LẦN ĐẦU → vẫn không lỗi thời.
+    (d / "title.txt").write_text("T1", encoding="utf-8")
+    assert HS.kiem_stale(d) == (False, [])
+    assert HS.doc_lock(d)["promise"]["title"] == "T1"
+
+    # Sửa title.txt sang nội dung KHÁC (từ "T1" đã có giá trị → "T2") → giờ MỚI là lỗi thời thật.
+    (d / "title.txt").write_text("T2", encoding="utf-8")
+    stale, ly_do = HS.kiem_stale(d)
+    assert stale is True and any("title" in r for r in ly_do)
+
+
+# ---------------------------------------------------------------------------
+# Vá review cuối (2026-09-23) — Việc 3b: check() phải đọc fact_exempt_units từ profile, giống
+# hệt luật lean_script.py dùng cho thân bài — tránh 2 luật khác nhau cho cùng khái niệm.
+# ---------------------------------------------------------------------------
+
+def test_check_doc_fact_exempt_units_tu_profile():
+    ctx = "[D1] 何もない\n"
+    hook = "「八十万円あったのに」と彼は言った。それからどうなったのか。" + "あ" * 40
+    prof_khong_khai = {**PROF, "script": {}}
+    assert any("số ngoài tư liệu" in v for v in HS.check(hook, prof_khong_khai, ctx))
+    prof_mien = {**PROF, "script": {"fact_exempt_units": ["万円"]}}
+    assert not any("số ngoài tư liệu" in v for v in HS.check(hook, prof_mien, ctx))

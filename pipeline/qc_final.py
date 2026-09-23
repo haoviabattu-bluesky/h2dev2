@@ -273,8 +273,14 @@ def kiem_hook(S: Path, prof, ra):
     final.mp4), không phải phần đóng gói đăng tải (thumbnail/tiêu đề/mô tả) mà dự án khác lo.
     Tập LÀM TRƯỚC khi có tính năng hook (chưa từng chạy hook_stage) cũng bị báo `cao` ở đây —
     cố ý, vì luật mới (2026-09-23) là MỌI tập giao đều phải có hook; sửa qua `--mode repair`.
+
+    2026-09-23 (Việc 2, vá review cuối): NGOẠI LỆ DUY NHẤT — kênh CHƯA khai `script.hook.enabled=
+    true` thì bỏ qua HẲN cổng này (không báo thiếu hook). Tính năng đang bật DẦN từng kênh; bắt
+    buộc 'mọi tập phải có hook' chỉ áp dụng cho kênh đã bật.
     """
     import hook_stage
+    if not hook_stage.is_enabled(prof):
+        return
     m = hook_stage.doc_lock(S)
     if not m:
         _loi(ra, "hook", "cao", "thiếu hook/hook_lock.json — tập chưa có hook 20–30s", "chạy hook_stage.py (--mode repair nếu tập đã có script)")

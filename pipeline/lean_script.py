@@ -584,15 +584,21 @@ def run(job, force=False):
     # 2026-09-23 (vá review dọn hook, V2): (a) dùng hook_stage.doc_lock(d) thay vì kiểm cứng đường
     # dẫn "hook/hook_lock.json" — đổi tên file lock thì cảnh báo này không được lặng lẽ biến mất;
     # (b) bỏ vế `se_viet_moi and` thừa: se_viet_moi = force or (...) nên `force` đã hàm ý se_viet_moi.
-    if force and hook_stage.doc_lock(d):
-        print("[H1-H4] ⚠️ --force: bỏ qua hook đã khoá, viết hook MỚI (tốn lượt LLM + gọi lại H1–H3)")
-    if se_viet_moi:
-        hook = hook_stage.ensure_locked(d, prof, ctx=ctx, title=_title(d), mode="upstream", force=force)
-        bench["hook_sol_rounds"] = (hook_stage.doc_lock(d) or {}).get("sol_rounds", 0)
-    else:
-        hook = hook_stage.doc_hook(d)
-        if not hook:
-            print("[H4] ⚠️ tập đã có script.txt mà chưa có hook — dùng `py -3.13 hook_stage.py --profile … --slug … --mode repair`")
+    # 2026-09-23 (Việc 2, vá review cuối): công tắc BẬT THEO KÊNH — `script.hook.enabled` mặc định
+    # False (hook_stage.MAC_DINH). Kênh CHƯA bật: hook="" và toàn bộ khối này lặng thinh, chạy y hệt
+    # trước khi có tính năng hook (không in thêm dòng nào mỗi tập) — hàng rào #2 của CLAUDE.md, khác
+    # biệt lane chỉ đi qua field profile, cấm if theo id kênh.
+    hook = ""
+    if hook_stage.is_enabled(prof):
+        if force and hook_stage.doc_lock(d):
+            print("[H1-H4] ⚠️ --force: bỏ qua hook đã khoá, viết hook MỚI (tốn lượt LLM + gọi lại H1–H3)")
+        if se_viet_moi:
+            hook = hook_stage.ensure_locked(d, prof, ctx=ctx, title=_title(d), mode="upstream", force=force)
+            bench["hook_sol_rounds"] = (hook_stage.doc_lock(d) or {}).get("sol_rounds", 0)
+        else:
+            hook = hook_stage.doc_hook(d)
+            if not hook:
+                print("[H4] ⚠️ tập đã có script.txt mà chưa có hook — dùng `py -3.13 hook_stage.py --profile … --slug … --mode repair`")
 
     # ---- S2
     # 2026-09-23: PHẢI dùng đúng `se_viet_moi` (đã tính ở khối H1-H4 trên) — KHÔNG chép lại biểu thức. Hai nhánh này

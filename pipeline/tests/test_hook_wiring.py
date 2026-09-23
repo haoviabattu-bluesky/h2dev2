@@ -72,34 +72,77 @@ def test_mo_dau_warn_no_marker():
     assert r and r[0]["kind"] == "mo_dau_khong_do"
 
 
+# 2026-09-23 (Việc 2, vá review cuối): qc_final.kiem_hook() giờ có ngã rẽ hook_stage.is_enabled(prof)
+# — profile giả trong các test bên dưới PHẢI khai `script.hook.enabled: True` tường minh, khớp
+# đúng thiết kế mới (mặc định TẮT theo từng kênh). Không đổi tên test/không đổi hành vi đang kiểm,
+# chỉ thêm field còn thiếu để test tiếp tục đúng ý đồ gốc (mọi phép kiểm hook vẫn chạy khi ĐÃ bật).
+PROF_HOOK_ON = {"id": "x", "script": {"hook": {"enabled": True}}}
+
+
 def test_qc_final_kiem_hook(tmp_path):
     import qc_final as F, hook_stage as HS
     (tmp_path / "title.txt").write_text("T", encoding="utf-8")
     (tmp_path / "script.txt").write_text("khác。", encoding="utf-8")
     ra = []
-    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert any("hook_lock" in x["msg"] for x in ra)
     HS.khoa(tmp_path, "hook。")
     ra = []
-    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert any("không bắt đầu" in x["msg"] for x in ra)
     (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
     ra = []
-    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert ra == []
+
+
+def test_qc_final_kiem_hook_tat_bo_qua_het(tmp_path):
+    """Việc 2: profile KHÔNG khai script.hook.enabled (mặc định False) → kiem_hook bỏ qua HẲN,
+    kể cả khi tập chưa hề có hook_lock.json (trước đây sẽ báo 'cao' — luật mới chỉ áp cho kênh đã bật)."""
+    import qc_final as F
+    ra = []
+    F.kiem_hook(tmp_path, {"id": "x", "script": {}}, ra)
     assert ra == []
 
 
 def test_qc_hoso_kiem_hook(tmp_path):
     import qc_hoso as H
     prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {}}
+    # Việc 3a: hook_heading giờ là trường profile.research — test phải khai rs["hook_heading"]
+    # tường minh để giữ đúng hành vi kiểm tra gốc (mặc định rỗng = không kiểm gì cả).
+    rs = dict(H.MAC_DINH)
+    rs["hook_heading"] = "HOOK 30 GIÂY ĐẦU"
     kq = []
-    H.kiem_hook_ho_so(kq, "TIÊU ĐỀ\n① a\n", prof)
+    H.kiem_hook_ho_so(kq, "TIÊU ĐỀ\n① a\n", prof, rs)
     assert any(x["ma"] == "hook_thieu" for x in kq)
     kq = []
-    H.kiem_hook_ho_so(kq, "HOOK 30 GIÂY ĐẦU:\nそれは不思議だった。\n\nKHUNG N CHƯƠNG:", prof)
+    H.kiem_hook_ho_so(kq, "HOOK 30 GIÂY ĐẦU:\nそれは不思議だった。\n\nKHUNG N CHƯƠNG:", prof, rs)
     assert any(x["ma"] == "hook_noi_suong" for x in kq)
     kq = []
-    H.kiem_hook_ho_so(kq, "HOOK 30 GIÂY ĐẦU:\n1978年10月21日、セスナが消えた。\n\nKHUNG N CHƯƠNG:", prof)
+    H.kiem_hook_ho_so(kq, "HOOK 30 GIÂY ĐẦU:\n1978年10月21日、セスナが消えた。\n\nKHUNG N CHƯƠNG:", prof, rs)
+    assert kq == []
+
+
+def test_qc_hoso_kiem_hook_khong_khai_thi_bo_qua(tmp_path):
+    """Việc 3a: rs không khai hook_heading (mặc định "" trong MAC_DINH) → bỏ qua HẲN, kể cả hồ sơ
+    hoàn toàn không có tiêu mục hook nào — không kênh nào bị ảnh hưởng nếu chưa khai."""
+    import qc_hoso as H
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {}}
+    kq = []
+    H.kiem_hook_ho_so(kq, "TIÊU ĐỀ\n① a\n", prof, dict(H.MAC_DINH))
+    assert kq == []
+
+
+def test_qc_hoso_kiem_hook_tieu_muc_khac_va_noi_dung_cung_dong(tmp_path):
+    """Việc 3: (a) tên tiêu mục tuỳ khai qua hook_heading (không ghim cứng 'HOOK 30 GIÂY ĐẦU'),
+    (b) nội dung viết NGAY SAU dấu hai chấm trên CÙNG một dòng cũng phải nhận được, không chỉ khi
+    xuống dòng."""
+    import qc_hoso as H
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {}}
+    rs = dict(H.MAC_DINH)
+    rs["hook_heading"] = "HOOK — MÔ TẢ ẢNH CHÍNH"
+    kq = []
+    H.kiem_hook_ho_so(kq, "HOOK — MÔ TẢ ẢNH CHÍNH: 1978年10月21日、セスナが消えた。\n\nKHUNG N CHƯƠNG:", prof, rs)
     assert kq == []
 
 
@@ -125,23 +168,113 @@ def test_writer_chat_khong_claude_p_loc_max_chars(monkeypatch):
 
 
 def test_qc_final_kiem_hook_lock_hong_khong_nem(tmp_path):
-    """V1: hook_lock.json hỏng → qc_final.kiem_hook không ném, báo lỗi 'thiếu hook' như chưa khoá."""
+    """V1: hook_lock.json hỏng → qc_final.kiem_hook không ném, báo lỗi 'thiếu hook' như chưa khoá.
+    (Việc 2: profile phải khai script.hook.enabled=True, xem PROF_HOOK_ON ở trên.)"""
     import qc_final as F
     (tmp_path / "hook").mkdir()
     (tmp_path / "hook" / "hook_lock.json").write_text("{broken", encoding="utf-8")
     ra = []
-    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert any("hook_lock" in x["msg"] for x in ra)
 
 
 def test_qc_final_kiem_hook_title_mat_sau_khoa(tmp_path):
     """V5: lúc khoá CÓ title.txt, sau đó title.txt bị xoá (t rỗng) → phải ra lỗi 'title.txt đã
-    mất', không được để phép kiểm title-drift biến mất im lặng."""
+    mất', không được để phép kiểm title-drift biến mất im lặng.
+    (Việc 2: profile phải khai script.hook.enabled=True, xem PROF_HOOK_ON ở trên.)"""
     import qc_final as F, hook_stage as HS
     (tmp_path / "title.txt").write_text("T", encoding="utf-8")
     (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
     HS.khoa(tmp_path, "hook。")
     (tmp_path / "title.txt").unlink()
     ra = []
-    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert any("title.txt đã mất" in x["msg"] for x in ra)
+
+
+# ---------------------------------------------------------------------------
+# Việc 2 (vá review cuối, 2026-09-23): công tắc script.hook.enabled theo từng kênh.
+# ---------------------------------------------------------------------------
+
+def test_is_enabled_mac_dinh_tat():
+    import hook_stage as HS
+    assert HS.is_enabled({"id": "x", "script": {}}) is False
+    assert HS.is_enabled({"id": "x"}) is False   # không khai cả khối `script`
+    assert HS.is_enabled({"id": "x", "script": {"hook": {"enabled": True}}}) is True
+
+
+def test_lean_script_run_khong_goi_ensure_locked_khi_tat(monkeypatch, tmp_path):
+    """Kênh KHÔNG khai script.hook.enabled → lean_script.run() không được đụng tới
+    hook_stage.ensure_locked/doc_hook (chạy y hệt luồng trước khi có tính năng hook), và KHÔNG in
+    thêm dòng nào — kiểm bằng capsys không chứa chữ 'H1-H4'/'H4'."""
+    import lean_script as L, hook_stage as HS
+    import gate_common
+
+    def _cam_ensure(*a, **k):
+        raise AssertionError("KHÔNG được gọi ensure_locked khi script.hook.enabled=False")
+    monkeypatch.setattr(HS, "ensure_locked", _cam_ensure)
+
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {"gate": {}},
+            "narrator": {}}
+
+    class FakeJob:
+        p = prof
+        dir = tmp_path
+        slug = "ep_test"
+        minutes = 1
+        state = {}
+    job = FakeJob()
+
+    monkeypatch.setattr(L, "s1q_ho_so", lambda d, prof, competitor, ctx: [])
+    monkeypatch.setattr(L, "_title", lambda d: "T")
+    monkeypatch.setattr(L, "viet", lambda *a, **k: (_ for _ in ()).throw(
+        AssertionError("test chỉ cần kiểm khối H1-H4, không cần S2 chạy thật")))
+    # S2 sẽ ném ngay sau khối H1-H4 (không mock viet()) — đủ để chứng minh khối H1-H4 đã chạy xong
+    # (không gọi ensure_locked) TRƯỚC KHI test dừng lại ở S2; bọc bằng pytest.raises.
+    with pytest.raises(AssertionError, match="test chỉ cần kiểm khối H1-H4"):
+        L.run(job, force=False)
+
+
+def test_job_kiem_lock_bo_qua_hook_khi_tat(tmp_path, monkeypatch):
+    """Việc 2: Job.kiem_lock() không được đụng hook_stage.kiem_stale khi kênh chưa khai
+    script.hook.enabled — dùng self giả (duck-typing, kiem_lock chỉ đọc self.dir/self.p)."""
+    import make_video, hook_stage, gate_common
+    (tmp_path / "script.txt").write_text("nội dung。", encoding="utf-8")
+    gate_common.ghi_lock(tmp_path, "PASS")
+
+    def _cam(*a, **k):
+        raise AssertionError("KHÔNG được gọi kiem_stale khi script.hook.enabled=False")
+    monkeypatch.setattr(hook_stage, "kiem_stale", _cam)
+
+    fake = type("FakeJob", (), {})()
+    fake.dir = tmp_path
+    fake.p = {"id": "x", "script": {}}
+    make_video.Job.kiem_lock(fake, "B4")   # không được ném, không gọi kiem_stale
+
+
+def test_job_kiem_lock_kiem_hook_khi_bat(tmp_path, monkeypatch):
+    """Đối chứng: cùng thiết lập trên nhưng script.hook.enabled=True → kiem_stale PHẢI được gọi."""
+    import make_video, hook_stage, gate_common
+    (tmp_path / "script.txt").write_text("nội dung。", encoding="utf-8")
+    gate_common.ghi_lock(tmp_path, "PASS")
+
+    calls = {"n": 0}
+    def _dem(d):
+        calls["n"] += 1
+        return False, []
+    monkeypatch.setattr(hook_stage, "kiem_stale", _dem)
+
+    fake = type("FakeJob", (), {})()
+    fake.dir = tmp_path
+    fake.p = {"id": "x", "script": {"hook": {"enabled": True}}}
+    make_video.Job.kiem_lock(fake, "B4")
+    assert calls["n"] == 1
+
+
+def test_qc_final_kiem_hook_dung_prof_that_khong_chi_dict_id(tmp_path):
+    """profile đầy đủ hơn {"id": "x"} — is_enabled đọc script.hook.enabled đúng vị trí lồng nhau."""
+    import qc_final as F
+    prof = {"id": "x", "language": "ja", "script": {"hook": {"enabled": False}}}
+    ra = []
+    F.kiem_hook(tmp_path, prof, ra)
+    assert ra == []   # tắt → bỏ qua hẳn, dù thư mục rỗng hoàn toàn (không hook_lock.json)

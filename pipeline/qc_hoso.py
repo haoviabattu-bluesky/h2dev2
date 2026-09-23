@@ -68,6 +68,15 @@ MAC_DINH = {
     "evidence_min": 0,
     "evidence_dir": "stock",
     "blocks_required": [],
+    # 2026-09-23 (Việc 3a, vá review cuối): mặc định RỖNG = KHÔNG kiểm. Trước đây tiêu mục
+    # "HOOK 30 GIÂY ĐẦU:" bị ghim CỨNG trong code — thử trên 39 series_ctx.txt thật thì 30/39 bị
+    # báo thiếu, vì lane irogatatarukioku dùng tiêu mục khác hẳn ("HOOK — MÔ TẢ ẢNH CHÍNH", xem
+    # assets/irogatatarukioku/ep08-araki-kamikaze/series_ctx.txt dòng 12). docs/GIAO_VIEC_SPACE_
+    # RESEARCH.md cũng ghi rõ: điều kiện nhận hồ sơ khai trong JSON profile, không ghim cứng vào
+    # qc_hoso.py. Lane muốn kiểm tiêu mục hook của MÌNH thì khai
+    # `profile.research.hook_heading = "<tên tiêu mục>"` — không khai thì không kênh nào bị ảnh
+    # hưởng (giữ đúng hành vi cũ cho lane chưa từng biết tới trường này).
+    "hook_heading": "",
 }
 
 
@@ -129,8 +138,11 @@ def kiem_tieu_de(kq, ctx_text, rs, gate):
 
 
 # --------------------------------------------------------- hook 30 giây đầu
-def kiem_hook_ho_so(kq, ctx_text, prof):
-    """Trường 'HOOK 30 GIÂY ĐẦU:' của hồ sơ (docs/KHUON_HO_SO_DE_TAI.md) — trước 2026-09-23 không ai kiểm.
+def kiem_hook_ho_so(kq, ctx_text, prof, rs=None):
+    """Trường HOOK của hồ sơ (docs/KHUON_HO_SO_DE_TAI.md) — trước 2026-09-23 không ai kiểm, và
+    (2026-09-23, vá review cuối, Việc 3a) TÊN TIÊU MỤC giờ đọc từ `profile.research.hook_heading`
+    thay vì ghim cứng "HOOK 30 GIÂY ĐẦU" — lane không khai trường này thì BỎ QUA HẲN phép kiểm
+    (không kênh nào bị ảnh hưởng ngoài ý muốn). Xem lý do đầy đủ ở MAC_DINH["hook_heading"].
 
     Khuôn hồ sơ đã có tiêu mục này từ lâu nhưng chưa ai gọi máy đo — hồ sơ có thể để trống hoặc
     viết cảm thán suông ("mở đầu gây tò mò") mà không ai phát hiện tới tận B10/thành phẩm. Dùng lại
@@ -138,9 +150,16 @@ def kiem_hook_ho_so(kq, ctx_text, prof):
     kiểm hook thật ở H1-H4, tránh 2 chuẩn khác nhau cho cùng khái niệm "hook có neo hay không".
     """
     import hook_stage
-    m = re.search(r"HOOK 30 GIÂY ĐẦU\s*[:：]\s*\n(.*?)(?=\n\s*\n|\n[A-ZĐ][A-ZĐ ]{3,}[:：]|\Z)", ctx_text, re.S)
+    heading = ((rs or {}).get("hook_heading") or "").strip()
+    if not heading:
+        return
+    # 2026-09-23 (Việc 3a, vế 2): trước đây bắt buộc `\n` NGAY SAU dấu hai chấm nên nội dung viết
+    # NGAY SAU dấu hai chấm trên CÙNG một dòng (vd "HOOK 30 GIÂY ĐẦU: それは...") bị bỏ sót hoàn
+    # toàn (m=None) — chỉ nhận được khi nội dung xuống dòng mới. Bỏ `\n` bắt buộc, để `\s*` (đã ăn
+    # cả xuống dòng) tự quyết — `(.*?)` với re.S vẫn dừng đúng ở cùng các mốc như cũ.
+    m = re.search(rf"{re.escape(heading)}\s*[:：]\s*(.*?)(?=\n\s*\n|\n[A-ZĐ][A-ZĐ ]{{3,}}[:：]|\Z)", ctx_text, re.S)
     if not m or not m.group(1).strip():
-        _ra(kq, "nang", "hook_thieu", "hồ sơ không có tiêu mục 'HOOK 30 GIÂY ĐẦU:' hoặc để trống",
+        _ra(kq, "nang", "hook_thieu", f"hồ sơ không có tiêu mục '{heading}:' hoặc để trống",
             "bên research phải viết 1–2 câu hook: sự kiện cụ thể, neo NGÀY/NƠI/NGƯỜI, không kết luận suông")
         return
     h = m.group(1).strip()
@@ -392,7 +411,7 @@ def main():
     if ctx.exists():
         text = ctx.read_text(encoding="utf-8", errors="replace")
         kiem_tieu_de(kq, text, rs, gate)
-        kiem_hook_ho_so(kq, text, prof)
+        kiem_hook_ho_so(kq, text, prof, rs)
     kiem_competitor(kq, folder, prof, rs)
     kiem_tu_lieu(kq, folder, rs, gate)
     kiem_stock_queries(kq, folder, rs, gate)

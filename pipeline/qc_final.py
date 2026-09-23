@@ -469,7 +469,36 @@ def kiem(slug_dir, profile_id):
     kiem_bang_chung(S, ra)
     kiem_du_kien(S, ra)
     kiem_hook(S, prof, ra)
+    kiem_goi_dang(S, profile_id, ra)
     return {"phat_hien": ra, "nang": [x for x in ra if x["sev"] == "cao"], "video": v}
+
+
+def kiem_goi_dang(S: Path, profile_id, ra):
+    """G1–G6/G8 (qc_goi_dang.py) — lời hứa · tiêu đề · thumbnail · thứ tự 60–90s đầu.
+
+    ⚠️ CỐ Ý hạ mọi phát hiện xuống mức 「vua」 chứ không phải 「cao」 (2026-09-23, khi mới nối cổng):
+    quét thật 52 tập đã làm của 6 lane cho ra 236 phát hiện — nghĩa là nếu để 「cao」 thì B10 của
+    MỌI tập cũ đỏ ngay hôm nay, kể cả tập đã đăng và không có ý định sửa. Cổng vẫn hiện đủ để người
+    đọc thấy, còn việc nâng lên 「cao」 là MỘT DÒNG sửa ở đây — làm sau khi tồn kho đã dọn xong
+    (danh sách tập cần sửa ở FlowHandoff_local\\shared\\BAO_CAO_H2DEV_HOOK_2026-09-23.md).
+    Lane chưa khai `goi_dang.enabled` thì chính qc_goi_dang đã tự hạ xuống cảnh báo — không ai bị
+    cổng mới này chặn vì lý do "chưa kịp khai profile".
+    """
+    try:
+        import qc_goi_dang
+    except Exception as e:                       # thiếu module/phụ thuộc không được làm gãy cả B10
+        _loi(ra, "gói đăng", "thap", f"không nạp được qc_goi_dang: {type(e).__name__} {str(e)[:80]}")
+        return
+    try:
+        kq = qc_goi_dang.kiem(S, profile_id)
+    except Exception as e:
+        _loi(ra, "gói đăng", "thap", f"qc_goi_dang lỗi: {type(e).__name__} {str(e)[:120]}")
+        return
+    for x in kq["blocking_issues"]:
+        _loi(ra, "gói đăng", "vua", x, "xem FlowHandoff_local\\results\\hook_from_research\\"
+                                       "NGUYEN_TAC_HOOK_GOI_DANG.md")
+    for x in kq["warnings"]:
+        _loi(ra, "gói đăng", "thap", x)
 
 
 def bao_cao(kq):

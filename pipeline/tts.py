@@ -323,6 +323,32 @@ def kiem_credit(osp, text):
             f"mà không báo lỗi (đo thật STT13: mp3 16:05 trong khi phụ đề khai 29:32).")
 
 
+# -- CONG PHU CHU (2026-09-23): server DOC THIEU nguyen mot cau, im lang -----------------------
+# Do that tren hook ep05-bermuda-triangle (208 chu): 4 luot TTS cung mot doan text -> 3 luot NUOT
+# tron mot cau, moi luot nuot mot cau KHAC nhau (luot 1 va 3 mat cau cuoi, luot 2 mat cau ap cuoi,
+# luot 4 du). Cong DO DAI o duoi KHONG bat duoc: no so mp3 voi SRT, ma ca hai deu do CUNG server
+# sinh ra nen khop nhau trong cai sai - mp3 ngan dung bang phan bi nuot, SRT cung ngan y het.
+# Cach bat duy nhat: so SRT voi KICH BAN GOC. Day la ly do cong nay ton tai.
+PHU_CHU_TOI_THIEU = 0.95
+_BO_DAU = re.compile(r"[\s、。,.!?！？「」『』・…ー]")
+
+
+def _chu_trong_srt(srt):
+    """Gom toan bo chu trong SRT, bo so thu tu / moc thoi gian / dau cau / khoang trang."""
+    ra = []
+    for khoi in re.split(r"\n\s*\n", (srt or "").strip()):
+        dong = khoi.split("\n")
+        ra.append("".join(dong[2:]) if len(dong) >= 3 else "")
+    return _BO_DAU.sub("", "".join(ra))
+
+
+def kiem_phu_chu(text, srt):
+    """Tra (ti_le, so_chu_srt, so_chu_goc). Goi TRUOC khi ghi file de chan ban doc thieu cau."""
+    goc = _BO_DAU.sub("", text or "")
+    doc = _chu_trong_srt(srt)
+    return (len(doc) / len(goc) if goc else 1.0), len(doc), len(goc)
+
+
 def run_openspeaker(text, out, voice, speed, want_srt, age="none"):
     """Provider trả phí ai33/OpenSpeaker (chất ElevenLabs) — gửi CẢ kịch bản 1 lần, có SRT sẵn."""
     import openspeaker_tts as osp
@@ -349,6 +375,15 @@ def run_openspeaker(text, out, voice, speed, want_srt, age="none"):
                 raise SystemExit(f"✗ TTS HỎNG: mp3 chỉ {dur/60:.1f}′ nhưng phụ đề server khai "
                                  f"{can/60:.1f}′ — file tải về bị ĐỨT. Chạy lại lệnh TTS này "
                                  f"(đừng pace/ghép bản hỏng).")
+    if srt:
+        ti_le, n_doc, n_goc = kiem_phu_chu(text, srt)
+        if ti_le < PHU_CHU_TOI_THIEU:
+            raise SystemExit(
+                f"\u2717 TTS \u0110\u1eccC THI\u1ebeU: ph\u1ee5 \u0111\u1ec1 server ch\u1ec9 c\u00f3 {n_doc}/{n_goc} ch\u1eef c\u1ee7a k\u1ecbch b\u1ea3n "
+                f"({ti_le*100:.1f}%, c\u1ea7n \u2265{PHU_CHU_TOI_THIEU*100:.0f}%) \u2014 server NU\u1ed0T M\u1ea4T m\u1ed9t \u0111o\u1ea1n. "
+                f"\u0110\u00e2y l\u00e0 l\u1ed7i ng\u1eabu nhi\u00ean c\u1ee7a ai33 (\u0111o th\u1eadt: 3/4 l\u01b0\u1ee3t), CH\u1ea0Y L\u1ea0I \u0110\u00daNG L\u1ec6NH N\u00c0Y l\u00e0 th\u01b0\u1eddng h\u1ebft. "
+                f"TUY\u1ec6T \u0110\u1ed0I \u0111\u1eebng \u0111em b\u1ea3n n\u00e0y \u0111i gh\u00e9p: n\u00f3 thi\u1ebfu nguy\u00ean m\u1ed9t c\u00e2u m\u00e0 nghe kh\u00f4ng ra.")
+        print(f"  \u2713 ph\u1ee7 ch\u1eef {ti_le*100:.1f}% ({n_doc}/{n_goc}) \u2014 kh\u00f4ng nu\u1ed1t c\u00e2u n\u00e0o")
     if want_srt and srt:
         srt_path = out.with_suffix(".srt")
         srt_path.write_text(srt, encoding="utf-8")

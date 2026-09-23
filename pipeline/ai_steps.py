@@ -224,7 +224,16 @@ def _gate_ngach(prof, text, m, g, rate):
     return bad
 
 
+# 2026-09-23 — DÒNG TIÊU ĐỀ Ở ĐẦU KỊCH BẢN. Model hay mở bản thảo bằng 「タイトル：…」/「題名:…」.
+# Nó KHÔNG phải lời đọc, nhưng script.txt đi thẳng vào TTS nên máy đọc to luôn chữ 「タイトル」 ở giây
+# 0,3 — đo thật: 6/8 tập lane kenko-chiebukuro có dòng này, trong đó ep01–04 đã ra tới người xem
+# (bàn giao TRENDING-RESEARCH 2026-09-23, nguyên tắc 3: "không mở bằng… tiêu đề đọc to").
+# MARKER_PAT không bắt được vì đây là một DÒNG bình thường, không có ký hiệu markdown nào.
+TITLE_LINE_PAT = re.compile(r"\A\s*(?:タイトル|題名|表題|Title|TITLE)\s*[:：].*(?:\n|$)")
+
+
 def strip_markers(text):
+    text = TITLE_LINE_PAT.sub("", text or "")
     text = MARKER_PAT.sub("", text)
     return re.sub(r"\n{3,}", "\n\n", text).strip()
 

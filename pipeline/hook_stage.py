@@ -625,3 +625,47 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
                                           "source_video_id": src.get("video_id")})
     print(f"[H4] HOOK_LOCKED {meta['chars']} chữ · sol {qc['sol_rounds']} vòng · vá {qc['patches']}")
     return text
+
+
+# ---------------------------------------------------------------------------
+# CLI (Task 12, 2026-09-23) — cửa vào dòng lệnh cho hook_stage.
+# `--mode upstream`: tập mới, thực ra lean_script đã tự gọi ensure_locked rồi — CLI ở đây để
+#   chạy tay/khắc phục khi cần chạy lại riêng lẻ.
+# `--mode repair`: tập ĐÃ có script.txt (script/ảnh/video cũ giữ nguyên), chỉ viết thêm hook rồi
+#   ghép vào đầu video — ensure_locked(mode="repair") (Task 7) tự lấy script.txt làm nguồn promise.
+# Sau khi khoá hook xong, gọi luôn hook_storyboard.sinh() (Task 11) để ra storyboard + prompt Flow
+# + jobs.csv, rồi in đường dẫn TUYỆT ĐỐI cho người vận hành copy chạy tiếp.
+# ---------------------------------------------------------------------------
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="H1–H4 hook 20–30s (upstream) hoặc repair mode cho tập đã có script")
+    ap.add_argument("--profile", required=True)
+    ap.add_argument("--slug", required=True)
+    ap.add_argument("--mode", default="upstream", choices=["upstream", "repair"])
+    ap.add_argument("--force", action="store_true")
+    ap.add_argument("--only", default="", choices=["", "source"])
+    ap.add_argument("--proxy", default="")
+    a = ap.parse_args(argv)
+    prof = profiles.load(a.profile)
+    d = ROOT / (prof.get("slug_dir") or "assets/out") / a.slug
+    if not d.exists():
+        raise SystemExit(f"✗ không thấy thư mục tập {d}")
+    if a.mode == "repair" and not (d / "script.txt").exists():
+        raise SystemExit(f"✗ repair mode cần {d / 'script.txt'} đã có")
+    if a.only == "source":
+        src = phan_tich_nguon(d, prof, proxy=a.proxy or None, force=a.force)
+        print(json.dumps({k: src[k] for k in ("video_id", "hook_kind", "score_0_12", "video_hook_verdict", "promise_match")},
+                         ensure_ascii=False, indent=1))
+        return
+    ctx = (d / "series_ctx.txt").read_text(encoding="utf-8") if (d / "series_ctx.txt").exists() else ""
+    ensure_locked(d, prof, ctx=ctx, title=_title(d), mode=a.mode, force=a.force, proxy=a.proxy or None)
+    import hook_storyboard  # lazy: tránh vòng phụ thuộc module, chỉ cần khi thật sự chạy CLI
+    hook_storyboard.sinh(d, prof, force=a.force)
+    for f in ("hook_locked.txt", "hook_storyboard.json", "grok_jobs.csv"):
+        print(f"  → {d / HOOK_DIR / f}")
+
+
+if __name__ == "__main__":
+    main()

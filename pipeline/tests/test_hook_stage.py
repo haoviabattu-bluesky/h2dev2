@@ -744,3 +744,53 @@ def test_ensure_locked_patch_hook_nem_khong_lam_sap(monkeypatch, tmp_path):
     qc = json.loads((d / "hook/hook_qc.json").read_text(encoding="utf-8"))
     assert qc["state"] == "PASS_LEAN"
     assert any("lỗi" in l and "RuntimeError" in l for l in qc["log"])
+
+
+# ---------------------------------------------------------------------------
+# Task 12 (2026-09-23): repair mode + CLI main()
+# ---------------------------------------------------------------------------
+
+def test_cli_repair_yeu_cau_script(tmp_path, monkeypatch, capsys):
+    """--mode repair mà tập chưa có script.txt → SystemExit nhắc rõ thiếu script.txt.
+    (Viết lại sạch từ brief — brief gốc có biểu thức rác `... if False else ...` không có ý
+    nghĩa, ở đây chỉ cần profiles.load trả về slug_dir cố định "assets/_t".)"""
+    import profiles
+    monkeypatch.setattr(profiles, "load", lambda pid: {**PROF, "slug_dir": "assets/_t"})
+    monkeypatch.setattr(HS, "ROOT", tmp_path)
+    (tmp_path / "assets/_t/ep").mkdir(parents=True)
+    with pytest.raises(SystemExit) as e:
+        HS.main(["--profile", "x", "--slug", "ep", "--mode", "repair"])
+    assert "script.txt" in str(e.value)
+
+
+def test_cli_only_source_khong_goi_ensure_locked(tmp_path, monkeypatch, capsys):
+    """--only source: chỉ chạy phan_tich_nguon rồi in JSON tóm tắt, KHÔNG động tới ensure_locked
+    (mock ensure_locked ném AssertionError để chứng minh nó không được gọi tới)."""
+    import profiles
+    monkeypatch.setattr(profiles, "load", lambda pid: {**PROF, "slug_dir": "assets/_t"})
+    monkeypatch.setattr(HS, "ROOT", tmp_path)
+    (tmp_path / "assets/_t/ep").mkdir(parents=True)
+
+    def _khong_duoc_goi(*a, **kw):
+        raise AssertionError("--only source KHÔNG được gọi ensure_locked")
+    monkeypatch.setattr(HS, "ensure_locked", _khong_duoc_goi)
+
+    fake_src = {"video_id": "abc123XYZ00", "hook_kind": "curiosity_gap", "score_0_12": 10,
+                "video_hook_verdict": "PASS", "promise_match": True, "trash": "khong duoc in ra"}
+    monkeypatch.setattr(HS, "phan_tich_nguon", lambda d, prof, proxy=None, force=False: fake_src)
+
+    HS.main(["--profile", "x", "--slug", "ep", "--mode", "upstream", "--only", "source"])
+    out = json.loads(capsys.readouterr().out)
+    assert out == {"video_id": "abc123XYZ00", "hook_kind": "curiosity_gap", "score_0_12": 10,
+                   "video_hook_verdict": "PASS", "promise_match": True}
+
+
+def test_cli_thu_muc_tap_khong_ton_tai(tmp_path, monkeypatch):
+    """Thư mục tập không tồn tại → SystemExit nhắc rõ đường dẫn thư mục đó."""
+    import profiles
+    monkeypatch.setattr(profiles, "load", lambda pid: {**PROF, "slug_dir": "assets/_t"})
+    monkeypatch.setattr(HS, "ROOT", tmp_path)
+    with pytest.raises(SystemExit) as e:
+        HS.main(["--profile", "x", "--slug", "ep_khong_co"])
+    msg = str(e.value)
+    assert str(tmp_path / "assets/_t/ep_khong_co") in msg

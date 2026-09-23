@@ -272,7 +272,7 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
 
 ---
 
-## 8. CHECKLIST XONG VIỆC — ĐỦ CẢ 7 Ô MỚI ĐƯỢC BÁO "XONG"
+## 8. CHECKLIST XONG VIỆC — ĐỦ CẢ 7 Ô (+1 Ô HOOK NẾU TẬP CÓ `hook\`) MỚI ĐƯỢC BÁO "XONG"
 
 - [ ] Số ảnh nhận về **khớp** số dòng `prompts.txt`
 - [ ] `state.json` có **B8, B8Q, B9, B10, B11**
@@ -301,10 +301,18 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
 upstream|repair) · `hook_storyboard.json` · `flow_prompts\shot_NN.txt` · `grok_jobs.csv`. Thiếu bất
 kỳ file nào → DỪNG, báo lane (xem mục 11).
 
-**9.1 Ảnh shot** — vẽ `<tập>\hook\img\shot_NN.png` (1280×720, 16:9) theo
-`<tập>\hook\flow_prompts\shot_NN.txt`; shot nào có `ref_image=REF` hoặc `REF2` trong
-`hook_storyboard.json` → REF-LOCK bằng ảnh master trong `<tập>\_ref\` (ima2 `--ref`), giống hệt quy
-trình ảnh thân video ở mục 2/3. Thường 4–7 ảnh mỗi tập (đúng số dòng trong `grok_jobs.csv`).
+**9.1 Ảnh shot — do MÁY 2 vẽ, bạn chỉ kiểm đủ** — đây KHÔNG phải ngoại lệ của luật mục 1: bạn vẫn
+không bao giờ tự vẽ ảnh, kể cả ảnh shot hook. `<tập>\hook\flow_prompts\shot_NN.txt` và
+`<tập>\hook\grok_jobs.csv` là đơn máy 1 đã để sẵn cho máy 2 vẽ cùng đợt với ảnh thân video, ra
+`<tập>\hook\img\shot_NN.png` (1280×720, 16:9; shot nào có `ref_image=REF`/`REF2` trong
+`hook_storyboard.json` thì máy 2 REF-LOCK bằng ảnh master trong `<tập>\_ref\`). Việc của bạn: đếm số
+file `shot_NN.png` đã có trong `<tập>\hook\img\` phải khớp đúng số dòng trong `grok_jobs.csv`
+(thường 4–7 ảnh) — **thiếu ảnh thì DỪNG và đòi máy 2**, giống hệt cách xử lý thiếu ảnh thân video ở
+mục 1, không tự vẽ bù.
+> **Ngoại lệ duy nhất:** lane `toshi-densetsu-jp` có ngoại lệ tự render riêng đã được chủ dự án
+> chốt (xem `docs/SOP_TOSHI_DENSETSU_JP.md` §Ngoại lệ tự render) — nếu chính tab Lane A đang tự làm
+> cả bước 2+3 cho tập của mình thì được tự vẽ ảnh shot hook. Agent bước 3 độc lập (không phải Lane A
+> tự làm) và mọi lane khác thì không có ngoại lệ này.
 
 **9.2 Clip** — chạy:
 ```
@@ -359,10 +367,10 @@ với timeline lấy từ mốc `t0`/`t1` của từng shot trong `hook_storyboa
 **9.6 Nghiệm thu:**
 - Đếm khung `final_with_hook.mp4` phải = khung(`hook_final.mp4`) + khung(`final.mp4` tính từ
   `T_hook`) − số khung của đoạn chuyển cảnh dùng ở 9.5.
-- Chạy cổng nghe `qc_visual.kiem_tieng_ghep` (đã dùng ở mục 4) trên `final_with_hook.mp4` — không
-  được báo mất tiếng ở mốc ghép.
-- Xem tay 30 giây đầu: đủ 4–7 bố cục khác nhau theo `hook_storyboard.json`, không có chữ tiếng Anh/
-  watermark AI lọt vào khung hình (xem mục "B-roll không được mang chữ lạ"), mặt nhân vật khớp
+- Chạy cổng nghe `E:\CLAUDE\YOUTUBE\h2dev\pipeline\qc_visual.py::kiem_tieng_ghep` trên
+  `final_with_hook.mp4` — không được báo mất tiếng ở mốc ghép.
+- Xem tay 30 giây đầu: đủ 4–7 bố cục khác nhau theo `hook_storyboard.json`, khung hình hook KHÔNG
+  được mang chữ/nhãn tiếng nước khác lọt vào (chữ tiếng Anh, watermark AI...), mặt nhân vật khớp
   REF/REF2 nếu có dùng REF-LOCK.
 - Ghi `<tập>\hook\render_info.json` dạng `{"T_hook": ..., "frames": ..., "mode": "upstream|repair"}`.
 - Cột **G** của sheet trỏ tới `final_with_hook.mp4` (không phải `final.mp4`) cho tập nào đã dựng

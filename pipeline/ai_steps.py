@@ -468,14 +468,31 @@ def _cau_truc_block(prof):
     if (sc.get("structure") or "").lower() == "chapters5":
         marks = g.get("chapter_markers") or ["第1章", "第2章", "第3章", "第4章", "第5章"]
         jp = g.get("require_japan_hook_chapter") or 4
+        # 2026-09-23 — CHÍNH SÁCH "MÓC VỀ NHẬT". Bàn giao TRENDING-RESEARCH đo 9 video kênh mẫu
+        # 今夜も都市伝説: 3/3 video CÓ nội dung Nhật đều HÉ NGAY trong hook/tiêu đề (saIym-x8dPc 0,3s
+        # 「日本だけが知っていた」 120.668 view · HqaY3BLROJU 57s 「東の島」 · OU1r2W68F0Y 95s
+        # 「日本のある小さな村」), nhưng 2 video top khác (GTwoNSPbEv8 150k, gWF_9MYtji8 93k) KHÔNG
+        # nhắc Nhật lần nào ⇒ Nhật là ĐÒN BẨY, không phải ĐIỀU KIỆN. Luật cũ ép đúng thứ kênh mẫu
+        # KHÔNG bắt buộc (vị trí chương 4) và bỏ qua thứ kênh mẫu thật sự làm (hé sớm).
+        # `gate.japan_policy`: "chapter" (cũ, mặc định — không lane nào đổi hành vi nếu không khai)
+        # · "hint" (hé ở tiêu đề/hook, không ép chương) · "none" (bỏ hẳn).
+        pol = str(g.get("japan_policy") or "chapter").lower()
+        if pol == "hint":
+            dong_jp = ("   · NHẬT BẢN: nếu hồ sơ CÓ dữ kiện liên quan Nhật thì phải HÉ trong tiêu đề "
+                       "hoặc trong hook 30 giây đầu, rồi khai triển ở chương hợp lý nhất — KHÔNG ép "
+                       "phải nằm ở chương nào. Hồ sơ KHÔNG có dữ kiện Nhật thì BỎ HẲN, cấm gán ghép.\n")
+        elif pol == "none":
+            dong_jp = ""
+        else:
+            dong_jp = (f"   · {marks[jp-1]} ⭐ MÓC CÂU CHUYỆN VỀ NHẬT BẢN — bắt buộc, đây là giá trị "
+                       f"gia tăng của kênh, không phải phần phụ\n")
         return ("4) Cấu trúc BẮT BUỘC — phim tài liệu 5 chương:\n"
                 "   · HOOK 30 giây đầu: nói thẳng KẾT LUẬN gây sốc, neo vào NGÀY/NƠI/NGƯỜI cụ thể. "
                 "Không dạo đầu, không chào hỏi.\n"
                 "   · 30–75 giây: leo thang + HỨA phần thưởng cho người xem hết video.\n"
                 f"   · {marks[0]} sự kiện gốc (tường thuật, dày mốc năm) · {marks[1]} nhân vật/tài "
                 f"liệu trung tâm và vì sao đáng tin · {marks[2]} bằng chứng và phản bác chính thống\n"
-                f"   · {marks[jp-1]} ⭐ MÓC CÂU CHUYỆN VỀ NHẬT BẢN — bắt buộc, đây là giá trị gia "
-                f"tăng của kênh, không phải phần phụ\n"
+                + dong_jp +
                 f"   · {marks[4]} diễn giải lớn: điều này nghĩa gì với người xem hôm nay\n"
                 "   · KẾT 90 giây: khung triết lý + nói thẳng với người xem + câu hỏi gọi comment.\n"
                 "   Tên chương viết đúng dạng 第◯章 trên một dòng riêng, kèm tiêu đề ngắn.")

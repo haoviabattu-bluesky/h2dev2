@@ -181,7 +181,7 @@ def _ghi_sheet_h(prof, slug, n, cost):
     print(f"  ✓ ghi {tab}!{COT_H}{dong} = {gia_tri}")
 
 
-def _dong_goi_hook(job_dir: Path, dst: Path) -> int:
+def _dong_goi_hook(job_dir: Path, dst: Path, _visual: str = "") -> int:
     """Copy các file trong `hook/` (nếu tập thật sự có) vào gói giao máy 2 — lý do ở HOOK_FILES_GOC.
 
     2026-09-23 (vá review HOOK, Việc 2): áp đúng luật "vận chuyển phải tự chứng minh" của dự án
@@ -190,6 +190,14 @@ def _dong_goi_hook(job_dir: Path, dst: Path) -> int:
     shutil.copy2 luôn thành công trọn vẹn. Tập KHÔNG có `hook/` (đa số tập, tính năng đang bật dần
     từng kênh) → trả 0, KHÔNG báo lỗi gì — giữ gói giao y như trước khi có tính năng hook.
     """
+
+    # Lane khai script.hook.visual == "lien_mach_than" (vd kenko-chiebukuro): hook KHÔNG phải clip
+    # riêng — nó là 30 giây ĐẦU của chính script.txt, sẽ được lồng tiếng và minh hoạ chung một lần
+    # với thân video. Gửi kèm grok_jobs.csv/hook_storyboard.json sang máy 2 là mời máy 2 vẽ thêm 7
+    # ảnh rồi ghép một clip 30 giây nữa vào đầu → đoạn mở đầu PHÁT HAI LẦN. Xem docs/QUY_TAC_VIDEO_HOOK.md §5b.
+    if _visual == "lien_mach_than":
+        print("  · hook: lane dựng LIỀN MẠCH (hook nằm trong script.txt) → KHÔNG gửi hook/ sang máy 2")
+        return 0
     src_hook = job_dir / "hook"
     if not src_hook.is_dir():
         return 0
@@ -230,7 +238,15 @@ def cmd_job(profile_id, slug):
     if level == "FAIL":
         raise SystemExit(f"✗ CHƯA đóng gói — kịch bản chưa khoá đúng: {msg}")
     print(f"  lock: {msg}")
-    for need in ("img_prompts.txt", "img_doan.txt", "characters.json"):
+    # characters.json CHỈ bắt buộc với lane có REF-LOCK. Lane không khoá mặt (vd kenko-chiebukuro:
+    # mỗi mục một người khác nhau, image.ref_lock=false) không hề sinh file này — đòi vô điều kiện là
+    # chặn oan cả lane, và người chạy sẽ đi tìm một bước B5W/B5P không bao giờ tạo ra nó (đã dính
+    # thật 2026-09-23, lane E tập 1).
+    _img_cf = (prof.get("image") or {})
+    _can = ["img_prompts.txt", "img_doan.txt"]
+    if _img_cf.get("ref_lock") or _img_cf.get("characters_from_bible"):
+        _can.append("characters.json")
+    for need in _can:
         if not (job_dir / need).exists():
             raise SystemExit(f"✗ thiếu {need} — chạy B5W/B5P trước "
                              f"(make_video.py --profile {profile_id} --slug {slug} --only B5W / --only B5P)")
@@ -264,7 +280,7 @@ def cmd_job(profile_id, slug):
     if (job_dir / "logs").is_dir():
         shutil.copytree(job_dir / "logs", dst / "logs", dirs_exist_ok=True)
 
-    n_hook = _dong_goi_hook(job_dir, dst)
+    n_hook = _dong_goi_hook(job_dir, dst, ((prof.get('script') or {}).get('hook') or {}).get('visual', ''))
     n_copied += n_hook
 
     n, n_face, cost = _dem_anh(job_dir)

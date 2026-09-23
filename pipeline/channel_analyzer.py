@@ -137,11 +137,71 @@ def crawl_transcripts(rows, langs, out_dir, proxy=None):
     return out
 
 
+# --------------------------------------------- K1b: ĐỌC CHỮ TRÊN ẢNH THUMBNAIL (G7, 2026-09-23)
+# Bàn giao TRENDING-RESEARCH: "K2 phải nhận ảnh thumbnail thật (vision) và chép chữ từng dòng, CẤM
+# mục 'suy luận'". Trước đây DNA_PROMPT bảo model "mô tả suy luận được từ tiêu đề/nội dung" — tức là
+# đoán chữ trên ảnh, đúng thứ bàn giao cấm. Ảnh đã tải sẵn ở `_raw/thumbs/` từ bước crawl, ở đây chỉ
+# thêm một lượt đọc ảnh.
+# Vì sao dùng sol_client chứ không llm_client: llm_client.chat() KHÔNG có đường truyền ảnh; sol_client
+# đã có sẵn `image_path` + 3 đường fallback và chính là lớp QC vision của dự án (qc_thumbnail_sol.py).
+THUMB_PROMPT = """Đây là ảnh thumbnail của một video YouTube.
+CHÉP LẠI chữ trên ảnh, ĐÚNG NGUYÊN VĂN, mỗi dòng chữ một phần tử, theo thứ tự trên xuống dưới.
+TUYỆT ĐỐI KHÔNG dịch, KHÔNG tóm tắt, KHÔNG suy luận, KHÔNG đoán chữ bị che. Chữ nào không đọc được
+thì ghi "?" ở đúng vị trí đó.
+Trả ĐÚNG 1 JSON: {"dong_chu": ["dòng 1", "dòng 2"], "bo_cuc": "1 câu tả bố cục: vị trí/màu từng khối chữ, có mặt người không", "doc_duoc": true}
+Ảnh không có chữ nào thì trả "dong_chu": [] và "doc_duoc": true."""
+
+
+def doc_chu_thumbnail(anh):
+    """Trả dict {'dong_chu': [...], 'bo_cuc': str} hoặc None khi không đọc được.
+
+    KHÔNG BAO GIỜ ném: thiếu ảnh / hỏng mạng / model trả rác chỉ làm mất phần thumbnail của MỘT
+    video, không được làm gãy cả lượt phân tích kênh (cùng chính sách với bước tags: phụ trợ).
+    """
+    try:
+        import sol_client
+        r = sol_client.chat(THUMB_PROMPT, image_path=str(anh), max_tokens=800)
+        d = json.loads(_strip_fence(r if isinstance(r, str) else getattr(r, "text", str(r))))
+        return d if isinstance(d.get("dong_chu"), list) else None
+    except Exception as e:
+        print(f"  ! không đọc được chữ trên {Path(anh).name}: {type(e).__name__} {str(e)[:90]}")
+        return None
+
+
+def gan_chu_thumbnail(rows, out_dir):
+    """Đọc chữ thumbnail cho từng video, ghi cache `_raw/thumb_text/<id>.json` (đọc lại KHÔNG tốn tiền lần 2)."""
+    tdir, cdir = out_dir / "_raw" / "thumbs", out_dir / "_raw" / "thumb_text"
+    cdir.mkdir(parents=True, exist_ok=True)
+    for r in rows:
+        c = cdir / f"{r['id']}.json"
+        if c.exists():
+            r["thumb_text"] = json.loads(c.read_text(encoding="utf-8"))
+            continue
+        anh = next((p for p in sorted(tdir.glob(f"*{r['id']}.jpg"))), None)
+        if not anh:
+            print(f"  ! {r['id']}: chưa tải được ảnh thumbnail — bỏ qua phần chữ")
+            continue
+        d = doc_chu_thumbnail(anh)
+        if d:
+            c.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+            r["thumb_text"] = d
+            print(f"  ✓ {r['id']}: {' / '.join(d.get('dong_chu') or []) or '(không có chữ)'}")
+    return rows
+
+
+def _thumb_block(r):
+    d = r.get("thumb_text") or {}
+    if not d:
+        return "(CHƯA ĐỌC ĐƯỢC ẢNH — để trống mọi field về thumbnail, KHÔNG suy luận từ tiêu đề)"
+    return " / ".join(d.get("dong_chu") or []) + f"   [bố cục: {d.get('bo_cuc', '')}]"
+
+
 # ---------------------------------------------------------------- K2: Gemini
 VIDEO_PROMPT = """Bạn phân tích 1 video YouTube ngách "{niche_hint}". Dữ liệu:
 TIÊU ĐỀ: {title}
 LƯỢT XEM: {view_count}
 MÔ TẢ (description gốc, rút gọn): {description}
+CHỮ TRÊN THUMBNAIL (đã ĐỌC TỪ ẢNH THẬT, không phải suy luận): {thumb_text}
 ĐOẠN ĐẦU 0–30 GIÂY (nguyên văn theo mốc giây): {dau_0_30s}
 TRANSCRIPT (rút gọn nếu quá dài):
 {transcript}
@@ -158,15 +218,20 @@ thành 2 phần tử riêng thay vì "UFO/UAP"):
                    "stake": "cảm xúc/mất mát 12–20s hoặc null", "open_loop": "câu hỏi để ngỏ 20–30s hoặc null"}},
   "hook_kind": "A biến cố bất thường | B câu nói sốc | C mâu thuẫn | D hậu quả chưa rõ nguyên nhân | E hé reveal | none",
   "hook_score_0_12": 0,
-  "promise_match": {{"title": "PASS|FAIL", "description": "PASS|FAIL|NA", "verdict": "PASS|FAIL", "ly_do": "1 câu"}},
+  "loi_hua_video": "MỘT câu: video này hứa cho người xem điều gì (viết bằng ngôn ngữ gốc của video)",
+  "promise_match": {{"title": "PASS|FAIL", "description": "PASS|FAIL|NA", "thumbnail": "PASS|FAIL|NA",
+                     "hook": "PASS|FAIL", "verdict": "PASS|FAIL",
+                     "ly_do": "1 câu: bốn chỗ (tiêu đề · chữ thumbnail · câu đầu mô tả · 30–45s đầu) có nói CÙNG một lời hứa không; chỗ nào lệch thì lệch thế nào"}},
+  "cap_khop": {{"hook_tieu_de": "Khớp|Một phần|Lệch", "thumbnail_tieu_de": "Khớp|Một phần|Lệch",
+                "thumbnail_hook": "Khớp|Một phần|Lệch", "ly_do": "mỗi cặp 1 câu lý do, nối bằng ' · '"}},
   "structure": "mô tả cấu trúc/chương chính, 1-2 câu",
   "emotional_beats": ["cảm xúc chính 1", "..."],
   "title_formula": "công thức tiêu đề video này áp dụng, 1 câu",
   "notes": "chi tiết đáng chú ý khác, có thể để rỗng"}}"""
 
 DNA_PROMPT = """Bạn là chuyên gia phân tích kênh YouTube ngách "{niche_hint}". Dưới đây là {n} video
-top view của kênh (tiêu đề + lượt xem + toàn văn lời thoại). Hãy tổng hợp thành 1 tài liệu Markdown
-CHANNEL_DNA.md đúng cấu trúc 11 đề mục sau (mỗi đề mục 1 heading ## + vài gạch đầu dòng, TRÍCH DẪN
+top view của kênh (tiêu đề + lượt xem + CHỮ TRÊN THUMBNAIL đọc từ ảnh thật + câu đầu mô tả + toàn
+văn lời thoại). Hãy tổng hợp thành 1 tài liệu Markdown CHANNEL_DNA.md đúng cấu trúc 12 đề mục sau (mỗi đề mục 1 heading ## + vài gạch đầu dòng, TRÍCH DẪN
 BẰNG CHỨNG THẬT từ dữ liệu, không bịa, không chung chung):
 
 ## Audience — khán giả là ai, nỗi đau/động cơ khiến họ xem
@@ -178,8 +243,14 @@ BẰNG CHỨNG THẬT từ dữ liệu, không bịa, không chung chung):
 ## Emotional triggers — cảm xúc được khai thác
 ## CTA patterns — lời kêu gọi hành động cuối video
 ## Title patterns — công thức tiêu đề lặp lại, độ dài tối ưu nếu tính được
-## Thumbnail patterns — mô tả suy luận được từ tiêu đề/nội dung (không có ảnh thì ghi "không đủ dữ
-   liệu", KHÔNG bịa)
+## Thumbnail patterns — CHỈ dựa trên khối "CHỮ TRÊN THUMBNAIL (đọc từ ảnh thật)" của từng video:
+   chép lại chữ từng dòng, rồi rút khuôn (mấy dòng, dòng nào màu gì/vai trò gì, có chữ số không, có
+   tên người không, có chép lại chữ của tiêu đề không). CẤM suy luận từ tiêu đề/nội dung. Video nào
+   không có khối đó thì ghi rõ "chưa đọc được ảnh" và KHÔNG đếm nó vào tỉ lệ.
+## Promise — LỜI HỨA của video: mỗi video 1 câu lời hứa, rồi kết luận kênh này nối lời hứa qua bốn
+   chỗ (tiêu đề · chữ thumbnail · câu đầu mô tả · 30–45 giây đầu hook) như thế nào. Kèm SỐ ĐẾM
+   Khớp/Một phần/Lệch cho ba cặp hook↔tiêu đề, thumbnail↔tiêu đề, thumbnail↔hook (vd "Khớp 6/9"),
+   và nêu video lệch nhiều nhất kèm lý do.
 ## Rules for writing new videos — 5-8 quy tắc cụ thể để viết video MỚI giống đúng công thức kênh này
 
 DỮ LIỆU {n} VIDEO:
@@ -212,6 +283,7 @@ def analyze_one_video(row, niche_hint):
     prompt = VIDEO_PROMPT.format(niche_hint=niche_hint, title=row["title"],
                                  view_count=row["view_count"],
                                  description=(row.get("description") or "")[:1500],
+                                 thumb_text=_thumb_block(row),
                                  dau_0_30s=row.get("dau_0_30s") or row["transcript"][:300],
                                  transcript=row["transcript"][:20000])
     r = llm_client.chat(prompt, task="short", max_tokens=2000, temperature=0.3, verbose=False)
@@ -262,6 +334,10 @@ def main():
     ap.add_argument("--proxy", default="",
                     help="proxy HTTP(S) cho cả crawl catalog lẫn transcript, dùng khi IP bị "
                          "YouTube 429 kéo dài, vd http://user:pass@host:port")
+    ap.add_argument("--no-thumb-text", action="store_true",
+                    help="tắt bước ĐỌC CHỮ TRÊN ẢNH thumbnail bằng vision (G7). Bật mặc định vì "
+                         "bàn giao 2026-09-23 cấm 'suy luận' chữ thumbnail. TỐN TIỀN: 1 lượt gọi "
+                         "sol_client/ảnh, có cache `_raw/thumb_text/` nên chạy lại không tính lại")
     ap.add_argument("--no-tags", action="store_true",
                     help="tắt bước gom Video Tags/Channel Tags → TAG_STATS.json (bật mặc định, "
                          "phụ trợ, không ảnh hưởng K1/K2 nếu lỗi)")
@@ -295,6 +371,13 @@ def main():
     # --n-select video ĐẦU (view cao nhất, đã có transcript). Không đủ --n-select thì lấy hết.
     rows = candidates[:args.n_select]
     print(f"  → chọn lọc {len(rows)}/{args.n_select} video tốt nhất để đưa vào phân tích")
+
+    if not args.no_thumb_text:
+        print(f"[K1b] Đọc CHỮ TRÊN ẢNH thumbnail ({len(rows)} video, vision — có cache) ...")
+        rows = gan_chu_thumbnail(rows, out_dir)
+        n = sum(1 for r in rows if r.get("thumb_text"))
+        print(f"  → đọc được {n}/{len(rows)} ảnh"
+              + ("" if n == len(rows) else " — video thiếu sẽ để TRỐNG phần thumbnail, không suy luận"))
 
     t2 = time.time()
     print("[K2] Gọi Gemini phân tích từng video (task=short) ...")

@@ -48,19 +48,15 @@
     "ctx_label": "TƯ LIỆU THỰC TẾ — tên địa điểm/giá vé/chi phí/thông tin Nhật Bản CHỈ được lấy từ đây, cấm tự bịa; nhân vật và tình tiết đời thường thì tự sáng tác",
     "engine": "claude_p",
     "_engine_note": "Giống Lane E (anh chốt 2026-09-17 mô hình 'Claude viết, Gemini chấm'): PASS 0 + PASS 1 qua claude -p (claude_p_bridge.py); nén/hội thoại/phẩy + QC B3Q/B3F vẫn Gemini.",
-    "brain_model": "claude-opus-5",
+    "brain_model": "claude-fable-5-1",
     "patch_model": "claude-opus-5",
     "_patch_model_note": "Anh chốt 2026-09-22: S4 (patch tại chỗ theo Sol/máy, lean_script.patch) dùng Opus 5 CỐ ĐỊNH — Fable chỉ VIẾT (S2). Căn cứ: A/B replay 9 lượt patch thật Lane F/G (harness pipeline/bench_patch_model.py): Sol PASS 7/9 với Opus, 2 FIX ở ep10 mà bản Fable ĐÃ PASS chấm lại cũng FIX (Sol không tất định); số câu đổi ngoài phạm vi Sol trích Opus ≈ Fable. Khi quota Fable về: đổi brain_model/final_review_model lại claude-fable-5-1, GIỮ patch_model=claude-opus-5.",
     "final_review_model": "claude-opus-5",
-    "_brain_model_note": "2026-09-21 anh chốt: Fable HẾT QUOTA → mọi lượt claude -p (viết/patch kịch bản lean, prompt_doan B5W) dùng Opus 5 (`claude-opus-5`, verify `claude -p --model claude-opus-5` trả 'OK Opus 5'). Đổi lại Fable khi quota về: brain_model=claude-fable-5-1. Lịch sử: Anh chốt 2026-09-20: ưu tiên Fable 5.1 (có trong gói) viết kịch bản (PASS 0 + PASS 1 + sửa FIX của B3S) VÀ nghiệm thu cuối (bước B3R mới, sau B3S). A/B thật cùng prompt Hồi 1+2: Fable 70s/1.380 chữ/neo 6,5 ✓ vs Opus 5 68s/1.279 chữ/neo 4,7 ✗ — cả 2 qua gate nhịp; Fable giàu chi tiết neo hơn, câu ngắn kịch hơn. BẮT BUỘC claude CLI ≥2.1.251 — claude_p_bridge.find_claude() tự chọn binary mới nhất (bản npm 2.1.145 trên PATH không có Fable và alias opus của nó = Opus 4.7). B3S (GPT-5.6-sol) VẪN GIỮ làm lớp khác hãng; B3R cùng họ với model viết nên chỉ là lớp cuối, không thay B3S.",
+    "_brain_model_note": "2026-09-21 anh chốt: Fable HẾT QUOTA → mọi lượt claude -p (viết/patch kịch bản lean, prompt_doan B5W) dùng Opus 5 (`claude-opus-5`, verify `claude -p --model claude-opus-5` trả 'OK Opus 5'). Lịch sử: Anh chốt 2026-09-20: ưu tiên Fable 5.1 (có trong gói) viết kịch bản (PASS 0 + PASS 1 + sửa FIX của B3S) VÀ nghiệm thu cuối (bước B3R mới, sau B3S). A/B thật cùng prompt Hồi 1+2: Fable 70s/1.380 chữ/neo 6,5 ✓ vs Opus 5 68s/1.279 chữ/neo 4,7 ✗ — cả 2 qua gate nhịp; Fable giàu chi tiết neo hơn, câu ngắn kịch hơn. BẮT BUỘC claude CLI ≥2.1.251 — claude_p_bridge.find_claude() tự chọn binary mới nhất (bản npm 2.1.145 trên PATH không có Fable và alias opus của nó = Opus 4.7). B3S (GPT-5.6-sol) VẪN GIỮ làm lớp khác hãng; B3R cùng họ với model viết nên chỉ là lớp cuối, không thay B3S. 2026-09-23 ĐỔI LẠI brain_model=claude-fable-5-1 (chốt của việc nối kho hook — xem báo cáo task-kho-hook); patch_model GIỮ NGUYÊN claude-opus-5.",
     "outro_line": "ご視聴いただきありがとうございました。いいねとコメントもお待ちしています。",
     "_outro_note": "Xuất hiện nguyên văn ở cuối 8/8 video kênh mẫu (CHANNEL_DNA §CTA patterns). Dùng y nguyên — đây là câu chào chung, không phải câu biểu tượng riêng.",
     "sol_qc": true,
     "_sol_qc_note": "Bật B3S (GPT-5.6-sol độc lập) như Lane E — lane mới, chưa có tập nào để tin B3Q một mình. Tắt sau khi ≥5 tập PASS ổn định nếu thấy dư.",
-    "hook": {
-      "model": "claude-fable-5-1"
-    },
-    "_hook_note": "2026-09-23: model VIẾT hook (viet_candidates) ghim Fable, KHÁC brain_model=claude-opus-5 hiện tại (Opus tạm thay Fable do hết quota). A/B thật cùng hồ sơ này: Opus viết hook — cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá cứu (2 vòng chấm + 2 lượt vá); Fable viết — cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt vá, hook cuối 158 chữ). enabled vẫn để công tắc chính quyết định bật tính năng hay chưa, field này chỉ ghim model khi tính năng được bật.",
     "gate": {
       "comma_per_sentence": [
         0.5,

@@ -909,3 +909,102 @@ def test_viet_candidates_khong_khai_model_khong_truyen(monkeypatch, tmp_path):
     monkeypatch.setattr(HS.ai_steps, "_writer_chat", lambda prof, prompt, **k: (goi2.update(k) or type("R", (), {"text": "x"})()))
     HS.viet_candidates(d, prof2, {}, "T", "")
     assert "model" not in goi2
+
+
+# ---------------------------------------------------------------------------
+# Việc 1+2 (2026-09-23) — nối KHO KIỂU HOOK (dự án khác) vào PROMPT_VIET.
+# doc_kho_hook() KHÔNG ĐƯỢC đọc kho thật (HOOK_LIBRARY_PATH) trong test — luôn monkeypatch
+# HS.HOOK_LIBRARY_PATH sang 1 file JSON giả dựng trong tmp_path.
+# ---------------------------------------------------------------------------
+
+def _kho_gia(thu_muc):
+    kho = {
+        "patterns": [
+            {"id": "H22", "name": "Câu thoại nghịch lý ở giây 0", "kind": "C",
+             "mechanism": "mechanism_H22", "template": "template_H22", "avoid": "avoid_H22"},
+            {"id": "H23", "name": "Tự thú hành động trái lẽ", "kind": "A",
+             "mechanism": "mechanism_H23", "template": "template_H23", "avoid": "avoid_H23"},
+        ],
+        "closers": [
+            {"id": "K12", "name": "Công thức simbot2", "mechanism": "mechanism_K12", "template": "template_K12"},
+        ],
+    }
+    p = thu_muc / "patterns.json"
+    p.write_text(json.dumps(kho, ensure_ascii=False), encoding="utf-8")
+    return p
+
+
+def test_doc_kho_hook_du_2_kieu_va_closer(tmp_path, monkeypatch):
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
+    out = HS.doc_kho_hook(["H22", "H23"], closer_id="K12")
+    for tag in ("H22", "mechanism_H22", "template_H22", "avoid_H22",
+                "H23", "mechanism_H23", "template_H23", "avoid_H23",
+                "K12", "mechanism_K12", "template_K12"):
+        assert tag in out, tag
+
+
+def test_doc_kho_hook_id_khong_ton_tai_bo_qua_van_co_phan_con_lai(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
+    out = HS.doc_kho_hook(["H22", "H99"])
+    assert "H22" in out and "mechanism_H22" in out
+    assert "H99" not in out
+    assert "H99" in capsys.readouterr().out
+
+
+def test_doc_kho_hook_closer_khong_ton_tai_bo_qua(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
+    out = HS.doc_kho_hook(["H22"], closer_id="K99")
+    assert "H22" in out and "K99" not in out
+    assert "K99" in capsys.readouterr().out
+
+
+def test_doc_kho_hook_file_khong_ton_tai_tra_rong_khong_nem(tmp_path, monkeypatch):
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", tmp_path / "khong_ton_tai.json")
+    assert HS.doc_kho_hook(["H22"]) == ""
+
+
+def test_doc_kho_hook_json_hong_tra_rong_khong_nem(tmp_path, monkeypatch):
+    p = tmp_path / "patterns.json"
+    p.write_text("{broken", encoding="utf-8")
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", p)
+    assert HS.doc_kho_hook(["H22"]) == ""
+
+
+def test_doc_kho_hook_rong_khi_khong_co_id():
+    assert HS.doc_kho_hook([]) == ""
+
+
+def test_viet_candidates_co_patterns_prompt_chua_khoi_kho(monkeypatch, tmp_path):
+    d = _tap(tmp_path)
+    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
+    prof = {**PROF, "script": {"hook": {"patterns": ["H22", "H23"], "closer": "K12"}}}
+    goi = {}
+
+    def fake(prof, prompt, **k):
+        goi["prompt"] = prompt
+        return type("R", (), {"text": "x", "model": "m", "provider": "p", "elapsed": 1})()
+    monkeypatch.setattr(HS.ai_steps, "_writer_chat", fake)
+    HS.viet_candidates(d, prof, {}, "T", "")
+    p = goi["prompt"]
+    assert "H22" in p and "mechanism_H22" in p and "template_H22" in p and "avoid_H22" in p
+    assert "K12" in p and "mechanism_K12" in p
+    # khối kho phải đứng NGAY TRƯỚC "LUẬT VIẾT (SOP hook):"
+    assert p.index("mechanism_H22") < p.index("LUẬT VIẾT (SOP hook):")
+
+
+def test_viet_candidates_khong_patterns_prompt_giu_nguyen_van(monkeypatch, tmp_path):
+    """Không khai script.hook.patterns (hoặc khai rỗng) → prompt gửi model PHẢI giống hệt nhau,
+    không có dòng trống thừa/không có khối kho — đúng yêu cầu 'giữ NGUYÊN VĂN như hiện nay'."""
+    d = _tap(tmp_path)
+    captured = {}
+
+    def fake(prof, prompt, **k):
+        captured[prof["_tag"]] = prompt
+        return type("R", (), {"text": "x"})()
+    monkeypatch.setattr(HS.ai_steps, "_writer_chat", fake)
+    prof_khong_khai = {**PROF, "_tag": "a", "script": {}}
+    prof_hook_rong = {**PROF, "_tag": "b", "script": {"hook": {"patterns": [], "closer": ""}}}
+    HS.viet_candidates(d, prof_khong_khai, {}, "T", "")
+    HS.viet_candidates(d, prof_hook_rong, {}, "T", "")
+    assert captured["a"] == captured["b"]
+    assert "KHO KIỂU HOOK" not in captured["a"]

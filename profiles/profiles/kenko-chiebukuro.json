@@ -39,10 +39,11 @@
     "_engine_note": "Anh chốt 2026-09-17: PASS 0 (bóc khung) + PASS 1 (viết bản nháp) của B3 dùng CHÍNH CLAUDE qua `claude -p` headless (pipeline/claude_p_bridge.py), KHÔNG dùng Gemini — giống mô hình 'não Claude viết' của satori-jp-obaa. Nén khúc/hội thoại/phẩy VẪN Gemini (mechanical, không sáng tạo). QC (qc_script.py B3Q, qc_facts.py B3F) VẪN Gemini — 'Claude viết, Gemini chấm độc lập', giống hệt satori (qc_script.py bên đó cũng Gemini). Field này CHỈ áp cho lane này — lane khác (toshi-densetsu-jp, irogatatarukioku) không khai field, mặc định vẫn Gemini viết như cũ.",
     "ctx_label": "TƯ LIỆU GỐC — số liệu/nghiên cứu PHẢI lấy đúng từ đây, cấm bịa % hay tên viện nghiên cứu",
     "flow": "lean",
-    "brain_model": "opus",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
     "final_review_model": "opus",
     "_flow_note": "Chốt 2026-09-20 (anh quyết định): bật luồng gọn docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md từ ep06 trở đi (ep01-05 đã 'Done' theo luồng cũ, KHÔNG retrofit). Thay B3→B3Q→B3F→B3S→B3R→B3G cũ (đã tắt khi flow=lean) bằng S1Q→S2 Fable viết đúng ngân sách→S3 đo tất định→S5 Sol chấm hợp lý→khoá SHA256. `sol_qc`/`_sol_qc_note` cũ đã bỏ vì trùng vai trò với `script_qc` bên dưới (lean không gọi qc_script_sol.py kiểu cũ nữa).",
-    "_brain_model_note": "TẠM đổi claude-fable-5-1 → opus 2026-09-21 (anh báo Fable hết quota). brain_model_of() đọc field này cho CẢ viet() (S2) lẫn patch() (S4) trong lean_script.py — đổi 1 chỗ là đủ. Đổi lại claude-fable-5-1 khi Fable có quota lại (0đ trong gói, ưu tiên hơn Opus).",
+    "_brain_model_note": "2026-09-23 ĐỔI LẠI claude-fable-5-1 (chốt của việc nối kho hook — xem báo cáo task-kho-hook). Lịch sử: TẠM đổi claude-fable-5-1 → opus 2026-09-21 (anh báo Fable hết quota). Trước khi có `patch_model` riêng, `brain_model_of()` đọc field này cho CẢ viet() (S2) lẫn patch() (S4) trong lean_script.py — đổi 1 chỗ là đủ. TỪ 2026-09-23: đã thêm `patch_model=claude-opus-5` riêng (đúng luật chung mọi lane claude_p — model VIẾT chạm bản thảo 1 lần, mọi lượt SỬA dùng patch_model, xem docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §0a) — nếu không thêm, `patch_model_of()` sẽ rơi về CHÍNH brain_model (nay là Fable) cho mọi lượt sửa, sai luật.",
     "budget": {
       "mo_dau": 0.11,
       "ket": 0.25,
@@ -51,10 +52,6 @@
       "label_ket": "まとめ（5つのおさらい＋緊急時の注意＋今日からできる行動＋免責）"
     },
     "_budget_note": "ĐO THẬT 2026-09-20 trên 3 tập đã 'Done' của CHÍNH lane này (ep01/ep02/ep04, script.txt cuối cùng — không phải transcript kênh mẫu, vì kênh mẫu ASR không tách đoạn rõ): mo_dau đo được 8.3%/11.7%/12.2% (khớp với gate.hook_chars [550,750] đã đo trước đó qua kênh mẫu — dùng làm neo) → chọn 0.11; ket đo được 23.3%/23.5%/29.9% → chọn 0.25. KHÔNG khai `outro_line`: đã so 4 tập, câu kết MỖI TẬP viết riêng theo đúng nội dung y khoa của tập đó (vd ep01 nhắc lại cụ thể thuốc chống đông + đột quỵ đã nói ở mục 5), không có câu cố định lặp lại — outro_line ép literal 1 câu sẽ xoá mất phần an toàn đặc thù từng tập.",
-    "hook": {
-      "model": "claude-fable-5-1"
-    },
-    "_hook_note": "2026-09-23: model VIẾT hook (viet_candidates) ghim Fable, KHÁC brain_model=opus hiện tại (tạm thay Fable do hết quota). A/B thật cùng hồ sơ teinengo-tanoshimi (cùng cụm lean-flow, cùng cơ chế viết): Opus viết hook — cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá cứu (2 vòng chấm + 2 lượt vá); Fable viết — cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt vá, hook cuối 158 chữ). enabled vẫn để công tắc chính quyết định bật tính năng hay chưa, field này chỉ ghim model khi tính năng được bật.",
     "gate": {
       "comma_per_sentence": [
         1.0,

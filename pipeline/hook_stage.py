@@ -13,6 +13,11 @@ import ai_steps, profiles  # noqa: E402
 
 HOOK_DIR = "hook"
 MAX_PATCH_HOOK = 2
+# 2026-09-23 (Việc 1, nối kho hook vào PROMPT_VIET): kho nằm ở DỰ ÁN KHÁC
+# (E:\CLAUDE\YOUTUBE\HOOK_LIBRARY, dự án nghiên cứu — không thuộc h2dev) — khai hằng cấp module
+# để test thay được (monkeypatch HS.HOOK_LIBRARY_PATH) và để doc_kho_hook() không hardcode đường dẫn
+# rải rác nhiều chỗ. Thiếu file này KHÔNG được làm gãy dây chuyền viết hook ở đây (xem doc_kho_hook).
+HOOK_LIBRARY_PATH = Path(r"E:\CLAUDE\YOUTUBE\HOOK_LIBRARY\patterns.json")
 MAC_DINH = {
     # 2026-09-23 (Việc 2, vá review cuối): công tắc BẬT/TẮT tính năng hook THEO TỪNG KÊNH — mặc
     # định TẮT, kênh nào muốn dùng phải tự khai `script.hook.enabled: true` trong profile. Trước
@@ -29,6 +34,10 @@ MAC_DINH = {
     # chữ). Trường này KHÔNG đụng brain_model/patch_model của kênh — mọi lượt SỬA hook (patch_hook,
     # tức S4) vẫn dùng patch_model như luật chung, không đọc trường này.
     "model": "",
+    # 2026-09-23 (Việc 1): id kiểu hook (patterns) + id thiết bị khoá hook (closer) tra trong kho
+    # HOOK_LIBRARY_PATH. Mặc định rỗng = KHÔNG chèn khối kho vào PROMPT_VIET, hành vi y hệt trước
+    # khi có tính năng này (xem doc_kho_hook + viet_candidates).
+    "patterns": [], "closer": "",
     "ratio_30s": 0.5, "tol": 0.15, "neo_ratio": 0.4,
     "banned_openers": {
         "ja": ["こんにちは", "こんばんは", "皆さん", "みなさん", "チャンネル登録", "ご視聴", "私の名前は", "俺の名前は",
@@ -522,6 +531,52 @@ def phan_tich_nguon(d, prof, proxy=None, force=False):
     return src
 
 
+# ── Việc 1 (2026-09-23): nối KHO KIỂU HOOK (dự án khác) vào PROMPT_VIET ──────────
+KHOI_KHO_HOOK_TIEU = ("KHO KIỂU HOOK ĐÃ ĐO ĐƯỢC ĐANG ĂN Ở CHÍNH NGÁCH NÀY (chọn 1 kiểu cho MỖI phương án, bám "
+                      "đúng khuôn của nó; mục \"tránh\" là điều CẤM):\n")
+
+
+def doc_kho_hook(ids, closer_id=""):
+    """Đọc kho HOOK_LIBRARY_PATH (dự án nghiên cứu KHÁC, E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY — không
+    thuộc h2dev) → trả 1 chuỗi đã định dạng sẵn, chèn thẳng vào PROMPT_VIET. Với mỗi id trong
+    `ids` (khớp `patterns[].id` trong kho): in `id · name · kind`, `mechanism`, `template`, `avoid`.
+    Nếu có `closer_id` (khớp `closers[].id`): thêm `mechanism` + `template` của thiết bị khoá đó.
+
+    Kho không tồn tại / JSON hỏng / id không có trong kho → in CẢNH BÁO tiếng Việt rồi trả chuỗi
+    RỖNG, KHÔNG NÉM — kho nằm ở dự án khác, thiếu/hỏng kho không được phép làm gãy dây chuyền viết
+    hook ở đây (cùng triết lý với `phan_tich_nguon`/`nguon_cua_tap` trong file này)."""
+    ids = list(ids or [])
+    if not ids and not closer_id:
+        return ""
+    try:
+        kho = json.loads(HOOK_LIBRARY_PATH.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"  ! không đọc được kho hook {HOOK_LIBRARY_PATH}: {type(e).__name__} {str(e)[:100]}")
+        return ""
+    pats = {p.get("id"): p for p in kho.get("patterns") or []}
+    closers = {c.get("id"): c for c in kho.get("closers") or []}
+    khoi = []
+    for pid in ids:
+        p = pats.get(pid)
+        if not p:
+            print(f"  ! kiểu hook {pid!r} không có trong kho hook, bỏ qua")
+            continue
+        khoi.append(f"- {p.get('id')} · {p.get('name')} · kind {p.get('kind')}\n"
+                    f"  mechanism: {p.get('mechanism', '')}\n"
+                    f"  template: {p.get('template', '')}\n"
+                    f"  tránh: {p.get('avoid', '(không ghi)')}")
+    phan_closer = ""
+    if closer_id:
+        c = closers.get(closer_id)
+        if c:
+            phan_closer = (f"\nTHIẾT BỊ KHOÁ HOOK (câu chuyển 30–90s biến mở đầu thành câu hỏi cả video): "
+                          f"{c.get('id')} · {c.get('name')}\n  mechanism: {c.get('mechanism', '')}\n"
+                          f"  template: {c.get('template', '')}")
+        else:
+            print(f"  ! thiết bị khoá hook {closer_id!r} không có trong kho hook, bỏ qua")
+    return ("\n".join(khoi) + phan_closer).strip()
+
+
 # ── Task 7 (2026-09-23): viết 3 hook + Sol chọn/vá + ensure_locked() orchestrator ──
 PROMPT_VIET = """NHIỆM VỤ: viết 3 ỨNG VIÊN HOOK 20–30 giây cho phần MỞ ĐẦU của một video YouTube kể chuyện ({lang}).
 Hook = nội dung ĐẦU TIÊN người xem nghe. Nó phải giữ chân người vừa click tiêu đề/thumbnail.
@@ -586,6 +641,13 @@ def viet_candidates(d, prof, src, title, ctx, mode="upstream"):
         promise=_promise_text(d, ctx, mode), khoi_repair=KHOI_REPAIR.format(doan1=doan1) if mode == "repair" else "",
         muc=muc, tol=int(cau_hinh(prof)["tol"] * 100),
         narrator=f"{n.get('persona','')} · {n.get('point_of_view','')} · {n.get('register','')}")
+    # Việc 1 (2026-09-23): chèn khối KHO KIỂU HOOK ngay TRƯỚC "LUẬT VIẾT (SOP hook):" — bằng
+    # str.replace() thay vì thêm placeholder cấp-dòng vào PROMPT_VIET, để khi `patterns` rỗng (mặc
+    # định) prompt GIỮ NGUYÊN VĂN như trước khi có tính năng này, không thêm dòng trống nào.
+    h = cau_hinh(prof)
+    kho = doc_kho_hook(h.get("patterns") or [], h.get("closer") or "")
+    if kho:
+        prompt = prompt.replace("LUẬT VIẾT (SOP hook):", KHOI_KHO_HOOK_TIEU + kho + "\n\nLUẬT VIẾT (SOP hook):", 1)
     # script.hook.model (2026-09-23): ghim model VIẾT hook khác brain_model khi kênh cần (xem chú
     # thích MAC_DINH["model"]). Rỗng ("", mặc định) → KHÔNG truyền `model`, y hệt hành vi cũ:
     # _writer_chat tự setdefault bằng claude_p_bridge.brain_model_of(prof) ở nhánh engine=claude_p;

@@ -167,12 +167,25 @@ dùng hook PHẢI tự khai tường minh `script.hook.enabled: true` trong prof
 Kênh chưa khai coi như chưa bật: `lean_script.run()`/`make_video.py`/`qc_final.py` đều đi qua đúng
 `hook_stage.is_enabled(prof)` (không tự suy theo tên/`id` kênh) và im lặng chạy như trước khi có tính năng hook.
 Field profile đầy đủ (mặc định trong `hook_stage.MAC_DINH`): `script.hook = {"enabled": false, "model": "",
-"ratio_30s":0.5,"tol":0.15,"neo_ratio":0.4,"banned_openers":[...]}` — bật cho lane thì thêm `"enabled": true`.
-Thêm `script.hook.model` (2026-09-23, mặc định `""` = dùng `script.brain_model` như hiện nay): ghim model VIẾT riêng cho hook
-khi cần khác model viết thân — chỉ áp cho lượt viết 3 phương án (`viet_candidates`), mọi lượt SỬA vẫn dùng `patch_model`.
-Lý do 3 kênh (`teinengo-tanoshimi`/`teinengo-real`/`kenko-chiebukuro`) ghim `claude-fable-5-1`: A/B thật cùng hồ sơ, Opus viết
-hook vượt trần độ dài cả 3 phương án (259/232/221 chữ, trần 185) → 2 vòng chấm + 2 lượt vá; Fable viết qua cổng ngay lần đầu
-(1 vòng chấm, 0 lượt vá, hook 158 chữ).
+"patterns": [], "closer": "", "ratio_30s":0.5,"tol":0.15,"neo_ratio":0.4,"banned_openers":[...]}` — bật cho lane
+thì thêm `"enabled": true`.
+`script.hook.model` (2026-09-23, mặc định `""` = dùng `script.brain_model`): ghim model VIẾT riêng cho hook khi cần
+khác model viết thân — chỉ áp cho lượt viết 3 phương án (`viet_candidates`), mọi lượt SỬA vẫn dùng `patch_model`.
+Từng dùng cho 3 kênh (`teinengo-tanoshimi`/`teinengo-real`/`kenko-chiebukuro`) lúc `brain_model` của các kênh đó tạm là
+Opus (Fable hết quota): A/B thật cùng hồ sơ, Opus viết hook vượt trần độ dài cả 3 phương án (259/232/221 chữ, trần
+185) → 2 vòng chấm + 2 lượt vá; Fable viết qua cổng ngay lần đầu (1 vòng chấm, 0 lượt vá, hook 158 chữ). 2026-09-23:
+cả 3 kênh đổi lại `brain_model = claude-fable-5-1` nên trường này thành thừa (2 nguồn chân lý cho cùng 1 model) —
+đã XOÁ khỏi 3 profile trên; field vẫn tồn tại trong code cho kênh nào SAU NÀY brain_model khác Fable mà muốn hook
+riêng vẫn dùng Fable.
+
+`script.hook.patterns` (danh sách id) và `script.hook.closer` (1 id) — nối **KHO KIỂU HOOK** của dự án nghiên cứu
+`E:\CLAUDE\YOUTUBE\HOOK_LIBRARY\patterns.json` (23 kiểu mở đầu H01–H23 + 12 thiết bị khoá hook K01–K12, đo từ video
+thật, bản người đọc `HOOK_LIBRARY.md`) thẳng vào `PROMPT_VIET` — model chọn 1 kiểu/phương án và bám đúng khuôn +
+điều cấm của kiểu đó, thay vì chỉ có 4 nhịp chung chung. Không khai (mặc định `[]`/`""`) = prompt y hệt trước khi có
+2 field này, không thêm dòng nào. Kho nằm ở DỰ ÁN KHÁC nên thiếu/hỏng file chỉ in 1 dòng cảnh báo (`hook_stage.doc_kho_hook`),
+KHÔNG chặn pipeline. Bảng "kênh của mình → kiểu hook nên dùng" nằm trong `HOOK_LIBRARY.md` (cột `lanes_fit` của mỗi
+kiểu); ví dụ đã bật: `satori-jp-obaa` dùng `patterns: ["H22","H23"]` + `closer: "K12"` (khớp DNA 15/15 video của
+kênh mẫu @simbot2, xem `_hook_note` trong `profiles/profiles/satori-jp-obaa.json`).
 Tập đã có script (chưa đăng): `py -3.13 pipeline\hook_stage.py --profile <lane> --slug <tập> --mode repair` — không đụng script/voice/img;
 bước 3 dựng `hook_final.mp4` + `final_with_hook.mp4` theo `docs/GIAO_VIEC_BUOC3_AGENT.md` §9.
 

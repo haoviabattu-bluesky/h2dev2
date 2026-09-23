@@ -50,6 +50,12 @@
     "brain_model": "claude-fable-5-1",
     "patch_model": "claude-opus-5",
     "_patch_model_note": "S4 LUON Opus 5, Fable chi viet o S2 - quy tac chung moi lane claude_p (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md sec 0a). Fable het quota luc khai field nay - neu dinh 'Fable limit' luc chay that thi doi brain_model tam sang claude-opus-5 nhu cac lane kia, patch_model giu nguyen.",
+    "hook": {
+      "enabled": true,
+      "patterns": ["H22", "H23"],
+      "closer": "K12"
+    },
+    "_hook_note": "2026-09-23, KENH THU DAU TIEN bat tinh nang hook (cac lane khac van enabled=false mac dinh). Can cu: E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\docs\\HOOK_SIMBOT2_vs_SATORI_JP.html doc 15 video kenh mau @simbot2 (chinh la `competitor` cua lane nay) - 15/15 video mo bang cau thoai nghich ly/tu thu (dung kieu H22/H23 trong E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\patterns.json) va 15/15 dung khung khoa K12 (cong thuc simbot2: tu gioi thieu 1 cau -> hua N dieu -> giau dieu cuoi -> hoi thang khan gia). Ban tieng Nhat cua minh da lam mat khung do: 9/15 tap day cau thoai ra sau giay 18-40 (mat hook), 8/15 tap khong co loi hua 'N dieu' trong 90 giay dau. patterns=[H22,H23] + closer=K12 nam trong PROMPT_VIET (hook_stage.doc_kho_hook) de ep model bam dung cong thuc kenh mau thay vi ta canh/thoi tiet mo dau.",
     "structure_block": "video KE CHUYEN DOI ngoi thu nhat (nguoi gia Nhat ke lai chuyen doi minh), phong tac 70/30 tu ban goc Han (simbot2) - PHAI doc nhu chuyen cua nguoi Nhat that, khong de lo dau vet ban goc. KHONG chia chuong/muc (khac Lane F/G) - mach ke LIEN TUC theo 3 khoi:\n   - Dao dau (~12% chu): boi canh hien tai cua nhan vat (tuoi, hoan canh song, noi dau/thieu thon cu the) - mo mot cau hoi/an so se duoc giai o cuoi (vd vi sao con khong ve, vi sao tien bien mat...).\n   - Than bai (~68% chu): dien bien theo THOI GIAN, cac su kien/gap go/doi thoai day cam xuc, moi tinh tiet phai NHAT QUAN voi cac doan khac (tuoi/nam/noi o/nghe nghiep khong duoc da nhau - day la loi S3/Sol bat nhieu nhat). So tien PHAI la muc gia THAT o Nhat, KHONG quy doi may moc tu won Han (x0,1).\n   - Ket (~20% chu): giai quyet an so da mo o dau, cam xuc lang dong, khong ket luan tuyet doi hoa/loi khuyen sai.\n   Ti le UOC LUONG theo cau truc tu su ca nhan pho quat (khong do duoc ranh gioi ro vi lane nay khong co marker chuong/muc - cac tap da san xuat chi la doan van tu do). Day la goi y PROMPT viet, KHONG phai nguong gate hau kiem (lean chi gate TONG chu).",
     "budget": {
       "tol": 0.1,

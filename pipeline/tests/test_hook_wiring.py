@@ -94,15 +94,18 @@ def test_qc_final_kiem_hook(tmp_path, monkeypatch):
     assert any("không bắt đầu" in x["msg"] for x in ra)
     (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
     # 2026-09-23 (vá review cuối, Việc 1b + Việc 2): kiem_hook() nay đòi ĐỦ NĂM thứ: final.mp4,
-    # final_with_hook.mp4 (≥ ngưỡng chung + DÀI HƠN final.mp4), hook/render_info.json,
+    # final_with_hook.mp4 (≥ ngưỡng chung + hợp lệ so với final.mp4 theo mode), hook/render_info.json,
     # hook/hook_storyboard.json, hook/grok_jobs.csv — tập "sạch hoàn toàn" phải có đủ mới còn
     # ra == [] như trước bản vá. Monkeypatch `_probe` để khỏi cần ffmpeg thật/file mp4 thật.
+    # 2026-09-23 (sửa lỗi tiền đề sai): tập này khoá hook ở mode MẶC ĐỊNH upstream (dòng HS.khoa ở
+    # trên không truyền mode) — theo thiết kế mới, upstream đòi hai file GẦN BẰNG NHAU (chênh lệch
+    # ≤2s), không phải "dài hơn". Đổi dur cho khớp mode thật của test.
     (tmp_path / "final.mp4").write_bytes(b"f")
     (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
     (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
     (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
     (tmp_path / "hook" / "grok_jobs.csv").write_text("shot,prompt\n1,a\n", encoding="utf-8")
-    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 40.0 if "with_hook" in str(mp4) else 15.0})
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 15.3 if "with_hook" in str(mp4) else 15.0})
     ra = []
     F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
     assert ra == []
@@ -728,7 +731,32 @@ def test_qc_final_kiem_hook_qua_nho_bi_bat(tmp_path):
     assert any("500000" in x["msg"] and x["sev"] == "cao" for x in ra)
 
 
-def test_qc_final_kiem_hook_khong_dai_hon_bi_bat(tmp_path, monkeypatch):
+# 2026-09-23 (sửa lỗi tiền đề sai): test này TRƯỚC ĐÂY khoá hook ở mode MẶC ĐỊNH (upstream, xem
+# hook_stage.khoa) rồi đòi final_with_hook.mp4 phải "dài hơn" final.mp4 — tiền đề sai với chính
+# mode nó đang test. Theo mục 9.5 GIAO_VIEC_BUOC3_AGENT.md, ở chế độ upstream bước 3 THAY THẾ đoạn
+# ảnh tĩnh 0–T_hook bằng clip hook thật (không cộng thêm thời lượng), nên hai file BẰNG NHAU là
+# ĐÚNG THIẾT KẾ, không phải lỗi. Đổi tên + đảo ngược assertion cho khớp — bản cũ sẽ chặn cứng mọi
+# tập upstream dựng đúng. 3 test bên dưới (khong_dai_hon/qua_ngan/repair_*) mới là bộ kiểm đúng ý
+# đồ ban đầu, tách rõ theo mode.
+def test_qc_final_kiem_hook_upstream_bang_nhau_khong_bi_bat(tmp_path, monkeypatch):
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。")   # mode mặc định upstream
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "grok_jobs.csv").write_text("a,b\n1,2\n", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 15.0})   # cả hai bằng nhau — upstream: ĐÚNG
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert ra == []
+
+
+def test_qc_final_kiem_hook_upstream_lech_nho_khong_bi_bat(tmp_path, monkeypatch):
+    """Yêu cầu 1: upstream + chênh 0,3s (trong ngưỡng ±2s: dung sai ±15 khung hai đầu + chuyển
+    cảnh mờ 10 khung, mục 9.4/9.5) → KHÔNG có phát hiện nào về thời lượng."""
     import qc_final as F, hook_stage as HS
     (tmp_path / "title.txt").write_text("T", encoding="utf-8")
     HS.khoa(tmp_path, "hook。")
@@ -738,10 +766,61 @@ def test_qc_final_kiem_hook_khong_dai_hon_bi_bat(tmp_path, monkeypatch):
     (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
     (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
     (tmp_path / "hook" / "grok_jobs.csv").write_text("a,b\n1,2\n", encoding="utf-8")
-    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 15.0})   # cả hai bằng nhau — KHÔNG dài hơn
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 15.3 if "with_hook" in str(mp4) else 15.0})
     ra = []
     F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
-    assert any("KHÔNG dài hơn" in x["msg"] and x["sev"] == "cao" for x in ra)
+    assert not any("lệch" in x["msg"] or "dài hơn" in x["msg"] for x in ra)
+
+
+def test_qc_final_kiem_hook_upstream_ngan_hon_bi_bat(tmp_path, monkeypatch):
+    """Yêu cầu 2: upstream + bản ghép NGẮN HƠN 30 giây so với final.mp4 → phát hiện mức cao."""
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。")
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "grok_jobs.csv").write_text("a,b\n1,2\n", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 10.0 if "with_hook" in str(mp4) else 40.0})
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert any(x["sev"] == "cao" and "10.0" in x["msg"] and "40.0" in x["msg"] for x in ra)
+
+
+def test_qc_final_kiem_hook_repair_dai_hon_du_khong_bi_bat(tmp_path, monkeypatch):
+    """Yêu cầu 3: repair + bản ghép dài hơn 25 giây → không có phát hiện về thời lượng."""
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。", mode="repair")
+    (tmp_path / "hook" / "hook_final.mp4").write_bytes(b"x")
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "grok_jobs.csv").write_text("a,b\n1,2\n", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 40.0 if "with_hook" in str(mp4) else 15.0})
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert not any("lệch" in x["msg"] or "dài hơn" in x["msg"] for x in ra)
+
+
+def test_qc_final_kiem_hook_khong_dai_hon_bi_bat(tmp_path, monkeypatch):
+    """Yêu cầu 4: repair + bản ghép chỉ dài hơn 1 giây (< ngưỡng 10s tối thiểu) → phát hiện mức cao."""
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    HS.khoa(tmp_path, "hook。", mode="repair")
+    (tmp_path / "hook" / "hook_final.mp4").write_bytes(b"x")
+    (tmp_path / "final.mp4").write_bytes(b"f")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
+    (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "hook_storyboard.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "hook" / "grok_jobs.csv").write_text("a,b\n1,2\n", encoding="utf-8")
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 16.0 if "with_hook" in str(mp4) else 15.0})
+    ra = []
+    F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)
+    assert any(x["sev"] == "cao" and "1.0" in x["msg"] for x in ra)
 
 
 def test_qc_final_kiem_hook_thieu_storyboard_hoac_grok_jobs(tmp_path, monkeypatch):
@@ -805,6 +884,9 @@ def test_qc_final_kiem_hook_upstream_khong_can_listing_shifted_s(tmp_path, monke
     """Đối chứng: chế độ upstream có mốc chương trong TIEU_DE_MO_TA.txt nhưng KHÔNG cần
     listing_shifted_s (mốc chương của upstream vốn đã đúng, không bị dời)."""
     F = _script_kv_hoan_chinh(tmp_path, monkeypatch, "upstream")
+    # 2026-09-23 (sửa lỗi tiền đề sai): _script_kv_hoan_chinh() mock dur 40/15 (đúng cho repair —
+    # dài hơn 25s hợp lệ), nhưng upstream đòi GẦN BẰNG NHAU → ghi đè lại cho khớp mode của test này.
+    monkeypatch.setattr(F, "_probe", lambda mp4: {"dur": 15.0})
     (tmp_path / "hook" / "render_info.json").write_text("{}", encoding="utf-8")
     ra = []
     F.kiem_hook(tmp_path, PROF_HOOK_ON, ra)

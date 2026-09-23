@@ -38,6 +38,14 @@ TRAN_MO_TA = 5000
 TRAN_THE = 500
 CHUONG_TOI_THIEU = 3         # dưới 3 chương ⇒ YouTube bỏ hết chương
 CACH_NHAU_TOI_THIEU = 10     # hai mốc gần nhau hơn 10 giây ⇒ cũng bỏ hết
+# 2026-09-23 (vá lỗi tiền đề sai của kiem_hook): "dài hơn" chỉ đúng ở chế độ VÁ (repair) — hook ghép
+# THÊM vào trước final.mp4 giữ nguyên (xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5). Ở chế độ tập mới
+# (upstream), hook đã nằm sẵn trong kịch bản/giọng đọc; bước 3 THAY THẾ đoạn ảnh tĩnh 0–T_hook bằng
+# clip hook thật, nối bằng chuyển cảnh mờ 10 khung — tổng thời lượng gần như KHÔNG đổi (cùng lắm
+# lệch vài khung do trộn khung ở mối nối + dung sai ±15 khung của clip hook, mục 9.4). Hai ngưỡng
+# tách riêng theo mode, KHÔNG dùng chung một phép kiểm "dài hơn" cho cả hai như bản cũ.
+HOOK_REPAIR_TANG_TOI_THIEU_S = 10.0   # repair: hook 20-30s, tăng dưới 10s gần như chắc chắn ghép hỏng
+HOOK_UPSTREAM_LECH_TOI_DA_S = 2.0     # upstream: thay thế tại chỗ, chênh lệch phải xấp xỉ 0
 
 
 def _loi(ra, muc, ten, msg, sua=""):
@@ -335,10 +343,11 @@ def kiem_hook(S: Path, prof, ra):
     # hiện, rồi B11 giao đi bản `final.mp4` KHÔNG có hook. Áp dụng cho CẢ HAI chế độ upstream/repair
     # — hook là nội dung của final_with_hook.mp4 dù được dựng bằng cách nào.
     #
-    # 2026-09-23 (Việc 2b, vá review cuối): "tồn tại" là quá yếu — thêm ĐỦ KÍCH THƯỚC (dùng CHUNG
-    # ngưỡng với giao_hang.chon_video_nguon, không gõ số 1.000.000 ở hai nơi) và THỜI LƯỢNG phải
-    # LỚN HƠN final.mp4 (bản ghép luôn dài hơn bản gốc vì có thêm 20–30 giây mở đầu — thiếu 2 phép
-    # kiểm này thì một bản ghép hỏng/rỗng/cụt vẫn báo "có hook" trót lọt).
+    # 2026-09-23 (Việc 2b, vá review cuối; SỬA LẠI cùng ngày sau khi phát hiện tiền đề sai): "tồn
+    # tại" là quá yếu — thêm ĐỦ KÍCH THƯỚC (dùng CHUNG ngưỡng với giao_hang.chon_video_nguon, không
+    # gõ số 1.000.000 ở hai nơi) và so THỜI LƯỢNG với final.mp4. Phép so KHÁC NHAU theo mode (xem
+    # giải thích ở HOOK_REPAIR_TANG_TOI_THIEU_S/HOOK_UPSTREAM_LECH_TOI_DA_S phía đầu file) — bản cũ
+    # ép cả hai chế độ phải "dài hơn" là SAI cho chế độ upstream (chặn cứng tập dựng ĐÚNG).
     import giao_hang
     mp4_hook, mp4_thuong = S / "final_with_hook.mp4", S / "final.mp4"
     if not mp4_hook.exists():
@@ -352,11 +361,29 @@ def kiem_hook(S: Path, prof, ra):
                  "bước 3 dựng lại final_with_hook.mp4 cho đủ, đừng giao bản dở dang")
         elif mp4_thuong.exists():
             d_hook, d_thuong = _probe(mp4_hook)["dur"], _probe(mp4_thuong)["dur"]
-            if not (d_hook > d_thuong):
-                _loi(ra, "hook", "cao",
-                     f"final_with_hook.mp4 ({d_hook:.0f}s) KHÔNG dài hơn final.mp4 ({d_thuong:.0f}s) — "
-                     "bản ghép phải dài hơn vì có thêm đoạn mở đầu 20–30 giây",
-                     "bước 3 kiểm lại lệnh ghép hook vào đầu — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5")
+            if d_hook <= 0 or d_thuong <= 0:
+                # _probe không đọc được thời lượng của ít nhất một file (ffmpeg lỗi/không có
+                # Duration) — không đủ căn cứ để nói lệch bao nhiêu, đừng báo oan, chỉ nêu rõ
+                # không đo được để người đọc log biết mà tự kiểm bằng tay.
+                print(f"  · B10 hook: không đo được thời lượng (final_with_hook.mp4={d_hook:.1f}s, "
+                      f"final.mp4={d_thuong:.1f}s) — bỏ qua phép so thời lượng")
+            elif m.get("mode") == "repair":
+                tang = d_hook - d_thuong
+                if tang < HOOK_REPAIR_TANG_TOI_THIEU_S:
+                    _loi(ra, "hook", "cao",
+                         f"repair: final_with_hook.mp4 ({d_hook:.1f}s) chỉ dài hơn final.mp4 "
+                         f"({d_thuong:.1f}s) đúng {tang:.1f}s (< ngưỡng {HOOK_REPAIR_TANG_TOI_THIEU_S:.0f}s) — "
+                         "chế độ vá ghép THÊM đoạn hook 20-30s vào trước, chênh lệch quá nhỏ nghi ghép hỏng/cụt",
+                         "bước 3 kiểm lại lệnh ghép hook vào đầu — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5")
+            else:
+                lech = abs(d_hook - d_thuong)
+                if lech > HOOK_UPSTREAM_LECH_TOI_DA_S:
+                    _loi(ra, "hook", "cao",
+                         f"upstream: final_with_hook.mp4 ({d_hook:.1f}s) lệch final.mp4 ({d_thuong:.1f}s) "
+                         f"tới {lech:.1f}s (> ngưỡng {HOOK_UPSTREAM_LECH_TOI_DA_S:.0f}s) — chế độ tập mới "
+                         "chỉ THAY THẾ đoạn ảnh tĩnh 0–T_hook bằng clip hook thật, tổng thời lượng phải "
+                         "gần như không đổi (mục 9.5 GIAO_VIEC_BUOC3_AGENT.md)",
+                         "bước 3 kiểm lại lệnh thay clip hook — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.5")
     if not (S / "hook" / "render_info.json").exists():
         _loi(ra, "hook", "cao", "thiếu hook/render_info.json — bước 3 chưa ghi nhận số khung/thời lượng hook",
              "bước 3 ghi render_info.json sau khi dựng final_with_hook.mp4 — xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.6")

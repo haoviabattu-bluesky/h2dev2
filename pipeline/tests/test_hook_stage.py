@@ -607,3 +607,58 @@ def test_lens_cu_co_hook_block():
     for t in Q.LENS_TMPL.values():
         assert "{hook_block}" in t
     assert "NỐI TỪ HOOK" in Q.NOI_TU_HOOK
+
+
+# ---------------------------------------------------------------------------
+# Task 7 (2026-09-23): viết 3 hook + Sol chọn/vá + ensure_locked() orchestrator.
+# ---------------------------------------------------------------------------
+import ai_steps
+
+
+def test_ensure_locked_fix_roi_pass(monkeypatch, tmp_path):
+    d = _tap(tmp_path, title="【漫画】63歳で年金を繰り上げた男…本当の後悔")
+    (d / "competitor.txt").write_text("x" * 3000, encoding="utf-8")
+    monkeypatch.setattr(HS, "phan_tich_nguon", lambda d, prof, proxy=None, force=False: {"video_id": None, "hook_4_nhip": {},
+                                                                                        "hook_kind": "none", "score_0_12": 0,
+                                                                                        "video_hook_verdict": "khong_soi_duoc",
+                                                                                        "transcript_0_30s": "", "title": "",
+                                                                                        "promise_match": {}})
+    # NOTE (2026-09-23, khác brief — xem báo cáo Task 7 §"chỉnh gì so với brief"): chuỗi "good"
+    # nguyên văn trong brief chỉ có 99 chữ, LUÔN NGOÀI khoảng 127–172 mà chính so_chu_muc_tieu(PROF)
+    # (muc=150, tol=15%) đòi hỏi → check() sẽ luôn trượt "độ dài" cho CẢ 3 ứng viên, hop rỗng, và
+    # đường "cả 3 trượt → vá 1 lần → BLOCK" chạy thay vì đường "1/3 qua → Sol chọn/vá/PASS" mà test
+    # này đặt tên và đang muốn kiểm. Nối thêm 2 câu cùng mạch truyện để "good" rơi đúng khoảng hợp lệ
+    # (143 chữ, đã verify HS.check(good, PROF) == []), giữ nguyên nội dung/văn phong câu gốc.
+    good = ("「三年前に引っ越しましたよ」隣人はそう言った。五十年の友が、黙って消えていた。私は箱を抱えたまま、"
+            "何をしたのか分からなかった。理由を知ったのは、ずっと後のことだった。それは私の一言から始まっていた。"
+            "あの日交わした約束を、私は忘れていたのだ。友の家族にも誰にも、本当のことは言えなかった。")
+    cands = f"=== HOOK 1 ===\n短い。\n=== HOOK 2 ===\n{good}\n=== HOOK 3 ===\nこんにちは。{good}"
+    monkeypatch.setattr(ai_steps, "_writer_chat", lambda prof, prompt, **k: type("R", (), {"text": cands, "model": "m", "provider": "p", "elapsed": 1})())
+    import qc_script_sol as Q
+    calls = {"n": 0}
+    def fake_run_hook(c, title, thumb, promise, profile_id=None, out=None):
+        calls["n"] += 1
+        return ("FIX" if calls["n"] == 1 else "PASS"), 2, f"KẾT QUẢ: {'FIX' if calls['n']==1 else 'PASS'}\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"
+    monkeypatch.setattr(Q, "run_hook", fake_run_hook)
+    monkeypatch.setattr(HS, "patch_hook", lambda prof, text, viec: text)
+    hook = HS.ensure_locked(d, PROF, ctx="", title="T")
+    assert hook == good.strip() and (d / "hook/hook_lock.json").exists()
+    qc = json.loads((d / "hook/hook_qc.json").read_text(encoding="utf-8"))
+    assert qc["sol_rounds"] == 2 and qc["state"] == "PASS"
+
+
+def test_ensure_locked_tai_dung_lock(tmp_path):
+    d = _tap(tmp_path)
+    HS.khoa(d, "đã khoá。")
+    assert HS.ensure_locked(d, PROF) == "đã khoá。"
+
+
+def test_ensure_locked_block_khi_check_khong_qua(monkeypatch, tmp_path):
+    d = _tap(tmp_path)
+    monkeypatch.setattr(HS, "phan_tich_nguon", lambda *a, **k: {"video_id": None, "hook_4_nhip": {}, "hook_kind": "none",
+                                                                "score_0_12": 0, "video_hook_verdict": "khong_soi_duoc",
+                                                                "transcript_0_30s": "", "title": "", "promise_match": {}})
+    monkeypatch.setattr(ai_steps, "_writer_chat", lambda prof, prompt, **k: type("R", (), {"text": "=== HOOK 1 ===\n短。\n=== HOOK 2 ===\n短。\n=== HOOK 3 ===\n短。"})())
+    monkeypatch.setattr(HS, "patch_hook", lambda prof, text, viec: text)
+    with pytest.raises(SystemExit):
+        HS.ensure_locked(d, PROF)

@@ -448,3 +448,154 @@ def phan_tich_nguon(d, prof, proxy=None, force=False):
                 print(f"  ! JSON phân tích nguồn hỏng: {e}")
     out_p.write_text(json.dumps(src, ensure_ascii=False, indent=2), encoding="utf-8")
     return src
+
+
+# ── Task 7 (2026-09-23): viết 3 hook + Sol chọn/vá + ensure_locked() orchestrator ──
+PROMPT_VIET = """NHIỆM VỤ: viết 3 ỨNG VIÊN HOOK 20–30 giây cho phần MỞ ĐẦU của một video YouTube kể chuyện ({lang}).
+Hook = nội dung ĐẦU TIÊN người xem nghe. Nó phải giữ chân người vừa click tiêu đề/thumbnail.
+
+TIÊU ĐỀ (lời hứa): {title}
+CHỮ THUMBNAIL (lời hứa): {thumb_text}
+HOOK CỦA VIDEO NGUỒN (đã phân tích — MƯỢN LOẠI hook và VỊ TRÍ giây 0, KHÔNG chép sự kiện/câu thoại/tên):
+  loại: {hook_kind} · điểm nguồn: {score}/12 · hình nguồn: {video_verdict}
+  4 nhịp nguồn: {nhip}
+{khoi_nguon_yeu}
+HỒ SƠ / LỜI HỨA CỦA TẬP MÌNH (sự kiện, payoff, reveal — hook chỉ được dùng thứ có ở đây, hé reveal tối đa 20–40%):
+{promise}
+{khoi_repair}
+LUẬT VIẾT (SOP hook):
+- Đúng {muc} chữ (±{tol}%; không tính xuống dòng). Pure prose, không marker, không ngoặc vuông, không tiêu đề.
+- 4 nhịp theo thứ tự: 0–5s SỰ KIỆN cụ thể (câu thoại「」/con số/hành động) → 5–12s VÌ SAO BẤT THƯỜNG → 12–20s MẤT MÁT/CẢM XÚC
+  → 20–30s CÂU HỎI ĐỂ NGỎ rồi DỪNG (không giải thích).
+- CẤM: chào hỏi, giới thiệu kênh, xin đăng ký, tả thời tiết/mùa/phong cảnh mở màn, tên-tuổi-nghề người kể, câu triết lý
+  suông, tóm tắt cả video, spoil reveal, phóng đại khác bản chất, dữ kiện không có trong hồ sơ.
+- Câu ngắn, có chỗ nghỉ, dễ nghe (khán giả lớn tuổi). Ngôi kể/văn thể: {narrator}.
+- Mỗi ứng viên chọn 1 loại khác nhau trong A biến cố bất thường · B câu nói sốc · C mâu thuẫn · D hậu quả chưa rõ
+  nguyên nhân · E hé reveal.
+
+OUTPUT ĐÚNG KHUÔN, không giải thích thêm:
+=== HOOK 1 ===
+<hook>
+=== HOOK 2 ===
+<hook>
+=== HOOK 3 ===
+<hook>"""
+
+KHOI_NGUON_YEU = ("⚠️ Video nguồn hook YẾU/KHÔNG có hook (verdict {v}) → KHÔNG bắt chước mở đầu nguồn; tự dựng hook từ "
+                  "CLIMAX/REVEAL của tập mình (anh chốt 2026-09-23).")
+KHOI_REPAIR = ("CHẾ ĐỘ REPAIR: kịch bản tập đã có sẵn và KHÔNG được sửa. Hook sẽ được ghép TRƯỚC đoạn 1 hiện có (dưới đây). "
+               "Câu cuối hook phải là CÂU CẦU NỐI để đoạn 1 nghe như setup, không như bắt đầu lại:\nĐOẠN 1 HIỆN CÓ: {doan1}")
+
+
+def _promise_text(d, ctx, mode):
+    d = Path(d)
+    pr = d / HOOK_DIR / "promise.txt"
+    if pr.exists():
+        return pr.read_text(encoding="utf-8").strip()
+    if mode == "repair":
+        return (d / "script.txt").read_text(encoding="utf-8")[:6000]
+    return (ctx or "").strip()[:6000] or "(không có tư liệu — hook chỉ dùng chi tiết hư cấu hợp persona)"
+
+
+def viet_candidates(d, prof, src, title, ctx, mode="upstream"):
+    d = Path(d)
+    thumb = (d / "thumb_text.txt").read_text(encoding="utf-8").strip() if (d / "thumb_text.txt").exists() else ""
+    n = prof.get("narrator", {}) or {}
+    yeu = src.get("video_hook_verdict") in ("yeu", "khong") or int(src.get("score_0_12") or 0) < 6
+    doan1 = ""
+    if mode == "repair":
+        doan1 = next((p.strip() for p in (d / "script.txt").read_text(encoding="utf-8").split("\n\n") if p.strip()), "")
+    muc = so_chu_muc_tieu(prof)
+    prompt = PROMPT_VIET.format(
+        lang=ai_steps.LANG_NAME.get(prof.get("language", "ja"), "Japanese"), title=title or _title(d) or "(chưa chốt)",
+        thumb_text=thumb or "(chưa có)", hook_kind=src.get("hook_kind", "none"), score=src.get("score_0_12", 0),
+        video_verdict=src.get("video_hook_verdict", "?"), nhip=json.dumps(src.get("hook_4_nhip") or {}, ensure_ascii=False),
+        khoi_nguon_yeu=KHOI_NGUON_YEU.format(v=src.get("video_hook_verdict")) if yeu else "",
+        promise=_promise_text(d, ctx, mode), khoi_repair=KHOI_REPAIR.format(doan1=doan1) if mode == "repair" else "",
+        muc=muc, tol=int(cau_hinh(prof)["tol"] * 100),
+        narrator=f"{n.get('persona','')} · {n.get('point_of_view','')} · {n.get('register','')}")
+    r = ai_steps._writer_chat(prof, prompt, system=ai_steps._skill_text(prof, "script"), task="short",
+                              min_chars=muc * 2, max_chars=muc * 6)
+    (d / HOOK_DIR).mkdir(exist_ok=True)
+    (d / HOOK_DIR / "hook_candidates.txt").write_text(r.text, encoding="utf-8")
+    return r.text
+
+
+def patch_hook(prof, text, viec):
+    import claude_p_bridge
+    ds = "\n".join(f"- {v}" for v in viec)
+    prompt = (f"SỬA TẠI CHỖ đoạn hook 20–30 giây dưới đây đúng các điểm sau, mọi thứ khác giữ nguyên từng chữ; "
+              f"pure prose, không marker, giữ 4 nhịp và câu cuối để ngỏ.\nCÁC ĐIỂM PHẢI SỬA:\n{ds}\n\n"
+              f"OUTPUT: chỉ đoạn hook sau khi sửa, không lời dẫn.\n\n=== HOOK ===\n{text}")
+    r = claude_p_bridge.ask(prompt, model=claude_p_bridge.patch_model_of(prof), timeout=600,
+                            min_chars=int(len(text) * 0.6), max_chars=int(len(text) * 1.6), require_sentence_end=True)
+    return ai_steps.normalize_paragraphs(ai_steps.strip_markers(r.text)).strip()
+
+
+def _viec_tu_sol(text):
+    m = re.search(r"VIỆC PHẢI SỬA[^\n]*\n(.*)", text, re.S)
+    return [l.strip() for l in (m.group(1) if m else "").splitlines() if re.match(r"^\s*\d+[.)]", l)]
+
+
+def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy=None):
+    """H1–H4. Trả hook text đã khoá. SystemExit khi không khoá được (BLOCK)."""
+    import qc_script_sol
+    d = Path(d); hd = d / HOOK_DIR; hd.mkdir(exist_ok=True)
+    if not force and doc_lock(d):
+        stale, ly_do = kiem_stale(d)
+        if not stale:
+            print(f"[H4] dùng hook đã khoá ({doc_lock(d)['chars']} chữ)")
+            return doc_hook(d)
+        print("[H4] HOOK_STALE: " + " · ".join(ly_do) + " → chạy lại H1–H4")
+    src = phan_tich_nguon(d, prof, proxy=proxy, force=force)
+    print(f"[H1-H3] nguồn {src.get('video_id') or '(không có)'} · loại {src.get('hook_kind')} · {src.get('score_0_12')}/12 · "
+          f"hình {src.get('video_hook_verdict')} · promise nguồn {(src.get('promise_match') or {}).get('verdict', 'NA')}")
+    title = title or _title(d)
+    cands_text = viet_candidates(d, prof, src, title, ctx, mode)
+    cands = tach_candidates(cands_text)
+    if len(cands) < 1:
+        raise SystemExit("✗ H2': model không trả ứng viên hook theo khuôn === HOOK n ===")
+    thumb = (d / "thumb_text.txt").read_text(encoding="utf-8").strip() if (d / "thumb_text.txt").exists() else ""
+    promise = _promise_text(d, ctx, mode)
+    qc = {"candidates": len(cands), "check": {}, "sol_rounds": 0, "patches": 0, "log": []}
+    # tất định trước, Sol chỉ thấy ứng viên qua máy
+    hop = []
+    for i, c in enumerate(cands, 1):
+        v = check(c, prof, ctx)
+        qc["check"][str(i)] = v
+        if not v:
+            hop.append((i, c))
+    if not hop:
+        # thử vá ứng viên ít lỗi nhất 1 lần
+        i, c = min(enumerate(cands, 1), key=lambda t: len(qc["check"][str(t[0])]))
+        c2 = patch_hook(prof, c, qc["check"][str(i)])
+        qc["patches"] += 1
+        if check(c2, prof, ctx):
+            (hd / "hook_qc.json").write_text(json.dumps({**qc, "state": "BLOCK"}, ensure_ascii=False, indent=2), encoding="utf-8")
+            raise SystemExit(f"✗ H3': cả 3 ứng viên trượt phép đo tất định: {qc['check']}")
+        hop = [(i, c2)]
+    cands_hop = "\n".join(f"=== HOOK {i} ===\n{c}" for i, c in hop)
+    text = None
+    for vong in range(1, MAX_PATCH_HOOK + 2):
+        verdict, chon, rep = qc_script_sol.run_hook(cands_hop, title, thumb, promise, profile_id=prof["id"],
+                                                    out=str(hd / f"hook_sol_report_{vong}.txt"))
+        qc["sol_rounds"] = vong
+        chosen = dict(hop).get(chon) or hop[0][1]
+        if verdict == "PASS":
+            text = chosen; qc["log"].append(f"sol{vong} PASS chọn {chon}"); break
+        viec = _viec_tu_sol(rep) or ["theo báo cáo Sol"]
+        if vong > MAX_PATCH_HOOK:
+            text = chosen; qc["log"].append(f"sol{vong} FIX×{vong} → coi như PASS (luật lean)"); break
+        new = patch_hook(prof, chosen, viec)
+        qc["patches"] += 1
+        if check(new, prof, ctx):
+            qc["log"].append(f"patch{vong} trượt tất định, giữ bản trước")
+            new = chosen
+        hop = [(chon, new)]
+        cands_hop = f"=== HOOK {chon} ===\n{new}"
+    qc["state"] = "PASS"
+    (hd / "hook_qc.json").write_text(json.dumps(qc, ensure_ascii=False, indent=2), encoding="utf-8")
+    meta = khoa(d, text, mode=mode, extra={"sol_rounds": qc["sol_rounds"], "patches": qc["patches"],
+                                          "source_video_id": src.get("video_id")})
+    print(f"[H4] HOOK_LOCKED {meta['chars']} chữ · sol {qc['sol_rounds']} vòng · vá {qc['patches']}")
+    return text

@@ -271,3 +271,20 @@ ngang) khi anh đã chốt giọng. Chi tiết đầy đủ + 5 quyết định 
 - `hook_chars` chưa là cổng máy cho lane không chương (cần thêm `hook_marker` tuỳ chọn vào
   `qc_script.mo_dau` nếu muốn — chưa làm, tránh sửa cổng dùng chung khi chưa có tập nào).
 - Danh sách 10 tập đã ghi tab sheet A2:B11 (2026-09-20).
+
+## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+
+> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+
+| | |
+|---|---|
+| Kiểu mở (`script.hook.patterns`) | H23 H35 |
+| Câu khoá (`script.hook.closer`) | K19 |
+| Cách dựng hình (`script.hook.visual`) | `manga_ai_ref` |
+| Nguồn hình | manga AI, REF-LOCK cùng bộ nhân vật với thân video |
+| Công tắc (`script.hook.enabled`) | đang TẮT |
+
+Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
+cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+
+Viết hook: `py -3.13 pipeline\hook_stage.py --profile teinengo-real --slug <tập> --mode repair`

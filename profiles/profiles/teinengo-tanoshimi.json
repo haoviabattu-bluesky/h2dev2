@@ -98,7 +98,9 @@
         "H30",
         "H34"
       ],
-      "closer": "K03"
+      "closer": "K03",
+      "visual": "manga_ai_ref",
+      "_visual_note": "Manga AI, REF-LOCK nhân vật chính trong tập, cùng bộ nhân vật với thân video. CHƯA CHẠY THẬT."
     }
   },
   "image": {

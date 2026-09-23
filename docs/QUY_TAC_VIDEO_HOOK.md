@@ -79,6 +79,32 @@ khuôn câu + điều cấm vào prompt viết hook.
 | `teinengo-real` | H23 H35 | K19 | 「これは〜という話だ」 |
 | `teinengo-tanoshimi` | H30 H34 | K03 | 「この時の俺はまだ知らなかった」 ở 29–48s (5/7) |
 
+### 5b. CÁCH DỰNG HÌNH — mỗi lane MỘT kiểu, không được mượn của nhau
+
+Khai ở `profiles\profiles\<lane>.json` → `script.hook.visual` (+ `_visual_note` ghi rõ nguồn hình và
+điều cấm). Đây là field profile chứ không phải quy ước trong tài liệu, vì hàng rào #2 của dự án:
+khác biệt giữa lane chỉ được thể hiện bằng field profile.
+
+| Lane | `visual` | Nguồn hình | Cấm | Đã chạy thật |
+|---|---|---|---|---|
+| `satori-jp-obaa` | `anh_ai_ref_grok` | ảnh AI gpti2, khoá mặt bằng ảnh **của chính tập** trong `img\` → clip Grok 6s | tư liệu thật, clip stock | ✅ `ep3-sougi` |
+| `toshi-densetsu-jp` | `tu_lieu_that` | **100% tư liệu thật** trong `stock\` của tập: clip Pexels/NASA + ảnh public domain | ảnh AI, clip AI | ✅ `ep05-bermuda-triangle` |
+| `irogatatarukioku` | `anh_that_to_mau` | ảnh chiến tranh thật trong `_src_photos\`, tô màu AI, **ảnh đứng yên** | vẽ người bằng AI | ❌ chưa |
+| `kenko-chiebukuro` | `lien_mach_than` | **không dựng clip riêng** — hook là 30 giây đầu của chính `script.txt`, dựng chung một lần với thân | ghép clip rời vào đầu | ❌ chưa |
+| `teinengo-real` · `teinengo-tanoshimi` | `manga_ai_ref` | manga AI, REF-LOCK cùng bộ nhân vật với thân video | ảnh thật | ❌ chưa |
+
+**Vì sao phải tách:** gọi lane satori mà đi lấy tư liệu thật như Lane A là sai hai tầng — kênh satori
+kể chuyện hư cấu nên không có "tư liệu" nào để lấy, và nhân vật trong hook phải khớp mặt với thân
+video (khoá bằng chính ảnh của tập). Ngược lại, Lane A bán **sự thật có hồ sơ**; đưa ảnh AI vào hook
+là tự phá thứ kênh đang bán, chưa kể vi phạm quy ước chú thích nguồn ở `credits.txt`.
+
+**Hai kiểu ghép, cũng khác nhau theo lane:**
+- **Ghép trước** (`satori-jp-obaa`, `toshi-densetsu-jp`, `irogatatarukioku`): tập đã dựng xong
+  `final.mp4` → dựng clip hook riêng rồi nối vào trước, ra `final_with_hook.mp4`, file cũ giữ nguyên.
+  Phải qua 4 phép kiểm ở §2.
+- **Liền mạch** (`kenko-chiebukuro`): tập dựng lại từ đầu → hook nằm ngay trong `script.txt`, không có
+  điểm nối nên không phải cân mức tiếng, không phải khớp dải màu.
+
 Lane H/I/J (`kokoro-kazoku`, `sengoku-uragawa`, `teinengo-fuufu`) chưa có profile — khi lập thì khai
 H36/H37 + K21/K22 · H39/H40/H41 + K23 · H36/H37 + K19/K20/K22.
 

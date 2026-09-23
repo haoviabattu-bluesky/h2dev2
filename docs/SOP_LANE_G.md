@@ -280,3 +280,20 @@ QC lớp 2 bằng `qc_thumbnail_sol.py` (form `profile.thumbnail_qc` đã khai).
   `mode="fiction_facts"` (nhánh Lane F vừa thêm 2026-09-20 trong `_chong_trung_block`) — đọc kỹ text
   nhánh đó trước, nó viết cho số chế độ 年金, không phải giá vé/địa danh.
 - 8 video còn lại của kênh mẫu (<40k, gồm 5 MISS) chưa qua K2 — chỉ cần nếu muốn học pattern THUA.
+
+## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+
+> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+
+| | |
+|---|---|
+| Kiểu mở (`script.hook.patterns`) | H30 H34 |
+| Câu khoá (`script.hook.closer`) | K03 |
+| Cách dựng hình (`script.hook.visual`) | `manga_ai_ref` |
+| Nguồn hình | manga AI, REF-LOCK cùng bộ nhân vật với thân video |
+| Công tắc (`script.hook.enabled`) | đang TẮT |
+
+Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
+cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+
+Viết hook: `py -3.13 pipeline\hook_stage.py --profile teinengo-tanoshimi --slug <tập> --mode repair`

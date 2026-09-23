@@ -107,7 +107,9 @@
         "H28",
         "H29"
       ],
-      "closer": "K16"
+      "closer": "K16",
+      "visual": "anh_that_to_mau",
+      "_visual_note": "Ảnh tư liệu chiến tranh THẬT trong _src_photos/ của chính tập, tô màu AI giống thân video. Ảnh ĐỨNG YÊN (luật cấm Ken Burns). Giữ chú thích ảnh + miễn trừ AI như thân video. CẤM vẽ người bằng AI - kênh bán sự thật lịch sử. CHƯA CHẠY THẬT."
     }
   },
   "image": {

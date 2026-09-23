@@ -1,0 +1,673 @@
+{
+ "key": "fuufu",
+ "lane": "teinengo-fuufu",
+ "channel": {
+  "name": "老後のゴローさん",
+  "id": "UCxD2Exs2Q4lf7x0Q28OuKvg",
+  "url": "https://www.youtube.com/channel/UCxD2Exs2Q4lf7x0Q28OuKvg"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\FlowHandoff_local\\results\\channel_dna\\rougo-no-goro",
+ "formula": {
+  "summary": "Khuôn 6/6 video top có transcript: cảnh HIỆN TẠI chứa mâu thuẫn trong ≤15s (du thuyền mà vợ chồng không nói câu nào; 70 tuổi cầm cờ giữa nắng trong khi đồng kỳ đi câu) → con số đời nhân vật → câu khoá ≤45s nói trước 'kết quả không như mong đợi' (「これは〜という話だ」 / 「だが〜」 / 「原因は〜じゃない」) → quay về ngày quyết định + tên-tuổi sau giây 30 → gieo 1 câu nhỏ của vợ/người kia sẽ trả ở cuối. Tiêu đề = 【漫画】+tuổi+(夫婦/2 người đối lập)+リアル/現実+câu hỏi とは？; thumbnail = dải đen chữ vàng/trắng chép lõi tiêu đề + (a) 2 panel đối lập có nhãn vàng hoặc (b) 1 cảnh + dòng đỏ đáy = câu khoá hook; mô tả = khối chào kênh cố định, KHÔNG mang nội dung video.",
+  "hook_beats": [
+   {
+    "t": "0–7s",
+    "name": "Cảnh hiện tại có mâu thuẫn (event+contradiction trong 1–2 câu)",
+    "desc": "Không mở bằng tên. Đặt người xem vào khoảnh khắc tệ nhất của quyết định hưu trí, có số đếm cụ thể; vế mâu thuẫn tới ngay câu thứ 2–3. 6/6 top có câu chốt ≤17s, 5/6 ≤12s.",
+    "example_ja": "豪華客船の3日目の夜、夕食は指定席で毎晩同じ4人の他人と同じテーブルに座る。笑い声は絶えない。ただ俺と隣の妻の間にだけ会話がない。今日1日一言もかわしていない。",
+    "example_video": "Scnn76gZ8E8 (0–16s, mốc thật)"
+   },
+   {
+    "t": "7–25s",
+    "name": "Người đối chứng / con số đời mình",
+    "desc": "Hoặc người cùng tuổi cùng xuất phát nhưng sống khác (H08: r4jN, hyLp, OIeZ), hoặc tuổi+năm làm việc+khoản tiền đổ vào quyết định (Scnn). Con số có trong 30s đầu ở 5/6.",
+    "example_ja": "同じ日に定年したはずの同期は5年も前に仕事をやめて悠々と釣り糸を垂れている。給料も退職金もあいつと俺で大して変わらなかったはずだ。",
+    "example_video": "r4jNE1oTv8Q (~12–24s, ước tính)"
+   },
+   {
+    "t": "17–45s",
+    "name": "Câu khoá: nói trước kết cục ngược, giấu nguyên nhân",
+    "desc": "6/6 có câu khoá ≤45s (trung vị ~26s). 3 biến thể: 「これは〜という話だ」 (Scnn, r4jN; + Hgo2qFDF0bM ngoài mẫu), 「だが/なのに〜」 phủ định điều nhân vật tin (xxMK, r4jN, OIeZ), tóm hành trình 3 lần (gpVr).",
+    "example_ja": "これはその船の中が本当はどうだったかという話だ。そして俺が14日かけて買ったものが旅ではなかったという話だ。",
+    "example_video": "Scnn76gZ8E8 (23.5–33s, mốc thật)"
+   },
+   {
+    "t": "26–50s",
+    "name": "Lùi về ngày quyết định + tên/tuổi/nghề",
+    "desc": "Tự giới thiệu luôn đứng SAU câu chốt: 13s (Scnn), 33s (gpVr), 35s (hyLp), 41s (xxMK), 50s (r4jN); OIeZ không có tên+tuổi trong 120s. Thường đi kèm 「話は〜に遡る」 (gpVr ~29s; bZp51t9b-_g ~36s ngoài mẫu) hoặc 「定年の日、…」 (Scnn 33s).",
+    "example_ja": "話は3ヶ月前に遡る。俺の名前は哲夫。68歳。タクシー運転手を40年やって63歳で引退した。年金は月14万円。",
+    "example_video": "gpVr3OYPA-E (~29–40s, ước tính)"
+   },
+   {
+    "t": "50–120s",
+    "name": "Gieo 1 câu nhỏ của vợ mà chồng hiểu sai",
+    "desc": "Câu ngắn của vợ bị chồng đọc là 'đồng ý' — sẽ được lật ở cuối và chính là 'bài học'. Scnn: 52s 「いいわねとだけ言った。俺はそれを賛成だと受け取った」, 64s 「窓ないのね」 → trả ~1125s 「あの船ね、本当は行きたくなかったの」. bZp51t9b-_g (ngoài mẫu): ~115s 「み子は微笑んだ。でもその目は笑っていなかった」.",
+    "example_ja": "パンフレットを食卓に広げた時(セ)子はいいわねとだけ言った。俺はそれを賛成だと受け取った。〔STT「時子」= 時、セツコ〕",
+    "example_video": "Scnn76gZ8E8 (52–58s, mốc thật)"
+   },
+   {
+    "t": "cuối (~−90s)",
+    "name": "Lặp lại câu khoá + người dẫn ngôi 3 + câu hỏi khán giả",
+    "desc": "5/6 video top lặp lại gần nguyên văn 1 câu của 0–45s trong 90s cuối (Scnn 「14日かけて買ったのは旅ではなかった」, gpVr 3 lần, OIeZ 冷蔵庫/脳10歳, r4jN 「働けるうちは働くのが1番だと信じて」, xxMK 「熟年離婚より残酷だと言われる家庭内別居」); hyLp thì không. Kết bằng câu hỏi 「あなたの〜はありませんか?」 + 「もし心当たりがあれば是非コメントで…」 + 「このチャンネルでは老後の暮らしにまつわる物語をお届けしています」 (4/6 nguyên văn; xxMK và hyLp — 2 video cũ — chỉ hỏi comment).",
+    "example_ja": "俺が14日かけて買ったのは旅ではなかった。この一言だった。",
+    "example_video": "Scnn76gZ8E8 (~1209s, ước tính)"
+   }
+  ],
+  "title": "45/45 tiêu đề bắt đầu 【漫画】; 31/45 có tuổi (65歳/60代/70歳…); độ dài trung vị 42 ký tự (top 10: 31–46). Khuôn ăn view nhất: 2 người/2 lựa chọn đối lập hoặc 1 cặp 夫婦 + 1 quyết định hưu trí lớn + câu hỏi kết cục. Số đếm (cả kênh 45 video, trung vị kênh 29.075): có 「夫婦」 9/45 trung vị 125.792 (không có: 21.568); có vế đối lập (VS / 〜男と、〜男 / どっち) 7/45 trung vị 107.973; có 「どっち」 2/45 — cả 2 ≥219k (838k, 219k); có 「リアル/現実」 5/45 trung vị 175.123; có 「N年後」 6/45 trung vị 69.928 (chỉ 1 video >200k); có số tiền 「万」 6/45 trung vị 11.266 (0/10 top); 「N選」 4/45 trung vị 32.761 (0/10 top). Khuôn nguyên văn đứng đầu: 「【漫画】退職金で豪華クルーズ旅をした65歳夫婦のリアル…14日間で知った現実とは？」 (963k), 「【漫画】６０代・７０代夫婦の熟年離婚 VS 熟年家庭内別居、どっちが幸せなのか？」 (838k), 「【漫画】70歳でまだ働く男と、65歳で卒業した男。5年後、差がついた本当の理由とは？」 (549k).",
+  "thumbnail": "9/9 ảnh mở được: dải đen ngang trên cùng chữ khối rất to, từ khoá vàng + phần còn lại trắng, = lõi tiêu đề viết gọn (9/9); 6/9 dải trên có 「リアル」 hoặc 「現実」. Hai bố cục: (a) CHIA ĐÔI 2 panel đối lập, mỗi panel 1 nhãn vàng viền đen ở đáy nói tên lựa chọn (xxMK 「60代で熟年離婚」/「家庭内別居」, r4jN 「働き続ける70歳」/「働かない70歳」, hyLp 「年収1000万円、年金13万円」/「年収600万円、年金15万円」, gpVr, D39b) — 5/9; (b) 1 cảnh + dòng chữ ĐỎ gradient viền trắng rất to ở đáy (Scnn 「14日間で買ったのは旅ではなかった…」, s98p 「走れなくなったのは車ではなかった…」, OIeZ/OyFd 「〜習慣７選」) — 4/9. Bong bóng thoại dọc (câu nói nội tâm, thường có 「…」) 7/9; nhãn tên 「名前(年齢)」 3/9 (Scnn, r4jN, D39b); mũi tên đỏ 2/9 (chỉ ở khuôn sức khoẻ 7選). Tranh manga màu nước nhạt, người già Nhật, 1 bên buồn/1 bên vui.",
+  "description": "9/9 mô tả là khối chào kênh cố định mở bằng 「【老後のゴローさん】へようこそ。」 (7/9 ở dòng 1; 2/9 dòng 1 là quảng cáo LINE 「▼ ゴローさんが紹介した「無料勉強会」が気になる方はコチラ」 r4jN / 「老後資金の安心度診断」 D39b). 0/9 có tóm tắt riêng của video, 0/9 hashtag, 0/9 chương. 6/9 có đoạn miễn trừ 「⚠︎本動画のサムネイル・タイトルは、…あえて断定的な表現を用いる場合があります」 — toàn bộ video từ 2026-07-23 trở đi có, 3 video Feb–Apr (xxMK, gpVr, hyLp) không có. Mô tả KHÔNG tham gia vào lời hứa.",
+  "link_4_parts": "Một lời hứa đi qua 3 chỗ, mô tả đứng ngoài: tiêu đề = dải đen thumbnail (9/9); dòng đáy/2 panel của thumbnail = cảnh hoặc câu khoá của 0–45s (thumb_hook K ở 3/6: Scnn, r4jN, hyLp); câu khoá lặp lại ở cuối video (5/6). Mẫu hoàn chỉnh nhất: Scnn76gZ8E8 — 1 câu 「14日かけて買ったのは旅ではなかった」 xuất hiện ở tiêu đề (vế 「14日間で知った現実とは？」), đáy thumbnail, giây 27–33 và ~1209s.",
+  "exceptions": "OIeZvtYreOg (236k) thắng dù thumbnail lệch video (ảnh lái xe ven biển + 「習慣７選」 không có trong truyện) — gói 'sức khoẻ/list' kéo click, truyện vẫn là vợ chồng ở cuối. xxMKVprVh-I (838k) thumbnail có câu 「離婚しましょ」 không hề có trong video và lộ kết 「日曜日だけ夫婦の時間」. gpVr3OYPA-E thumbnail hứa 「熟年結婚成立」 nhưng nhân vật chỉ bắt đầu hẹn hò. 2 video cũ (xxMK, hyLp) kể ngôi 3 「男は/光一は」, 4 video Apr–Sep kể ngôi 1 「俺」.",
+  "counts": "Video top có transcript: 6 (Scnn mốc thật, 5 ước tính). Câu chốt ≤17s: 6/6 (≤12s: 5/6). Câu khoá ≤45s: 6/6 (≤30s: 5/6). Tự giới thiệu sau câu chốt: 6/6 (≥30s: 4/6, không có trong 120s: 1/6). Có số trong 30s đầu: 5/6. Kể ngôi 1 俺: 4/6. Lặp câu hook ở cuối: 5/6. Thumbnail mở được 9/9: chia đôi 5/9, dòng đỏ đáy 4/9, bong bóng 7/9, nhãn tên 3/9. Mô tả boilerplate 9/9. Không có transcript: 4/10 video chọn (OyFd, D39b, s98p, U5yg).",
+  "khuon_tap_dau": {
+   "note": "Lane teinengo-fuufu CHƯA CÓ TẬP NÀO (our_eps rỗng) — đây là khuôn cho tập 1, mỗi phần có ví dụ nguyên văn kênh mẫu. Không phải kịch bản.",
+   "hook_theo_giay": [
+    {
+     "t": "0–7s",
+     "viec": "1 cảnh hiện tại: vợ chồng ở nơi đáng mơ ước / hoặc tờ giấy vợ đưa — mâu thuẫn trong câu thứ 2",
+     "vi_du": "豪華客船の3日目の夜、…ただ俺と隣の妻の間にだけ会話がない。今日1日一言もかわしていない。 (Scnn76gZ8E8 0–16s) · おい、今日の昼飯は何だ? はあ。絶望はいつも突然やってくる。これちゃんと読んでサインしてね。…家庭内別居に関する契約書。 (xxMKVprVh-I 0–15s ước tính)"
+    },
+    {
+     "t": "7–25s",
+     "viec": "tuổi + số năm làm + khoản tiền đổ vào quyết định (退職金/年金) — 1 câu, không kể đời",
+     "vi_du": "俺は藤沢(コウキチ)65歳〔STT「藤沢後」〕。ホームセンターに38年勤めた。最後は店長だ。その退職金で憧れの14日間の豪華客船に乗った。 (Scnn76gZ8E8 13–27s)"
+    },
+    {
+     "t": "20–45s",
+     "viec": "câu khoá 「これは〜という話だ」 hoặc 「だが〜」: nói trước 'thứ nhận được không phải thứ đã mua/mong'",
+     "vi_du": "そして俺が14日かけて買ったものが旅ではなかったという話だ。 (Scnn76gZ8E8 27–33s) · この時男は熟年離婚じゃなくて良かったと思っていた。だが離婚より残酷な現実が男を待ち受けていた。 (xxMKVprVh-I ~19–29s)"
+    },
+    {
+     "t": "30–60s",
+     "viec": "lùi về ngày định đoạt (定年の日 / 話は〜に遡る)",
+     "vi_du": "定年の日、退職金の額を見て真っ先に浮かんだのが船だった。 (Scnn76gZ8E8 33–40s) · 話は3ヶ月前に遡る。 (gpVr3OYPA-E ~29s)"
+    },
+    {
+     "t": "50–90s",
+     "viec": "gieo 1 câu ngắn của vợ bị chồng hiểu là đồng ý (sẽ trả ở cao trào)",
+     "vi_du": "パンフレットを食卓に広げた時(セ)子はいいわねとだけ言った。俺はそれを賛成だと受け取った。〔STT「時子」= 時、セツコ〕 (Scnn76gZ8E8 52–59s) · 窓ないのね。 (Scnn76gZ8E8 64s)"
+    }
+   ],
+   "tieu_de": {
+    "khuon": "【漫画】{退職金で/定年後}{quyết định lớn}した{65歳}夫婦の{リアル/現実}…{thời lượng/N年後}で{知った/気づいた}{現実/本当の理由}とは？  hoặc  【漫画】{60代・70代}夫婦の{lựa chọn A} VS {lựa chọn B}、どっちが幸せなのか？",
+    "do_dai": "38–46 ký tự (trung vị kênh 42)",
+    "vi_du": [
+     "【漫画】退職金で豪華クルーズ旅をした65歳夫婦のリアル…14日間で知った現実とは？ (963k)",
+     "【漫画】６０代・７０代夫婦の熟年離婚 VS 熟年家庭内別居、どっちが幸せなのか？ (838k)",
+     "【漫画】退職金で念願の田舎に移住した６５歳の老夫婦…田舎と都会、どっちが幸せなのか？ (219k, bZp51t9b-_g)"
+    ],
+    "tranh": "Không đưa số tiền vào tiêu đề (6/45, trung vị 11k); không dùng tiêu đề 1 người không đối lập như 「持ち家35年ローン完済直後、65歳で待っていたのは？」 (3.966)."
+   },
+   "chu_thumbnail": {
+    "khuon": "Dải đen trên: 「{lõi tiêu đề}の{リアル}」 (từ khoá vàng, phần còn lại trắng). Bố cục (b) cho chuyến đi/quyết định 1 cặp: 2 vợ chồng rầu giữa khung cảnh vui + nhãn tên 「{họ tên}({tuổi})」 + 1 bong bóng thoại nội tâm có 「…」 + dòng đỏ đáy = CÂU KHOÁ của hook dạng 「{N日間}で買ったのは{thứ đã mua}ではなかった…」. Bố cục (a) cho đề tài VS: chia đôi, mỗi bên 1 bong bóng + 1 nhãn vàng tên lựa chọn.",
+    "vi_du": [
+     "退職金で豪華クルーズ旅をした65歳夫婦のリアル / まだ7日もある… / 藤沢コウキチ(65) 藤沢セツコ(63) / 14日間で買ったのは旅ではなかった… (Scnn76gZ8E8)",
+     "熟年離婚と家庭内別居のリアル / 離婚しましょ / 60代で熟年離婚 | 意外と楽だよな / 日曜日だけ夫婦の時間 / 家庭内別居 (xxMKVprVh-I)"
+    ],
+    "tranh": "Đừng đặt câu thoại không có trong video (xxMK 「離婚しましょ」) và đừng lộ kết (「日曜日だけ夫婦の時間」) — kênh mẫu vẫn thắng nhưng đó là rủi ro comment bắt lỗi."
+   },
+   "mo_ta": {
+    "khuon": "Dòng 1–7: khối chào kênh cố định (của kênh mình, viết 1 lần). Sau đó 2 dòng trống + đoạn miễn trừ 「⚠︎本動画のサムネイル・タイトルは、内容をわかりやすくお伝えするため、あえて断定的な表現を用いる場合があります…」. Không cần tóm tắt video — kênh mẫu 0/9 có.",
+    "vi_du": "【老後のゴローさん】へようこそ。\\nこのチャンネルは、老後を「不安な時間」ではなく「楽しみな時間」に変えるための場所です。\\n年金やお金の話、健康のこと、夫婦関係や一人暮らしのリアル、ちょっと笑える日常まで。 (9/9 video)",
+    "tranh": "Kênh mình không có sản phẩm LINE thì đừng chép khối 「▼ ゴローさんが紹介した…」 (chỉ 2/9, là quảng cáo)."
+   }
+  }
+ },
+ "videos": [
+  {
+   "video_id": "Scnn76gZ8E8",
+   "tag": "top",
+   "views": 963453,
+   "duration_min": 21.3,
+   "title": "【漫画】退職金で豪華クルーズ旅をした65歳夫婦のリアル…14日間で知った現実とは？",
+   "desc_first": "【老後のゴローさん】へようこそ。",
+   "thumb_text": "[dải đen trên, chữ vàng+trắng] 退職金で豪華クルーズ旅をした65歳夫婦のリアル ｜ [bong bóng thoại của chồng] まだ7日もある… ｜ [nhãn tên] 藤沢コウキチ(65) / 藤沢セツコ(63) ｜ [chữ đỏ gradient viền trắng, đáy] １４日間で買ったのは旅ではなかった…",
+   "key_line_ja": "笑い声は絶えない。ただ俺と隣の妻の間にだけ会話がない。今日1日一言もかわしていない。",
+   "key_t": 6.6,
+   "lock_line_ja": "これはその船の中が本当はどうだったかという話だ。そして俺が14日かけて買ったものが旅ではなかったという話だ。",
+   "lock_t": 27.2,
+   "intro_t": 13.4,
+   "promise_t": 23.5,
+   "timing_source": "real",
+   "beats": {
+    "event": "0s 「豪華客船の3日目の夜、夕食は指定席で毎晩同じ4人の他人と同じテーブルに座る」 — thả người xem vào đúng bàn ăn du thuyền, có số (3日目, 4人)",
+    "contradiction": "6.6s 「笑い声は絶えない。ただ俺と隣の妻の間にだけ会話がない」 — cả bàn cười, riêng 2 vợ chồng im lặng cả ngày",
+    "stake": "13–23s 「俺は藤沢(コウキチ)65歳、ホームセンターに38年勤めた。最後は店長だ。その退職金で憧れの14日間の豪華客船に乗った」 — 38 năm làm việc đổ vào 1 giấc mơ",
+    "open_loop": "27–33s 「そして俺が14日かけて買ったものが旅ではなかったという話だ」 — nói trước kết quả ngược, giấu 'đã mua được gì'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H06"
+   ],
+   "closers": [
+    "K19",
+    "K06"
+   ],
+   "score_0_12": 12,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「退職金で豪華クルーズ旅をした65歳夫婦のリアル…14日間で知った現実とは？」: 0s là du thuyền, 13–23s đủ 退職金·65歳·14日間, 27s hé 'cái thật sự mua được' = đúng câu hỏi 「知った現実とは？」."
+   ],
+   "thumb_title": [
+    "K",
+    "Dải trên chép gần nguyên nửa đầu tiêu đề; dòng đỏ đáy 「14日間で買ったのは旅ではなかった…」 trả lời một nửa vế 「14日間で知った現実とは？」 mà không lặp lại."
+   ],
+   "thumb_hook": [
+    "K",
+    "Dòng đỏ đáy gần như nguyên văn câu khoá 27–33s 「俺が14日かけて買ったものが旅ではなかった」; ảnh = 2 vợ chồng rầu giữa boong tàu đang tiệc = đúng tương phản H06 của giây 0–10 (hook đặt ở bàn ăn, thumb đặt ở boong — cùng cơ chế). Bong bóng 「まだ7日もある…」 là cảnh ~617s (ước tính, 「あと7日」), không ở hook nhưng cùng tâm trạng."
+   ],
+   "why": "Hai tầng: (1) tương phản xa hoa–im lặng trong 7 giây đầu (H06) khiến người xem hỏi 'vợ chồng này bị gì'; (2) câu khoá 27s nói thẳng 'thứ mua được không phải chuyến đi' — biến 20 phút thành câu đố 'vậy là mua cái gì'. Câu đó lặp nguyên văn ở ~1209s 「俺が14日かけて買ったのは旅ではなかった。この一言だった」 và in lên thumbnail — 3 chỗ, 1 lời hứa.",
+   "weak": "Gần như không có. Tự giới thiệu ở 13.4s hơi sớm (tên bị STT nghe thành 「藤沢後」) nhưng đi kèm con số 38年/店長 nên vẫn là 'stake', không phải giới thiệu suông."
+  },
+  {
+   "video_id": "xxMKVprVh-I",
+   "tag": "top",
+   "views": 839065,
+   "duration_min": 20.6,
+   "title": "【漫画】６０代・７０代夫婦の熟年離婚 VS 熟年家庭内別居、どっちが幸せなのか？",
+   "desc_first": "【老後のゴローさん】へようこそ。",
+   "thumb_text": "[dải đen, chữ vàng+trắng] 熟年離婚と家庭内別居のリアル ｜ [trái, bong bóng của vợ] 離婚しましょ ｜ [nhãn vàng trái] 60代で熟年離婚 ｜ [phải, bong bóng chồng] 意外と楽だよな ｜ [bong bóng chữ đỏ] 日曜日だけ夫婦の時間 ｜ [nhãn vàng phải] 家庭内別居",
+   "key_line_ja": "これちゃんと読んでサインしてね。 は?なんだよこれ。家庭内別居に関する契約書。 もう限界です。早くサインしてください。",
+   "key_t": 12,
+   "lock_line_ja": "この時男は熟年離婚じゃなくて良かったと思っていた。だが離婚より残酷な現実が男を待ち受けていた。",
+   "lock_t": 26,
+   "intro_t": 41,
+   "promise_t": 26,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–3s 「おい、今日の昼飯は何だ?」「はあ。」 — chồng gia trưởng hỏi cơm, vợ thở dài",
+    "contradiction": "3–15s 「絶望はいつも突然やってくる」→ vợ đưa 「家庭内別居に関する契約書」「もう限界です。早くサインしてください」",
+    "stake": "~19s 「離婚じゃなく別居。この時男は熟年離婚じゃなくて良かったと思っていた」 — nhân vật tưởng mình thoát",
+    "open_loop": "~26s 「だが離婚より残酷な現実が男を待ち受けていた」 — hứa 1 thứ còn tệ hơn ly hôn"
+   },
+   "kind": "B",
+   "patterns": [
+    "H21"
+   ],
+   "closers": [
+    "K03",
+    "K06"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「熟年離婚 VS 熟年家庭内別居、どっちが幸せなのか？」: giây ~12 đã có 契約書 家庭内別居, giây ~19 nhắc 熟年離婚, giây ~26 so sánh 'còn tàn nhẫn hơn ly hôn' = đúng trục VS."
+   ],
+   "thumb_title": [
+    "K",
+    "「熟年離婚と家庭内別居のリアル」 = cặp từ của tiêu đề; 2 nhãn vàng 「60代で熟年離婚」「家庭内別居」 chia đôi khung đúng như chữ VS."
+   ],
+   "thumb_hook": [
+    "P",
+    "Hook là cảnh đưa 契約書 — thumbnail không có tờ giấy nào. Bong bóng 「離婚しましょ」 KHÔNG có trong transcript (grep 離婚しましょ = 0; vợ chưa bao giờ đòi ly hôn). Bong bóng 「日曜日だけ夫婦の時間」 là kết truyện ~1183s (「毎週日曜はこの契約書の内容は無効とする」) — thumbnail lộ kết."
+   ],
+   "why": "Mở bằng 1 câu thoại gia trưởng rất quen (「今日の昼飯は何だ?」) rồi 10 giây sau là tờ hợp đồng ly thân — khán giả nam 60+ tự thấy mình trong câu hỏi cơm. Câu khoá 'tưởng may mắn nhưng tàn nhẫn hơn ly hôn' (K03+K06) làm cả video thành lời giải cho câu hỏi VS.",
+   "weak": "Người kể ngôi 3 (「男は」) + tự giới thiệu ở ~41s kèm 1 đoạn giới thiệu con trai dài tới ~70s làm nhịp 30–90s chậm. Thumbnail hứa 1 cảnh ly hôn không có trong video. Transcript chỉ có ước tính mốc giây (raw rỗng)."
+  },
+  {
+   "video_id": "r4jNE1oTv8Q",
+   "tag": "top",
+   "views": 549223,
+   "duration_min": 23.2,
+   "title": "【漫画】70歳でまだ働く男と、65歳で卒業した男。5年後、差がついた本当の理由とは？",
+   "desc_first": "▼ ゴローさんが紹介した「無料勉強会」が気になる方はコチラ",
+   "thumb_text": "[dải đen] 70歳 \"働く男\"と\"辞めた男\"のシニア生活 ｜ [trái, bong bóng] まだ働かないと… ｜ [nhãn tên] 佐伯タケシ(70) ｜ [nhãn vàng] 働き続ける70歳 ｜ [phải, bong bóng chữ đỏ] もう5年働いてない ｜ [nhãn tên] 三浦ススム(70) ｜ [nhãn vàng] 働かない70歳",
+   "key_line_ja": "同じ日に定年したはずの同期は5年も前に仕事をやめて悠々と釣り糸を垂れている。給料も退職金もあいつと俺で大して変わらなかったはずだ。",
+   "key_t": 12,
+   "lock_line_ja": "なのになぜ俺だけがまだここに立っているのか。…だがその言葉はもっと大事なことから目をそらすための言い訳に過ぎなかった。これはその差の正体に70歳になってようやく気づいた俺の話だ。",
+   "lock_t": 25,
+   "intro_t": 50,
+   "promise_t": 44,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「70歳の今も俺は毎日炎天下の交差点で旗を振っている」 — cảnh đau hiện tại, có nhiệt độ/cơ thể",
+    "contradiction": "~4–12s 「体があり余っているからじゃない。その日の飯に困っているからでもない」 + 同期 nghỉ từ 5 năm trước đang câu cá",
+    "stake": "~19s 「給料も退職金もあいつと俺で大して変わらなかったはずだ」 — cùng điểm xuất phát",
+    "open_loop": "~25s 「なのになぜ俺だけがまだここに立っているのか」 → ~36s 'câu 働けるうちは働く là lời bào chữa' → ~44s 「これはその差の正体に…気づいた俺の話だ」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H01",
+    "H08"
+   ],
+   "closers": [
+    "K07",
+    "K19"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    1,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「70歳でまだ働く男と、65歳で卒業した男。5年後、差がついた本当の理由とは？」: 0s người 70 tuổi còn làm, ~12s người nghỉ 5 năm trước, ~25s câu hỏi 'vì sao' = 「本当の理由」."
+   ],
+   "thumb_title": [
+    "K",
+    "「70歳 \"働く男\"と\"辞めた男\"」 = cặp của tiêu đề; lệch nhỏ: tiêu đề nói 65歳で卒業, thumbnail ghi cả hai (70)."
+   ],
+   "thumb_hook": [
+    "K",
+    "Panel trái = đúng cảnh giây 0 (bảo vệ cầm cờ ở giao lộ nắng, khăn quanh cổ — transcript ~66s 「首に巻いたタオルはもう汗で絞れるほどだ」); 「もう5年働いてない」 ≈ ~217s 「俺はもう5年も前に仕事はやめた」. Panel phải vẽ ngồi hiên uống trà, còn video là câu cá — lệch hình nhỏ."
+   ],
+   "why": "Tự hỏi 'vì sao chỉ mình còn đứng đây' rồi tự đập ngay câu thần chú 「働けるうちは働くのが1番」 là lời bào chữa (K07) — người xem 65–70 tuổi đang tự nói câu đó nên bị chạm. Chốt bằng 「これは…気づいた俺の話だ」 (K19) biến cả video thành lời giải 'cái chênh lệch là gì'.",
+   "weak": "Độ bất thường thấp (70 tuổi đi làm bảo vệ không lạ). Tự giới thiệu ~50s hơi muộn nhưng không hại vì 0–45s đã đủ câu hỏi. Cuối video (~1240–1290s) chèn lời mời 「無料で学べる勉強会」 qua LINE — quảng cáo kẹp vào giọng kể chuyện."
+  },
+  {
+   "video_id": "gpVr3OYPA-E",
+   "tag": "top",
+   "views": 350411,
+   "duration_min": 24.3,
+   "title": "【漫画】シニアの婚活バスツアーとは？熟年結婚は本当にあるのか？",
+   "desc_first": "【老後のゴローさん】へようこそ。",
+   "thumb_text": "[dải đen, 'リアル' vàng] 68歳シニア婚活バスツアーのリアル ｜ [trái, bếp tối, bong bóng] 誰かと話したい… ｜ [nhãn vàng] 朝も夜も一人… ｜ [phải, xe buýt sáng, bong bóng đỏ] してもええぞ ｜ [bong bóng xanh] 結婚するか？ ｜ [chữ đỏ viền trắng giữa khung] 老後婚活のパートナーの見つけ方 ｜ [nhãn vàng] 熟年結婚成立",
+   "key_line_ja": "俺はこのバスに3回乗った。1回目は騙されて、2回目は笑われて、3回目にようやく気づいた。",
+   "key_t": 17,
+   "lock_line_ja": "本当に大事なものはずっと隣にあったってことに。話は3ヶ月前に遡る。",
+   "lock_t": 26,
+   "intro_t": 33,
+   "promise_t": 31,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「観光バスの窓際の席。隣は空席だ」 — xe buýt đầy người háo hức, ghế cạnh mình trống",
+    "contradiction": "~3–15s đàn ông chỉnh cà vạt, phụ nữ soi gương, 'ai cũng nhìn như định giá' — mình ngồi một mình giữa cuộc săn",
+    "stake": "~17–24s 「1回目は騙されて、2回目は笑われて」 — tóm trước 2 lần thất bại (bị lừa tiền, bị cười)",
+    "open_loop": "~24–29s 「3回目にようやく気づいた。本当に大事なものはずっと隣にあったってことに」 + K04 「話は3ヶ月前に遡る」"
+   },
+   "kind": "E",
+   "patterns": [
+    "H06"
+   ],
+   "closers": [
+    "K20",
+    "K04"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「シニアの婚活バスツアーとは？熟年結婚は本当にあるのか？」: giây 0 đã ở trên xe buýt, 17–29s hé đáp án 'thứ quý giá ở ngay bên cạnh'."
+   ],
+   "thumb_title": [
+    "K",
+    "「68歳シニア婚活バスツアーのリアル」 khớp; 「熟年結婚成立」 trả lời câu hỏi tiêu đề; thêm 1 lời hứa hướng dẫn 「老後婚活のパートナーの見つけ方」 mà tiêu đề không có."
+   ],
+   "thumb_hook": [
+    "P",
+    "Panel trái (bếp tối, ấm nước, 「誰かと話したい…」) khớp đoạn ~60–90s 「今はケトルの湯だけだ」, không phải cảnh giây 0. 「熟年結婚成立」 không xảy ra với nhân vật: cuối truyện chỉ 「正式に交際を始めた」 (~1380s); chữ 成立 trong transcript là của cặp khác (~712–742s)."
+   ],
+   "why": "Mở cảnh cô đơn giữa đám đông háo hức (H06) rồi tóm cả hành trình theo nhịp 3 lần — '1 bị lừa, 2 bị cười, 3 mới hiểu' — người xem biết chắc có 2 cú ngã trước khi có kết đẹp, nên ở lại xem ngã thế nào. Câu 3 lần được lặp lại nguyên nhịp ở đoạn kết người dẫn (~1400s).",
+   "weak": "Tự giới thiệu kiểu 「俺の名前は哲夫。68歳」 ở ~33s (h2dev hook_stage cấm 「俺の名前は」 làm câu mở — ở đây không phải câu mở nên chấp nhận được). Cảm xúc hook lặng, không có câu thoại. Thumbnail hứa 'kết hôn thành' + 'cách tìm bạn đời' — video không dạy cách, cũng không cưới."
+  },
+  {
+   "video_id": "hyLpBbmnvIA",
+   "tag": "top",
+   "views": 322991,
+   "duration_min": 24.4,
+   "title": "【漫画】老後貧困のリアル、受け取る年金額による食生活の違い貧富の差がヤバ過ぎる・・・",
+   "desc_first": "【老後のゴローさん】へようこそ。",
+   "thumb_text": "[dải đen, chữ vàng+trắng] 老後貧困のリアルな 年金と食生活 ｜ [trái, chữ đỏ] 貯金0円 ｜ [bong bóng] こんなはずじゃなかった… ｜ [nhãn vàng] 年収1000万円、年金13万円 ｜ [phải, chữ đỏ] 貯金1500万円 ｜ [bong bóng] 幸せだ ｜ [nhãn vàng] 年収600万円、年金15万円",
+   "key_line_ja": "同じ会社で40年働き、同じ日に定年退職を迎えた2人の男。それなのに1人の食卓にはバランスの取れた温かい食事。もう1人の食卓にはマーガリンを塗った食パンが1枚だけ。",
+   "key_t": 6,
+   "lock_line_ja": "なぜここまで差がつくのでしょうか?年金額に差があるから。理由はそれだけではないのです。",
+   "lock_t": 18,
+   "intro_t": 35,
+   "promise_t": 24,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「同じ会社で40年働き、同じ日に定年退職を迎えた2人の男」",
+    "contradiction": "~6–16s 「それなのに」 1 bàn ăn nóng cân bằng, 1 bàn chỉ 「マーガリンを塗った食パンが1枚だけ」",
+    "stake": "~18s 「なぜここまで差がつくのでしょうか?年金額に差があるから」 — đáp án hiển nhiên",
+    "open_loop": "~24s 「理由はそれだけではないのです」 — phủ định đáp án hiển nhiên"
+   },
+   "kind": "C",
+   "patterns": [
+    "H08"
+   ],
+   "closers": [
+    "K07"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    1,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「老後貧困のリアル、受け取る年金額による食生活の違い貧富の差がヤバ過ぎる」: 2 bàn ăn ở giây 6–16, chữ 年金額 ở giây ~20."
+   ],
+   "thumb_title": [
+    "K",
+    "「老後貧困のリアルな年金と食生活」 = rút gọn tiêu đề; 2 panel giàu/nghèo = 貧富の差."
+   ],
+   "thumb_hook": [
+    "K",
+    "2 panel (bánh mì khô vs hamburg) = đúng 2 bàn ăn của giây 6–16. Số trên thumbnail chỉ khớp một phần: 年金13万 (~699s) và 貯金1500万 (~674s) có thật; 年収1000万/600万 và 貯金0円 không có nguyên văn (transcript chỉ nói 'lương đỉnh 80万/tháng' ~382s)."
+   ],
+   "why": "Hai người xuất phát y hệt (cùng công ty, cùng ngày nghỉ) rồi ra 2 bàn ăn trái ngược — người xem 60+ tự so mình (H08). Câu 'vì lương hưu? không chỉ thế' (K07 biến thể) chặn đáp án dễ, buộc xem tiếp.",
+   "weak": "Người kể ngôi 3 kính ngữ (「でしょうか」) làm hook xa cách, cảm xúc thấp. Điều bất thường thật (người lương CAO lại ăn bánh mì) chỉ nằm trên thumbnail, hook không nói ra. Tự giới thiệu ~35s kéo theo 1 đoạn tiệc chia tay ở công ty tới ~120s."
+  },
+  {
+   "video_id": "OIeZvtYreOg",
+   "tag": "top",
+   "views": 237018,
+   "duration_min": 23.4,
+   "title": "【漫画】“脳が10歳若い”シニアが、こっそり楽しんでいる習慣とは？",
+   "desc_first": "【老後のゴローさん】へようこそ。",
+   "thumb_text": "[dải đen, 脳が若い vàng] 実は脳が若い60代 ｜ [ảnh: ông lão lái ô tô ven biển, mũi tên đỏ chỉ vào ông] ｜ [chữ đỏ gradient đáy] 内緒で楽しんでいる習慣７選",
+   "key_line_ja": "冷蔵庫の前で何を取りに来たのか思い出せない。今週で4回目だ。床屋では同じ話を3度したと言われた。",
+   "key_t": 0,
+   "lock_line_ja": "俺とあいつで一体何が違うんだ。原因はサボっていたことじゃない。きちんと済ませていた方だった。",
+   "lock_t": 26,
+   "intro_t": 64,
+   "promise_t": 31,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「冷蔵庫の前で何を取りに来たのか思い出せない。今週で4回目だ」 — cảnh đãng trí có đếm số",
+    "contradiction": "~9–16s 脳トレ 4 năm 1200 trang, mỗi sáng 8 nghìn bước — vẫn quên; tối nghe radio một ông 同い年 'không drill không thực phẩm chức năng' mà nhớ hết",
+    "stake": "~16–26s 「人の名前も昔の値段も聞かれた端から出てくる」 — người cùng tuổi hơn hẳn mình",
+    "open_loop": "~26–31s 「俺とあいつで一体何が違うんだ。原因はサボっていたことじゃない。きちんと済ませていた方だった。順を追って話す」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H01",
+    "H08"
+   ],
+   "closers": [
+    "K07"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Tiêu đề 「\"脳が10歳若い\"シニアが、こっそり楽しんでいる習慣とは？」: câu hỏi 'não trẻ/già' có ngay giây 0–26, nhưng chữ 「こっそり楽しんでる」 và 「7つ」 chỉ xuất hiện ở ~276s (ước tính) qua lời ông radio."
+   ],
+   "thumb_title": [
+    "P",
+    "「実は脳が若い60代」 ≈ 「脳が10歳若いシニア」; nhưng thumbnail thêm khung list 「習慣７選」 mà tiêu đề không có (tiêu đề chỉ 「習慣とは？」)."
+   ],
+   "thumb_hook": [
+    "P",
+    "Thumbnail là 1 ông vui vẻ lái xe ven biển — video không có cảnh này (chữ 車 xuất hiện 1 lần ~724s, không liên quan; 運転/ドライブ = 0). Hook là người đãng trí trước tủ lạnh. Chỉ khớp ở ý 'có người não trẻ'."
+   ],
+   "why": "Cảnh đãng trí có đếm (4 lần/tuần, 3 lần cùng 1 chuyện) chạm nỗi sợ lẫn của 60+; câu tự trả lời 'không phải vì lười mà vì làm quá đều đặn' (K07) lật niềm tin 'chăm tập não là đủ' — người xem đang tập 脳トレ phải xem tiếp.",
+   "weak": "Lời hứa danh sách 7 điều tới ~276s mới có (ngoài 120s). Nhân vật không có tên+tuổi trong 120s (chỉ 課長 gọi 「森下さん」 ~64s). Thumbnail dạng list 7選 + ảnh lái xe là gói 'sức khoẻ' khác hẳn giọng truyện của video."
+  },
+  {
+   "video_id": "OyFdwyhTVVQ",
+   "tag": "new",
+   "views": 6758,
+   "duration_min": 22.9,
+   "title": "【漫画】60代になっても老けない長寿体質の人が持っている共通点とは？",
+   "desc_first": "【老後のゴローさん】へようこそ。",
+   "thumb_text": "[dải đen, 老けない vàng] 実は老けない60代 ｜ [ảnh: cụ bà cười trên ghế công viên, mũi tên đỏ] ｜ [chữ đỏ gradient đáy] 長寿体質の人だけが知る習慣７選",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "none",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "N/A",
+    "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/VIDEO_ANALYSIS) — không phân tích hook, chỉ phân tích gói"
+   ],
+   "thumb_title": [
+    "P",
+    "Tiêu đề hỏi 「長寿体質の人が持っている共通点とは？」, thumbnail đổi thành 「習慣７選」 — cùng ý nhưng thêm khung list 7 mục; dải trên 「実は老けない60代」 khớp 「60代になっても老けない」."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/VIDEO_ANALYSIS) — không phân tích hook, chỉ phân tích gói"
+   ],
+   "why": "",
+   "weak": "Mới đăng 2026-09-21 (2 ngày tuổi khi đo) — 6.758 view chưa phải kết quả cuối. Thumbnail chép nguyên khuôn của OIeZvtYreOg (実は〜60代 + mũi tên đỏ + 〜習慣７選) nhưng nhân vật là nữ, không có cặp vợ chồng."
+  },
+  {
+   "video_id": "D39bUfMK4jQ",
+   "tag": "new",
+   "views": 9103,
+   "duration_min": 21.1,
+   "title": "【漫画】貯金が正解だと信じ続けた50代の男が、妻に言われて気づいたお金の置くべき場所とは？",
+   "desc_first": "▼ ゴローさんが紹介した「老後資金の安心度診断」が気になる方はコチラ",
+   "thumb_text": "[dải đen, chữ vàng+trắng] 貯金が正解と信じた50代の現実 ｜ [trái, phòng tối, cầm sổ] bong bóng: 今月も減ってない ｜ [nhãn tên] 宮原マサハル(58) ｜ [nhãn vàng] 老後の不安 ｜ [phải, bếp sáng, vợ đứng sau] bong bóng chồng: え？ ｜ bong bóng vợ chữ đỏ: そのお金いつ使うの？ ｜ [nhãn vàng] 迎えた老後",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "none",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "N/A",
+    "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/VIDEO_ANALYSIS) — không phân tích hook, chỉ phân tích gói"
+   ],
+   "thumb_title": [
+    "K",
+    "「貯金が正解と信じた50代の現実」 = nửa đầu tiêu đề; câu vợ 「そのお金いつ使うの？」 = vế 「妻に言われて気づいた」."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/VIDEO_ANALYSIS) — không phân tích hook, chỉ phân tích gói"
+   ],
+   "why": "",
+   "weak": "Mới đăng 2026-09-18 (5 ngày) — 9.103 view chưa phải kết quả cuối. Đề tài tiền (50代, không phải 60+ vợ chồng) + mô tả mở bằng quảng cáo LINE 「老後資金の安心度診断」 → video có mục đích bán lead; nhân vật 58 tuổi lệch khán giả chính."
+  },
+  {
+   "video_id": "s98pzTeoiEU",
+   "tag": "new",
+   "views": 15847,
+   "duration_min": 20.6,
+   "title": "【漫画】退職金で憧れの豪華キャンピングカー旅をした65歳夫婦の現実とは？",
+   "desc_first": "【老後のゴローさん】へようこそ。",
+   "thumb_text": "[dải đen, chữ vàng+trắng] 退職金で豪華キャンパー旅をした65歳夫婦のリアル ｜ [bong bóng chồng] もう帰りたい… ｜ [ảnh: 2 vợ chồng rầu trước xe cắm trại, nhóm khác đang vui uống bia] ｜ [chữ đỏ gradient đáy] 走れなくなったのは車ではなかった…",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "none",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "N/A",
+    "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/VIDEO_ANALYSIS) — không phân tích hook, chỉ phân tích gói"
+   ],
+   "thumb_title": [
+    "K",
+    "Dải trên = tiêu đề 「退職金で憧れの豪華キャンピングカー旅をした65歳夫婦の現実とは？」 (キャンピングカー → キャンパー, 現実 → リアル); dòng đỏ đáy trả lời 「現実とは？」."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/VIDEO_ANALYSIS) — không phân tích hook, chỉ phân tích gói"
+   ],
+   "why": "",
+   "weak": "Mới đăng 2026-09-17 (6 ngày) — 15.847 view. Đây là bản CHÉP KHUÔN y hệt Scnn76gZ8E8 (tiêu đề 退職金で豪華〇〇旅をした65歳夫婦, thumbnail cùng bố cục, dòng đáy 「〜のは〜ではなかった…」). Chưa đủ tuổi để kết luận khuôn này có lặp lại được thành công hay không."
+  },
+  {
+   "video_id": "U5ygHCC7cSA",
+   "tag": "low",
+   "views": 3966,
+   "duration_min": 22.5,
+   "title": "【漫画】持ち家35年ローン完済直後、65歳で待っていたのは？",
+   "desc_first": null,
+   "thumb_text": null,
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "none",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "N/A",
+    "không có raw, không có transcript"
+   ],
+   "thumb_title": [
+    "N/A",
+    "không có file thumbs\\U5ygHCC7cSA.jpg — không đọc được chữ trên ảnh, không đoán"
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không có dữ liệu"
+   ],
+   "why": "",
+   "weak": "Thiếu hẳn raw + thumbnail + transcript. Tiêu đề lấy từ data\\tanijin_v2\\cand_profiles.json: 「【漫画】持ち家35年ローン完済直後、65歳で待っていたのは？」 — 3.966 view sau 91 ngày (thấp nhất kênh). So với video cùng đề tài nhà ở Hgo2qFDF0bM (176k): tiêu đề này 1 người, không có vế đối lập (持ち家 vs 賃貸), không có 夫婦, không có chữ リアル/現実, dài ~31 ký tự (trung vị kênh 42)."
+  }
+ ],
+ "win_vs_lose": "Không so được HOOK thắng/thua trong kênh này: 6 video top đều có transcript, còn 3 video mới + 1 video thấp đều không (bị chặn IP, không có trong transcripts.json). Khác biệt đo được nằm ở ĐỀ TÀI + GÓI: (1) 5/6 top là quan hệ 2 người (vợ chồng: Scnn, xxMK; 2 đồng kỳ: r4jN, hyLp; bạn đời mới: gpVr) — video thấp nhất U5ygHCC7cSA 「持ち家35年ローン完済直後、65歳で待っていたのは？」 (3.966 sau 91 ngày) chỉ 1 người, không có vế đối lập, trong khi cùng đề tài nhà ở nhưng có đối lập 「持ち家にこだわった６５歳夫婦と賃貸を貫いた６８歳独身の末路」 được 176k. (2) Cả kênh: tiêu đề có 「夫婦」 trung vị 125.792 vs 21.568; có vế đối lập trung vị 107.973 vs 28.897. (3) 3 video 'new' mới 2–6 ngày (6.758 / 9.103 / 15.847) — chưa phải video thua; s98pzTeoiEU chép nguyên khuôn tiêu đề+thumbnail của Scnn (963k) nhưng mới 6 ngày, không đủ để kết luận khuôn không lặp lại được. (4) Yếu tố thời gian gây nhiễu: 17 video trước 2026-06 trung vị 111.890, 25 video 2026-06→09-14 trung vị 28.719 — kênh đang có đợt thấp hơn, nên so video cũ với video mới phải cẩn thận. Trong 6 top: điểm hook cao nhất (12, Scnn 963k) cũng là video có 3 chỗ lặp 1 lời hứa; gpVr điểm thấp nhất (9) vẫn 350k nhờ đề tài 婚活 (婚活 là đề tài có 3/4 video ≥125k).",
+ "our_eps": [],
+ "our_summary": "Lane teinengo-fuufu CHƯA CÓ TẬP NÀO (0 tập: không có thư mục ep*, không có profile, không có kịch bản — E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\BAT_DAU_LANE\\teinengo-fuufu.md mục 2 ghi '❌ CHƯA: profile JSON · giọng · char-rate · SOP · danh sách tập · bất kỳ kịch bản nào'). Không có gì để chấm. Tập 1 dùng formula.khuon_tap_dau; đề tài đề xuất sẵn trong BAT_DAU_LANE (熟年離婚 VS 家庭内別居) chính là xxMKVprVh-I (838k) — nếu làm, lấy khung hook của Scnn76gZ8E8 (mốc thật, 12/12) thay vì khung ngôi 3 của xxMK, và KHÔNG chép câu 「離婚しましょ」/kết 「日曜日だけ」 lên thumbnail.",
+ "principles": [
+  {
+   "claim": "Câu mâu thuẫn phải nằm trong 15 giây đầu; tên–tuổi để sau.",
+   "cause": "Người xem 60+ quyết định ở lại theo câu hỏi 'chuyện gì đang sai', không theo 'ai đang kể'. Tên đặt trước mâu thuẫn là 10 giây không có câu hỏi.",
+   "evidence": "6/6 video top có câu chốt ≤17s (Scnn 6.6s mốc thật; hyLp ~6s; OIeZ 0s; r4jN ~12s; xxMK ~12s; gpVr ~17s). Tự giới thiệu luôn đến sau: Scnn 13.4s, gpVr ~33s, hyLp ~35s, xxMK ~41s, r4jN ~50s, OIeZ không có tên+tuổi trong 120s.",
+   "why": "Khớp luật h2dev hook_stage (cấm 「俺の名前は」 làm câu mở) và có bằng chứng ở kênh mẫu 963k.",
+   "how": "Tập 1 teinengo-fuufu: câu đầu là cảnh vợ chồng (bàn ăn im lặng / tờ giấy vợ đưa / ghế trống bên cạnh); tên+tuổi+số năm làm việc gộp trong 1 câu ở 13–40s."
+  },
+  {
+   "claim": "Câu khoá ở giây 20–45 phải nói trước kết cục NGƯỢC kỳ vọng, và câu đó được lặp lại ở cuối video.",
+   "cause": "Nói trước 'thứ nhận được không phải thứ đã mua' biến 20 phút thành 1 câu hỏi duy nhất (vậy là gì?). Lặp lại ở cuối cho người xem cảm giác được trả lời đúng lời hứa.",
+   "evidence": "Câu khoá ≤45s ở 6/6 top (trung vị ~26s). Lặp gần nguyên văn ở 90s cuối ở 5/6: Scnn 27s→~1209s 「俺が14日かけて買ったのは旅ではなかった」; gpVr 17s→cuối 「1回目で騙されて、2回目で笑われて」; xxMK 26s→cuối 「熟年離婚より残酷だと言われる家庭内別居」; r4jN 29s→cuối 「働けるうちは働くのが1番だと信じて」; OIeZ 0s→cuối 「冷蔵庫の前でも今でも時々止まります」.",
+   "why": "Là thiết bị duy nhất có ở gần như mọi video top, kể cả video điểm hook thấp nhất (gpVr).",
+   "how": "Viết câu cuối (câu bài học) TRƯỚC, rồi đặt bản 'hé 30%' của nó ở 20–35s dạng 「これは〜という話だ」 (K19)."
+  },
+  {
+   "claim": "Dòng chữ lớn ở đáy thumbnail nên là chính câu khoá của hook, không phải câu mới.",
+   "cause": "Người đã click vì câu trên thumbnail nghe lại đúng câu đó ở giây 27 → xác nhận 'đúng video mình muốn', không bỏ đi.",
+   "evidence": "Scnn76gZ8E8 (963k, kênh trung vị 29k): đáy thumbnail 「14日間で買ったのは旅ではなかった…」 = câu 27–33s mốc thật = câu ~1209s. Ngược lại 3 thumbnail có chữ/cảnh không có trong video (xxMK 「離婚しましょ」, gpVr 「熟年結婚成立」, OIeZ ảnh lái xe) vẫn thắng — nên đây là cách làm của video tốt nhất, không phải điều kiện bắt buộc.",
+   "why": "Không tốn thêm gì và loại rủi ro comment bắt lỗi thumbnail sai (đã gặp ở タニジン, xem skill youtube-hook-research).",
+   "how": "thumb_text dòng đáy = câu khoá 20–35s rút gọn ≤16 chữ, kết bằng 「…」; dải trên = lõi tiêu đề + 「のリアル」."
+  },
+  {
+   "claim": "Tiêu đề lane này nên có 「夫婦」 hoặc 2 người/2 lựa chọn đối lập; tránh tiêu đề 1 người không đối lập và tránh số tiền trong tiêu đề.",
+   "cause": "Khán giả 60+ tự đặt mình vào 1 trong 2 phía rồi xem để biết phía mình thắng hay thua.",
+   "evidence": "45 video kênh: 「夫婦」 9/45 trung vị 125.792 vs 21.568; vế đối lập 7/45 trung vị 107.973 vs 28.897; 「どっち」 2/2 ≥219k; số tiền 「万」 6/45 trung vị 11.266 (0/10 top). Video thấp nhất đã chọn U5ygHCC7cSA là 1 người, không đối lập (3.966).",
+   "why": "Đây là tín hiệu mạnh nhất trong dữ liệu kênh và trùng đúng trục lane (vợ chồng).",
+   "how": "Khuôn: 【漫画】{退職金で/定年後}{quyết định}した{65歳}夫婦の{リアル}…{N日間/N年後}で知った現実とは？ hoặc {A} VS {B}、どっちが幸せなのか？. Luật lane 「…5年後…」 trong BAT_DAU_LANE chỉ có bằng chứng yếu (N年後 6/45, trung vị 69.928) — dùng khi đề tài cần, không bắt buộc."
+  },
+  {
+   "claim": "Trong 90 giây đầu gieo 1 câu ngắn của vợ mà chồng đọc sai là 'đồng ý'; cao trào là lúc câu đó được lật.",
+   "cause": "Người xem (nhất là vợ) nhận ra câu đó là chịu đựng trước nhân vật — tạo căng thẳng ngầm suốt video mà không cần phản diện.",
+   "evidence": "Scnn76gZ8E8 52s 「いいわねとだけ言った。俺はそれを賛成だと受け取った」 + 64s 「窓ないのね」 → ~1125s 「あの船ね、本当は行きたくなかったの」 → ~1150s 「38年あなたが決めたことに1度も反対したことがなかったから反対の仕方が分からなかったの」. bZp51t9b-_g (219k, ngoài mẫu): ~115s 「み子は微笑んだ。でもその目は笑っていなかった」.",
+   "why": "Đây là thứ phân biệt lane vợ chồng với lane tiền (teinengo-real) — trục cảm xúc là hiểu lầm im lặng, không phải mất tiền.",
+   "how": "Script tập 1: đặt 1 câu thoại 3–6 chữ của vợ ở 50–90s (「いいわね」「そうね」「窓ないのね」 kiểu), chồng độc thoại diễn giải sai; trả ở ~85% thời lượng."
+  },
+  {
+   "claim": "Mô tả video không cần mang nội dung; chỉ cần khối chào kênh cố định + đoạn miễn trừ.",
+   "cause": "Kênh mẫu dồn toàn bộ lời hứa vào tiêu đề+thumbnail+hook; mô tả chỉ làm nhận diện kênh và giảm rủi ro chính sách với tiêu đề khẳng định mạnh.",
+   "evidence": "9/9 mô tả là cùng 1 khối 「【老後のゴローさん】へようこそ。…」; 0/9 tóm tắt, 0/9 hashtag; 6/9 có miễn trừ — 100% video từ 2026-07-23, 0/3 video Feb–Apr.",
+   "why": "Không có bằng chứng mô tả ảnh hưởng view (kể cả video 963k cũng chỉ có boilerplate) — đừng tốn công.",
+   "how": "Viết 1 khối chào kênh teinengo-fuufu (lấy từ branding KENH.json) + đoạn miễn trừ, dùng lại mọi tập; thời gian dồn cho câu khoá và thumbnail."
+  }
+ ],
+ "new_patterns": [
+  {
+   "id": "K19",
+   "name": "Tuyên bố đề của cả video bằng câu 「これは〜という話だ」",
+   "kind": "closer",
+   "mechanism": "Sau cảnh mở, người kể ngôi 1 nói thẳng video này là chuyện gì, dưới dạng hồi tưởng đã biết kết cục ('chuyện tôi mãi 70 tuổi mới nhận ra', 'chuyện thứ tôi mua không phải chuyến đi'). Người xem được hứa 1 lời giải cụ thể nhưng chưa biết nó là gì — khác K06 ở chỗ nói ra KHUNG của cả câu chuyện chứ không chỉ kết quả.",
+   "template": "これは{sự việc}が本当はどうだったかという話だ。そして俺が{thời gian}かけて{手に入れた/気づいた}のが{kỳ vọng}ではなかったという話だ。 / これは{điều khác biệt}の正体に{tuổi}歳になってようやく気づいた俺の話だ。",
+   "when": "Kể ngôi 1 hồi tưởng, video 'quyết định hưu trí và hậu quả' (chuyến đi, chuyển nhà, làm tiếp/nghỉ). Đặt ở 20–45s, ngay sau con số đời nhân vật.",
+   "avoid": "Đừng nói lộ đáp án (nói 'không phải chuyến đi', đừng nói 'là 1 câu nói của vợ'). Đừng dùng khi người kể ngôi 3.",
+   "lanes_fit": [
+    "teinengo-fuufu",
+    "teinengo-real"
+   ],
+   "examples": [
+    "Scnn76gZ8E8",
+    "r4jNE1oTv8Q",
+    "Hgo2qFDF0bM (ngoài mẫu: 「俺は25年住んだ部屋を追い出された元数学教師が半生抱えてきた負け組意識を静かに畳むまでの話だ」 ~33s)"
+   ]
+  },
+  {
+   "id": "K20",
+   "name": "Tóm trước cả hành trình theo nhịp 3 lần",
+   "kind": "closer",
+   "mechanism": "「1回目は〜、2回目は〜、3回目にようやく気づいた」: báo trước có 2 lần thất bại cụ thể và 1 lần hiểu ra. Người xem biết cấu trúc (không sợ lạc) và ở lại để xem 2 cú ngã; câu 'thứ quý nằm ngay bên cạnh' hé chủ đề mà không nói là ai.",
+   "template": "俺はこの{nơi/sự kiện}に3回{行った/乗った}。1回目は{thất bại 1}、2回目は{thất bại 2}、3回目にようやく気づいた。{điều quý giá}はずっと{ngay bên cạnh}にあったってことに。",
+   "when": "Đề tài có lặp lại (婚活 tour, thi lại, đổi việc nhiều lần, thử nhiều nơi ở). Đặt ở 15–30s rồi nối 「話は〜に遡る」.",
+   "avoid": "2 lần đầu phải là động từ bị động cụ thể (騙されて/笑われて), không chung chung. Đừng dùng nếu video không thật sự chia 3 hồi.",
+   "lanes_fit": [
+    "teinengo-fuufu",
+    "teinengo-tanoshimi"
+   ],
+   "examples": [
+    "gpVr3OYPA-E"
+   ]
+  }
+ ],
+ "caveats": [
+  "Chỉ Scnn76gZ8E8 có mốc giây thật (raw hook_segments 41 đoạn). 5 video top còn lại dùng mốc ƯỚC TÍNH = vị trí ký tự ÷ (len(transcript)/duration) từ E:\\CLAUDE\\YOUTUBE\\h2dev\\FlowHandoff_local\\results\\channel_dna\\rougo-no-goro\\_raw\\transcripts.json; kiểm trên Scnn sai số ~±3–4s (câu 「乗って最初に分かったのは」 ước tính ~56s, thật 59.8s).",
+  "4/10 video chọn KHÔNG có transcript: OyFdwyhTVVQ, D39bUfMK4jQ, s98pzTeoiEU (raw rỗng, không có trong transcripts.json/VIDEO_ANALYSIS) và U5ygHCC7cSA (thiếu cả raw lẫn thumbnail; tiêu đề/view lấy từ E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\data\\tanijin_v2\\cand_profiles.json). Không phân tích hook, không bịa lời thoại; 4 video này KHÔNG được đưa vào file seed (kho hook cần nguyên văn 0–30s).",
+  "Đã mở lại raw lúc 17:36 ngày 2026-09-23 trước khi ghi: vẫn chỉ Scnn có segments.",
+  "Transcript là phụ đề tự động — tên riêng bị nghe sai: 「藤沢後」=藤沢コウキチ (thumbnail), 「せ子」=セツコ, 「最木たけし/再木」=佐伯タケシ (thumbnail), 「その田勝」=園田勝, 「高一/光一」. Trích dẫn trong file giữ gần nguyên transcript, chỉ sửa khi thumbnail cho tên đúng.",
+  "Video 'new' mới 2–6 ngày tuổi — view chưa ổn định, không coi là video thua. Kênh có đợt giảm: trung vị trước 2026-06 = 111.890, 2026-06→09-14 = 28.719 — so sánh đếm tiêu đề trên cả 45 video bị nhiễu bởi thời gian (vd 24/45 tiêu đề kết thúc 「とは？」 có trung vị thấp hơn chủ yếu vì toàn là video mới).",
+  "Bằng chứng ngoài mẫu chọn (bZp51t9b-_g 219k, Hgo2qFDF0bM 176k) có transcript trong transcripts.json — chỉ dùng làm ví dụ phụ, không tính vào đếm 6/6.",
+  "Lane teinengo-fuufu chưa có tập nào (không có eps_teinengo-fuufu.json, không có profiles\\profiles\\teinengo-fuufu.json, thư mục assets\\teinengo-fuufu chỉ có branding) → our_eps rỗng; thay bằng formula.khuon_tap_dau.",
+  "Scnn76gZ8E8 đã có sẵn trong hooks.jsonl (nguồn tanijin 2026-09-23, patterns H06/K06, 12 điểm). Bản seed mới giữ H06 + 12 điểm, thêm closer K19 và các trường thumb_* — khi add sẽ ghi đè bản cũ theo video_id."
+ ]
+}

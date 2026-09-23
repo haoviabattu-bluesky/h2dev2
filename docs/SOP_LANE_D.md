@@ -333,3 +333,20 @@ mới hay không.
 **`profile.body.colorize.tool` còn ghi `gpti2_edit.py` (trả tiền)** — đã lỗi thời, thực tế dùng
 `ima2` (miễn phí) từ ep04 trở đi. Cần cập nhật field này (và dòng tương ứng trong bảng router ở
 CLAUDE.md gốc dự án) lần tới sửa profile.
+
+## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+
+> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+
+| | |
+|---|---|
+| Kiểu mở (`script.hook.patterns`) | H27 H28 H29 |
+| Câu khoá (`script.hook.closer`) | K16 |
+| Cách dựng hình (`script.hook.visual`) | `anh_that_to_mau` |
+| Nguồn hình | ảnh tư liệu chiến tranh thật trong `_src_photos\`, tô màu AI, ảnh ĐỨNG YÊN. CẤM vẽ người bằng AI |
+| Công tắc (`script.hook.enabled`) | đang TẮT |
+
+Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
+cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+
+Viết hook: `py -3.13 pipeline\hook_stage.py --profile irogatatarukioku --slug <tập> --mode repair`

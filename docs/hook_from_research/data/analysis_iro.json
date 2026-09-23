@@ -1,0 +1,1337 @@
+{
+ "key": "iro",
+ "lane": "irogatatarukioku",
+ "channel": {
+  "name": "色でたどる戦争の記録",
+  "id": "UCaj1dslbibbHEnOAOh0tyYw",
+  "url": "https://www.youtube.com/channel/UCaj1dslbibbHEnOAOh0tyYw"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\irogatatarukioku",
+ "formula": {
+  "summary": "Kênh là 'triển lãm ảnh có người thuyết minh': mở bằng 1 bức ảnh có NGƯỜI (dân thường/người trẻ) → 1 câu lật nơi chốn/danh tính/thời điểm trong ≤26s → miễn trừ AI ~27s → nghi thức 「この写真をカラー化してみる」 + 3–4 màu cụ thể → 1 con số chính xác đến từng chữ số → câu hứa lộ trình 「〜を15枚の写真で辿っていく」 ở ~115–150s. Tiêu đề = sự kiện đắt nhất của cả video (thường nằm giữa/cuối video), thumbnail = cụm đầu tiêu đề + 1 con số trên khung cố định, mô tả = kể lại cảnh mở của hook bằng văn xuôi có ngày giờ.",
+  "hook_beats": [
+   {
+    "t": "0–20s",
+    "name": "Mời nhìn 1 bức ảnh + tả chi tiết thấy được",
+    "desc": "Câu mời rồi 3–5 câu ngắn tả người/đồ vật/chữ trên biển hiệu. 4/9 dùng nguyên câu 「まずこの1枚(の白黒写真)を見ていただけるだろうか」, hDkg dùng 「これから何枚かの写真を見ていただく」; juow mở bằng con số, 3 video mới tả thẳng không mời.",
+    "example_ja": "まずこの1枚の白黒写真を見ていただけるだろうか?駅の階段の途中に女性が座り込んでいる。その膝の前に小さな女の子が立っている。",
+    "example_video": "NNy4YQKQe5c 0.2s"
+   },
+   {
+    "t": "8–26s",
+    "name": "Câu lật",
+    "desc": "Một câu làm người xem sửa lại điều vừa đoán: nơi này không phải Nhật, 2 người kia là dân đảo, ảnh chụp 2 giờ trước khi xuất kích. 5/6 video top lật ở ≤25.8s (WUOH là ngoại lệ, 86.3s).",
+    "example_ja": "昭和の初めのどこかの地方都市の風景に見える。だがここは日本の本土ではない。",
+    "example_video": "F1TBU19nQ_k 19.3–23.5s"
+   },
+   {
+    "t": "20–75s",
+    "name": "Miễn trừ AI (~27s, gần như nguyên văn cố định)",
+    "desc": "9/9 video. Ở 8/9 video đặt SAU câu lật (WUOH đặt trước).",
+    "example_ja": "この動画では当時の白黒写真をAIで補正し、色を推定して再現している。当時カラーカメラで撮られていたらこう映っていたかもしれない姿だ。細部の色は実際と異なる場合がある。注目して欲しいのは色の正確さではなく、写真に映る人々の表情とその時代の空気だ。",
+    "example_video": "4J5Il-hMN6E 30.7–57.0s"
+   },
+   {
+    "t": "28–87s",
+    "name": "Nghi thức tô màu",
+    "desc": "「この写真をカラー化してみる」 rồi 3–4 câu màu cụ thể (chất liệu + màu). 9/9 video, kể cả 3 video mới.",
+    "example_ja": "この写真をカラー化してみる。…階段のコンクリートは乾いた灰色。女の子の服に小さな青い花模様が浮かび上がる。床に敷かれた新聞紙だけが白く残っている。",
+    "example_video": "NNy4YQKQe5c 62.0–78.0s"
+   },
+   {
+    "t": "80–117s",
+    "name": "Con số chính xác",
+    "desc": "Số lẻ đến từng chữ số + phép quy đổi (1/10 dân số, 4 người có 1). 6/6 video top có trong 120s.",
+    "example_ja": "厚生省の児童局が全国で一斉に数えた結果である。…そしてこの調査に沖縄県は含まれていない。",
+    "example_video": "NNy4YQKQe5c 81.4–115.7s"
+   },
+   {
+    "t": "105–150s",
+    "name": "Khoá + hứa lộ trình",
+    "desc": "Hé kết cục ('1 năm sau thị trấn này biến mất', 'họ thuộc phía sống sót') rồi hứa phạm vi + số ảnh. 8/9 có lời hứa (4 trong 120s thật, 2 ước tính 144–151s).",
+    "example_ja": "写真をよく見てほしい。…見送りの人々である。その中には息子の敵国となった国から海を渡ってきた親たちがいる。(今日)はこの若者たちの2年半を15枚の写真で辿っていく。",
+    "example_video": "WUOHhqJQ8d8 102.9–118.6s"
+   }
+  ],
+  "title": "【sự kiện/nơi/năm】 + khoảnh khắc trong ảnh hoặc nghịch lý + (——) hệ quả ｜ con số ｜実際の写真をAIフルカラー復元. 9/9 có 【】, 9/9 có số trong phần lõi, 9/9 đúng 3 đoạn ngăn bởi 2 dấu ｜, 9/9 đuôi 「実際の写真をAIフルカラー復元」; 「——」 chỉ 3/9 (đúng 3 video top đầu). Phần lõi 35–65 ký tự (6 video top 57–65). Nội dung tiêu đề là sự việc đắt nhất của video, chỉ 4/9 nằm trong hook (hDkg + 3 video mới).",
+  "thumbnail": "Khung cố định 9/9: dải đỏ dọc bên trái chữ trắng 「カラーでよみがえる」, ảnh chiếm ~45% trái, nền đen phải, 2 khối chữ ngăn bởi 1 vạch đỏ; mỗi khối = 1 dòng trắng + 1 dòng vàng viền đỏ. Khối trên = cụm đầu tiêu đề (6/9 khớp tiêu đề), khối dưới = nhãn sự kiện/con số. 7/9 có chữ số (6/6 top). 0/9 có tên người. Ảnh: 6/6 top là mặt người (trẻ em, thiếu niên, dân đảo, cặp vợ chồng, đám đông nisei); 2/9 KHÔNG tô màu (hDkg top 1 và WUOH). 3 video mới: tàu, máy bay nhỏ trong khung viền trắng, lính + chó.",
+  "description": "Dòng 1 = cảnh mở/con số của hook viết lại thành văn xuôi (8/9; ms0j là ngoại lệ). Đoạn đầu dài 742–2.996 ký tự kể lại cả câu chuyện với ngày giờ/số liệu. Sau đó các mục ■ (映像について/色について 9/9, 写真出典 9/9, 参考資料 9/9, 運営者情報 8/9). 0/9 có Timestamps. Hashtag 3–8 cái. Câu hỏi mời bình luận: 0/6 video top, 2/9 tổng (ms0j, Upbb) — kênh hỏi gia đình khán giả ở CUỐI lời đọc (theo CHANNEL_DNA), không trong mô tả.",
+  "link_4_parts": "Tiêu đề và thumbnail là 1 lời hứa (thumbnail chép cụm đầu tiêu đề ở 6/9). Hook KHÔNG lặp lời hứa đó ngay (chỉ hDkg làm vậy) mà mở bằng ảnh đầu của dòng thời gian + 1 cú lật, rồi trả lời hứa bằng câu 'N bức ảnh sẽ dẫn tới…'. Mô tả nối hook: dòng 1 = cảnh mở của hook. Tức là: title+thumb bán kết cục, hook bán hành trình tới kết cục, mô tả xác nhận hook.",
+  "exceptions": [
+   "hDkgnTPJw5g (top 1, 119.799 view): cả 4 phần cùng 1 câu — ảnh/sự kiện của tiêu đề nằm ở 16–27s, thumbnail là đúng ảnh đó (không tô màu).",
+   "WUOHhqJQ8d8: miễn trừ AI 20.2s đặt trước câu lật 86.3s — video thấp nhất trong 6 video top (12.744).",
+   "juowNKaQvek: mở bằng con số 660万人 không có ảnh; tiêu đề (mẹ chờ 13 năm), thumbnail (vợ chồng gặp lại sau 8 năm) và hook (660万) nói 3 chuyện khác nhau — vẫn 18.596 view.",
+   "NNy4YQKQe5c: thumbnail ghi 「戦争が終わって7年後の顔」 trong khi tiêu đề là 【昭和21年】.",
+   "3 video mới (ms0j, Upbb, SO9N): không có câu mời nhìn ảnh, chủ thể là vật (tàu, máy bay) hoặc đảo trống, có 1–2 câu 'không biết/không xác nhận được' trong 120s đầu, mô tả dài phần giải thích nguồn."
+  ],
+  "counts": {
+   "video_phan_tich": 9,
+   "top": 6,
+   "new": 3,
+   "mo_bang_moi_nhin_anh_まず1枚": "4/9 (NNy4, 4J5I, F1TB, WUOH) + hDkg biến thể 「これから何枚かの写真を見ていただく」",
+   "cau_lat_truoc_26s": "5/6 top (0.2 · 8.2 · 22.9 · 23.5 · 25.8s); WUOH 86.3s",
+   "mien_tru_AI_trong_loi_doc": "9/9, bắt đầu 20.2–75.8s; đặt sau câu lật 8/9",
+   "nghi_thuc_カラー化してみる_trong_120s": "9/9 (28.4–86.6s)",
+   "con_so_chinh_xac_trong_120s": "6/6 top",
+   "loi_hua_lo_trinh": "8/9 (trong 120s thật: juow 29.2, WUOH 114.6, NNy4 115.7, F1TB 118.8, ms0j 99.2, Upbb 59.5; ước tính 4J5I ~144, hDkg ~151)",
+   "cau_khong_biet_trong_120s": "top 0/6; new 3/3 (ms0j 2, Upbb 2, SO9N 1)",
+   "写真をよく見てほしい_ca_video": "hDkg 2 · NNy4 11 · 4J5I 4 · juow 1 · F1TB 9 · WUOH 13 (đếm trong transcripts.json)",
+   "thumb_khop_title": "K 6/9, P 3/9, L 0/9",
+   "title_khop_hook": "K 4/9 (hDkg + 3 new), P 5/9",
+   "thumb_co_so": "7/9 (6/6 top)",
+   "thumb_co_ten_nguoi": "0/9",
+   "thumb_anh_khong_to_mau": "2/9",
+   "title_do_dai_loi": "35–65 ký tự (top 57–65)",
+   "title_co_——": "3/9",
+   "desc_timestamps": "0/9",
+   "do_dai_video": "23.3–28.6 phút (9/9 ≥ 23 phút)",
+   "toc_do_doc_0_120s": "~4,5–4,7 ký tự/giây (transcripts.json)",
+   "video_kenh_≥10k": "8/28 video trong danh sách kênh; 7/8 là dân thường/người trẻ (特攻の少年, 上野の孤児, 沖縄の住民, 引き揚げ, サイパンの家族, 二世の若者, 広島の電車), 1/8 là tàu (長門 11.000)"
+  }
+ },
+ "videos": [
+  {
+   "video_id": "hDkgnTPJw5g",
+   "tag": "top",
+   "views": 119799,
+   "duration_min": 23.5,
+   "published_at": "2026-08-29T09:45:19Z",
+   "title": "【特攻】出撃2時間前、17歳は子犬を抱いて笑っていた——翌朝、この写真に写る全員が帰らなかった｜残された最後の一枚｜実際の写真をAIフルカラー復元",
+   "desc_first": "昭和20年5月26日、出撃予定の2時間前。鹿児島県の万世飛行場で、子犬を抱いて笑う5人の特攻隊員の写真が撮られました。最年少は17歳。写真の5人は、翌朝全員が帰らぬ人となりました。本動画では、この写真をはじめとする特攻隊員たちの実際の記録写真をAIでカラー復元し、80年前を生きた若者たちの最後の日々をたどります。",
+   "thumb_text": "カラーでよみがえる｜出撃 2時間前｜子犬を抱く17歳・最後の写真 (ảnh ĐEN TRẮNG, không tô màu)",
+   "key_line_ja": "5人の少年が1匹の子犬を囲んで笑っている写真だ。その写真が撮られたのは彼らが出撃する2時間前だったと記録されている",
+   "key_t": 22.9,
+   "lock_line_ja": "そして最後に1枚の写真を見ていただきたい",
+   "lock_t": 11.8,
+   "intro_t": null,
+   "promise_t": 0.2,
+   "timing_note": "promise 0.2s 「これから何枚かの写真を見ていただく」; câu hứa phạm vi đầy đủ 「これから見ていく写真はその作戦に散った若者たちと彼らを見送った人々の記録だ」 ~151s (ước tính từ transcripts.json).",
+   "beats": {
+    "event": "0.2s 「これから何枚かの写真を見ていただく」— 80 năm trước, người trong ảnh 17 đến 20 mấy tuổi",
+    "contradiction": "16.1–22.9s ảnh 5 thiếu niên cười quanh 1 con cún",
+    "stake": "22.9s 「その写真が撮られたのは彼らが出撃する2時間前だった」",
+    "open_loop": "11.8s 「そして最後に1枚の写真を見ていただきたい」— ảnh đắt nhất được hứa để cuối"
+   },
+   "kind": "C",
+   "patterns": [
+    "H28"
+   ],
+   "closers": [
+    "K16"
+   ],
+   "score_0_12": 12,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「出撃2時間前、17歳は子犬を抱いて笑っていた」 được nói gần nguyên văn ở 16.1–26.8s."
+   ],
+   "thumb_title": [
+    "K",
+    "Thumbnail dùng đúng 3 cụm của tiêu đề: 出撃2時間前 · 子犬を抱く17歳 · 最後の写真 (=残された最後の一枚)."
+   ],
+   "thumb_hook": [
+    "K",
+    "Ảnh trên thumbnail chính là ảnh được tả ở 16–27s; con số 2時間前 là câu chốt ở 22.9s."
+   ],
+   "why": "Đặt nụ cười (con cún, tuổi 17) sát cạnh đồng hồ đếm ngược tới cái chết (2 giờ) trong 1 câu — người xem không cần biết bối cảnh vẫn thấy nghịch lý. Câu 'ảnh cuối cùng sẽ xem sau' giữ vòng mở tới hết video.",
+   "weak": "Đoạn miễn trừ AI 30.4–56.8s chen ngay sau câu chốt, ảnh 1 thật sự (Philippines 1944) bắt đầu 56.8s — 26s không có thông tin mới. Thumbnail không tô màu dù kênh bán 'カラーでよみがえる'.",
+   "hook_0_30s": "これから何枚かの写真を見ていただく。どれも80年前に実際に撮られた記録写真だ。写真に写っているのは17歳から20代の若者たち。そして最後に1枚の写真を見ていただきたい。5人の少年が1匹の子犬を囲んで笑っている写真だ。その写真が撮られたのは彼らが出撃する2時間前だったと記録されている。本編に入る前に",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "NNy4YQKQe5c",
+   "tag": "top",
+   "views": 62207,
+   "duration_min": 26.1,
+   "published_at": "2026-09-01T22:30:35Z",
+   "title": "【昭和21年 上野駅】疎開から帰ると家も親もなかった——地下道で靴を磨いて生きのびた子どもたち｜孤児は12万3511人｜実際の写真をAIフルカラー復元",
+   "desc_first": "昭和21年、1946年の上野駅。階段の途中に女性が座り込み、その足元では人が新聞紙を敷いて眠っている。行き交う人は誰も足を止めない。1945年3月10日の空襲で東京の下町は一夜のうちに焼け、死者はおよそ10万人にのぼったとされる。家を失った人々は、まず上野を目指した。上野駅が東北・北関東へ向かう列車の起点だったからである。田舎に縁故のある人は汽車で去り、行く先のない人が駅に残った。親を失った子どもたちも、そこに残った。駅の下を通る細長い",
+   "thumb_text": "カラーでよみがえる｜戦争が終わって 7年後の顔｜上野公園の子ども 12万3511人",
+   "key_line_ja": "(誰)も足を止めていない。1946年昭和21年の上野駅である",
+   "key_t": 25.8,
+   "lock_line_ja": "そしてこの調査に沖縄県は含まれていない。この動画が辿るのはその子供たちが集まった1つの場所の記録だ",
+   "lock_t": 111.2,
+   "intro_t": null,
+   "promise_t": 115.7,
+   "timing_note": "",
+   "beats": {
+    "event": "0.2–18s mời nhìn ảnh: người phụ nữ ngồi giữa cầu thang ga, bé gái trước gối, người nằm trên báo",
+    "contradiction": "25.8s 「(誰)も足を止めていない」",
+    "stake": "81.4–111.2s 「12万3511人…空襲で親を失った子が2万8248人…引き揚げの途中で親を失った子が1万1351人」",
+    "open_loop": "111.2–115.7s 「そしてこの調査に沖縄県は含まれていない。この動画が辿るのはその子供たちが集まった1つの場所の記録だ」"
+   },
+   "kind": "A",
+   "patterns": [
+    "H27",
+    "H16"
+   ],
+   "closers": [
+    "K02",
+    "K16"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Con số 12万3511 (tiêu đề) có ở 81.4–90s; 疎開・靴磨き・地下道 trong tiêu đề chưa xuất hiện trong 120s."
+   ],
+   "thumb_title": [
+    "P",
+    "Khớp con số 12万3511 và 上野; nhưng '戦争が終わって7年後の顔' lệch với 【昭和21年】 (=1 năm sau chiến tranh) của tiêu đề."
+   ],
+   "thumb_hook": [
+    "P",
+    "Ảnh thumbnail là cậu bé mặt lấm lem, hook mở bằng ảnh người phụ nữ trên cầu thang; chỉ chung con số (84s) và 上野."
+   ],
+   "why": "Cảnh đời thường 'không ai dừng lại' làm người xem tự hỏi đây là đâu, lật ra ga Ueno 1946 ở 30s; rồi con số 12万3511 + câu 'Okinawa không nằm trong số đó' biến thống kê thành vết thương còn thiếu.",
+   "weak": "Câu chốt 'không ai dừng lại' nhẹ; con số mạnh nhất tới 81s mới có. Thumbnail ghi '7年後' mâu thuẫn với 昭和21年 trong tiêu đề.",
+   "hook_0_30s": "まずこの1枚の白黒写真を見ていただけるだろうか?駅の階段の途中に女性が座り込んでいる。その膝の前に小さな女の子が立っている。女性は手に持った何かをその子の口へ運ぼうとしている。階段の1番下には新聞子を敷いて横たわる人がいる。そのすぐ脇を大きな荷物を背負った人たちが通りすぎていく。も足を",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "4J5Il-hMN6E",
+   "tag": "top",
+   "views": 48898,
+   "duration_min": 25.8,
+   "published_at": "2026-09-03T22:30:05Z",
+   "title": "【沖縄戦】島の人の85%が柵の中にいた——持ち出せたのは頭に載る分だけだった｜収容者は4月1日の21人から6月末に28万4625人｜実際の写真をAIフルカラー復元",
+   "desc_first": "1945年3月26日、午前8時4分。沖縄県の慶良間諸島、阿嘉島に米軍が上陸した。8時25分に慶留間島、9時に座間味島。沖縄戦で、米軍が日本の土を踏んだ最初の朝である。6日後の4月1日、艦船およそ1400隻から1500隻、兵員およそ18万3000人が、読谷から嘉手納、北谷にかけての西海岸に上陸する。日本軍はこの海岸で反撃せず、上陸は静かに終わった。その日、米軍が保護した住民の数は、記録の上ではわずか21人である。島には、まだ数十万の人が残",
+   "thumb_text": "カラーでよみがえる｜島の人の 85%が柵の中｜沖縄戦を生きた 住民の記録",
+   "key_line_ja": "右の2人はヘルメットをかぶった兵だ。左の2人はこの島に住んでいた人である",
+   "key_t": 8.2,
+   "lock_line_ja": "そしてこの写真の中の2人は生き延びた側の人だ",
+   "lock_t": 105.0,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_note": "promise 「この動画ではその島に残された住民の記録を15枚の写真で辿っていく」 ~144s (ước tính, ngoài 120s).",
+   "beats": {
+    "event": "0.2–8.2s mời nhìn ảnh 4 người đứng trước tường đá đổ",
+    "contradiction": "8.2–15.3s 「右の2人はヘルメットをかぶった兵だ。左の2人はこの島に住んでいた人である」",
+    "stake": "109–117s dân số 49万 → 12万2128 người chết (4 người có 1)",
+    "open_loop": "105.0s 「そしてこの写真の中の2人は生き延びた側の人だ」→ ~138s (ước tính) 「生き延びたことの方が例外だった」→ ~144s (ước tính) 「15枚の写真で辿っていく」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H27"
+   ],
+   "closers": [
+    "K16"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    1,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Cùng chủ đề dân thường Okinawa, nhưng 85%/柵/21人→28万4625人 của tiêu đề không có trong 120s đầu."
+   ],
+   "thumb_title": [
+    "K",
+    "Thumbnail chép nguyên cụm đầu tiêu đề 「島の人の85%が柵の中」."
+   ],
+   "thumb_hook": [
+    "P",
+    "Ảnh thumbnail (người phụ nữ đội bó củi) khác ảnh mở đầu; 85% không nằm trong hook."
+   ],
+   "why": "Ảnh đặt lính Mỹ và dân đảo cạnh nhau rồi nói 'hai người này thuộc phía sống sót' — người xem hiểu ngay số phận mặc định là chết, sống mới là ngoại lệ.",
+   "weak": "Tới 120s vẫn chưa nói 'hàng rào / 85%' của tiêu đề; lời hứa lộ trình ~144s (ước tính) muộn.",
+   "hook_0_30s": "まずこの1枚の白黒写真を見ていただけるだろうか?4人の人物が崩れた石米の前に並んで立っている。右の2人はヘルメットをかぶった兵だ。左の2人はこの島に住んでいた人である。男性は首に手ぬいを巻き、女性は裸のままこちらを見ている。5年3月26日沖縄県の毛頭赤字まで撮ら",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "juowNKaQvek",
+   "tag": "top",
+   "views": 18596,
+   "duration_min": 23.8,
+   "published_at": "2026-08-29T23:00:20Z",
+   "title": "【岸壁の母】舞鶴に船が着くたび、母は13年間ずっと同じ場所に立っていた｜660万人が海を渡って帰った引き揚げの記録｜実際の写真をAIフルカラー復元",
+   "desc_first": "660万人。これは、終戦のとき日本の外にいた日本人の数である。当時の日本の人口のおよそ一割が、兵士として、開拓民として、商人として、海の向こうにいた。敗戦は、その全員に同じ課題を突きつけた。生きて、日本に帰ること。昭和20年8月9日にソ連軍が国境を越えた満州では、国策で渡ったおよそ27万人の開拓民が、背負えるだけの荷物と子供の手だけを持って港を目指した。同年11月、中国・塘沽の埠頭は、船を待つ日本人で埋め尽くされている。満州からの出口と",
+   "thumb_text": "カラーでよみがえる｜8年ぶりに 妻と再会｜引き揚げ船が着いた日・舞鶴の記録",
+   "key_line_ja": "660万人。これは終戦の時日本の外にいた日本人の数だ",
+   "key_t": 0.2,
+   "lock_line_ja": "全員に同じ課題を突きつけた。生きて日本に帰ること。この動画はその帰り道の記録だ",
+   "lock_t": 25.2,
+   "intro_t": null,
+   "promise_t": 29.2,
+   "timing_note": "",
+   "beats": {
+    "event": "0.2s 「660万人」",
+    "contradiction": "5.3–19.9s đó là số người Nhật ở ngoài nước khi hết chiến tranh, 1/10 dân số",
+    "stake": "19.9–29.2s 「全員に同じ課題を突きつけた。生きて日本に帰ること」",
+    "open_loop": "29.2s 「この動画はその帰り道の記録だ」+ 37.5–44.5s 「戦争が終わってから始まったもう1つの戦いだった」"
+   },
+   "kind": "D",
+   "patterns": [
+    "H16"
+   ],
+   "closers": [
+    "K16"
+   ],
+   "score_0_12": 8,
+   "score_detail": [
+    1,
+    1,
+    2,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "660万人 của tiêu đề ở 0.2s; nhưng 岸壁の母 (nhân vật chính của tiêu đề) không có trong 120s."
+   ],
+   "thumb_title": [
+    "P",
+    "Chung 舞鶴/引き揚げ; thumbnail kể chuyện 'gặp lại vợ sau 8 năm' — khác người mẹ chờ 13 năm của tiêu đề."
+   ],
+   "thumb_hook": [
+    "P",
+    "Hook là con số tổng, thumbnail là 1 cặp vợ chồng — chỉ chung chủ đề hồi hương."
+   ],
+   "why": "Con số 660万 kèm quy đổi '1/10 dân số' làm quy mô thành cảm giác; câu 'một cuộc chiến khác bắt đầu sau khi chiến tranh kết thúc' là nghịch lý khoá cả video.",
+   "weak": "Mở bằng con số trừu tượng, không có mặt người trong 30s đầu; tiêu đề/thumbnail/hook kể 3 người khác nhau (mẹ 13 năm, vợ chồng 8 năm, 660万 nói chung). Vẫn 18,6k nhờ đề tài.",
+   "hook_0_30s": "660万人。これは終戦の時日本の外にいた日本人の数だ。兵士として開拓として商人として教師として当時の日本の人口のおよそ1割にあたる人々が海の向こうにいた。は全員に同じ課題を突きつけた。生きて日本に帰ること。この動画はその帰り道の記録だ。",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "F1TBU19nQ_k",
+   "tag": "top",
+   "views": 17568,
+   "duration_min": 28.6,
+   "published_at": "2026-09-07T23:00:11Z",
+   "title": "【1944年サイパン】銃を提げた海兵隊員が手を引いた少年は、2万6000人が隠れた島から出てきた｜島の暮らしは1年で消えた｜実際の写真をAIフルカラー復元",
+   "desc_first": "東京から南へおよそ2300キロ、太平洋にサイパン島がある。第一次世界大戦のあと国際連盟の委任で日本が統治した南洋群島の島の1つで、1921年に南洋興発という会社が生まれてからは、砂糖の島として栄えた。1943年8月の統計では日本人2万9348人が住み、ガラパンの街には映画館があり、カフェがあり、写真館があった。島で生まれ、日本の本土を一度も見たことのない子どもも大勢いた。1944年6月13日、海の上からの砲撃が始まる。6月15日、アメリ",
+   "thumb_text": "カラーでよみがえる｜銃を提げた兵士が 少年の手を引いた｜逃げ場のない島は 南北20キロ",
+   "key_line_ja": "だがここは日本の本土ではない。東京から南へおよそ2300km、太平洋に浮かぶサイパン島である",
+   "key_t": 23.5,
+   "lock_line_ja": "この1年後、この町は地上から消える",
+   "lock_t": 114.2,
+   "intro_t": null,
+   "promise_t": 118.8,
+   "timing_note": "promise bắt đầu 118.8s 「今日はこの島で…」; phần 「暮らした家族たちの日々を15枚の写真で辿っていく」 ~126s (ước tính).",
+   "beats": {
+    "event": "0.2–19.3s mời nhìn ảnh phố: nhà gỗ, biển hiệu tiếng Nhật 「薬」, cột điện",
+    "contradiction": "23.5s 「だがここは日本の本土ではない」→ 27.3–33s Saipan, cách Tokyo 2300km",
+    "stake": "100.4–110.1s 1943: 2万9348 người Nhật sống trên đảo; nhiều trẻ chưa từng thấy nội địa",
+    "open_loop": "114.2s 「この1年後、この町は地上から消える」→ 118.8s 「今日はこの島で…」(~126s ước tính: 「15枚の写真で辿っていく」)"
+   },
+   "kind": "C",
+   "patterns": [
+    "H27"
+   ],
+   "closers": [
+    "K06",
+    "K16"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    1,
+    1,
+    2,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Chỉ vế cuối 「島の暮らしは1年で消えた」 có ở 114.2s; cậu bé và 2万6000人 chưa xuất hiện trong 120s."
+   ],
+   "thumb_title": [
+    "K",
+    "Thumbnail chép vế đầu tiêu đề (lính cầm súng dắt tay cậu bé)."
+   ],
+   "thumb_hook": [
+    "P",
+    "Chỉ chung đảo Saipan; ảnh cậu bé không có trong hook, 南北20キロ không được nói trong 120s."
+   ],
+   "why": "Tả 1 con phố trông như thị trấn Nhật rồi lật 'đây không phải Nhật' — người xem sửa lại nhận thức ngay trong 25s; câu 'một năm sau thị trấn này biến mất' mở vòng.",
+   "weak": "Ảnh và câu trong thumbnail/tiêu đề (cậu bé + lính) không có trong 2 phút đầu; cảm xúc ở hook chủ yếu là hoài niệm.",
+   "hook_0_30s": "まずこの1枚を見ていただけるだろうか。真っすぐな大通りの左側に木造の焦点がきをつらねている。伊勢先にかかる看板の文字は日本語だ。薬と読める盾の看板もある。白い服の人が通りを歩き電柱が道の先まで続いている。昭和の初めのどこかの地方都市の風景に見える。だがここは日本の本土ではない。東京から南へおよそ",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "WUOHhqJQ8d8",
+   "tag": "top",
+   "views": 12744,
+   "duration_min": 27.5,
+   "published_at": "2026-09-09T23:00:21Z",
+   "title": "【第442連隊】親は収容所の柵の中、息子は最前線へ｜二世だけの部隊が、包囲された211人を救うために800人を失った｜実際の写真をAIフルカラー復元",
+   "desc_first": "1943年3月、ハワイ、ホノルルのイオラニ宮殿前の広場を、若い男たちの隊列が埋め尽くした。アメリカ陸軍に志願した日系二世の壮行式で、集まったのは2686人だったと記録されている。二世とは、日本から移り住んだ親のもとでアメリカに生まれた世代のことで、国籍はアメリカである。だがこのとき、親の祖国と生まれた国は戦争をしていた。募集は1500人だったが、ハワイでは1万人近くが志願したという。同じころ、アメリカ本土の事情は違っていた。前の年、西海",
+   "thumb_text": "カラーでよみがえる｜募集は1500人 志願は1万人近く｜ハワイの日系二世 1943年3月 (ảnh gần như đen trắng/nâu)",
+   "key_line_ja": "国籍はアメリカである。だがこの時親の祖国と生まれた国は戦争をしていた",
+   "key_t": 86.3,
+   "lock_line_ja": "写真をよく見てほしい。…集まっているのは見送りの人々である。その中には息子の敵国となった国から海を渡ってきた親たちがいる",
+   "lock_t": 102.9,
+   "intro_t": null,
+   "promise_t": 114.6,
+   "timing_note": "",
+   "beats": {
+    "event": "0.2–20.2s mời nhìn ảnh quảng trường đầy thanh niên đeo vòng hoa",
+    "contradiction": "86.3–94.7s 「国籍はアメリカである。だがこの時親の祖国と生まれた国は戦争をしていた」",
+    "stake": "94.7s 「1500人の募集に対しハワイでは1万人近くが志願した」",
+    "open_loop": "102.9–114.6s 「写真をよく見てほしい…見送りの人々…息子の敵国となった国から海を渡ってきた親たちがいる」→ 118.6s 「この若者たちの2年半を15枚の写真で辿っていく」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H27"
+   ],
+   "closers": [
+    "K17",
+    "K16"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    1,
+    2,
+    1,
+    2,
+    2,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "Cùng 442; nhưng 'cha mẹ trong hàng rào trại' và 211人/800人 của tiêu đề không có trong 120s (bố mẹ ở Hawaii đi tiễn con)."
+   ],
+   "thumb_title": [
+    "P",
+    "Chung chủ đề nisei 442, nhưng số liệu thumbnail (1500/1万) khác số liệu tiêu đề (211/800)."
+   ],
+   "thumb_hook": [
+    "K",
+    "Thumbnail = đúng ảnh mở đầu + đúng con số 1500/1万 nói ở 94.7s."
+   ],
+   "why": "Mâu thuẫn quốc tịch (Mỹ) và tổ quốc của cha mẹ (Nhật đang đánh Mỹ) + chi tiết ẩn trong ảnh (cha mẹ đứng tiễn) biến 1 ảnh đám đông thành câu chuyện gia đình.",
+   "weak": "Miễn trừ AI 20.2–47.2s đặt TRƯỚC mâu thuẫn; câu chốt tới 86s mới có — 6/6 top chỉ video này để chốt sau 60s, và là video thấp nhất trong 6.",
+   "hook_0_30s": "まずこの1枚を見ていただけるだろうか。石畳の広場を若い男たちの対列が埋め尽くしている。列は奥の波気の下まで続き数えきれない。皆作業服で首に鼻の輪をかけている。両側にヤの波が高く伸びている。この動画では当時の白黒写真をAIで補正し、色を推定して再現している。当時カラーで取られていたらこう映ってい",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "ms0jtVqHheA",
+   "tag": "new",
+   "views": 72,
+   "duration_min": 24.6,
+   "published_at": "2026-09-22T23:00:18Z",
+   "title": "【駆逐艦涼月】修理を打ち切られ、入り江に隠されたまま終戦を迎えた艦｜戦った2年半より、港を守った78年のほうが長い｜実際の写真をAIフルカラー復元",
+   "desc_first": "1945年4月7日、戦艦「大和」とともに沖縄へ向かった防空駆逐艦「涼月」は、2番砲塔のわきに爆弾の直撃を受けました。甲板は約7.6メートルにわたって破れ、舷側の破口は水線下およそ90センチまで広がります。それでも艦は沈まず、艦首を深く沈めたまま、後ろ向きに佐世保へ帰り着いたと伝えられています。",
+   "thumb_text": "カラーでよみがえる｜修理されず 入り江に隠された｜駆逐艦涼月 1945年の記録",
+   "key_line_ja": "戦いは終わったのに傷は残ったままだった",
+   "key_t": 44.5,
+   "lock_line_ja": "なぜ終戦から3ヶ月経ってもこの艦は壊れたままだったのか",
+   "lock_t": 95.9,
+   "intro_t": null,
+   "promise_t": 99.2,
+   "timing_note": "",
+   "beats": {
+    "event": "0.1–8.5s ảnh 2 người đi xuống dốc ra biển, con tàu dài nằm dọc bờ",
+    "contradiction": "44.5s 「戦いは終わったのに傷は残ったままだった」",
+    "stake": "",
+    "open_loop": "95.9s 「なぜ終戦から3ヶ月経ってもこの艦は壊れたままだったのか」→ 99.2s hứa 'vết thương, sửa tạm, vai trò sau chiến tranh' → 108s 「涼月はこの後防波堤になる」"
+   },
+   "kind": "D",
+   "patterns": [
+    "H27"
+   ],
+   "closers": [
+    "K06",
+    "K16"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    2,
+    1,
+    2,
+    0,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Ảnh tàu hỏng nằm trong vịnh (0–48s) + câu hỏi 'vì sao vẫn hỏng' (95.9s) = nửa đầu tiêu đề; 'đê chắn sóng' của vế sau có ở 108s."
+   ],
+   "thumb_title": [
+    "K",
+    "修理されず/入り江に隠された/涼月 = đúng tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "Thumbnail là đúng ảnh mở đầu (tàu trong vịnh, 2 người đi xuống dốc)."
+   ],
+   "why": "Câu hỏi 'chiến tranh đã hết 3 tháng sao tàu vẫn hỏng' đúng kiểu nghịch lý thời gian; lời hứa rõ phạm vi.",
+   "weak": "Không có con người (2 người quay lưng, 'どんな人なのかは分からない' 59.4s) → cảm xúc 0; không có con số trong 120s. 72 view lúc lấy số liệu nhưng video mới đăng ~11 giờ — chưa so được.",
+   "hook_0_30s": "細い坂道を2人の一影が海に向かって降りていく。道の先には騎士に沿って横たわる長い先体がある。1945年11月9日佐世ぼの愛の裏面が終わっておよそ3ヶ月が経っていた。これは駆逐間鈴つきを移した1枚だ。陸軍航空軍の記録として残された写真である。",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "Upbbpdck--A",
+   "tag": "new",
+   "views": 102,
+   "duration_min": 23.3,
+   "published_at": "2026-09-21T23:00:03Z",
+   "title": "【ラバウル】日本兵が修理した隼は豪州へ｜750号機からたどる終戦後の人々｜実際の写真をAIフルカラー復元",
+   "desc_first": "日本の戦闘機・隼は、日本兵に修理と梱包をされ、オーストラリアへ送られました。",
+   "thumb_text": "カラーでよみがえる｜日本兵が直した隼 機体は豪州へ｜ラバウル 終戦後の記録 (ảnh nhỏ có viền trắng + chữ AUSTRALIAN WAR MEMORIAL)",
+   "key_line_ja": "日本の戦闘機が、オーストラリアへ送られた。その機体を修理し、梱包したのは、日本の兵士たちだった",
+   "key_t": 0.0,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": 59.5,
+   "timing_note": "Không có câu khoá; 81.9–100.8s ba câu 'không biết' tự đóng câu hỏi.",
+   "beats": {
+    "event": "0.0s 「日本の戦闘機が、オーストラリアへ送られた」",
+    "contradiction": "3.8s 「その機体を修理し、梱包したのは、日本の兵士たちだった」",
+    "stake": "",
+    "open_loop": "59.5s 「白黒の記録に色を添えながら、写真に残った時間をたどっていく」 (không có N, không có câu hỏi)"
+   },
+   "kind": "C",
+   "patterns": [
+    "H29"
+   ],
+   "closers": [],
+   "score_0_12": 8,
+   "score_detail": [
+    2,
+    2,
+    2,
+    1,
+    0,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「日本兵が修理した隼は豪州へ」 được nói ở 0.0–3.8s."
+   ],
+   "thumb_title": [
+    "K",
+    "Thumbnail lặp gần nguyên tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "Ảnh thumbnail là ảnh 750号機 được tả ở 8.6–25s."
+   ],
+   "why": "Nghịch lý 'lính Nhật tự sửa máy bay Nhật để gửi cho Úc' đặt ngay giây 0.",
+   "weak": "81.9–100.8s nói liền 3 câu 'không biết': 「写真の3人がその作業をした人々かは分からない」「修理に当たった人数は決まらない」「名簿を結び付けてはいない」 — tự đóng câu hỏi vừa mở. Ảnh thumbnail nhỏ, người tí hon. Video ~35 giờ tuổi (102 view) — chưa so được.",
+   "hook_0_30s": "日本の戦闘機が、オーストラリアへ送られた。その機体を修理し、梱包したのは、日本の兵士たちだった。1945年9月、ラバウルで撮られた1枚である。木々の間に、陸軍の一式戦闘機、隼がある。館の記録にある機体番号は750。翼のそばに、3人の姿が見える。この写真をカラー化してみる。",
+   "timing_source": "srt"
+  },
+  {
+   "video_id": "SO9NUm_0YNI",
+   "tag": "new",
+   "views": 4158,
+   "duration_min": 24.1,
+   "published_at": "2026-09-20T23:00:30Z",
+   "title": "【キスカ島】5千人が去った島に、連合軍が上陸した｜残された犬と空の陣地｜実際の写真をAIフルカラー復元",
+   "desc_first": "兵士の隣に、一匹の犬が座っている。後ろには、かつて日本軍が使った電話交換施設が見えます。1943年8月15日、アリューシャン列島のキスカ島で撮られた写真です。",
+   "thumb_text": "カラーでよみがえる｜上陸した島に 守備隊がいない｜キスカ撤退 残された一枚",
+   "key_line_ja": "ところが、この施設を使っていた日本の守備隊は、もういなかった",
+   "key_t": 22.5,
+   "lock_line_ja": "米海軍の写真説明は、この犬が日本軍によって島に残されたと記している",
+   "lock_t": 95.6,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_note": "113–118s 「犬が何を感じていたか。…そこまでは、この写真から確かめられない」 khép vòng; không có lời hứa trong 120s.",
+   "beats": {
+    "event": "0.0s 「兵士のすぐ横に、1匹の犬がいる」",
+    "contradiction": "18.4–22.5s ngày Mỹ-Canada đổ bộ 「ところが、この施設を使っていた日本の守備隊は、もういなかった」",
+    "stake": "28.1s 「5100人を超える将兵が、上陸より前に島を離れていた」",
+    "open_loop": "95.6s chú chó do quân Nhật để lại → 108–118s 「犬の名前も、兵士の名前もない…そこまでは、この写真から確かめられない」 (tự khép vòng)"
+   },
+   "kind": "C",
+   "patterns": [
+    "H27"
+   ],
+   "closers": [],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "'5千人が去った島に連合軍が上陸' = 22.5–28.1s; 'con chó bị bỏ lại' ở 0s và 95.6s."
+   ],
+   "thumb_title": [
+    "K",
+    "守備隊がいない = 5千人が去った; 残された一枚 ≈ 残された犬."
+   ],
+   "thumb_hook": [
+    "K",
+    "Ảnh thumbnail là ảnh lính + chó được tả từ 0s."
+   ],
+   "why": "Đổ bộ vào đảo mà kẻ thù đã biến mất — nghịch lý chiến thuật rõ trong 25s; có con chó làm điểm cảm xúc.",
+   "weak": "Không có lời hứa lộ trình trong 120s; khép vòng bằng 'không xác nhận được' ở 113–118s. 4.158 view trong ~2,5 ngày — tốt nhất trong 3 video mới nhưng chưa đủ tuổi để so với top.",
+   "hook_0_30s": "兵士のすぐ横に、1匹の犬がいる。板張りの小屋の入口には、英語の看板が掛かっている。テレフォン・セントラル、電話の交換施設だ。撮影されたのは、1943年8月15日のキスカ島。アメリカ軍とカナダ軍が、島に上陸した日である。ところが、この施設を使っていた日本の守備隊は、もういなかった。5100人を超える将兵が、上陸より前に島を離れていた。",
+   "timing_source": "srt"
+  }
+ ],
+ "win_vs_lose": "Khác nhau chủ yếu ở ĐỀ TÀI, hook chỉ là yếu tố phụ. (1) 6 video top đều có mặt người thường/người trẻ và 1 mâu thuẫn cảm xúc (cười 2 giờ trước khi chết, trẻ mồ côi không ai dừng lại, phía sống sót là ngoại lệ, mẹ chờ 13 năm, thị trấn Nhật không ở Nhật, con đánh cho nước đang đánh cha mẹ). Video hook điểm thấp nhất trong top (juowNKaQvek 8/12, mở bằng con số không có ảnh) vẫn 18.596 view; video mới ms0jtVqHheA hook 9/12 nhưng chủ thể là con tàu, không có người, chỉ 72 view. Trong danh sách 28 video của kênh, các đề tài chỉ huy/chính khách/khí tài đều thấp: 吉田茂 ~1.000, 二・二六 2.200, ペリリュー 3.300, マンザナー 3.600, 大和 7.200, 榛名 6.800. (2) Hook có tạo khác biệt ở TRONG nhóm cùng đề tài người: hDkg đặt ảnh của tiêu đề + mốc 2 giờ vào 16–27s và gấp đôi video thứ 2; WUOH lật muộn nhất (86.3s, miễn trừ AI đặt trước) và thấp nhất nhóm top. (3) 3 video mới còn 1 điểm chung: có câu 'không biết/không xác nhận được' trong 2 phút đầu (0 ở video top) — nhưng chúng mới đăng 11–59 giờ nên chưa thể kết luận view; đây là tương quan, chưa phải nguyên nhân.",
+ "our_eps": [
+  {
+   "ep": "ep01",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep01-ushijima-mitsuru",
+   "status": "Có final.mp4 (2026-09-21 14:27); không có DANG-TAI.txt → chưa rõ đã đăng",
+   "title": "【沖縄戦】首里城地下の壕でランタンを囲む4人の将校——撮影から2か月3週間後、中央と隣の2人は島の南端で最期を迎えた｜1945年4月の一枚｜実際の写真をAIカラー化",
+   "desc_first": "1945年4月、首里城地下の壕でランタンを囲む四人の将校。沖縄戦の結末を、この一枚はまだ何も知りません。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep01-ushijima-mitsuru\\thumbnail_final.png (09-16 08:53, giống từng byte thumbnail.png 09-11) — CŨ hơn thumbnail_TEST_v2…v7.png (09-17 14:30–15:22); thumb_text.txt (09-17 15:21) khớp thumbnail_TEST_v7.png",
+   "thumb_text": "thumbnail_final.png: 沖縄陥落の夜｜部下にただ一人｜「死ぬな、真実を語れ」｜[banner] 牛島満、最期の命令. thumbnail_TEST_v7.png: 沖縄陥落の夜｜ただ一人の部下に｜「死ぬな、真実を語れ」｜牛島満、最期の命令 (chữ to hơn). v2–v6: cùng chữ với final, chỉ khác cỡ/vị trí.",
+   "open_0_30_ja": "まず、この一枚の写真をご覧いただけるだろうか。薄暗い壕の中、四人の将校が一枚の書類を囲んで顔を寄せている。天井は丸太と土で組まれ、壁には筆で書かれた書が一幅、静かに掛けられている。手前で腕を組み立つ人物は、部下の示す何かを黙って見つめている。奥で眼鏡をかけ…",
+   "key_line_ja": "この写真が撮られてからわずか二か月と三週間後、この二人は、島の南端の壕の中で、自らの命を絶つことになる。",
+   "key_t": 120.2,
+   "intro_t": 110.2,
+   "promise_t": null,
+   "disclaimer_t": 66.0,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 4,
+   "score_detail": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "「四人の将校」 7.6s và ランタン 39.2s có trong hook, nhưng vế chốt 「2か月3週間後…最期」 ở 120.2s (ngoài 90s)."
+   ],
+   "thumb_title": [
+    "L",
+    "Thumbnail nói mệnh lệnh cuối cho 1 cấp dưới, tiêu đề nói bức ảnh 4 sĩ quan; không chung cụm nào (TITLE_LOCK ghi cố ý 'không trùng chữ nào')."
+   ],
+   "thumb_hook": [
+    "L",
+    "Mệnh lệnh cuối ở 579.5s (最後の命令) và 925.6s (真実を); 90s đầu chỉ tả ảnh + miễn trừ."
+   ],
+   "broken_promises": [
+    "Thumbnail đặt trong ngoặc 「死ぬな、真実を語れ」 nhưng script.txt không có câu này (grep 死ぬな = 0). Nguyên văn ~925s: 「もしお前が死ねば、この沖縄の戦いの真実を知る者が、誰もいなくなってしまう。…これは軍司令官としての、お前への命令である」 — ngoặc kép cho câu diễn ý.",
+    "「沖縄陥落」: script.txt có 0 lần chữ 陥落.",
+    "Vế hệ quả của tiêu đề 「2か月3週間後」 ở 120.2s — không nằm trong 90s đầu."
+   ],
+   "problems": [
+    "0–54.1s chỉ tả ảnh (「天井は丸太と土で組まれ」「傍らには金属の枠を持つランタンが一つ」) không có mâu thuẫn; kênh mẫu lật ở 8–26s.",
+    "Miễn trừ AI 66.0–98.5s (32s) đặt TRƯỚC câu chốt 120.2s; kênh mẫu đặt sau câu lật ở 8/9.",
+    "Không có 「この写真をカラー化してみる」 (0 lần); không có lời hứa lộ trình.",
+    "Hai bộ thumbnail chưa chốt: thumbnail_final.png (09-16) và thumbnail_TEST_v7.png (09-17, khớp thumb_text.txt).",
+    "Banner thumbnail là tên người (牛島満); kênh mẫu 0/9 thumbnail có tên."
+   ],
+   "fix": [
+    "Không cần dựng lại: chốt 1 file thumbnail; bỏ ngoặc 「」 hoặc dùng cụm có trong script — script có 「生きて語り続けよという言葉」 (~930s) → ví dụ 最後の命令は『生きて語れ』 vẫn là diễn ý nên KHÔNG đặt ngoặc.",
+    "Cho thumbnail và tiêu đề cùng 1 lời hứa như hDkgnTPJw5g: thumbnail lấy vế đầu tiêu đề + số, ví dụ 「ランタンを囲む4人｜2か月3週間後｜2人は島の南端で」.",
+    "Nếu dựng lại: đưa câu 120.2s lên 0–15s, cắt đoạn tả ảnh 54s còn ~15s, miễn trừ AI lùi sau câu chốt và rút về ~27s như mẫu, thêm 「この写真をカラー化してみる」 + 3 màu (ánh lửa đèn, gỗ, quân phục), thêm câu hứa 「この壕から島の南端まで、N枚の写真で辿っていく」. Câu mở mẫu: 「この写真の中央の二人は、2か月と3週間後、島の南端の壕で自ら命を絶つ。」"
+   ],
+   "model_video": "hDkgnTPJw5g (hệ quả của ảnh nói ở 16–27s) + 4J5Il-hMN6E (Okinawa, lật danh tính người trong ảnh ở 8.2s)",
+   "priority": "cao",
+   "priority_why": "Thumbnail có câu trong ngoặc không có nguyên văn trong script (dễ bị comment bắt lỗi) + 2 bộ thumbnail chưa chốt + câu chốt muộn nhất lane (120.2s). Sửa thumbnail/tiêu đề không cần dựng lại."
+  },
+  {
+   "ep": "ep02",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep02-kuribayashi-iwojima",
+   "status": "Có final.mp4 (2026-09-21 14:34); không có DANG-TAI.txt",
+   "title": "【硫黄島】正面を見据えるこの司令官は万歳突撃を禁じた——最後の夜、階級章をすべて外したという｜2万2786人を率いた男の遺体は見つからなかった｜実際の写真をAIカラー化",
+   "desc_first": "硫黄島で2万2786人を率いた栗林忠道。AIカラー化した一枚の肖像写真から、36日間の戦いと最後の夜までを辿ります。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep02-kuribayashi-iwojima\\thumbnail_final.png (09-16 09:10, bố cục ảnh bên phải). thumbnail.png (09-11) là bản cũ: cùng chữ, ảnh cắt sát mặt phủ toàn khung.",
+   "thumb_text": "妻への手紙は｜「床の隙間を｜直して」だった｜[banner] 栗林忠道、最期の36日 (2 file cùng chữ)",
+   "open_0_30_ja": "まず、この一枚の写真をご覧いただけるだろうか。軍帽をまっすぐにかぶり、正面を見据えるこの人物の表情には、静かな威厳が漂っている。帽子の正面には星の帽章、襟には階級を示す襟章がつけられ、胸元には星形の勲章と、いくつもの勲章の略綬が並んでいる。口元をわずかに引き締めたその表情からは、",
+   "key_line_ja": "この写真に写っている男は、面積わずか二十一平方キロメートルほどの島で、二万二千七百八十六人の兵を率いることになる。そして、その戦いが終わったとき、彼の遺体は、ついに見つからなかった。",
+   "key_t": 36.9,
+   "intro_t": 86.1,
+   "promise_t": null,
+   "disclaimer_t": 48.8,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 5,
+   "score_detail": [
+    1,
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "2万2786人 (36.9s) và 遺体 (43.7s) có trong hook; 万歳突撃 323.2s, 階級章 806.0s."
+   ],
+   "thumb_title": [
+    "L",
+    "Tiêu đề: cấm banzai/tháo quân hàm/thi thể. Thumbnail: thư gửi vợ/sàn nhà. Không chung cụm (TITLE_LOCK cố ý chia vai)."
+   ],
+   "thumb_hook": [
+    "L",
+    "手紙 345.2s, 床/隙間 355.8s, 三十六日 837.7s — không có gì trong 90s."
+   ],
+   "broken_promises": [
+    "Thumbnail trích 「床の隙間を直して」 nhưng script chỉ viết 「家の床下にできた隙間の直し方を、絵まで添えて説明する」 (~355s) — ngoặc kép cho câu diễn ý.",
+    "階級章をすべて外した (tiêu đề) ở 806.0s; 36日 (banner) ở 837.7s."
+   ],
+   "problems": [
+    "0–36.9s tả mũ/quân hàm/huân chương (帽章, 襟章, 略綬) — ảnh chân dung không có gì để lật.",
+    "Miễn trừ AI 48.8–81.2s; sau đó 86–111s tiểu sử (sinh 1891 ở 93.3s, 陸大次席) — kênh mẫu 0/9 nói năm sinh trong 120s.",
+    "Ảnh thứ 2 (106.9s) lại là chân dung; không có 「この写真をカラー化してみる」; không có lời hứa lộ trình."
+   ],
+   "fix": [
+    "Không cần dựng lại: bỏ ngoặc 「」 trên thumbnail hoặc đổi thumbnail sang lời hứa hook đã nói: 「2万2786人を率いた男｜遺体は｜見つからなかった」.",
+    "Nếu dựng lại: mở bằng câu 36.9–43.7s ở 0–10s kiểu juowNKaQvek (con số ở 0.2s): 「2万2786人を率いたこの男の遺体は、ついに見つからなかった。」; dời tiểu sử năm sinh ra sau 2 phút."
+   ],
+   "model_video": "juowNKaQvek (con số ở giây 0) + hDkgnTPJw5g",
+   "priority": "vừa",
+   "priority_why": "Hook đã có câu chốt ở 36.9s khớp 1 phần tiêu đề; lỗi chính là thumbnail dùng ngoặc cho câu diễn ý và nói chuyện ở phút 6."
+  },
+  {
+   "ep": "ep03",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep03-nakagawa-peleliu",
+   "status": "Có final.mp4 (2026-09-21 14:38); không có DANG-TAI.txt",
+   "title": "【ペリリュー】大佐は連隊旗を焼いて消えたとされる——それでも34人の兵は洞窟に潜み続け、投降は2年5か月後の1947年4月22日だった｜実際の写真をAIカラー化",
+   "desc_first": "ペリリュー島の戦い——連隊旗を焼いて姿を消したとされる一人の大佐。それでも三十四人の兵は洞窟に潜み続け、投降は組織的抵抗の終わりから二年五か月後、一九四七年四月二十二日のことでした。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep03-nakagawa-peleliu\\thumbnail_final.png (09-16 09:10, file duy nhất)",
+   "thumb_text": "たった4日のはずが｜73日間｜守り抜いた男｜[banner] 中川州男、ペリリューの最期",
+   "open_0_30_ja": "まず、この一枚の写真をご覧いただけるだろうか。ある男の肖像写真である。軍服の襟を正し、こちらをまっすぐに見つめる、静かな表情。これといって目を引くところのない、実に地味な一枚だ。名前を中川州男という。この写真は解像度が非常に低く、鮮明とは言い難い。何度も複写を重ねた末に、辛うじて今に",
+   "key_line_ja": "だが、この無名に近い大佐が、追い詰められた末に編み出したある戦術は、後にこの戦争の帰趨に深く関わることになる。",
+   "key_t": 76.0,
+   "intro_t": 19.7,
+   "promise_t": null,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 3,
+   "score_detail": [
+    0,
+    0,
+    1,
+    1,
+    0,
+    1
+   ],
+   "title_hook": [
+    "L",
+    "連隊旗 767.4s, 1947年4月22日 832.6s, 二年五か月 844.0s — không chi tiết nào của tiêu đề trong 120s; hook nói về ảnh mờ, vô danh."
+   ],
+   "thumb_title": [
+    "L",
+    "Cùng Peleliu nhưng không chung cụm: thumbnail 4日/73日, tiêu đề 連隊旗/34人/2年5か月."
+   ],
+   "thumb_hook": [
+    "L",
+    "四日 276.5s, 七十三日 535.5s; 「守り抜」 0 lần trong script."
+   ],
+   "broken_promises": [
+    "Toàn bộ chi tiết tiêu đề ở 767–844s (phút 12–14); toàn bộ chi tiết thumbnail ở 276–536s.",
+    "「守り抜いた男」 — script không có chữ 守り抜 (đảo vẫn thất thủ; đây là diễn ý)."
+   ],
+   "problems": [
+    "5–66s tự hạ giá ảnh mở đầu: 「これといって目を引くところのない、実に地味な一枚だ」「この写真は解像度が非常に低く、鮮明とは言い難い」 — kênh mẫu dùng ảnh mở là ảnh đắt nhất.",
+    "Câu chốt 76.0s mơ hồ (「ある戦術」 không nói là gì).",
+    "Không có miễn trừ AI trong lời đọc (script 0 chữ 'AI'); không có nghi thức tô màu; tiểu sử năm sinh 116.7s.",
+    "Kênh mẫu đã làm cùng đề tài (Eblvw8hqX4Y, 3.300 view) với tiêu đề 「3日で終わると言われた戦いは、46度の島で73日続いた｜34人は…2年5か月洞窟にいた」."
+   ],
+   "fix": [
+    "Không cần dựng lại: cho tiêu đề và thumbnail cùng 1 lời hứa — thumbnail đã có cặp 4日/73日 thì tiêu đề mở bằng chính cặp đó: 【ペリリュー】「4日で終わる」はずの島で、この大佐は73日間戦い続けた——… (lõi ≤65 ký tự).",
+    "Nếu dựng lại: bỏ đoạn 'ảnh mờ, vô danh' 5–66s; câu mở mẫu 「『4日で終わる』と言われた島で、この大佐は73日間戦い続けた。」 ở 0–10s, rồi lật: 34 người còn trong hang tới 1947."
+   ],
+   "model_video": "F1TBU19nQ_k (lật nhận thức ở 23.5s) + 4J5Il-hMN6E",
+   "priority": "cao",
+   "priority_why": "Tiêu đề và thumbnail đều không có gì trong 4,5 phút đầu, hook tự chê ảnh mở; điểm hook thấp nhất lane (3/12)."
+  },
+  {
+   "ep": "ep04",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep04-aruga-yamato",
+   "status": "Có final.mp4 (2026-09-21 14:43); không có DANG-TAI.txt",
+   "title": "【戦艦大和】着任時、47歳の艦長は長男に「死に場所を得た」と書き送った——翌年4月、総員退去の後も艦橋を離れなかった｜残る肖像写真はこの一枚だけ｜実際の写真をAIカラー化",
+   "desc_first": "戦艦大和・最後の艦長、有賀幸作。見つかっている肖像写真はたった一枚、着任からわずか四か月足らずで、その指揮官人生は終わりを告げました。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep04-aruga-yamato\\thumbnail_final.png (09-16 09:10, file duy nhất)",
+   "thumb_text": "片道分の燃料だけ｜積んで出撃した｜最後の艦長｜[banner] 有賀幸作、戦艦大和の最期",
+   "open_0_30_ja": "この一枚の肖像写真をご覧いただきたい。海軍の軍服に身を包み、肩の階級章がはっきりと見える、いかにも当時の海軍指揮官らしい厳しい表情の男である。名前を有賀幸作という。彼は、史上最大の戦艦として建造された「大和」の、最後の艦長だった。撮影されたのは一九四五年より前、正確な年は分かっていない。",
+   "key_line_ja": "彼は、史上最大の戦艦として建造された「大和」の、最後の艦長だった。",
+   "key_t": 18.4,
+   "intro_t": 15.4,
+   "promise_t": null,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 5,
+   "score_detail": [
+    1,
+    1,
+    0,
+    1,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "「残る肖像写真はこの一枚だけ」 32.6s có; 死に場所 302.4s, 総員退去 583.8s."
+   ],
+   "thumb_title": [
+    "P",
+    "Chung 大和/艦長; thumbnail 片道燃料, tiêu đề 死に場所/艦橋 — không chung cụm."
+   ],
+   "thumb_hook": [
+    "P",
+    "最後の艦長 23.4s có; 片道分の燃料 375.3s."
+   ],
+   "broken_promises": [
+    "「47歳」 — script.txt không có tuổi nào (0 chữ 歳). Phép tính 1897-08-21 → 1944-12-10 = 47 đúng nhưng người xem không nghe.",
+    "Tiêu đề khẳng định 「総員退去の後も艦橋を離れなかった」, script viết 「離れることを拒んだという」 và mô tả viết 「残された証言には食い違いがあり」 — tiêu đề bỏ mất 'という'."
+   ],
+   "problems": [
+    "29.8s 「正確な年は分かっていない」 — câu 'không biết' trong 30s đầu (video top kênh mẫu: 0 câu loại này trong 120s).",
+    "60.9–68.3s 「後にどのような最期を…何も読み取ることはできない」; 72–150s là ảnh tàu chạy thử 1941 không có người.",
+    "Không miễn trừ AI, không nghi thức tô màu, không lời hứa lộ trình."
+   ],
+   "fix": [
+    "Không cần dựng lại: thêm 「という」 vào vế 艦橋; bỏ 「47歳」 hoặc giữ nhưng biết là không có trong lời đọc; thumbnail lấy cụm đầu tiêu đề: 「長男への手紙｜『死に場所を得た』｜最後の艦長」 (câu này CÓ nguyên văn ~302s).",
+    "Nếu dựng lại: mở bằng câu thư ở 0–10s kiểu hDkg: 「この男は着任の時、長男に『死に場所を得た』と書き送った。」; dời 「正確な年は分かっていない」 xuống mô tả."
+   ],
+   "model_video": "hDkgnTPJw5g (đưa chi tiết của tiêu đề vào 25s đầu)",
+   "priority": "vừa",
+   "priority_why": "Có 1 claim tiêu đề mạnh hơn script (艦橋) và 1 con số không có trong lời đọc (47歳); sửa rẻ."
+  },
+  {
+   "ep": "ep05",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep05-yamazaki-attu",
+   "status": "Có final.mp4 (2026-09-21 14:47); không có DANG-TAI.txt",
+   "title": "【アッツ島】軍医は「私はまだ三十三歳なのに死ぬ」と書いた——同じ日記に、病院の患者をどうしたかが記されていた｜米軍約11000名vs守備隊約2600名｜実際の写真をAIカラー化",
+   "desc_first": "アッツ島の戦い——指揮官の写真は公式の一枚だけ。そして三十三歳の軍医が残した数行の日記。約二千六百名の守備隊を待っていた結末とは。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep05-yamazaki-attu\\thumbnail_final.png (09-16 09:10, file duy nhất)",
+   "thumb_text": "米国本土で唯一の｜バンザイ突撃｜霧の中に消えた男｜[banner] 山崎保代、アッツ島の19日間",
+   "open_0_30_ja": "まず、この一枚の肖像写真をご覧いただきたい。陸軍の軍服に身を包み、襟には大佐の階級章がはっきりと見える。背筋を伸ばし、まっすぐ正面を見据えた、当時の軍人の肖像写真としてはごく典型的な一枚である。名前を山崎保代という。これは公式の軍事写真として残されたもので、",
+   "key_line_ja": "アメリカの領土の上で行われた、ただ一度の、いわゆるバンザイ突撃。その先頭に立った男である。",
+   "key_t": 51.7,
+   "intro_t": 23.3,
+   "promise_t": null,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 4,
+   "score_detail": [
+    0,
+    1,
+    1,
+    1,
+    0,
+    1
+   ],
+   "title_hook": [
+    "L",
+    "三十三歳 671.2s, 日記 668.2s, 患者 678.1s — lời hứa tiêu đề trả ở phút 11; hook nói Yamazaki."
+   ],
+   "thumb_title": [
+    "L",
+    "Tiêu đề = quân y + nhật ký; thumbnail = Yamazaki + banzai; không chung cụm (TITLE_LOCK cố ý chia vai)."
+   ],
+   "thumb_hook": [
+    "P",
+    "バンザイ突撃 55.9s và アメリカの領土 51.7s có; 霧 342.8s, 十九日 515.4s."
+   ],
+   "broken_promises": [
+    "Thumbnail 「米国本土で唯一の」 — script nói 「アメリカの領土の上で」. Attu thuộc lãnh thổ Alaska (năm 1943 chưa là bang), không phải 本土 → thumbnail nói quá script.",
+    "Tiêu đề hứa 'bệnh nhân đã bị làm gì' — trả ở 678.1s."
+   ],
+   "problems": [
+    "5–23s tả quân phục 「ごく典型的な一枚」 — tự nói ảnh không có gì đặc biệt.",
+    "143–195s tranh luận lý do chiếm đảo, kết bằng 「どちらが正しいのか、今も結論は出ていない」 trong 3,5 phút đầu.",
+    "Không miễn trừ AI, không nghi thức tô màu; câu mạnh nhất lane (nhật ký quân y 「私はまだ三十三歳なのに死ぬ」) nằm ở phút 11."
+   ],
+   "fix": [
+    "Không cần dựng lại: sửa thumbnail 「米国本土で唯一の」 → 「アメリカ領で唯一の」; chọn 1 lời hứa cho cả tiêu đề và thumbnail — nếu giữ tiêu đề quân y, thumbnail nên là 「『私はまだ33歳なのに死ぬ』｜軍医の日記｜患者は…」.",
+    "Nếu dựng lại: mở bằng câu nhật ký ở 0–15s kiểu hDkg: 「『私はまだ三十三歳なのに死ぬ』。一人の軍医は、最後の突撃の朝、日記にそう書いた。」; dời đoạn tranh luận 143–195s xuống sau."
+   ],
+   "model_video": "hDkgnTPJw5g (hệ quả đặt trong 25s) + 4J5Il-hMN6E",
+   "priority": "cao",
+   "priority_why": "Thumbnail có lỗi sự thật (本土) + tiêu đề trả lời ở phút 11 + tiêu đề và thumbnail nói 2 nhân vật khác nhau."
+  },
+  {
+   "ep": "ep06",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep06-nagumo-saipan",
+   "status": "Có final.mp4 (2026-09-21 14:51); không có DANG-TAI.txt",
+   "title": "【真珠湾】189機を発艦させた日、この肖像の男はまだ何も知らない——2年7ヶ月後、遺体を見つけたのは米海兵隊だった｜空母6隻を率いた提督の写真｜実際の写真をAIカラー化",
+   "desc_first": "真珠湾攻撃で空母六隻を率いた南雲忠一。あの日から結末まで、道のりはわずか二年七ヶ月でした。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep06-nagumo-saipan\\thumbnail_final.png (09-16 10:32, file duy nhất)",
+   "thumb_text": "真珠湾を勝利｜に導いた男｜三年後、サイパンの｜洞窟で消えた｜[banner] 南雲忠一、栄光から最期まで",
+   "open_0_30_ja": "まず、この一枚の肖像写真をご覧いただきたい。海軍中将の軍服に身を包み、胸には幾つもの勲章を連ね、背筋を伸ばして、まっすぐ前を見据えている。撮影されたのは一九四一年から四二年ごろ、第一航空艦隊司令長官として、彼のキャリアが頂点にあった時期である。名前を南雲忠一という。",
+   "key_line_ja": "だが、この写真のおよそ三年後、この男は太平洋の小さな島の、名もない洞窟の中で、その生涯を終えることになる。",
+   "key_t": 40.4,
+   "intro_t": 28.7,
+   "promise_t": 56.3,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 8,
+   "score_detail": [
+    1,
+    2,
+    2,
+    1,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "Cùng kết cục (洞窟 47.1s) nhưng số khác: tiêu đề 2年7ヶ月 (355.6s), hook 「およそ三年後」 40.4s; 189機 153.7s, 遺体 742.1s."
+   ],
+   "thumb_title": [
+    "P",
+    "Cùng người/kết cục; thumbnail 三年後 vs tiêu đề 2年7ヶ月."
+   ],
+   "thumb_hook": [
+    "K",
+    "三年後/洞窟 40.4–47.1s; 勝利 ≈ 「栄光の絶頂」 52.1s."
+   ],
+   "broken_promises": [
+    "Hai con số cho cùng 1 khoảng: tiêu đề 2年7ヶ月 (tính từ 12/1941), hook + thumbnail 'およそ三年後' (tính từ ảnh 1941–42).",
+    "「遺体を見つけたのは米海兵隊」 ở 742.1s; 「何も知らない」 ở 770.1s."
+   ],
+   "problems": [
+    "0–28.7s tả quân phục/huân chương; 86–120s tiểu sử (sinh 1887 ở 91.0s).",
+    "Không miễn trừ AI, không nghi thức tô màu. Lời hứa 56.3s 「この一枚の写真から始まる物語は、その落差そのものである」 không có phạm vi/số ảnh."
+   ],
+   "fix": [
+    "Không cần dựng lại: thống nhất 1 con số (dùng 2年7ヶ月 cho cả thumbnail: 「2年7ヶ月後、サイパンの洞窟で」).",
+    "Hook đã đúng khung (hé kết cục ở 40s) — nếu dựng lại chỉ cần kéo câu 40.4s lên ~10s và thêm hứa lộ trình: 「真珠湾からサイパンの洞窟までの2年7ヶ月を、N枚の写真で辿っていく」."
+   ],
+   "model_video": "F1TBU19nQ_k (「この1年後、この町は地上から消える」 — hé kết cục + mốc thời gian)",
+   "priority": "vừa",
+   "priority_why": "Hook và thumbnail đã khớp; chỉ lệch số giữa tiêu đề và thumbnail — sửa rẻ."
+  },
+  {
+   "ep": "ep07",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep07-shibasaki-tarawa",
+   "status": "Có final.mp4 (2026-09-21 14:55); không có DANG-TAI.txt",
+   "title": "【タラワの戦い】腰まで海に浸かり進んだ米海兵、第一波は死傷率約75%——だが守備隊約4700名のうち捕虜となった日本兵は17名｜1943年11月20日上陸｜実際の写真をAIカラー化",
+   "desc_first": "一枚しか肖像が残らない指揮官が率いた要塞は、なぜ七十六時間で落ちたのか――タラワの戦い、柴崎恵次少将の記録です。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep07-shibasaki-tarawa\\thumbnail_final.png (09-16 16:32, file duy nhất)",
+   "thumb_text": "「百万人が百｜年かけても｜落とせない」島は｜76時間で陥落した｜[banner] 柴崎恵次、タラワ・ベチオ島の指揮官",
+   "open_0_30_ja": "まず、この一枚の肖像写真をご覧いただきたい。海軍少将の軍服に身を包み、表情は厳しく、まっすぐにこちらを見据えている。撮影された場所も、正確な年も分かっていない。名前を柴崎恵次という。実は、この写真こそ、彼について見つかっている唯一の肖像である。これほどの階級の指揮官でありながら、",
+   "key_line_ja": "彼の下にいた上級将校の多くも、戦闘の初日のうちに命を落としている。表情の奥に何があったのか、それを語れる者は、もう誰もいない。",
+   "key_t": 36.5,
+   "intro_t": 19.0,
+   "promise_t": null,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 4,
+   "score_detail": [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "title_hook": [
+    "L",
+    "Tiêu đề kể phía lính Mỹ: 腰まで 232.3s, 七十五 283.4s, 十七名 497.1s; hook là chân dung Shibasaki."
+   ],
+   "thumb_title": [
+    "L",
+    "Thumbnail = phía Nhật (câu 'trăm vạn người trăm năm' + 76 giờ), tiêu đề = phía Mỹ (lội nước, 75%, 17 tù binh) — cùng trận, 2 góc ngược nhau."
+   ],
+   "thumb_hook": [
+    "L",
+    "七十六時間 405.6s, 百万人/百年 445.8s."
+   ],
+   "broken_promises": [
+    "Thumbnail trích 「百万人が百年かけても落とせない」 như sự thật; script ~445s tự nghi: 「もしこの言葉が本当に語られたのだとすれば」 → thumbnail mạnh hơn script.",
+    "Ba chi tiết của tiêu đề đều sau 3 phút 50 giây; mô tả dòng 1 lại theo góc 76 giờ (khác tiêu đề)."
+   ],
+   "problems": [
+    "14.0s 「撮影された場所も、正確な年も分かっていない」 và 118.3s 「正確にはどちらなのか、この記録でも確認できていない」 — 2 câu 'không xác định' trong 2 phút đầu (video top kênh mẫu: 0).",
+    "80–116s tiểu sử (sinh 1894 ở 86.0s); không miễn trừ AI, không nghi thức tô màu, không lời hứa lộ trình.",
+    "3 bộ phận nói 3 chuyện: hook = chân dung duy nhất, thumbnail = 76 giờ, tiêu đề = lính Mỹ lội nước."
+   ],
+   "fix": [
+    "Không cần dựng lại: viết lại tiêu đề theo góc thumbnail + mô tả, thêm 'とされた' cho khớp script: 【タラワの戦い】「百万人が百年かけても落とせない」とされた島は76時間で落ちた——守備隊約4700名、捕虜は17名 (rút lõi ≤65).",
+    "Nếu dựng lại: mở bằng 76 giờ ở 0–10s; chuyển 2 câu 'không xác định' khỏi 120s đầu xuống mô tả (kênh mẫu để kiểu này ở mục ■ 映像について)."
+   ],
+   "model_video": "F1TBU19nQ_k (lật ở 23.5s) + juowNKaQvek (con số ở giây 0)",
+   "priority": "cao",
+   "priority_why": "Ba bộ phận kéo 3 hướng + thumbnail khẳng định câu mà script tự nghi; sửa tiêu đề là đủ để 3 phần còn 2 hướng."
+  },
+  {
+   "ep": "ep08",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep08-araki-kamikaze",
+   "status": "Có final.mp4 (2026-09-21 14:58); không có DANG-TAI.txt",
+   "title": "【特攻】写真の五人は自ら「ほがらか隊」と名乗った——出撃前夜、17歳は父へ遺書と遺髪を封筒で送り、宴では涙を見せる者もいた｜五人は全員17歳か18歳｜実際の写真をAIカラー化",
+   "desc_first": "子犬を抱いて笑う十七歳の荒木幸雄。この一枚が撮られてから十五〜十七時間後の朝、五人は万世飛行場を飛び立ちました。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep08-araki-kamikaze\\thumbnail_final.png (09-16 18:17, file duy nhất)",
+   "thumb_text": "子犬を抱いた17歳｜その15時間後｜誰も帰らなかった｜[banner] 荒木幸雄、「ほがらか隊」最後の一日",
+   "open_0_30_ja": "まず、この一枚の写真をご覧いただきたい。飛行服姿の若者五人が、機体の前で二列に並んでいる。前列の真ん中に立つ一人が、生後一か月ほどの子犬を胸に抱き上げ、満面の笑みを浮かべている。他の四人も、その子犬に目をやり、声をあげて笑っている様子が写っている。演出された一枚ではない。整備隊長がたまたま拾ってきた子犬を、",
+   "key_line_ja": "この写真が撮られてから、わずか十五時間から十七時間後、五人は出撃し、誰一人として帰ってこなかった。",
+   "key_t": 56.9,
+   "intro_t": 49.1,
+   "promise_t": 67.4,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 11,
+   "score_detail": [
+    1,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "5 người, 17 tuổi có ở 0–54s; ほがらか隊 296.9s, 遺書/遺髪 261.9s, 涙 281.9s. Tiêu đề không nhắc 子犬 — chi tiết mạnh nhất của hook."
+   ],
+   "thumb_title": [
+    "P",
+    "Chung 17歳 và ほがらか隊 (banner); 子犬/15時間/帰らなかった không có trong tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "子犬 13.2s, 十五時間 59.1s, 帰ってこなかった 64.3s — 3 dòng thumbnail đều trong 65s."
+   ],
+   "broken_promises": [
+    "Không có lời hứa sai; ほがらか隊 ở 296.9s (~5 phút).",
+    "Cùng 1 ảnh với video top kênh mẫu hDkgnTPJw5g (119.799 view) nhưng mẫu nói 「出撃する2時間前」 (mô tả mẫu: 出撃予定の2時間前), mình nói 「十五時間から十七時間後」 — người đã xem video mẫu có thể comment. Chưa kiểm bên nào đúng."
+   ],
+   "problems": [
+    "Câu chốt 56.9s (mẫu với cùng ảnh: 22.9s); 26–41s kể ai chụp 「整備隊長がたまたま拾ってきた子犬を…」 chen giữa ảnh và câu chốt.",
+    "Không miễn trừ AI, không nghi thức tô màu.",
+    "Tiêu đề bỏ 子犬 và mốc giờ — đúng 2 thứ làm tiêu đề mẫu 119k."
+   ],
+   "fix": [
+    "Không cần dựng lại: tiêu đề đưa 子犬 + mốc giờ lên đầu như hDkg, ví dụ 【特攻】子犬を抱いて笑った17歳は、15時間後に飛び立った——五人は自ら「ほがらか隊」と名乗っていた｜… (lõi ≤65); thêm 1 câu trong mô tả về mốc 5/26 chiều → 5/27 5 giờ sáng và nguồn.",
+    "Nếu dựng lại: kéo câu 56.9s lên ~20s (cắt đoạn 'ai chụp' 26–41s xuống sau)."
+   ],
+   "model_video": "hDkgnTPJw5g (cùng ảnh)",
+   "priority": "vừa",
+   "priority_why": "Hook tốt nhất lane (11/12); chỉ cần sửa tiêu đề (rẻ) để dùng đúng chi tiết đã làm video mẫu đạt 119k, và giải thích chênh lệch mốc giờ trước khi bị comment."
+  },
+  {
+   "ep": "ep09",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep09-munemori-442nd",
+   "status": "Có final.mp4 (2026-09-21 15:00); không có DANG-TAI.txt",
+   "title": "【第442連隊】家族が収容所で暮らす同じ日、22歳の二世兵はイタリアの敵陣へ単身で突撃した——手榴弾は跳ね返り、戦友二人の穴へ転がり込んだ｜実際の写真をAIカラー化",
+   "desc_first": "現時点で見つかっている、軍撮影の唯一の公式肖像写真。第442連隊の二世兵・宗森貞夫、二十二歳。その頃、母はマンザナー収容所の柵の中にいました。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep09-munemori-442nd\\thumbnail_final.png (09-16 18:21, file duy nhất)",
+   "thumb_text": "家族は収容所の｜柵の中にいた｜それでも彼は｜戦友を守った｜[banner] 宗森貞夫、日系人初の名誉勲章",
+   "open_0_30_ja": "まず、この一枚の肖像写真をご覧いただきたい。アメリカ陸軍の軍服に身を包み、軍帽を少し斜めにかぶった若者が、まっすぐこちらを見据えている。襟には歩兵科の徽章がついている。表情は真剣だが、まだどこか学生らしさの残る顔立ちである。名前を宗森貞夫、アメリカ名サダオ・S・ムネモリという。",
+   "key_line_ja": "撮影時、二十二歳。彼が命を落としたのも、同じ二十二歳のときだった。",
+   "key_t": 31.7,
+   "intro_t": 25.2,
+   "promise_t": null,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 4,
+   "score_detail": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "22歳 31.7s có; 'gia đình ở trại' 109.3s (>90s; 51.7s chỉ là tên ảnh toàn cảnh trại); 単身 277.5s, 手榴弾 282.0s, 跳ね返 288.9s."
+   ],
+   "thumb_title": [
+    "P",
+    "Chung 収容所 và 戦友; banner 名誉勲章 không có trong tiêu đề."
+   ],
+   "thumb_hook": [
+    "P",
+    "Trại xuất hiện ở 51.7s như 1 ảnh nhưng câu 'gia đình ở trong' 109.3s; 柵 481.4s, 名誉勲章 412.8s."
+   ],
+   "broken_promises": [
+    "「柵」 chỉ có 1 lần trong script, ở 481.4s (đoạn kết).",
+    "Banner 「日系人初の名誉勲章」 — script: 「日系人として、第二次世界大戦で初めて名誉勲章を受けた人物」 → banner bỏ vế 'Thế chiến II'.",
+    "「家族が収容所で暮らす同じ日」: script có 「息子が敵陣地へ突撃していたその頃、家族はこの宿舎の中で、いつもと同じ一日」 (~300s) — có, nhưng ở phút 5."
+   ],
+   "problems": [
+    "0–25s tả quân phục/徽章; 50–62s ảnh trại mà không nói gia đình ở đó; 62–110s tiểu sử (sinh 1922 ở 68.0s).",
+    "Câu chốt 'chết cùng tuổi 22' yếu hơn mâu thuẫn quốc tịch ↔ cha mẹ mà video mẫu cùng đề tài dùng (WUOHhqJQ8d8 86.3s).",
+    "Không miễn trừ AI, không nghi thức tô màu, không lời hứa lộ trình."
+   ],
+   "fix": [
+    "Không cần dựng lại: banner đổi thành 「第二次大戦・日系人初の名誉勲章」 hoặc bỏ tên, dùng số (22歳).",
+    "Nếu dựng lại: đưa câu 109.3s 「同じ頃、両親と兄弟姉妹は、このマンザナー強制収容所に送られている」 lên ngay sau ảnh chân dung (~15s): 「この若者がアメリカ軍の軍服を着ていた頃、彼の母は、同じアメリカが作った収容所の柵の中にいた。」"
+   ],
+   "model_video": "WUOHhqJQ8d8 (cùng 442; mâu thuẫn tổ quốc cha mẹ)",
+   "priority": "vừa",
+   "priority_why": "Lời hứa chính của thumbnail (gia đình trong trại) có trong video nhưng muộn; sửa banner rẻ, sửa hook cần dựng lại."
+  },
+  {
+   "ep": "ep10",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep10-miyatake-manzanar",
+   "status": "Có final.mp4 (2026-09-21 15:03); không có DANG-TAI.txt",
+   "title": "【1943年マンザナー】アンセル・アダムスにレンズを向け返した眼鏡の収容者がいた——所長が彼にスタジオを許した理由｜ロンドン受賞・ロス五輪を撮った写真家｜実際の写真をAIカラー化",
+   "desc_first": "カメラの所持を固く禁じられたマンザナー強制収容所で、レンズ一本だけを密かに持ち込んだ日系人写真家・宮武東洋がいました。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep10-miyatake-manzanar\\thumbnail_final.png (09-16 18:34, file duy nhất)",
+   "thumb_text": "カメラを禁じられた｜収容所で｜彼は密造カメラ｜を作った｜[banner] 写真家・宮武東洋、マンザナーの記録. Ảnh là ảnh thật của Ansel Adams (photos\\main01_miyatake_portrait.jpg) nhưng bản tô màu nền xanh trời, da mịn → trông như ảnh chụp hiện đại.",
+   "open_0_30_ja": "まず、この一枚の肖像写真をご覧いただきたい。眼鏡をかけた初老の日本人男性が、落ち着いた表情でまっすぐこちらを見つめている。背景は簡素で、写真スタジオの中のような雰囲気である。撮影は一九四三年、当時四十八歳。この写真を撮ったのは、アメリカを代表する風景写真家、アンセル・アダムスである。",
+   "key_line_ja": "だが、この写真が撮られたとき、彼はある収容所に閉じ込められていた。出自を理由に自由を奪われたその場所で、彼は密かに、あるものを作り上げていた。",
+   "key_t": 43.9,
+   "intro_t": 30.9,
+   "promise_t": 59.1,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 10,
+   "score_detail": [
+    1,
+    2,
+    2,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "アンセル・アダムス 28.3s, 眼鏡 5.2s, ロンドン 38.9s có; オリンピック 116.4s; 所長…スタジオ 238.3s; tiêu đề 'レンズを向け返した' vs script 'レンズを向け合っていた' (gần nghĩa)."
+   ],
+   "thumb_title": [
+    "P",
+    "Chung 収容所/写真家; thumbnail = máy ảnh lậu, tiêu đề = Adams + studio."
+   ],
+   "thumb_hook": [
+    "K",
+    "Hook 54.9s 「彼は密かに、あるものを作り上げていた」 — thumbnail trả lời đúng câu đố này (密造 294.6s, 組み立て 189.8s)."
+   ],
+   "broken_promises": [
+    "Không có lời hứa sai; 「所長が…許した理由」 trả ở 238–250s (Weston giới thiệu)."
+   ],
+   "problems": [
+    "Tiêu đề lõi 76 ký tự (mẫu dài nhất 65).",
+    "Không miễn trừ AI, không nghi thức tô màu.",
+    "Ảnh thumbnail tô màu kiểu hiện đại (nền xanh trời phẳng); kênh mẫu giữ hạt phim/tông cũ."
+   ],
+   "fix": [
+    "Không cần dựng lại: rút tiêu đề ≤65 và đưa 'カメラを禁じられた収容所' (khớp thumbnail + hook) lên đầu, ví dụ 【マンザナー】カメラを禁じられた収容所で、この写真家はレンズ1本からカメラを作った——撮ったのはアンセル・アダムス.",
+    "Cân nhắc tô lại ảnh thumbnail tông ấm/cũ hơn."
+   ],
+   "model_video": "WUOHhqJQ8d8 (chi tiết ẩn trong ảnh) + hDkgnTPJw5g",
+   "priority": "thấp",
+   "priority_why": "Hook ↔ thumbnail đã khớp (hỏi ở 55s, thumbnail trả lời); chỉ tiêu đề dài và lệch góc."
+  },
+  {
+   "ep": "ep11",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep11-ando-226incident",
+   "status": "Có final.mp4 (2026-09-21 15:08); không có DANG-TAI.txt",
+   "title": "【二・二六事件】「老人ですから、とどめはお止め下さい」妻の一言で大尉は軍刀を収めた——救われた侍従長の命は9年後、終戦へとつながった｜実際の写真をAIカラー化",
+   "desc_first": "一九三六年二月二十六日、雪の朝——敬愛していた侍従長を自らの手で撃った青年将校。見つかっている中で唯一とされる安藤輝三の肖像写真が語る、昭和史の巡り合わせです。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\irogatatarukioku\\ep11-ando-226incident\\thumbnail_final.png (09-16 18:58, file duy nhất)",
+   "thumb_text": "「あの人は西郷の｜ような人だ」｜その人を撃｜った雪の朝｜[banner] 安藤輝三、二・二六事件",
+   "open_0_30_ja": "まず、この一枚の肖像写真をご覧いただきたい。陸軍の軍服に身を包んだ若い大尉が、まっすぐこちらを見据えている。肩には大尉の階級章がはっきりと見える。撮影は一九三五年、事件のちょうど一年前。名前を安藤輝三という。表情には、迷いのない実直さが見える。この三年前、",
+   "key_line_ja": "「あの人は西郷隆盛のような人で、懐の深い大人物だ」。それほどまでに敬愛していたその人を、安藤は数年後、自らの手で撃つことになる。",
+   "key_t": 46.3,
+   "intro_t": 21.6,
+   "promise_t": 54.4,
+   "disclaimer_t": null,
+   "timing_source": "srt (voice_paced.srt)",
+   "score_0_12": 8,
+   "score_detail": [
+    0,
+    2,
+    2,
+    1,
+    2,
+    1
+   ],
+   "title_hook": [
+    "L",
+    "Câu trong ngoặc của tiêu đề ở 210.2s, 軍刀 214.0s, 九年後 351.0s; hook nói câu Saigo."
+   ],
+   "thumb_title": [
+    "L",
+    "Thumbnail = câu Saigo + bắn; tiêu đề = câu vợ van xin + 9 năm sau; không chung cụm (TITLE_LOCK cố ý chia vai)."
+   ],
+   "thumb_hook": [
+    "K",
+    "西郷 40.5s, 撃つ 51.4s, 雪 74.1s — cả 3 dòng thumbnail trong 75s."
+   ],
+   "broken_promises": [
+    "Tiêu đề 「終戦へとつながった」 — script 0 lần chữ 終戦, nói 「戦争そのものを終わらせる決断を下す」 (cùng nghĩa, không lỗi).",
+    "Câu trong ngoặc của tiêu đề ở 210.2s (phút 3,5)."
+   ],
+   "problems": [
+    "Câu Saigo bị cắt đôi giữa 2 cue 36.5s 「…こう語っていたという。『あの」 / 40.5s 「人は西郷隆盛のような人で」 → phụ đề cháy vào video sẽ ngắt giữa câu trích.",
+    "78–117s tiểu sử (sinh 1905 ở 84.0s); không miễn trừ AI, không nghi thức tô màu; lời hứa 54.4s 「これは、その男の物語である」 không có phạm vi.",
+    "Video chỉ 7,1 phút (mẫu 23–28 phút)."
+   ],
+   "fix": [
+    "Không cần dựng lại: tiêu đề dùng cùng nghịch lý với thumbnail/hook, ví dụ 【二・二六事件】「西郷のような人だ」と敬った侍従長を、この大尉は自ら撃った——妻の一言で命は救われ、9年後に終戦を決めた (rút lõi ≤65).",
+    "Kiểm lại cắt cue 36.5/40.5s trong voice_paced.srt trước khi cháy phụ đề."
+   ],
+   "model_video": "hDkgnTPJw5g (1 nghịch lý = tiêu đề = thumbnail = hook)",
+   "priority": "vừa",
+   "priority_why": "Hook và thumbnail đã khớp nhau ở 40–51s; chỉ tiêu đề đi hướng khác — sửa rẻ."
+  }
+ ],
+ "our_summary": "11/11 tập đã có final.mp4; không tập nào có DANG-TAI.txt nên chưa rõ trạng thái đăng. Mình chép đúng CÂU MỞ của kênh mẫu (11/11 「まず、この一枚の(肖像)写真をご覧いただ…」) nhưng không chép được phần làm nên hook: (a) ảnh mở 9/11 là chân dung 1 người (mẫu 9/9 là ảnh cảnh/nhiều người/vật) nên 0–25s chỉ còn tả quân phục, huân chương; (b) câu chốt trung vị 43.9s (18.4–120.2s) so với mẫu 23.2s ở 6 video top; ep01 120.2s, ep03 76.0s; (c) miễn trừ AI trong lời đọc 2/11 (mẫu 9/9); 「この写真をカラー化してみる」 0/11 (mẫu 9/9); lời hứa 'N枚の写真で辿る' 0/11 (mẫu 8/9); (d) 7/11 kể năm sinh trong 120s đầu (mẫu 0/9). Gói đăng: tiêu đề↔hook K 0/11, P 7/11, L 4/11 (ep03, ep05, ep07, ep11); thumbnail↔hook K 4/11 (ep06, ep08, ep10, ep11), P 3/11, L 4/11 (ep01, ep02, ep03, ep07); thumbnail↔tiêu đề K 0/11, P 5/11, L 6/11 — trong khi mẫu K 6/9. Nguyên nhân gốc: TITLE_LOCK 10/11 tập ghi chủ trương 'thumbnail và tiêu đề không lặp chữ nào / chia vai' — ngược công thức kênh mẫu. Thumbnail có tên người 11/11 (mẫu 0/9), có chữ số 5/11 (mẫu 6/6 top). Tiêu đề lõi 66–77 ký tự, 11/11 dài hơn tiêu đề dài nhất của mẫu (65). Lời hứa có vấn đề: 2 thumbnail đặt ngoặc cho câu diễn ý (ep01 「死ぬな、真実を語れ」, ep02 「床の隙間を直して」), 1 thumbnail khẳng định câu script tự nghi (ep07), 1 thumbnail nói quá sự thật (ep05 米国本土), 1 tiêu đề bỏ 'という' (ep04), 1 số tuổi không có trong lời đọc (ep04 47歳), 1 cặp số lệch (ep06 2年7ヶ月 vs 三年後). Độ dài video 7,1–18,3 phút, giảm dần từ ep01 tới ep11 (mẫu 23,3–28,6). Tập tốt nhất: ep08 (11/12, cùng ảnh với video 119k của mẫu) và ep10 (10/12). Ưu tiên sửa: cao ep01, ep03, ep05, ep07; vừa ep02, ep04, ep06, ep08, ep09, ep11; thấp ep10. Mọi sửa tiêu đề/thumbnail/mô tả làm được ngay không cần dựng lại video; sửa hook cần thu lại giọng + dựng lại.",
+ "principles": [
+  {
+   "claim": "Chọn chủ thể là người thường hoặc người trẻ trong chiến tranh, không phải chỉ huy hay khí tài.",
+   "cause": "Khán giả (con cháu thế hệ chiến tranh) tự đặt ông bà mình vào khuôn mặt thiếu niên, trẻ mồ côi, dân đảo; tướng lĩnh và tàu chiến là chuyện quyết định chiến lược, xa đời họ.",
+   "evidence": "7/8 video ≥10k của kênh là dân thường/người trẻ (hDkgnTPJw5g 119.799, NNy4YQKQe5c 62.207, 4J5Il-hMN6E 48.898, juowNKaQvek 18.596, F1TBU19nQ_k 17.568, WUOHhqJQ8d8 12.744, 8eDo6PiKUKo 10.000). Các video chỉ huy/chính khách/khí tài của chính kênh này: 吉田茂 _OAk6vBQfYU ~1.000, 二・二六 VEzkSc-fifQ 2.200, ペリリュー Eblvw8hqX4Y 3.300, 大和 WSdnDWdO5-U 7.200. juowNKaQvek hook chỉ 8/12 vẫn 18.596; ms0jtVqHheA (tàu, không người) hook 9/12 có 72 view (video mới ~11 giờ — xem caveats).",
+   "why": "Đề tài quyết định trần view mạnh hơn hook; hook tốt không cứu được chủ thể không có mặt người.",
+   "how": "9/11 tập của mình mở bằng chân dung chỉ huy. Trong mỗi tập, đưa 'người thường' của câu chuyện lên ảnh mở + thumbnail: ep05 quân y 33 tuổi và bệnh nhân, ep09 mẹ Nawa trong trại, ep02 vợ Yoshiko, ep01 dân thường Okinawa. Khi chọn đề tài mới, ưu tiên trụ cột dân thường/người trẻ."
+  },
+  {
+   "claim": "Lật nhận thức trong 25 giây đầu, trước đoạn miễn trừ AI.",
+   "cause": "Miễn trừ AI là 27s không có thông tin mới; nếu nó đến trước câu lật, người xem chưa có lý do để chịu nghe.",
+   "evidence": "5/6 video top lật ở ≤25.8s (juow 0.2, 4J5I 8.2, hDkg 22.9, F1TB 23.5, NNy4 25.8) và 8/9 đặt miễn trừ SAU câu lật. Ngoại lệ WUOHhqJQ8d8: miễn trừ 20.2s, lật 86.3s — thấp nhất trong 6 video top (12.744). Tập của mình: trung vị 43.9s; ep01 miễn trừ 66.0s rồi mới lật 120.2s.",
+   "why": "Câu lật là lý do để ở lại; miễn trừ chỉ chịu được khi người xem đã có câu hỏi.",
+   "how": "Câu thứ 2–4 của tập phải là câu lật (nơi chốn/danh tính/hệ quả). Với ảnh chân dung không có gì để lật, nói hệ quả ngay: 「この男は、2か月と3週間後…」. Miễn trừ đặt sau, dài ~27s như nguyên văn mẫu."
+  },
+  {
+   "claim": "Giữ nghi thức 「この写真をカラー化してみる」 + miễn trừ AI trong LỜI ĐỌC ở mọi tập.",
+   "cause": "Tiêu đề hứa 'AI復元'; khoảnh khắc ảnh đen trắng chuyển màu + 3–4 câu tả màu cụ thể là cú 'reveal' thị giác thứ hai ngay sau câu lật, và là chữ ký nhận diện kênh.",
+   "evidence": "9/9 video mẫu có cả hai trong 120s đầu, kể cả 3 video mới (nghi thức ở 28.4–86.6s). Tập của mình: miễn trừ trong lời đọc 2/11 (ep01, ep02), nghi thức 0/11 (grep 「カラー化」 = 0 ở cả 11 script).",
+   "why": "Không có nghi thức thì kênh chỉ còn là slideshow ảnh màu; người xem không thấy phần 'phục chế' mà tiêu đề bán.",
+   "how": "Thêm vào khung kịch bản lane D: sau câu lật → miễn trừ ~27s → 「この写真をカラー化してみる」 + 3 câu màu (chất liệu + màu, ví dụ 「軍服は深いオリーブ色。足元の土だけが白く乾いている」) — đồng bộ hình: ảnh đen trắng quét sang màu đúng lúc câu này."
+  },
+  {
+   "claim": "Nói rõ lộ trình của video: 「〜の{thời gian}を{N}枚の写真で辿っていく」.",
+   "cause": "Người xem biết còn bao nhiêu ảnh và điểm đến; video tư liệu 25 phút cần 1 hợp đồng rõ.",
+   "evidence": "8/9 video mẫu có câu hứa (6/6 top): juow 29.2s, WUOH 114.6s 「この若者たちの2年半を15枚の写真で辿っていく」, NNy4 115.7s, F1TB 118.8s; ước tính 4J5I ~144s, hDkg ~151s. Chỉ SO9NUm_0YNI không có. Tập của mình: 0/11 có N ảnh; 4/11 có câu mơ hồ (ep06 56.3s, ep08 67.4s, ep10 59.1s, ep11 54.4s).",
+   "why": "Câu hứa biến chuỗi ảnh thành hành trình có đích, giảm rời video ở phút 2–3 khi tiểu sử bắt đầu.",
+   "how": "Đặt ngay sau con số lớn (80–120s): 「今日は{nhân vật}の{N}年を{N}枚の写真で辿っていく」 — N lấy đúng số slot trong anchors.txt."
+  },
+  {
+   "claim": "Không đặt câu 'không biết / không xác nhận được' trong 2 phút đầu; để độ dè dặt ở 'とされる/という' và ở mô tả.",
+   "cause": "Câu 'không biết' trong hook báo trước bí ẩn không có lời giải — người xem không còn lý do chờ.",
+   "evidence": "6/6 video top: 0 câu loại này trong 120s. 3/3 video mới có (ms0j 2, Upbb 2 — 3 câu liên tiếp 81.9–100.8s, SO9N 1 và tự khép vòng 113–118s 「そこまでは、この写真から確かめられない」). Kênh mẫu dồn phần nguồn/độ chắc vào mục ■ 映像について của mô tả. Tập của mình: ep04 29.8s, ep07 14.0s và 118.3s, ep05 183.4s. Lưu ý: 3 video mới mới đăng 11–59 giờ nên đây là tương quan.",
+   "why": "Giữ được sự trung thực (lane cấm bịa) mà không giết câu hỏi mở.",
+   "how": "Trong 120s đầu chỉ dùng hedge mềm (とされる/という/伝えられている); câu 'không xác định' về ngày/nơi chụp chuyển xuống thân video hoặc mô tả."
+  },
+  {
+   "claim": "Tiêu đề và thumbnail là MỘT lời hứa; thumbnail có số, không có tên người.",
+   "cause": "Người xem thấy thumbnail và tiêu đề cùng lúc; hai câu khác nhau là hai lời hứa, không lời nào được củng cố. Tên một người lạ không có sức kéo với người chưa biết nhân vật, con số/tuổi thì có.",
+   "evidence": "Mẫu: thumbnail↔tiêu đề K 6/9, P 3/9, L 0/9; thumbnail có chữ số 6/6 video top; có tên người 0/9 (hDkg: 「出撃2時間前｜子犬を抱く17歳・最後の写真」 = đúng 3 cụm tiêu đề). Mình: K 0/11, L 6/11; TITLE_LOCK 10/11 tập ghi cố ý 'không lặp chữ nào'; tên người trên banner 11/11; chữ số 5/11.",
+   "why": "Chia vai giữa tiêu đề và thumbnail là quy tắc của tool tiêu đề h2dev, không có trong kênh mẫu.",
+   "how": "Đổi luật trong tool tiêu đề (E:\\CLAUDE\\YOUTUBE\\YT-TITLE-RESEARCH\\config\\lanes\\irogatatarukioku.json — thuộc h2dev/YT-TITLE-RESEARCH, research chỉ đề xuất): thumbnail = rút gọn cụm đầu tiêu đề + 1 con số; banner tên người → nhãn sự kiện + năm (kiểu 「キスカ撤退 残された一枚」)."
+  },
+  {
+   "claim": "Tiêu đề lõi (bỏ đuôi ｜実際の写真…) không quá 65 ký tự.",
+   "cause": "Vế hệ quả sau 「——」 là phần bán video; tiêu đề càng dài thì vế đó càng dễ bị cắt ở danh sách đề xuất/di động (cơ chế hiển thị, không đo được trong kênh này).",
+   "evidence": "9/9 tiêu đề mẫu có lõi 35–65 ký tự (6 video top 57–65). 11/11 tiêu đề của mình 66–77 ký tự — dài hơn tiêu đề dài nhất của mẫu. Không có số liệu view trực tiếp chứng minh độ dài gây giảm view; đây là giới hạn quan sát được của kênh mẫu.",
+   "why": "Giữ trong khoảng kênh mẫu đã dùng là lựa chọn an toàn khi chưa có số đo riêng.",
+   "how": "Thêm cổng 'lõi ≤65' vào tool tiêu đề; tiêu đề đang 66–77 thì bỏ vế số liệu thứ 3 hoặc rút cụm mô tả ảnh."
+  }
+ ],
+ "new_patterns": [
+  {
+   "id": "H27",
+   "name": "Mời nhìn 1 bức ảnh → tả như cảnh thường → 1 câu lật nơi/thời điểm/danh tính",
+   "kind": "C",
+   "mechanism": "Người xem tự đoán bối cảnh từ phần tả (một thị trấn Nhật, vài người đứng cạnh nhau); câu lật bắt họ sửa lại điều vừa đoán, và muốn biết chuyện gì đã xảy ra ở nơi đó.",
+   "template": "まずこの1枚を見ていただけるだろうか。{2–4 câu tả thứ thấy được: người, đồ vật, chữ trên biển hiệu}。{người xem sẽ đoán: 昭和の初めの地方都市に見える}。だが{điều ngược lại: ここは日本の本土ではない / 左の2人はこの島に住んでいた人である}。{địa danh + ngày}である。",
+   "when": "Lane ảnh tư liệu, ảnh mở có nhiều người/cảnh. Lật trước 26s.",
+   "avoid": "Tả quá 25s mà không lật (ep01 54s). Ảnh chân dung 1 người không có gì để đoán sai → dùng H28 hoặc mở bằng hệ quả.",
+   "lanes_fit": [
+    "irogatatarukioku",
+    "toshi-densetsu-jp"
+   ],
+   "examples": [
+    "F1TBU19nQ_k 23.5s",
+    "4J5Il-hMN6E 8.2s",
+    "NNy4YQKQe5c 25.8–30.1s",
+    "SO9NUm_0YNI 22.5s",
+    "WUOHhqJQ8d8 86.3s (muộn)",
+    "ms0jtVqHheA 44.5s"
+   ]
+  },
+  {
+   "id": "H28",
+   "name": "Khoảnh khắc đời thường trong ảnh + đồng hồ đếm ngược tới cái chết",
+   "kind": "C",
+   "mechanism": "Nụ cười/hành động vô tư đặt cạnh một mốc giờ trước thảm kịch; người xem biết điều người trong ảnh chưa biết.",
+   "template": "{người trong ảnh, tuổi}が{hành động đời thường: 子犬を抱いて笑っている}。この写真が撮られたのは、{sự kiện chết chóc}の{N時間/N日}前だった。",
+   "when": "Có ảnh người trẻ/đời thường với mốc thời gian được ghi chép. Đặt trong 25s.",
+   "avoid": "Chen đoạn 'ai chụp / vì sao có con chó' giữa ảnh và mốc giờ (ep08 26–41s đẩy câu chốt tới 56.9s).",
+   "lanes_fit": [
+    "irogatatarukioku"
+   ],
+   "examples": [
+    "hDkgnTPJw5g 16.1–26.8s (119.799 view)",
+    "ep08-araki-kamikaze 56.9s (bản của mình, cùng ảnh)"
+   ]
+  },
+  {
+   "id": "K16",
+   "name": "Hứa lộ trình bằng số ảnh",
+   "kind": "closer",
+   "mechanism": "Nói phạm vi (ai, bao lâu) và số ảnh — biến chuỗi ảnh thành hành trình có đích.",
+   "template": "今日は{chủ thể}の{khoảng thời gian}を{N}枚の写真で辿っていく。 / この動画が辿るのは{nơi/nhóm người}の記録だ。",
+   "when": "Ngay sau con số lớn, 30–150s.",
+   "avoid": "Câu hứa không có phạm vi (「これは、その男の物語である」 ep11 54.4s).",
+   "lanes_fit": [
+    "irogatatarukioku",
+    "sengoku-uragawa"
+   ],
+   "examples": [
+    "WUOHhqJQ8d8 114.6s",
+    "NNy4YQKQe5c 115.7s",
+    "juowNKaQvek 29.2s",
+    "F1TBU19nQ_k 118.8s (~126s ước tính phần 15枚)",
+    "4J5Il-hMN6E ~144s ước tính",
+    "hDkgnTPJw5g ~151s ước tính"
+   ]
+  },
+  {
+   "id": "K17",
+   "name": "Ghim thị giác 「写真をよく見てほしい」 + chi tiết ẩn đổi nghĩa bức ảnh",
+   "kind": "closer",
+   "mechanism": "Bắt người xem nhìn lại ảnh và chỉ ra chi tiết lướt qua không thấy, làm ảnh mang nghĩa mới (đám đông là cha mẹ tiễn con đi đánh tổ quốc của chính họ).",
+   "template": "写真をよく見てほしい。{vị trí trong ảnh}にいるのは{nhóm người}である。その中には{chi tiết làm đổi nghĩa}。",
+   "when": "Sau nghi thức tô màu, khi ảnh có chi tiết phụ đáng kể; lặp nhiều lần trong video (mẫu: 1–13 lần/video).",
+   "avoid": "Dùng khi chi tiết chỉ để trang trí — phải đổi nghĩa bức ảnh.",
+   "lanes_fit": [
+    "irogatatarukioku",
+    "toshi-densetsu-jp"
+   ],
+   "examples": [
+    "WUOHhqJQ8d8 102.9s",
+    "đếm cả video: NNy4 11, WUOH 13, F1TB 9, 4J5I 4, hDkg 2, juow 1"
+   ]
+  },
+  {
+   "id": "H29",
+   "name": "Câu tóm nghịch lý của cả video ở giây 0 (không mời xem ảnh)",
+   "kind": "C",
+   "mechanism": "Một câu khẳng định ai đã làm gì cho ai trái lẽ thường (lính Nhật sửa máy bay Nhật để gửi sang Úc); lời hứa tiêu đề trả ngay giây 0.",
+   "template": "{vật/người}が、{nơi đến trái lẽ}へ送られた。その{việc}をしたのは、{người không ngờ tới}だった。",
+   "when": "Chủ thể là vật (máy bay, tàu) có số phận nghịch lý.",
+   "avoid": "Theo sau bằng chuỗi 'không biết' làm tắt câu hỏi (Upbbpdck--A 81.9–100.8s).",
+   "lanes_fit": [
+    "irogatatarukioku"
+   ],
+   "examples": [
+    "Upbbpdck--A 0.0–3.8s"
+   ]
+  }
+ ],
+ "caveats": [
+  "3 video 'new' được lấy số liệu khi mới đăng: ms0jtVqHheA ~11 giờ (72 view), Upbbpdck--A ~35 giờ (102), SO9NUm_0YNI ~59 giờ (4.158); 6 video top đăng 2026-08-29…09-09. View của 2 nhóm KHÔNG so trực tiếp được — mọi kết luận 'video mới thấp vì…' chỉ là tương quan.",
+  "Mốc giây của 9 video mẫu lấy từ hook_segments trong E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\raw (phụ đề tự động YouTube). Transcript có lỗi nghe (カ垢化=カラー化, 性格さ=正確さ, 裁判島=サイパン島, 愛の裏=…) — trích dẫn trong seed giữ nguyên văn transcript; trong analysis một số câu trích đã đọc theo nghĩa đúng.",
+  "Mốc >120s của video mẫu là ƯỚC TÍNH = vị trí ký tự ÷ (len/duration) trong E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\irogatatarukioku\\_raw\\transcripts.json (4,5–4,7 ký tự/giây). Kiểm chéo: F1TB 'この1年後' ước tính 119.6s vs thật 114.2–118.8s; NNy4 'この動画が辿る' 122.7s vs thật 115.7s → sai số ~±7s.",
+  "intro_t: kênh mẫu không có người kể tự giới thiệu (0/9) nên intro_t của video mẫu = null. Ở tập của mình intro_t = mốc nêu tên nhân vật (「名前を…という」), vì đó là tương đương gần nhất.",
+  "Mốc giây tập của mình lấy từ voice_paced.srt; final.mp4 (09-21) có mtime sau srt nên coi như khớp. Một số cue srt chứa nhiều câu (vd ep02 36.9s, ep04 107.5s) nên mốc có thể sớm hơn thực tế vài giây.",
+  "Không có DANG-TAI.txt ở cả 11 tập — không xác định được bản thumbnail/tiêu đề nào đã đăng, và không tra kênh của mình trên YouTube.",
+  "ep08 dùng cùng ảnh với video top kênh mẫu; mẫu ghi 「出撃する2時間前」, mình ghi 「十五時間から十七時間後」 — chưa kiểm nguồn gốc bên nào đúng.",
+  "char_rate profile = voice.char_rate 280,9 chữ/phút (không cần vì mọi tập có srt thật); tốc độ đọc đo được 0–120s ~4,4–4,8 ký tự/giây ở cả hai bên.",
+  "Retention (heatmap) của kênh mẫu không lấy được (đã thử nhiều cách trước đây) — mọi nhận định 'giữ chân' là suy từ cấu trúc hook + view, không phải số retention.",
+  "View trong raw (lúc tải hook) hơi khác view trong danh sách chọn video (vd hDkg 119.799 vs 119.000) do thời điểm lấy.",
+  "Thumbnail tập ep10: ảnh gốc là ảnh thật của Ansel Adams (đã đối chiếu photos\\main01_miyatake_portrait.jpg với img\\000.png); nhận xét 'trông hiện đại' chỉ nói về cách tô màu."
+ ]
+}

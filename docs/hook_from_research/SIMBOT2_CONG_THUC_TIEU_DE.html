@@ -1,0 +1,134 @@
+<title>Công thức tiêu đề simbot2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Noto+Serif+JP:wght@500;700&family=Noto+Sans+KR:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1d2330;--muted:#5d6678;--line:#dde1e8;--ko:#c62828;--jp:#1f5fae;--amber:#b7791f;--good:#2e7d4f;--soft:#eef2f8;--softbad:#fdecec;
+--sans:"Be Vietnam Pro",system-ui,sans-serif;--serif:"Noto Serif JP","Hiragino Mincho ProN",serif;--kr:"Noto Sans KR","Malgun Gothic",sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151b;--panel:#1a1e26;--ink:#e7eaf0;--muted:#9aa3b5;--line:#2c323d;--ko:#ef6a6a;--jp:#6ea2e8;--amber:#e0a84a;--good:#5cc08a;--soft:#18243a;--softbad:#2c1b1d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151b;--panel:#1a1e26;--ink:#e7eaf0;--muted:#9aa3b5;--line:#2c323d;--ko:#ef6a6a;--jp:#6ea2e8;--amber:#e0a84a;--good:#5cc08a;--soft:#18243a;--softbad:#2c1b1d;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.7 var(--sans);padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1,h2,h3{margin:0;line-height:1.3;text-wrap:balance} h1{font-size:1.8rem} h2{font-size:1.3rem;margin-bottom:10px} h3{font-size:1.02rem}
+p{margin:0} a{color:var(--jp)}
+[lang=ko]{font-family:var(--kr)} [lang=ja]{font-family:var(--serif)}
+.eyebrow{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lede{max-width:82ch;color:var(--muted);margin-top:6px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 18px;display:flex;flex-direction:column;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+ul,ol{margin:0;padding-left:20px} li{margin:4px 0}
+.tablebox{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:900px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:.85rem;vertical-align:top}
+thead th{font-size:.72rem;color:var(--muted);font-weight:600}
+.num{font-family:var(--mono);font-size:.8rem;white-space:nowrap}
+.vi{color:var(--muted);font-size:.8rem}
+.tags{font-size:.78rem;color:var(--muted);min-width:180px}
+.chip{display:inline-block;font-size:.7rem;font-weight:600;padding:0 8px;border-radius:999px;border:1px solid;white-space:nowrap}
+.chip.ok{color:var(--good);border-color:var(--good)} .chip.part{color:var(--amber);border-color:var(--amber)}
+.chip.bad{color:var(--ko);border-color:var(--ko);background:var(--softbad)} .chip.na{color:var(--muted);border-color:var(--line)}
+.f{border-left:4px solid var(--good)}
+.f .tpl{font-family:var(--serif);background:var(--soft);padding:6px 10px;border-radius:6px}
+.k{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.lose{border-left:4px solid var(--ko)}
+.pair td:first-child{white-space:nowrap}
+.jp{font-family:var(--serif)}
+</style>
+<div class="wrap">
+<header>
+  <p class="eyebrow">Research · 2026-09-23 · lane satori-jp-obaa · dữ liệu YouTube Data API ngày 23/9</p>
+  <h1>Công thức tiêu đề của simbot2: cái gì làm video thắng, cái gì làm video thua</h1>
+  <p class="lede">Đọc cả 26 video của kênh (không chỉ 15 video đang clone), đo view chia theo số ngày đã đăng, rồi so từng cặp video CÙNG chủ đề để thấy tiêu đề nào kéo được người bấm. Mỗi công thức có: cơ chế tâm lý · bằng chứng · khuôn tiếng Nhật · ví dụ áp cho tập của mình.</p>
+</header>
+
+<section class="box">
+  <h2>Vì sao phân tích trước của mình thiếu phần này</h2>
+  <ol>
+    <li>Chỉ nhìn 15 video đang clone — toàn là video thắng. Không có video thua thì không biết cái gì làm nên khác biệt. Kênh có 26 video; 5 video thua nằm ngoài 15 video đó.</li>
+    <li>Làm theo kiểu "kiểm tra khớp/lệch" (thumbnail có giống tiêu đề không), không hỏi "vì sao tiêu đề này làm người ta bấm" và "mang sang tiếng Nhật thế nào".</li>
+    <li>Không chia view theo tuổi video, nên không so được video cũ với video mới.</li>
+  </ol>
+  <p>Bài phân tích 6 tiêu đề anh dán có đúng phần cơ chế (tuổi cụ thể, con số, nghịch lý, người có kinh nghiệm, khoảng trống tò mò, áp dụng cho chính người xem). Nhưng nó cũng không nhìn view: 6 tiêu đề đó là <b>6 video mới nhất (6–21/9)</b>, và đang yếu hơn hẳn nhóm tháng 8 ở cùng độ tuổi — ví dụ 「72세에 45년 친구에게 잘린 뒤…」 được 74 nghìn view sau 17 ngày, còn 「연금 310만 원을 말한 뒤…」 (cùng chủ đề bạn bè) được 1,01 triệu sau 20 ngày. Nó gọi tiêu đề 「전 요양원장 폭로…」 là "mạnh nhất về fear", nhưng cùng chủ đề viện dưỡng lão, 「요양원에서 진짜 무서운 건 학대가 아니었습니다…」 đạt 29.104 view/ngày, gấp 13 lần. Kết luận chung của nó — "gắn câu chuyện với một bài học người xem áp dụng được" — thì đúng và khớp số liệu bên dưới.</p>
+</section>
+
+<section class="box">
+  <h2>So từng cặp cùng chủ đề (bằng chứng mạnh nhất)</h2>
+  <div class="tablebox"><table class="pair"><thead><tr><th>Chủ đề</th><th>Thắng</th><th>Thua</th><th>Khác nhau ở đâu</th></tr></thead><tbody>
+  <tr><td>Viện dưỡng lão</td><td lang="ko">요양원에서 진짜 무서운 건 학대가 아니었습니다… 74세 노인이 석 달을 못 버티고 짐을 싼 이유 — <b>29.104/ngày</b></td><td lang="ko">【전 요양원장 폭로】왜 많은 노인들이 요양원에 들어간 뒤 몇 년 못 가 돌아가실까? 그 잔혹한 진실… — 2.185/ngày<br>[충격] 차라리 집에서 죽을란다... 10년 차 요양보호사가 폭로한 요양원의 참혹한 진실 — 54/ngày</td><td>Thắng: phủ định nỗi sợ người xem đã có ("không phải bị ngược đãi") + một người thật làm một việc cụ thể (74 tuổi, 3 tháng, xếp đồ về). Thua: chỉ có chữ sợ trừu tượng (폭로/잔혹/참혹) và người tố cáo, không có người trong chuyện, không có điều người xem chưa biết là gì.</td></tr>
+  <tr><td>Tiền &amp; con cái</td><td lang="ko">"통장에 얼마 있냐"는 자식 물음에 81세가 내놓은 기막힌 대답 — <b>12.202/ngày</b><br>부모님이 오래 살수록 자식의 삶까지 무너질 수 있습니다… 3가지 — 8.623/ngày</td><td lang="ko">일흔이 넘어서야 알았습니다... 자식에게 이 4가지를 해주면, 돈이 아무리 많아도 노후가 무너집니다 — 362/ngày</td><td>Thắng: câu hỏi mà người xem thật sự sẽ bị con hỏi, và hứa một "câu trả lời mẫu" dùng được. Thua: giọng trách người xem ("bạn làm 4 điều này thì sụp") và "qua 70 mới biết" — không có cảnh, không có người.</td></tr>
+  <tr><td>Bao nhiêu tiền là đủ</td><td lang="ko">65세에 '이만큼의 돈'이 있는 사람은… 노후의 승자입니다 — <b>2.628/ngày</b></td><td lang="ko">"노후에 10억 필요 없습니다" 돈 없이도 평안하게 늙어가는 사람들의 3가지 공통점 — 345/ngày</td><td>Thắng: giấu con số, người xem muốn tự so với mình. Thua: trấn an ("không cần tiền") — người xem kênh này bấm để tránh mất mát, không bấm để được an ủi.</td></tr>
+  <tr><td>Cái chết</td><td lang="ko">만약 어느 날 갑자기 세상을 떠난다면… 은행 예금 전액을 자녀가 받을 수 있을까? 은행 지점장이 밝힌 충격적인 진실 — <b>22.680/ngày</b></td><td lang="ko">15년 경력 요양보호사의 고백, 편안히 떠난 어르신들이 끝까지 지킨 두 가지 — 1.062/ngày<br>70세가 넘으면 '진짜 지옥'이 시작됩니다... 4가지 비극 — 184/ngày</td><td>Thắng: đặt chính người xem vào giả định ("nếu bạn mất đột ngột") + một câu hỏi thực tế có đáp án (con có rút được tiền không). Thua: chuyện êm ả ("ra đi thanh thản"), hoặc nỗi sợ mơ hồ không có gì để làm ("địa ngục", "bi kịch").</td></tr>
+  <tr><td>Bạn bè / quan hệ</td><td lang="ko">연금 310만 원을 말한 뒤 40년 계모임이 깨졌습니다… 노후에 말하면 안 되는 4가지 — <b>50.846/ngày</b></td><td lang="ko">72세에 45년 친구에게 잘린 뒤 알았습니다｜노년에 곁에 둘 사람은 3가지만 보면 됩니다 — 4.361/ngày</td><td>Cùng "mất bạn lâu năm + N điều". Thắng có con số tiền + nguyên nhân là chính hành vi của người kể ("nói ra lương hưu") → luật cho ngày mai: "đừng nói 4 điều". Thua là tiêu chí chọn người ("xem 3 điều") — ít cấp bách, và "…rồi mới hiểu" không cho biết đã mất vì cái gì.</td></tr>
+  </tbody></table></div>
+  <p class="k">Lưu ý: 1 kênh, 26 video, đề tài lẫn vào tiêu đề — đây là tương quan mạnh chứ chưa phải chứng minh. Video thua nhất (54/ngày) là video đầu tiên của kênh và video 184/ngày là video thứ 3, nhưng video thứ 2 (「나이 들수록 예금은 어디에 둬야 할까?…」) đã đạt 431 nghìn, nên không phải chỉ do kênh mới.</p>
+</section>
+
+<section>
+  <h2>5 công thức thắng — cơ chế, khuôn tiếng Nhật, cách dùng</h2>
+  <div class="grid">
+    <div class="box f"><h3>W1. Mất mát cụ thể có số → điều người xem không được làm</h3>
+      <p><span class="k">Ví dụ gốc</span> 연금 310만 원을 말한 뒤 40년 계모임이 깨졌습니다… 노후에 말하면 안 되는 4가지 (50.846/ngày) · 60세 이후, 절대 가까이하면 안 되는 여자 4부류 (9.522) · 부모님이 오래 살수록… 절대 잊지 말아야 할 3가지 (8.623)</p>
+      <p><span class="k">Cơ chế</span> Vế 1 cho một cú mất lớn, có số (40 năm, 3,1 triệu) → tò mò "chuyện gì". Vế 2 biến nó thành việc của người xem: "4 điều KHÔNG được nói". Sợ mất mạnh hơn ham được — "không được làm" kéo người bấm hơn "nên làm".</p>
+      <p class="tpl">{数字のある出来事}のあと、{失ったもの}…老後に{言っては/しては}いけない{N}つのこと</p>
+      <p><span class="k">Dùng khi</span> tập có một biến cố do chính hành vi nhân vật gây ra.</p></div>
+    <div class="box f"><h3>W2. Phủ định nỗi sợ quen → nỗi sợ thật qua 1 người</h3>
+      <p><span class="k">Ví dụ gốc</span> 요양원에서 진짜 무서운 건 학대가 아니었습니다… 74세 노인이 석 달을 못 버티고 짐을 싼 이유 (29.104/ngày)</p>
+      <p><span class="k">Cơ chế</span> Người xem đã có sẵn nỗi sợ (bị ngược đãi). Câu "không phải cái đó" làm họ phải xem để biết cái thật. Một người thật làm một hành động cụ thể (xếp đồ về) là bằng chứng — khác hẳn "sự thật tàn khốc" chung chung.</p>
+      <p class="tpl">{場所/制度}で本当に怖いのは{よく知られた恐怖}ではなかった…{年齢}歳が{期間}で{行動}した理由</p>
+      <p><span class="k">Dùng khi</span> chủ đề có một nỗi sợ ai cũng nói (viện dưỡng lão, lừa đảo, bệnh).</p></div>
+    <div class="box f"><h3>W3. Giả định về chính người xem → người trong nghề trả lời</h3>
+      <p><span class="k">Ví dụ gốc</span> 만약 어느 날 갑자기 세상을 떠난다면… 은행 예금 전액을 자녀가 받을 수 있을까? 은행 지점장이 밝힌 충격적인 진실 (22.680/ngày) · 【전직 은행원의 경고】… 당장 멈추세요 (6.025)</p>
+      <p><span class="k">Cơ chế</span> "Nếu BẠN mất đột ngột" đặt người xem vào ghế nhân vật; câu hỏi có đáp án có/không; người trong nghề là người biết điều người ngoài không biết. Người trong nghề xuất hiện ở 7 tiêu đề — thắng khi đi với câu hỏi cụ thể của người xem, thua khi chỉ đi với "tố cáo" hoặc chuyện êm ả (54, 1.062, 2.185/ngày).</p>
+      <p class="tpl">もし{自分に起きること}…{具体的な疑問}？{専門職}が明かした{真実}</p>
+      <p><span class="k">Dùng khi</span> tập có thủ tục/tiền/luật mà người xem sẽ gặp.</p></div>
+    <div class="box f"><h3>W4. Câu hỏi đời thường → câu trả lời / cách làm của 1 người</h3>
+      <p><span class="k">Ví dụ gốc</span> "통장에 얼마 있냐"는 자식 물음에 81세가 내놓은 기막힌 대답 (12.202/ngày) · 나이 들어 혼자 생활하기 힘들어지면… 먼저 겪어본 3명의 현실적인 방법 (9.212, 11 ngày) · 노년 재혼·동거, 무엇이 가장 무서울까요? (8.845) · 나이 들수록 예금은 어디에 둬야 할까? 73세 노인의 방법이 너무 현명했습니다 (5.673)</p>
+      <p><span class="k">Cơ chế</span> Câu hỏi người xem đang né (con hỏi tiền, sống một mình không nổi). Họ bấm để lấy "đáp án mẫu" dùng được ngay. Người đưa đáp án là người cùng tuổi đã trải qua.</p>
+      <p class="tpl">「{家族から聞かれる質問}」{誰}の問いに{年齢}歳が出した{見事な答え} ／ {悩み}？{年齢}歳の{方法}が{評価}</p>
+      <p><span class="k">Dùng khi</span> tập xoay quanh một câu hỏi/cuộc nói chuyện gia đình.</p></div>
+    <div class="box f"><h3>W5. Định kiến / nghịch lý → lý do thật</h3>
+      <p><span class="k">Ví dụ gốc</span> 70세가 넘은 여성들이 여전히 남자를 찾는 진짜 이유… 예상 밖이었습니다 (16.494/ngày) · 70세를 막 넘겼는데 몇 년 안 돼 세상을 떠나는 노인이 많습니다… 대체 왜일까요? (3.019)</p>
+      <p><span class="k">Cơ chế</span> Tiêu đề nhắc một định kiến người xem đang có ("bà già đi tìm đàn ông") rồi hứa lý do khác hẳn. Người xem bấm để kiểm tra mình nghĩ đúng hay sai.</p>
+      <p class="tpl">{世間の思い込み}の本当の理由…予想外でした</p>
+      <p><span class="k">Dùng khi</span> nhân vật bị người xung quanh hiểu lầm.</p></div>
+    <div class="box lose"><h3>Những thứ làm tiêu đề thua (5/5 video thua)</h3>
+      <ul>
+        <li>Chữ sợ trừu tượng đứng một mình: 충격 · 폭로 · 참혹 · 잔혹 · 진짜 지옥 · 비극 (3 video: 54, 184, 2.185/ngày). Tiếng Nhật tương ứng cần tránh dùng một mình: 【衝撃】・暴露・残酷・地獄・悲劇.</li>
+        <li>Trấn an / chuyện êm ả: "không cần tiền", "ra đi thanh thản" (345 và 1.062/ngày).</li>
+        <li>Trách người xem mà không có cảnh, không có người: "làm 4 điều này cho con là sụp" (362/ngày).</li>
+        <li>"…rồi mới hiểu / qua 70 mới biết" không kèm mất mát cụ thể (trung vị 2.362/ngày ở 2 video).</li>
+      </ul></div>
+  </div>
+</section>
+
+<section class="box">
+  <h2>Mang sang tiêu đề Nhật của mình</h2>
+  <p>Tiêu đề Nhật hiện tại mạnh ở <b>vế cảnh cụ thể</b> (「3年前に越されましたよ」, 通帳に1700万あるのに…) nhưng 15/15 thiếu <b>vế phần thưởng cho người xem</b>, nên người xem thấy "chuyện của một bà cụ" chứ không thấy "chuyện của mình". Cách sửa ít rủi ro nhất: giữ vế cảnh, thêm vế phần thưởng theo 1 trong 5 công thức. Chữ trên thumbnail = chính tiêu đề mới, chia 3–5 dòng như simbot2.</p>
+  <p class="k">Gợi ý dưới đây là bản nháp — số N, số tiền, tuổi phải khớp script.txt (đã đếm sơ: 01 có 四つ目, 02/09 có 三つ目, 04 có 三つ, 05 có 二つの現実, 10 có 合図を五つ, 19 có 四つの型; 21 mới thấy 一つ目・二つ目 — phải đếm lại) và cần người Nhật đọc lại độ tự nhiên.</p>
+  <div class="tablebox"><table><thead><tr><th>Tập</th><th>Tiêu đề hiện tại</th><th>Đề xuất (công thức)</th></tr></thead><tbody>
+  <tr><td>01</td><td class="jp">「3年前に越されましたよ」毎週会う50年の親友が住所を隠した理由</td><td class="jp">「3年前に越されましたよ」50年の親友が黙っていた理由…老後に口にしてはいけない4つのこと <span class="vi">(W1)</span></td></tr>
+  <tr><td>02</td><td class="jp">【老老介護】手帳の最後に鉛筆で「たすけて」…倒れたのは80歳の母ではなく娘</td><td class="jp">「母さんが長生きするのが怖い」娘が泣いた夜…親子で共倒れしないために忘れてはいけない3つのこと <span class="vi">(W1)</span></td></tr>
+  <tr><td>03</td><td class="jp">籍は入れぬまま七年…四十九日の後、事実婚の妻に長男が届けた封筒の中身</td><td class="jp">籍を入れず7年、葬儀で書けたのは「知人」の二文字…老後の再婚・事実婚で本当に怖いこと <span class="vi">(W2/W4)</span></td></tr>
+  <tr><td>04</td><td class="jp">特養で本当に怖いのは虐待ではなかった…元看護婦が遺した四文字の言葉</td><td class="jp">特養で本当に怖いのは虐待ではなかった…74歳が88日で家に戻った理由 <span class="vi">(W2 — bỏ 「四文字」 vì script không có)</span></td></tr>
+  <tr><td>05</td><td class="jp">葬式の帰り、79歳の夫が漏らした一言「わしは受け取ってはいけない人間じゃ」</td><td class="jp">「わしの葬式はするな」増え続ける高齢者の遺言…葬祭ディレクターが見た2つの現実 <span class="vi">(W3)</span></td></tr>
+  <tr><td>06</td><td class="jp">78歳一人暮らしの私が倒れた朝…合鍵で駆け込んだのは「男を探す女」と噂の71歳</td><td class="jp">70歳を過ぎた女性が今も男性を探す本当の理由…私が倒れた朝に分かりました <span class="vi">(W5)</span></td></tr>
+  <tr><td>07</td><td class="jp">夫を亡くした翌日、通帳が凍り督促状が届いた…通夜で義弟が囁いた一言</td><td class="jp">もし夫が突然亡くなったら…預金はすぐ下ろせるのか？通帳が凍った翌朝に知った現実 <span class="vi">(W3)</span></td></tr>
+  <tr><td>08</td><td class="jp">元本非保証の信託に移った定期預金1800万円…30分で通帳に戻した三つの質問</td><td class="jp">【元銀行員の警告】定期預金1800万円が「元本非保証」に…窓口で必ず聞くべき3つの質問 <span class="vi">(W3)</span></td></tr>
+  <tr><td>09</td><td class="jp">夫に補聴器を諦めさせた声の正体…今度は73歳の私の耳元でささやいた</td><td class="jp">年を取ってお金があるなら先に買うべき3つのもの…夫が補聴器を諦めて分かりました <span class="vi">(W1)</span></td></tr>
+  <tr><td>10</td><td class="jp">抗がん剤をやめた40年の親友が枕元に残した千円札一枚…11年越しの借りの正体</td><td class="jp">亡くなる1ヶ月前から体に現れる5つの合図…看護師だった親友が最後に教えてくれたこと <span class="vi">(W3)</span></td></tr>
+  <tr><td>11</td><td class="jp">息子に通帳の残高を聞かれ、笑ってごまかした…5年で消えた930万円の行き先</td><td class="jp">「通帳にいくらあるの？」息子の問いに、81歳の姉さんが教えてくれた見事な答え <span class="vi">(W4)</span></td></tr>
+  <tr><td>12</td><td class="jp">夫が一年近く書いた終活ノートを目の前で破いた…始まりは古稀祝いの一言</td><td class="jp">70歳を過ぎて数年で逝く人が多いのはなぜか…夫の終活ノートを破いた日に分かったこと <span class="vi">(W5)</span></td></tr>
+  <tr><td>13</td><td class="jp">通帳に1700万あるのに、修理代22万が惜しくて三晩震えた72歳</td><td class="jp">通帳に1700万円あっても三晩震えた…老後の「勝ち組」を分ける本当の基準 <span class="vi">(W5)</span></td></tr>
+  <tr><td>19</td><td class="jp">山歩きの女に850万円を送金…契約の朝、76歳の兄に残ったのはバナナ箱二つ</td><td class="jp">60歳を過ぎたら近づいてはいけない女性4タイプ…兄は850万円を失いました <span class="vi">(W1)</span></td></tr>
+  <tr><td>21</td><td class="jp">老後資金に自ら鍵をかけた元郵便屋の理由…配達先の畳の下の800万円と孤独死</td><td class="jp">年を取るほど預金はどこに置くべきか？73歳が選んだお金の置き場所 <span class="vi">(W4 — thêm số N khi đã đếm lại)</span></td></tr>
+  </tbody></table></div>
+</section>
+
+<section>
+  <h2>26 tiêu đề của kênh, xếp theo view/ngày</h2>
+  <div class="tablebox"><table><thead><tr><th>View/ngày</th><th>View</th><th>Ngày</th><th>Nhóm</th><th>Tiêu đề (nghĩa)</th><th>Công thức</th><th>Nguyên liệu</th></tr></thead><tbody>
+<tr><td class="num">50,846</td><td class="num">1,016,924</td><td class="num">20</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">연금 310만 원을 말한 뒤 40년 계모임이 깨졌습니다… 노후에 말하면 안 되는 4가지</span><br><span class="vi">Nói ra lương hưu 3,1 triệu won rồi hội hụi 40 năm tan vỡ… 4 điều không nên nói khi về già</span></td><td>W1</td><td class="tags">cảnh cụ thể có số · hậu quả mất mát · N điều người xem áp dụng · cấm/không nên</td></tr><tr><td class="num">29,104</td><td class="num">669,392</td><td class="num">23</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">요양원에서 진짜 무서운 건 학대가 아니었습니다… 74세 노인이 석 달을 못 버티고 짐을 싼 이유</span><br><span class="vi">Điều thật sự đáng sợ ở viện dưỡng lão không phải bị ngược đãi… lý do cụ 74 tuổi không trụ nổi 3 tháng đã xếp đồ về</span></td><td>W2</td><td class="tags">phủ định nỗi sợ quen · người + tuổi + hành động · lý do</td></tr><tr><td class="num">22,681</td><td class="num">725,782</td><td class="num">32</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">만약 어느 날 갑자기 세상을 떠난다면… 은행 예금 전액을 자녀가 받을 수 있을까? 은행 지점장이 밝힌 충격적인 진실</span><br><span class="vi">Nếu một ngày đột ngột qua đời… con có nhận được toàn bộ tiền gửi không? Sự thật sốc do giám đốc chi nhánh ngân hàng kể</span></td><td>W3</td><td class="tags">giả định về chính người xem · câu hỏi người xem tự hỏi · người trong nghề · sự thật</td></tr><tr><td class="num">18,798</td><td class="num">37,596</td><td class="num">2</td><td><span class="chip na">mới đăng</span></td><td><span lang="ko">통장에 돈이 많아도 평생 &#x27;가난한 척&#x27; 해야 합니다｜79세 노인의 7가지 이유</span><br><span class="vi">Sổ nhiều tiền vẫn phải giả nghèo cả đời | 7 lý do của cụ 79 tuổi</span></td><td>W5</td><td class="tags">nghịch lý · người + tuổi · N lý do</td></tr><tr><td class="num">16,494</td><td class="num">478,339</td><td class="num">29</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">70세가 넘은 여성들이 여전히 남자를 찾는 진짜 이유… 예상 밖이었습니다</span><br><span class="vi">Lý do thật khiến phụ nữ trên 70 vẫn tìm đàn ông… nằm ngoài dự đoán</span></td><td>W5</td><td class="tags">định kiến · lý do thật · bất ngờ</td></tr><tr><td class="num">12,202</td><td class="num">536,900</td><td class="num">44</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">&quot;통장에 얼마 있냐&quot;는 자식 물음에 81세가 내놓은 기막힌 대답</span><br><span class="vi">Con hỏi &quot;trong sổ có bao nhiêu&quot;, câu trả lời tuyệt vời của cụ 81 tuổi</span></td><td>W4</td><td class="tags">câu hỏi người xem cũng gặp · câu thoại · người + tuổi · câu trả lời</td></tr><tr><td class="num">9,523</td><td class="num">657,071</td><td class="num">69</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">60세 이후, 절대 가까이하면 안 되는 여자 4부류… 잘못 만나면 말년이 처참합니다</span><br><span class="vi">Sau 60, 4 kiểu phụ nữ tuyệt đối không được lại gần… gặp nhầm là tuổi già thê thảm</span></td><td>W1</td><td class="tags">cảnh báo cho người xem · mốc tuổi · N kiểu · hậu quả</td></tr><tr><td class="num">9,213</td><td class="num">101,341</td><td class="num">11</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">나이 들어 혼자 생활하기 힘들어지면… 어떻게 해야 할까요? 먼저 겪어본 3명의 현실적인 방법</span><br><span class="vi">Về già sống một mình khó khăn thì làm sao? Cách thực tế của 3 người đã trải qua</span></td><td>W4</td><td class="tags">câu hỏi người xem tự hỏi · 3 người trải qua · cách làm</td></tr><tr><td class="num">8,846</td><td class="num">415,751</td><td class="num">47</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">노년 재혼·동거, 무엇이 가장 무서울까요? 직접 겪은 세 사람의 이야기｜많은 분들이 &quot;진작 볼 걸&quot; 후회합니다</span><br><span class="vi">Tái hôn · sống chung khi già, điều gì đáng sợ nhất? Chuyện 3 người trải qua | nhiều người hối hận &#x27;giá xem sớm hơn&#x27;</span></td><td>W4</td><td class="tags">câu hỏi người xem tự hỏi · 3 người trải qua · bằng chứng xã hội</td></tr><tr><td class="num">8,624</td><td class="num">327,699</td><td class="num">38</td><td><span class="chip ok">thắng</span></td><td><span lang="ko">부모님이 오래 살수록 자식의 삶까지 무너질 수 있습니다. 부모와 함께 지옥으로 끌려가지 않으려면 절대 잊지 말아야 할 3가지</span><br><span class="vi">Cha mẹ càng sống lâu, đời con càng có thể sụp đổ. Để không bị kéo xuống địa ngục, 3 điều tuyệt đối không được quên</span></td><td>W1</td><td class="tags">nỗi sợ gắn quan hệ · N điều người xem áp dụng</td></tr><tr><td class="num">7,899</td><td class="num">39,493</td><td class="num">5</td><td><span class="chip na">mới đăng</span></td><td><span lang="ko">【65~75세】하고 싶은 걸 할 수 있는 마지막 10년… 진작 알았더라면 좋았을 ‘3대 7의 법칙’</span><br><span class="vi">[65~75 tuổi] 10 năm cuối còn làm được điều mình muốn… &#x27;quy tắc 3–7&#x27; giá biết sớm</span></td><td>—</td><td class="tags">khung tuổi · hạn chót · quy tắc bí ẩn</td></tr><tr><td class="num">6,684</td><td class="num">173,772</td><td class="num">26</td><td><span class="chip part">giữa</span></td><td><span lang="ko">&quot;절대 장례식을 치르지 마라&quot; 갈수록 늘어나는 노인들의 유언… 장례지도사가 털어놓은 가슴 찢어지는 3가지 진실</span><br><span class="vi">&quot;Tuyệt đối đừng tổ chức đám tang&quot; — di ngôn ngày càng nhiều… 3 sự thật giám đốc tang lễ kể</span></td><td>W3</td><td class="tags">câu thoại · xu hướng · người trong nghề · N sự thật</td></tr><tr><td class="num">6,025</td><td class="num">319,336</td><td class="num">53</td><td><span class="chip part">giữa</span></td><td><span lang="ko">【전직 은행원의 경고】70세가 넘어서도 여기에 돈을 넣어 두고 있다면 당장 멈추세요｜은행은 절대 알려주지 않습니다</span><br><span class="vi">[Cảnh báo của cựu nhân viên ngân hàng] Qua 70 mà vẫn để tiền ở chỗ này thì dừng ngay | ngân hàng không bao giờ nói</span></td><td>W3</td><td class="tags">người trong nghề · lệnh cho người xem · bí mật</td></tr><tr><td class="num">5,673</td><td class="num">431,153</td><td class="num">76</td><td><span class="chip part">giữa</span></td><td><span lang="ko">나이 들수록 예금은 어디에 둬야 할까? 73세 노인의 방법이 너무 현명했습니다</span><br><span class="vi">Càng già tiền gửi nên để đâu? Cách của cụ 73 tuổi quá khôn ngoan</span></td><td>W4</td><td class="tags">câu hỏi người xem tự hỏi · người + tuổi · cách làm</td></tr><tr><td class="num">4,822</td><td class="num">38,578</td><td class="num">8</td><td><span class="chip na">mới đăng</span></td><td><span lang="ko">혼자 사는 노인이 오히려 더 오래 사는 이유? 37년 배달원이 문 앞에서 목격한 5가지 공통점</span><br><span class="vi">Vì sao người già sống một mình lại sống lâu hơn? 5 điểm chung người giao hàng 37 năm thấy trước cửa</span></td><td>W5</td><td class="tags">trái trực giác · nhân chứng lâu năm · N điểm</td></tr><tr><td class="num">4,361</td><td class="num">74,143</td><td class="num">17</td><td><span class="chip part">giữa</span></td><td><span lang="ko">72세에 45년 친구에게 잘린 뒤 알았습니다｜노년에 곁에 둘 사람은 3가지만 보면 됩니다</span><br><span class="vi">72 tuổi bị bạn 45 năm cắt đứt mới hiểu | người nên giữ bên cạnh chỉ cần xem 3 điều</span></td><td>W1</td><td class="tags">người + tuổi + biến cố · hiểu ra muộn · N tiêu chí</td></tr><tr><td class="num">4,143</td><td class="num">207,128</td><td class="num">50</td><td><span class="chip part">giữa</span></td><td><span lang="ko">죽기 한 달 전부터 몸에 나타나는 변화｜간호사가 알려줬습니다</span><br><span class="vi">Thay đổi xuất hiện trên cơ thể từ 1 tháng trước khi mất | y tá chỉ cho tôi</span></td><td>W3</td><td class="tags">dấu hiệu · người trong nghề</td></tr><tr><td class="num">3,652</td><td class="num">241,060</td><td class="num">66</td><td><span class="chip part">giữa</span></td><td><span lang="ko">나이 들어 돈이 있다면 가장 먼저 사야 할 3가지… 늦으면 반드시 후회합니다</span><br><span class="vi">Về già có tiền thì 3 thứ nên mua trước… muộn là chắc chắn hối hận</span></td><td>W1</td><td class="tags">điều kiện của người xem · N thứ · hối hận</td></tr><tr><td class="num">3,020</td><td class="num">190,251</td><td class="num">63</td><td><span class="chip part">giữa</span></td><td><span lang="ko">70세를 막 넘겼는데 몇 년 안 돼 세상을 떠나는 노인이 많습니다… 대체 왜일까요?</span><br><span class="vi">Nhiều người vừa qua 70 được vài năm đã ra đi… rốt cuộc vì sao?</span></td><td>W5</td><td class="tags">hiện tượng · vì sao</td></tr><tr><td class="num">2,629</td><td class="num">155,083</td><td class="num">59</td><td><span class="chip part">giữa</span></td><td><span lang="ko">65세에 ‘이만큼의 돈’이 있는 사람은… 노후의 승자입니다｜이 기준, 놀랄 만큼 정확합니다</span><br><span class="vi">Ai 65 tuổi có &#x27;chừng này tiền&#x27;… là người thắng tuổi già | tiêu chuẩn chính xác đến kinh ngạc</span></td><td>W5</td><td class="tags">con số bị giấu · phán định · mốc tuổi</td></tr><tr><td class="num">2,185</td><td class="num">30,591</td><td class="num">14</td><td><span class="chip part">giữa</span></td><td><span lang="ko">【전 요양원장 폭로】왜 많은 노인들이 요양원에 들어간 뒤 몇 년 못 가 돌아가실까? 그 잔혹한 진실…</span><br><span class="vi">[Cựu giám đốc viện dưỡng lão tố] Vì sao nhiều cụ vào viện vài năm là mất? Sự thật tàn khốc…</span></td><td>thua</td><td class="tags">người trong nghề · tố cáo · chữ sợ trừu tượng</td></tr><tr><td class="num">1,063</td><td class="num">37,194</td><td class="num">35</td><td><span class="chip bad">thua</span></td><td><span lang="ko">15년 경력 요양보호사의 고백, 편안히 떠난 어르신들이 끝까지 지킨 두 가지</span><br><span class="vi">Lời thú nhận của hộ lý 15 năm: 2 điều các cụ ra đi thanh thản giữ đến cuối</span></td><td>thua</td><td class="tags">người trong nghề · tích cực / an ủi · N điều</td></tr><tr><td class="num">362</td><td class="num">20,279</td><td class="num">56</td><td><span class="chip bad">thua</span></td><td><span lang="ko">일흔이 넘어서야 알았습니다... 자식에게 이 4가지를 해주면, 돈이 아무리 많아도 노후가 무너집니다</span><br><span class="vi">Qua 70 mới biết… làm 4 điều này cho con thì dù nhiều tiền tuổi già vẫn sụp</span></td><td>thua</td><td class="tags">hiểu ra muộn · N điều · cảnh báo</td></tr><tr><td class="num">346</td><td class="num">14,169</td><td class="num">41</td><td><span class="chip bad">thua</span></td><td><span lang="ko">&quot;노후에 10억 필요 없습니다&quot; 돈 없이도 평안하게 늙어가는 사람들의 3가지 공통점</span><br><span class="vi">&quot;Về già không cần 1 tỷ won&quot; 3 điểm chung của người già đi thanh thản dù không có tiền</span></td><td>thua</td><td class="tags">câu thoại · trấn an · N điểm</td></tr><tr><td class="num">184</td><td class="num">13,461</td><td class="num">73</td><td><span class="chip bad">thua</span></td><td><span lang="ko">70세가 넘으면 &#x27;진짜 지옥&#x27;이 시작됩니다... 아무도 피해갈 수 없는 노년의 4가지 비극</span><br><span class="vi">Qua 70 là &#x27;địa ngục thật&#x27; bắt đầu… 4 bi kịch tuổi già không ai tránh được</span></td><td>thua</td><td class="tags">chữ sợ trừu tượng · N bi kịch</td></tr><tr><td class="num">54</td><td class="num">4,389</td><td class="num">81</td><td><span class="chip bad">thua</span></td><td><span lang="ko">[충격] 차라리 집에서 죽을란다... 10년 차 요양보호사가 폭로한 요양원의 참혹한 진실</span><br><span class="vi">[Sốc] Thà chết ở nhà… sự thật thảm khốc về viện dưỡng lão do hộ lý 10 năm tố</span></td><td>thua</td><td class="tags">chữ sợ trừu tượng · tố cáo · người trong nghề</td></tr>
+  </tbody></table></div>
+  <p class="k">Nhóm: thắng ≥ 8.000 view/ngày · giữa 2.000–8.000 · thua &lt; 2.000 · "mới đăng" = dưới 11 ngày, view/ngày còn bị thổi phồng nên không xếp.</p>
+</section>
+</div>

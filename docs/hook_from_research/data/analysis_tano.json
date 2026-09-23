@@ -1,0 +1,1123 @@
+{
+ "key": "tano",
+ "lane": "teinengo-tanoshimi",
+ "channel": {
+  "name": "老後のお金ストーリー",
+  "id": "UCI2cPqBmCPMxxKI4u2Gqs_Q",
+  "url": "https://www.youtube.com/channel/UCI2cPqBmCPMxxKI4u2Gqs_Q"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\rougo-money-story",
+ "formula": {
+  "summary": "Kênh làm 1 khuôn cho video list: 0–12s một nghịch lý đời hưu (tự nói hoặc thoại) → 12–38s một NGƯỜI KHÁC nói câu làm tiền đề (bạn cùng tuổi, sếp cũ, người lạ) → 29–48s 「この時の俺はまだ知らなかった…」 → ~40s mới tự giới thiệu → 60–120s tiểu sử “mới hưu vui, nửa năm sau chán” → mục 1 ở 226–356s (17–29% kịch bản). Số N hiếm khi nói trong 90s đầu (1/7). Tiêu đề = 【漫画】+定年後/60代+tính từ cực cấp+danh từ+N選…vế phần thưởng; thumbnail tách tiêu đề làm 2 dòng (băng đen trên + dòng đỏ dưới), tranh hiện các hạng GIỮA và giấu hạng 1; mô tả 250–500 chữ, câu đầu hỏi thẳng nỗi đau, không hashtag.",
+  "hook_beats": [
+   {
+    "t": "0–12s",
+    "name": "Nghịch lý đời hưu",
+    "desc": "Một câu đặt 2 sự thật đá nhau (có thời gian mà tiền rò; có đủ mà vẫn thiếu; rảnh nên không đi), hoặc câu thoại sốc giá. 7/7 video có transcript mở kiểu này, không tả cảnh.",
+    "example_ja": "定年から時間だけはたっぷりできた。でも暇だから出かければコーヒー代、ガソリン代、買い物代。",
+    "example_video": "AOe-E69mLzA"
+   },
+   {
+    "t": "12–38s",
+    "name": "Người khác nói câu tiền đề",
+    "desc": "Bạn cùng tuổi/sếp cũ/người lạ nói 1 câu lật cách nghĩ và (ở video list) nêu ĐIỀU KIỆN của danh sách: ai cũng làm được, không phiền ai, 0 yên. 5/7 ≤38s (bgUq 33s, AOe 14,6s, ASBV 0–29s, _G9s 29s, YKjW 15s); BeIZ ~54s; _EhP chỉ nhắc ~22s.",
+    "example_ja": "お前は暇を潰そうとするから金がかかるんだよ。1人でできる。誰にも迷惑をかけない。そして一円も使わない。",
+    "example_video": "AOe-E69mLzA"
+   },
+   {
+    "t": "26–40s",
+    "name": "Nghi ngờ lời hứa",
+    "desc": "Nhân vật chính hỏi lại, biến lời người khác thành câu hỏi của cả video.",
+    "example_ja": "そんな過ごし方が本当にいくつもあるのか。",
+    "example_video": "AOe-E69mLzA"
+   },
+   {
+    "t": "29–48s",
+    "name": "Báo trước (K03)",
+    "desc": "「この時の俺はまだ知らなかった」+ điều sẽ đổi. 5/7 (_EhP ~31s, ASBV ~31s, _G9s ~37s, bgUq 42,6s biến thể 衝撃を受けた, AOe 48,6s).",
+    "example_ja": "この時の俺はまだ知らなかった。20年以上前の俺の常識がこの一晩で大きく変わることを。",
+    "example_video": "ASBVa_H_leI"
+   },
+   {
+    "t": "38–71s",
+    "name": "Tự giới thiệu 1–2 câu",
+    "desc": "Tên + tuổi + năm làm/nghề + mới hưu bao lâu. Trung vị 42s (ASBV ~38, _G9s ~42, bgUq 52,7, AOe 55,4, YKjW 71,4); 2/7 giới thiệu ngay 0–3s (_EhP, BeIZ).",
+    "example_ja": "俺の名前は山田和夫。66歳。精密機器メーカーで42年間営業職として働き、1年前に定年退職した。",
+    "example_video": "AOe-E69mLzA"
+   },
+   {
+    "t": "60–120s",
+    "name": "Tiểu sử “vui rồi chán”",
+    "desc": "Mới hưu tưởng tự do → nửa năm sau 8 giờ rưỡi đã hết việc → cảnh vợ hỏi 「今日は出かけないの?」.",
+    "example_ja": "ようやく自由になった。そう思ってたところが半年もするとその自由にも慣れてくる。",
+    "example_video": "AOe-E69mLzA"
+   },
+   {
+    "t": "226–356s",
+    "name": "Mục 1",
+    "desc": "1つ目 (thói quen) hoặc 第5位 (xếp hạng địa điểm) — 17–29% kịch bản, 1.363–2.089 chữ không tính khoảng trắng (5 video list có transcript + DfIBG3fJW6o).",
+    "example_ja": "まずは1つ目。少し早起きをすることだ。",
+    "example_video": "bgUqNHYZbq0"
+   }
+  ],
+  "title": "【漫画】(10/10) + chủ thể 定年後 (6/10) hoặc 60代/６０代 (3/10) + tính từ cực cấp/lạ (最強・一流だけが・格式の高い・なぜか老けない・驚くほど・豪華/高級 — 8/10) + danh từ cụ thể + N選 (7/10 video chọn; 9/20 cả kênh) + 「…」 vế phần thưởng/lật (実は1円もかからない・同年代と差がつく意外な共通点・【世間の非常識】). Dài 33–45 ký tự ở 7 video tốt; video 1,1k dài 52. Chỉ 1/10 dùng 「」.",
+  "thumbnail": "Băng ĐEN đặc trên 10/10, chữ đầu VÀNG 10/10 (定年後 6/10, 60代 2/10), 1 cụm ĐỎ trong băng trên 5/10 — đúng 5 trong 6 video view cao nhất (bgUq, BeIZ, AOe, _EhP, _G9s); dòng ĐỎ viền trắng lớn phía dưới 8/10 (thiếu ở bgUq, ASBV — 2 ảnh dùng nhãn vàng thay); ≥2 khung 7/10; bong bóng TRẮNG hình oval DỌC 8/10; nhãn vàng 3/10 (hạng hoặc đặc điểm); ≥1 mặt thư thái/cười 9/10 — ảnh duy nhất chỉ có mặt khổ là YKjW (1.159 view). Ở 4/4 video xếp hạng soát được (bgUq, BeIZ, AOe, _G9s) tranh hiện các hạng dưới 1 và GIẤU hạng 1.",
+  "description": "247–508 ký tự, 0/10 hashtag, 0/10 link. Câu 1 hỏi thẳng nỗi đau hoặc nêu nghịch lý (6/10 dạng câu hỏi 「〜ませんか？」「〜でしょうか？」). Đoạn 2 tóm nhân vật + tuổi + người dẫn đường (6/10: AOe 「66歳で定年退職した男性が、元上司から教わった」, _EhP, ASBV, _D8q, rapoU, bgUq 中村). Đoạn 3 liệt kê các mục nhưng giấu mục cuối (AOe: 断捨離・空や雲・議会・昼寝 + 「最後にたどり着いたのは…意外な“最高の暇つぶし”」). Câu chốt nhắm người xem 「60代・70代の方におすすめです」 hoặc 「ご覧いただければ幸いです」 (8/10); xin comment 2/10 (BeIZ, _G9s); miễn trừ 2/10 (BeIZ, H-Dk).",
+  "link_4_parts": "Một lời hứa đi qua 4 chỗ nhưng mỗi chỗ nói một phần: tiêu đề nêu đủ (chủ thể + N選 + phần thưởng); thumbnail tách tiêu đề làm 2 dòng (băng trên 10/10 lấy chữ tiêu đề; dòng dưới 6/8 lấy tiếp từ tiêu đề) và cho XEM các mục giữa; hook chứng minh bằng một người thật trong truyện, nói lõi tiêu đề trong ≤36s ở 6/7 (AOe 「一円も使わない」 23s, ASBV 「2万円」 0s, bgUq 「7つのこと」 36s); mô tả hỏi thẳng nỗi đau + liệt kê mục trừ mục cuối. Ngoại lệ đáng chú ý: _EhP lấy dòng đỏ thumbnail 「お金や健康ではない」 từ HOOK (0–20s), không từ tiêu đề.",
+  "exceptions": [
+   "BeIZhu1I4Tw (172k): hook 120s không nhắc 神社, không K03, người khác nói ở ~54s — thắng nhờ đề tài tra cứu 神社5選.",
+   "ASBVa_H_leI (108k): không phải list N選 — video trải nghiệm 1 chuyến, không có hook_marker; thumbnail không có dòng đỏ dưới.",
+   "bgUqNHYZbq0 (202k): thumbnail in 「第3位/第2位」 trong khi video đếm 1つ目→7つ目 (không có chữ 位 nào) — lệch nhỏ vẫn thắng.",
+   "H-Dk8XBmw90 (7,6k): thumbnail đúng khuôn (N選, 2 khung, bong bóng dọc, dòng đỏ) nhưng đề tài làm thêm vì lo lương hưu → thấp: thumbnail đúng khuôn không cứu đề tài lệch."
+  ],
+  "counts": {
+   "videos_chon": 10,
+   "co_transcript": "7/10 (3 mốc giây thật: bgUq, AOe, YKjW; 4 ước tính: BeIZ, _EhP, ASBV, _G9s); 3 không có (_D8q, rapoU, H-Dk)",
+   "mo_nghich_ly_0_12s": "7/7",
+   "nguoi_khac_noi_le_38s": "5/7 (+BeIZ ~54s, _EhP chỉ nhắc ~22s)",
+   "k03_le_48s": "5/7",
+   "tu_gioi_thieu_trung_vi_s": 42,
+   "so_N_trong_90s": "1/7 (bgUq 「7つ」 36s); AOe 「いくつも」 26s",
+   "muc1_s": "226–356 (6 video list)",
+   "title_N_sen": "7/10 video chọn; 9/20 cả kênh — trung vị 85k (N選) vs 7,5k (11 video không N選)",
+   "thumb_bang_den": "10/10",
+   "thumb_do_trong_bang_tren": "5/10 (= 5/6 video view cao nhất)",
+   "thumb_dong_do_duoi": "8/10",
+   "thumb_bong_bong_doc": "8/10",
+   "thumb_giau_hang1": "4/4 video xếp hạng soát được",
+   "thumb_chi_mat_kho": "1/10 (YKjW 1.159 view)",
+   "desc_hashtag": "0/10",
+   "desc_cau_hoi_dau": "6/10"
+  }
+ },
+ "videos": [
+  {
+   "video_id": "bgUqNHYZbq0",
+   "tag": "top",
+   "views": 202002,
+   "duration_min": 20.6,
+   "title": "【漫画】なぜか老けない50代男性が「毎日やっていること」7選…同年代と差がつく意外な共通点",
+   "desc_first": "同じ50代でも、実年齢より若々しく見える人と、年齢以上に老けて見える人がいます。",
+   "thumb_text": "băng đen trên: 「老けない人の」(vàng)「共通点」(đỏ) | 2 khung, nhãn vàng 「第3位」「第2位」 | bong bóng dọc 「孤独な生活」「肉を食う」 | không có dòng đỏ dưới | 2 mặt tươi cười, tóc đen (nhân vật 55 tuổi)",
+   "key_line_ja": "あれ?お前って中学校の同窓会にわかわかしい男性が入ってきた。周りと違う肌質で今時の洋服を着ている。俺だよ。中村あだよ。(ASR: 若々しい/中村だよ)",
+   "key_t": 0.2,
+   "lock_line_ja": "いや、特別なことはしていないよ。誰でもできる簡単な7つのことをやっているだけだ。一体それは何なんだ?",
+   "lock_t": 33.2,
+   "intro_t": 52.7,
+   "promise_t": 36.1,
+   "other_voice_t": 9.7,
+   "k03_t": 42.6,
+   "item1_t": 356,
+   "timing_source": "real (raw hook_segments)",
+   "beats": {
+    "event": "0,2s họp lớp cấp 2: một bạn cùng tuổi bước vào trẻ hẳn — 「わかわかしい男性が入ってきた」",
+    "contradiction": "12,9–22,8s 「誰が見てもわかわかしい…50代には見えないぞ」 — cùng 55 tuổi mà khác nhau",
+    "stake": "16,9s 「老いを気にしている俺は」 — người kể đang sợ già (khán giả tự soi mình)",
+    "open_loop": "33,2–38,8s 「誰でもできる簡単な7つのこと…一体それは何なんだ?」 + 42,6s 「中村から話を聞いた俺は衝撃を受けた」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H08"
+   ],
+   "closers": [
+    "K18",
+    "K09",
+    "K03"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「なぜか老けない50代男性」 = cảnh 0,2s bạn cùng lớp trẻ hẳn; 「7選」 = 「7つのこと」 ở 36,1s."
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「老けない人の共通点」 ghép 2 cụm của chính tiêu đề (老けない + 共通点)."
+   ],
+   "thumb_hook": [
+    "P",
+    "Thumbnail là 2 mục (孤独 = 5つ目 ~826s, 肉 = 6つ目 ~1047s), hook 0–60s là cảnh họp lớp; hai thứ chỉ nối qua chủ đề “không già”. Nhãn 「第3位/第2位」 không có trong video (video đếm 1つ目→7つ目)."
+   ],
+   "why": "H08 bản GHEN TỊ chứ không thương hại: cùng tuổi mà người kia trẻ → khán giả tự hỏi “mình thuộc bên nào”. Người kia tự nói điều kiện 「特別なことはしていない・誰でもできる」 (33s) nên lời hứa có người bảo chứng; 「衝撃を受けた」 (42s) báo có cú lật.",
+   "weak": "Nhãn hạng 第3位/第2位 trên thumbnail không khớp cách đếm trong video (1つ目→7つ目; 7つ目 là 「一番難しい」). Tự giới thiệu 52,7s dài 35 giây tiểu sử (bóng chày, gương) trước khi vào mục 1 ở ~356s — mục 1 muộn nhất trong 6 video list của kênh."
+  },
+  {
+   "video_id": "BeIZhu1I4Tw",
+   "tag": "top",
+   "views": 172445,
+   "duration_min": 25.7,
+   "title": "【漫画】一生に一度は参拝したい…定年後に行くべき格式の高い神社5選",
+   "desc_first": "定年退職後、時間に余裕ができたからこそ訪れてみたい日本の神社。",
+   "thumb_text": "băng đen trên: 「定年後」(vàng)「に」(trắng)「参拝したい」(đỏ) | 2 khung: cổng 稲荷 (伏見稲荷 = 第3位) / điện 出雲大社 (= 第2位) — không nhãn hạng | bong bóng dọc 「一人旅」「自由」 | dòng đỏ dưới 「有名神社5選」 | 2 mặt thư thái",
+   "key_line_ja": "まさか67歳になって旅に出るとはな。",
+   "key_t": 0.0,
+   "lock_line_ja": "寺さん、現役の頃から同じこと言ってましたよ。確かに元気なうちに行かないとそのうちが来る前に行けなくなりますよ。(…)金も時間もある。足も動く。それなのに行かないなら一体いつ行くんだ。",
+   "lock_t": 53.7,
+   "intro_t": 3.3,
+   "promise_t": null,
+   "other_voice_t": 53.7,
+   "k03_t": null,
+   "item1_t": 298,
+   "timing_source": "est (transcripts.json, vị trí chữ ÷ tổng chữ × thời lượng)",
+   "beats": {
+    "event": "0s 「まさか67歳になって旅に出るとはな」 — hé kết cục: ông đang đi du lịch",
+    "contradiction": "~32s 「予定がないからこそいつでも行ける。いつでも行けると思うから今日じゃなくていい」",
+    "stake": "~54–60s đồng nghiệp cũ: 「そのうちが来る前に行けなくなりますよ」 + ~67s 「駅の階段を登るだけでも…息が切れる。膝だって」",
+    "open_loop": "~86s 「それなのに行かないなら一体いつ行くんだ」 → 87s 「よし、行くか」 (tự trả lời ngay, không còn câu hỏi treo; 5 ngôi đền chỉ lộ ở ~298s)"
+   },
+   "kind": "C",
+   "patterns": [
+    "H12",
+    "H17"
+   ],
+   "closers": [],
+   "score_0_12": 8,
+   "score_detail": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Hook 0–120s không có chữ 神社 hay số 5; chỉ có quyết định đi một mình. Lời hứa “đền 5選” chỉ lộ ở ~298s (第5位 宇佐神宮)."
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「定年後に参拝したい」 + dòng dưới 「有名神社5選」 = 2 nửa của tiêu đề (一生に一度は参拝したい / 定年後に行くべき…神社5選)."
+   ],
+   "thumb_hook": [
+    "P",
+    "Bong bóng 「一人旅」「自由」 khớp hook (quyết định đi một mình ~87s); 2 ngôi đền trên ảnh (第3位/第2位) không xuất hiện trong 120s đầu."
+   ],
+   "why": "Mâu thuẫn “rảnh nên KHÔNG đi” (~32s) đúng tâm lý người mới hưu; câu của đồng nghiệp cũ biến nó thành nỗi sợ thời gian còn lại (~54–67s: 行けなくなりますよ, 膝, 階段). Video sống chủ yếu nhờ nhu cầu tra cứu “đền nên đi 1 lần trong đời”.",
+   "weak": "Tự giới thiệu ở 3s (H12) trước khi có mâu thuẫn; câu của người khác tới ~54s (muộn nhất trong nhóm list); không có câu báo trước K03; hook không nhắc 神社 — 172k nhờ ĐỀ TÀI, không nhờ hook (điểm 8/12, bằng video 1,1k YKjWwJZrKXY)."
+  },
+  {
+   "video_id": "AOe-E69mLzA",
+   "tag": "top",
+   "views": 157196,
+   "duration_min": 22.8,
+   "title": "【漫画】定年後、最強の暇つぶし5選…実は1円もかからない楽しみ方がありました",
+   "desc_first": "定年後、時間はあるのに「何をして過ごせばいいか分からない」「暇を潰すたびにお金がかかる」と感じていませんか？",
+   "thumb_text": "băng đen trên: 「定年後、」(vàng)「最強の」(đỏ)「暇つぶし」(trắng) | 4 khung, nhãn vàng 「5位」「4位」「3位」「2位」 (giấu 1位) | dòng đỏ dưới 「※1円もかからない」 | 4 mặt thư thái/cười",
+   "key_line_ja": "お前は紐を潰そうとするから金がかかるんだよ。1人でできる。誰にも迷惑をかけない。そして一延も使わない。(ASR: 紐=暇, 一延=一円)",
+   "key_t": 14.6,
+   "lock_line_ja": "そんな過ごし方が本当にいくつもあるのか。(…)この時の俺はまだ知らなかった。定年後の暇そのものがこんなに贅沢だったなんて。",
+   "lock_t": 26.4,
+   "intro_t": 55.4,
+   "promise_t": 20.5,
+   "other_voice_t": 14.6,
+   "k03_t": 48.6,
+   "item1_t": 356,
+   "timing_source": "real (raw hook_segments)",
+   "beats": {
+    "event": "0,2–11s 「時間だけはたっぷりできた。でも…コーヒー代、ガソリン代、買い物代。気づけば俺は暇を潰すために金を使っていた」",
+    "contradiction": "14,6s sếp cũ 佐藤さん: 「お前は暇を潰そうとするから金がかかるんだよ」 — lật cách nghĩ",
+    "stake": "20,5–26s điều kiện 3 vế: 「1人でできる。誰にも迷惑をかけない。そして一円も使わない」 (tiền hưu đang rò)",
+    "open_loop": "26,4s 「そんな過ごし方が本当にいくつもあるのか」 + 48,6s K03 「この時の俺はまだ知らなかった。定年後の暇そのものがこんなに贅沢だったなんて」"
+   },
+   "kind": "B",
+   "patterns": [
+    "H04",
+    "H17"
+   ],
+   "closers": [
+    "K18",
+    "K03"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    1,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "「1円もかからない」 = 23s 「一円も使わない」; 「暇つぶし」 = 11s 「暇を潰すために」."
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「定年後、最強の暇つぶし」 và dòng dưới 「※1円もかからない」 gần như chép nguyên 2 vế tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "Dòng đỏ 1円もかからない = câu 20–26s; 4 khung hạng 5→2 = lời hứa “nhiều cách” ở 26s, hạng 1 bị giấu."
+   ],
+   "why": "Nghịch lý rò tiền vì rảnh (0–11s) là nỗi lo chung của người mới hưu; câu của người đi trước (14,6s) vừa chẩn bệnh vừa đưa điều kiện của danh sách (20–26s) nên người xem ở lại để kiểm “có thật 0 yên không”; K03 ở 48,6s cam kết có cú lật trước khi vào tiểu sử.",
+   "weak": "Tiểu sử 55–120s (42 năm bán hàng, sáng 8 giờ rưỡi) dài; mục 1 ở ~356s. Chấm lại 10/12 (kho cũ 8/12) vì thumbnail khớp hook nguyên văn (1円) và cảnh tiêu tiền dựng hình được."
+  },
+  {
+   "video_id": "_EhPtM6cRFk",
+   "tag": "top",
+   "views": 114338,
+   "duration_min": 18.5,
+   "title": "【漫画】６０代から人生が驚くほど心地よくなる定年後に見つけたちょうどいい生き方５選",
+   "desc_first": "定年後、幸せに暮らすために本当に大切なものとは何でしょうか？",
+   "thumb_text": "băng đen trên: 「定年後、」(vàng)「最高の」(đỏ)「生き方」(trắng) | 1 khung: ông dang tay trên đồi, trời xanh, mặt cười | dòng đỏ dưới 「お金や健康ではない」 | không bong bóng, không nhãn",
+   "key_line_ja": "ロモ(老後)資金はある程度準備した。健康にも大きな問題はない。妻との仲も悪くない。それなのになぜか毎日が満たされなかった。(…)お金も健康もあるのに俺には何が足りないんだ。",
+   "key_t": 9.8,
+   "lock_line_ja": "その人から聞いたのは俺が今まで考えもしなかった定年後の生き方だった。この時の俺はまだそれを知らなかった。こんなにも素晴らしい定年後の生き方があるなんて。",
+   "lock_t": 31.0,
+   "intro_t": 0.0,
+   "promise_t": 25.4,
+   "other_voice_t": null,
+   "k03_t": 31.0,
+   "item1_t": 226,
+   "timing_source": "est (transcripts.json)",
+   "beats": {
+    "event": "0s 「俺の名前は鈴木。66歳。定年して1年になる」 + tiền/sức khoẻ/vợ đều ổn",
+    "contradiction": "~10s 「それなのになぜか毎日が満たされなかった」",
+    "stake": "~14–20s 「誰かといれば疲れ。1人でいれば少し寂しい…俺には何が足りないんだ」",
+    "open_loop": "~22–31s 「公園で1人の老人と出会った…考えもしなかった定年後の生き方」 + K03 ~31s"
+   },
+   "kind": "C",
+   "patterns": [
+    "H12",
+    "H04"
+   ],
+   "closers": [
+    "K03"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    2,
+    1,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "「定年後に見つけた…生き方」 = ~25s 「考えもしなかった定年後の生き方」."
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「定年後、最高の生き方」 lấy 定年後/生き方 của tiêu đề (đổi ちょうどいい → 最高)."
+   ],
+   "thumb_hook": [
+    "K",
+    "Dòng đỏ 「お金や健康ではない」 là đúng câu hỏi 0–20s 「お金も健康もあるのに…何が足りない」 (dòng này KHÔNG có trong tiêu đề — lấy từ hook + câu 2 mô tả)."
+   ],
+   "why": "H04 bản hưu trí: có đủ tiền, sức khoẻ, vợ mà vẫn thiếu → người xem “đủ điều kiện” tự nhận ra mình; câu hỏi “thiếu gì” được thumbnail trả lời nửa chừng (không phải tiền, không phải sức khoẻ) nên phải xem.",
+   "weak": "Người dẫn đường chỉ được NHẮC ở ~22s, chưa có câu thoại của ông cho tới ~110s. Hình ảnh trừu tượng (cảm giác trống) — dựng hình yếu hơn video trải nghiệm."
+  },
+  {
+   "video_id": "ASBVa_H_leI",
+   "tag": "top",
+   "views": 107767,
+   "duration_min": 19.1,
+   "title": "【漫画】夜行バスに2万円！？新幹線より高い豪華夜行バスに65歳で乗ってみた結果…",
+   "desc_first": "夜行バスに片道約2万円。",
+   "thumb_text": "băng đen trên: 「60代」(vàng)「で高級夜行バス旅」(trắng) | 2 khung: ngồi ghế da uống cà phê mặt thư thái / ngó vào phòng riêng mặt ngạc nhiên | bong bóng dọc 「片道2万」「11席だけ」 | nhãn vàng 「極上シート」「完全個室」 | không dòng đỏ dưới",
+   "key_line_ja": "2万円バスに2万円も払うのか。普通の夜行バスじゃないぞ。完全個室の豪華夜行バスだ。それでも新幹線より高いじゃないか。",
+   "key_t": 0.0,
+   "lock_line_ja": "でもそれって20年以上前の話だろう。(…)今の夜行バス本当に昔と同じだと思うか?この時の俺はまだ知らなかった。20年以上前の俺の常識がこの一晩で大きく変わることを。",
+   "lock_t": 28.7,
+   "intro_t": 38.2,
+   "promise_t": 31.0,
+   "other_voice_t": 0.0,
+   "k03_t": 31.0,
+   "item1_t": null,
+   "timing_source": "est (transcripts.json)",
+   "beats": {
+    "event": "0s đối thoại: 「2万円!?バスに2万円も払うのか」",
+    "contradiction": "~4–7s 「完全個室の豪華夜行バスだ」「それでも新幹線より高いじゃないか」",
+    "stake": "~9–21s ký ức 5.000 yên, không ngủ được, 「もう2度と乗らないと決めていた」",
+    "open_loop": "~23–29s bạn: 「今の夜行バス本当に昔と同じだと思うか?」 + K03 ~31s 「常識がこの一晩で大きく変わる」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H22",
+    "H14"
+   ],
+   "closers": [
+    "K03"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "「夜行バスに2万円!?新幹線より高い」 là nguyên câu thoại 0–7s."
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「60代で高級夜行バス旅」 = 「豪華夜行バスに65歳で乗ってみた」 rút gọn; 「片道2万」 = 「2万円」 của tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "「片道2万」「完全個室」 đều có ở 0–5s; 「11席だけ」「極上シート」 lấy từ mô tả."
+   ],
+   "why": "Con số giá vô lý nói ra thành câu thoại ở giây 0 + niềm tin cũ “không bao giờ đi lại” (H14) + bạn thách “có còn như xưa không” → người xem ở lại để xem niềm tin sụp.",
+   "weak": "Không phải list N選 (ngoại lệ duy nhất ≥85k trong 20 video). Không có hook_marker nên gate hook_chars của h2dev không đo được dạng video này."
+  },
+  {
+   "video_id": "_G9s-Ig6-E8",
+   "tag": "top",
+   "views": 85336,
+   "duration_min": 22.4,
+   "title": "【漫画】定年後は一人旅が最高、60代から一度は行きた有名の温泉地5選",
+   "desc_first": "定年後、自由な時間が増えたら一人でゆっくり旅をしてみたいと思ったことはありませんか？",
+   "thumb_text": "băng đen trên: 「60代」(vàng)「は一人旅が」(trắng)「最高」(đỏ) | 2 khung: biển 「日本三古泉」 (道後/有馬 — hạng 4/3) và biển 「銀山温泉」 (= 第5位) — giấu 草津 hạng 1 | bong bóng dọc 「気楽に行ける！」「これぞ贅沢！」 | dòng đỏ dưới 「日本の名湯5選」 | 2 mặt thư thái",
+   "key_line_ja": "でもね、1人で来ても1人で帰るとは限りませんから。",
+   "key_t": 29.0,
+   "lock_line_ja": "え、まあ、そのうち分かりますよ。この時の俺にはその言葉の意味が分からなかった。",
+   "lock_t": 36.6,
+   "intro_t": 41.5,
+   "promise_t": null,
+   "other_voice_t": 14.0,
+   "k03_t": 36.6,
+   "item1_t": 307,
+   "timing_source": "est (transcripts.json)",
+   "beats": {
+    "event": "0s 「66歳になって初めて1人で温泉旅に出た」",
+    "contradiction": "~4s 「正直に言えば最初は少し寂しかった。温泉なんて誰かと来るものだと思っていた」",
+    "stake": "~9s 「1人で来て本当に楽しめるのかな?」",
+    "open_loop": "~29s người lạ: 「1人で来ても1人で帰るとは限りませんから」 + ~37s 「その言葉の意味が分からなかった」"
+   },
+   "kind": "B",
+   "patterns": [
+    "H17"
+   ],
+   "closers": [
+    "K03"
+   ],
+   "score_0_12": 8,
+   "score_detail": [
+    1,
+    1,
+    1,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "「定年後は一人旅が最高」 = câu hỏi của hook (0–9s: một mình có vui không); 「温泉地5選」 chưa có trong 120s (5つ ở ~297s)."
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「60代は一人旅が最高」 + 「日本の名湯5選」 = 2 vế tiêu đề (温泉地 → 名湯)."
+   ],
+   "thumb_hook": [
+    "P",
+    "Hook nói “lúc đầu thấy cô đơn”; thumbnail đã là kết quả 「気楽に行ける！」「これぞ贅沢！」 — đúng hướng nhưng là phần thưởng chứ không phải cảnh mở."
+   ],
+   "why": "Câu đố của người đi trước (~29s) đặt ngay sau lời thú nhận “cô đơn” → người xem muốn biết “không về một mình” nghĩa là gì; lời hứa list chỉ đến ở ~300s.",
+   "weak": "Tiêu đề lỗi chính tả 「行きた」「有名の温泉地」 vẫn 85k — đề tài 温泉 kéo. Thumbnail không trả lời câu đố của hook."
+  },
+  {
+   "video_id": "YKjWwJZrKXY",
+   "tag": "low",
+   "views": 1159,
+   "duration_min": 26.5,
+   "title": "【漫画】年金は何歳から受け取るべき？60歳、65歳、70歳、75歳、知らないと後悔する受給年齢の落とし穴",
+   "desc_first": "年金は60歳・65歳・70歳・75歳、何歳から受け取るのが正解なのでしょうか？",
+   "thumb_text": "băng đen trên: 「年金」(vàng)「何歳が正解？」(trắng) | 1 khung: ông ôm đầu, mặt khổ | bong bóng dọc 「知らなかった…」 | dòng dưới 「間違うと」(trắng)「老後貧乏」(đỏ) | KHÔNG có mặt thư thái nào",
+   "key_line_ja": "年金受給は60歳では早すぎる。でも75歳まで待つのは遅すぎる。だったら普通に65歳でいい。俺はずっとそう思っていた。",
+   "key_t": 0.2,
+   "lock_line_ja": "60歳でも後悔して65歳でも後悔する。それなら遅くもらえば正解なのか。(…)全員が損を避けようとして全員が迷っているなら年金は何歳からが正解なんだ。",
+   "lock_t": 64.0,
+   "intro_t": 71.4,
+   "promise_t": 35.8,
+   "other_voice_t": 15.6,
+   "k03_t": null,
+   "item1_t": null,
+   "timing_source": "real (segments trong laneG_from_research/data/transcripts_okane.json)",
+   "beats": {
+    "event": "0,2s niềm tin chắc chắn: 60 sớm quá, 75 muộn quá, 65 là được",
+    "contradiction": "15,6–35,8s 3 giọng: nhận từ 60 thì 「少し後悔してる」, nhận 65 cũng 「後悔している」",
+    "stake": "43–55s ông 74 tuổi vẫn chờ tới 75: 「年金額が増えることと人生で得は同じじゃない」",
+    "open_loop": "64s 「全員が迷っているなら年金は何歳からが正解なんだ」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H15",
+    "H18"
+   ],
+   "closers": [
+    "K11",
+    "K01"
+   ],
+   "score_0_12": 8,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề liệt kê 60/65/70/75 tuổi; hook 0–55s đưa đúng các mốc đó qua từng giọng, câu khoá 64s = câu hỏi tiêu đề."
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「年金 何歳が正解？」 = 「年金は何歳から受け取るべき？」 rút gọn."
+   ],
+   "thumb_hook": [
+    "P",
+    "Câu hỏi khớp câu khoá 64s, nhưng 「老後貧乏」 không có trong hook (hook nói 後悔, không nói nghèo)."
+   ],
+   "why": "K11 “lựa chọn nào cũng hối hận” (35,8s) chặn đường đoán nhanh; về cơ chế hook ổn ngang BeIZhu1I4Tw (cùng 8/12).",
+   "weak": "1.159 view: thua vì ĐỀ TÀI (tiền/lương hưu trừu tượng, lệch lời hứa vui-rẻ của kênh), tiêu đề 52 ký tự dài nhất kênh, thumbnail chỉ có mặt khổ + câu doạ 「間違うと老後貧乏」 — KHÔNG phải vì hook."
+  },
+  {
+   "video_id": "_D8qcebhsPU",
+   "tag": "new",
+   "views": 26720,
+   "duration_min": 21.2,
+   "title": "【漫画】定年後、一流だけがやっている休日の過ごし方5選【世間の非常識】",
+   "desc_first": "定年後、毎日が自由になったはずなのに、なぜか疲れる。",
+   "thumb_text": "băng đen trên: 「定年後、」(vàng)「休日の過ごし方」(trắng) | 2 khung: nằm sofa cười to / vươn vai mặt thư thái | bong bóng dọc 「ダラダラする」「予定ゼロ」 | dòng dưới 「一流」(đỏ)「は」「これをやる」(đỏ)",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "other_voice_t": null,
+   "k03_t": null,
+   "item1_t": null,
+   "timing_source": "none — không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/transcripts_okane.json)",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    null,
+    "không lấy được transcript (IpBlocked, không có trong transcripts.json)"
+   ],
+   "thumb_title": [
+    "K",
+    "Băng trên 「定年後、休日の過ごし方」 chép vế đầu tiêu đề; 「一流はこれをやる」 = 「一流だけがやっている」."
+   ],
+   "thumb_hook": [
+    null,
+    "không lấy được transcript"
+   ],
+   "why": "Gói đăng là nghịch lý “người hạng nhất thì ĐÀN ĐÀ, không lịch” (ダラダラする/予定ゼロ + 【世間の非常識】) — cùng cơ chế với AOe (第1位 何もしない). 26.720 view sau ~7 giờ (đăng 2026-09-23 03:00 UTC, raw tải 17:06 giờ máy) — mở màn nhanh nhất trong các số có được.",
+   "weak": "Không có transcript nên không chấm hook."
+  },
+  {
+   "video_id": "rapoUAXE7y8",
+   "tag": "new",
+   "views": 4230,
+   "duration_min": 22.4,
+   "title": "【漫画】６０代だから話せる、人生最大の失敗。それでも人生は終わらなかった",
+   "desc_first": "60代になった今だからこそ話せる、人生で忘れられない失敗。",
+   "thumb_text": "băng đen trên: 「定年後だから話せる」 (toàn vàng, không cụm đỏ) | 1 khung: cụ hói tay đặt ngực, mỉm cười, trời xanh | bong bóng 「何とかなった」 | dòng đỏ dưới 「人生最大の失敗」",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "other_voice_t": null,
+   "k03_t": null,
+   "item1_t": null,
+   "timing_source": "none — không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/transcripts_okane.json)",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    null,
+    "không lấy được transcript"
+   ],
+   "thumb_title": [
+    "P",
+    "Dòng dưới 「人生最大の失敗」 chép tiêu đề, nhưng băng trên đổi 「６０代だから話せる」 thành 「定年後だから話せる」; mô tả lại nói nhân vật 70 tuổi — 3 chỗ 3 mốc tuổi."
+   ],
+   "thumb_hook": [
+    null,
+    "không lấy được transcript"
+   ],
+   "why": "—",
+   "weak": "4.230 view sau 3 ngày: đề tài trừu tượng (人生・失敗, không N選, không hành động cụ thể) — đúng loại luật lane cấm; băng trên không có cụm đỏ; 1 khung."
+  },
+  {
+   "video_id": "H-Dk8XBmw90",
+   "tag": "new",
+   "views": 7560,
+   "duration_min": 22.5,
+   "title": "【漫画】定年後、年金だけでは不安な人へ…65歳から始めやすい最強バイト5選",
+   "desc_first": "定年後、もう週5日で働くのはしんどい。でも年金だけでは少し不安…そんな悩みを抱える60代は少なくありません。",
+   "thumb_text": "băng đen trên: 「定年後」(vàng)「の最強バイト」(trắng) | 2 khung: bảo vệ bãi xe nhìn màn hình / tài xế ngả ghế, 2 mặt thư thái | bong bóng dọc 「見るだけ」「座ってるだけ」 | dòng dưới 「気楽に働ける仕事5選」 (đỏ viền trắng)",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "other_voice_t": null,
+   "k03_t": null,
+   "item1_t": null,
+   "timing_source": "none — không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json/transcripts_okane.json)",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    null,
+    "không lấy được transcript"
+   ],
+   "thumb_title": [
+    "K",
+    "「定年後の最強バイト」 + 「…仕事5選」 = 2 vế tiêu đề."
+   ],
+   "thumb_hook": [
+    null,
+    "không lấy được transcript"
+   ],
+   "why": "Gói đăng đúng khuôn (N選, 2 khung, bong bóng “chỉ ngồi/chỉ nhìn”).",
+   "weak": "7.560 view sau 5 ngày dù đúng khuôn thumbnail: đề tài là LÀM THÊM vì 「年金だけでは不安」 — động cơ lo tiền, ngược lời hứa vui/rẻ/tự do của kênh."
+  }
+ ],
+ "win_vs_lose": "Top (bgUq 202k, BeIZ 172k, AOe 157k) so với thấp (YKjW 1.159, rapoU 4.230/3 ngày, H-Dk 7.560/5 ngày): khác ở ĐỀ TÀI, không ở hook. Hook YKjW (có mốc giây thật) đủ 4 nhịp — niềm tin sai 0,2s, 3 giọng hối hận 15–36s, K11 「60歳でも後悔して65歳でも後悔する」 35,8s, câu khoá 64s — chấm 8/12, BẰNG BeIZ 172k. Cái khác: (1) đề tài — cả 20 video, 9 video N選 vui/rẻ/du lịch/sức khoẻ trung vị 85k, 11 video còn lại trung vị 7,5k; 6/6 tiêu đề có 年金/貧乏/破綻/後悔/失敗/不安 đều ≤16k (zHtHiHEcXV0 16k, Or6odB2b70M 12,8k, 61lcBV32roE 11,6k, H-Dk8XBmw90 7,6k, rapoUAXE7y8 4,2k, YKjWwJZrKXY 1,2k), 0/6 video ≥85k chạm chủ đề tiền-sợ; (2) thumbnail — YKjW là ảnh duy nhất chỉ có mặt ôm đầu + câu doạ 「間違うと老後貧乏」, rapoU băng trên toàn vàng không cụm đỏ và 1 khung, trong khi 5/6 video cao nhất có cụm ĐỎ trong băng trên; H-Dk lại đúng khuôn thumbnail mà vẫn thấp → thumbnail không cứu đề tài lệch; (3) tiêu đề — YKjW 52 ký tự liệt kê 4 mốc tuổi, dài nhất kênh (7 video tốt 33–45). Video mới _D8qcebhsPU (「一流だけがやっている休日の過ごし方5選」, thumb 「ダラダラする/予定ゼロ/一流はこれをやる」) đạt 26.720 view sau ~7 giờ — đúng công thức N選 + nghịch lý “lười mới là hạng nhất” — xác nhận chiều ngược lại.",
+ "our_eps": [
+  {
+   "ep": "01",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep01-asa-shukan",
+   "status": "có final.mp4 (21/09) + review_vi.mp4; THIẾU TIEU_DE_MO_TA.txt, thumb_text.txt, thumbnail — chưa đăng được",
+   "title": "【漫画】60代から始める「朝の習慣」5選…1年後、体と気持ちが驚くほど軽くなる理由",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "四十年働いて得た自由な朝を、俺は一年ものあいだ、寝床の中で捨てていた。その男は駅裏の小さな公園の、ベンチに腰かけていた。背筋がまっすぐ伸び、首の肌にも張りがある。同い年のはずなのに、十歳は若く見えた。俺は隣に座る前に、思わず聞いていた。「おい大場、お前、何か特別なことしてるのか」大場はこっちを見て少し笑った。「特別なことは何も。",
+   "key_t": 16.1,
+   "other_voice_t": 24.1,
+   "k03_t": 54.2,
+   "intro_t": 60.8,
+   "promise_t": 31.9,
+   "item1_t": 465,
+   "timing_source": "voice.srt thật (「五つある」 5:47 = 347s, 「一つ目」 7:45 = 465s)",
+   "title_hook": [
+    "K",
+    "「朝にな、小さいことを、いくつかやってるだけだ」(28,6–33,3s) + 「誰でもできる。金もかからん」(37,7s) = 朝の習慣; mốc 「1年後」 có thật ở kết (「そして一年。体は五キロ軽く」 ~21 phút)."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [],
+   "problems": [
+    "Gói đăng chưa có: không TIEU_DE_MO_TA.txt, không thumb_text.txt, không ảnh thumbnail — tập DUY NHẤT đã có final.mp4 lại là tập chưa đăng được.",
+    "Mục 1 「一つ目」 ở 465s (7:45, srt thật) — muộn hơn cả 6 video list của kênh (226–356s). Hồi 1+2 = 2.452 chữ (không tính khoảng trắng), vượt trần gate hook_chars 2300.",
+    "Câu báo trước 「だが当時の俺は、その意味をまだ理解していなかった」 ở 54,2s — trong khung kênh (29–48s) nhưng tới 60,8s mới tự giới thiệu, rồi 60–120s tiểu sử (食品卸 40 năm, vợ mất, xe đạp) trước khi có 「五つある」 ở 347s."
+   ],
+   "fix": [
+    "Làm gói đăng theo bgUqNHYZbq0: băng trên lấy chữ tiêu đề, ví dụ 「60代の{朝の習慣}」 với 1 cụm ĐỎ (kiểu 「最強の」/「共通点」); 2 khung là 2 mục giữa (「三つ目」 ラジオ体操 · 「四つ目」 朝の散歩), GIẤU 「五つ目」 何もしない十分間 (cú lật hướng nội); dòng đỏ dưới 「※金もかからない」 (lời 大場 37,7s).",
+    "Mô tả theo khuôn kênh (xem formula.description): câu 1 hỏi thẳng 「定年後、朝起きても何もすることがない…と感じていませんか？」; đoạn 2 「64歳の男性が、同い年なのに10歳若く見える友人から…」; đoạn 3 liệt kê 水・朝日・ラジオ体操・散歩, giấu mục 5.",
+    "KHÔNG dựng lại video để dời mục 1 — đã render xong; chỉ ghi nhận cho tập sau: mục 1 nên ≤356s."
+   ],
+   "model_video": "bgUqNHYZbq0",
+   "priority": "cao",
+   "priority_why": "Video đã xong nhưng thiếu cả thumbnail lẫn mô tả — việc nhỏ, chặn đăng. Hook đã đúng khuôn bgUq (H08 16s + người khác nói 24–39s) nên không cần sửa lời."
+  },
+  {
+   "ep": "02",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep02-1000yen-shumi",
+   "status": "chỉ có script.txt LOCK (chưa giọng/ảnh/video)",
+   "title": "【漫画】定年後、月1000円以下で夢中になれる趣味5選…暇な毎日が待ち遠しくなった",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "自由になったはずなのに、財布だけが忙しい。定年退職して半年、俺はそのことに気づいた。俺の名前は榊原隆志、65歳。新卒で入った精密部品の会社に、定年まで勤め上げた。最後は生産管理の課長で、工程表と納期に追われる毎日だった。俺の工程表は狂わないと、社内では言われていた。妻の千鶴と二人暮らし。娘は嫁いで、遠くの町にいる。辞め",
+   "key_t": 0.0,
+   "other_voice_t": 99,
+   "k03_t": 142,
+   "intro_t": 7.8,
+   "promise_t": 252,
+   "item1_t": 289,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "P",
+    "Mở 0s 「自由になったはずなのに、財布だけが忙しい」 = rò tiền vì rảnh (khớp 「暇な毎日」), nhưng lõi tiêu đề 「月1000円以下」 ở ~263s (「予算枠は月に1000円まで」), chữ 「趣味」 và 「夢中」 không có lần nào trong script."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [
+    "「趣味」 (tiêu đề) — 0 lần trong script.txt; người dẫn đường gọi là 「金のかからない過ごし方が、五つある」 (~252s).",
+    "「夢中になれる」 — 0 lần 「夢中」."
+   ],
+   "problems": [
+    "Câu “sát thủ” của người dẫn đường 三枝 「暇つぶしに、金を払うのか」 ở ~194s — đúng câu AOe-E69mLzA đặt ở 14,6s (「お前は暇を潰そうとするから金がかかるんだよ」).",
+    "Điều kiện của danh sách 「担当は自分一人。誰かに頭を下げる工程はゼロ。予算枠は月に1000円まで」 ở ~259–266s — AOe đặt ở 20–26s.",
+    "Từ 8s tới ~146s là tiểu sử + cảnh tiêu tiền (ゴルフ練習場/喫茶店/本屋/通販) do chính nhân vật kể; giọng người khác đầu tiên là vợ ở ~99s. K03 「この時の俺はまだ知らなかった。空欄は、埋めなくていいということを」 ở ~142s (kênh 29–48s).",
+    "Trùng tập khác: 第2位 「平日の昼間から、図書館で本を読む」 (~827s) trùng đề ep09; 第1位 「朝のラジオ体操と、目的を決めない散歩」 (~997s) trùng ep01 三つ目/四つ目 và ep08 1つ目."
+   ],
+   "fix": [
+    "Giữ câu 0s; đưa cảnh ダイソー + câu 「暇つぶしに、金を払うのか」 lên ~10–15s (khuôn AOe 14,6s). Câu mở mẫu: 「暇つぶしに、金を払うのか」——ダイソーの園芸棚の前で、元上司の三枝さんにそう言われた。",
+    "Đưa điều kiện 「担当は自分一人…予算枠は月に1000円まで」 lên ngay sau (~20–25s) — đây là chỗ nói ra 「1000円」 của tiêu đề.",
+    "K03 dời lên ~30s, tự giới thiệu 「俺の名前は榊原隆志、65歳」 sau K03 (~35–45s), tiểu sử + cảnh tiêu tiền để sau.",
+    "Tiêu đề: đổi 「趣味」 thành cụm có trong script (「過ごし方」) HOẶC cho 三枝 nói chữ 趣味 một lần; bỏ 「夢中」 nếu không có cảnh nào gọi đúng như vậy. Thumbnail: 「定年後、{最強の}過ごし方」 + dòng đỏ 「※月1000円以下」, 2 khung 第3位 俳句投稿 / 第2位 (đổi mục trùng ep09) — giấu 第1位."
+   ],
+   "model_video": "AOe-E69mLzA",
+   "priority": "vừa",
+   "priority_why": "Hook khung đúng (0s nghịch lý) nhưng câu của người khác + lời hứa 1000円 muộn ~4 phút; chưa ghi giọng nên dời đoạn còn rẻ."
+  },
+  {
+   "ep": "03",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep03-jokamachi",
+   "status": "chỉ có script.txt LOCK",
+   "title": "【漫画】定年後の一人旅は平日が最高…60代が歩くべき「静かな城下町」5選",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "金も時間も、やっと手に入った。その途端、俺は旅に出なくなった。現役の頃は「定年になったら、平日にゆっくり城でも見て回る」が口癖だった。今は、いつでも行ける。だから今日は、行かなくていい。そう言い続けて、気づけば退職から数年が過ぎていた。俺は笹岡道夫、65歳。埼玉の川口で、段ボール箱を作る会社に40年勤めた。生産管理一筋",
+   "key_t": 0.0,
+   "other_voice_t": 92,
+   "k03_t": 142,
+   "intro_t": 22.0,
+   "promise_t": 273,
+   "item1_t": 287,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "P",
+    "「平日にゆっくり城でも見て回る」 ở ~6s và 「いつでも行ける。だから今日は、行かなくていい」 ~12s khớp 「平日が最高」; 「一人旅」 ở ~146s, 「城下町…五つ」 ở ~273s."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [],
+   "problems": [
+    "Mâu thuẫn 0–17s chép đúng BeIZhu1I4Tw (~32s 「いつでも行けると思うから今日じゃなくていい」) — tốt; nhưng câu của đồng nghiệp 松ヶ根 「俺は膝をやった…あの石段はもう無理だ」 tới ~92–105s (BeIZ ~54s).",
+    "K03 「この時の俺はまだ知らなかった。この一人旅が、俺の「いつか」を根こそぎ変えてしまうことを」 ở ~142s.",
+    "Câu mạnh nhất về lời hứa 「笹岡さんは城を見たんじゃなくて、城の前を通過したんですね」 (鵜飼, ~245s) nằm sau 4 phút.",
+    "40–77s là tả đồng hồ + sách 城めぐり trong ngăn kéo — không có mâu thuẫn mới."
+   ],
+   "fix": [
+    "Cắt/dời đoạn 40–77s; đặt câu 松ヶ根 (膝・石段) ở ~25–35s như BeIZ đặt câu đồng nghiệp ~54s nhưng sớm hơn vì mở đầu của mình ngắn hơn.",
+    "K03 lên ~40s; có thể nhắc 「平日に静かに歩ける城下町」 trong K03 để lời hứa tiêu đề có mặt trước 60s.",
+    "Thumbnail: 「60代は{城下町}が最高」 + dòng đỏ 「静かな城下町5選」, 2 khung 第3位 郡上八幡 / 第2位 萩, giấu 第1位 竹田 (khuôn BeIZ/_G9s)."
+   ],
+   "model_video": "BeIZhu1I4Tw",
+   "priority": "vừa",
+   "priority_why": "Tiêu đề và kịch bản khớp, không lời hứa gãy; chỉ cần dời 1 câu thoại + K03."
+  },
+  {
+   "ep": "04",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep04-yugata-suimin",
+   "status": "chỉ có script.txt LOCK",
+   "title": "【漫画】60代から夜ぐっすり眠れるようになった「夕方の習慣」5選…薬に頼らず朝が変わる",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "「年のせいじゃない。夕方のせいだ」そう言われたのは、定年から一年と少し過ぎた、秋の初めのことだった。俺は坂井誠一、65歳。産業用ポンプの会社で、資材の調達を41年やった。数年前に妻を病気で亡くし、今は団地の一室に一人で暮らしている。息子は遠くの町で所帯を持ち、電話は盆と正月くらいだ。現役時代は、朝の満員電車の中で、その",
+   "key_t": 0.0,
+   "other_voice_t": 0.0,
+   "k03_t": 119,
+   "intro_t": 9.3,
+   "promise_t": 277,
+   "item1_t": 292,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "K",
+    "0s 「年のせいじゃない。夕方のせいだ」 = 「夕方の習慣」; 「3時に目が覚める」 ~52s, 「睡眠薬をもらおうかと」 ~73s = 「夜ぐっすり」「薬に頼らず」."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [],
+   "problems": [
+    "Câu người khác ở 0s (H17) nhưng người nói (柴崎) chỉ lộ mặt ở ~162–170s; giữa đó 110 giây tiểu sử + triệu chứng không quay lại câu đố.",
+    "K03 「この夕方の居眠りが、夜中の3時につながる大きな原因の一つだった」 ở ~119s — câu này chính là lời giải hé 20–40% (loại E) nhưng đến quá muộn.",
+    "Cụm 「夕方の習慣」 của tiêu đề không có nguyên văn trong script (chỉ có 夕方 riêng lẻ)."
+   ],
+   "fix": [
+    "Sau câu 0s, cho biết ai nói trong ≤15s (khuôn bgUqNHYZbq0: bạn cùng tuổi trông khác hẳn — 柴崎 「いつも顔色が悪く、胃薬を手放さなかった」 nay 「背筋…」).",
+    "Dời K03 (dòng 夕方の居眠り→夜中の3時) lên ~35–45s, trước phần tả 9時就寝/3時覚醒.",
+    "Thumbnail: 「60代、夜{ぐっすり}」 + dòng đỏ 「※薬に頼らない」; 2 khung 三つ目 ぬるめの風呂 / 四つ目 スマホを置く; giấu 五つ目 「早く寝ようとしない」."
+   ],
+   "model_video": "bgUqNHYZbq0",
+   "priority": "thấp",
+   "priority_why": "Hook đã có giọng người khác ở 0s và tiêu đề khớp; chỉ tối ưu vị trí K03."
+  },
+  {
+   "ep": "05",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep05-fufu-kyori",
+   "status": "chỉ có script.txt LOCK",
+   "title": "【漫画】定年後の夫婦が「ちょうどいい距離」を保つ暮らし方5選…毎日が静かに楽しくなる",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "金も、体も、夫婦仲も、何ひとつ問題はないと思っていた。なのに俺は毎日、自分の家の中で、居場所を探していた。俺の名前は柴崎徹、63歳。段ボールの製造会社に、40年勤めた。最初は営業で、最後は工場の資材課長だった。定年退職して、半年になる。再雇用の話もあったが、断った。時間は自分で設計できる、と思っていたからだ。妻の美津子",
+   "key_t": 0.0,
+   "other_voice_t": 191,
+   "k03_t": 97,
+   "intro_t": 9.9,
+   "promise_t": 245,
+   "item1_t": 258,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "P",
+    "0–5s 「金も、体も、夫婦仲も、何ひとつ問題はない…なのに…居場所を探していた」 khớp 夫婦; chữ 「距離」 đầu tiên ở ~101s, 「ちょうどいい距離」 chỉ 1 lần ở câu kết (~1133s)."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [
+    "「毎日が静かに楽しくなる」 — 「静かに」 và 「楽しく」 đều 0 lần trong script.txt (kết là 「ちょうどいい距離を、自分で選んで生きていく」)."
+   ],
+   "problems": [
+    "Mở 0s chép đúng khung _EhPtM6cRFk (tiền/sức khoẻ/vợ đều ổn mà vẫn thiếu) nhưng _EhP có K03 ở ~31s, mình ~97s; giữa đó 10–90s là tiểu sử (段ボール 40 năm, 資材課長, vợ 62 tuổi 花屋, 手芸).",
+    "Không có giọng người khác trong 90s; người dẫn đường 宮田 xuất hiện ~191s với câu rất mạnh 「あんた、会社を辞めてから、奥さんとの距離を、はかり間違えてる顔だな」 và ~222s 「定年で変わるのは、金でも体でもない。人との距離だ」.",
+    "Tên 柴崎 dùng cho nhân vật chính ep05 nhưng cũng là người dẫn đường ở ep04 và ep06; 3 tập (ep03, ep05, ep08) nhân vật đều làm công ty 段ボール."
+   ],
+   "fix": [
+    "Giữ câu 0–5s, đưa ngay câu 宮田 「…奥さんとの距離を、はかり間違えてる顔だな」 lên ~10–15s, rồi 「何が足りないのか。金でも、健康でもない。この時の俺はまだ知らなかった。足りないのは「距離」だということを」 ở ~25–35s (khuôn _EhP 20–31s); tiểu sử sau đó.",
+    "Tiêu đề: bỏ 「静かに楽しくなる」 hoặc thay bằng vế có thật trong script; thumbnail theo đúng _EhP: 「定年後、夫婦の{距離}」 + dòng đỏ 「お金や体ではない」 (lời 宮田 ~222s) — 2 khung 三つ目 台所に俺の担当 / 四つ目 妻の予定を管理しない, giấu 五つ目."
+   ],
+   "model_video": "_EhPtM6cRFk",
+   "priority": "vừa",
+   "priority_why": "Lõi tiêu đề 距離 chỉ tới ở 101s, câu mạnh nhất nằm ở 191–222s; 1 lời hứa phụ trong tiêu đề không có trong script."
+  },
+  {
+   "ep": "06",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep06-muryo-sanpo",
+   "status": "chỉ có script.txt LOCK",
+   "title": "【漫画】60代から一度は歩きたい「無料の絶景散歩道」5選…1円も使わず体が若返る",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "時間は貯金できない。俺がそれを知ったのは、時間が有り余ってからだった。俺の名前は深谷修、64歳。物流会社の運行管理を、42年やった。トラックが何時に出て、何時に着くか。それだけを毎日、時計とにらめっこして決めてきた。去年の春に定年退職して、今は妻の律子とふたり暮らしだ。娘は嫁いで、浜松にいる。現役時代、俺にはひとつだけ",
+   "key_t": 0.0,
+   "other_voice_t": 91,
+   "k03_t": 128,
+   "intro_t": 6.5,
+   "promise_t": 252,
+   "item1_t": 265,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "P",
+    "Tấm bưu thiếp 「いつか歩く」 (~36–41s) hé chủ đề đi bộ; 「無料」 đầu tiên ~249s, 「1円」 ~335s; 「絶景」 và 「散歩道」 0 lần."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [
+    "Tiêu đề 「1円も使わず」 nhưng script ~245s 「電車代も宿代もかかる。でも、通行料は0円」, ~335s 「宿代は出る。でも、道そのものは1円も取らない」, và nhân vật mua vé đặc cấp đi 木曽 (~136–142s) — chính kịch bản phủ nhận tiêu đề.",
+    "Tiêu đề 「体が若返る」 nhưng script ~1248s 「若返った、と胸を張る気はない」 — phủ nhận nguyên văn.",
+    "「絶景」「散歩道」 — 0 lần trong script.txt."
+   ],
+   "problems": [
+    "Câu đồng nghiệp 大久保 「行けるうちに行っとけ。体は待ってくれんぞ」 ở ~91–100s (khuôn BeIZ ~54–60s).",
+    "K03 「この一枚の絵はがきが、俺の朝を丸ごと変えてしまうことを」 ở ~128s.",
+    "Câu người dẫn đường mạnh nhất 「深谷さんは、行った場所の数は多い。でも歩いた道は、まだ一本もない」 ~222s."
+   ],
+   "fix": [
+    "Sửa tiêu đề trước (rủi ro comment bắt lỗi cao nhất lane): bỏ 「1円も使わず」 và 「若返る」, thay bằng điều script nói thật — 「通行料0円」/「道そのものは1円も取らない」 và 「ベルトの穴が、ひとつ内側に戻った」 (~1248s).",
+    "Hook: đưa câu 大久保 lên ~20–30s ngay sau bưu thiếp; K03 ~40s; tiểu sử 運行管理 42 năm để sau.",
+    "Thumbnail: 「60代、{最高の}古い道」 + dòng đỏ 「※通行料0円」 (KHÔNG ghi 1円も使わず), 2 khung 第3位 高尾山1号路 / 第2位 山の辺の道, giấu 第1位 馬籠→妻籠."
+   ],
+   "model_video": "BeIZhu1I4Tw",
+   "priority": "cao",
+   "priority_why": "2 lời hứa trong tiêu đề bị chính kịch bản phủ nhận nguyên văn — sửa rẻ (chỉ đổi chữ) nhưng để nguyên là người xem bắt lỗi."
+  },
+  {
+   "ep": "07",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep07-daidokoro",
+   "status": "chỉ có script.txt LOCK",
+   "title": "【漫画】定年後の食費が楽しみに変わる「台所の習慣」5選…節約なのに毎日が待ち遠しい",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "定年して一番増えた出費は、旅行でもゴルフでもなく、昼飯だった。笑い話みたいだが、本当の話だ。俺の名前は高瀬恒一、65歳。産業用ポンプのメーカーで、営業一筋だった。現役で38年、再雇用を足せば40年になる。去年の春、最後の出社日に花束をもらって、それで終わりだった。妻の和子とは二人暮らし。娘は隣の県に嫁いで、孫の写真がた",
+   "key_t": 0.0,
+   "other_voice_t": 132,
+   "k03_t": 99,
+   "intro_t": 8.6,
+   "promise_t": 235,
+   "item1_t": 247,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "K",
+    "0s 「定年して一番増えた出費は、旅行でもゴルフでもなく、昼飯だった」 = 「食費」; 「冷蔵庫を開けても、何をどうすればいいかわからない」 ~55s = 台所."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [
+    "「節約なのに」 — script ~961s 「それは、節約になるのか」「なるかもしれないし、ならないかも」: kịch bản né đúng lời hứa; 「食費」 chỉ xuất hiện 1 lần dưới dạng câu hỏi (~601s 「本当にこれで、食費が変わるのか」)."
+   ],
+   "problems": [
+    "Câu mở 0s mạnh (loại C) nhưng 8,6–99s là tiểu sử + ngày trống do chính nhân vật kể; giọng người khác đầu tiên là vợ ~132s, người dẫn đường 諸星 ~183s.",
+    "Câu lật cách nghĩ 「あんた、飯を『出てくる物』だと思ってるだろう」 (~214s) và 「足りないのは、金でも暇でもない」 (~225s) — cùng vai trò câu 佐藤さん AOe 14,6s nhưng muộn 3,5 phút.",
+    "K03 ~99s."
+   ],
+   "fix": [
+    "Sau câu 0s, đưa câu 諸星 「飯を『出てくる物』だと思ってるだろう」 lên ~15–20s; K03 ~30s; tự giới thiệu ~35–45s.",
+    "Tiêu đề: giữ 「節約」 chỉ khi thêm 1 câu có số tiền giảm thật trong kịch bản; nếu không, đổi vế sau sang điều có thật (~1173s 「夕方の買い物が待ち遠しい」).",
+    "Thumbnail: 「定年後、台所の{習慣}」 + dòng đỏ 「一番の出費は昼飯」 (câu 0s), 2 khung 三つ目 だしをとる / 四つ目 期限表示を読む, giấu 五つ目."
+   ],
+   "model_video": "AOe-E69mLzA",
+   "priority": "vừa",
+   "priority_why": "Hook 0s tốt, nhưng lời hứa 「節約」 bị kịch bản nói nước đôi."
+  },
+  {
+   "ep": "08",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep08-arukikata",
+   "status": "chỉ có script.txt LOCK",
+   "title": "【漫画】60代の体が軽くなる「歩き方」5つのコツ…毎日の散歩が一番の薬になった",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "「秘訣なんてない。毎朝、歩いてるだけだ」そう言われて、俺は箸を持ったまま、しばらく固まった。目の前にいるのは、四十年以上前に、同じ会社に入った男だ。同い年のはずなのに、背筋が伸びていて、顔の色が違う。同期の誰よりも、若く見えた。俺は思わず、何をやってるんだと聞いた。返ってきたのが、その一言だった。歩くだけ。そんなもの、",
+   "key_t": 0.0,
+   "other_voice_t": 0.0,
+   "k03_t": 152,
+   "intro_t": 41.8,
+   "promise_t": 232,
+   "item1_t": 282,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "K",
+    "0s 「秘訣なんてない。毎朝、歩いてるだけだ」 + 13,8s 「同い年のはずなのに…若く見えた」 = 「歩き方」「体が軽くなる」."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [],
+   "problems": [
+    "Khung 0–42s gần đúng bgUqNHYZbq0 (bạn cùng tuổi trẻ hơn, câu 「秘訣なんてない」 ≈ 「特別なことはしていないよ」, tự giới thiệu 41,8s ≈ 52,7s). Chỗ lệch: bgUq nói 「誰でもできる簡単な7つのこと」 ở 36s, mình 「金はかからん。ただ、5つある」 ở ~232s.",
+    "K03 「諦めた場所のすぐ先に、一番安い薬が、転がっていたことを」 ở ~152s (bgUq 42s)."
+   ],
+   "fix": [
+    "Đưa 「金はかからん。ただ、5つある」 vào đoạn thoại 0–35s (ngay sau 「それで、これだけ差がつくのか」 ~34s).",
+    "Đưa K03 (一番安い薬) lên ~38s, trước 「俺の名前は柏木誠一」.",
+    "Thumbnail kiểu bgUq: 「60代、{老けない}歩き方」 + 2 khung 2つ目 姿勢 / 3つ目 歩幅半足; KHÔNG in 「速く歩くな」 (là 5つ目, mục cuối)."
+   ],
+   "model_video": "bgUqNHYZbq0",
+   "priority": "thấp",
+   "priority_why": "Hook khớp tiêu đề và khung kênh tốt nhất sau ep01; chỉ dời 2 câu."
+  },
+  {
+   "ep": "09",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep09-toshokan",
+   "status": "script.txt LOCK + thumbnail_final.png (bản C, THUMB.json chosen C, published=false); TIEU_DE_MO_TA.txt chỉ có 1 dòng tiêu đề",
+   "title": "【漫画】定年後に人生が変わった「図書館の使い方」5選…実は0円で一番贅沢な場所",
+   "desc_first": "【漫画】定年後に人生が変わった「図書館の使い方」5選…実は0円で一番贅沢な場所 (TIEU_DE_MO_TA.txt chỉ chép tiêu đề — không có mô tả)",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep09-toshokan\\thumbnail_final.png (07:57, 801.000 byte = y hệt research\\thumb\\final_set\\thumbnail_C.png). Bản cũ: thumbnail_final.png.bak.20260923-075050 (「外出の欄が飲み代より多い｜妻の家計簿｜暇に金を払っていた」, không băng đen, chữ mảnh) và .bak.20260923-075753 (cùng chữ bản C nhưng có dải đỏ ở đáy). Không có DANG-TAI.txt.",
+   "thumb_text": "băng đen trên: 「買った本」(vàng)「は積むだけ」(trắng) | nhãn vàng 「第5位」 | bong bóng NGANG 「真剣に読むのね」 đè lên mắt nhân vật khung phải | dòng đỏ dưới 「本屋に行くな」 | khung trái ôm má hoảng, khung phải cười đọc sách + vợ",
+   "open_0_30_ja": "時間が余るほど、財布が軽くなる。定年退職して、最初の半年で俺が学んだのは、それだった。暇をつぶすために、俺は金を払っていた。稼ぎのない身で、毎日だ。おかしな話だが、本当にそうだった。ところが、ある人に会って、その考えがひっくり返った。その人は俺より先に会社を辞め、俺と同じくらい暇なはずなのに、少しも困っていなかった。「",
+   "key_t": 0.0,
+   "other_voice_t": 29.7,
+   "k03_t": 33.2,
+   "intro_t": 41.4,
+   "promise_t": null,
+   "item1_t": 282,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "P",
+    "Khung 0–41s đúng AOe (nghịch lý 「時間が余るほど、財布が軽くなる」 0s → 「暇は敵じゃない」 29,7s → 「当時の俺にはわからなかった」 33,2s → tự giới thiệu 41,4s) nhưng lõi tiêu đề vắng: 「図書館」 đầu tiên ~195s, 「0円」 ~622s, 「贅沢」 ~1026s."
+   ],
+   "thumb_title": [
+    "P",
+    "Băng trên 「買った本は積むだけ」 không dùng chữ nào của tiêu đề (kênh: 10/10 băng trên lấy từ tiêu đề); không có 図書館 hay 0円; chỉ 「本屋に行くな」 ngầm chỉ thư viện."
+   ],
+   "thumb_hook": [
+    "L",
+    "Trong 0–90s không có sách/hiệu sách; cảnh 「本屋で本を衝動買いする。読まない本が、居間に積み上がった」 ở ~122s, 「本屋に行くのをやめろ」 (第5位) ở ~282–290s."
+   ],
+   "broken_promises": [],
+   "problems": [
+    "Tiêu đề hứa 図書館/0円 nhưng hook 90s chỉ nói tiền rò + 「暇は敵じゃない」; điều kiện của danh sách 「ひとりでできること。誰にも迷惑をかけないこと。金がかからないこと」 ở ~255s (AOe đặt 20–26s).",
+    "Thumbnail: băng trên không lấy chữ tiêu đề; bong bóng ngang che mắt nhân vật (kênh: bong bóng dọc hình oval cạnh mặt 8/10); chỉ hiện 1 hạng (第5位 = mục yếu nhất) thay vì các hạng giữa rồi giấu hạng 1 như bgUq/AOe/BeIZ/_G9s.",
+    "Không có mô tả.",
+    "h2dev đang thử hook_stage 20–30s cho chính đề này: _test-hook-fable khoá 「「お前、毎日どこへ行ってるんだ」…「0円だ。一番贅沢な場所に通ってる」…そんな場所が、この町のどこにある。」 (158 chữ ≈ 29s) — khớp khung kênh (giọng người khác 0s, lời hứa 0円 ~15s, câu hỏi mở); _test-hook-upstream khoá 「「ここ、いくらかかるんですか」…0円ですよ…」 (182 chữ ≈ 34s) nói 図書館 ở ~18s nhưng script thử của nó vẫn để K03 ở ~164s và 「5つ」 ~268s."
+   ],
+   "fix": [
+    "Hook: sau 「暇は敵じゃない」 (29,7s) đưa điều kiện 3 vế + 「0円」 lên ~35s (khuôn AOe 20–26s); hoặc dùng bản hook đã khoá ở _test-hook-fable (lời hứa 0円/一番贅沢 trong 30s).",
+    "Thumbnail theo AOe/bgUq: băng trên 「定年後、{図書館}が最強」 (1 cụm đỏ), dòng đỏ 「※0円で一番贅沢」 hoặc giữ 「本屋に行くな」; 2 khung 第3位 司書に聞く / 第2位 CD・DVDを平日に — giấu 第1位 「ただ座る」; bong bóng dọc đặt cạnh mặt, không đè mắt.",
+    "Mô tả: câu 1 「定年後、暇つぶしのたびにお金が出ていく…と感じていませんか？」; đoạn 2 「65歳の男性が、先に定年した大迫さんから…」; đoạn 3 liệt kê 取り寄せ・新聞・司書・CD/DVD, giấu 第1位."
+   ],
+   "model_video": "AOe-E69mLzA",
+   "priority": "cao",
+   "priority_why": "Tập đi đầu ở khâu gói đăng (đã chọn thumbnail C) nhưng thumbnail không nói 図書館/0円, bong bóng che mắt, mô tả trống — sửa trước khi đăng."
+  },
+  {
+   "ep": "10",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-tanoshimi\\ep10-higaeri-onsen",
+   "status": "chỉ có script.txt LOCK",
+   "title": "【漫画】60代の一人旅で行くべき「日帰り温泉のある小さな町」5選…平日ならほぼ独り占め",
+   "desc_first": null,
+   "thumb_file": "không có file thumbnail nào trong thư mục tập",
+   "thumb_text": null,
+   "open_0_30_ja": "時間は山ほどあるのに、使い方だけが、誰も教えてくれなかった。俺は今、和歌山の山あいの湯船に、一人で浸かっている。平日の昼、湯の峰温泉の公衆浴場。木の湯口から湯が落ちる音だけが、天井に響いている。客は俺一人。42年働いて、こんな時間に風呂に入るのは、生まれて初めてだった。正直に言う。落ち着かなかった。誰かと来ていれば、「",
+   "key_t": 18.1,
+   "other_voice_t": 53.9,
+   "k03_t": 65.9,
+   "intro_t": 70.9,
+   "promise_t": 292,
+   "item1_t": 296,
+   "timing_source": "ước tính = số chữ (bỏ khoảng trắng) trong script.txt ÷ 321,5 chữ/phút × 60 (đối chứng ep01: 俺の名前は ước 59,0s vs voice.srt 60,8s)",
+   "title_hook": [
+    "K",
+    "5,6–18s 「和歌山の山あいの湯船に、一人で浸かっている。平日の昼、湯の峰温泉の公衆浴場…客は俺一人」 = 「平日ならほぼ独り占め」 dựng thành cảnh."
+   ],
+   "thumb_title": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "thumb_hook": [
+    null,
+    "chưa có thumbnail"
+   ],
+   "broken_promises": [],
+   "problems": [
+    "Khung chép _G9s-Ig6-E8 (lần đầu tắm suối một mình → thú nhận lạc lõng → câu đố của người lạ → 「意味が分からなかった」 → tự giới thiệu) nhưng chậm ~25s ở mọi mốc: câu đố 女将 「お一人さんは、帰りの荷物が増えますよ」 53,9s (_G9s 29s), K03 65,9s (_G9s 37s), tự giới thiệu 70,9s (_G9s 42s).",
+    "Đoạn chậm là 25–50s: 「正直に言う。落ち着かなかった。…「いい湯だな」…腕時計に目をやった」."
+   ],
+   "fix": [
+    "Cắt/gộp 25–50s thành 1 câu; để câu 女将 ≤30s, K03 ≤37s, tự giới thiệu ≤45s — đúng nhịp _G9s.",
+    "Thumbnail kiểu _G9s: 「60代は{一人湯}が最高」 + dòng đỏ 「日帰り温泉5選」 hoặc 「平日はほぼ独り占め」, 2 khung 第3位 別所温泉 / 第2位 城崎温泉 (biển tên trong tranh), giấu 第1位 野沢; bong bóng 「一人でいい」 kiểu 「これぞ贅沢！」."
+   ],
+   "model_video": "_G9s-Ig6-E8",
+   "priority": "vừa",
+   "priority_why": "Hook đúng khuôn, chỉ chậm 25s do 1 đoạn tả; sửa bằng cắt, không viết mới."
+  }
+ ],
+ "our_summary": "10 tập đều là N選 vui/rẻ (đúng đề tài thắng của kênh) và tiêu đề 36–43 ký tự (kênh 33–45) — phần ĐỀ TÀI đã đúng. Chỗ lệch nằm ở THỨ TỰ 60 giây đầu và ở GÓI ĐĂNG. (1) Mở 0s bằng nghịch lý: 10/10 ✓ (kênh 7/7). (2) Người khác nói câu tiền đề ≤35s: 4/10 (ep01 24s thật, ep04 0s, ep08 0s, ep09 30s) — kênh 5/7; 6 tập còn lại câu mạnh nhất của người dẫn đường nằm ở 91–245s (ep02 「暇つぶしに、金を払うのか」 ~194s, ep05 宮田 ~191s, ep07 諸星 ~214s, ep03 鵜飼 ~245s). (3) K03 「この時の俺はまだ知らなかった」 ≤48s: 1/10 (ep09 33s; ep01 54s sát ngưỡng) — kênh 5/7; 8/10 tập đặt ở 97–152s, SAU 60–90 giây tiểu sử. (4) Tự giới thiệu: 7/10 tập ở ≤22s (6,5–22s) — kênh trung vị 42s, tức mình kể tiểu sử TRƯỚC khi có lý do để nghe. (5) Lõi tiêu đề nói ra trong 30s: 5/10 K (ep01, 04, 07, 08, 10), 5/10 P (ep02 1000円 ~263s, ep03 城下町 ~273s, ep05 距離 ~101s, ep06 無料 ~249s, ep09 図書館 ~195s). (6) Lời hứa gãy trong tiêu đề (grep script.txt): 3/10 — ep06 「1円も使わず」 bị script phủ nhận (「電車代も宿代もかかる」) và 「若返る」 bị phủ nhận (「若返った、と胸を張る気はない」); ep07 「節約なのに」 bị nói nước đôi; ep02 「趣味」「夢中」 0 lần; thêm ep05 「静かに楽しく」 0 lần. (7) Mục 1: ep02–ep10 ước 247–296s (trong dải kênh 226–356s); ep01 465s thật — muộn hơn mọi video kênh. (8) Gói đăng: 9/10 không có thumbnail, 10/10 không có thumb_text.txt, 10/10 không có mô tả thật (ep09 TIEU_DE_MO_TA.txt chỉ chép tiêu đề); ep01 là tập duy nhất có final.mp4 nhưng thiếu cả thumbnail lẫn mô tả. Thumbnail duy nhất (ep09) có băng trên không lấy chữ tiêu đề (kênh 10/10 lấy), bong bóng ngang che mắt, chỉ hiện 第5位. (9) Trùng lặp giữa các tập (người xem xem liền kênh sẽ thấy): ラジオ体操 ở ep01/ep02/ep08, 図書館 ở ep02 (第2位)/ep07 (2つ目)/ep09; nhân vật làm công ty 段ボール ở ep03/ep05/ep08; tên 柴崎 ở ep04 (người dẫn đường), ep05 (nhân vật chính), ep06 (người dẫn đường). Gate h2dev hook_chars [1200,2300] + hook_marker 1つ目/第5位: KHỚP kênh ở vĩ mô (kênh 1.363–2.089 chữ trước mục 1; ep02–10 là 1.324–1.586 ✓; ep01 2.452 vượt trần) nhưng MÙ với 0–60s — nó không thấy câu người khác ở giây mấy, K03 ở giây mấy, lõi tiêu đề có trong 30s không; và 3/10 video kênh (ASBV 108k, rapoU, YKjW) không có marker nên gate không áp được cho dạng trải nghiệm/không-list. Đề nghị thêm 3 kiểm: giọng người khác ≤35s, K03 ≤50s, chữ lõi tiêu đề ≤30s.",
+ "principles": [
+  {
+   "claim": "Đề tài N選 vui/rẻ/đi chơi/sức khoẻ quyết định view nhiều hơn hook; chủ đề tiền-sợ hay trừu tượng chết dù hook tốt.",
+   "cause": "Khán giả 60+ của kênh bấm để lấy một danh sách dùng được ngay và để thấy tuổi hưu dễ chịu; đề tài doạ tiền đẩy họ đi (lời hứa kênh là 楽しみ, không phải 不安).",
+   "evidence": "20 video kênh: 9 video N選 trung vị 85k vs 11 video không N選 trung vị 7,5k; 6/6 tiêu đề chứa 年金/貧乏/破綻/後悔/失敗/不安 đều ≤16k (YKjWwJZrKXY 1.159, rapoUAXE7y8 4.230, H-Dk8XBmw90 7.560, 61lcBV32roE 11,6k, Or6odB2b70M 12,8k, zHtHiHEcXV0 16k); hook YKjW chấm 8/12 = BeIZhu1I4Tw 172k.",
+   "why": "Để không sửa hook nhằm cứu một đề tài sai, và không dạy kho rằng kiểu hook K11/H18 yếu.",
+   "how": "Giữ 10 tập hiện tại (đều N選 vui/rẻ). Mở bằng rò tiền được (AOe 157k làm vậy) nhưng lời hứa phải là vui/0 yên, không được là “lương hưu không đủ”. Không làm đề 年金/バイト ở lane này (để teinengo-real)."
+  },
+  {
+   "claim": "Trong ≤35 giây phải có một NGƯỜI KHÁC nói câu làm tiền đề (và ở video list: nói luôn điều kiện của danh sách); nhân vật chính chỉ phản ứng.",
+   "cause": "Câu của người đi trước vừa lật niềm tin của khán giả vừa bảo chứng lời hứa (“người thật đã làm được”); nhân vật chính nghi ngờ thay cho người xem nên người xem ở lại để kiểm.",
+   "evidence": "5/7 video có transcript: AOe-E69mLzA 14,6s 「お前は暇を潰そうとするから金がかかるんだよ…一円も使わない」 (157k), bgUqNHYZbq0 33s 「特別なことはしていないよ。誰でもできる簡単な7つのこと」 (202k), ASBVa_H_leI 0–29s 「今の夜行バス本当に昔と同じだと思うか?」 (108k), _G9s-Ig6-E8 ~29s 「1人で来ても1人で帰るとは限りませんから」 (85k), YKjWwJZrKXY 15s. Ngoại lệ BeIZ ~54s.",
+   "why": "Ở tập mình câu này ĐÃ CÓ sẵn trong script nhưng nằm ở 91–245s; dời lên là tăng giữ chân mà không cần viết mới.",
+   "how": "ep02 「暇つぶしに、金を払うのか」 194s→~12s; ep05 宮田 191s→~12s; ep07 諸星 214s→~18s; ep03 松ヶ根 92s→~30s; ep06 大久保 91s→~25s; ep10 女将 54s→≤30s; ep09 thêm điều kiện 3 vế 255s→~35s."
+  },
+  {
+   "claim": "Câu báo trước 「この時の俺はまだ知らなかった…」 đặt ở 29–48s, SAU câu của người khác và TRƯỚC tự giới thiệu/tiểu sử.",
+   "cause": "Nó là điểm cam kết: người xem biết chắc có cú lật nên chịu nghe 60–120s tiểu sử “mới hưu vui, nửa năm sau chán” đi sau nó.",
+   "evidence": "5/7: _EhPtM6cRFk ~31s, ASBVa_H_leI ~31s, _G9s-Ig6-E8 ~37s, bgUqNHYZbq0 42,6s (「中村から話を聞いた俺は衝撃を受けた」), AOe-E69mLzA 48,6s; tự giới thiệu trung vị 42s. Tập mình: 8/10 đặt K03 ở 97–152s, 7/10 tự giới thiệu ≤22s.",
+   "why": "Thứ tự của mình (tiểu sử trước, K03 sau) bắt người xem nghe 60–90s tiểu sử khi chưa có lý do.",
+   "how": "Mỗi tập: nghịch lý 0s → câu người khác ≤35s → K03 ≤48s → 「俺の名前は…」 → tiểu sử. Câu K03 đã có sẵn trong mọi script, chỉ dời."
+  },
+  {
+   "claim": "Thumbnail tách chính tiêu đề làm 2 dòng: băng đen trên = chữ tiêu đề (vàng + 1 cụm ĐỎ), dòng đỏ viền trắng dưới = vế phần thưởng; tranh hiện các hạng giữa và GIẤU hạng 1; luôn có ≥1 mặt thư thái.",
+   "cause": "Người xem đọc cùng một lời hứa ở 2 chỗ nên hiểu trong 1 giây; thấy hạng 3–2 mà không thấy hạng 1 tạo câu hỏi “vậy hạng 1 là gì”; mặt thư thái bán lời hứa 楽しみ.",
+   "evidence": "Băng trên lấy chữ tiêu đề 10/10; cụm đỏ trong băng trên 5/10 = bgUq, BeIZ, AOe, _EhP, _G9s (5/6 video view cao nhất); 4/4 video xếp hạng soát được giấu hạng 1 (bgUq 第3位/第2位, AOe 5位–2位, BeIZ 稲荷=3位/出雲=2位, _G9s giấu 草津); ảnh duy nhất chỉ mặt khổ = YKjW 1.159 view.",
+   "why": "Thumbnail duy nhất của mình (ep09) có băng trên 「買った本は積むだけ」 không dính chữ tiêu đề, chỉ hiện 第5位, bong bóng ngang che mắt. Renderer bands_manga (theo BAO_CAO_DO_THUMB_DNA) chỉ tô VÀNG trong băng trên — thiếu cụm ĐỎ mà 5/6 video cao nhất đều có.",
+   "how": "Mỗi tập: băng trên 「定年後、{最強の}＋danh từ tiêu đề」 hoặc 「60代は{X}が最高」; dòng đỏ = N選 hoặc vế phần thưởng có thật trong script (ep06 「※通行料0円」, KHÔNG 「1円も使わず」); 2 khung = mục hạng 3 và 2, không in mục cuối; bong bóng dọc cạnh mặt."
+  },
+  {
+   "claim": "Chữ lõi của tiêu đề phải được nhân vật nói ra trong ≤36 giây, và mọi vế tiêu đề phải có nguyên văn trong kịch bản.",
+   "cause": "Người bấm vào vì một chữ (1円, 2万円, 老けない); nghe thấy nó sớm là xác nhận “đúng video mình tìm”; vế tiêu đề bị kịch bản phủ nhận là mồi cho comment bắt lỗi.",
+   "evidence": "6/7 video kênh khớp tiêu đề trong hook: AOe 「一円も使わない」 23s, ASBVa_H_leI 「2万円」 0s, bgUq 「7つのこと」 36s, _EhP 「定年後の生き方」 ~25s, YKjW các mốc tuổi 0–43s, _G9s 一人旅 0s; ngoại lệ BeIZ (神社 không có trong 120s) sống nhờ đề tài tra cứu.",
+   "why": "Tập mình 5/10 để lõi tiêu đề sau 90s (ep09 図書館 195s, ep06 無料 249s, ep02 1000円 263s) và 3/10 có vế tiêu đề bị script phủ nhận hoặc không có.",
+   "how": "Trước khi khoá gói đăng: grep từng vế tiêu đề/thumbnail trong script.txt; vế nào 0 lần hoặc bị phủ nhận thì sửa tiêu đề (rẻ) chứ không để nguyên. Cho người dẫn đường nói chữ lõi trong câu ≤35s."
+  },
+  {
+   "claim": "Mô tả 250–500 chữ theo 4 đoạn: hỏi thẳng nỗi đau → nhân vật + tuổi + người dẫn đường → liệt kê các mục trừ mục cuối → câu nhắm 60代・70代; không hashtag.",
+   "cause": "Dòng đầu hiện dưới video/ở kết quả tìm kiếm: câu hỏi 「〜ませんか？」 là tấm gương cho người xem; giấu mục cuối giữ tò mò giống thumbnail.",
+   "evidence": "10/10 mô tả 247–508 ký tự, 0/10 hashtag; 6/10 câu đầu là câu hỏi; AOe-E69mLzA liệt kê 断捨離・空や雲・議会・昼寝 và giấu mục 1 bằng 「最後にたどり着いたのは…意外な“最高の暇つぶし”」; 8/10 có câu nhắm 60代・70代/「ご覧いただければ幸いです」.",
+   "why": "10/10 tập mình chưa có mô tả (ep09 chỉ có tiêu đề). SOP h2dev yêu cầu hashtag #定年後 #60代… trong khi kênh mẫu 0/10 dùng — cần anh chốt theo kênh hay theo SOP.",
+   "how": "Viết TIEU_DE_MO_TA.txt theo 4 đoạn trên, dùng đúng tên/tuổi/người dẫn đường/mục trong script; ưu tiên ep01 (đã có video) và ep09."
+  }
+ ],
+ "new_patterns": [
+  {
+   "id": "K18",
+   "name": "Người dẫn đường nói ĐIỀU KIỆN của danh sách (ai cũng làm được · không phiền ai · 0 yên)",
+   "kind": null,
+   "mechanism": "Ngay sau câu lật cách nghĩ, người đi trước nêu 2–3 điều kiện mà mọi mục trong danh sách đều thoả. Điều kiện chặn trước lời bác của khán giả (“tốn tiền”, “mình làm không nổi”) và biến lời hứa tiêu đề thành một thử thách để kiểm: “có thật 0 yên không?”. Khác K09 (hứa N mục theo thứ tự): ở đây không cần nói số, cái giữ người là điều kiện.",
+   "template": "「特別なことはしていない。{điều kiện 1: 一人でできる}。{điều kiện 2: 誰にも迷惑をかけない}。そして{điều kiện 3: 一円も使わない}」——そんな{thứ}が本当に{いくつも}あるのか。",
+   "when": "Video list N選 lối sống rẻ/dễ (thú vui, thói quen, địa điểm miễn phí); đặt trong 15–40s, ngay sau câu của người dẫn đường.",
+   "avoid": "Đặt sau 60s (ep09 của mình để điều kiện ở ~255s nên mất tác dụng); nêu điều kiện mà kịch bản không giữ (ep06: 「1円も使わず」 nhưng có vé tàu/nhà trọ).",
+   "lanes_fit": [
+    "teinengo-tanoshimi",
+    "kenko-chiebukuro"
+   ],
+   "examples": [
+    "AOe-E69mLzA (20,5–26s: 「1人でできる。誰にも迷惑をかけない。そして一円も使わない」)",
+    "bgUqNHYZbq0 (33–38s: 「特別なことはしていないよ。誰でもできる簡単な7つのこと」)"
+   ]
+  }
+ ],
+ "caveats": [
+  "Mốc giây: bgUqNHYZbq0 và AOe-E69mLzA lấy hook_segments thật trong raw; YKjWwJZrKXY lấy segments thật trong E:\\CLAUDE\\YOUTUBE\\h2dev\\FlowHandoff_local\\results\\laneG_from_research\\data\\transcripts_okane.json; BeIZhu1I4Tw, _EhPtM6cRFk, ASBVa_H_leI, _G9s-Ig6-E8 là ƯỚC TÍNH (vị trí chữ ÷ tổng chữ × thời lượng từ E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\rougo-money-story\\_raw\\transcripts.json) — sai số vài giây, nhất là đoạn có nhạc.",
+  "3 video _D8qcebhsPU, rapoUAXE7y8, H-Dk8XBmw90 không có transcript (raw hook_segments rỗng do IpBlocked, không có trong transcripts.json/transcripts_okane.json) — chỉ phân tích gói đăng, KHÔNG đưa vào file seed. Đã mở lại raw ngay trước khi ghi file: vẫn rỗng.",
+  "Tập của mình: chỉ ep01 có mốc giây thật (voice.srt); ep02–ep10 ước tính theo 321,5 chữ/phút (đối chứng ep01: ước 59,0s vs thật 60,8s).",
+  "View lấy từ raw (tải 2026-09-23); transcripts.json cũ hơn có số view thấp hơn. _D8qcebhsPU mới đăng ~7 giờ nên 26.720 là số mở màn, chưa so được với video cũ.",
+  "Transcript tự động nghe sai: 丁年=定年, 一延=一円, 紐=暇, 阪神半義=半信半疑, ロモ資金=老後資金, わかわかしい=若々しい, 追い=老い. Nguyên văn trong seed giữ như transcript.",
+  "Đếm thumbnail trên 10 ảnh đã mở bằng mắt: nhãn vàng 3/10, bong bóng dọc 8/10 — khác số máy đo trong E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\lanes\\teinengo-tanoshimi\\BAO_CAO_DO_THUMB_DNA.md (nhãn vàng 16/19, bong bóng 12/19 trên 19 ảnh). Báo cáo đó cũng chỉ ghi cụm VÀNG trong băng trên; 5/10 ảnh ở đây có thêm cụm ĐỎ.",
+  "hooks.jsonl đã có bgUqNHYZbq0 (9/12) và AOe-E69mLzA (8/12). Seed này giữ bgUq 9/12, chấm lại AOe 10/12 (khớp thumbnail nguyên văn 1円 + cảnh tiêu tiền dựng hình được), đổi mã AOe từ H17 thành H04+H17 và thêm K18 — cần anh duyệt K18 trước khi chạy hook_library.py add (mã này chưa có trong patterns.json).",
+  "Không đọc được retention; “khác ở đề tài không ở hook” là suy từ số view + điểm hook, không đo giữ chân.",
+  "Không sửa gì trong h2dev, patterns.json, hooks.jsonl, HOOK_LIBRARY.md; không chạy hook_fetch.py."
+ ]
+}

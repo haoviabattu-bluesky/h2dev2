@@ -1,0 +1,79 @@
+[B1] Crawl catalog https://www.youtube.com/channel/UCxXV78OIGchz13GAA7RGbEQ ...
+  → 8 video, 4s
+[B1] Crawl transcript 8 video ...
+  ✓ h9tW20hT2ks [api]: 8,192 ký tự — [Keiji Maeda] Who Was the Real Keiji Maeda, the In
+  ✓ g9NiHpRWP0g [api]: 7,070 ký tự — [Katsuie Shibata] A 30,000-strong army collapses i
+  ✓ QbPKiRRXM5E [api]: 7,173 ký tự — [Katsuie Shibata] Who Will Lead the Oda Clan After
+  ✓ BTCIRj8agB4 [api]: 7,181 ký tự — [Battle of Komaki-Nagakute] Why Did Ieyasu Submit 
+  ✓ Tun00Fq_i0w [api]: 6,967 ký tự — [The Fall of the Takeda Clan] Why Could Katsuyori 
+  ✓ SdRuge8_gvM [api]: 7,808 ký tự — [Battle of Okehazama] The End of a Man Who Did Eve
+  ✓ 2stLwk8XXdQ [api]: 8,289 ký tự — 【関ヶ原】「日本一の裏切り者」は本当に卑怯者だったのか｜小早川秀秋｜追い詰められた19歳｜戦国
+  ✓ sSluEwazQJQ [api]: 7,146 ký tự — [Akechi Mitsuhide] Why Did the Man Nobunaga Truste
+  → 8/8 video có transcript, 43s
+[B2] Gọi Gemini phân tích từng video (task=short) ...
+  ✗ h9tW20hT2ks phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  ✗ g9NiHpRWP0g phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  ✗ QbPKiRRXM5E phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  ✗ BTCIRj8agB4 phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  ✗ Tun00Fq_i0w phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  ✗ SdRuge8_gvM phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  ✗ 2stLwk8XXdQ phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  ✗ sSluEwazQJQ phân tích lỗi: LLMError Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen erro
+  → 0/8 video (0%) phân tích được, 261s
+  ⚠ CẢNH BÁO: dưới 70% video phân tích được, kiểm lại lỗi ở trên
+[B2] Gọi Gemini tổng hợp CHANNEL_DNA.md (task=analysis) ...
+  ✗ ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen error Remote end closed connection without response>
+  ✗ ramclouds:gemini-3.8-flash (lần 2): URLError <urlopen error Remote end closed connection without response>
+  ✗ ramclouds:gpt-5.6-luna (lần 1): URLError <urlopen error Remote end closed connection without response>
+  ✗ ramclouds:gpt-5.6-luna (lần 2): URLError <urlopen error Remote end closed connection without response>
+  ✗ ns24:gemini-3.8-flash (lần 1): URLError <urlopen error Remote end closed connection without response>
+  ✗ ns24:gemini-3.8-flash (lần 2): URLError <urlopen error Remote end closed connection without response>
+Traceback (most recent call last):
+  File "E:\CLAUDE\YOUTUBE\syncthing\channel_analyzer_tool\channel_analyzer.py", line 208, in <module>
+    main()
+  File "E:\CLAUDE\YOUTUBE\syncthing\channel_analyzer_tool\channel_analyzer.py", line 199, in main
+    dna_text = synthesize_dna(rows, niche_hint)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\CLAUDE\YOUTUBE\syncthing\channel_analyzer_tool\channel_analyzer.py", line 137, in synthesize_dna
+    r = llm_client.chat(prompt, task="analysis", max_tokens=16000, temperature=0.4,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\CLAUDE\YOUTUBE\syncthing\channel_analyzer_tool\llm_client.py", line 231, in chat
+    raise LLMError("Hết chuỗi fallback, không model nào cho output dùng được:\n  - " +
+llm_client.LLMError: Hết chuỗi fallback, không model nào cho output dùng được:
+  - ramclouds:gemini-3.8-flash (lần 1): URLError <urlopen error Remote end closed connection without response>
+  - ramclouds:gemini-3.8-flash (lần 2): URLError <urlopen error Remote end closed connection without response>
+  - ramclouds:gpt-5.6-luna (lần 1): URLError <urlopen error Remote end closed connection without response>
+  - ramclouds:gpt-5.6-luna (lần 2): URLError <urlopen error Remote end closed connection without response>
+  - ns24:gemini-3.8-flash (lần 1): URLError <urlopen error Remote end closed connection without response>
+  - ns24:gemini-3.8-flash (lần 2): URLError <urlopen error Remote end closed connection without response>
+--- PASS1 (proxy crawl) exit=1 ---
+[B1] Crawl catalog https://www.youtube.com/channel/UCxXV78OIGchz13GAA7RGbEQ ...
+  → 8 video, 2s
+[B1] Crawl transcript 8 video ...
+  … dùng lại E:\CLAUDE\YOUTUBE\FlowHandoff_local\results\channel_dna\dokkoi-nihonshi\_raw\transcripts.json (8 video, bỏ qua crawl)
+  → 8/8 video có transcript, 0s
+[B2] Gọi Gemini phân tích từng video (task=short) ...
+  ✓ h9tW20hT2ks phân tích xong
+  ✓ g9NiHpRWP0g phân tích xong
+  ✓ QbPKiRRXM5E phân tích xong
+  ✓ BTCIRj8agB4 phân tích xong
+  ✓ Tun00Fq_i0w phân tích xong
+  ✓ SdRuge8_gvM phân tích xong
+  ✓ 2stLwk8XXdQ phân tích xong
+  ✓ sSluEwazQJQ phân tích xong
+  → 8/8 video (100%) phân tích được, 53s
+[B2] Gọi Gemini tổng hợp CHANNEL_DNA.md (task=analysis) ...
+  ✓ ramclouds:gemini-3.8-flash (lần 1): 10,596 chữ · 22s · out_tok=4566
+  → xong, 22s
+  ✓ QC DNA: 10596 ký tự, 11/11 đề mục ĐẠT
+
+✓ TỔNG: 77s → E:\CLAUDE\YOUTUBE\FlowHandoff_local\results\channel_dna\dokkoi-nihonshi
+--- PASS2 (no proxy, gemini) exit=0 ---

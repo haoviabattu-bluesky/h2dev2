@@ -122,7 +122,9 @@
         "H23",
         "H35"
       ],
-      "closer": "K19"
+      "closer": "K19",
+      "visual": "manga_ai_ref",
+      "_visual_note": "Manga AI, REF-LOCK 2 nhân vật trong tập, cùng bộ nhân vật với thân video. CHƯA CHẠY THẬT."
     }
   },
   "image": {

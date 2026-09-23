@@ -723,3 +723,20 @@ chỉ có retention video của chính mình trong Studio sau khi đăng. Mọi 
 2. `トラヴィス・ウォルトン` (trần đã chứng minh **111.873**) — móc Nhật: 神隠し
 3. `ボブ・ラザー / エリア51` (27 video nhưng median **16.085** — cầu lớn nhất) — móc Nhật: 相模原
 4. Video "日本だけが知っていた" tự tạo — dạng này của kênh mẫu đạt **101k**
+
+## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+
+> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+
+| | |
+|---|---|
+| Kiểu mở (`script.hook.patterns`) | H42 H24 H25 H26 H39 |
+| Câu khoá (`script.hook.closer`) | K13 |
+| Cách dựng hình (`script.hook.visual`) | `tu_lieu_that` |
+| Nguồn hình | **100% tư liệu thật** trong `stock\` của tập (clip Pexels/NASA + ảnh public domain) + 2 băng chữ vàng/đỏ lấy nguyên văn `thumb_text.txt`. CẤM ảnh AI, CẤM clip AI |
+| Công tắc (`script.hook.enabled`) | **đang BẬT** |
+
+Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
+cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+
+Viết hook: `py -3.13 pipeline\hook_stage.py --profile toshi-densetsu-jp --slug <tập> --mode repair`

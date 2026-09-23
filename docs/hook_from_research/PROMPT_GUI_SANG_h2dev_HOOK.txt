@@ -1,0 +1,43 @@
+Gửi tab h2dev — YÊU CẦU LÀM LẠI HOOK + GÓI ĐĂNG (từ TRENDING-RESEARCH, 2026-09-23)
+
+Đọc theo thứ tự, KHÔNG tìm hiểu lại từ đầu:
+1. E:\CLAUDE\YOUTUBE\h2dev\docs\hook_from_research\HOOK_AUDIT_KENH_CLONE.md
+   - phần đầu: 10 kết luận chung + thứ tự ưu tiên
+   - rồi phần kênh của lane mình đang làm: khung hook theo giây của kênh mẫu, từng video kênh mẫu, TỪNG TẬP của mình
+     (mốc giây, chấm Khớp/Một phần/Lệch, lời hứa không giữ, vấn đề, cách sửa, video mẫu nên theo, ưu tiên)
+2. Bản có ảnh thumbnail để đối chiếu bằng mắt: E:\CLAUDE\YOUTUBE\h2dev\docs\hook_from_research\HOOK_AUDIT_KENH_CLONE.html
+3. Dữ liệu máy đọc (cho script/gate): E:\CLAUDE\YOUTUBE\h2dev\docs\hook_from_research\data\analysis_<kênh>.json
+   (simbot2=satori-jp-obaa, toshi=toshi-densetsu-jp, iro=irogatatarukioku, kenko=kenko-chiebukuro, real=teinengo-real,
+    tano=teinengo-tanoshimi, fuufu=teinengo-fuufu, kokoro=kokoro-kazoku, sengoku=sengoku-uragawa)
+4. Nguyên tắc (có cơ chế + bằng chứng): C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md
+5. Kho hook (130 video, kiểu H01–H41, khoá K01–K23): E:\CLAUDE\YOUTUBE\HOOK_LIBRARY\HOOK_LIBRARY.md
+   Tra nhanh 1 lane: py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\TRENDING-RESEARCH\src\hook_library.py lane <lane-id>
+
+Việc cần làm (theo mục "Thứ tự ưu tiên" trong báo cáo):
+A. Tập CHƯA dựng: sửa đoạn mở script.txt theo mục "Cách sửa" của từng tập TRƯỚC khi thu giọng
+   (toshi ep10; kenko ep02–08; tano ep02–10; real ep01–03; satori 02/03/05/13).
+B. Lời hứa không giữ: sửa tiêu đề/thumbnail (không cần dựng lại) — danh sách ở kết luận 8 và từng tập.
+C. Tập đã dựng hook hỏng nặng: dùng hook repair mode (hook_stage) — satori 07/05/01, iro ep01/03/05/07, toshi ep08/06/05, kenko ep01 (đọc to 「タイトル」).
+D. Thêm gate THỨ TỰ vào hook_stage/qc (kết luận 10): không chào ở câu đầu · câu chốt ≤ N giây · lõi tiêu đề ≤30–45s ·
+   chữ thumbnail có trong hook · câu nghi thức của kênh có mặt · mọi vế tiêu đề/thumbnail grep được trong script (cả 76秒↔七十六秒).
+   Xem lại gate cũ: toshi hook_chars sàn 650 (4–5/9 video kênh mẫu trượt), kenko hook_chars+hook_marker (thưởng đọc trước danh sách).
+E. Lane chưa có tập (fuufu, kokoro, sengoku): dùng mục "Khuôn cho tập đầu" trong phần kênh đó.
+F. Chốt file trước khi đăng: tập có 2 thumbnail / thumb_text.txt cũ / TIEU_DE_MO_TA.txt lệch S4_MO_TA.json (mục "Vệ sinh file").
+
+Lưu ý dữ liệu: nhiều mốc giây của KÊNH MẪU là ước tính (YouTube chặn IP) — báo cáo ghi rõ từng chỗ. Mốc giây tập của mình là thật khi tập có srt.
+Research không sửa gì trong h2dev; mọi quyết định sửa thuộc h2dev/anh.
+
+G. (bổ sung 2026-09-23) SỬA GỐC LỖI Ở BƯỚC LÀM DNA — channel_analyzer.py
+   - Prompt K2 (E:\CLAUDE\YOUTUBE\h2dev\pipeline\channel_analyzer.py dòng ~181) đang ra lệnh "Thumbnail patterns — mô tả SUY LUẬN từ tiêu đề/nội dung".
+     Hậu quả: 13/13 file CHANNEL_DNA.md có đoạn "suy luận / không đủ dữ liệu". DNA simbot2 (4 video) đoán thumbnail = câu thoại sốc, tông tối, ảnh người già;
+     thực tế 15/15 thumbnail = chép nguyên tiêu đề, chỉ chữ, nền pastel sáng, 14/15 không có người → thumbnail bản Nhật làm theo DNA sai.
+   - DNA mô tả khung TIÊU ĐỀ nhưng không nói lời hứa của tiêu đề là LỢI ÍCH CHO NGƯỜI XEM (N điều / lý do / sự thật / câu trả lời), và không nối
+     tiêu đề ↔ thumbnail ↔ hook → bước viết tiêu đề đổi sang kiểu "bí mật của 1 nhân vật" (15/15 tập satori) mà không gate nào bắt.
+   Cần: (1) K2 phải nhận ẢNH thumbnail thật (vision) và chép chữ từng dòng, cấm suy luận; (2) thêm mục bắt buộc "LỜI HỨA của video" = 1 câu, và chấm
+   tiêu đề↔thumbnail↔mô tả↔hook cho từng video; (3) chạy lại DNA với ≥10 video/kênh (simbot2 mới 4–5); (4) bước viết tiêu đề/thumbnail đọc lời hứa đó.
+   Số liệu đầy đủ: E:\CLAUDE\YOUTUBE\h2dev\docs\hook_from_research\SIMBOT2_TIEU_DE_THUMBNAIL.html
+
+H. (bổ sung 2026-09-23) CÔNG THỨC TIÊU ĐỀ simbot2 + đề xuất tiêu đề 15 tập satori:
+   E:\CLAUDE\YOUTUBE\h2dev\docs\hook_from_research\SIMBOT2_CONG_THUC_TIEU_DE.html
+   26 video, view/ngày, 5 cặp cùng chủ đề thắng/thua, 5 công thức W1–W5 (cơ chế + khuôn tiếng Nhật), thứ làm thua,
+   bảng "tiêu đề hiện tại → đề xuất" cho 15 tập (giữ vế cảnh, thêm vế phần thưởng cho người xem). Số N/tuổi/tiền phải QC khớp script.txt.

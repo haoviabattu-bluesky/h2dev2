@@ -94,7 +94,13 @@ def _near_dupes(sents, window=6, thr=0.62, min_len=14):
     return hits
 
 
-NEO_SO = re.compile(r"[0-9０-９]+")
+NEO_SO = re.compile(r"[0-9０-９]+"
+                    r"|[一二三四五六七八九〇十百千万億]+(?=歳|年|月|日|人|名|割|倍|％|パーセント"
+                    r"|グラム|キロ|ミリ|時間|分間|回|件|枚|本|冊|種類|週間|か月|ヶ月|箇月)")
+# 2026-09-23: NEO_SO cũ CHỈ đếm chữ số Ả-rập. Lane E (kenko-chiebukuro) viết số bằng CHỮ HÁN
+# (六十八歳, 七割, 十二か月) cho giọng đọc phát âm đúng → cổng đo ra 0,0 neo/1000 ở MỌI tập và
+# báo "mở đầu nói suông" oan. Nay đếm cả số Hán, nhưng BẮT BUỘC đi kèm đơn vị đếm có nghĩa —
+# không tính 一つ/一度/二人の職人 vì đó là văn kể, không phải dữ kiện.
 NEO_KATA = re.compile(r"[ァ-ヴー]{3,}")
 
 

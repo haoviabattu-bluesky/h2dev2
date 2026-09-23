@@ -1,0 +1,799 @@
+{
+ "key": "real",
+ "lane": "teinengo-real",
+ "channel": {
+  "name": "老後の暮らし研究所",
+  "id": "UCRkP44Mcw-K8IktdTqxC9dg",
+  "url": "https://www.youtube.com/channel/UCRkP44Mcw-K8IktdTqxC9dg"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\rougonokurashi",
+ "formula": {
+  "summary": "Kênh mẫu = truyện manga ngôi 1「俺」về 1 quyết định tiền hưu. Khuôn thắng (4 video ≥100k): câu 0–30s nói lại TIỀN ĐỀ của tiêu đề (câu hỏi 2 lựa chọn, hoặc con số + nghịch lý) → tự giới thiệu tên-tuổi-nghề → niềm tin 'ずっとそう思っていた' → 'だが' + con số/phong bì → giọng thứ hai (đồng nghiệp/vợ/người lạ) vào trước ~100s. Tiêu đề = 【漫画】+tuổi+quyết định+…+mốc thời gian+cảm xúc, KHÔNG cần số tiền. Thumbnail = dải đen chữ vàng/trắng (chủ đề 4–9 chữ, không chép tiêu đề) + 2 panel + bong bóng nội tâm ≤5 chữ + nhãn vàng. Mô tả = câu hỏi/「〜とは――」+ tóm truyện có tuổi-tên-số + '最後までご覧ください' + 関連動画 + #年金 #老後 #老後資金.",
+  "hook_beats": [
+   {
+    "t": "0–5s",
+    "name": "Tiền đề của tiêu đề",
+    "desc": "Câu đầu là câu hỏi 2 lựa chọn HOẶC con số lớn + hành vi trái với nó. 5/7 transcript mở bằng tiền đề/con số của tiêu đề (XbwqD, K8t, O84, _VX, _fJ ở 11s).",
+    "example_ja": "60歳でやめた俺と65歳まで残った同僚 どっちが幸せだったのか。 / 退職金2500万円。それでも俺はスーパーで100円の惣菜を手に取っては棚に戻していた。",
+    "example_video": "XbwqD2SktC0 (0.3s) / K8tTrxijqEo (0s)"
+   },
+   {
+    "t": "8–25s",
+    "name": "Tự giới thiệu 1 câu",
+    "desc": "「俺の名前は＋tên＋tuổi＋nghề cũ」. 5/7 trong ≤25s (XbwqD 8s, _VX ~8s, dY3 ~10s, K8t ~23s, _fJ 0s); O84 ~78s, EANAD ~45s. Không phân biệt thắng/thua.",
+    "example_ja": "俺の名前は宮本浩司66歳元郵便局だ。",
+    "example_video": "XbwqD2SktC0 (8.1s)"
+   },
+   {
+    "t": "10–70s",
+    "name": "Niềm tin sắp vỡ",
+    "desc": "'ずっとそう思っていた/思っていた/はずだ' — 9/9 transcript (7 video chọn + 2 video thấp bổ sung) có trong 120s.",
+    "example_ja": "だから老後は何とかなる。ずっとそう思っていた。",
+    "example_video": "O84L0zOtrxo (~17s)"
+   },
+   {
+    "t": "25–100s",
+    "name": "Cú lật bằng con số/phong bì",
+    "desc": "'だが' + số cụ thể hoặc thư. 5/7 transcript có con số tiền trong 120s (XbwqD 87s, O84 4–30s, K8t 0s, dY3 64–98s, _fJ 11s).",
+    "example_ja": "去年の今頃通帳には920万円あった。1年で67万円減っている。",
+    "example_video": "O84L0zOtrxo (~26–30s)"
+   },
+   {
+    "t": "50–120s",
+    "name": "Câu khoá = câu hỏi của cả video",
+    "desc": "Nói ra thứ người xem sẽ chờ tới cuối: cả 2 bên đều trả giá (K11), số của tiêu đề thành bí ẩn (K02), N điều (K09).",
+    "example_ja": "自由を選んだ俺にも地獄があり、安定を選んだアイにも後悔があったからだ。…答えは思っていたより残酷だった。",
+    "example_video": "XbwqD2SktC0 (62.8–80.2s)"
+   },
+   {
+    "t": "85–105s",
+    "name": "Giọng thứ hai",
+    "desc": "Vợ/đồng nghiệp/người lạ nói 1 câu làm lung lay nhân vật. 4/4 video ≥100k có trong ~100s (XbwqD 同僚 37s, _VX 妻 ~87s, O84 藤原 ~100s, K8t 常連 ~102s); 0/2 video 50–72k (EANAD, dY3) có.",
+    "example_ja": "老後破綻する人にはな、決まって同じ金の使い方がある。",
+    "example_video": "K8tTrxijqEo (~102s)"
+   },
+   {
+    "t": "80–130s",
+    "name": "Trăng mật hưu trí (SAU câu khoá)",
+    "desc": "Liệt kê tự do (目覚まし・平日の映画館・昼ビール) đặt SAU câu khoá ở video thắng (XbwqD 82–121s); ở EANAD nó chiếm 0–126s và thay luôn hook.",
+    "example_ja": "平日の映画館は驚くほど空いていて、これが定年後の特権かと思った。",
+    "example_video": "XbwqD2SktC0 (~121s)"
+   }
+  ],
+  "title": "【漫画】＋[tuổi NN歳 / trạng thái]＋[quyết định: 定年退職した男/年金を受け取った男/辞めるな]＋'…'＋[mốc: 5年後/2年後/2か月/その先]＋[kết: 絶望しました/衝撃の現実/本当の理由/末路/最強な理由]. Đếm: 【漫画】9/9; có tuổi 8/9 (trừ iJr; K8t dùng '50代後半'); '…' 8/9 (_VX dùng '！'); mốc thời gian 5/9 (top6: 4/6); SỐ TIỀN chỉ 3/9 và chỉ 1/6 top (O84 67万円) — trong khi 3/5 video còn lại có tiền (_fJ 2000万, iJr 478万/18万, và e_Zo7 1700万 ngoài mẫu). Dài 27–41 ký tự ở 6 top; video dài nhất 49 (_fJ) là 1 trong các video thấp.",
+  "thumbnail": "Dải đen trên cùng, 1 dòng 4–9 chữ: từ khoá màu vàng (hoặc đỏ) + phần còn lại màu trắng — là CHỦ ĐỀ, không chép tiêu đề (8/9 có dải này; iJr thay bằng cột dọc giữa). Dưới: 2 panel trái/phải (8/9; iJr 4 ô), mỗi panel 1 ông già Nhật vẽ bán thực, bong bóng oval trắng chữ dọc = câu nội tâm ≤5 chữ (「もう自由だ」「話が違う…」「安いから…」「一杯だけ」) 9/9, nhãn vàng viền đen ở đáy = tuổi/lựa chọn/mốc thời gian 9/9. Ba biến thể: trước-sau cảm xúc (trái cười, phải khóc/thất thần) 4/9 (_VX, EANAD, dY3, Zog); 2 lựa chọn song song 1/9 (XbwqD); xếp hạng 第3位/第2位 3/9 (K8t, O84, _fJ). Nhãn mốc thời gian '2か月後…/数年後…/1年後…' 3/9. Không có số tiền/phần trăm 7/9 (chỉ Zog '年金24%減', iJr '月6万…').",
+  "description": "Dòng 1 = câu hỏi hoặc「〜とは――。」(4/9: O84, _VX, EANAD, dY3) hoặc câu phá định kiến/giới thiệu chủ đề; rồi tóm truyện có tuổi nhân vật (8/9; XbwqD không có nhân vật) kèm số tiền spoil (退職金2500万円, 貯金853万円, 年金13万円…); chuỗi ≥4 từ khoá ngăn bằng '、' 4/9; 'ぜひ最後までご覧ください' 5/9; hỏi khán giả 'あなたなら…？コメントで' 3/9; '関連動画↓' + link 8/9 (dY3 không); hashtag '#年金 #老後 #老後資金' 9/9 y hệt.",
+  "link_4_parts": "Tiêu đề đặt TIỀN ĐỀ (ai, tuổi, quyết định, mốc thời gian) → thumbnail không lặp tiêu đề mà cho 2 cảm xúc/2 lựa chọn bằng câu nội tâm → hook 0–30s nói lại tiền đề đó bằng lời nhân vật (XbwqD 0.3s, K8t 0s, O84 30s, _fJ 11s) → mô tả spoil con số + gợi câu hỏi để comment. Chỗ nối yếu nhất của kênh là thumbnail↔hook: 2/7 video có transcript lệch (O84 'P': xếp hạng không có trong video; _fJ 'L').",
+  "exceptions": [
+   "O84L0zOtrxo 174k dù thumbnail hứa bảng xếp hạng 第3位/第2位 mà transcript không có '第N位' nào — lệch thumbnail không giết video khi tiêu đề + hook khớp.",
+   "_VXUim2J9QM 109k dù '62歳' (vế chính tiêu đề) mãi ~391s mới xuất hiện — tiêu đề mệnh lệnh「60歳で辞めるな！」tự kéo click, hook chỉ cần khớp vế đầu.",
+   "O84L0zOtrxo tự giới thiệu ~78s (muộn nhất) vẫn 174k — thời điểm '俺の名前は' không quyết định.",
+   "iJrKlKBAabY phá cả khuôn tiêu đề (không nhân vật/cảm xúc) lẫn thumbnail (4 ô) — 8,4k sau 5 ngày, chưa đủ tuổi để kết luận."
+  ],
+  "counts": {
+   "videos_chon": 9,
+   "co_transcript": 7,
+   "transcript_moc_that": 2,
+   "transcript_uoc_tinh": 5,
+   "khong_transcript": 2,
+   "mo_bang_tien_de_tieu_de_trong_30s": "5/7 (XbwqD, K8t, O84, _VX, _fJ)",
+   "niem_tin_思っていた_trong_120s": "9/9 (7 chọn + e_Zo7Ht5OH8 79s + WblFD81yjOI 49s)",
+   "giong_thu_hai_truoc_105s": "4/4 video ≥100k · 0/2 video 50–72k",
+   "tu_gioi_thieu_truoc_25s": "5/7",
+   "tieu_de_co_so_tien": "1/6 top · 3/9 tổng",
+   "tieu_de_co_tuoi": "8/9",
+   "thumbnail_2_panel": "8/9",
+   "thumbnail_khong_so_tien": "7/9",
+   "thumbnail_xep_hang": "3/9",
+   "hashtag_giong_het": "9/9"
+  }
+ },
+ "videos": [
+  {
+   "video_id": "XbwqD2SktC0",
+   "tag": "top",
+   "views": 312820,
+   "published_at": "2026-08-03T09:00:07Z",
+   "duration_min": 24.2,
+   "title": "【漫画】60歳で定年退職した男…5年後、65歳まで働いた同僚との差に絶望しました",
+   "desc_first": "今回は「60歳で定年退職する人」と「65歳近くまで働く人」、どちらが幸せな老後を送れるのかを漫画形式で分かりやすく解説します。",
+   "thumb_text": "[dải đen trên] 65歳(vàng)で定年退職(trắng) · [panel trái, nhà kho, người trẻ chỉ tay vào ông già cầm bảng kẹp] bong bóng「年下上司」「給料激減」 nhãn vàng「65歳まで働く」 · [panel phải, ôm hoa, đồng nghiệp vỗ tay] bong bóng「もう自由だ」 nhãn vàng「60歳で退職」",
+   "timing_source": "real",
+   "key_line_ja": "60歳でやめた俺と65歳まで残った同僚 どっちが幸せだったのか。",
+   "key_t": 0.32,
+   "lock_line_ja": "だが、今俺は簡単にそう言えなくなった。自由を選んだ俺にも地獄があり、安定を選んだアイにも後悔があったからだ。60歳でやめるのが正解か、65歳まで働くのが正解か。答えは思っていたより残酷だった。",
+   "lock_t": 58.48,
+   "intro_t": 8.12,
+   "promise_t": 70.16,
+   "beats": {
+    "event": "0.3s「60歳でやめた俺と65歳まで残った同僚」— 2 lựa chọn đặt cạnh nhau ngay câu đầu",
+    "contradiction": "50.8s「あいつは損している。人生の元気な5年間を会社に差し出していると」→ 58.5s「だが、今俺は簡単にそう言えなくなった」",
+    "stake": "86.9–100s số khởi điểm: 退職金1420万円・貯金680万円・ローン残250万円 (tiền đầu tiên ở 87s, ngoài 30s)",
+    "open_loop": "62.8s「自由を選んだ俺にも地獄があり、安定を選んだアイにも後悔があった」+ 80.2s「答えは思っていたより残酷だった」"
+   },
+   "kind": "D",
+   "patterns": [
+    "H18",
+    "H08"
+   ],
+   "closers": [
+    "K11",
+    "K06"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    1,
+    2,
+    2,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Câu 0.3s lặp đúng cặp 60歳 vs 65歳 của tiêu đề; '5年後' khớp tuổi 66 ở 8s (60+5)."
+   ],
+   "thumb_title": [
+    "P",
+    "Dải đầu ghi「65歳で定年退職」ngược tiêu đề「60歳で定年退職した男」; chỉ 2 nhãn dưới mới đủ cặp 60/65."
+   ],
+   "thumb_hook": [
+    "K",
+    "Hai panel = đúng 2 lựa chọn hook đặt ra; 「年下上司」có trong hook (29.3s「年下の上司」); riêng「給料激減」chưa có trong 120s (給料 lần đầu ~211s)."
+   ],
+   "why": "H18 đặt câu hỏi của tiêu đề ngay giây 0 nên người bấm vào nghe đúng thứ mình tò mò; K11 ở 62.8s phá kỳ vọng 'nghỉ sớm = sướng' bằng cách nói cả 2 bên đều trả giá — người xem không đoán được bên thắng nên ở lại để cân. Đề tài là quyết định mà gần như mọi khán giả 58–65 đều đang phải chọn.",
+   "weak": "Tiền đầu tiên mãi 87s; từ 8s tới 50s là tự giới thiệu + liệt kê lý do chán việc (không có cảnh). Thumbnail ghi 65歳 trên dải đầu trái với tiêu đề 60歳."
+  },
+  {
+   "video_id": "K8tTrxijqEo",
+   "tag": "top",
+   "views": 184212,
+   "published_at": "2026-08-26T09:00:03Z",
+   "duration_min": 24.8,
+   "title": "【漫画】50代後半から要注意…老後破産する人がやっている貧乏になるお金の使い方6選",
+   "desc_first": "老後破産を招くのは、ギャンブルや投資の失敗だけではありません。",
+   "thumb_text": "[dải đen trên] 貧乏(đỏ)になる(trắng)お金の使い方(vàng) · [trái, quán nhậu, cười uống bia] bong bóng「華金だ」「今日くらい」 nhãn vàng「第3位」 · [phải, cửa hàng tiện lợi, mở ví] bong bóng「安いから…」 nhãn vàng「第2位」",
+   "timing_source": "est",
+   "key_line_ja": "退職金2500万円。それでも俺はスーパーで100円の惣菜を手に取っては棚に戻していた。",
+   "key_t": 0,
+   "lock_line_ja": "酒もギャンブルもしていない。投資で大損したわけでもない。それなのになぜこんなことになったのか。",
+   "lock_t": 73,
+   "intro_t": 24,
+   "promise_t": 115,
+   "beats": {
+    "event": "0s「退職金2500万円」+ 2s cảnh bỏ lại hộp đồ ăn 100円 lên kệ",
+    "contradiction": "0–10s có 2500万 mà tiếc 100円 (H04); 48–64s「老後は安泰だな…だが現実は違った」",
+    "stake": "66s「通帳の残高はもう笑えない数字になっている」",
+    "open_loop": "80s「それなのになぜこんなことになったのか」→ 102s người bàn bên「老後破綻する人にはな、決まって同じ金の使い方がある」→ 115s「俺の中では6つある」(mục 第6位 bắt đầu 147s)"
+   },
+   "kind": "C",
+   "patterns": [
+    "H04",
+    "H17"
+   ],
+   "closers": [
+    "K07",
+    "K09"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề hứa '老後破産する人…お金の使い方6選' — 102s nói gần nguyên văn「老後破綻する人…同じ金の使い方」và 115s chốt '6つ'. Riêng '50代後半から要注意' không có (nhân vật 65 tuổi)."
+   ],
+   "thumb_title": [
+    "K",
+    "Dải đầu「貧乏になるお金の使い方」là cụm lõi của tiêu đề; 第3位/第2位 = dạng xếp hạng của '6選'."
+   ],
+   "thumb_hook": [
+    "K",
+    "Panel bia khớp cảnh 85–99s (vào 居酒屋 uống một mình「嫌なことを忘れる」); panel「安いから…」= mục 第6位「安いから買う」ở 150s, ngay sau 120s. Chữ bong bóng「華金だ」「今日くらい」không có nguyên văn trong transcript."
+   ],
+   "why": "Nghịch lý 2 con số ở giây 0 (2500万 vs 100円) bắt người xem tự tìm lời giải; tới 102–115s một người lạ biến lời giải thành danh sách 6 mục có xếp hạng — người xem có lý do ở lại tới 第1位 (1120s). List được bọc trong truyện nên không khô.",
+   "weak": "Là dạng LIST (6選) — SOP h2dev đã tách sang nhịp lane G; lane F chỉ học phần mở nghịch lý + người lạ, không học khung xếp hạng. '50代後半から要注意' trên tiêu đề không được hook nhắc."
+  },
+  {
+   "video_id": "O84L0zOtrxo",
+   "tag": "top",
+   "views": 174239,
+   "published_at": "2026-08-10T09:00:04Z",
+   "duration_min": 23.7,
+   "title": "【漫画】65歳で定年退職した男…2年後、貯金が67万円消えた本当の理由を知りました",
+   "desc_first": "67歳で初めて気付いた「お金が減る本当の理由」とは――。",
+   "thumb_text": "[dải đen trên] 老後貧乏(vàng)になる人の特徴(trắng) · [trái, quán nhậu, uống cạn cốc bia] bong bóng「一杯だけ」 nhãn vàng「第3位」 · [phải, kệ drugstore cầm chai nước giặt] bong bóng「安いから…」 nhãn vàng「第2位」",
+   "timing_source": "est",
+   "key_line_ja": "去年の今頃通帳には920万円あった。1年で67万円減っている。",
+   "key_t": 26,
+   "lock_line_ja": "それなのに67万円消えている。どう考えてもおかしかった。",
+   "lock_t": 46,
+   "intro_t": 78,
+   "promise_t": null,
+   "beats": {
+    "event": "0s「67歳になった日、俺は通帳を見ていた」",
+    "contradiction": "4–17s 貯金853万円・年金月14万6000円・持ち家・借金なし「だから老後は何とかなる。ずっとそう思っていた」",
+    "stake": "26–30s「去年の今頃通帳には920万円あった。1年で67万円減っている」",
+    "open_loop": "46–50s「それなのに67万円消えている。どう考えてもおかしかった」; 67s「580円を高いと思うくせに67万円減った理由は分からない」; mentor 藤原 vào ~100s"
+   },
+   "kind": "D",
+   "patterns": [
+    "H03",
+    "H15"
+   ],
+   "closers": [
+    "K02"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Con số 67万円 của tiêu đề nói ở ~30s và lặp 3 lần tới 67s; '2年後' khớp 81s「2年前に定年退職した」; '本当の理由' = câu hỏi 46–67s."
+   ],
+   "thumb_title": [
+    "P",
+    "Thumbnail đổi khung sang bảng xếp hạng「老後貧乏になる人の特徴」第3位/第2位 — tiêu đề là truyện 1 người mất 67万円; con số 67万 không có trên ảnh."
+   ],
+   "thumb_hook": [
+    "P",
+    "「安いから…」= cảnh mua đồ 特売 ở ~155–173s (ngay sau 120s); 「一杯だけ」(quán nhậu) không có trong 120s; transcript KHÔNG có '第N位' nào — video không xếp hạng như thumbnail hứa."
+   ],
+   "why": "H03 đưa bảng cân đối 3 con số trong 12s (853万/14万6000/持ち家) khiến người xem tự so với sổ của mình, rồi K02 lật: sổ hụt 67万 mà không tiêu gì lớn — hậu quả có sẵn, nguyên nhân bị giấu (loại D). Chi tiết 580円 cà phê (58–67s) cho não một hình ảnh cụ thể của nghịch lý.",
+   "weak": "Tự giới thiệu muộn (78s) nhưng không hại — 0–78s toàn con số và cảnh. Thumbnail hứa xếp hạng mà video không có (rủi ro comment bắt lỗi như vụ タニジン); video vẫn 174k nên lỗi này không giết view ở đây."
+  },
+  {
+   "video_id": "_VXUim2J9QM",
+   "tag": "top",
+   "views": 109004,
+   "published_at": "2026-07-11T08:45:02Z",
+   "duration_min": 22.7,
+   "title": "【漫画】60歳で辞めるな！62歳で年金受給が最強な理由",
+   "desc_first": "60歳で定年退職するか、65歳まで働くか。老後資金、退職金、年金受給、再雇用、繰り上げ受給で迷う方へ。",
+   "thumb_text": "[dải đen trên] 62歳(vàng)で年金受給(trắng) · [trái, ngả người thư giãn] bong bóng「毎日が休日」 nhãn vàng「60歳で定年」 · [phải, khóc cầm 銀行通帳] bong bóng「話が違う…」 nhãn vàng「退職金が消える」",
+   "timing_source": "est",
+   "key_line_ja": "60歳でやめたら家計は本当に持つのか?そう聞かれた瞬間俺は返事に詰まった。",
+   "key_t": 0,
+   "lock_line_ja": "少しって毎月いくらのこと?その数字を俺は1度も出していなかった。",
+   "lock_t": 99,
+   "intro_t": 9,
+   "promise_t": null,
+   "beats": {
+    "event": "0s câu hỏi「60歳でやめたら家計は本当に持つのか?」(sau đó lộ ra là câu của vợ, 87–98s)",
+    "contradiction": "27–34s「60歳になったらもう十分だろう」vs 87s vợ hỏi「退職金はあるけど、年金までの空白はどうするの?」",
+    "stake": "119–125s「美和が紙に書いた数字は俺の想像よりずっと冷たかった。毎月の生活費…約27万円」",
+    "open_loop": "101s「その数字を俺は1度も出していなかった」; phương án 62歳 chỉ xuất hiện ở ~391s"
+   },
+   "kind": "C",
+   "patterns": [
+    "H21"
+   ],
+   "closers": [
+    "K01",
+    "K06"
+   ],
+   "score_0_12": 8,
+   "score_detail": [
+    1,
+    2,
+    1,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "Vế '60歳で辞めるな' khớp câu hỏi 0s; vế chính '62歳で年金受給が最強' vắng cả 120s — '62歳' như một lựa chọn chỉ xuất hiện ~391s, chữ '最強' ~1224s."
+   ],
+   "thumb_title": [
+    "K",
+    "62歳/60歳 đều có; panel khóc「退職金が消える」minh hoạ đúng lý do của '辞めるな'."
+   ],
+   "thumb_hook": [
+    "P",
+    "Panel trái (mơ nghỉ, 72–78s xem 温泉宿) và nỗi sợ rút 退職金 (87–101s) có trong hook; con số 62 của dải đầu thì không."
+   ],
+   "why": "Mở bằng câu hỏi mà khán giả 59 tuổi đang tự hỏi, người hỏi là vợ (người giữ sổ) → câu hỏi có sức nặng thật; K01 biến nó thành câu hỏi của cả video. Đề tài 'nghỉ 60 hay 65' là quyết định chung → 137 comment, 768 like (cao nhất 9 video).",
+   "weak": "Lời hứa '62歳が最強' để tới ~6,5 phút — tiêu đề mệnh lệnh「辞めるな！」mới là thứ kéo click, hook chỉ giữ bằng câu hỏi chung. 0–80s là đời công sở (共有フォルダー…), ít cảnh."
+  },
+  {
+   "video_id": "EANADckKWT4",
+   "tag": "top",
+   "views": 72196,
+   "published_at": "2026-07-05T09:00:22Z",
+   "duration_min": 24.1,
+   "title": "【漫画】65歳で退職した独身男…たった2か月で絶望しました",
+   "desc_first": "65歳で定年退職した独身男性が、自由な老後を夢見た先で直面した「本当の孤独」とは――。",
+   "thumb_text": "[dải đen trên] 定年後の(trắng)本当の敵(vàng) · [trái, cười ôm hoa, đồng nghiệp quay lưng] bong bóng「最高」「自由だ」 nhãn vàng「65歳で退職」 · [phải, nền tối, mặt buồn] bong bóng「虚しい…」 nhãn vàng「2か月後…」",
+   "timing_source": "est",
+   "key_line_ja": "65歳になった日、俺は42年間勤めた会社を退職した。",
+   "key_t": 0,
+   "lock_line_ja": "誰にも縛られず自分のためだけに生きる毎日。65歳、俺の第2の人生は希望と期待に満ちた最高のスタートを切ったはずだった。",
+   "lock_t": 114,
+   "intro_t": 45,
+   "promise_t": null,
+   "beats": {
+    "event": "0–16s ngày nghỉ hưu, nhận hoa, lời chào của hậu bối",
+    "contradiction": "",
+    "stake": "",
+    "open_loop": "~113–126s「最高のスタートを切ったはずだった」(はずだった là tín hiệu duy nhất trong 120s); '2ヶ月' đầu tiên ~271s"
+   },
+   "kind": "E",
+   "patterns": [
+    "H35"
+   ],
+   "closers": [
+    "K06"
+   ],
+   "score_0_12": 7,
+   "score_detail": [
+    1,
+    2,
+    0,
+    1,
+    1,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "65歳・退職 có ở 0s, 独身 ở 45s; nhưng '2か月で絶望' không có dấu hiệu nào trước ~113s, chữ '2ヶ月' ở ~271s."
+   ],
+   "thumb_title": [
+    "P",
+    "65歳で退職 + 2か月後 khớp; dải đầu「本当の敵」là lời hứa mới không có trong tiêu đề, còn '独身' của tiêu đề không có trên ảnh."
+   ],
+   "thumb_hook": [
+    "K",
+    "Panel trái (hoa, 自由だ) = đúng 0–26s; panel phải (虚しい) là phần sau 120s (虚し ~426s)."
+   ],
+   "why": "Chỉ sống nhờ trớ trêu kịch tính: tiêu đề/thumbnail đã nói '2 tháng sau tuyệt vọng', nên 2 phút liệt kê tự do (旅行・歴史小説・平日の映画館) được nghe như đếm ngược. Mọi thứ phụ thuộc vào gói đăng.",
+   "weak": "0–30s không có mâu thuẫn, không có con số, không có người thứ hai; câu khoá duy nhất là 'はずだった' ở ~2 phút. Video 72k — thấp nhất nhóm top trừ dY3, cùng kiểu mở chậm."
+  },
+  {
+   "video_id": "dY3HfjtmvXI",
+   "tag": "top",
+   "views": 50615,
+   "published_at": "2026-06-25T09:00:28Z",
+   "duration_min": 20.0,
+   "title": "【漫画】65歳、独身、年金生活…その先に待っていた衝撃の現実",
+   "desc_first": "老後は本当に自由なのでしょうか――。",
+   "thumb_text": "[dải đen trên] 独身(vàng)の年金生活(trắng) · [trái, cầm mô hình tàu điện, cười] bong bóng「1人を楽しむ」「もう働かない」 nhãn vàng「65歳」 · [phải, áo rách bẩn, khóc] bong bóng「金が無い…」 nhãn vàng「数年後…」",
+   "timing_source": "est",
+   "key_line_ja": "老後は自由だと思っていた。65歳、独身、持ち家ありだからお金の心配だけはないと思っていた。",
+   "key_t": 0,
+   "lock_line_ja": "年金13万円。本当にこの先も大丈夫なのだろうか。",
+   "lock_t": 117,
+   "intro_t": 10,
+   "promise_t": null,
+   "beats": {
+    "event": "",
+    "contradiction": "0–3s「老後は自由だと思っていた…お金の心配だけはないと思っていた」(H15, nói trước là sai)",
+    "stake": "64s nhìn tiền 年金 (ASR「3万円か」= 13万円); 88–98s phong bì 修繕積立金「月1万5000円から2万9000円へ」",
+    "open_loop": "117s「年金13万円。本当にこの先も大丈夫なのだろうか」"
+   },
+   "kind": "E",
+   "patterns": [
+    "H15"
+   ],
+   "closers": [
+    "K01"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    2,
+    1,
+    1,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "65歳・独身・年金生活 đều ở 0–64s; '衝撃の現実' = phong bì 修繕積立金 gần gấp đôi ở 88–98s, còn trong 120s."
+   ],
+   "thumb_title": [
+    "K",
+    "Dải đầu「独身の年金生活」+ nhãn 65歳/数年後… = đúng 3 từ khoá + 'その先' của tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "Mô hình tàu điện trên tay = 45s「鉄道模型を眺める」; 「もう働かない」≈ 31s「もう早朝出勤はない」; 「金が無い…」≈ 修繕積立金 88–117s."
+   ],
+   "why": "H15 báo trước niềm tin sẽ vỡ ('思っていた' 2 lần trong 3s) nên người xem chờ cú vỡ; cú vỡ là một vật lý cụ thể — phong bì 修繕積立金 với 2 con số (1万5000→2万9000).",
+   "weak": "Cú tát phong bì tới 88s mới đến, 0–58s là liệt kê tự do của người độc thân (giống EANAD). Tiêu đề không có con số/biến cố cụ thể ('衝撃の現実' chung chung). Đăng sớm nhất (2026-06-25) khi kênh chưa có đà — 50k."
+  },
+  {
+   "video_id": "ZogHjPo8cX0",
+   "tag": "new",
+   "views": 12,
+   "published_at": "2026-09-23T09:00:13Z",
+   "duration_min": 23.9,
+   "title": "【漫画】60歳で年金を受け取った男…65歳まで待たなかった15年後の末路",
+   "desc_first": "60歳から年金を受け取る「繰り上げ受給」。65歳まで待つ場合と比べて、年金はいくら減るのか？本当に後悔しない選択なのか？",
+   "thumb_text": "[dải đen trên] 60歳(vàng)で年金受給(trắng) · [trái, quán nhậu có biển 焼き鳥, uống bia] bong bóng「俺は自由だ」 nhãn vàng「年金24%減」(24% đỏ) · [phải, nền mây đen, trừng mắt nhìn 預金通帳] bong bóng「話が違う…」 nhãn vàng「1年後…」",
+   "timing_source": "none",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "N/A",
+    "Không lấy được transcript (raw rỗng, không có trong transcripts.json) — không chấm hook."
+   ],
+   "thumb_title": [
+    "P",
+    "Tiêu đề hứa '15年後の末路', thumbnail ghi '1年後…'; 年金24%減 = 0,4%×60 tháng繰上げ, khớp '60歳で年金を受け取った'."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "Không có transcript."
+   ],
+   "why": "Chưa đánh giá hook. Gói đăng chép khuôn của _VXUim2J9QM (dải 'NN歳で年金受給' + bong bóng「話が違う…」+ sổ tiết kiệm).",
+   "weak": "Đăng 2026-09-23 (12 view lúc tải) — quá mới để kết luận. ĐÂY LÀ CÙNG ĐỀ TÀI 繰上げ với tập ep03 của mình."
+  },
+  {
+   "video_id": "iJrKlKBAabY",
+   "tag": "new",
+   "views": 8435,
+   "published_at": "2026-09-18T09:00:16Z",
+   "duration_min": 24.1,
+   "title": "【漫画】年収別のリアルな年金生活。日本人の平均年収478万円…年金は平均約18万円",
+   "desc_first": "現役時代の年収1100万円、750万円、500万円、300万円。収入が大きく違う4人が老後を迎えたとき、意外な「お金の差」が生まれていました。",
+   "thumb_text": "[cột giữa dọc] 年収別(đỏ)の年金生活(vàng) · 4 ô: 年収300万円 bong bóng「月6万」(ông già làm siêu thị) · 年収500万円「月15万」(ăn mì ly) · 年収750万円「月18万」(sân golf) · 年収1100万円「月25万」(nhà hàng rượu vang)",
+   "timing_source": "none",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "N/A",
+    "Không lấy được transcript — không chấm hook."
+   ],
+   "thumb_title": [
+    "P",
+    "Cùng chủ đề 年収別 nhưng số lệch: tiêu đề '平均年収478万円…年金は平均約18万円', thumbnail lại gắn 月18万 cho 年収750万円 và 月15万 cho 年収500万円."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "Không có transcript."
+   ],
+   "why": "Chưa đánh giá hook. Là video DUY NHẤT trong 9 phá khuôn: tiêu đề không có nhân vật/tuổi/cảm xúc, thumbnail 4 ô thay vì 2 panel.",
+   "weak": "8.435 view sau 5 ngày (2026-09-18) — thấp hơn mọi video top cùng tuổi nhưng còn quá mới; ghi nhận là 'phá khuôn + view thấp', chưa đủ để kết luận nhân quả."
+  },
+  {
+   "video_id": "_fJim8rkhhM",
+   "tag": "new",
+   "views": 10398,
+   "published_at": "2026-09-09T09:18:19Z",
+   "duration_min": 28.1,
+   "title": "【漫画】60歳を過ぎたら絶対に行ってはいけない場所5選…退職金2000万円を失った67歳男性の末路",
+   "desc_first": "「60代が絶対に行ってはいけない場所5選」をご紹介します。",
+   "thumb_text": "[dải đen trên] 60歳(vàng)過ぎて(trắng)絶対行くな(đỏ) · [trái, quán nhậu, vest] bong bóng「一杯だけ」 nhãn vàng「第3位」 · [phải, trường đua ngựa cầm vé] bong bóng「勝てば十倍」 nhãn vàng「第2位」",
+   "timing_source": "real",
+   "key_line_ja": "元管理職で2000万円もの退職金をもらった俺がどうして今お金に困っているのか。",
+   "key_t": 11.24,
+   "lock_line_ja": "話は1年前に遡る。",
+   "lock_t": 19.84,
+   "intro_t": 0.24,
+   "promise_t": null,
+   "beats": {
+    "event": "0.2s「俺の名前は三浦一。67歳。今は新聞の配達をし、こうして日銭を稼いでいる」(ASR: 教の配達当し)",
+    "contradiction": "11.2s「元管理職で2000万円もの退職金をもらった俺がどうして今お金に困っているのか」",
+    "stake": "",
+    "open_loop": "19.8s「話は1年前に遡る」; 68–94s「時間を持て余す…俺だけが何もない」; 96s vợ「あなた今日はどこか行かないの?」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H12",
+    "H04"
+   ],
+   "closers": [
+    "K02",
+    "K04"
+   ],
+   "score_0_12": 6,
+   "score_detail": [
+    1,
+    0,
+    1,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "Vế sau tiêu đề (退職金2000万円・67歳・末路) có đủ ở 0–14s; vế chính '行ってはいけない場所5選' không xuất hiện trong 120s — không có lời hứa danh sách, không nơi nào được gọi tên."
+   ],
+   "thumb_title": [
+    "K",
+    "「60歳過ぎて絶対行くな」= rút gọn vế đầu tiêu đề; 第3位/第2位 = '5選'."
+   ],
+   "thumb_hook": [
+    "L",
+    "Quán nhậu, trường đua, xếp hạng — không cái nào có trong 120s; 120s đầu là chuyện rảnh rỗi sau nghỉ hưu."
+   ],
+   "why": "Nghịch lý 2000万 vs giao báo ở 11s là câu chốt tốt, K04 quay về 1 năm trước đúng khuôn. Nhưng người bấm vì thumbnail/tiêu đề '5 nơi không được đến' sẽ không nghe thấy danh sách nào trong 2 phút.",
+   "weak": "Mở bằng tự giới thiệu (H12 — h2dev cấm). Tiêu đề 49 ký tự (dài nhất, vượt gate 44). Gói đăng hứa LIST, hook là TRUYỆN: 10k sau 14 ngày dù dùng lại khuôn thumbnail của K8tTrxijqEo (184k)."
+  }
+ ],
+ "supplementary_low": [
+  {
+   "video_id": "e_Zo7Ht5OH8",
+   "views_transcripts_json": 10000,
+   "title": "【漫画】60歳で会社を辞めた元部長…退職金1700万円でも絶望しました",
+   "timing_source": "est",
+   "key_line_ja": "俺は部長だぞ。再雇用を断った60歳男性を待っていた残酷な現実。",
+   "key_t": 0,
+   "intro_t": 8,
+   "belief_t": 79,
+   "slap_t": 119,
+   "patterns": [
+    "H14"
+   ],
+   "note": "Hook đủ khuôn (câu sốc 0s, tự giới thiệu 8s, 'そう思っていた' 79s, phong bì 119s) mà ~10k → tiền đề hẹp (cựu 部長 từ chối 再雇用). Không có thumbnail."
+  },
+  {
+   "video_id": "WblFD81yjOI",
+   "views_transcripts_json": 10000,
+   "title": "【漫画】70歳まで年金を繰り下げた独身男…老後に待っていた残酷な現実",
+   "timing_source": "est",
+   "key_line_ja": "あと1年我慢すれば俺の勝ちだ。",
+   "key_t": 0,
+   "intro_t": 3,
+   "number_t": 26,
+   "slap_t": 111,
+   "patterns": [
+    "H14"
+   ],
+   "note": "Con số 15万3000→21万7000 (42%) ở 26s, phong bì 大家 ~111–121s; vẫn 10k — tiền đề hẹp (độc thân, thuê nhà, hoãn tới 70). Không có thumbnail."
+  }
+ ],
+ "win_vs_lose": "TOP ≥100k (XbwqD 313k, K8t 184k, O84 174k, _VX 109k) vs GIỮA (EANAD 72k, dY3 50k) vs THẤP đã đủ tuổi (e_Zo7Ht5OH8 ~10–11k, WblFD81yjOI 10k — cả hai đã được link trong mô tả XbwqD ngày 2026-08-03 nên ≥7 tuần tuổi; chỉ có transcript, KHÔNG có thumbnail/raw) vs MỚI (_fJ 10k@14 ngày, iJr 8,4k@5 ngày, Zog ~0@0 ngày). (1) KHÁC Ở ĐỀ TÀI trước hết: 2 video thấp có hook ĐỦ khuôn — e_Zo7 mở「俺は部長だぞ」0s, tự giới thiệu 8s, 'そう思っていた' 79s, phong bì 119s; WblFD mở「あと1年我慢すれば俺の勝ちだ」0s, tự giới thiệu 3s, con số 15万3000→21万7000 ở 26s, phong bì 大家 ~111–121s — vẫn chỉ 10k. Tiền đề của chúng hẹp (cựu 部長 từ chối 再雇用; độc thân thuê nhà hoãn lương hưu tới 70), còn 4 top là quyết định/nỗi sợ gần như ai 58–67 cũng có (nghỉ 60 hay 65; tiền tự hao dù không tiêu gì lớn; cách tiêu làm nghèo). (2) KHÁC Ở HOOK thứ hai, trong nhóm cùng đề tài rộng: 2 video giữa (EANAD, dY3 — đều 独身) dành 0–58s/0–126s cho tự do trước khi có con số/câu hỏi, không có giọng thứ hai trong 120s; 4 top đều có câu hỏi/con số ≤30s và giọng thứ hai ≤~102s. (3) GÓI ĐĂNG: số tiền trên tiêu đề 1/6 top vs 3/5 video còn lại; tiêu đề hứa LIST mà hook kể TRUYỆN (_fJ, thumbnail 'L') ra 10k dù dùng lại khuôn thumbnail của K8t 184k. (4) NHIỄU THỜI ĐIỂM: 6 top đăng 06-25→08-26, 3 video tháng 9 đều thấp — có thể kênh mất đà đề xuất; không tách được bằng dữ liệu hiện có.",
+ "our_eps": [
+  {
+   "ep": "ep01",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-real\\ep01-fuufu-nenkin-sa",
+   "status": "Kịch bản LOCK (B3S PASS 2026-09-21, 7.238 chữ ≈ 25,5'), B5W/B5P xong. CHƯA giọng, CHƯA title.txt, CHƯA TIEU_DE_MO_TA.txt, CHƯA thumbnail.",
+   "title": "【漫画】60歳で退職した俺と働き続けた妻…5年後、夫婦の月収に8万円の差が出た理由 (tựa LÀM VIỆC lấy từ dòng 1 series_ctx.txt — không có title.txt)",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": "chưa có thumbnail",
+   "open_0_30_ja": "六十歳で会社を出た俺と、六十五歳まで残った日高。どっちが幸せだったのか。五年たった今なら、答えられる。ただその答えは、五年前の俺には、想像もつかないものだった。俺の名前は間宮亮一、六十五歳、元経理課長だ。静岡の焼津にある冷凍食品会社で、三十七年働いた。妻の千恵子は六十三で、介護施設の事務を続けている。",
+   "key_t": 0,
+   "intro_t": 17,
+   "promise_t": 8,
+   "timing_source": "est — chưa có giọng: mốc giây = số chữ (bỏ xuống dòng) ÷ 284 chữ/phút × 60 (profile teinengo-real char_rate)",
+   "title_hook": [
+    "L",
+    "Tiêu đề hứa 'tôi vs VỢ vẫn đi làm, chênh 8万円/tháng'. Hook 0–30s so tôi với đồng nghiệp 日高 (câu 0s); vợ chỉ được nhắc 1 câu ở 27s「介護施設の事務を続けている」; '8万円の差' nằm ở ~1360s (22,7' / 25,5')."
+   ],
+   "thumb_title": [
+    "N/A",
+    "Chưa có thumbnail (thư mục tập không có ảnh thumb/thumb_text.txt; SOP_LANE_F §2b: thumbnail ngoài phạm vi hiện tại)."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "Chưa có thumbnail (thư mục tập không có ảnh thumb/thumb_text.txt; SOP_LANE_F §2b: thumbnail ngoài phạm vi hiện tại)."
+   ],
+   "broken_promises": [
+    "'夫婦の月収に8万円の差': script (~1360s) so 年金 額面 13万1千 của 俺 với 手取り 21万2千 của 千恵子「その時点で八万円の差があった」— cùng lúc 俺 còn 送迎と帳簿の七万 (~1410s) nên chênh 月収 thật chỉ ~1万1千; qc_final_review.txt đã ghi đúng lỗi này. Giữ chữ '月収' là tựa sai bản chất.",
+    "'働き続けた妻' không phải trục của hook: cụm 働き続け chỉ xuất hiện 1 lần (~1297s); đối thủ trong câu hỏi mở đầu là 日高 (39 lần trong script).",
+    "Không chi tiết nào của tiêu đề (妻 đi làm, 8万) được nêu thành câu hỏi trong 90s đầu."
+   ],
+   "problems": [
+    "Câu 0–8s「六十歳で会社を出た俺と、六十五歳まで残った日高。どっちが幸せだったのか。」gần như chép nguyên câu 0.3s của XbwqD2SktC0「60歳でやめた俺と65歳まで残った同僚 どっちが幸せだったのか。」— cả khung lẫn chữ.",
+    "11s「ただその答えは、五年前の俺には、想像もつかないものだった」là biến thể của câu XbwqD 80s「答えは思っていたより残酷だった」(SOP §2c đã cảnh báo chép câu biểu tượng).",
+    "35–53s (≈18s) tả chiếc 電卓 12 chữ số trước khi có biến cố hay con số nào — kênh mẫu top không dành đoạn 0–60s nào cho đồ vật không mang số.",
+    "Tiền đầu tiên ở 100s (退職金一千四百八十万円); câu hỏi của video không gắn với con số nào của tiêu đề.",
+    "Cảnh trăng mật (目覚まし 60s, 映画館客六人 78s, 生ビール 84s) trùng gần y hệt ep03 (目覚まし 71s, 映画館客四人 80s, ビール 88s) và XbwqD (映画・平日の映画館・昼からビール 118–129s).",
+    "Tên 日高 (đồng nghiệp đối chiếu) dùng lại ở ep02."
+   ],
+   "fix": [
+    "CAO — Chọn một trục và khoá cả tiêu đề lẫn 10s đầu vào trục đó. Giữ góc 'vợ chồng' (góc mới, handoff §13): mở bằng con số chênh lệch, kiểu O84L0zOtrxo (67万 ở ~30s, lặp 3 lần tới 67s). Câu mở mẫu: 「六十で辞めた俺と、働き続けた千恵子。五年後、同じ家に入る金は、妻のほうが月に八万円多かった。」 — rồi nhắc lại '八万' lần 2 trước 30s (K02).",
+    "CAO — Sửa chữ tiêu đề cho đúng phép so trong script: không dùng '夫婦の月収'; ví dụ '…5年後、俺の年金と妻の手取りに月8万円の差' (khớp câu ~1360s). Hoặc sửa script cho 8万 là chênh 月収 thật — việc của h2dev, không sửa ở đây.",
+    "VỪA — Chuyển 日高 xuống vai 'nhân vật phản chiếu' vào ~100s (như 藤原 của O84 ở ~100s, người lạ của K8t ở 102s), không để 日高 là vế B của câu hỏi mở.",
+    "VỪA — Rút 電卓 (35–53s) còn 1 câu; kéo 'ここで、手札を言っておく' (97s) + 3 con số lên trước 60s.",
+    "THẤP — Đổi 1–2 chi tiết trăng mật (映画館/ビール) để 3 tập không lặp nhau; đổi tên 日高 ở ep02."
+   ],
+   "model_video": "O84L0zOtrxo (con số tiêu đề làm bí ẩn trong 30s) + XbwqD2SktC0 (so 2 lựa chọn — học cấu trúc, không chép câu)",
+   "priority": "cao",
+   "priority_why": "Tiêu đề và hook nói về 2 người khác nhau (妻 vs 日高) và con số của tiêu đề sai bản chất — đúng lỗi làm _fJim8rkhhM chỉ 10k (gói hứa một đằng, hook làm một nẻo). Đang thiếu cả title.txt nên sửa lúc này rẻ nhất."
+  },
+  {
+   "ep": "ep02",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-real\\ep02-saikoyou-hanbun",
+   "status": "Kịch bản LOCK (Sol PASS 2026-09-20, 6.533 chữ ≈ 23,0'), B5W/B5P xong. CHƯA giọng, CHƯA TIEU_DE_MO_TA.txt, CHƯA thumbnail.",
+   "title": "【漫画】60歳で再雇用を選んだ俺…給料が半分になった1年後、元部下に見た残酷な現実",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": "chưa có thumbnail",
+   "open_0_30_ja": "黄色いヘルメットをかぶった俺と、家で新聞を読んでいる同期の日高。一年後、どっちが多くを失っていたか。これは金の話であり、金じゃない話でもある。俺の名前は真壁修一、61歳、元・段ボール工場の製造課長だ。埼玉の北のほう、荒川の風が冷たい町で、妻の志乃と二人で暮らしている。娘は嫁いで、家には犬もいない。",
+   "key_t": 0,
+   "intro_t": 15,
+   "promise_t": 54,
+   "timing_source": "est — chưa có giọng: mốc giây = số chữ (bỏ xuống dòng) ÷ 284 chữ/phút × 60 (profile teinengo-real char_rate)",
+   "title_hook": [
+    "P",
+    "Mọi danh từ của tiêu đề có trong 60s đầu (一年後 7s, 再雇用 33s, 半分 36s, 元部下 37s, 残酷 58s). Nhưng câu hỏi của hook là 'tôi vs 同期 日高 ai mất nhiều hơn', còn tiêu đề hứa điều thấy ở 元部下 — 元部下 (遠藤) chỉ có tên ở ~363s, payoff ở ~874s."
+   ],
+   "thumb_title": [
+    "N/A",
+    "Chưa có thumbnail (thư mục tập không có ảnh thumb/thumb_text.txt; SOP_LANE_F §2b: thumbnail ngoài phạm vi hiện tại)."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "Chưa có thumbnail (thư mục tập không có ảnh thumb/thumb_text.txt; SOP_LANE_F §2b: thumbnail ngoài phạm vi hiện tại)."
+   ],
+   "broken_promises": [
+    "'元部下に見た残酷な現実': có thật trong script (~874s「残酷な現実というのは、こういうことだった」— ghế của 俺 được giữ nhờ ca đêm của 元部下 遠藤) nhưng 90s đầu chỉ có 3 chữ '上司は元部下' (37s); người xem không biết 元部下 là ai cho tới ~363s.",
+    "'給料が半分': script ghi 額面 30万→17万 (~57%, ~150s) và tự nói 'ほぼ半分' — chấp nhận được, nhưng con số chưa có trong 90s đầu."
+   ],
+   "problems": [
+    "Khung câu 0–11s「黄色いヘルメットをかぶった俺と、家で新聞を読んでいる同期の日高。一年後、どっちが多くを失っていたか。」lại là khung XbwqD2SktC0 (俺 vs 同僚, どっちが…) — lần thứ 2 trong 3 tập.",
+    "11s「これは金の話であり、金じゃない話でもある。」— câu trừu tượng, không hình, không số, chiếm vị trí 11–15s (nhịp contradiction).",
+    "54s「答えは、俺の想像の外にあった。」là biến thể câu XbwqD 80s「答えは思っていたより残酷だった」.",
+    "Tiền đầu tiên ở 106s (退職金が1,150万円); lương 17万 (con số cho '半分') ở ~150s.",
+    "Tên 日高 trùng ep01; '段ボール工場' + tên '修一' trùng ep03 (真壁修一 元段ボール工場製造課長 vs 柴垣修一 元段ボール工場生産管理係長)."
+   ],
+   "fix": [
+    "VỪA — Mở bằng 元部下 thay vì 日高: câu thoại của người trong cuộc ở giây 0 (kiểu _VXUim2J9QM mở bằng câu hỏi của vợ). Câu mở mẫu: 「『先輩、来週ちょっといいですか』。去年まで俺の部下だった男が、今は俺の契約を決める。」 — câu「先輩、来週ちょっといいですか」đã có sẵn ở ~417s.",
+    "VỪA — Đưa '額面30万→17万' lên trước 30s để 'nửa lương' thành con số (K02), bỏ câu 11s「これは金の話であり…」.",
+    "VỪA — Giữ câu 58s「残酷だったのは俺に対してだけじゃなかった」nhưng chỉ thẳng vào 元部下 (đó là payoff 874s) để lời hứa tiêu đề được đặt trong 60s.",
+    "THẤP — Đổi tên 日高 (trùng ep01) và 1 trong 2 cặp '段ボール工場/修一' (trùng ep03)."
+   ],
+   "model_video": "_VXUim2J9QM (mở bằng câu thoại người thứ hai) + O84L0zOtrxo (con số trong 30s)",
+   "priority": "vừa",
+   "priority_why": "Tiêu đề không nói dối (payoff có thật) nhưng hook chĩa vào người khác; sửa 10–30s đầu là đủ, không đụng thân bài."
+  },
+  {
+   "ep": "ep03",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\teinengo-real\\ep03-kuriage-koukai",
+   "status": "Kịch bản LOCK (Sol PASS 2026-09-20, 6.490 chữ ≈ 22,9'), B5W/B5P xong. CHƯA giọng, CHƯA TIEU_DE_MO_TA.txt, CHƯA thumbnail.",
+   "title": "【漫画】63歳で年金を繰り上げた男…月2万円減った先に待っていた本当の後悔",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": "chưa có thumbnail",
+   "open_0_30_ja": "63歳で年金に手を付けた俺と、まだ手を付けない同期。65歳でもらう見込みの額より、俺の年金は月2万円少ない。それだけの話だと思っていた。俺の名前は柴垣修一、65歳、元段ボール工場の生産管理係長だ。岐阜の、川と工場しかない町で生まれて、そのまま同じ町で年を取った。女房の芳江と二人暮らし。",
+   "key_t": 5,
+   "intro_t": 14,
+   "promise_t": 52,
+   "timing_source": "est — chưa có giọng: mốc giây = số chữ (bỏ xuống dòng) ÷ 284 chữ/phút × 60 (profile teinengo-real char_rate)",
+   "title_hook": [
+    "K",
+    "63歳 + 年金に手を付けた ở 0s, '月2万円少ない' ở 5s (con số tiêu đề làm câu chốt), '後悔' = 48s「二度目のはいを、俺は今も悔やんでいる」, '先に待っていた' = 52s「減ったのは、月2万円だけじゃなかった」."
+   ],
+   "thumb_title": [
+    "N/A",
+    "Chưa có thumbnail (thư mục tập không có ảnh thumb/thumb_text.txt; SOP_LANE_F §2b: thumbnail ngoài phạm vi hiện tại)."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "Chưa có thumbnail (thư mục tập không có ảnh thumb/thumb_text.txt; SOP_LANE_F §2b: thumbnail ngoài phạm vi hiện tại)."
+   ],
+   "broken_promises": [
+    "Không có lời hứa gãy: 月2万円 (21万→19万) có ở 5s và ~430–457s; 'bản chất hối hận' (注意書き: 障害年金の事後重症・遺族厚生年金は65歳まで) trả ở ~520–600s. Chữ '後悔' không xuất hiện nguyên văn (script dùng 悔やんでいる) — không phải lỗi."
+   ],
+   "problems": [
+    "Khung 0–5s「63歳で年金に手を付けた俺と、まだ手を付けない同期。」vẫn là 'A俺と、B同期' — 3/3 tập dùng cùng khung mở của một video kênh mẫu (XbwqD).",
+    "Người thứ hai: 同期 không có tên tới 蒲生 ~520s; câu thoại đầu tiên ở 158s (芳江). Không có giọng thứ hai trong 120s.",
+    "Cảnh trăng mật 67–106s (目覚まし・九時・映画館客四人・ビール) trùng ep01; '段ボール工場' + '修一' trùng ep02.",
+    "Va chạm đề tài: kênh mẫu vừa đăng ZogHjPo8cX0 (2026-09-23)「60歳で年金を受け取った男…65歳まで待たなかった15年後の末路」— cùng 繰上げ, khung tiêu đề gần giống hệt ('NN歳で年金を〜た男…〜'), thumbnail「60歳で年金受給」+「年金24%減」+「話が違う…」."
+   ],
+   "fix": [
+    "VỪA — Đưa cảnh 窓口 (34–52s) lên giây 0 để mở bằng CẢNH thay vì khung 'A俺とB同期' — đây là chi tiết riêng của tập mà ZogHjPo8cX0 không có. Câu mở mẫu: 「二年前、年金事務所の窓口で、俺は二度『はい』と言った。二度目のはいを、今も悔やんでいる。」 rồi '月2万円' ngay sau (≤15s).",
+    "VỪA — Tiêu đề/thumbnail phải khác ZogHjPo8cX0: đừng dùng dải 'NN歳で年金受給'. Gợi ý chữ thumbnail: dải đầu「年金繰上げの落とし穴」hoặc「読まなかった1行」; trái (quầy 年金事務所, gật đầu) bong bóng「はい」 nhãn「月2万円減」; phải (phòng chờ bệnh viện) bong bóng「知らなかった…」 nhãn「2年後…」. Tiêu đề có thể thêm vế 注意書き/'読まなかった' để tách khỏi video kia.",
+    "THẤP — Cho 同期 một tên + 1 câu thoại trong 120s (như 藤原 của O84 ở ~100s), hoặc thay chữ 同期 ở 0s bằng 蒲生.",
+    "THẤP — Đổi chi tiết trăng mật để không trùng ep01."
+   ],
+   "model_video": "O84L0zOtrxo (con số tiêu đề ≤30s + câu hỏi 'vì sao') — ep03 đã làm đúng phần này; phần mở bằng cảnh học K8tTrxijqEo (cảnh cụ thể ở 2s)",
+   "priority": "vừa",
+   "priority_why": "Hook tốt nhất trong 3 tập (K02 ở 5s, khoá 34–62s); rủi ro chính KHÔNG nằm ở hook mà ở va chạm đề tài với video kênh mẫu đăng cùng ngày — cần tách gói đăng trước khi làm thumbnail."
+  }
+ ],
+ "our_summary": "3/3 tập mới xong kịch bản (LOCK), 0/3 có giọng, 0/3 có TIEU_DE_MO_TA.txt, 0/3 có thumbnail; ep01 còn thiếu cả title.txt (tựa làm việc nằm ở dòng 1 series_ctx.txt) → cột thumb_title/thumb_hook không chấm được ở cả 3 tập. Hook↔tiêu đề: ep03 K, ep02 P, ep01 L. 3/3 tập mở bằng cùng khung 'A した俺と、B した同期/日高 + どっちが/答え' — khung của ĐÚNG 1 video kênh mẫu (XbwqD), trong khi 7 transcript kênh mẫu dùng 7 kiểu mở khác nhau (H18, H03, H04, H21, H35, H15, H12); ep01 gần như chép nguyên câu. Giọng thứ hai trong 120s: ep02 có (日高「俺は課長だぞ」46s), ep01 (千恵子 91s) có, ep03 không (thoại đầu 158s). Tiền đầu tiên: ep03 5s, ep01 100s, ep02 106s. Tự giới thiệu 14–17s (đạt, kênh mẫu 5/7 trong ≤25s). Lặp chéo giữa các tập: tên 日高 2/3, '段ボール工場' 2/3, tên '修一' 2/3, '手札' 3/3 (97–106s), cảnh 目覚まし+映画館客N人+ビール 2/3 — khán giả xem liền nhiều tập sẽ nhận ra. Ưu tiên: ep01 cao, ep02 vừa, ep03 vừa (vì va chạm đề tài với ZogHjPo8cX0 đăng 2026-09-23).",
+ "principles": [
+  {
+   "claim": "Tiêu đề thắng nhờ một QUYẾT ĐỊNH chung của khán giả, không nhờ số tiền.",
+   "cause": "Người 58–67 bấm vì thấy câu hỏi của chính mình (nghỉ 60 hay 65, sao tiền cứ hao) — con số tiền trên tiêu đề chỉ là hoàn cảnh của nhân vật, không phải câu hỏi của họ.",
+   "evidence": "Số tiền trên tiêu đề: 1/6 top (O84L0zOtrxo 67万円 — và ở đó con số CHÍNH là bí ẩn) vs 3/5 video còn lại (_fJim8rkhhM 2000万 10k, iJrKlKBAabY 478万/18万 8,4k, e_Zo7Ht5OH8 1700万 ~10k). Tuổi 'NN歳' có ở 8/9.",
+   "why": "Luật cứng lane hiện ghi 'tựa PHẢI có SỐ TIỀN' — dữ liệu kênh mẫu không ủng hộ; bắt buộc số tiền dễ đẩy tiêu đề về dạng 'hoàn cảnh riêng' (1700万の元部長) thay vì 'quyết định chung'.",
+   "how": "Tựa lane F: bắt buộc tuổi + quyết định + mốc thời gian + cảm xúc; chỉ đưa số tiền khi chính con số là bí ẩn của video (kiểu '67万円消えた本当の理由', '月2万円減った先に' của ep03)."
+  },
+  {
+   "claim": "Trong 30s đầu phải nói lại tiền đề/con số của tiêu đề bằng lời nhân vật.",
+   "cause": "Người vừa bấm cần xác nhận 'đúng cái mình bấm vào' trước khi chịu nghe tự giới thiệu và backstory.",
+   "evidence": "XbwqD2SktC0 0.3s (313k), K8tTrxijqEo 0s (184k), O84L0zOtrxo ~30s 67万 lặp 3 lần tới 67s (174k); EANADckKWT4 'tuyệt vọng' chỉ hé ~113–126s, '2ヶ月' ~271s (72k); dY3HfjtmvXI cú '衝撃' 88–98s (50k); _fJim8rkhhM '5選' không có trong 120s (10k).",
+   "why": "Là cách rẻ nhất để giữ người từ giây 5 tới 60; kênh mẫu có ngoại lệ (_VX 62歳 ở ~391s) nhưng khi đó vế đầu tiêu đề vẫn được nói ở 0s.",
+   "how": "Kiểm máy: mỗi tập, lấy danh từ/con số chính của title.txt, grep trong 142 chữ đầu (=30s × 284/60). ep03 đạt; ep01 phải đưa '妻/8万' vào; ep02 phải đưa '元部下' vào như vế chính."
+  },
+  {
+   "claim": "Cú đảo 'ずっとそう思っていた → だが' là động cơ của cả kênh, phải có trong 120s.",
+   "cause": "Nói trước niềm tin rồi báo nó sai biến người xem thành người biết trước, chờ xem nó vỡ ra sao.",
+   "evidence": "9/9 transcript có trong 120s: O84 ~17s, dY3 0–3s, _VX ~27s, K8t ~58s, XbwqD 50.8→58.5s, _fJ 62s, EANAD ~74/113s, e_Zo7 79s, WblFD 49s.",
+   "why": "Là mẫu số chung của cả video top lẫn video thấp → không đủ để thắng, nhưng thiếu là lệch giọng kênh.",
+   "how": "Giữ (3/3 tập đã có: ep01 11s, ep02 49s, ep03 11s). Đừng dùng lại nguyên câu「答えは思っていたより残酷だった」— 3/3 tập đang có biến thể của nó."
+  },
+  {
+   "claim": "Giọng thứ hai phải vào trước ~100s.",
+   "cause": "Một câu của người khác (vợ hỏi sổ, người lạ phán, đồng nghiệp chọn ngược) làm câu hỏi của video có người phản biện — không chỉ là độc thoại than thở.",
+   "evidence": "4/4 video ≥100k: XbwqD 同僚 37s, _VX 妻 ~87–98s, O84 藤原 ~100s, K8t 常連 ~102s. 0/2 video 50–72k (EANAD, dY3 — độc thân, không ai nói với họ trong 120s).",
+   "why": "Tương quan trên 6 video, lẫn với yếu tố 独身; nhưng rẻ để làm và không hại.",
+   "how": "ep03 hiện thoại đầu ở 158s và 同期 vô danh tới ~520s → cho 蒲生 hoặc 芳江 1 câu trước 100s. ep01/ep02 đã có (91s / 46s)."
+  },
+  {
+   "claim": "Trăng mật hưu trí là thân, không phải hook — đặt sau câu khoá.",
+   "cause": "Liệt kê tự do không có mâu thuẫn; nó chỉ căng khi người xem đã biết cái giá (câu khoá) từ trước.",
+   "evidence": "XbwqD2SktC0: câu khoá 62.8–80.2s rồi mới trăng mật 82–129s (313k). EANADckKWT4: trăng mật chiếm 0–126s, câu khoá là 'はずだった' ở cuối (72k). dY3HfjtmvXI: 18–58s tự do độc thân trước con số đầu 64s (50k).",
+   "why": "Đúng thứ tự thì cùng một đoạn tự do trở thành 'đếm ngược'.",
+   "how": "3/3 tập đã đặt đúng (trăng mật ep01 53–97s, ep02 78–104s, ep03 67–106s, đều sau câu khoá). Giữ; chỉ đổi chi tiết để không trùng nhau."
+  },
+  {
+   "claim": "Mỗi tập một kiểu mở — đừng khoá lane vào khung của 1 video hit.",
+   "cause": "Khán giả xem liên tiếp nhiều video một kênh; câu mở lặp lại báo hiệu 'đã biết truyện' và dễ bị coi là chép kênh mẫu.",
+   "evidence": "7 transcript kênh mẫu = 7 kiểu mở (H18 XbwqD, H03 O84, H04 K8t, H21 _VX, H35 EANAD, H15 dY3, H12 _fJ); khung 'A俺とB同僚 どっちが' chỉ 1/9 (XbwqD). Tập của mình dùng khung đó 3/3.",
+   "why": "Kênh mẫu tự đổi kiểu mở nhưng giữ khuôn thumbnail (O84→K8t→_fJ; _VX→Zog) — đổi hook, giữ gói nhận diện.",
+   "how": "Gán trước kiểu mở cho từng tập theo đề tài: so sánh 2 lựa chọn → H18 (tối đa 1/5 tập); tiền hao → H03+K02; thủ tục/giấy tờ → mở bằng cảnh quầy (ep03 窓口); người khác quyết định mình → H21/H02 (ep02 元部下)."
+  },
+  {
+   "claim": "Thumbnail: chủ đề 4–9 chữ + 2 câu nội tâm, không số tiền; gói nhận diện dùng lại được nhưng không cứu đề tài hẹp.",
+   "cause": "Ảnh nhỏ trên điện thoại chỉ đọc được 1 dải chữ lớn + 2 bong bóng; câu nội tâm ('話が違う…') truyền cảm xúc nhanh hơn con số.",
+   "evidence": "Dải đầu 8/9, 2 panel 8/9, bong bóng nội tâm 9/9, không tiền 7/9. Khuôn xếp hạng bia/安いから: O84 174k → K8t 184k → _fJ 10k (cùng khuôn, đề tài/hook khác).",
+   "why": "Khuôn giúp nhận diện kênh; hiệu quả vẫn do tiêu đề + hook quyết định.",
+   "how": "Dựng TEMPLATE thumbnail lane F theo khuôn này (hiện SOP §6 ghi chưa có). Chữ trên thumbnail phải có trong 120s đầu (tránh 'L' như _fJ). Tránh dải 'NN歳で年金受給' cho ep03 vì trùng ZogHjPo8cX0."
+  }
+ ],
+ "new_patterns": [
+  {
+   "id": "H35",
+   "name": "Mở bằng tuần trăng mật hưu trí, cú rơi chỉ hé bằng 'はずだった'",
+   "kind": "E",
+   "mechanism": "0–2 phút liệt kê những tự do vừa có (hoa, 'やっと終わった', 旅行・読書・平日の映画館) với niềm tin 'không lo gì'; không mâu thuẫn, không số, không người thứ hai; lực giữ duy nhất là trớ trêu kịch tính — tiêu đề/thumbnail đã nói trước kết cục xấu. Câu khoá là một chữ 'はずだった' ở cuối.",
+   "template": "{tuổi}歳になった日、俺は{số năm}年間勤めた会社を退職した。…{tự do 1}。{tự do 2}。{tự do 3}。…俺の第2の人生は{kỳ vọng}最高のスタートを切ったはずだった。",
+   "when": "Chỉ khi tiêu đề + thumbnail đã tự mang cú rơi rõ ràng (VD '…たった2か月で絶望'); nên dùng làm THÂN sau câu khoá chứ không làm 0–30s.",
+   "avoid": "Làm hook 0–30s cho lane F: EANADckKWT4 (72k) và dY3HfjtmvXI (50k, bản rút gọn 18–58s) là 2 video top thấp nhất; XbwqD2SktC0 đặt đúng đoạn này SAU câu khoá (82–129s).",
+   "lanes_fit": [
+    "teinengo-real"
+   ],
+   "examples": [
+    "EANADckKWT4"
+   ]
+  }
+ ],
+ "caveats": [
+  "Mốc giây của 5 video (K8t, O84, _VX, EANAD, dY3) là ƯỚC TÍNH = vị trí ký tự ÷ (len transcript/duration), tốc độ 4,35–4,76 ký tự/giây (kể cả dấu cách ASR). Kiểm trên XbwqD2SktC0 (có mốc thật): câu 'だが、今俺は…' ước tính 58s vs thật 58.48s; 'だが今' khoá ước 62s vs thật 62.84s — sai số ~±1s ở 60s đầu, có thể lớn hơn ở phút thứ 2.",
+  "Mốc thật (hook_segments) chỉ có ở XbwqD2SktC0 và _fJim8rkhhM. Đã mở lại raw 7 video còn lại ngay trước khi ghi file: hook_segments vẫn rỗng (transcript_via=none).",
+  "ZogHjPo8cX0 và iJrKlKBAabY: không có transcript ở raw lẫn transcripts.json/VIDEO_ANALYSIS → chỉ phân tích gói đăng; KHÔNG đưa vào seed file A (không có hook để chấm).",
+  "Transcript là ASR: 老語=老後, 最雇用=再雇用, 退食金=退職金, 持ち入え=持ち家, '3万円か' ở dY3 ~64s là 13万円 (mô tả xác nhận 年金13万円), '相材'=惣菜, 'シーナ'=椎名?. Trích dẫn trong file đã sửa các lỗi hiển nhiên ở key_line/lock_line; hook_0_30s trong seed giữ nguyên ASR (bỏ [音楽] và dấu cách).",
+  "View: lấy từ raw (tải 2026-09-23); transcripts.json (2026-09-16) có số cũ hơn (VD XbwqD 299k vs 313k). Tag 'top/new' theo selection.json; không có video tag 'low' trong selection → dùng e_Zo7Ht5OH8 & WblFD81yjOI (10k, ≥7 tuần tuổi) làm đối chứng thấp CHỈ qua transcript, không có thumbnail/raw.",
+  "Tương quan trên ≤9 video, lẫn yếu tố thời điểm đăng (6 top đăng 06-25→08-26; tháng 9 đều thấp) — các luận điểm là quan sát, chưa phải nhân quả.",
+  "Tập của mình: chưa có giọng → mốc giây ước tính theo 284 chữ/phút (profile teinengo-real, @0.95); script.txt đã bỏ xuống dòng khi đếm. Chưa có thumbnail/mô tả ở cả 3 tập (đúng phạm vi SOP_LANE_F §2b) → thumb_title/thumb_hook ghi N/A.",
+  "Chữ trên thumbnail kênh mẫu chép từ ảnh E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\<id>.jpg đã mở xem từng cái (9/9)."
+ ]
+}

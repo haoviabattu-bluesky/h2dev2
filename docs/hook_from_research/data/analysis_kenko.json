@@ -1,0 +1,1081 @@
+{
+ "key": "kenko",
+ "lane": "kenko-chiebukuro",
+ "channel": {
+  "name": "シニアいきいき健康",
+  "id": "UCBODlDy5sXo_49pC7KPr7vQ",
+  "url": "https://www.youtube.com/channel/UCBODlDy5sXo_49pC7KPr7vQ"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\ikiiki-kenko",
+ "formula": {
+  "summary": "Một lời hứa, 4 cách nói: tiêu đề hứa CẢ DANH SÁCH (đối tượng tuổi + N món + động từ 'âm thầm'), thumbnail zoom vào MỘT món giữa danh sách và giấu tên bằng この食品/「これ」/〇〇, hook mở bằng triệu chứng/thói quen của CHÍNH người xem ở giây 0 rồi trước ~40s lật nguyên nhân sang chỗ không ngờ, hứa N món KHÔNG nêu tên và kéo mở đầu dài tới mục đầu (329–410s); mô tả thì nhắc lại hook và liệt kê hết đáp án cho người đọc/SEO. Không chào, không khối cấp cứu, không đọc trước danh sách.",
+  "hook_beats": [
+   {
+    "t": "0–10s",
+    "name": "Cơ thể/thói quen của chính người xem",
+    "desc": "6/6 video mở ở giây 0 bằng triệu chứng hoặc việc người xem vừa làm sáng nay; 0/6 mở bằng chào/cảm ơn.",
+    "example_ja": "夜中に2°3°と目が覚めてトイレに向かう。布団に戻ってもなかなか寝つけず気づけば窓の外が明るくなっている。",
+    "example_video": "JCyxahsO0ew 0.1s (thật)"
+   },
+   {
+    "t": "10–25s",
+    "name": "Chặn lối thoát 'do tuổi' / khen nỗ lực rồi 'でも'",
+    "desc": "6/6 có trong 0–45s một câu gạt lời giải thích 'tuổi rồi' hoặc khen nỗ lực rồi 'nhưng'.",
+    "example_ja": "その真剣な知恵を私は心から尊敬しています。でも今日その努力に1つだけ大切なお話をしなければなりません。",
+    "example_video": "kN6wHIqYA0Q 9.8–17.8s (thật); 66ADns1W2mA ~10s 「その変化を年のせいで片付けないでください」"
+   },
+   {
+    "t": "20–50s",
+    "name": "Câu chốt: lật nguyên nhân (H30)",
+    "desc": "Câu chốt thật ở 21.8s và 37.0s (2 video có mốc thật); 4 video ước tính 0–43s. Trung vị ~23s.",
+    "example_ja": "しかしその原因は暴行[=膀胱]だけにあるのではありません。実は皆さんの足の裏側ふハぎ[=ふくらはぎ]という場所に夜間尿の本当の鍵が隠れているのです。",
+    "example_video": "JCyxahsO0ew 37.0s"
+   },
+   {
+    "t": "40–100s",
+    "name": "Hứa N mục, giấu tên",
+    "desc": "3/6 hứa con số N trong 120s (kN6wHIqYA0Q 51.7s thật; 66ADns1W2mA ~53s, YZNmQJxGuRc ~96s ước tính); 4Q0fF3Ud57Q hứa 'món 100円' không số (~78s), JCyx hứa nội dung 101s + '3 điều' ~140s, 966f chỉ hứa chung ~43s. 6/6 không nêu tên món nào trong 120s.",
+    "example_ja": "これからお話する約13分で100年まで元気に生きた方々が…食べていた地[=9つ]の食品その食べ方の共通点そして今日から取り入れられる具体的方法について詳しくお伝えします。",
+    "example_video": "kN6wHIqYA0Q 51.7s"
+   },
+   {
+    "t": "50–120s",
+    "name": "Uy tín người nói + tương tác",
+    "desc": "4/6 tự nhận kinh nghiệm y khoa trong 120s (52–115s); kN6wHIqYA0Q xin comment 2 lần 78–110s và là video duy nhất có 82 comment (các video khác 3–16).",
+    "example_ja": "長年この分野に携わってきたものとしてこれほど大切な情報をお届けできることを心から嬉しく思います。",
+    "example_video": "kN6wHIqYA0Q 67.9s"
+   },
+   {
+    "t": "120–410s",
+    "name": "Cơ chế + ẩn dụ, mục đầu tới muộn",
+    "desc": "3/3 video đếm ngược đã chọn vào mục đầu ở 329–410s (1.597–1.822 chữ không dấu cách); 8/9 video đếm ngược trong transcripts.json của kênh: 1.598–1.916 chữ (314–410s).",
+    "example_ja": "さあ、では第10位から発表してまいりましょう。",
+    "example_video": "YZNmQJxGuRc ~410s (ước tính)"
+   }
+  ],
+  "title": "[Đối tượng tuổi 〜の方へ： HOẶC nhãn cảnh báo ご注意ください：/要注意、] + [N]つの[món/thói quen] + [cơ quan] + [động từ bí mật/khẳng định: 密かに…続けていた / 防いでいた / 削り続けています] + [đuôi ——ほとんどの方がご存知ない / 〜の方は必見]. Đếm: 9/9 bắt đầu bằng đối tượng hoặc nhãn cảnh báo; 7/9 có số N; 7/9 có tuổi/シニア/高齢者; 0/9 rào (かもしれない/検討/ことがある); 6/6 video top dài 37–51 chữ, 3 video mới 32–33 chữ; 8/9 không nêu tên món trong tiêu đề (trừ JCyxahsO0ew nêu ふくらはぎ).",
+  "thumbnail": "Nền đen 9/9; 4 dòng chữ 9/9; màu dòng cam→trắng→đỏ→xanh lá 7/9 (66ADns1W2mA, 966fNPIqSi4 dùng vàng kim + đỏ, thêm 2 ảnh xếp dọc); ảnh THẬT 1 món bên phải 8/9 (JCyxahsO0ew dùng tranh minh hoạ người già đi tiểu đêm); 9/9 KHÔNG ghi tên món bằng chữ (この食品 / 「これ」 / 〇〇 / この食べ物 / 見逃される食品 / 卵の11倍); dòng cuối là lợi ích/cảm xúc 7/9 (朝までぐっすり!!, 医師も驚いた, 筋肉が変化!, 10年分老化を防ぐ!, 今夜から試す, 血流が変わる!, 驚きの美肌習慣), 2/9 là mệnh lệnh đỏ (今すぐ食べてください, 必ず見てください). 0/9 chép nguyên tiêu đề. Món trên ảnh là mục GIỮA danh sách: ごぼう = 第8位 (kN6wHIqYA0Q), trứng = 第5位 (66ADns1W2mA), きなこ = 第5位 (YZNmQJxGuRc), かつお節 = món thứ 3/3 (4Q0fF3Ud57Q) — 0/4 là 第1位. 2/6 thumbnail top có khẳng định KHÔNG có trong lời (4Q0fF3Ud57Q '10年分老化を防ぐ', YZNmQJxGuRc '卵の11倍' '3ヶ月').",
+  "description": "Dòng đầu nhắc lại hook (5/6 video top: JCyxahsO0ew, kN6wHIqYA0Q, 66ADns1W2mA, 4Q0fF3Ud57Q, YZNmQJxGuRc; 966fNPIqSi4 mở bằng 'この動画では…' rồi dòng 2 mới là hook) → đoạn cơ chế → 'nhiều năm làm với bệnh nhân' 6/6 → LIỆT KÊ HẾT đáp án 6/6 (kN6wHIqYA0Q 第9位 白湯…第1位 青魚; 66ADns1W2mA 第5位 卵…第1位) → CTA like/sub/share LINE → 免責事項 → hashtag. 3 video mới (09/21–23) đổi sang khung 「見ると分かること：」 gạch đầu dòng + 「参考情報・出典：」 (0/6 video top có).",
+  "link_4_parts": "Tiêu đề hứa cả danh sách; thumbnail lấy MỘT món giữa danh sách, giấu tên — là 'mẩu thử' của cùng lời hứa (thumbnail↔tiêu đề: 4/6 K, 1 P, 1 L). Hook nói lại lời hứa bằng cơ thể người xem và giữ bí mật tên món (hook↔tiêu đề: 4/6 K, 1 P, 1 L). Mô tả là chỗ duy nhất lộ đáp án. Món trên thumbnail xuất hiện ~330–1.170s nên người bấm vì thumbnail được trả lời giữa video, còn 第1位 giữ người tới cuối.",
+  "exceptions": [
+   "JCyxahsO0ew (top 1, 79.668 view) KHÔNG phải video đếm ngược — là video 'cơ chế + cách làm'; hook tự nói đáp án ふくらはぎ ở 45s, chỉ giấu hành động.",
+   "YZNmQJxGuRc: tiêu đề '4つの節約食品が筋肉を傷つけ' nhưng nội dung là 'top 10 món tốt' — tiêu đề/thumbnail/hook 3 lời hứa khác nhau.",
+   "66ADns1W2mA và 966fNPIqSi4 cùng tiêu đề, đăng cách 1 ngày, 2 kịch bản khác nhau (45.230 vs 27.438 view).",
+   "4Q0fF3Ud57Q vào mục thật ở ~917s (checklist 12 dấu hiệu + cơ chế chiếm 44% video) mà vẫn 36k."
+  ],
+  "counts": {
+   "open_no_greeting": "6/6 (0/6 mở bằng chào)",
+   "key_line_by_45s": "6/6 (thật: 21.8s, 37.0s; ước tính: 0, ~17, ~26, ~43s)",
+   "item_names_hidden_in_120s": "6/6",
+   "emergency_block_in_120s": "0/6 (JCyxahsO0ew có 1 câu miễn trừ ~12s ở 110s)",
+   "countdown_first_item_chars": "66ADns1W2mA 1.597 chữ/329s · kN6wHIqYA0Q 1.765/342s · YZNmQJxGuRc 1.822/410s (ước tính)",
+   "title_len_top6": "37–51 chữ (6/6 trong 35–55)",
+   "thumb_item_is_rank1": "0/4 video đếm ngược có ảnh món",
+   "views_per_day_at_audit": "JCyxahsO0ew 3.064 · kN6wHIqYA0Q 3.425 · 66ADns1W2mA 2.513 · 4Q0fF3Ud57Q 1.808 · 966fNPIqSi4 1.614 · YZNmQJxGuRc 736"
+  }
+ },
+ "videos": [
+  {
+   "video_id": "JCyxahsO0ew",
+   "tag": "top",
+   "views": 79668,
+   "duration_min": 16.5,
+   "title": "夜間頻尿・尿漏れで悩む方へ。ふくらはぎケアと食事改善で夜中のトイレ回数をゼロに近づける方法を医師が解説",
+   "desc_first": "夜中に何度もトイレで目が覚めて、布団に戻ってもなかなか寝つけない…そんな夜を何年も繰り返していませんか？実は65歳を過ぎると、7割以上の方がこの悩みを抱えていると言われています。80歳を超えると、ほとんどの方が経験するというデータもあるほどです。",
+   "thumb_text": "夜間頻尿｜ふくらはぎを｜〇〇するだけ｜朝までぐっすり!!",
+   "key_line_ja": "しかしその原因は暴行[=膀胱]だけにあるのではありません。実は皆さんの足の裏側ふハぎ[=ふくらはぎ]という場所に夜間尿の本当の鍵が隠れているのです。",
+   "key_t": 37.0,
+   "lock_line_ja": "今日はこのふハぎの仕組みを正しく知っていただき、今夜からぐっすり眠れる体を一緒に目指していきましょう。",
+   "lock_t": 101.1,
+   "intro_t": null,
+   "promise_t": 101.1,
+   "timing_source": "real",
+   "beats": {
+    "event": "0.1s 「夜中に2°3°と目が覚めてトイレに向かう。」 — cảnh đêm của chính người xem, có giờ (nửa đêm) + cảm giác cơ thể",
+    "contradiction": "4–11s 「布団に戻ってもなかなか寝つけず気づけば窓の外が明るくなっている」 + 31s 「都市[=年]だから仕方がないと諦めてしまっている方も多い」",
+    "stake": "14.4–31s số liệu: 「65歳を過ぎると7割以上の方が夜中に1度以上トイレで起きる」「80歳を超えるとほとんどの方が」; 74.7–86s 「転倒のリスク…骨折につながる」",
+    "open_loop": "37–49s nguyên nhân KHÔNG ở bàng quang mà ở ふくらはぎ (第2のポンプ 56s); cách làm (〇〇 trên thumbnail) giữ tới sau 140s"
+   },
+   "kind": "A",
+   "patterns": [
+    "H01",
+    "H16"
+   ],
+   "closers": [
+    "H30"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    1,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "0.1s nói đúng 夜間頻尿 của tiêu đề, 45s nói ふくらはぎ — 2 từ khoá tiêu đề đều có trước 50s (mốc thật)."
+   ],
+   "thumb_title": [
+    "K",
+    "Thumbnail lặp 夜間頻尿 + ふくらはぎ của tiêu đề, chỉ giấu hành động bằng 〇〇 và đổi 'ゼロに近づける' thành lợi ích cảm nhận 朝までぐっすり."
+   ],
+   "thumb_hook": [
+    "K",
+    "ふくらはぎ ở 45s, 'ぐっすり眠れる体' ở 104–108s; phần giấu 〇〇 (マッサージ/足上げ) đúng là thứ hook chưa nói."
+   ],
+   "why": "Cảnh mất ngủ vì đi tiểu đêm ở giây 0 là cảnh người xem 65+ vừa trải qua đêm qua; 37 giây sau lật nguyên nhân sang bộ phận không ai nghĩ tới (bắp chân), nên người xem ở lại để biết 'làm gì với bắp chân' — đúng chỗ thumbnail giấu bằng 〇〇.",
+   "weak": "Câu hỏi mở chỉ còn 'làm thế nào' vì chính hook đã nói đáp án ふくらはぎ ở 45s. Không phải video đếm ngược (chỉ 'hứa 3 điều' ~140s ước tính) — thắng nhờ triệu chứng cụ thể + cơ chế bất ngờ, không nhờ list. Có 1 câu miễn trừ y khoa ở 110s (~12s).",
+   "published_at": "2026-08-28T02:00:32Z",
+   "likes": 5645,
+   "comments": 16
+  },
+  {
+   "video_id": "kN6wHIqYA0Q",
+   "tag": "top",
+   "views": 71922,
+   "duration_min": 36.9,
+   "title": "70歳以上の方へ：長寿者が密かに続けていた9つの食習慣——ほとんどの方がご存知ない",
+   "desc_first": "100歳を超えた方々が毎日食べていたのは、高価なサプリメントでも特別な健康食品でもありませんでした。昔から私たちの食卓に並んでいた、ごく普通の食材だったのです。",
+   "thumb_text": "100歳まで元気な人｜毎日食べていた｜この食品｜医師も驚いた",
+   "key_line_ja": "実は長寿の方がち[=日常的に]口にしていた食品は高金カナ[=高価な]サプリメントでも特別な健康食品でもありませんでした。ごく普通の昔から日本の食卓に並んでいた食材だったのです。",
+   "key_t": 21.8,
+   "lock_line_ja": "これからお話する約13分で100年まで元気に生きた方々が…地上的に[=日常的に]食べていた地の[=9つの]食品その食べ方の共通点そして今日から取り入れられる具体キ[=的な]方法について詳しくお伝えします。",
+   "lock_t": 51.7,
+   "intro_t": 67.9,
+   "promise_t": 51.7,
+   "timing_source": "real",
+   "beats": {
+    "event": "0.2s 「今朝も朝食をきちんと召し上がった方はいらっしゃいますか?」 — hỏi thói quen sáng nay của người xem",
+    "contradiction": "9.8–21.8s 「その真剣な知恵を私は心から尊敬しています。でも今日その努力に1つだけ大切なお話をしなければなりません。」",
+    "stake": "21.8–51.7s lật niềm tin 'phải đắt mới tốt' + 国立長寿医療研究センター (ASR: 国立超重要研究センター) 100歳 người",
+    "open_loop": "51.7–68s hứa 9 món + cách ăn + cách làm trong 13 phút, không nêu tên món nào; 78–110s xin comment 2 lần"
+   },
+   "kind": "C",
+   "patterns": [
+    "H31",
+    "H16"
+   ],
+   "closers": [
+    "H30",
+    "K09"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    2,
+    1,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 'nhờ 9 thói quen ăn của người thọ, phần lớn không biết' = hook 21.8s (người thọ ăn đồ thường) + 51.7s (9 món, cách ăn). Mốc thật."
+   ],
+   "thumb_title": [
+    "K",
+    "Tiêu đề nói 9 món, thumbnail zoom vào 1 món (ảnh ごぼう, chữ giấu この食品) — cùng lời hứa, thu nhỏ còn 1 mục. Món trên ảnh là 第8位, không phải 第1位."
+   ],
+   "thumb_hook": [
+    "K",
+    "'100歳まで元気な人 毎日食べていた' ≈ 56–64s 「100年まで元気に生きた方々が日常的に食べていた」; tên ごぼう chỉ lộ ~477s (ước tính) — đúng chỗ giấu. '医師も驚いた' không có câu tương ứng trong 120s."
+   ],
+   "why": "Mở bằng hỏi-về-bữa-sáng-hôm-nay rồi tôn vinh nỗ lực và 'nhưng' — người xem nghiêm túc với ăn uống thấy được thừa nhận, rồi bị chạm tự ái bằng 'người 100 tuổi không ăn đồ đắt'. Danh sách 9 món giấu tên kéo tới 第9位 ở ~342s.",
+   "weak": "Mở đầu dài: tới 342s (ước tính, ~1.765 chữ) mới vào 第9位; 78–110s tốn ~30s xin comment. Không có cảnh/cảm giác cơ thể nên điểm 'dựng hình' thấp. Nhưng đây là video DUY NHẤT trong 6 có comment cao (82 vs 3–16) — lời xin comment trong hook có hiệu quả.",
+   "published_at": "2026-09-02T02:00:07Z",
+   "likes": 3574,
+   "comments": 82
+  },
+  {
+   "video_id": "66ADns1W2mA",
+   "tag": "top",
+   "views": 45230,
+   "duration_min": 18.9,
+   "title": "高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた",
+   "desc_first": "70歳を過ぎたら、足腰の衰えは「年のせい」ではありません。",
+   "thumb_text": "70歳以降｜見逃される食品｜筋肉が死んでいく｜今すぐ食べてください",
+   "key_line_ja": "ネタ切り[=寝たきり]になってしまった方の多くが実際に動けなくなる、ずっと前から何年もかけて静かに筋肉を失い続けていたということです。",
+   "key_t": 26,
+   "lock_line_ja": "今日は多くの専門家がこう霊社[=高齢者]に積極的に進める5つの食品についてお伝えします。どれもスーパーで手にはいるものばかりです。でも知っているかどうかで数年後の体は大きく違ってきます。",
+   "lock_t": 53,
+   "intro_t": 70,
+   "promise_t": 53,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「7[0]歳を過ぎてからなんとなく足が重くなってきた。階段が以前より辛い散歩の途中で休みたくなる。」",
+    "contradiction": "~10s 「どうかその変化を年のせいで片付けないでください。」",
+    "stake": "~18–44s 寝たきり không đến đột ngột mà mất cơ âm thầm nhiều năm 「まだ大丈夫。年相応だろう。そう思っているうちにも体の中では変化が進んでいます」",
+    "open_loop": "~53s hứa 5 món (không nêu tên), 'スーパーで手に入る', 'biết hay không → vài năm sau khác hẳn'; 第5位 (卵) ở ~329s"
+   },
+   "kind": "D",
+   "patterns": [
+    "H01"
+   ],
+   "closers": [
+    "H30",
+    "K09"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề '70代 / 5つの食品 / 筋肉の衰えを防いでいた' — 0s nói 70歳, ~26s mất cơ, ~53s 5つの食品 (ước tính)."
+   ],
+   "thumb_title": [
+    "K",
+    "Thumbnail đổi giọng từ lợi ích (防いでいた) sang sợ hãi (筋肉が死んでいく) + mệnh lệnh, nhưng cùng một lời hứa: 1 món 70歳 nên ăn. Ảnh trứng = 第5位."
+   ],
+   "thumb_hook": [
+    "K",
+    "'見逃される' ≈ ~61s 「知っているかどうかで」; 'mất cơ âm thầm' ~26–44s. Trứng (ảnh) không được nêu trong 120s — giấu đúng chỗ."
+   ],
+   "why": "Triệu chứng chân nặng/leo cầu thang là thứ người 70+ tự nhận ra; câu 'đừng đổ cho tuổi' chặn lối thoát, câu 'người nằm liệt đã mất cơ từ nhiều năm trước' biến triệu chứng nhỏ thành nỗi sợ lớn, rồi hứa 5 món mua ở siêu thị.",
+   "weak": "Mốc giây là ƯỚC TÍNH (raw rỗng). Tự giới thiệu 'nhiều năm làm y khoa người già' ở ~70s là tuyên bố uy tín không kiểm chứng được. Mục 1 (第5位) tới ~329s.",
+   "published_at": "2026-09-05T02:00:20Z",
+   "likes": 2783,
+   "comments": 14
+  },
+  {
+   "video_id": "4Q0fF3Ud57Q",
+   "tag": "top",
+   "views": 36167,
+   "duration_min": 35.0,
+   "title": "ご注意ください：3つの一見体に良さそうな食習慣が、密かに筋肉を削り続けています——60代以上の方は必見",
+   "desc_first": "毎日お肉も卵もしっかり食べているのに、なぜか太ももが細くなる。階段がつらくなる。これは食べる量の問題ではありません。",
+   "thumb_text": "特に60歳からは｜豆腐・卵より｜「これ」が｜10年分老化を防ぐ！",
+   "key_line_ja": "今すぐ手を止めてください。その湯で卵をお口に入れる前に",
+   "key_t": 0,
+   "lock_line_ja": "真面目に食べているそのタンパ質が筋肉の材料になるどころか体の中である恐ろしいことを静かに引き起こしているかもしれないのです。",
+   "lock_t": 53,
+   "intro_t": null,
+   "promise_t": 73,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「今すぐ手を止めてください。その湯で卵をお口に入れる前に」 — lệnh dừng tay khi đang cầm món ăn 'lành mạnh'",
+    "contradiction": "~5–43s ăn thịt, trứng, để ý đạm như TV bảo 「それなのに…太もだけがどんどん細くなっている気がする。不思議ですよね。あんなに頑張って食べているのに。」",
+    "stake": "~45–68s 「常識の中に大きな落とし穴」 — đạm không thành cơ mà gây 'điều đáng sợ'",
+    "open_loop": "~70–88s xem hết sẽ biết vì sao + 'スーパーで100円台から買える食材' lật lại tình trạng; ~98–115s mở checklist 12 dấu hiệu 「いくつ心当たりがあるか心の中で数えながら」"
+   },
+   "kind": "B",
+   "patterns": [
+    "H32"
+   ],
+   "closers": [
+    "H30",
+    "H33"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 'thói quen trông tốt cho cơ thể âm thầm bào cơ' = hook 0s (trứng), ~5–40s (ăn đạm mà đùi teo), ~45s 常識の落とし穴. Nhưng con số '3つ' không xuất hiện trong 120s."
+   ],
+   "thumb_title": [
+    "P",
+    "Tiêu đề nói 3 thói quen HẠI; thumbnail nói 1 món TỐT hơn đậu phụ/trứng (かつお節). Điểm chung chỉ là đậu phụ/trứng = 'thói quen trông tốt'."
+   ],
+   "thumb_hook": [
+    "P",
+    "Trứng có ở 0s, 'món 100円' ở ~80s; nhưng '10年分老化を防ぐ' không có trong CẢ transcript (grep 10年/老化 = 0), かつお節 chỉ xuất hiện ~1.172s."
+   ],
+   "why": "Lệnh 'dừng tay' ở giây 0 kèm đúng món người xem đang ăn (trứng luộc) gây giật mình; phần sau chứng minh nỗ lực ăn đạm lại thất bại (đùi teo) — mâu thuẫn chính người xem đang sống — rồi checklist tự đếm giữ người xem tới ~260s.",
+   "weak": "Mốc giây ƯỚC TÍNH. Mục thật (粉豆腐) tới ~917s — mở đầu + checklist + cơ chế chiếm 44% video. Thumbnail hứa '10 năm' không có trong lời. Tự giới thiệu ~420s. Like 3,7% thấp hơn 3 video đầu (5–7%).",
+   "published_at": "2026-09-03T02:00:34Z",
+   "likes": 1325,
+   "comments": 16
+  },
+  {
+   "video_id": "966fNPIqSi4",
+   "tag": "top",
+   "views": 27438,
+   "duration_min": 20.6,
+   "title": "高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた",
+   "desc_first": "この動画では、70代以降に筋肉が急激に衰えていく本当の原因と、毎日の食卓でできる具体的な対策をわかりやすくお伝えします。",
+   "thumb_text": "70歳過ぎたら｜この食品不足で｜筋肉が崩壊します｜必ず見てください",
+   "key_line_ja": "もう年だから仕方ないと。でも少し待ってください。実は同じ。70代でも毎日数kmを歩き旅行を楽しんでいる方がいる。一方でわずか数年で杖が必要になり外出を避けるようになってしまう方もいます。",
+   "key_t": 17,
+   "lock_line_ja": "その差を生み出している大きな原因の1つが毎日の食事なのです。今日は70代以降の筋肉を守るために本当に大切なことを分かりやすくお伝えしていきます。",
+   "lock_t": 35,
+   "intro_t": 52,
+   "promise_t": 43,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「な[=70代に]なってから坂道で息が切れる。立ち上がる時に足に力がいらない。」",
+    "contradiction": "~17–22s 「もう年だから仕方ないと。でも少し待ってください。」",
+    "stake": "~22–34s cùng 70 tuổi: người đi bộ vài km/du lịch vs người vài năm đã cần gậy",
+    "open_loop": "~35–48s nguyên nhân là bữa ăn, hứa 'điều thật sự quan trọng' — KHÔNG có con số 5, KHÔNG có 'món' trong 120s"
+   },
+   "kind": "C",
+   "patterns": [
+    "H08"
+   ],
+   "closers": [],
+   "score_0_12": 7,
+   "score_detail": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Tiêu đề hứa '5つの食品'; hook tới 120s chỉ hứa 'điều quan trọng để giữ cơ', số 5 xuất hiện ~1.062s (ước tính)."
+   ],
+   "thumb_title": [
+    "K",
+    "Cùng tiêu đề với 66ADns1W2mA; thumbnail '70歳過ぎたら この食品不足で 筋肉が崩壊' = lời hứa tiêu đề theo chiều sợ hãi."
+   ],
+   "thumb_hook": [
+    "P",
+    "Hook có 'bữa ăn là nguyên nhân' (~35s) nhưng không có 'thiếu một món' — khung 'この食品不足' không được hook nhắc."
+   ],
+   "why": "So sánh 2 người cùng 70 tuổi (H08) là nỗi sợ quen của khán giả; nhưng ngay sau đó chỉ hứa chung chung nên không có câu hỏi cụ thể để chờ.",
+   "weak": "Cùng tiêu đề với 66ADns1W2mA (đăng sau 1 ngày) nhưng 27k vs 45k: hook thiếu con số N và thiếu 'món ăn' trong 120s, danh sách không đếm ngược (chỉ 'これはまだ1つ目です' ~330s). Mốc ƯỚC TÍNH.",
+   "published_at": "2026-09-06T02:00:09Z",
+   "likes": 1421,
+   "comments": 11
+  },
+  {
+   "video_id": "YZNmQJxGuRc",
+   "tag": "top",
+   "views": 16190,
+   "duration_min": 23.4,
+   "title": "ご注意ください：4つの一見無害な節約食品が密かに筋肉を傷つけています—シニアの方は必見",
+   "desc_first": "毎朝、なんとなく体が重い。疲れがとれない。足腰に力が入らない——その不調、実はタンパク質不足のサインかもしれません。",
+   "thumb_text": "卵の11倍｜タンパク質が多い｜3ヶ月で｜筋肉が変化！",
+   "key_line_ja": "実は60歳以上の方の実に7割以上がある栄養素性的[=慢性的]に不足した状態で毎日を過ごしていると言われています。",
+   "key_t": 43,
+   "lock_line_ja": "これから12分から15分でなぜタンパ質がこれほど重要なのか、どれくらい食べればいいのか。そして今日からスーパーで帰る[=買える]筋肉を守る最強食品トップ店[=10]について具体的にお話しします。",
+   "lock_t": 96,
+   "intro_t": 115,
+   "promise_t": 96,
+   "timing_source": "est",
+   "beats": {
+    "event": "0s 「今朝も体の重さや疲れを感じながら目が覚めた方はいらっしゃいますか?」",
+    "contradiction": "~10–38s 'ngủ đủ mà mệt', tôn vinh nỗ lực 「その努力を私は心から尊敬しています。でも今日…大切なお話をしなければなりません」",
+    "stake": "~43–72s 7割 thiếu 1 chất → mất cơ → ngã → gãy xương → không tự đi được; ~70–95s nghiên cứu 1,8 lần",
+    "open_loop": "~96–110s hứa 'top 10 thực phẩm giữ cơ' — ngược với tiêu đề '4 món tiết kiệm làm hại cơ'"
+   },
+   "kind": "D",
+   "patterns": [
+    "H31",
+    "H16"
+   ],
+   "closers": [
+    "K09"
+   ],
+   "score_0_12": 5,
+   "score_detail": [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "title_hook": [
+    "L",
+    "Tiêu đề: '4 món ăn tiết kiệm trông vô hại đang làm hại cơ'. Hook: thiếu đạm + 'top 10 món tốt'. grep 節約/無害/傷つけ trong toàn transcript = 0."
+   ],
+   "thumb_title": [
+    "L",
+    "Thumbnail nói 1 món TỐT (きなこ, 'gấp 11 lần trứng', '3 tháng cơ thay đổi'); tiêu đề nói 4 món HẠI. Ngược chiều và khác số."
+   ],
+   "thumb_hook": [
+    "P",
+    "Đạm có ở hook (~43–110s); きなこ = 第5位 ~836s; '11倍' và '3ヶ月' không có trong toàn transcript."
+   ],
+   "why": "Khung mở giống hệt kN6wHIqYA0Q (hỏi sáng nay → tôn vinh → でも) và có số liệu 7割, nên hook tự nó không tệ.",
+   "weak": "Ba lời hứa khác nhau: tiêu đề (4 món hại) ≠ thumbnail (1 món tốt, số không có trong video) ≠ hook (top 10 món tốt). Người bấm vì tiêu đề không được trả lời → 736 view/ngày, thấp nhất nhóm top dù cùng đề tài cơ bắp với 66AD (2.513/ngày). Mốc ƯỚC TÍNH.",
+   "published_at": "2026-09-01T02:00:16Z",
+   "likes": 582,
+   "comments": 3
+  },
+  {
+   "video_id": "9B8uVZDg1ZA",
+   "tag": "new",
+   "views": 58,
+   "duration_min": 24.9,
+   "title": "要注意、70歳を過ぎたら知っておきたい足先の冷えと血管内皮の真実",
+   "desc_first": "夜になると足先が冷たくなる、ふくらはぎがよくつる——そんな悩みを「歳のせい」だとあきらめていないだろうか。",
+   "thumb_text": "寝る前の油で｜血管が若返る｜３つのオイル｜今夜から試す",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "none — không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json)",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "—",
+    "Không lấy được transcript — không chấm."
+   ],
+   "thumb_title": [
+    "P",
+    "Tiêu đề nói 足先の冷え + 血管内皮, không có 'dầu' hay số 3; thumbnail đổi hẳn sang '3 loại dầu trước khi ngủ' (chỉ mô tả mới nói dầu)."
+   ],
+   "thumb_hook": [
+    "—",
+    "Không lấy được transcript — không chấm."
+   ],
+   "why": "Không lấy được transcript — chỉ phân tích gói đăng.",
+   "weak": "Đăng 2026-09-23 (0–2 ngày trước lúc audit), 58 view nhưng 102 like (like > view = bộ đếm view API còn trễ) → KHÔNG dùng làm 'video thua'. Mô tả đổi kiểu hẳn so với 6 video top: có 「見ると分かること：」 gạch đầu dòng + 「参考情報・出典：」 (3/3 video mới, 0/6 video top).",
+   "published_at": "2026-09-23T02:00:15Z",
+   "likes": 102,
+   "comments": 0
+  },
+  {
+   "video_id": "Hlkpj3AkUPY",
+   "tag": "new",
+   "views": 30,
+   "duration_min": 26.9,
+   "title": "血圧と動脈硬化が気になる方へ：5つの種が薬に頼らず血管を守る理由",
+   "desc_first": "健康診断でコレステロールや血圧の数値を指摘されても、自覚症状が何もないまま、そのまま普段の生活を続けていませんか。実は、動脈の中のプラークは固まって動かないものではなく、日々の食事によって育つことも、抑えられることもある生きた組織です。",
+   "thumb_text": "この５つの種で｜血管スッキリ!?｜70歳からでも｜血流が変わる！",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "none — không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json)",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "—",
+    "Không lấy được transcript — không chấm."
+   ],
+   "thumb_title": [
+    "K",
+    "Cùng '5つの種' + 血管 của tiêu đề; thêm tuổi 70歳 mà tiêu đề không có."
+   ],
+   "thumb_hook": [
+    "—",
+    "Không lấy được transcript — không chấm."
+   ],
+   "why": "Không lấy được transcript — chỉ phân tích gói đăng.",
+   "weak": "Đăng 2026-09-22 (0–2 ngày trước lúc audit), 30 view nhưng 99 like (like > view = bộ đếm view API còn trễ) → KHÔNG dùng làm 'video thua'. Mô tả đổi kiểu hẳn so với 6 video top: có 「見ると分かること：」 gạch đầu dòng + 「参考情報・出典：」 (3/3 video mới, 0/6 video top).",
+   "published_at": "2026-09-22T02:00:23Z",
+   "likes": 99,
+   "comments": 0
+  },
+  {
+   "video_id": "2YaaL5KS3-k",
+   "tag": "new",
+   "views": 70,
+   "duration_min": 28.3,
+   "title": "60代以上の方へ：シミが消えない本当の理由と台所にある5つの解決策",
+   "desc_first": "鏡を見るたびに増えていく顔や手のシミ。高いクリームや美容液を使っても、なかなか薄くならないと感じていませんか。実は、シミは単なる日焼けの跡ではなく、肌の中で今も続いている「色素の過剰な生産」です。この動画では、台所にある身近な5つの食品が、シミが作られる仕組みのどこに働きかけるのかを、分かりやすく解説します。",
+   "thumb_text": "キッチンにある｜この食べ物で｜シミが消える⁉｜驚きの美肌習慣",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "none — không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json)",
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [],
+   "title_hook": [
+    "—",
+    "Không lấy được transcript — không chấm."
+   ],
+   "thumb_title": [
+    "K",
+    "台所 + シミ của tiêu đề; thu 5 giải pháp về 1 'この食べ物' (ảnh nha đam)."
+   ],
+   "thumb_hook": [
+    "—",
+    "Không lấy được transcript — không chấm."
+   ],
+   "why": "Không lấy được transcript — chỉ phân tích gói đăng.",
+   "weak": "Đăng 2026-09-21 (0–2 ngày trước lúc audit), 70 view nhưng 101 like (like > view = bộ đếm view API còn trễ) → KHÔNG dùng làm 'video thua'. Mô tả đổi kiểu hẳn so với 6 video top: có 「見ると分かること：」 gạch đầu dòng + 「参考情報・出典：」 (3/3 video mới, 0/6 video top).",
+   "published_at": "2026-09-21T02:00:05Z",
+   "likes": 101,
+   "comments": 1
+  }
+ ],
+ "win_vs_lose": "Ba video 'new' (9B8uVZDg1ZA, Hlkpj3AkUPY, 2YaaL5KS3-k) mới 0–2 ngày tuổi, không có transcript và bộ đếm view còn trễ (like 99–102 > view 30–70) → KHÔNG so được. So trong nhóm top (cùng đăng 28/08–06/09, tuổi 17–26 ngày): (1) Khác biệt nằm ở HOOK + GÓI ĐĂNG, không ở đề tài. Đề tài 'cơ bắp/đạm' có ở 4 video với 736–2.513 view/ngày; video thấp nhất YZNmQJxGuRc (736/ngày) cùng đề tài với 66ADns1W2mA (2.513/ngày) nhưng là video duy nhất có tiêu đề↔hook = L và thumbnail↔tiêu đề = L. (2) Hai video cao nhất JCyxahsO0ew (3.064/ngày) và kN6wHIqYA0Q (3.425/ngày) có K ở cả 3 cặp và câu chốt ở mốc thật 37.0s và 21.8s. (3) Cặp cùng tiêu đề 66ADns1W2mA (45.230) vs 966fNPIqSi4 (27.438): bản thắng hứa '5つの食品' ở ~53s và đếm ngược 第5位…第1位; bản thua chỉ hứa 'điều quan trọng' ở ~43s, không có số N trong 120s, không đếm ngược. (4) Like/view: 3 video đầu 5,0–7,1%, YZNmQJxGuRc 3,6%, 4Q0fF3Ud57Q 3,7% — hai video có thumbnail hứa điều không có trong lời có like thấp nhất.",
+ "our_eps": [
+  {
+   "ep": "ep01",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep01-tento-kossetsu",
+   "status": "có final.mp4 (B8 2026-09-20), chưa có thumbnail/mô tả, chưa đăng (không có DANG-TAI.txt)",
+   "title": "転倒や骨折のリスクに関わるかもしれない、五つの食事の工夫のお話",
+   "title_src": "dòng 'タイトル：' đầu script.txt (không có title.txt)",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "[0.3] タイトル：転倒や骨折のリスクに関わるかもしれない、五つの食事の工夫のお話 [7.5] 日頃から食卓に気を配る皆さんに、心からの敬意を捧げます。[12.6] ですが最近になりまして、階段の一段が高く感じたり、平らな床でふらつくことは、ございませんでしょうか。[20.6] 買い物袋を持つ指先の力が、あっけなく弱まることもあります。[25.6] 多くは加齢や疲労のせいにされますが、[28.8] 実は体からの大切な注意信号です。",
+   "key_t": 25.6,
+   "intro_t": null,
+   "promise_t": 48.3,
+   "timing_source": "real (voice.srt, cùng giờ tạo với voice.mp3 dùng cho final.mp4)",
+   "title_hook": [
+    "P",
+    "転倒/骨折/五つの食事の工夫 tới 48.3s mới nói (ngoài lần TTS đọc tiêu đề ở 0.3s). Triệu chứng ふらつく ở 17s khớp 転倒 nhưng không nêu từ đó."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "Không có lời hứa nào bị thất hứa về nội dung (転倒 3 lần, 骨折 7 lần trong script). Nhưng tiêu đề 'かもしれない…お話' không hứa gì cụ thể nên cũng không có gì để giữ."
+   ],
+   "problems": [
+    "0.3–7.5s TTS đọc to chữ 「タイトル：」 + cả tiêu đề (voice.srt cue 1 = 「タイトル：転倒や骨折の」). final.mp4 dựng từ voice.mp3 này nên video đã xong mở bằng tiếng 'タイトル'.",
+    "7.5s lời chào/tôn vinh 「心からの敬意を捧げます」 đứng TRƯỚC triệu chứng. Kênh mẫu 0/6 video mở bằng chào; kN6wHIqYA0Q đặt câu tôn vinh ở 9.8s SAU một câu hỏi về người xem.",
+    "Câu chốt 25.6–28.8s 「実は体からの大切な注意信号です」 không có con số/nguyên nhân bất ngờ (so JCyxahsO0ew 14.4s 「65歳を過ぎると7割以上」, 37s nguyên nhân ở bắp chân).",
+    "56.7–114.5s = 58 giây dặn gọi 119/AED (đột quỵ, chóng mặt, ngã gãy, ngừng thở) — gần nửa 2 phút đầu. Kênh mẫu 0/6 video có khối cấp cứu trong 120s.",
+    "114.5s–~150s đọc trước cả 5 mục 「第五位は…第一位は日本の伝統を誇る、身近で良質な発酵食品です」 — kênh mẫu 0/6 lộ tên mục trước mục đầu.",
+    "「この順位は番組の構成上のもので、効果の優劣を示すものではありません」 — tự tháo lực kéo của đếm ngược; kênh mẫu không có câu nào như vậy.",
+    "Tiêu đề 31 chữ (< gate 35), không có tuổi/đối tượng, rào 'かもしれない', đuôi 'のお話'."
+   ],
+   "fix": [
+    "Xoá dòng 「タイトル：…」 khỏi script.txt trước TTS (hoặc để pipeline bỏ dòng này); với final.mp4 hiện có: cắt 0–7.5s hoặc làm lại voice.",
+    "Giây 0: bắt đầu bằng 「階段の一段が高く感じたり、平らな床でふらつくことは、ございませんか。」 (đang ở 12.6s). Câu tôn vinh 7.5s chuyển sau câu này (mẫu kN6wHIqYA0Q 0–21.8s).",
+    "Trước 30s chèn câu lật nguyên nhân theo H30, dùng số có trong series_ctx.txt, mẫu JCyxahsO0ew 37s: 「その原因は年齢だけではありません。実は毎日の食卓に…」.",
+    "Khối 119 (56.7–114.5s) rút còn 1 câu (~8s) trong hook; phần đầy đủ chuyển xuống ngay trước mục đầu tiên có hành động rủi ro (đúng lane_rules: 'TRƯỚC hoặc CÙNG lúc với hành động rủi ro', không bắt buộc ở giây đầu).",
+    "Bỏ đoạn đọc trước 5 mục + câu 'không phải ưu劣'. Thay bằng câu nhử mục 1 không nêu tên, mẫu H34: 「特に第一位は、あまりにも身近すぎて、まさかこれと思われるかもしれません。」.",
+    "Tiêu đề theo khuôn kênh (35–55 chữ): 「70代の方へ：転ぶ前に見直したい5つの食品——第一位は毎日の食卓にありました」 (câu gợi ý, khẳng định phải khớp tư liệu).",
+    "Thumbnail (khi làm): 4 dòng cam/trắng/đỏ/xanh, ảnh 1 món giữa danh sách (vd 小魚 = 第二位 hoặc プルーン = 第四位, KHÔNG phải 第一位), chữ giấu tên: 「70歳から｜転ぶ人は｜「これ」が足りない｜骨が変わる！」 — chỉ dùng khẳng định có trong script."
+   ],
+   "model_video": "JCyxahsO0ew (cấu trúc 0–50s), 66ADns1W2mA (0–53s: triệu chứng → đừng đổ cho tuổi → hứa 5 món không nêu tên)",
+   "priority": "cao",
+   "priority_why": "Là tập DUY NHẤT đã có final.mp4 — sắp đăng. Lỗi 'タイトル' đọc to ở 0.3s + 58s khối 119 nằm ngay trong video đã dựng."
+  },
+  {
+   "ep": "ep02",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep02-sarukopenia-sign",
+   "status": "có voice.mp3 + prompt ảnh (B5W/B5P), chưa có video/thumbnail/mô tả",
+   "title": "気づかないうちに進む「筋肉の減少」5つのサイン",
+   "title_src": "dòng 'タイトル：' đầu script.txt",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "[0.3] タイトル：気づかないうちに進む「筋肉の減少」5つのサイン [6.3] 朝ベッドから起き上がるときに、思わず声が出てしまったり、[10.5] 買い物袋を持ち替えたりしていませんか。[13.5] お孫さんの手を引いて歩くときに、ついていくのがやっとだと感じることは、決して珍しいことではありません。[21.4] 多くの方は年のせいにしてしまいますが、[24.4] 小さな違和感に気づかれた皆さんは、ご自身を大切にされています。",
+   "key_t": 30.0,
+   "intro_t": null,
+   "promise_t": 65.0,
+   "timing_source": "real (voice.srt)",
+   "title_hook": [
+    "K",
+    "Mở 6.3s bằng dấu hiệu cơ bắp (đứng dậy bật tiếng, đổi tay xách túi), 32.7s サルコペニア, 71.4s 五つのサイン. Cụm 「筋肉の減少」 trong tiêu đề không có nguyên văn trong script (0 lần), nhưng ý khớp."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "「筋肉の減少」 (tiêu đề) — 0 lần nguyên văn trong script.txt (script dùng 筋肉の衰え/サルコペニア). Không phải thất hứa nội dung, chỉ lệch chữ."
+   ],
+   "problems": [
+    "0.3–6.2s TTS đọc 「タイトル…」 (voice.stt.srt cùng giờ tạo cũng nghe ra 'タイトル気づかないうちに').",
+    "6.3–20s cảnh mở tốt nhất trong 8 tập (thao tác cụ thể, có cháu) nhưng không có con số/nguyên nhân bất ngờ trước 30s; câu chốt 30–37s chỉ gọi tên bệnh 「サルコペニアと呼ばれる、筋肉の衰え」.",
+    "74.2s 「この順位は医学的な危険度ではなく…目安として」 tự tháo đếm ngược.",
+    "84–112s đọc trước cả 5 dấu hiệu, lộ luôn 第一位 「指輪っかテスト」 ở 108.4s — đây là bài tự kiểm tra hấp dẫn nhất (kiểu checklist của 4Q0fF3Ud57Q) mà lại bị bán trước.",
+    "Tiêu đề 23 chữ, không tuổi/đối tượng."
+   ],
+   "fix": [
+    "Xoá dòng タイトル trước TTS.",
+    "Giữ cảnh 6.3s làm giây 0; trước 25s thêm câu hậu quả kiểu 66ADns1W2mA ~26s (người nằm liệt đã mất cơ âm thầm từ nhiều năm) — chỉ dùng dữ kiện có trong series_ctx.txt.",
+    "Bỏ đoạn 84–112s. Giữ 指輪っかテスト làm câu nhử: 「第一位は、今この場で、指二本だけで確かめられます。最後にご一緒にやってみましょう。」 (H34 + H33).",
+    "Tiêu đề: 「60歳以上の方へ：気づかないうちに筋肉が減っている5つのサイン——第一位は指だけで分かります」.",
+    "Thumbnail: ảnh bàn tay vòng bắp chân KHÔNG (đó là 第一位) — dùng dấu hiệu giữa danh sách (vd nắp chai = 第二位): 「70歳から｜瓶のフタが｜開かない人は｜筋肉が危ない」."
+   ],
+   "model_video": "4Q0fF3Ud57Q (checklist tự đếm ~98s), 66ADns1W2mA (0–53s)",
+   "priority": "vừa",
+   "priority_why": "Giọng đã có nhưng chưa dựng video — sửa lúc này còn rẻ (chỉ làm lại 2 phút đầu + TTS)."
+  },
+  {
+   "ep": "ep03",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep03-eiyou-machigai",
+   "status": "có voice.mp3 + prompt ảnh, chưa có video/thumbnail/mô tả",
+   "title": "良かれと思って実は筋肉・腎臓に負担をかける食習慣5つ",
+   "title_src": "dòng 'タイトル:' đầu script.txt",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "[0.3] タイトル:良かれと思って実は筋肉・腎臓に負担をかける食習慣5つ [7.5] 画面の前の皆さん こんにちは、本日もこの動画をお選びくださり、心より感謝申し上げます。[15.6] 年齢を重ねてもご自身を慈しみ、健康を守ろうと努めるお姿を、私は本当に尊いものと感じております。[24.9] お話に入る前に、ひとつだけ大切なことをお伝えいたします。[29.6] 突然に顔の片側がゆがむ、…",
+   "key_t": 72.4,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "real (voice.srt); lời hứa 5 mục ~126–132s (ngoài 120s)",
+   "title_hook": [
+    "L",
+    "Tới 90s không có 筋肉 (lần đầu 180.9s) và 良かれ (126.8s); 腎臓 lần đầu 109.4s. 0–72s là chào + khối 119."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "「筋肉」 (tiêu đề) có 4 lần trong script nhưng lần đầu ở 180.9s; 「負担」 lần đầu 503s. Không xuất hiện trong 90s đầu."
+   ],
+   "problems": [
+    "0.3–7.4s TTS đọc 「タイトル:良かれと思って…」.",
+    "7.5–24.9s chào + cảm ơn + tôn vinh (17s) trước khi nói gì về người xem.",
+    "24.9–72s = 47 giây khối 119 (đột quỵ, TIA, đau ngực, sưng chân).",
+    "Câu chốt 72.4s 「健康のために信じてきた食習慣の中に、栄養不足を招く要素が、静かに紛れ込んでいる」 — đúng ý tiêu đề nhưng muộn gấp ~70 lần so với 4Q0fF3Ud57Q (0s, cùng khái niệm 'thói quen trông tốt').",
+    "~155–194s (ước tính theo voice) đọc trước cả 5 mục; cuối script có 「お伝えした順位は危険度の差ではなく」.",
+    "Tiêu đề 26 chữ, không tuổi/đối tượng."
+   ],
+   "fix": [
+    "Xoá dòng タイトル; bỏ lời chào 7.5–24.9s.",
+    "Giây 0 theo H32 (mẫu 4Q0fF3Ud57Q 0s): 1 câu dừng tay với món có trong script, vd 「その野菜ジュースを飲む前に、少しだけ聞いてください。」 (野菜ジュース = 第四位 của chính tập này).",
+    "Đưa câu 72.4s lên ~10s; đưa 109.4s 「腎臓を気遣うあまり、必要な栄養量を大幅に下回ってしまう方」 lên ~20s.",
+    "Khối 119 còn 1 câu trong hook; phần đầy đủ đặt trước 第二位 (プロテイン) và 第一位 (断つ肉/魚) — chỗ có hành động rủi ro.",
+    "Tiêu đề: 「ご注意ください：60代以上が良かれと思って続ける5つの食習慣が、筋肉と腎臓に負担をかけています」 (khuôn 4Q0fF3Ud57Q, 50 chữ).",
+    "Thumbnail: ảnh 野菜ジュース (第四位): 「60歳から｜毎朝の｜「これ」が｜筋肉を減らす」."
+   ],
+   "model_video": "4Q0fF3Ud57Q",
+   "priority": "cao",
+   "priority_why": "Câu chốt muộn nhất trong nhóm đã có giọng (72s) và tiêu đề lệch hook (L) — nhưng khái niệm giống hệt video 36k của kênh mẫu, sửa đúng khuôn là dùng được ngay."
+  },
+  {
+   "ep": "ep04",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep04-ashi-sign",
+   "status": "có voice.mp3 + prompt ảnh, chưa có video/thumbnail/mô tả",
+   "title": "血管・糖尿病の異変が足に出る5つのサイン",
+   "title_src": "dòng 'タイトル:' đầu script.txt",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "[0.3] タイトル:血管・糖尿病の異変が足に出る5つのサイン [5.9] 今夜も私の話に耳を傾けてくださり、心より感謝を申し上げます。[11.9] 皆さんがご自分の足先を、最後に見つめたのはいつ頃でしょうか。[16.9] 足先の色に首をかしげたり、感覚の鈍さに不安を覚えた記憶はございませんか。[23.2] 少し歩くだけでふくらはぎが痛み、休まないと歩けなくなることはないでしょうか。",
+   "key_t": 83.9,
+   "intro_t": null,
+   "promise_t": 111.8,
+   "timing_source": "real (voice.srt)",
+   "title_hook": [
+    "P",
+    "足 có từ 11.9s; nhưng 血管 lần đầu 118.1s, 糖尿病 lần đầu 186.3s, サイン 111.8s — nửa tiêu đề không có trong 90s."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "「糖尿病」 (tiêu đề) — 6 lần trong script nhưng lần đầu 186.3s; 「異変」 lần đầu 922s. Không có trong 90s."
+   ],
+   "problems": [
+    "0.3–5.8s TTS đọc 「タイトル:」.",
+    "5.9s lời cảm ơn trước câu hỏi 11.9s (câu hỏi 'lần cuối nhìn bàn chân' là câu mở tốt, đang bị đẩy xuống).",
+    "29.8–77.8s = 48 giây khối 119 (tắc mạch cấp, sưng, đau ngực, vết thương đổi màu).",
+    "Câu chốt/số liệu 83.9s 「末梢動脈疾患を抱える患者さんは、国内にも数百万人」 — muộn; không có câu lật nguyên nhân.",
+    "~125s đọc trước cả 5 dấu hiệu (五つ目…一つ目 trong 60 chữ).",
+    "Tiêu đề 20 chữ — ngắn nhất 8 tập; không tuổi."
+   ],
+   "fix": [
+    "Xoá dòng タイトル + lời cảm ơn; giây 0 = 11.9s 「皆さんがご自分の足先を、最後に見つめたのはいつ頃でしょうか。」 tiếp 16.9–26s triệu chứng.",
+    "Đưa 83.9s (数百万人) lên ~25s, nối 1 câu kiểu H30: 足のだるさは腰や膝のせいだけではない (đã có ở 94.9–100.9s — đưa lên ~30s).",
+    "Khối 119 → 1 câu trong hook; phần đầy đủ trước mục có hành động (xoa bóp/ngâm chân).",
+    "Bỏ đoạn đọc trước 5 dấu hiệu; nhử: 「一つ目のサインは、靴下を脱ぐだけで分かります。」 chỉ khi đúng nội dung mục 1.",
+    "Tiêu đề: 「放置厳禁：60歳以上の足に現れる5つのサイン——血管と糖尿病の異変は足先から始まります」 (khuôn 'dấu hiệu cơ thể' của kênh, 40+ chữ)."
+   ],
+   "model_video": "JCyxahsO0ew (triệu chứng → số liệu → nguyên nhân ở bộ phận bất ngờ trong 50s)",
+   "priority": "vừa",
+   "priority_why": "Có câu mở tốt sẵn (11.9s), sửa chủ yếu là cắt/đảo thứ tự; nhưng 48s khối 119 phải xử lý."
+  },
+  {
+   "ep": "ep05",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep05-kettsuryuu-hinnyou",
+   "status": "có voice.mp3 + prompt ảnh, chưa có video/thumbnail/mô tả",
+   "title": "脚のむくみが関係する夜間頻尿で検討したい5つの工夫",
+   "title_src": "dòng 'タイトル:' đầu script.txt (script sửa 14:48 sau voice 14:43 — voice.srt hiện tại KHÔNG đọc tiêu đề)",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "[0.5] 皆さん、こんばんは。[2.3] 今夜も、この動画を開いてくださり、心から感謝申し上げます。[7.9] まずは、少しだけ、想像してみてください。[12.0] 夜中の二時半、ふと目が覚めて、時計をそっと確かめる。[17.1] もう一度眠りたいのに、下腹部の重さに逆らえず、布団を出て冷たい廊下を歩く。[24.1] 用を足して床に戻っても、頭が冴えて眠れず、浅い眠りのまま朝を迎えてしまう。",
+   "key_t": 72.8,
+   "intro_t": null,
+   "promise_t": 99.9,
+   "timing_source": "real (voice.srt)",
+   "title_hook": [
+    "P",
+    "夜間頻尿 ở 43.1s (cảnh 12s đúng chủ đề); nhưng むくみ — chữ đầu tiêu đề — lần đầu 151.8s; 工夫 133.2s."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "「むくみ」 (từ đầu tiêu đề) lần đầu 151.8s — không có trong 90s. 「ふくらはぎ」 (đáp án chính của hook, 91.5s) lại KHÔNG có trong tiêu đề."
+   ],
+   "problems": [
+    "0.5–12s chào + cảm ơn + 'hãy tưởng tượng' (11,5s) trước cảnh.",
+    "Cảnh 12–31s gần như chép cảnh 0–11s của JCyxahsO0ew (cùng đề tài 夜間頻尿/ふくらはぎ) nhưng chậm 12s.",
+    "Câu chốt 72.8–94.6s 「原因は、多くの場合、膀胱そのものではありません…ふくらはぎの血流こそが」 — JCyxahsO0ew nói cùng câu ở 37–49s. 43–66s chèn hướng dẫn 日本泌尿器科学会 trước câu chốt.",
+    "Tiêu đề rào 'で検討したい' (lời của bác sĩ, không phải của khán giả), 25 chữ, không tuổi, bỏ mất chữ ふくらはぎ.",
+    "Tập DUY NHẤT không có khối 119 trong 120s (chỉ 1 câu 'hỏi bác sĩ' ở 112.7s) — gần khuôn kênh nhất. NHƯNG ngay sau 120s là 「今夜のお品書き」 (chữ 640–1000, ~125–175s ước tính) đọc trước cả 5 mục, lộ 第一位 「夕方の足上げ」 — đúng hành động mà thumbnail JCyxahsO0ew giấu bằng 〇〇."
+   ],
+   "fix": [
+    "Bỏ 0.5–12s; giây 0 = 「夜中の二時半、ふと目が覚めて…」.",
+    "Đưa 72.8–94.6s (膀胱ではなく、ふくらはぎ) lên ~30–40s — ngay sau cảnh; dời câu 日本泌尿器科学会 (43.1s) xuống sau câu chốt để làm bằng chứng.",
+    "Tiêu đề: 「夜間頻尿で悩む70代の方へ：ふくらはぎを整える5つの習慣で夜中のトイレが減る理由」 — chỉ khẳng định mức script đã viết.",
+    "Thumbnail theo đúng thumbnail JCyxahsO0ew nhưng khác chữ: 「夜中のトイレ｜膀胱ではなく｜ふくらはぎ｜寝る前に〇〇」.",
+    "Bỏ đoạn 「今夜のお品書き」 (5 mục); giữ 第一位 夕方の足上げ làm bí mật, nhử bằng H34: 「第一位は、夕食の前にたった三十分、あることをするだけです。」."
+   ],
+   "model_video": "JCyxahsO0ew",
+   "priority": "vừa",
+   "priority_why": "Tập gần khuôn nhất, chỉ cần cắt 12s đầu + đảo câu chốt; nhưng trùng đề tài với video top-1 của kênh mẫu nên phải khác ở tiêu đề/thumbnail."
+  },
+  {
+   "ep": "ep06",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep06-koenshou-shokuhin",
+   "status": "có title.txt + voice.mp3 + prompt ảnh (luồng lean), chưa có video/thumbnail/mô tả",
+   "title": "60歳以上の方へ：5つの抗炎症食品が腸と脳を静かに守っていた——ほとんどの方がご存知ない",
+   "title_src": "title.txt",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "[0.3] こんにちは。[1.4] 今日も、この時間をご自身の体のために使ってくださってありがとうございます。[8.1] 毎日の食事や歩く習慣を大切にしておられるのに、しっかり食べているのに力が出ない、[15.8] 眠っているはずなのに朝がつらい、[18.2] 人の名前が喉まで出かかって出てこない——そんな違和感を感じてはいないでしょうか。[23.9] まるで底に小さなひびの入った器に水を注いでいるようなもので、どれだけ注いでも、いつの間にか減っていて手元に残りません。",
+   "key_t": 35.6,
+   "intro_t": null,
+   "promise_t": 99.1,
+   "timing_source": "real (voice.srt)",
+   "title_hook": [
+    "P",
+    "腸と脳 ở 59.2s, 5 món ở 99.1s; nhưng 60歳, 抗炎症, 静かに守, ご存知ない — 0 lần trong CẢ script (grep)."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "「60歳以上」 — 0 lần trong script.",
+    "「抗炎症」 — 0 lần (script dùng インフラメイジング/炎症から守る).",
+    "「ほとんどの方がご存知ない」 nhưng 106–115s đã đọc trước cả 5 món, món nào cũng là thứ ai cũng biết (発酵食品、食物繊維、青魚、野菜と果物、油と木の実)."
+   ],
+   "problems": [
+    "0.3–8s chào + cảm ơn.",
+    "35.6s thuật ngữ 「インフラメイジング」 và 65.8s 「パキスタン・イスラマバードで成人140人」 — bằng chứng xa lạ với người xem Nhật 70 tuổi; kênh mẫu dùng tên viện Nhật (SOP lại cấm copy thói tên viện mơ hồ — nên chọn nguồn Nhật có thật trong tư liệu).",
+    "81–98s khối 119 (17s — ngắn hơn ep01/03/04, chấp nhận được nhưng vẫn trong hook).",
+    "106–115s đọc tên cả 5 món trước 第5位 (130s).",
+    "Tiêu đề chép khuôn aWXuORPaoH0 (5.800 view, không phải video top); 44 chữ — tập DUY NHẤT đạt title_len."
+   ],
+   "fix": [
+    "Bỏ 0.3–8s; giây 0 = 「しっかり食べているのに力が出ない、眠っているはずなのに朝がつらい…」.",
+    "Câu ẩn dụ 23.9s giữ (ẩn dụ đời thường là DNA kênh). Thay 'インフラメイジング' bằng 1 câu thường (痛みも熱もない小さな炎症) ở ~30s.",
+    "Bỏ 106–115s; câu nhử H34: 「第1位は、毎日の台所にあるのに、ほとんどの方が使い方を間違えています。」 — chỉ khi nội dung mục 1 thật sự nói cách dùng dầu.",
+    "Sửa tiêu đề cho khớp script: bỏ '60歳以上' hoặc thêm vào script; đổi '抗炎症食品' thành chữ script dùng: 「60歳以上の方へ：腸と脳を炎症から守る5つの食品——第1位は台所の油でした」.",
+    "Thumbnail: ảnh 青魚 (第3位 — giữa danh sách): 「60歳から｜物忘れが｜増えた人は｜「これ」を食べて」 — chỉ dùng khẳng định script có (腸と記憶の関連)."
+   ],
+   "model_video": "kN6wHIqYA0Q (câu hỏi → tôn vinh → 'nhưng' → người thọ ăn đồ thường → hứa N món giấu tên)",
+   "priority": "vừa",
+   "priority_why": "Tiêu đề đã đúng khuôn nhưng 4 cụm trong tiêu đề không có trong script — rủi ro comment bắt lỗi; sửa 1 dòng tiêu đề là xong phần lớn."
+  },
+  {
+   "ep": "ep07",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep07-monowasure-sign",
+   "status": "mới có script.txt (B3/B3Q/B3F), chưa có giọng",
+   "title": "認知機能の低下で見られることがある5つの変化",
+   "title_src": "dòng 'タイトル:' đầu script.txt",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "(ước tính) [0] タイトル:認知機能の低下で見られることがある5つの変化 [~0] 画面の前の皆さん、こんにちは、今日も健康を見つめてくださり、心より感謝申し上げます。[~13] 家族や仕事を優先しながらも、こうして耳を傾ける姿勢は、立派な生き方だと感じます。[~21] 日々のふとした瞬間に、胸をよぎる小さな不安が、おありではないでしょうか。[~27] 冷蔵庫の前で目的を忘れ、名前が喉まで出かかっても出ず、電話の相手を思い出せない時があります。",
+   "key_t": 36,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "est (318.6 chữ/phút, chưa có giọng); lời hứa 5 mục ~140s",
+   "title_hook": [
+    "P",
+    "変化 ~104s, 認知機能 lần đầu ~352s (ước tính); hook dùng 'あの病気' thay vì từ tiêu đề."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "「認知機能」 — từ đầu tiêu đề, lần đầu ~352s (ước tính), không có trong 90s."
+   ],
+   "problems": [
+    "0–21s chào + khen (~21s ước tính).",
+    "~27–36s cảnh quên (冷蔵庫の前で目的を忘れ) tốt nhưng đứng sau lời chào.",
+    "~63–107s khối 119 (~44s ước tính: đột quỵ, sảng, uống quá liều thuốc).",
+    "~171–210s đọc trước 5 mục, lộ 第一位 「しまい忘れた財布を、誰かに盗られたと疑ってしまう」 — câu gây sốc nhất tập bị bán trước ở 203s thay vì làm hook.",
+    "~147s + ~155s hai câu rào 'thứ tự chỉ vì tiện kể', 'không phải độ nặng'.",
+    "Tiêu đề 22 chữ, rào 'ことがある', không tuổi."
+   ],
+   "fix": [
+    "Trước khi làm giọng: xoá dòng タイトル + lời chào; giây 0 = 「冷蔵庫の前で目的を忘れ、名前が喉まで出かかっても出てこない。」.",
+    "~10–25s: câu lật theo H30 từ đoạn ~125s đã có: 「おかずの一品を忘れても、後で思い出せるなら加齢による変化です。しかし…」 — đây chính là câu phân biệt mà người xem muốn nghe.",
+    "Giữ 第一位 (財布を盗られたと疑う) làm câu nhử không nêu nội dung: 「第一位は、ご家族が一番見逃しやすく、ご本人は決して認めないサインです。」 (H34).",
+    "Khối 119 → 1 câu; phần đầy đủ trước mục có liên quan.",
+    "Tiêu đề: 「70代の方へ：物忘れと認知症の境目がわかる5つの変化——第一位はご家族が最初に気づきます」."
+   ],
+   "model_video": "66ADns1W2mA (triệu chứng → 'đừng đổ cho tuổi' → hậu quả → hứa N)",
+   "priority": "thấp",
+   "priority_why": "Chưa có giọng — sửa trong script, không tốn TTS lại; làm trước khi chạy B4."
+  },
+  {
+   "ep": "ep08",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kenko-chiebukuro\\ep08-hyakusaisha-shuukan",
+   "status": "mới có script.txt (B3/B3Q/B3F), chưa có giọng",
+   "title": "自立して暮らす百寿者の食事で見られた五つの傾向",
+   "title_src": "dòng 'タイトル:' đầu script.txt",
+   "desc_first": null,
+   "thumb_file": null,
+   "thumb_text": null,
+   "open_0_30_ja": "(ước tính) [0] タイトル:自立して暮らす百寿者の食事で見られた五つの傾向 [~0] ご自分の体や日々の食事について、真剣に向き合っておられるあなたに、心からの敬意を表します。[~14] 年齢を重ねたあなただからこそ、耳を傾けてくださるこの時間は、決して当たり前のものではございません。[~23] 年を重ねて暮らしていく中では、朝起き上がるまでに時間がかかり、もどかしさを感じる朝もあるはずです。",
+   "key_t": 116,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "est (318.6 chữ/phút, chưa có giọng); lời hứa 5 mục ~239s",
+   "title_hook": [
+    "P",
+    "百歳 ~89s, 普通の食品 ~118s, 傾向 ~239s, 百寿者 chỉ 1 lần ~680s (ước tính)."
+   ],
+   "thumb_title": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "thumb_hook": [
+    "—",
+    "Chưa có thumbnail: không có file ảnh nào trong thư mục tập (SOP_LANE_E §1b: cột E/F/G TITLE-DESCRIPTION/TAGS/THUMBNAIL 'TẠM THỜI CHƯA LÀM')."
+   ],
+   "broken_promises": [
+    "「百寿者」 — 1 lần trong script, ~680s.",
+    "「五つの傾向」 — lời hứa ~239s, mục đầu ~256s (ước tính); không có trong 90s."
+   ],
+   "problems": [
+    "0–23s hai câu tôn vinh liền nhau (~23s) trước khi nói gì về người xem.",
+    "~42–61s khuyên đi bác sĩ, ~137–167s rào điều tra, ~167–239s khối 119 (~70s) — tổng ~2 phút rào/cảnh báo trước mục đầu.",
+    "Câu chốt ~116s 「百歳を超えて元気な方々の食卓には、高価な食品や輸入食材ではなく、日本人におなじみの普通の食品」 — kN6wHIqYA0Q (cùng đề tài, 71.922 view) nói gần nguyên câu này ở 21.8s (mốc thật). Chậm ~5 lần.",
+    "Mốc số liệu mạnh (キューサイ 2019, 100 người, 900 bữa ~89s) nằm sau 1,5 phút.",
+    "~249s rào 'thứ tự chỉ vì tiện kể'; ~256s đọc trước 5 mục.",
+    "Tiêu đề 23 chữ, rào 'で見られた', '傾向' trừu tượng; kN6wHIqYA0Q cùng đề tài dùng '9つの食習慣——ほとんどの方がご存知ない'."
+   ],
+   "fix": [
+    "Theo đúng khung kN6wHIqYA0Q 0–68s: giây 0 hỏi bữa ăn hôm nay (1 câu), ~10s tôn vinh + 'nhưng hôm nay', ~20s câu 116s (không phải đồ đắt mà đồ thường), ~40s キューサイ 100人・900食 (đang ở 89s), ~55s hứa 5 thói quen giấu tên.",
+    "Gộp 42–61s + 137–167s + khối 119 thành 1–2 câu trong hook; phần đầy đủ trước mục có hành động.",
+    "Tiêu đề: 「70歳以上の方へ：自立して暮らす百歳の方々が毎日続けていた5つの食習慣——高価な食品はありませんでした」 (≈50 chữ).",
+    "Thumbnail: ảnh món giữa danh sách (vd 旬の野菜 = 四つ目): 「100歳まで自立｜毎日食べていた｜この食品｜高い物ではない」 — khuôn kN6wHIqYA0Q."
+   ],
+   "model_video": "kN6wHIqYA0Q",
+   "priority": "cao",
+   "priority_why": "Clone trực tiếp đề tài video #2 kênh mẫu nhưng câu chốt chậm 5 lần và có ~2 phút rào trước mục đầu; chưa làm giọng nên sửa bây giờ không tốn TTS."
+  }
+ ],
+ "our_summary": "8 tập (1 có final.mp4, 5 có giọng, 2 chỉ script); 0/8 có thumbnail, mô tả hay file đăng. So với công thức kênh mẫu: (1) 7/8 mở bằng chào/cảm ơn/tôn vinh (kênh 0/6). (2) Câu chốt: ep01 25.6s, ep02 30.0s, ep06 35.6s, ep07 ~36s đạt ≤40s; ep03 72.4s, ep05 72.8s, ep04 83.9s, ep08 ~116s trượt — 4/8. (3) 8/8 đọc trước cả danh sách trước mục đầu (kênh 0/6), 6/8 thêm câu 'thứ tự không phải mức độ'. (4) 5/8 có khối cấp cứu 119 trong 120s đầu, dài 17–58s (kênh 0/6). (5) 4/6 tập đã có giọng đọc to chữ 'タイトル' ở 0.3s (ep01, ep02, ep03, ep04) — ep01 đã dựng final.mp4 với lỗi này; ep07, ep08 script vẫn có dòng タイトル. (6) Tiêu đề: 7/8 ngắn 20–31 chữ (< 35), 1/8 có tuổi, 4/8 rào; ep06 là tập duy nhất đúng khuôn nhưng 4 cụm trong tiêu đề không có trong script. (7) Lời hứa tiêu đề muộn/thiếu trong 90s: ep03 (筋肉 180.9s), ep04 (糖尿病 186.3s), ep05 (むくみ 151.8s), ep06 (60歳/抗炎症/ご存知ない = 0), ep07 (認知機能 ~352s), ep08 (百寿者 ~680s). Tập gần khuôn nhất: ep05 (không khối 119, không preview trong 120s). Ưu tiên sửa: ep01 (sắp đăng), ep08 và ep03 (clone đề tài video top nhưng chốt chậm 2–5 lần, chưa/đã có giọng).",
+ "principles": [
+  {
+   "claim": "Giây 0 là cơ thể/thói quen của người xem — không chào, không cảm ơn.",
+   "cause": "Khán giả 60+ tự nhận ra triệu chứng của mình (đi tiểu đêm, chân nặng, ăn sáng) nên ở lại để nghe tiếp về chính mình; lời chào không chứa thông tin nên là chỗ bấm thoát.",
+   "evidence": "6/6 video top mở bằng triệu chứng/thói quen (JCyxahsO0ew 0.1s 「夜中に2°3°と目が覚めて」; kN6wHIqYA0Q 0.2s 「今朝も朝食をきちんと召し上がった方は」); 0/6 mở bằng chào. Của mình: 7/8 tập mở bằng chào/cảm ơn/tôn vinh (ep01 7.5s, ep03 7.5–24.9s, ep04 5.9s, ep05 0.5–12s, ep06 0.3–8s, ep07 0–21s ước tính, ep08 0–23s ước tính).",
+   "why": "Mỗi giây chào là một giây người xem chưa có lý do ở lại; kênh mẫu dành giây đó cho câu có triệu chứng.",
+   "how": "hook_stage/QC: cấm câu đầu chứa こんにちは/こんばんは/感謝/ありがとう/敬意. Câu tôn vinh (DNA kênh) chỉ được đặt sau câu hỏi/triệu chứng, tối đa 1 câu (H31)."
+  },
+  {
+   "claim": "Câu chốt lật nguyên nhân phải có trước ~40s.",
+   "cause": "Triệu chứng chỉ gây đồng cảm; câu 'nguyên nhân không phải chỗ bạn nghĩ' mới tạo câu hỏi cụ thể cho cả video (vì sao lại là bắp chân? món thường là món gì?).",
+   "evidence": "Mốc thật: JCyxahsO0ew 37.0s, kN6wHIqYA0Q 21.8s; 4 video ước tính 0–43s. Của mình: ep03 72.4s, ep04 83.9s, ep05 72.8s (cùng câu JCyxahsO0ew nói ở 37s), ep08 ~116s (cùng câu kN6wHIqYA0Q nói ở 21.8s).",
+   "why": "Hai video view/ngày cao nhất có câu chốt sớm nhất; tập của mình clone đúng đề tài của chúng nhưng nói câu chốt chậm 2–5 lần.",
+   "how": "Mỗi script: đánh dấu câu chốt H30; gate đo vị trí ký tự của câu đó ≤ 40s × 318,6/60 ≈ 210 chữ (không tính tiêu đề)."
+  },
+  {
+   "claim": "Giấu tên các mục; không đọc trước danh sách; mục 1 chỉ được nhử.",
+   "cause": "Tên món chưa biết là lý do xem tiếp; đọc trước 5 mục trả lời luôn câu hỏi của thumbnail/tiêu đề, người xem có thể rời đi với đáp án.",
+   "evidence": "6/6 video top không nêu tên món nào trong 120s; mục đầu đếm ngược ở 329–410s. Của mình: 8/8 tập đọc trước cả 5 mục trước mục đầu (ep02 lộ 第一位 指輪っかテスト ở 108.4s; ep07 lộ 'nghi bị trộm ví' ~203s). 6/8 tập còn thêm câu 'thứ tự không phải mức độ' (ep01, ep02, ep06, ep07, ep08 ở phần mở; ep03 ở cuối video).",
+   "why": "Đếm ngược chỉ có lực khi người xem không biết 第一位 là gì.",
+   "how": "Xoá đoạn 'あらかじめご案内' và câu 'thứ tự chỉ vì tiện kể'; thay bằng 1 câu H34 sau lời hứa N. Mô tả video được phép liệt kê đáp án (kênh mẫu làm 6/6)."
+  },
+  {
+   "claim": "Tiêu đề, thumbnail, hook phải cùng một lời hứa; thumbnail chỉ khác ở chỗ thu còn 1 món.",
+   "cause": "Người bấm theo tiêu đề/thumbnail cần nghe lại đúng lời hứa đó trong 30–60s đầu; lệch thì họ nghĩ bấm nhầm.",
+   "evidence": "YZNmQJxGuRc: tiêu đề '4 món hại' / thumbnail '1 món tốt, 11 lần trứng' / hook 'top 10 món tốt' (L/L/P) → 736 view/ngày, like 3,6%; JCyxahsO0ew và kN6wHIqYA0Q K/K/K → 3.064 và 3.425 view/ngày, like 7,1% và 5,0%. Của mình: ep03 筋肉 lần đầu 180.9s, ep04 糖尿病 186.3s, ep05 むくみ 151.8s, ep06 60歳/抗炎症/ご存知ない 0 lần trong script.",
+   "why": "Lệch lời hứa là nguyên nhân rõ nhất trong 6 video top để giải thích video thấp nhất; đề tài không giải thích được (cùng đề tài với video 2.513/ngày).",
+   "how": "Trước khi khoá tiêu đề: grep từng từ khoá tiêu đề trong script, lần đầu phải ≤ 90s; mọi khẳng định trên thumbnail phải có nguyên văn trong script (kênh mẫu vi phạm ở 2/6 — mình không chép thói đó)."
+  },
+  {
+   "claim": "Tiêu đề theo khuôn: đối tượng tuổi/nhãn cảnh báo + N + động từ khẳng định, 35–55 chữ, không rào.",
+   "cause": "Tiền tố '70歳以上の方へ' / 'ご注意ください' lọc đúng người xem trên trang chủ; động từ khẳng định (防いでいた, 削り続けています) tạo lời hứa; từ rào (かもしれない, 検討したい, ことがある) xoá lời hứa.",
+   "evidence": "9/9 tiêu đề kênh mẫu mở bằng đối tượng hoặc nhãn cảnh báo; 0/9 rào; 6/6 video top 37–51 chữ. Của mình: 1/8 có đối tượng tuổi (ep06), 4/8 rào (ep01 かもしれない, ep05 検討したい, ep07 ことがある, ep08 見られた), 7/8 ngắn 20–31 chữ.",
+   "why": "Lane y khoa cần cẩn trọng nhưng sự cẩn trọng thuộc về lời trong video (miễn trừ, nguồn), không cần nằm trong tiêu đề — kênh mẫu đặt miễn trừ trong mô tả.",
+   "how": "Tiêu đề khẳng định điều script THẬT SỰ nói (vd '…続けていた5つの食習慣'), không khẳng định chữa bệnh; gate title_len [35,55] đang có — áp cho cả dòng タイトル trong script."
+  },
+  {
+   "claim": "Khối cảnh báo cấp cứu không được chiếm hook: 1 câu trong hook, phần đầy đủ đặt ngay trước hành động rủi ro.",
+   "cause": "58 giây hướng dẫn 119/AED trong 2 phút đầu đẩy câu chốt ra sau 70s và đổi giọng video từ 'bí mật sức khoẻ' sang 'thủ tục an toàn'.",
+   "evidence": "Kênh mẫu 0/6 có khối cấp cứu trong 120s (JCyxahsO0ew chỉ 1 câu miễn trừ ~12s ở 110s). Của mình 5/8 có trong 120s: ep01 56.7–114.5s (58s), ep03 24.9–72s (47s), ep04 29.8–77.8s (48s), ep06 81–98s (17s), ep07 ~63–107s (~44s ước tính); ep08 ~167–239s.",
+   "why": "lane_rules của profile chỉ yêu cầu cảnh báo đứng TRƯỚC hoặc CÙNG lúc hành động rủi ro — không bắt buộc ở giây đầu; dời xuống vẫn đúng luật mà trả lại 40–58s cho hook.",
+   "how": "script_qc/hook_stage: đo số chữ của đoạn chứa 一一九/119/救急車/AED trong 120s đầu — tối đa 1 câu (~60 chữ); đoạn đầy đủ gắn vào mục đầu có hành động."
+  },
+  {
+   "claim": "Thumbnail lấy 1 món GIỮA danh sách, giấu tên bằng đại từ, không lấy 第1位.",
+   "cause": "Người bấm vì 'この食品' được trả lời giữa video (giữ họ qua nửa đầu), còn 第1位 vẫn là bí mật cho nửa sau.",
+   "evidence": "ごぼう = 第8位 (kN6wHIqYA0Q), trứng = 第5位 (66ADns1W2mA), きなこ = 第5位 (YZNmQJxGuRc), かつお節 = món 3/3 (4Q0fF3Ud57Q): 0/4 là 第1位; 9/9 không ghi tên món bằng chữ.",
+   "why": "Tách 2 móc tò mò (thumbnail và 第1位) thay vì dùng chung một.",
+   "how": "B7 thumbnail: chọn món/dấu hiệu 第四位–第二位 làm ảnh; chữ 4 dòng cam/trắng/đỏ/xanh theo khuôn '{tuổi}から｜{nhóm người/triệu chứng}｜「これ」/この食品｜{lợi ích có trong script}'."
+  }
+ ],
+ "new_patterns": [
+  {
+   "id": "H30",
+   "name": "Nguyên nhân thật nằm ở chỗ khác / thứ ai cũng nghĩ tốt lại là vấn đề",
+   "kind": "C",
+   "role": "closer (20–50s)",
+   "mechanism": "Sau triệu chứng, người kể gạt đi lời giải thích người xem đã chấp nhận (do tuổi, do bàng quang, phải ăn đồ đắt, cứ ăn nhiều đạm là được) và chỉ sang một chỗ không ngờ (bắp chân, đồ ăn thường, cơ mất từ nhiều năm trước). Người xem có câu hỏi cụ thể để chờ: vì sao lại là chỗ đó, và làm gì với nó.",
+   "template": "{lời giải thích quen}だから仕方がない、と諦めていませんか。しかしその原因は{chỗ ai cũng nghĩ}だけにあるのではありません。実は{bộ phận/thứ bất ngờ}に{本当の鍵}が隠れているのです。",
+   "when": "Mọi tập sức khoẻ/list ăn uống — đặt câu này trước 40s, ngay sau triệu chứng.",
+   "avoid": "Đừng khẳng định quan hệ nhân quả mạnh hơn tư liệu (lane y khoa). Đừng để câu này sau khối cảnh báo 119.",
+   "lanes_fit": [
+    "kenko-chiebukuro",
+    "teinengo-tanoshimi"
+   ],
+   "examples": [
+    "JCyxahsO0ew 37.0s (thật)",
+    "kN6wHIqYA0Q 21.8s (thật)",
+    "66ADns1W2mA ~26s (ước tính)",
+    "4Q0fF3Ud57Q ~45–60s (ước tính)"
+   ]
+  },
+  {
+   "id": "H31",
+   "name": "Hỏi thói quen sáng nay → tôn vinh nỗ lực → 'nhưng hôm nay tôi phải nói 1 điều'",
+   "kind": "C",
+   "role": "opener (0–25s)",
+   "mechanism": "Câu đầu hỏi thẳng điều người xem vừa làm sáng nay (ăn sáng, thức dậy mệt). Câu 2 khen sự chăm chỉ của họ — khán giả già nghiêm túc thấy được thừa nhận — rồi 'でも' báo có một điều nỗ lực đó đang bỏ sót. Lời khen đứng SAU câu hỏi, không phải lời chào đầu video.",
+   "template": "今朝も{thói quen buổi sáng}方はいらっしゃいますか?{nỗ lực nhiều năm}。その真剣な{知恵/努力}を私は心から尊敬しています。でも今日、その{努力}に1つだけ大切なお話をしなければなりません。",
+   "when": "Tập list thực phẩm/thói quen ăn uống, khi đáp án là 'bạn làm đúng nhưng thiếu 1 thứ'.",
+   "avoid": "Không mở bằng 'こんにちは/ご覧いただきありがとう' rồi mới khen — tập của mình 7/8 làm vậy. Không khen quá 1 câu.",
+   "lanes_fit": [
+    "kenko-chiebukuro"
+   ],
+   "examples": [
+    "kN6wHIqYA0Q 0.2–21.8s (thật)",
+    "YZNmQJxGuRc 0–38s (ước tính)"
+   ]
+  },
+  {
+   "id": "H32",
+   "name": "Lệnh dừng tay khi đang cầm món 'lành mạnh'",
+   "kind": "B",
+   "role": "opener (0–5s)",
+   "mechanism": "Giây 0 ra lệnh dừng hành động đang làm và gọi tên đúng món người xem có thể đang ăn (trứng luộc). Giật mình vì món bị gọi tên là món 'tốt' → mâu thuẫn ngay: thứ tốt sao phải dừng?",
+   "template": "今すぐ手を止めてください。その{món ăn 'lành mạnh' quen thuộc}をお口に入れる前に。",
+   "when": "Tập 'thói quen tưởng tốt mà hại' (一見体に良さそう). Món trong câu phải có trong script.",
+   "avoid": "Đừng dùng khi món đó không thật sự bị bàn trong video. Đừng dùng cho cảnh báo cấp cứu.",
+   "lanes_fit": [
+    "kenko-chiebukuro"
+   ],
+   "examples": [
+    "4Q0fF3Ud57Q 0s (ước tính, raw rỗng)"
+   ]
+  },
+  {
+   "id": "H33",
+   "name": "Checklist tự đếm trong đầu",
+   "kind": "D",
+   "role": "closer (90–260s)",
+   "mechanism": "Liệt kê 8–15 dấu hiệu hằng ngày, dặn người xem 'đếm trong lòng xem mấy cái đúng với mình', cuối cùng 'nếu từ 4 cái trở lên thì…'. Người xem bận tự soi nên ở lại qua đoạn dài trước mục chính.",
+   "template": "これからお伝えすることに、いくつ心当たりがあるか、心の中で数えながら聞いてみてください。1つ目、{dấu hiệu}。2つ目、…。さあ、いくつ当てはまりましたか?もし{N}つ以上なら、今日のお話はあなたのためにあります。",
+   "when": "Tập 'N dấu hiệu' (サイン) — ep02/ep04/ep07 của mình.",
+   "avoid": "Bằng chứng yếu về view: trong transcripts.json kênh này có checklist ở 4Q0fF3Ud57Q (36k) nhưng cũng ở c2EG9MLCHck (698), HYd5dTEJyVI (487), Z1W_jiYi3cs (172), ELaeDwNFs0Y (85) — không tự làm video thắng. Dùng như công cụ giữ chân, không thay câu chốt.",
+   "lanes_fit": [
+    "kenko-chiebukuro"
+   ],
+   "examples": [
+    "4Q0fF3Ud57Q ~98–260s (ước tính)"
+   ]
+  },
+  {
+   "id": "H34",
+   "name": "Nhử mục số 1 mà không nêu tên",
+   "kind": "E",
+   "role": "closer (40–70s)",
+   "mechanism": "Ngay sau lời hứa N mục, nói trước một đặc điểm gây tò mò của mục số 1 ('quá quen thuộc, bạn sẽ không ngờ') nhưng giấu tên — người xem có lý do ở lại tới cuối. Ngược với việc đọc trước cả danh sách.",
+   "template": "今日は{N}つの{thực phẩm/サイン}をお伝えします。特に第1位は、あまりにも身近すぎて、まさかこれと思われる方もいらっしゃるかもしれません。ぜひ最後までご一緒ください。",
+   "when": "Mọi tập đếm ngược. Thay cho đoạn 'đọc trước 5 mục' đang có ở 8/8 tập của mình.",
+   "avoid": "Đặc điểm nhử phải đúng với mục 1 thật trong script (tránh lời hứa không giữ).",
+   "lanes_fit": [
+    "kenko-chiebukuro",
+    "teinengo-tanoshimi"
+   ],
+   "examples": [
+    "jzVHUk-E9S8 ~51s (ước tính; video kênh này trong transcripts.json, ngoài 9 video đã chọn, 5.100 view)",
+    "66ADns1W2mA ~320s 「これはまだ始まりに過ぎません。次にお伝えすることは多くの方がもう知っていると思いながら…」"
+   ]
+  }
+ ],
+ "gate_check": {
+  "verdict": "KHÔNG KHỚP kênh mẫu. hook_chars [550,750] + hook_marker 第五位/五つ目/5位 đang đo một thứ khác với thứ đã hiệu chỉnh.",
+  "detail": [
+   "Nguồn số: profile ghi 'hook đo trên 120 giây đầu của 3 video thật (596-650 chữ)' — tức SỐ CHỮ TRONG 120 GIÂY (một thước đo tốc độ đọc: 596–650 chữ/2 phút ≈ 300–325 chữ/phút), không phải độ dài mở đầu tới mục đầu.",
+   "Còn qc_script.mo_dau() lấy text TỪ ĐẦU TỚI MARKER ĐẾM NGƯỢC ĐẦU TIÊN. Ở kênh mẫu, đoạn đó dài 1.597 chữ (66ADns1W2mA, 第5位 ở ~329s), 1.765 chữ (kN6wHIqYA0Q, 第9位 ở ~342s — ASR ghi 大空くらい), 1.822 chữ (YZNmQJxGuRc, 第10位 ở ~410s); trong toàn bộ transcripts.json 8/9 video đếm ngược: 1.598–1.916 chữ. Gấp 2,1–2,6 lần trần 750.",
+   "Với char_rate 318,6 chữ/phút, gate [550,750] = marker đầu tiên phải nằm ở 104–141s. Kênh mẫu: 314–410s.",
+   "Marker đầu tiên trong tập của mình là đoạn ĐỌC TRƯỚC DANH SÁCH (7/8 tập: 第五位…第一位 trong 60–100 chữ), không phải mục đầu. Gate đang vô tình thưởng cho đúng thói quen kênh mẫu không có. Đo: ep01 633 chữ, ep02 514 (trượt dưới), ep03 864 (trượt trên), ep04 673, ep05 692, ep06 702 (tập duy nhất marker = mục thật 第5位), ep07 956, ep08 1.375.",
+   "hook_marker chỉ có dạng 5: kênh mẫu đếm 9 (kN6wHIqYA0Q), 10 (YZNmQJxGuRc), 3 (4Q0fF3Ud57Q), 5 (66ADns1W2mA) — list_item_count=5 cố định là lựa chọn của mình, không phải của kênh. ASR kênh viết 第5位 (số Ả Rập); 5位 trong list bắt được nhưng 五つ目 kanji chỉ khớp script của mình.",
+   "Đề xuất (để h2dev quyết): (a) đổi định nghĩa hook = đoạn trước MỤC THẬT đầu tiên (bỏ qua đoạn preview) và nới ngưỡng ~[1400,1900] nếu muốn bám kênh; HOẶC (b) giữ mở đầu ngắn ~2 phút cho video 20 phút của mình nhưng đo bằng mốc câu chốt (≤40s) + lời hứa N (≤90s) + không preview — thay vì đo độ dài."
+  ]
+ },
+ "caveats": [
+  "Mốc giây có thật chỉ cho JCyxahsO0ew và kN6wHIqYA0Q (raw hook_segments, api+proxy2). 66ADns1W2mA, 4Q0fF3Ud57Q, 966fNPIqSi4, YZNmQJxGuRc: raw rỗng lúc audit (đã mở lại raw trước khi ghi file — vẫn rỗng) → mốc ƯỚC TÍNH = vị trí ký tự ÷ (len(transcript)/duration) từ E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\ikiiki-kenko\\_raw\\transcripts.json. Kiểm chéo trên JCyxahsO0ew: câu '65歳' thật 14.4s, ước tính ~15.5s (lệch ~1s).",
+  "3 video 'new' (9B8uVZDg1ZA, Hlkpj3AkUPY, 2YaaL5KS3-k) không có trong transcripts.json và raw rỗng → không lấy được transcript; chỉ phân tích tiêu đề/mô tả/thumbnail; KHÔNG ghi vào seed file (seed chỉ 6 bản ghi có hook).",
+  "Transcript là ASR: 暴行=膀胱, ふハぎ=ふくらはぎ, ネタ切り=寝たきり, こう霊社=高齢者, 大空くらい=第9位, 地の食品=9つの食品… Trích dẫn giữ nguyên ASR, chỗ sửa đặt trong [=…].",
+  "Tập của mình: KHÔNG có thumbnail, title-description hay DANG-TAI.txt ở cả 8 tập (SOP_LANE_E §1b: cột E/F/G 'tạm thời chưa làm'); tiêu đề lấy từ dòng 'タイトル' trong script.txt (ep06 từ title.txt). Mọi chấm thumbnail của mình = '—'.",
+  "voice.srt của ep01–ep06 có cùng giờ tạo với voice.mp3 → mốc thật. voice.stt.srt của ep01/ep03/ep05 CŨ hơn voice.mp3 (không dùng). ep05 script.txt sửa 14:48 sau voice 14:43 → voice hiện tại có thể lệch script vài câu.",
+  "Chấm 'tự giới thiệu' (intro_t): narrator của lane KHÔNG tự xưng bác sĩ (profile + lane_rules) nên intro_t của mình luôn null — đây là chủ ý an toàn, KHÔNG khuyên sửa. Kênh mẫu tự nhận kinh nghiệm y khoa không kiểm chứng được.",
+  "Kênh mẫu có 2/6 thumbnail với khẳng định không có trong lời — không đưa vào công thức để chép."
+ ]
+}

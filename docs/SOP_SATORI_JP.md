@@ -346,3 +346,20 @@ nguyên: `fetch_script.py --lang ko` (nguồn), `tts.py --voice <ko-voice ai33>`
 - `ep3-sougi/` EP3 葬式はするな (con gái sơ sinh, mộ 49 năm), 29:58, 67 ảnh, thumb cụ ông quét mộ.
 - `ep4-tabidachi/` EP4 最期・6つの合図 (finale, nối EP1), 34:12, 74 ảnh, thumb nồi そうめん hồi quang.
 - `saigo-no-bento/` = demo tự nghĩ trước đó (không thuộc series).
+
+## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+
+> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+
+| | |
+|---|---|
+| Kiểu mở (`script.hook.patterns`) | H22 H23 H38 |
+| Câu khoá (`script.hook.closer`) | K12 |
+| Cách dựng hình (`script.hook.visual`) | `anh_ai_ref_grok` |
+| Nguồn hình | ảnh AI gpti2 khoá mặt bằng ảnh **của chính tập** trong `img\` → clip Grok 6 giây → ghép vào trước `final.mp4` |
+| Công tắc (`script.hook.enabled`) | **đang BẬT** |
+
+Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
+cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+
+Viết hook: `py -3.13 pipeline\hook_stage.py --profile satori-jp-obaa --slug <tập> --mode repair`

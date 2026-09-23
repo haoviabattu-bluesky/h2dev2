@@ -1,0 +1,955 @@
+{
+ "key": "sengoku",
+ "lane": "sengoku-uragawa",
+ "channel": {
+  "name": "どっこい日本史",
+  "id": "UCxXV78OIGchz13GAA7RGbEQ",
+  "url": "https://www.youtube.com/channel/UCxXV78OIGchz13GAA7RGbEQ"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\dokkoi-nihonshi",
+ "formula": {
+  "summary": "Một khung lặp lại: [0–5s] tên nhân vật/trận nổi tiếng + kết cục hoặc thông thuyết → [5–25s] cú đảo ('thắng mà thua', 'đúng hết mà thua', 'giai thoại do đời sau viết') → [20–40s] bằng chứng gốc hoặc con số → [22–40s] câu hỏi なぜ = gần như nguyên văn tiêu đề → [26–74s, trung vị 42s] khẩu hiệu 「さあ、教科書には載らない歴史の裏側へ。今宵も皆様をお連れしましょう。」 → lùi về 'ことの始まりは…'. Gói đăng lặp CÙNG một nghịch lý ở 3 chỗ: tiêu đề (【tên】+ câu hỏi), dòng vàng thumbnail (nghịch lý 7–11 chữ không tên), dòng mô tả thứ 2–3 (「…本当に…だったのでしょうか」). View thì đi theo ĐỘ NỔI TIẾNG của nhân vật/trận trước, rồi mới tới hook: video hook yếu nhất nhóm top (g9NiHpRWP0g, 6/12) vẫn 466k, video hook đảo thông thuyết từ giây 8 (lG0EzwtTfmw) chỉ 3,3k.",
+  "hook_beats": [
+   {
+    "t": "0–5s",
+    "name": "Tên quen + kết cục hoặc thông thuyết",
+    "desc": "Câu 1 luôn có TÊN riêng (người/trận). 3 biến thể: câu hỏi kết cục (Tun), tuyên bố sốc (Sd), kết cục trần (g9). Không mở bằng bối cảnh chung — BTCIRj8agB4 mở bằng 12s bối cảnh là điểm yếu duy nhất của nó.",
+    "example_ja": "名門田家はなぜ滅んだのか。 / この戦いにおいて今川吉本は全てにおいて正しかった。 / 天勝11年4月 静で柴田勝は橋秀吉に破れました。",
+    "example_video": "Tun00Fq_i0w / SdRuge8_gvM / g9NiHpRWP0g"
+   },
+   {
+    "t": "5–25s",
+    "name": "Cú đảo (nghịch lý hoặc 'đời sau bịa')",
+    "desc": "Đặt 2 sự thật đá nhau cạnh nhau, hoặc tuyên bố giai thoại là hậu thế viết. Ở 6 video top câu đảo rơi vào 0–17s (Sd 0s, g9 9s, Tun 13s, h9 15s, BT 17s; riêng Qb 58s). Video thấp: gV 56s, z9 24s nhưng hỏi ở 61s.",
+    "example_ja": "ですがこうした話は刑事が死んでから100年以上経って書かれたものです。 / 長くての河戦で勝ったのは家康でした。でも天下を握に行ったのは秀吉。",
+    "example_video": "h9tW20hT2ks / BTCIRj8agB4"
+   },
+   {
+    "t": "13–40s",
+    "name": "Bằng chứng gốc hoặc con số cụ thể",
+    "desc": "Một vật chứng có tên + nơi lưu giữ, hoặc 1 con số đập mắt — chính là chữ trên thumbnail khi có (41人). 5/10 video có trong 40s đầu (h9, ki5, Tun, lG0 5000の命, Sd 2万).",
+    "example_ja": "刑事が自分の手で書いた日記。前田刑事道中日記です。今も山形県の市立米沢図書館に保管されています。 / 最後まで勝よりに従った武士はわずか41人でした。 / その手紙は今も残っています。",
+    "example_video": "h9tW20hT2ks / Tun00Fq_i0w / ki5cLTt95AM"
+   },
+   {
+    "t": "22–40s",
+    "name": "Câu hỏi của cả video = đọc lại tiêu đề",
+    "desc": "Top 6: h9 22s, Sd 24s, BT 27s, Tun 0s+29s, Qb 31s/58s (g9 không hỏi). Thấp: ki5 39s (mới 5 ngày), z9 61s, gV 68s, lG0 không hỏi. Có thể hé 30% đáp án ngay sau (Tun 31s).",
+    "example_ja": "安はなぜ秀吉に頭を下げることになったのでしょうか? / ではなぜ破れたのでしょうか? / 答えは武田を強くしたものと滅ぼしたものが同じだったことにあります。",
+    "example_video": "BTCIRj8agB4 / SdRuge8_gvM / Tun00Fq_i0w"
+   },
+   {
+    "t": "26–74s (trung vị 42s)",
+    "name": "Khẩu hiệu nghi thức (K23)",
+    "desc": "Đặt NGAY SAU câu hỏi (7/8 video có cả hai: hỏi trước, khẩu hiệu sau 5–17s). Có ở 8/10 video đã chọn (7 nguyên văn + 1 biến thể z9) và 11/21 cả kênh — có cả ở video 3,3k nên nó là DẤU NHẬN DIỆN, không phải yếu tố thắng.",
+    "example_ja": "さあ、教科書には乗らない歴史の裏側へ。こ宵いも皆様をお連れしましょう。 (ASR; đúng: さあ、教科書には載らない歴史の裏側へ。今宵も皆様をお連れしましょう。)",
+    "example_video": "h9tW20hT2ks (39s), BTCIRj8agB4 (32s), lG0EzwtTfmw (26s)"
+   },
+   {
+    "t": "38–75s",
+    "name": "Lùi về điểm khởi đầu (K04)",
+    "desc": "Sau khẩu hiệu: 'ことの始まりは…' hoặc lùi về tuổi thơ. Riêng h9 kể lại GIAI THOẠI nổi tiếng dạng kịch trước (44–130s) rồi mới vào bằng chứng — giữ fan manga không cụt hứng. Đoạn tiểu sử tuổi thơ ngay sau hook (ki5 50s+, z9 70s+) là chỗ yếu.",
+    "example_ja": "ことの始まりは信長が倒れた翌年です。 / 全ての始まりは本能寺の変で織田信長と光継者だった信太田が倒れたことでした。 / まず1番有名な水ブの話からお話しましょう。",
+    "example_video": "BTCIRj8agB4 / g9NiHpRWP0g / h9tW20hT2ks"
+   }
+  ],
+  "title": {
+   "formula": "【人物名 or 合戦名】+ nghịch lý/định kiến + câu hỏi (なぜ〜のか / 本当に〜のか / 〜とは？ / どんな人だった？) + ｜戦国",
+   "counts": {
+    "bat_dau_bang_【】": "10/10 (cả kênh 21/21)",
+    "ket_thuc_bang_cau_hoi": "10/10 (？/のか/とは？)",
+    "co_なぜ": "5/10 — BTCIRj8agB4, Tun00Fq_i0w, SdRuge8_gvM, ki5cLTt95AM, z9DmSetqjuA (cả kênh 12/21)",
+    "co_｜戦国": "7/10",
+    "do_dai_ky_tu": {
+     "h9tW20hT2ks": 37,
+     "g9NiHpRWP0g": 29,
+     "QbPKiRRXM5E": 36,
+     "BTCIRj8agB4": 39,
+     "Tun00Fq_i0w": 32,
+     "SdRuge8_gvM": 33,
+     "ki5cLTt95AM": 32,
+     "z9DmSetqjuA": 44,
+     "gVasfPnkTqU": 41,
+     "lG0EzwtTfmw": 39
+    },
+    "dai_do_dai": "29–44 ký tự"
+   },
+   "examples": [
+    "【小牧・長久手の戦い】勝った家康は、なぜ最後に秀吉へ従ったのか｜徳川家康｜戦国",
+    "【桶狭間の戦い】すべて正しかった男の最期…今川義元はなぜ敗れたのか",
+    "【柴田勝家】3万の軍が半日で崩壊！賤ヶ岳の戦いの真実とは？",
+    "【前田慶次】漫画・花の慶次のモデルとなった前田慶次はどんな人だった？｜戦国"
+   ],
+   "note": "Chỉ 1/10 có tên tác phẩm đại chúng (花の慶次) — chính là video 774k. Video thấp nhất (lG0) là video duy nhất trong 10 mà 【】 chứa tên thành chứ không có tên người/trận nổi tiếng, và thân tiêu đề lại đứng về phía thông thuyết."
+  },
+  "thumbnail": {
+   "formula": "Dòng VÀNG viền đen dính mép trên = nghịch lý 7–11 chữ KHÔNG chứa tên nhân vật chính; dòng ĐỎ viền TRẮNG dính mép dưới = TÊN (+「の最期」). Đọc liền thành 1 câu. 1 mặt cận biểu cảm nặng hoặc thế đối đầu 2 người; nền bối cảnh 1 màu chủ đạo (tuyết đêm, lửa, mưa sét, vách vàng).",
+   "counts": {
+    "co_dong_vang": "9/10 (thiếu: lG0EzwtTfmw 3,3k)",
+    "co_dong_do": "10/10",
+    "dong_do_co_の最期": "4/10 — h9tW20hT2ks, Tun00Fq_i0w, SdRuge8_gvM, ki5cLTt95AM",
+    "dong_vang_kieu_〜のに": "3/10 — g9NiHpRWP0g 勝っていたのに総崩れ (466k), BTCIRj8agB4 勝ったのに頭を下げた (213k), SdRuge8_gvM 正しかったのに負けた (91k): cả 3 đều ở nhóm top",
+    "dong_vang_co_so": "1/10 — Tun00Fq_i0w 残ったのは、たった41人",
+    "dong_vang_la_cau_hoi": "1/10 — ki5cLTt95AM 秀吉に何をした？",
+    "dong_vang_chua_ten_nhan_vat_chinh": "0/9 (ki5 có tên 秀吉 = nhân vật đối thủ, không phải chính)",
+    "so_ky_tu_vang": "7–11 (作られた傾奇者 7 · 茶釜と果てた男 7 · 誰も呼んでいない 8 · 織田家崩壊の始まり 9 · 秀吉に何をした？ 9 · 勝っていたのに総崩れ 10 · 勝ったのに頭を下げた 10 · 正しかったのに負けた 10 · 残ったのは、たった41人 11)",
+    "so_ky_tu_do": "4–9 (清須会議 4 · 徳川家康 4 · 賤ヶ岳の戦い 6 · 千利休の最期 6 · 7 ×4 · 大悪人、松永久秀 8 · 備中高松城の水攻め 9)",
+    "bo_cuc": "1 mặt cận: 5/10 (h9, g9, Tun, Sd, z9) · 2 người đối đầu: 4/10 (BT, ki5, gV, lG0) · 4 người: 1/10 (Qb)",
+    "anh_thap_do_phan_giai": "1/10 — gVasfPnkTqU chỉ có bản 480×360, chữ thu nhỏ không dính mép (5,3k)"
+   },
+   "examples": [
+    "勝ったのに頭を下げた｜徳川家康",
+    "正しかったのに負けた｜今川義元の最期",
+    "残ったのは、たった41人｜武田勝頼の最期",
+    "作られた傾奇者｜前田慶次の最期"
+   ]
+  },
+  "description": {
+   "formula": "Dòng 1: 「{人物/合戦}を「{視点}」から描く歴史解説ドラマです。」 · Dòng 2: bối cảnh + 「━━なぜ〜のでしょうか。」 · Dòng 3: 「{人物}は、本当に{通説}だったのでしょうか。」 · Dòng 4: 「近年の研究をもとに、…教科書では語られない{X}の実像を、漫画イラストによるドラマ形式で丁寧に解説いたします。」 · 「戦国武将や日本史がお好きな方は、ぜひ最後までご覧ください。」 · chương 0:00… (5–6 chương, chương 1 = câu hỏi) · 【本動画の主な参考文献・一次資料】 · câu hỏi comment · đăng ký · 🪭おすすめ動画 · 3 dòng ※ (創作・脚色 / AIイラスト / パブリックドメイン) · 5 hashtag",
+   "counts": {
+    "dong1_歴史解説ドラマです": "7/10 — h9tW20hT2ks, g9NiHpRWP0g, QbPKiRRXM5E, BTCIRj8agB4, Tun00Fq_i0w, SdRuge8_gvM, ki5cLTt95AM",
+    "co_歴史解説ドラマ_o_bat_ky_dau": "9/10",
+    "co_本当に…でしょうか": "8/10 — h9tW20hT2ks, g9NiHpRWP0g, QbPKiRRXM5E, BTCIRj8agB4, Tun00Fq_i0w, SdRuge8_gvM, ki5cLTt95AM, z9DmSetqjuA",
+    "co_教科書では語られない_hoac_bien_the": "9/10",
+    "co_漫画イラストによるドラマ形式": "7/10",
+    "co_chuong_0:00": "10/10",
+    "co_muc_tai_lieu_goc": "10/10",
+    "co_cau_hoi_comment_ぜひコメントで教えてください": "3/10 — h9tW20hT2ks, BTCIRj8agB4, z9DmSetqjuA (3 video đăng 08-28, 09-04, 09-11; ki5 09-18 lại không có → chưa thành khuôn cố định)",
+    "co_おすすめ動画": "7/10",
+    "co_disclaimer_創作・脚色": "10/10"
+   },
+   "examples": [
+    "賤ヶ岳の戦いを「敗者・柴田勝家」の視点から描く歴史解説ドラマです。",
+    "小牧・長久手の戦いを「勝った側の徳川家康」から描く歴史解説ドラマです。",
+    "武田勝頼と武田家滅亡を「凡庸な二代目」の通説から見直す歴史解説ドラマです。🪭",
+    "柴田勝家は、本当に秀吉に力の差で押し切られただけの、古い武将だったのでしょうか。"
+   ],
+   "note": "3 video KHÔNG mở mô tả bằng khuôn dòng 1 chính là 3 video view thấp nhất (z9DmSetqjuA 16k, gVasfPnkTqU 5,3k, lG0EzwtTfmw 3,3k). Chỉ là tương quan — mô tả ảnh hưởng view ít hơn tiêu đề/thumbnail — nhưng làm theo khuôn không tốn gì."
+  },
+  "link_4_parts": "Một nghịch lý, 4 chỗ: tiêu đề nêu nó thành câu hỏi → thumbnail nén nó vào dòng vàng 7–11 chữ + tên ở dòng đỏ → hook nói lại nó trước giây ~30 rồi đọc lại câu hỏi tiêu đề → mô tả dòng 2–3 viết lại câu hỏi ('本当に…だったのでしょうか'). Khớp trọn 3 chỗ (title/thumb/hook đều K): BTCIRj8agB4 (213k). Khớp title↔hook K ở 6/10 (h9, Qb, BT, Tun, Sd, ki5). Chỗ hay gãy nhất là thumbnail↔hook: chỉ 4/10 K (BT, Tun, Sd, gV) — thumbnail thường đưa chi tiết nằm giữa/cuối video (g9 '勝っていた' ~910s, z9 '呼んでいない' ~652s, h9 '最期' ~1273s).",
+  "exceptions": [
+   "g9NiHpRWP0g (466k): hook không nhắc nghịch lý của tiêu đề/thumbnail, không có câu hỏi なぜ — thắng nhờ trận lớn + là tập 2 nối tiếp 清須会議 + gói đăng mạnh.",
+   "SdRuge8_gvM (91k, 06-12): chưa có khẩu hiệu; mở bằng 'Hôm nay giải mã từ mắt kẻ thua' (27s) — khung cũ trước khi kênh chốt nghi thức.",
+   "h9tW20hT2ks (774k): sau khi tuyên bố giai thoại là bịa (15s) vẫn dành 44–130s kể lại giai thoại dạng kịch — ngoại lệ có chủ đích với nhân vật có fandom manga.",
+   "lG0EzwtTfmw (3,3k): hook đảo thông thuyết đạt khung, nhưng video đầu kênh, tiêu đề không có tên người, thumbnail thiếu dòng vàng.",
+   "gVasfPnkTqU (5,3k): cùng kiểu 'giai thoại→đời sau bịa' như h9 nhưng cú đảo ở 56s thay vì 15s."
+  ],
+  "counts": {
+   "so_video_phan_tich": 10,
+   "so_video_ca_kenh": 21,
+   "cau_hoi_truoc_32s": "6/10 (h9 22 · Sd 24 · BT 27 · Tun 0 · Qb 31 · lG0 không hỏi nhưng đảo ở 8) — thấp: z9 61, gV 68; g9 không hỏi",
+   "khau_hieu": "8/10 đã chọn (7 nguyên văn + z9 biến thể), 11/21 cả kênh; thời điểm 26/32/38/39/45/47/67/69s",
+   "canh_kich_hoa_trong_15s_dau": "4/10 (Qb, ki5, z9, gV); 6/10 mở bằng giọng kể",
+   "bang_chung_goc_trong_40s": "2/10 nêu vật chứng có tên (h9 道中日記 29s, ki5 手紙 24s); 3/10 nêu con số đập mắt (Tun 41人 13s, lG0 5000の命 15s, Sd 2万の大軍 ~37s) → tổng 5/10; Sd nêu văn bản gốc 今川仮名目録追加 ở ~101s (ngoài 40s)",
+   "toc_do_doc": "288–329 chữ/phút (bỏ [音楽] + khoảng trắng); trung vị ~325 → 30s ≈ 160 chữ",
+   "thoi_luong": "19,2–24,5 phút (1151–1467s)"
+  },
+  "khuon_tap_dau": {
+   "_why": "Lane sengoku-uragawa CHƯA có tập nào → đây là khuôn để viết tập 1. Mỗi dòng có ví dụ nguyên văn (transcript ASR, trong ngoặc là chữ đúng) + video mẫu.",
+   "hook_theo_giay": [
+    {
+     "t": "0–5s",
+     "viec": "Câu 1 có TÊN nhân vật/trận + kết cục hoặc câu hỏi kết cục. Không mở bằng 'thời loạn…' chung chung.",
+     "vi_du_ja": "名門田家はなぜ滅んだのか。 (名門武田家はなぜ滅んだのか。)",
+     "mau": "Tun00Fq_i0w"
+    },
+    {
+     "t": "5–18s",
+     "viec": "Cú đảo: 'ai cũng biết X — nhưng' hoặc 'thắng A mà thua B'. Nếu nhân vật có game/manga, gọi tên sự nổi tiếng đó ở câu 1–2 rồi đảo.",
+     "vi_du_ja": "前田刑事ゲームや漫画で名前を見たことがある方も多いと思います。…ですがこうした話は刑事が死んでから100年以上経って書かれたものです。 (前田慶次…)",
+     "mau": "h9tW20hT2ks"
+    },
+    {
+     "t": "13–25s",
+     "viec": "1 con số hoặc 1 vật chứng có tên + nơi lưu giữ (đây là nguyên liệu dòng vàng thumbnail).",
+     "vi_du_ja": "最後まで勝よりに従った武士はわずか41人でした。 / 今も山形県の市立米沢図書館に保管されています。",
+     "mau": "Tun00Fq_i0w / h9tW20hT2ks"
+    },
+    {
+     "t": "22–30s",
+     "viec": "Đọc câu hỏi tiêu đề gần như nguyên văn. Được hé 30% đáp án dạng nghịch lý ngay sau.",
+     "vi_du_ja": "安はなぜ秀吉に頭を下げることになったのでしょうか? (家康はなぜ…) / 答えは武田を強くしたものと滅ぼしたものが同じだったことにあります。",
+     "mau": "BTCIRj8agB4 / Tun00Fq_i0w"
+    },
+    {
+     "t": "30–45s",
+     "viec": "Khẩu hiệu nghi thức của lane (tự đặt câu riêng cho kênh mình, KHÔNG chép nguyên văn khẩu hiệu kênh mẫu — đó là thương hiệu của họ).",
+     "vi_du_ja": "さあ、教科書には載らない歴史の裏側へ。今宵も皆様をお連れしましょう。 (kênh mẫu — chỉ để tham chiếu vị trí)",
+     "mau": "h9tW20hT2ks 39s · BTCIRj8agB4 32s"
+    },
+    {
+     "t": "45–120s",
+     "viec": "Lùi về 'ことの始まりは…' NHƯNG vẫn trong xung đột (cảnh có thoại), tránh tiểu sử tuổi thơ khô ngay sau hook. Nhân vật có fandom → dựng lại giai thoại nổi tiếng trước.",
+     "vi_du_ja": "ことの始まりは信長が倒れた翌年です。 / まず1番有名な水ブの話からお話しましょう。",
+     "mau": "BTCIRj8agB4 / h9tW20hT2ks"
+    }
+   ],
+   "cam": [
+    "Để câu hỏi của video sau 45s (z9DmSetqjuA 61s → 16k, gVasfPnkTqU 68s → 5,3k).",
+    "Kể trọn giai thoại 1 phút rồi mới nói 'là bịa' (gVasfPnkTqU 56s) — nói 'là bịa' trước, kể sau (h9tW20hT2ks 15s).",
+    "Thumbnail đưa chi tiết chỉ xuất hiện sau phút 10 mà hook không nhắc (z9 呼んでいない ~652s).",
+    "Mở 10s+ bằng bối cảnh chung không có tên/cảnh (BTCIRj8agB4 0–12s)."
+   ],
+   "tieu_de": {
+    "khuon": "【{人物名}】{thông thuyết/nghịch lý}は、なぜ{kết cục ngược}のか｜{từ khoá phụ}｜戦国",
+    "vi_du": [
+     "【小牧・長久手の戦い】勝った家康は、なぜ最後に秀吉へ従ったのか｜徳川家康｜戦国",
+     "【武田家滅亡】武田勝頼はなぜ、最強の名門を守れなかったのか｜戦国",
+     "【前田慶次】漫画・花の慶次のモデルとなった前田慶次はどんな人だった？｜戦国"
+    ],
+    "luat": "Tên trong 【】 phải là người/trận có game-anime; nếu có tác phẩm đại chúng nổi (漫画/大河) thì đặt vào thân tiêu đề như h9. Tiêu đề và hook phải đứng CÙNG phía (lG0 tiêu đề khen 奇策, hook chê → P)."
+   },
+   "thumbnail": {
+    "khuon": "Vàng (7–10 chữ, không tên): {đã A}のに{B} · Đỏ (4–7 chữ): {人物名}の最期 hoặc {合戦名}",
+    "vi_du": [
+     "勝ったのに頭を下げた / 徳川家康",
+     "正しかったのに負けた / 今川義元の最期",
+     "勝っていたのに総崩れ / 賤ヶ岳の戦い",
+     "残ったのは、たった41人 / 武田勝頼の最期"
+    ],
+    "luat": "Chữ dòng vàng phải xuất hiện (ý hoặc chữ) trong 30s đầu của hook — 4/10 video mẫu làm được và đều không bị lệch. Ảnh ≥1280×720, chữ dính mép như 9/10 mẫu."
+   },
+   "mo_ta": {
+    "khuon": [
+     "{人物/合戦}を「{視点}」から描く歴史解説ドラマです。",
+     "{bối cảnh 1 câu}━━{câu hỏi tiêu đề}でしょうか。",
+     "{人物}は、本当に{通説}だったのでしょうか。",
+     "{近年の研究/現存する手紙}をもとに、教科書では語られない{X}の実像を、漫画イラストによるドラマ形式で丁寧に解説いたします。",
+     "戦国武将や日本史がお好きな方は、ぜひ最後までご覧ください。",
+     "0:00 {câu hỏi} / 5 chương …",
+     "【本動画の主な参考文献・一次資料】 …",
+     "{câu hỏi mở cho người xem}━━ぜひコメントで教えてください。",
+     "※ 3 dòng: 創作・脚色 / AIイラスト / パブリックドメイン参考 · 5 hashtag #{人物} #戦国時代 #日本史 #{đối thủ} #{合戦}"
+    ],
+    "vi_du": [
+     "賤ヶ岳の戦いを「敗者・柴田勝家」の視点から描く歴史解説ドラマです。",
+     "羽柴秀吉と織田信雄の対立に家康が加わった戦国の大戦━━長久手で勝った家康は、なぜ二年半後、秀吉に膝をついたのでしょうか。",
+     "徳川家康は、本当に秀吉に敗れて従ったのでしょうか。",
+     "もしあなたが家康なら、勝ったあとでも秀吉に頭を下げられたでしょうか━━ぜひコメントで教えてください。"
+    ]
+   },
+   "cau_mo_mau_ngan": "(gợi ý 1 câu, không phải kịch bản) 「{人物}。ゲームで知っている方も多いと思います。ですがその姿は、死後{N}年経って書かれたものでした。」"
+  }
+ },
+ "videos": [
+  {
+   "video_id": "h9tW20hT2ks",
+   "tag": "top",
+   "views": 774148,
+   "duration_min": 22.5,
+   "title": "【前田慶次】漫画・花の慶次のモデルとなった前田慶次はどんな人だった？｜戦国",
+   "desc_first": "「花の慶次」のモデル、前田慶次の生涯を「記録」から描く歴史解説ドラマです。",
+   "thumb_text": "作られた傾奇者｜前田慶次の最期",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\h9tW20hT2ks.jpg",
+   "key_line_ja": "ですがこうした話は刑事が死んでから100年以上経って書かれたものです。",
+   "key_t": 15,
+   "lock_line_ja": "では本物の刑事とはどんな人だったのかそれを知ると[音楽]の手がかりが残っています。",
+   "lock_t": 22,
+   "intro_t": 39,
+   "promise_t": 29,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–5s: gọi tên quen từ game/manga 「前田刑事ゲームや漫画で名前を見たことがある方も多いと思います」",
+    "contradiction": "5–22s: kể 3 giai thoại (天下御免の傾奇者・水風呂・曲げた髷) rồi đập: 「こうした話は刑事が死んでから100年以上経って書かれたもの」 (~15s)",
+    "stake": "29–38s: bằng chứng gốc có địa chỉ lưu trữ 「刑事が自分の手で書いた日記…道中日記です。今も山形県の市立米沢図書館に保管されています」",
+    "open_loop": "22s 「では本物の刑事とはどんな人だったのか」 → khẩu hiệu 39s → 44s 「まず1番有名な水風呂の話からお話しましょう」 (vẫn kể giai thoại trước, bằng chứng sau)"
+   },
+   "kind": "C",
+   "patterns": [
+    "H39"
+   ],
+   "closers": [
+    "K10",
+    "K23"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề hỏi 「前田慶次はどんな人だった？」 và nêu 漫画・花の慶次; hook mở bằng 「ゲームや漫画で…」 (0s) và hỏi đúng câu đó ở 22s."
+   ],
+   "thumb_title": [
+    "P",
+    "Dòng vàng 「作られた傾奇者」 là góc 'giai thoại bịa' — tiêu đề không nói; dòng đỏ 「前田慶次の最期」 hứa cái chết, tiêu đề hỏi 'là người thế nào'."
+   ],
+   "thumb_hook": [
+    "P",
+    "「作られた」 khớp câu 15s (viết sau 100 năm); 「最期」 KHÔNG có trong 120s đầu — cái chết chỉ tới chương 19:29 (「死ん」 ở ~1273s)."
+   ],
+   "why": "Người xem vào vì yêu 花の慶次; câu 15s 'những chuyện đó được viết sau khi ông chết 100 năm' đe doạ đúng thứ họ yêu, rồi 29–38s đưa ra nhật ký chính tay ông viết (có nơi lưu trữ) làm lời hứa đáp án. Mẹo giữ chân: sau khẩu hiệu vẫn DỰNG LẠI giai thoại nổi tiếng (水風呂 48–80s, 髷 82–115s, 猿の面 117s+) nên fan không bị cụt hứng.",
+   "weak": "Hook không có cảm xúc/tính mạng (stake chỉ là 'bằng chứng'); thumbnail hứa 「最期」 mà 120s đầu không đặt vấn đề cái chết. 774k chủ yếu nhờ độ nổi tiếng của 花の慶次 (video DUY NHẤT trong 21 có tên tác phẩm manga trong tiêu đề) — đừng quy hết cho hook.",
+   "published": "2026-09-04",
+   "likes": 1854,
+   "comments": 279
+  },
+  {
+   "video_id": "g9NiHpRWP0g",
+   "tag": "top",
+   "views": 466929,
+   "duration_min": 21.5,
+   "title": "【柴田勝家】3万の軍が半日で崩壊！賤ヶ岳の戦いの真実とは？",
+   "desc_first": "賤ヶ岳の戦いを「敗者・柴田勝家」の視点から描く歴史解説ドラマです。",
+   "thumb_text": "勝っていたのに総崩れ｜賤ヶ岳の戦い",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\g9NiHpRWP0g.jpg",
+   "key_line_ja": "しかしこの戦いで終わったのは[音楽] 1人の武将の命だけではありません。",
+   "key_t": 9,
+   "lock_line_ja": "その [音楽]勝井が倒れたことで秀吉の前から 小田中最大の対抗者が消えました。",
+   "lock_t": 32,
+   "intro_t": 47,
+   "promise_t": 39,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–5s: kết cục trước 「天勝11年4月 静で柴田勝は橋秀吉に破れました」 (=天正11年4月 賤ヶ岳で柴田勝家は羽柴秀吉に敗れました)",
+    "contradiction": "5–9s 「それは勝にとって生涯最後の戦いでした」 — không có nghịch lý 'thắng mà thua' như tiêu đề/thumbnail",
+    "stake": "9–46s: nâng tầm hậu quả: 'cái kết không chỉ là mạng 1 võ tướng' → 天下を誰が引き継ぐのか 決着 → 「天下は…秀吉へと大きく傾き始めます」",
+    "open_loop": "Không có câu hỏi なぜ trong 120s; 47s khẩu hiệu rồi 52s 「全ての始まりは本能寺の変で…」 quay về 清須会議"
+   },
+   "kind": "D",
+   "patterns": [
+    "H40"
+   ],
+   "closers": [
+    "K23",
+    "K04"
+   ],
+   "score_0_12": 6,
+   "score_detail": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "Hook nói đúng trận và kết cục (thua), nhưng con số của tiêu đề 「3万の軍が半日で崩壊」 vắng: '3万' ở ~235s, '半日' ở ~911s."
+   ],
+   "thumb_title": [
+    "K",
+    "「勝っていたのに総崩れ」 + 「賤ヶ岳の戦い」 = cùng nghịch lý 'đang thắng thì sụp nửa ngày' của tiêu đề, nói ngắn hơn."
+   ],
+   "thumb_hook": [
+    "P",
+    "Tên trận khớp 0s; vế 'đang thắng' (勝ちかけていた) chỉ xuất hiện ở ~910s."
+   ],
+   "why": "Đặt kết cục ở câu đầu rồi nâng tầm: cái chết của 1 người = ngã rẽ thiên hạ sang 秀吉. Người xem biết kết mà không biết 'sụp thế nào', nên lời hứa thật nằm ở tiêu đề/thumbnail chứ không ở hook.",
+   "weak": "Hook là loại yếu nhất trong 6 video top (6/12): không lặp nghịch lý 'đang thắng mà sụp nửa ngày' của tiêu đề và thumbnail. 466k nhờ (1) trận lớn hệ 織田 + nhân vật có game, (2) là TẬP 2 nối tiếp 清須会議 (QbPKiRRXM5E kết bằng 「次は柴田勝が最後に選んだ戦場静の物語へ続きます」), (3) nghịch lý mạnh ở tiêu đề + thumbnail. Ví dụ rõ nhất cho 'video thắng dù hook yếu'.",
+   "published": "2026-08-07",
+   "likes": 2466,
+   "comments": 169
+  },
+  {
+   "video_id": "QbPKiRRXM5E",
+   "tag": "top",
+   "views": 219874,
+   "duration_min": 22.1,
+   "title": "【柴田勝家】信長亡き後、誰が織田家を動かすか？勝家と秀吉、清須会議｜戦国",
+   "desc_first": "清須会議を、柴田勝家の視点から描く歴史解説ドラマです。",
+   "thumb_text": "織田家崩壊の始まり｜清須会議",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\QbPKiRRXM5E.jpg",
+   "key_line_ja": "この日の勝の判断は[音楽]400年 経った今も答えが出ていません。",
+   "key_t": 58,
+   "lock_line_ja": "正しかっ たのか、他に[音楽]道はなかったのか。",
+   "lock_t": 64,
+   "intro_t": 69,
+   "promise_t": 31,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–14s: cảnh 本能寺の変 xong, 4 trọng thần (勝家・秀吉・長秀・恒興) ngồi ở 清須城",
+    "contradiction": "14–22s thoại: 「明けを打ち果たした小度の働きまずは霊を申す」「上様のゴム念を晴らしたまでにございます」 — lời cảm ơn khách sáo giữa 2 đối thủ",
+    "stake": "31–37s 「誰を次の小だ家の中心に吸えるのか。広大な両地を誰が収めるのか」 + 51s 「天下分け目の政治会談」",
+    "open_loop": "58–68s 「この日の勝の判断は400年経った今も答えが出ていません。正しかったのか、他に道はなかったのか」 → khẩu hiệu 69s → 75s quay về 魚津城 trước 本能寺"
+   },
+   "kind": "A",
+   "patterns": [
+    "H41"
+   ],
+   "closers": [
+    "K01",
+    "K23",
+    "K04"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề 「信長亡き後、誰が織田家を動かすか？勝家と秀吉、清須会議」 = câu hỏi 31–37s của hook, cùng cảnh 清須."
+   ],
+   "thumb_title": [
+    "P",
+    "「清須会議」 khớp; 「織田家崩壊の始まり」 là kết luận mạnh hơn tiêu đề (tiêu đề chỉ hỏi ai lãnh đạo)."
+   ],
+   "thumb_hook": [
+    "P",
+    "清須会議 khớp 0–51s; hook không nói 'sụp đổ' — nói 'đến nay chưa có đáp án'."
+   ],
+   "why": "Cảnh 4 người ngồi quanh 1 chiếc ghế trống là hình ảnh dễ dựng, và câu 58s 'phán quyết của 勝家 400 năm vẫn chưa có đáp án — đúng hay không còn đường nào khác' biến video thành phiên toà để người xem tự xử (K01 hai lựa chọn).",
+   "weak": "Câu khoá tới 58–68s — muộn nhất trong 6 video top; 37–51s là đoạn tổng quát 「全国の大名たちがその行方を見つめる中…」. Thắng nhờ đề tài 清須会議 (rất nổi) + mở chuỗi 2 tập với 賤ヶ岳.",
+   "published": "2026-07-31",
+   "likes": 951,
+   "comments": 95
+  },
+  {
+   "video_id": "BTCIRj8agB4",
+   "tag": "top",
+   "views": 213564,
+   "duration_min": 19.7,
+   "title": "【小牧・長久手の戦い】勝った家康は、なぜ最後に秀吉へ従ったのか｜徳川家康｜戦国",
+   "desc_first": "小牧・長久手の戦いを「勝った側の徳川家康」から描く歴史解説ドラマです。",
+   "thumb_text": "勝ったのに頭を下げた｜徳川家康",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\BTCIRj8agB4.jpg",
+   "key_line_ja": "長くての河戦で勝ったの は家康でした。 でも天下を握に行ったのは 秀吉。",
+   "key_t": 17,
+   "lock_line_ja": "安はなぜ秀吉に頭を 下げることになったのでしょうか?",
+   "lock_t": 27,
+   "intro_t": 32,
+   "promise_t": 27,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–17s: bối cảnh sách giáo khoa 「本能寺の変で織田信長が倒れ混沌を極めた群雄割拠の時代…」 + tên trận 小牧・長久手",
+    "contradiction": "17–23s 「長久手の合戦で勝ったのは家康でした。でも天下を握ったのは秀吉」",
+    "stake": "23–27s 「しかし家康も滅ぼされず次の時代へ残りました」",
+    "open_loop": "27s 「家康はなぜ秀吉に頭を下げることになったのでしょうか？」 → khẩu hiệu 32s → 38s 「ことの始まりは信長が倒れた翌年です」"
+   },
+   "kind": "C",
+   "patterns": [
+    "H40"
+   ],
+   "closers": [
+    "K23",
+    "K04"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Câu 27s gần như chép tiêu đề 「勝った家康は、なぜ最後に秀吉へ従ったのか」."
+   ],
+   "thumb_title": [
+    "K",
+    "「勝ったのに頭を下げた」+「徳川家康」 = rút gọn đúng nghịch lý tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "Cụm 'thắng / cúi đầu' có nguyên trong hook ở 17–29s (「頭を下げ」 ~29s)."
+   ],
+   "why": "Nghịch lý thắng-trận-thua-thiên-hạ khớp 3 chỗ (tiêu đề/thumbnail/hook); người xem biết 家康 cuối cùng thắng tất cả nên câu 'vì sao lại cúi đầu' chạm đúng hiểu biết có sẵn của họ.",
+   "weak": "12s đầu là đoạn bối cảnh trừu tượng không có cảnh (dễ rơi người xem lướt). Like/view chỉ 0,16% (thấp nhất trong 10) — view nhiều nhưng tương tác mỏng.",
+   "published": "2026-09-11",
+   "likes": 348,
+   "comments": 45
+  },
+  {
+   "video_id": "Tun00Fq_i0w",
+   "tag": "top",
+   "views": 142996,
+   "duration_min": 20.1,
+   "title": "【武田家滅亡】武田勝頼はなぜ、最強の名門を守れなかったのか｜戦国",
+   "desc_first": "武田勝頼と武田家滅亡を「凡庸な二代目」の通説から見直す歴史解説ドラマです。🪭",
+   "thumb_text": "残ったのは、たった41人｜武田勝頼の最期",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\Tun00Fq_i0w.jpg",
+   "key_line_ja": "最後まで勝より[音楽]に従った武士は わずか41人でした。",
+   "key_t": 13,
+   "lock_line_ja": "その男がなぜ?",
+   "lock_t": 29,
+   "intro_t": 38,
+   "promise_t": 31,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–2s câu hỏi thẳng 「名門田家はなぜ滅んだのか」 + 2–13s 信玄が残した家…その代で武田は滅びました",
+    "contradiction": "18–29s 「勝よは初めから見限られていたのではありません…援軍が来る前に城を落とす投手でした」",
+    "stake": "13–18s 「最後まで勝よりに従った武士はわずか41人でした」",
+    "open_loop": "29s 「その男がなぜ?」 + 31s hé 30% đáp án 「答えは武田を強くしたものと滅ぼしたものが同じだったことにあります」 → khẩu hiệu 38s"
+   },
+   "kind": "E",
+   "patterns": [
+    "H40"
+   ],
+   "closers": [
+    "K10",
+    "K23",
+    "K04"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Câu đầu tiên (0s) = câu hỏi tiêu đề 「武田勝頼はなぜ、最強の名門を守れなかったのか」."
+   ],
+   "thumb_title": [
+    "P",
+    "Tiêu đề hỏi 'vì sao không giữ được'; thumbnail đưa con số 41 người + 「最期」 — cùng câu chuyện, khác góc (hậu quả vs nguyên nhân)."
+   ],
+   "thumb_hook": [
+    "K",
+    "「41人」 ở 13–17s; 「最期」 được báo bằng 「しかしその代で武田は滅びました」 ~10s."
+   ],
+   "why": "Mật độ cao nhất kênh: câu hỏi ở 0s, con số 41 ở 13s, đảo định kiến 'không phải bị bỏ rơi từ đầu' ở 18s, và hé đáp án dạng nghịch lý ở 31s ('cái làm Takeda mạnh cũng là cái diệt Takeda') — người xem có một câu trả lời đủ lạ để muốn xem chứng minh.",
+   "weak": "Không có cảnh/thoại trong 44s đầu (toàn giọng kể). 142k thấp hơn 2 video 柴田勝家 dù hook tốt hơn — đề tài 'diệt vong' nổi nhưng 勝頼 kém nổi hơn 慶次/勝家.",
+   "published": "2026-07-24",
+   "likes": 980,
+   "comments": 316
+  },
+  {
+   "video_id": "SdRuge8_gvM",
+   "tag": "top",
+   "views": 91235,
+   "duration_min": 21.9,
+   "title": "【桶狭間の戦い】すべて正しかった男の最期…今川義元はなぜ敗れたのか",
+   "desc_first": "桶狭間の戦いを「敗者・今川義元」の視点から描く歴史解説ドラマです。",
+   "thumb_text": "正しかったのに負けた｜今川義元の最期",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\SdRuge8_gvM.jpg",
+   "key_line_ja": "この戦いにおいて今川吉本は全てにおいて 正しかった。",
+   "key_t": 0,
+   "lock_line_ja": "ではなぜ破れたの でしょうか?",
+   "lock_t": 24,
+   "intro_t": null,
+   "promise_t": 27,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–4s câu tuyên bố sốc 「この戦いにおいて今川吉本は全てにおいて正しかった」",
+    "contradiction": "4–18s 「桶狭間の戦いは織田信長が奇襲で今川義元を討った。歴史の教科書から私たちは長くそう教わってきました。しかし…その実態は全く違います」",
+    "stake": "18–24s 「今川吉本は酒によって隙をさらすような愚かな将では決してありませんでした」",
+    "open_loop": "24s 「ではなぜ破れたのでしょうか?」 + 27s 「本日は桶狭間の戦いを敗者の目から紐解きます」 (chưa có khẩu hiệu — video tháng 6)"
+   },
+   "kind": "B",
+   "patterns": [
+    "H39"
+   ],
+   "closers": [
+    "K10"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "「すべて正しかった男…なぜ敗れたのか」 = câu 0s + câu 24s."
+   ],
+   "thumb_title": [
+    "K",
+    "「正しかったのに負けた」 = nửa đầu tiêu đề rút gọn; 「今川義元の最期」 = 'すべて正しかった男の最期'."
+   ],
+   "thumb_hook": [
+    "K",
+    "「正しかった」 ở 0–3s; cái chết (最後の太刀) chỉ báo trước bằng tiêu đề chương, hook chưa nói — vẫn cùng lời hứa."
+   ],
+   "why": "Đảo thẳng điều ai cũng học (奇襲・酒宴で油断) ngay giây 0 bằng một câu khẳng định tuyệt đối 'đúng trong mọi thứ' — người xem phải ở lại để thấy 'đúng hết mà vẫn thua' là thế nào.",
+   "weak": "31–55s là liệt kê năng lực (法・同盟・2万) dạng thuyết giảng, cảnh kịch hoá đầu tiên ~74s. Video cũ (06-12) nên chưa có khẩu hiệu; view 91k tích 3 tháng, nhưng like/view 1,28% + 393 comment = video được 'fan cứng' yêu nhất trong nhóm top.",
+   "published": "2026-06-12",
+   "likes": 1165,
+   "comments": 393
+  },
+  {
+   "video_id": "ki5cLTt95AM",
+   "tag": "new",
+   "views": 68395,
+   "duration_min": 19.2,
+   "title": "【千利休】秀吉を支えた茶人は、なぜ切腹を命じられたのか｜戦国時代",
+   "desc_first": "千利休の最期の16日を「京を追われた夜の舟」から描く歴史解説ドラマです。",
+   "thumb_text": "秀吉に何をした？｜千利休の最期",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\ki5cLTt95AM.jpg",
+   "key_line_ja": "ところが[音楽]その秀吉が理球に 伏を命じることになります。",
+   "key_t": 34,
+   "lock_line_ja": "秀吉に徴用 [音楽]された千の球はなぜ伏を命じられ たのか。",
+   "lock_t": 39,
+   "intro_t": 45,
+   "promise_t": 17,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–13s cảnh đêm: 「夜の淀川を一層の船が下っていきます。乗っているのは線の利球。今日を追われ酒井へ帰る途中でした」 + 2 người ra tiễn",
+    "contradiction": "34s 「ところがその秀吉が理球に伏を命じることになります」 (người bảo trợ ra lệnh mổ bụng)",
+    "stake": "17–27s 「この見送りから始まる球の最後の16日」 + 「その手紙は今も残っています」 (đếm ngược + bằng chứng gốc)",
+    "open_loop": "39s 「秀吉に徴用された千の球はなぜ伏を命じられたのか」 → khẩu hiệu 45s → 50s tiểu sử từ năm sinh 1522"
+   },
+   "kind": "A",
+   "patterns": [
+    "H41"
+   ],
+   "closers": [
+    "K23",
+    "K04"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Câu 39s = tiêu đề 「秀吉を支えた茶人は、なぜ切腹を命じられたのか」."
+   ],
+   "thumb_title": [
+    "P",
+    "「千利休の最期」 khớp; 「秀吉に何をした？」 đổi hướng câu hỏi thành 'lỗi của 利休', tiêu đề hỏi 'vì sao bị ra lệnh'."
+   ],
+   "thumb_hook": [
+    "P",
+    "最期 = '最後の16日' (17s) khớp; 'đã làm gì 秀吉' không có trong hook — câu gần nhất 「あなたは2人の間に何があったと思いますか」 ở ~1127s (CTA cuối)."
+   ],
+   "why": "Cảnh chiếc thuyền đêm + '16 ngày cuối' tạo đồng hồ đếm ngược, bức thư còn lưu giữ làm bằng chứng; câu hỏi tiêu đề đọc nguyên văn ở 39s.",
+   "weak": "Nghịch lý (người bảo trợ ra lệnh chết) tới 34s sau 20s cảnh yên tĩnh; 50–130s sau khẩu hiệu là tiểu sử tuổi thơ 吉郎 (sinh 1522, học trà) — đoạn dễ rơi người xem nhất trong 10 video. 68k sau 5 ngày = đang chạy tốt, chưa phải kết quả cuối.",
+   "published": "2026-09-18",
+   "likes": 204,
+   "comments": 18
+  },
+  {
+   "video_id": "z9DmSetqjuA",
+   "tag": "new",
+   "views": 16291,
+   "duration_min": 23.4,
+   "title": "【前田利家】織田信長に追放された男は、なぜ戦場に現れたのか｜前田利家・執念の二年｜戦国」",
+   "desc_first": "前田利家は、本当に槍働きだけの猛将だったのでしょうか。",
+   "thumb_text": "誰も呼んでいない｜戦場の前田利家",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\z9DmSetqjuA.jpg",
+   "key_line_ja": "その 獣編みをまたは信長がいる[音楽]矢倉の 下で着たのです。",
+   "key_t": 24,
+   "lock_line_ja": "では または追われた織田の家へどうやって帰っ たのでしょうか。",
+   "lock_t": 61,
+   "intro_t": 67,
+   "promise_t": 54,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–7s 「A62年尾終わりの清ス場二の丸の矢倉の下で1人の若い武士が刀を抜きました」 (永禄2年 清須城)",
+    "contradiction": "18–29s người bị chém là 同朋衆 hầu 信長, chém ngay dưới lầu có 信長",
+    "stake": "36–50s 勝家・可成 xin tha → 「犬を浪人と追放を言い渡します…小田を首になったのです」",
+    "open_loop": "54s 「しかしその後この男は小田の家臣として数々の活躍を見せる」 → 61s 「どうやって帰ったのでしょうか」 → khẩu hiệu biến thể 67s 「それでは子宵いも皆様を歴史の物語へお連れします」"
+   },
+   "kind": "A",
+   "patterns": [
+    "H41"
+   ],
+   "closers": [
+    "K23",
+    "K04"
+   ],
+   "score_0_12": 8,
+   "score_detail": [
+    1,
+    1,
+    2,
+    1,
+    1,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Tiêu đề hỏi 「なぜ戦場に現れたのか」; hook hỏi 'quay lại bằng cách nào' ở 61s và không nhắc 'chiến trường'."
+   ],
+   "thumb_title": [
+    "K",
+    "「誰も呼んでいない」+「戦場の前田利家」 = 'bị đuổi mà vẫn xuất hiện ở chiến trường' của tiêu đề."
+   ],
+   "thumb_hook": [
+    "L",
+    "'Không ai gọi' / 'chiến trường' vắng trong 120s đầu: 「呼ばれていない」 lần đầu ~652s (chương 9:36 呼ばれていない戦場へ)."
+   ],
+   "why": "Cảnh chém người hầu của chủ ngay dưới lầu chủ là biến cố cực lạ và dễ dựng; thoại 「犬か。犬が来たのか」 cho người xem biệt danh 犬 của 利家 (fan game biết).",
+   "weak": "Câu hỏi của video tới 61s và lệch tiêu đề; lời hứa của thumbnail/tiêu đề (tự ý ra trận không ai gọi) nằm ở phút 9–15. 70s+ lại lùi về tuổi thơ 荒子/犬千代. Đăng 08-28 giữa lúc kênh đang lên (h9 09-04 774k) mà chỉ 16k → không đổ cho tuổi kênh.",
+   "published": "2026-08-28",
+   "likes": 59,
+   "comments": 12
+  },
+  {
+   "video_id": "gVasfPnkTqU",
+   "tag": "new",
+   "views": 5370,
+   "duration_min": 23.8,
+   "title": "【松永久秀】「稀代の悪人」は本当に奈良の大仏を焼いたのか｜信長が欲した平蜘蛛｜戦国",
+   "desc_first": "織田信長に背き、東大寺大仏殿を焼き、将軍を討ったと言われる戦国の梟雄━━稀代の悪人と呼ばれた男の実像に迫ります。",
+   "thumb_text": "茶釜と果てた男｜大悪人、松永久秀",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\gVasfPnkTqU.jpg",
+   "key_line_ja": "ここ までの話は後の世が作ったものです。",
+   "key_t": 56,
+   "lock_line_ja": "本当の久秀はどんな男 でなぜここまで言われることになったの でしょうか?",
+   "lock_t": 68,
+   "intro_t": null,
+   "promise_t": 59,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–48s kịch hoá trọn giai thoại: thành bị vây, 「古天妙平雲。天下に2つとない茶の湯の釜」, 「このとわしの首どちらも渡さぬ」, đập nồi, ôm thuốc súng chết trong lửa",
+    "contradiction": "56s 「ここまでの話は後の世が作ったものです」",
+    "stake": "59–68s 「江戸の頃の書物はこの男を機代の悪人と呼びました。主君の家を奪い将軍を打ち大仏を焼いた男であると」",
+    "open_loop": "68s 「本当の久秀はどんな男でなぜここまで言われることになったのでしょうか?」 → không khẩu hiệu → 74s 天文9年 1540, cảnh người chép thuê"
+   },
+   "kind": "C",
+   "patterns": [
+    "H39",
+    "H41"
+   ],
+   "closers": [
+    "K10"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    1,
+    2,
+    2,
+    1,
+    1,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "「大仏を焼いたのか」 chỉ lướt qua ở ~66s trong danh sách tội; hook hỏi 'là người thế nào', còn 0–56s là 平蜘蛛 (vế thứ 2 của tiêu đề)."
+   ],
+   "thumb_title": [
+    "P",
+    "「大悪人、松永久秀」 khớp 「稀代の悪人」; 「茶釜と果てた男」 khớp vế 「信長が欲した平蜘蛛」 — thumbnail bỏ vế 大仏 là câu hỏi chính của tiêu đề."
+   ],
+   "thumb_hook": [
+    "K",
+    "0–56s chính là cảnh 'chết cùng ấm trà', 59s 「悪人」."
+   ],
+   "why": "Giai thoại 平蜘蛛 nổ tung là cảnh điện ảnh nhất trong 10 video, và cú 'tất cả là đời sau bịa' đảo ngược nó.",
+   "weak": "Cú đảo tới 56s — người xem đã xem 1 phút một chuyện mà video sắp nói là bịa; câu hỏi 68s; tiêu đề có 2 lời hứa (大仏 + 平蜘蛛). Thumbnail là file DUY NHẤT trong 10 chỉ có 480×360 (không có bản maxres) và chữ thu nhỏ không dính mép như 9 cái kia. 5,3k dù đăng 08-21 giữa giai đoạn kênh tăng — gói đăng + hook muộn là nghi phạm, nhưng không tách được khỏi yếu tố đề tài (久秀 không thuộc trục 織田–豊臣–徳川 chính).",
+   "published": "2026-08-21",
+   "likes": 34,
+   "comments": 8
+  },
+  {
+   "video_id": "lG0EzwtTfmw",
+   "tag": "low",
+   "views": 3396,
+   "duration_min": 24.4,
+   "title": "【備中高松城】教科書が教えない、歴史の裏側ー兵を失わず勝利を手にする奇策とは？",
+   "desc_first": "備中高松城――。",
+   "thumb_text": "備中高松城の水攻め (không có dòng vàng)",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\lG0EzwtTfmw.jpg",
+   "key_line_ja": "しかしビッチ中 高松城の水攻めの真実は決してそんな 綺麗事ではありません。",
+   "key_t": 8,
+   "lock_line_ja": "その裏にあったの は5000の命と莫大な金[音楽]を天秤 にかけた戦国史場最も残酷で泥臭い極限の 騙し合い[音楽]だったのです。",
+   "lock_t": 15,
+   "intro_t": 26,
+   "promise_t": 15,
+   "timing_source": "est",
+   "beats": {
+    "event": "0–5s thông thuyết 「誰も血を流さずに城料を落とした天才秀吉による人道的な規作」",
+    "contradiction": "5–15s 「皆様もそう教わったのではないでしょうか。しかし…決してそんな綺麗事ではありません」",
+    "stake": "15–25s 「5000の命と莫大な金を天秤にかけた…極限の騙し合い」",
+    "open_loop": "Không có câu hỏi; khẩu hiệu ở 26s rồi 32–130s giảng giá gạo/kinh tế/毛利120万石 — không có nhân vật, không có cảnh"
+   },
+   "kind": "C",
+   "patterns": [
+    "H39"
+   ],
+   "closers": [
+    "K10",
+    "K23"
+   ],
+   "score_0_12": 6,
+   "score_detail": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "title_hook": [
+    "P",
+    "Tiêu đề đứng về phía thông thuyết 「兵を失わず勝利を手にする奇策とは？」, hook ở 8s nói điều ngược lại (không phải chuyện đẹp) — cùng sự kiện, ngược khung."
+   ],
+   "thumb_title": [
+    "P",
+    "Chỉ có tên sự kiện 「備中高松城の水攻め」, không có dòng vàng nghịch lý nào."
+   ],
+   "thumb_hook": [
+    "P",
+    "Tên sự kiện khớp; không có gì của cú đảo 8s hay '5000 mạng' lên ảnh."
+   ],
+   "why": "Cấu trúc đảo thông thuyết đầy đủ trong 25s (thông thuyết → 'bạn cũng được dạy thế' → 'không phải chuyện đẹp' → 5000 mạng) — về hook là ổn.",
+   "weak": "Thua vì lý do khác hook: video ĐẦU TIÊN của kênh (2026-04-10), tiêu đề không có tên nhân vật (chỉ có tên thành), thumbnail thiếu dòng vàng, mô tả chưa theo khuôn, và 32–130s là bài giảng kinh tế không nhân vật. Không nên kết luận 'kiểu hook đảo thông thuyết yếu'.",
+   "published": "2026-04-10",
+   "likes": 63,
+   "comments": 8
+  }
+ ],
+ "win_vs_lose": "TOP (≥91k: h9 774k, g9 466k, Qb 219k, BT 213k, Tun 142k, Sd 91k) vs THẤP (z9 16k, gV 5,3k, lG0 3,3k; ki5 68k mới 5 ngày để riêng). (1) ĐỀ TÀI là khác biệt lớn nhất: 6/6 top là trục 織田–豊臣–徳川 hoặc nhân vật có fandom manga (花の慶次), trận/hội nghị ai cũng học; 3 video thấp là tập 'bên lề' (tuổi trẻ 利家, 松永久秀, 1 cuộc vây thành không tên người). Bằng chứng tách được: g9 hook 6/12 vẫn 466k; lG0 hook đảo ở 8s vẫn 3,3k. (2) HOOK khác ở thời điểm câu hỏi: top hỏi/đảo trước 32s ở 5/6 (h9 22, Sd 24, BT 27, Tun 0, Qb 31); thấp hỏi ở 61s (z9), 68s (gV), không hỏi (lG0). Điểm hook trung bình top 9,5/12 (9,6,9,10,11,10) vs thấp 7,7 (8,9,6). (3) GÓI ĐĂNG: 3/3 dòng vàng kiểu '〜のに' nằm ở top; video thấp có thumbnail thiếu dòng vàng (lG0) hoặc ảnh 480×360 chữ nhỏ (gV); 3/3 video thấp không mở mô tả bằng khuôn 「〜から描く歴史解説ドラマです」 (7/7 còn lại có). (4) Thời điểm đăng không giải thích: z9 (08-28) và gV (08-21) đăng giữa lúc h9 (09-04) và BT (09-11) bùng nổ. Kết luận: thua do đề tài trước, hook muộn sau; hook tốt không cứu được đề tài không tên (lG0), hook yếu vẫn thắng nếu đề tài + gói đăng mạnh (g9).",
+ "our_eps": [],
+ "our_summary": "Lane sengoku-uragawa chưa có tập nào (0 tập: E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\sengoku-uragawa\\ chỉ có branding\\). Không có gì để chấm; dùng formula.khuon_tap_dau làm khuôn tập 1. 3 kiểm tra nên thành gate khi viết tập 1: (a) câu hỏi tiêu đề trong ~160 chữ đầu, (b) chữ dòng vàng thumbnail có trong ~160 chữ đầu, (c) ≥1 tài liệu gốc có nơi lưu trữ trước ~190 chữ (35s).",
+ "principles": [
+  {
+   "claim": "Chọn nhân vật/trận thuộc trục 織田–豊臣–徳川 hoặc có fandom manga/game TRƯỚC khi nghĩ tới hook.",
+   "cause": "Người xem click vì đã biết tên; 'mặt sau' chỉ hấp dẫn khi 'mặt trước' đã quen.",
+   "evidence": "g9NiHpRWP0g hook 6/12 → 466k; lG0EzwtTfmw hook đảo ở 8s nhưng tiêu đề không tên người → 3,3k; h9tW20hT2ks (花の慶次 trong tiêu đề) 774k; cả kênh: 春日局 10k, 寧々 4,4k, 近藤勇 6,4k, ジョン万次郎 5,1k.",
+   "why": "Không hook nào bù được một cái tên không ai tìm — kênh mẫu chứng minh cả chiều thuận và nghịch.",
+   "how": "Tập 1–3 của sengoku-uragawa chọn từ danh sách còn trống đã kiểm (織田信長/豊臣秀吉/伊達政宗/真田幸村/上杉謙信/武田信玄), đưa tên game/anime/大河 vào thân tiêu đề nếu có."
+  },
+  {
+   "claim": "Nói câu hỏi của tiêu đề (gần nguyên văn) trước giây ~30.",
+   "cause": "Người xem đến với câu hỏi của tiêu đề; nghe lại nó xác nhận 'đúng video mình muốn', chưa nghe thì cảnh kịch hoá chỉ là cảnh lạ.",
+   "evidence": "Top: h9 22s, Sd 24s, BT 27s, Tun 0s, Qb 31s. Thấp: z9 61s (16k), gV 68s (5,3k). ki5 39s (68k/5 ngày) ở giữa.",
+   "why": "Là đòn bẩy hook duy nhất trong kênh có tương quan rõ với view mà không đổi đề tài.",
+   "how": "Gate cho lane: câu chứa 「なぜ」/「本当に」 lặp ≥60% chữ tiêu đề phải xuất hiện trong ~160 chữ đầu (≈30s ở 325 chữ/phút)."
+  },
+  {
+   "claim": "Kiểu 'giai thoại → đời sau bịa' phải nói 'bịa' TRƯỚC khi kể giai thoại dài.",
+   "cause": "Kể giai thoại trọn 1 phút rồi mới lật khiến người xem không biết video nói về gì và cảm thấy mất thời gian với thứ vừa bị phủ định.",
+   "evidence": "Cùng kiểu mở H39: h9tW20hT2ks lật ở 15s rồi mới dựng giai thoại (44–130s) → 774k; gVasfPnkTqU dựng giai thoại 0–56s rồi lật → 5,3k.",
+   "why": "Giữ được cả 2 cái lợi: tò mò 'thật thế nào' + vẫn được xem cảnh giai thoại hấp dẫn.",
+   "how": "Tập có giai thoại nổi tiếng: 0–5s gọi tên + 'ai cũng biết qua game', ≤18s 'những chuyện đó viết sau N năm', ≤30s vật chứng, rồi mới dựng giai thoại."
+  },
+  {
+   "claim": "Thumbnail = 2 dòng đọc liền; dòng vàng là nghịch lý '〜のに〜' không có tên, dòng đỏ là tên (+の最期).",
+   "cause": "Nghịch lý tạo câu hỏi trong 1 lần nhìn; tên ở dòng đỏ lớn bảo đảm người biết nhân vật nhận ra ngay.",
+   "evidence": "3/3 dòng vàng '〜のに' đều ở top (g9 466k, BT 213k, Sd 91k); 9/10 có dòng vàng, cái duy nhất thiếu là lG0 3,3k; gV (5,3k) là cái duy nhất 480×360 chữ thu nhỏ.",
+   "why": "Kênh dùng template cố định 21/21 nên khác biệt nằm ở CHỮ dòng vàng — nơi đáng tối ưu.",
+   "how": "Mỗi tập viết 3 phương án dòng vàng: 1 '〜のに', 1 con số (たった41人), 1 'được tạo ra/bịa' (作られた…); chọn cái có trong 30s đầu hook."
+  },
+  {
+   "claim": "Chữ trên thumbnail phải có mặt trong 30s đầu hook.",
+   "cause": "Thumbnail là lời hứa thứ 2; nếu hook không nhắc, người vào vì thumbnail không thấy lời hứa được xác nhận.",
+   "evidence": "thumb↔hook K ở 4/10 (BT, Tun, Sd, gV); L ở z9DmSetqjuA ('呼んでいない' ~652s) — 16k; BT (K cả 3 chỗ) 213k.",
+   "why": "Thumbnail↔hook là mắt xích gãy nhiều nhất trong kênh mẫu (6/10 chỉ P/L) — làm đúng là lợi thế so với chính kênh mẫu.",
+   "how": "Kiểm máy: grep chữ dòng vàng (hoặc từ khoá của nó) trong ~160 chữ đầu script; không có → đổi chữ thumbnail hoặc đưa câu đó lên."
+  },
+  {
+   "claim": "Neo hook bằng bằng chứng gốc có tên + nơi lưu giữ.",
+   "cause": "Khán giả sử (nam 40+) cần lý do tin 'mặt sau' không phải bịa tiếp; vật chứng có địa chỉ biến lời hứa thành kiểm chứng được.",
+   "evidence": "h9tW20hT2ks 29–38s 『前田慶次道中日記』 + 市立米沢図書館 (774k); ki5cLTt95AM 24s 「その手紙は今も残っています」; mô tả có mục tài liệu gốc 10/10.",
+   "why": "Là thứ tách kênh 'mặt sau lịch sử' khỏi kênh kể giai thoại, và khớp luật cứng lane (không bịa, tách truyền thuyết/sử liệu).",
+   "how": "series_ctx.txt của mỗi tập phải có ≥1 tài liệu gốc có nơi lưu trữ; hook nêu nó trước ~35s; mô tả liệt kê ở 【本動画の主な参考文献・一次資料】."
+  },
+  {
+   "claim": "Làm chuỗi 2 tập cho nhân vật lớn, tập 1 kết bằng lời hẹn tập 2.",
+   "cause": "Người xem xong tập 1 có sẵn câu hỏi kết cục; mô tả + màn cuối dẫn thẳng sang.",
+   "evidence": "QbPKiRRXM5E (清須会議, 07-31, 219k) kết bằng 「次は柴田勝が最後に選んだ戦場静の物語へ続きます」 → g9NiHpRWP0g (賤ヶ岳, 08-07) 466k dù hook yếu. Chỉ 1 cặp trong kênh — bằng chứng mỏng.",
+   "why": "Cặp duy nhất trong kênh đã cho video view cao thứ 2 dù hook yếu nhất nhóm top.",
+   "how": "Với 1 nhân vật lớn (vd 織田信長), lên kế hoạch 2 tập theo mốc thời gian; màn cuối tập 1 hẹn tên trận/sự kiện tập 2; tập 2 mô tả link tập 1."
+  }
+ ],
+ "new_patterns": [
+  {
+   "id": "H39",
+   "name": "Giai thoại nổi tiếng → 'do đời sau viết/giáo khoa dạy' → tài liệu gốc",
+   "kind": "C",
+   "mechanism": "Gọi tên nhân vật qua hình ảnh đại chúng (game/manga/sách giáo khoa), kể 1–3 giai thoại ai cũng biết, rồi tuyên bố chúng được viết sau khi người đó chết hàng trăm năm / trái với sử liệu. Người xem bị đe doạ đúng điều mình tin, và tài liệu gốc được đưa ra như lời hứa đáp án.",
+   "template": "{人物}。{ゲームや漫画/教科書}で{有名な逸話}を知っている方も多いと思います。ですがこうした話は{人物}が死んでから{N}年以上経って書かれたものです。では本物の{人物}とはどんな人だったのか。その手がかりが残っています。{一次史料}。今も{所蔵先}に保管されています。",
+   "when": "Nhân vật có giai thoại nổi tiếng (anime/game/大河) mà sử liệu gốc nói khác; video 'mặt sau/sự thật'.",
+   "avoid": "Kể trọn giai thoại trước rồi mới lật (gVasfPnkTqU lật ở 56s → 5,3k). Tiêu đề đứng về phía thông thuyết trong khi hook phủ định (lG0EzwtTfmw).",
+   "lanes_fit": [
+    "sengoku-uragawa",
+    "toshi-densetsu-jp"
+   ],
+   "examples": [
+    "h9tW20hT2ks",
+    "SdRuge8_gvM",
+    "gVasfPnkTqU",
+    "lG0EzwtTfmw"
+   ]
+  },
+  {
+   "id": "H40",
+   "name": "Kết cục trước + nghịch lý thắng/thua",
+   "kind": "C",
+   "mechanism": "Câu đầu nói luôn kết cục (thua, diệt vong, cúi đầu) — người xem biết 'cái gì' nhưng không biết 'vì sao'; câu thứ hai đặt một sự thật trái chiều (đã thắng trận, từng là tướng giỏi, chỉ còn N người). Tò mò chuyển từ kết cục sang nguyên nhân.",
+   "template": "{合戦}で勝ったのは{A}でした。でも天下を握ったのは{B}。{A}はなぜ{逆の行動}ことになったのでしょうか。 / 名門{家}はなぜ滅んだのか。…最後まで従ったのはわずか{N}人でした。{人物}は初めから見限られていたのではありません。",
+   "when": "Trận/sự kiện mà người xem đã biết kết cục; nhân vật bị gắn nhãn 'kẻ thua/đời thứ hai kém cỏi'.",
+   "avoid": "Nêu kết cục mà không có vế trái chiều (g9NiHpRWP0g chỉ có 'thua' + 'hậu quả lớn', không có 'đang thắng') — tiêu đề/thumbnail phải gánh.",
+   "lanes_fit": [
+    "sengoku-uragawa"
+   ],
+   "examples": [
+    "BTCIRj8agB4",
+    "Tun00Fq_i0w",
+    "g9NiHpRWP0g"
+   ]
+  },
+  {
+   "id": "H41",
+   "name": "Cảnh kịch hoá in medias res (năm + nơi + hành động + thoại) rồi người kể đóng khung",
+   "kind": "A",
+   "mechanism": "Mở giữa một khoảnh khắc có thoại (thuyền đêm tiễn biệt, chém người dưới lầu chủ, 4 trọng thần quanh ghế trống). Người xem được 'đặt vào cảnh' trước khi biết video hỏi gì — chỉ giữ được nếu câu hỏi đến sớm.",
+   "template": "{年号}、{場所}で{人物}が{異常な行動}。「{台詞}」。…この{出来事}から始まる{人物}の{最後のN日/運命}。…では{人物}はなぜ{結果}のでしょうか。",
+   "when": "Sự kiện có 1 khoảnh khắc thị giác mạnh + thoại ghi trong sử liệu/giai thoại.",
+   "avoid": "Để câu hỏi sau 45s (z9DmSetqjuA 61s, gVasfPnkTqU 68s) hoặc cảnh yên tĩnh >15s trước nghịch lý (ki5cLTt95AM 34s).",
+   "lanes_fit": [
+    "sengoku-uragawa"
+   ],
+   "examples": [
+    "QbPKiRRXM5E",
+    "ki5cLTt95AM",
+    "z9DmSetqjuA",
+    "gVasfPnkTqU"
+   ]
+  },
+  {
+   "id": "K23",
+   "name": "Khẩu hiệu nghi thức dẫn vào thân bài ngay sau câu hỏi",
+   "kind": null,
+   "mechanism": "Một câu cố định mỗi tập báo 'hook xong, câu chuyện bắt đầu' và nhắc lời hứa thương hiệu (mặt sau sách giáo khoa). Đặt sau câu hỏi 5–17s ở 7/8 video. Là dấu nhận diện, không phải yếu tố thắng (có cả ở video 3,3k).",
+   "template": "さあ、{thương hiệu: 教科書には載らない歴史の裏側}へ。今宵も皆様をお連れしましょう。",
+   "when": "Kênh series có giọng kể cố định; đặt 30–45s, luôn SAU câu hỏi なぜ.",
+   "avoid": "Đặt khẩu hiệu khi chưa có câu hỏi (lG0EzwtTfmw 26s, không hỏi). Chép nguyên văn khẩu hiệu kênh mẫu cho kênh mình.",
+   "lanes_fit": [
+    "sengoku-uragawa",
+    "toshi-densetsu-jp"
+   ],
+   "examples": [
+    "h9tW20hT2ks",
+    "BTCIRj8agB4",
+    "Tun00Fq_i0w",
+    "ki5cLTt95AM",
+    "lG0EzwtTfmw"
+   ]
+  }
+ ],
+ "caveats": [
+  "MỐC GIÂY LÀ ƯỚC TÍNH (timing_source='est') cho cả 10/10 video: raw\\<id>.json đều có hook_segments RỖNG (transcript_via='none', đã mở lại ngay trước khi ghi file). Mốc = vị trí ký tự ÷ (len(transcript)/duration) trên transcripts.json của h2dev, tính cả token [音楽]. Sai số dự kiến ±5–10s vì nhạc/thoại ngắt quãng; so sánh GIỮA các video vẫn dùng được, số tuyệt đối không.",
+  "Trích dẫn giữ NGUYÊN VĂN ASR (có lỗi tên riêng): 刑事=慶次, 小田/小だ=織田, 勝井/勝=勝家, 静=賤ヶ岳, 橋=羽柴, 乗らない=載らない, こ宵い=今宵, 線の利球/理球=千利休, 伏=切腹, 吉本=義元, 田家=武田家, 安/言=家康, A62年=永禄2年, 獣編=拾阿弥, 平雲=平蜘蛛, 規作=奇策, ビッチ中=備中.",
+  "intro_t: kênh KHÔNG có tự giới thiệu người kể; intro_t ghi thời điểm khẩu hiệu nghi thức (tương đương 'lời chào kênh'). null = không có khẩu hiệu trong 120s (SdRuge8_gvM, gVasfPnkTqU). promise_t = lúc video nói sẽ cho xem gì (bằng chứng/góc nhìn/đếm ngược), không phải 'N điều'.",
+  "View lấy từ raw (tải 2026-09-23). ki5cLTt95AM mới 5 ngày (68k) nên không xếp vào top/thấp khi so. Tương tác lệch: like/view cao nhất ở video cũ view thấp (lG0 1,86%, Sd 1,28%) — fan cứng giai đoạn đầu; video top gần đây like/view 0,16–0,53%.",
+  "gVasfPnkTqU: thumbnail trong HOOK_LIBRARY\\thumbs chỉ 480×360 — có thể YouTube không có bản maxres cho video này (thumbnail tải lên nhỏ) hoặc tải về bị hạ cấp; đã so với E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\dokkoi-nihonshi\\_raw\\thumbs\\18_5k_gVasfPnkTqU.jpg cùng dung lượng 26.544 byte → cùng nguồn. Chưa kiểm được trực tiếp trên YouTube (IP bị chặn).",
+  "E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\lanes\\sengoku-uragawa\\BAO_CAO_DO_THUMB_DNA.md có tiêu đề sai ('LANE G teinengo-tanoshimi') và bảng §3 (băng nền đen, nhãn vàng, panel so sánh) + §5 mục 4 là nội dung của lane tanoshimi, KHÔNG áp dụng cho kênh này. Bảng §2 đo máy cũng trượt: BTCIRj8agB4 và SdRuge8_gvM ghi '—' băng trên dù ảnh có dòng vàng rõ; ki5cLTt95AM màu băng trên #4C3825 (sai, ảnh là vàng). Chỉ dùng từ file đó: màu #FBEE08/#D90304 và tỉ lệ cao/rộng dòng chữ. Nên sửa file đó (việc của dự án research, chưa làm trong lượt này).",
+  "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\BAT_DAU_LANE\\sengoku-uragawa.md §4 bước 2 vẫn ghi 'ref_lock … 1 võ tướng chibi' và 'thumbnail = chibi nhân vật' — mâu thuẫn với §1 cùng file và THUMBNAIL_PATTERNS.md (không phải chibi). Chỉ đọc, không sửa (ngoài phạm vi).",
+  "Chưa có profile E:\\CLAUDE\\YOUTUBE\\h2dev\\profiles\\profiles\\sengoku-uragawa.json → không có char_rate của lane; con số 160 chữ ≈ 30s dùng tốc độ đọc đo từ kênh mẫu (288–329 chữ/phút, bỏ [音楽]/khoảng trắng).",
+  "Mọi nhận định 'thắng vì X' là tương quan trên 10 video của 1 kênh; đề tài và hook bị lẫn vào nhau (video đề tài lớn cũng thường hook tốt hơn). Chỗ tách được rõ: g9 (hook yếu, view cao) và lG0 (hook đạt, view thấp).",
+  "our_eps rỗng: lane sengoku-uragawa chưa có tập nào (E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\sengoku-uragawa\\ chỉ có branding\\; không có eps_sengoku-uragawa.json trong scratchpad) → thay bằng formula.khuon_tap_dau."
+ ],
+ "files": {
+  "seed": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\seed_2026-09-23_sengoku.json",
+  "analysis": "C:\\Users\\admin\\AppData\\Local\\Temp\\claude\\e--CLAUDE-YOUTUBE-TRENDING-RESEARCH\\f9ed46c9-a58f-4769-99ca-1dafd7dd5a7e\\scratchpad\\ch\\analysis_sengoku.json",
+  "thumbs": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs",
+  "transcripts": "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\dokkoi-nihonshi\\_raw\\transcripts.json"
+ }
+}

@@ -599,3 +599,20 @@ Lỗi 290/113 là đặc thù RIÊNG của nhánh não-Claude, không lan sang n
 - Thumbnail 4 tầng màu mới là THIẾT KẾ trên giấy (từ mô tả thumbnail kênh mẫu), chưa render thử.
 - Mô hình Hybrid (Máy 2 vẽ ảnh, agent bước 3 ghép+giao hàng — xem §5b) CHƯA thiết lập cho Lane E;
   hiện B4 sẽ tự chạy trên Máy 1 nếu gọi `make_video.py` thẳng, tốn ~4.000-5.500đ/tập.
+
+## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+
+> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+
+| | |
+|---|---|
+| Kiểu mở (`script.hook.patterns`) | H30 H31 H32 H33 H34 |
+| Câu khoá (`script.hook.closer`) | K18 |
+| Cách dựng hình (`script.hook.visual`) | `lien_mach_than` |
+| Nguồn hình | **KHÔNG dựng clip hook riêng** — hook là 30 giây đầu của chính `script.txt`, dựng chung một lần với thân video |
+| Công tắc (`script.hook.enabled`) | **đang BẬT** |
+
+Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
+cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+
+Viết hook: `py -3.13 pipeline\hook_stage.py --profile kenko-chiebukuro --slug <tập> --mode repair`

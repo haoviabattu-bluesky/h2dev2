@@ -1,0 +1,1093 @@
+{
+ "key": "kokoro",
+ "lane": "kokoro-kazoku",
+ "channel": {
+  "name": "癒しの心理学",
+  "id": "UCV_8D2Agr2EaGxod0s7KBtg",
+  "url": "https://www.youtube.com/channel/UCV_8D2Agr2EaGxod0s7KBtg"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\FlowHandoff_local\\results\\channel_dna\\iyashi-no-shinrigaku",
+ "formula": {
+  "summary": "Kênh GIẢI THÍCH tâm lý ngôi 2 (giọng chuyên gia không mặt, không tên, không tự giới thiệu). Một video = một nghịch lý quan hệ gia đình ('tốt mà ra xấu' / 'gần mà xa'). Hook 0–45s làm 4 việc theo thứ tự: nêu nghịch lý với chính người xem → cụ thể hoá (2 kiểu người / độc thoại tự nghi) → gỡ tội + loại đáp án người xem tự nghĩ → hứa. Sau đó neo 1 số liệu Nhật hoặc 1 học giả trước phút 2, rồi câu khoá 'không phải X mà là Y'. Tiêu đề = nghịch lý về quan hệ phổ quát; thumbnail = cùng câu đó nói miệng 2 dòng; mô tả dòng 1 = câu hỏi '〜ていませんか？' phản chiếu giây 0.",
+  "hook_beats": [
+   {
+    "t": "0–10s",
+    "name": "Câu chốt nghịch lý (≤47 chữ)",
+    "desc": "Nói với 'あなた' hoặc 'cha mẹ' một nghịch lý tốt→xấu. Không chào, không tên kênh, không cảnh tả. 5/8 video (đúng 5 video top) mở kiểu này.",
+    "example_ja": "外では誰よりも親切で霊に正しいあなたがなぜ家のドアを開けて入った瞬間世界で最も鋭いトを立てる人になってしまうのでしょうか?",
+    "example_video": "3mqrh3HS6xw (0s)"
+   },
+   {
+    "t": "8–25s",
+    "name": "Cụ thể hoá bằng 2 kiểu người hoặc độc thoại tự nghi",
+    "desc": "Đặt 2 cha mẹ cạnh nhau (hy sinh→xa / chẳng làm gì→được tin) hoặc đọc to câu người xem đang tự hỏi.",
+    "example_ja": "そのためある親は一生子供のために犠牲を払ってきたのに結局最も遠い存在になってしまい。ある親は特別なことをしてあげなかったのに子供が一生で1番最初に頼る存在になります。",
+    "example_video": "AJLE5ny--Vo (12–21s); biến thể kz3V03RdzJU 8–13s 「私の言い方が悪いのかな?私が神経質なだけなのかな?」"
+   },
+   {
+    "t": "20–45s",
+    "name": "Gỡ tội + loại đáp án",
+    "desc": "Phủ nhận nguyên nhân người xem đang tự trách (tính cách, nhạy cảm, thiếu yêu) và đẩy sang 'cơ chế não/tâm lý'. 5/5 video top có trong ≤108s; 0/3 video thấp.",
+    "example_ja": "これは単に正確の問題ではありません。あなたの脳が安全だと信じ込んだ瞬間に引き起こす知名的なエラーのせいなのです。",
+    "example_video": "3mqrh3HS6xw (20s); AJLE5ny--Vo 30s 「この違いはお金でも教育でもありません。さらに驚くべきことに愛の大きさですらないという事実です。」; pbK_ZUSMfWY 43s"
+   },
+   {
+    "t": "23–45s",
+    "name": "Lời hứa của video",
+    "desc": "1 câu nói người xem sẽ HIỂU gì + LÀM được gì. Top-5 trung vị 43s; 3 video thấp trung vị 105s.",
+    "example_ja": "この動画を最後までご覧いただければなぜ愛するほど腹が立つのかという不毛な真実と共に一瞬の爆発で一生かけて気づいてきた信頼を壊さないための具体的な脳のコントロール法を学ぶことができます。",
+    "example_video": "3mqrh3HS6xw (32s)"
+   },
+   {
+    "t": "45–110s",
+    "name": "Neo số liệu Nhật / học giả + checklist triệu chứng",
+    "desc": "1 số liệu cơ quan Nhật hoặc 1 học giả có tên (7/8 trong 120s); hoặc checklist 'bạn có từng…' để người xem tự nhận.",
+    "example_ja": "もしかしたらこのような経験はありませんか?子供のために全てを譲ってきたのに。肝心な大切な話は親ではなく友達に先に相談する。",
+    "example_video": "AJLE5ny--Vo (69–82s); số liệu: x4bNtrZxlBg 47s 厚生労働省…23.5% · pbK_ZUSMfWY 52s リンジーギブソン"
+   },
+   {
+    "t": "100–150s",
+    "name": "Câu khoá 'không phải X mà là Y' → vào mục 1",
+    "desc": "Chốt lại câu hỏi của cả video bằng khung ではなく (8/8 trong 140s); video có N mục thì vào 'mục 1' ở đây; CTA đăng ký 1 câu là tuỳ chọn (2/8).",
+    "example_ja": "しかし問題は愛の量ではなく子供の脳が親をどんな人として記憶したかにあります。",
+    "example_video": "AJLE5ny--Vo (108s); oeufz0zIDVg 61s 「愛がないからではなく愛だけでは一緒には暮らせないからです」"
+   }
+  ],
+  "title": {
+   "rule": "Tiêu đề = 1 nghịch lý/đảo vai về một quan hệ ai cũng có, 24–37 ký tự, prefix 【心理学】 (6/7 video ≥40k). Tránh khung 'điều cấm 絶対〜いけない' (2/2 chỉ 19–25k).",
+   "templates": [
+    {
+     "khuon": "【心理学】{người A}は{điều ai cũng nghĩ quan trọng}よりも「これ」を{記憶している}",
+     "vi_du": "【心理学】子どもは親の愛よりも「これ」を記憶している",
+     "video": "AJLE5ny--Vo 836.543"
+    },
+    {
+     "khuon": "【心理学】{việc tưởng là tốt}すると{quan hệ}が崩れる理由",
+     "vi_du": "【心理学】子どもと同居すると親子関係が崩れる理由",
+     "video": "oeufz0zIDVg 120.960"
+    },
+    {
+     "khuon": "【心理学】{người thân nhất}に{hành vi xấu}してしまう人の心理",
+     "vi_du": "【心理学】一番大切な人にすぐ怒ってしまう人の心理",
+     "video": "3mqrh3HS6xw 88.281"
+    },
+    {
+     "khuon": "{tuổi}なのに{so sánh hạ thấp}…「{thuật ngữ tâm lý}」のゾッとする特徴{N}選",
+     "vi_du": "50代なのに会話は小学生…「情緒的に未熟な人」のゾッとする特徴3選",
+     "video": "pbK_ZUSMfWY 76.644"
+    },
+    {
+     "khuon": "【心理学】{vai bất ngờ}も{điều}をストレスに感じる意外な{N}つの理由｜{nhãn}",
+     "vi_du": "【心理学】親も子の帰省をストレスに感じる意外な5つの理由｜親子関係の真相",
+     "video": "FYppHHdHgNs 50.826"
+    }
+   ],
+   "avoid": "【心理学】…を絶対やってはいけない{N}つのこと (a1DE 25.391, o9Bo 19.191); đề tài cá nhân không phải quan hệ (4q3Opuzy1gw); tiêu đề câu hỏi dài 40 ký tự (pg7eWMff4JE — còn quá mới để kết luận)."
+  },
+  "thumbnail": {
+   "rule": "Nhân vật đầu tròn trắng không mặt người thật (14/14) trong phòng nội thất ấm; 2 dòng chữ to ở đáy (11/14): dòng 1 TRẮNG = đối tượng + tình huống (thường 7 ký tự), dòng 2 VÀNG = kết luận/đảo (5–14 ký tự). KHÔNG chép tiêu đề (0/14 chép nguyên) — viết lại thành câu nói miệng; ở video ≥40k luôn dạng khẳng định (7/7). Nền ấm cam cho đề tài thương/ấm, nền tối/đỏ cho xung đột (3mqr, pbK, BaZu).",
+   "khuon": "{đối tượng}が{tình huống}｜{kết luận ngắn, khẳng định}",
+   "vi_du": [
+    "体だけ成長した｜幼稚な大人 (pbK_ZUSMfWY — = câu hook 13s)",
+    "身近な人にだけ｜キレる人の心理 (3mqrh3HS6xw — = câu hook 0s)",
+    "親と子が離れて｜暮らすべき心理学的な理由 (oeufz0zIDVg — = câu khoá 58s)",
+    "子供が来るのは｜客が来ること (FYppHHdHgNs)"
+   ],
+   "loi_gap": "AJLE5ny--Vo chữ 「す」 cuối bị cắt khỏi khung; x4bNtrZxlBg dòng vàng 「妻が体調を崩します」 là ý chỉ có ở ~11 phút (P với hook)."
+  },
+  "description": {
+   "rule": "Dòng 1 = câu hỏi/nỗi đau '〜ていませんか？' phản chiếu câu giây 0–40 của hook (8/8); dòng 2 = '実は…かもしれません' lật; dòng 3 = '今回は心理学の視点から…を解説します'; khối 【動画の要約】 3–4 câu; khối 【この動画のポイント】 đúng 3 gạch '・' (25/25); 5 hashtag có #心理学.",
+   "khuon": "{nỗi đau/niềm tin của người xem}ていませんか？\n実は、{đảo ngược}かもしれません。\n今回は心理学の視点から、{câu hỏi của video}と{giải pháp}を解説します。\n\n【動画の要約】\n{3–4 câu tóm tắt: không phải X mà là Y}\n\n【この動画のポイント】\n・{điều hiểu 1}\n・{điều hiểu 2}\n・{kỹ năng dùng ngay}\n\n#心理学 #{quan hệ} #{vấn đề} #{thuật ngữ} #{rộng}",
+   "vi_du": [
+    "「家族だから一緒に暮らすのは当たり前」そう思っていませんか？ / 実は、大人になった子供と同居することで、知らず知らずのうちにお互いの関係が壊れてしまうケースが少なくありません。 (oeufz0zIDVg)",
+    "外では礼儀正しいのに、家では大切な人に冷たく当たっていませんか？ (3mqrh3HS6xw — = câu hook 0s)"
+   ]
+  },
+  "link_4_parts": "Một luận điểm, 4 chỗ nói cùng một câu: TIÊU ĐỀ nói nghịch lý dạng tin tức → THUMBNAIL nói lại bằng khẩu ngữ 2 dòng (8/12 khớp, 4/12 một phần, 0 lệch) và dòng vàng thường là chính 1 câu trong hook ≤60s (pbK 13s, 3mqr 0s, oeuf 58s) → HOOK giây 0 là câu tiêu đề nói với 'あなた' (7/8 khớp tiêu đề) → MÔ TẢ dòng 1 là câu hook giây 0–40 đổi thành câu hỏi '〜ていませんか？' (8/8). Hai chỗ lệch nhẹ đều ở video thấp hơn: x4bN (thumbnail hứa ý ở phút 11), a1DE (tiêu đề hứa '3 điều cấm' mà hook tới 135s mới nói).",
+  "exceptions": [
+   "pbK_ZUSMfWY: KHÔNG prefix, khung 'ゾッとする特徴3選' mà 76.644 view và nhiều comment nhất (306) — prefix không phải điều kiện.",
+   "AJLE5ny--Vo: tiêu đề giấu 「これ」 nhưng hook trả lời ngay giây 0 — không giữ bí ẩn vẫn 836k (câu hỏi được chuyển sang 'vì sao hy sinh mà con xa').",
+   "AJLE5ny--Vo: thumbnail cắt mất chữ 「す」 vẫn 836k.",
+   "oeufz0zIDVg: dài nhất kênh 26,7 phút vẫn #2 (120.960).",
+   "FYppHHdHgNs: 50.826 view nhưng like 0,42% và 1 comment — view không đi cùng gắn kết.",
+   "CTA đăng ký sớm chỉ 2/8 (đều là 2 video top: AJLE ~155s, oeuf ~83s) — CHANNEL_DNA.md ghi 'nhất quán' là sai.",
+   "x4bNtrZxlBg mở bằng cảnh cụ thể (H01) vẫn 42.558 — cảnh mở không 'chết', chỉ kém 5 video mở nghịch lý."
+  ],
+  "counts": {
+   "kenh_tong_video": 25,
+   "video_co_transcript_phan_tich": 8,
+   "video_da_chon_khong_transcript": 4,
+   "thumbnail_da_mo_anh": 14,
+   "tu_gioi_thieu_trong_120s": "0/8",
+   "mo_bang_nghich_ly_noi_voi_nguoi_xem_khong_canh": "5/8 (AJLE, oeuf, 3mqr, pbK, kz3V = đúng 5 video view cao nhất có transcript: 48k–836k)",
+   "mo_bang_canh_cu_the": "3/8 (x4bN 42,6k · a1DE 25,4k · o9Bo 19,2k)",
+   "cau_hoi_nazeka_trong_45s": "8/8",
+   "khung_X_dewa_naku_Y_trong_140s": "8/8 (AJLE 108s · oeuf 61s · 3mqr 20s · pbK 43s · kz3V 46s · x4bN 83s · a1DE 102s · o9Bo 74s)",
+   "go_toi_trong_110s": "5/8 — đúng 5 video top; 0/3 video thấp",
+   "loi_hua_noi_dung_giay": "top-5: 23/32/43/69/116 (trung vị 43s) · 3 thấp: 88/105/135 (trung vị 105s)",
+   "so_lieu_hoac_hoc_gia_trong_120s": "7/8 (AJLE: Bowlby ở ~163s)",
+   "CTA_dang_ky_som_duoi_3_phut": "2/8 (AJLE ~155s, oeuf ~83s); 6/8 chỉ ở cuối",
+   "hua_N_muc_trong_hook": "4/8 (pbK ~143s, x4bN 88s, a1DE 135s, o9Bo 105s) — trùng 4/4 tiêu đề có con số",
+   "chu_0_30s_sau_khi_bo_khoang_trang": "138–145 chữ (tốc độ 277–290 chữ/phút, trung vị ~282)",
+   "prefix_【心理学】_toan_kenh": "13/25",
+   "prefix_trong_video_>=40k": "6/7 (thiếu: pbK_ZUSMfWY 76.644)",
+   "video_>=40k_dai_>=15_phut": "7/7",
+   "video_duoi_15_phut": "7 video, cao nhất 8,511 view",
+   "tieu_de_絶対いけない": "2/25 (a1DE 25.391 · o9Bo 19.191)",
+   "tieu_de_nghich_ly_dao_vai_trong_>=40k": "5/7 (AJLE, oeuf, 3mqr, pbK, FYpp)",
+   "mo_ta_dong1_co_ませんか": "15/25 (≥40k: 4/7)",
+   "mo_ta_dong1_phan_chieu_hook_0_40s": "8/8 video có transcript",
+   "mo_ta_3_bullet_ポイント": "25/25",
+   "mo_ta_【動画の要約】": "16/25 (≥40k: 5/7)",
+   "mo_ta_5_hashtag": "21/25",
+   "mo_ta_co_#心理学": "20/25",
+   "thumb_nhan_vat_dau_tron_trang": "14/14",
+   "thumb_2_dong_chu": "14/14",
+   "thumb_dong1_trang_dong2_vang": "13/14 (d5y1wW8MgEU đảo: vàng trên, trắng dưới)",
+   "thumb_chu_o_day_anh": "11/14 (trên: AJLE, kz3V; trái: d5y1)",
+   "thumb_chep_nguyen_tieu_de": "0/14 (tất cả viết lại; AJLE gần nguyên nhất)",
+   "thumb_dang_khang_dinh_trong_>=40k": "7/7; dạng câu hỏi 3/14 (pg7e, BaZu, 4q3O — cả 3 đăng 18–22/09)",
+   "thumb_title_KPL_12_video": "8K / 4P / 0L",
+   "hook_title_KPL_8_video": "7K / 1P / 0L",
+   "thumb_hook_KPL_8_video": "6K / 2P / 0L"
+  },
+  "khuon_tap_dau": {
+   "ghi_chu": "Lane kokoro-kazoku CHƯA có tập nào → khuôn để h2dev viết tập 1. Quy đổi giây→chữ theo 282 chữ/phút (trung vị 8 transcript sau khi bỏ khoảng trắng/[音楽]; phải đo lại bằng calibrate.py khi đã có giọng).",
+   "hook_theo_giay": [
+    {
+     "t": "0–10s",
+     "chu_tich_luy": "≤47",
+     "viec": "Câu chốt nghịch lý nói với người xem (không chào, không tên kênh)",
+     "vi_du_ja": "子供は親が自分をどれほど愛してくれたかよりも、親のそばでどんな感情を感じながら育ったかをより長く記憶しています。",
+     "video": "AJLE5ny--Vo 0s"
+    },
+    {
+     "t": "10–25s",
+     "chu_tich_luy": "≤118",
+     "viec": "2 kiểu người đối lập HOẶC đọc to câu tự nghi",
+     "vi_du_ja": "私の言い方が悪いのかな?私が神経質なだけなのかな?とご自分を疑っていませんか?",
+     "video": "kz3V03RdzJU 8–13s"
+    },
+    {
+     "t": "20–40s",
+     "chu_tich_luy": "≤188",
+     "viec": "Gỡ tội + loại đáp án",
+     "vi_du_ja": "この違いはお金でも教育でもありません。さらに驚くべきことに愛の大きさですらないという事実です。",
+     "video": "AJLE5ny--Vo 30s"
+    },
+    {
+     "t": "30–45s",
+     "chu_tich_luy": "≤212",
+     "viec": "Lời hứa: hiểu gì + làm được gì",
+     "vi_du_ja": "この動画はあなたが単に繊細だから辛いのではないということを心理学的に明確に証明します。",
+     "video": "pbK_ZUSMfWY 43s"
+    },
+    {
+     "t": "45–110s",
+     "chu_tich_luy": "≤517",
+     "viec": "1 số liệu Nhật có nguồn hoặc 1 học giả có tên + checklist 'bạn có từng…'",
+     "vi_du_ja": "厚生労働省の人口同体統計によると同居期間が20年以上の夫婦による熟年離婚の割合が離婚全体の23.5%を記録し、過去最高を更新しました。",
+     "video": "x4bNtrZxlBg 47s"
+    },
+    {
+     "t": "100–150s",
+     "chu_tich_luy": "≤705",
+     "viec": "Câu khoá 'không phải X mà là Y' → vào mục 1 (nếu có N mục); CTA đăng ký 1 câu tuỳ chọn",
+     "vi_du_ja": "しかし問題は愛の量ではなく子供の脳が親をどんな人として記憶したかにあります。",
+     "video": "AJLE5ny--Vo 108s"
+    }
+   ],
+   "cam": [
+    "Tự giới thiệu/tên kênh trước câu chốt (0/8 video mẫu có)",
+    "Khối số liệu dài trước khi có luận điểm (a1DE 40–97s)",
+    "Hứa N mục sau 90s (x4bN 88s, o9Bo 105s, a1DE 135s đều là nhóm thấp)",
+    "Trả lời câu hỏi mở trước giây 20 (kz3V hứa giải pháp ở 23s → câu hỏi yếu, 9/12)"
+   ],
+   "tieu_de": {
+    "khuon": "【心理学】{quan hệ}は{điều ai cũng tin}よりも「{ẩn}」を{動詞}  |  【心理学】{việc tưởng tốt}すると{quan hệ}が崩れる理由  |  【心理学】{vai bất ngờ}も{điều}を{cảm xúc xấu}に感じる意外な{N}つの理由",
+    "vi_du": [
+     "【心理学】子どもは親の愛よりも「これ」を記憶している",
+     "【心理学】子どもと同居すると親子関係が崩れる理由",
+     "【心理学】親も子の帰省をストレスに感じる意外な5つの理由｜親子関係の真相"
+    ],
+    "do_dai": "24–37 ký tự (trung vị 26 ở 7 video ≥40k)"
+   },
+   "chu_thumbnail": {
+    "khuon": "Dòng 1 trắng ~7 ký tự: {đối tượng + tình huống} | Dòng 2 vàng 5–14 ký tự: {kết luận khẳng định = 1 câu có trong hook ≤60s}",
+    "vi_du": [
+     "体だけ成長した｜幼稚な大人",
+     "身近な人にだけ｜キレる人の心理",
+     "子どもは親の愛より｜『これ』を一生覚えていま(す)"
+    ],
+    "kiem": "Mở ảnh xuất ra kiểm chữ không bị cắt mép (lỗi AJLE)."
+   },
+   "mo_ta": {
+    "khuon": "xem formula.description.khuon",
+    "vi_du_nguyen_van": "子どもが一生覚えているのは、親の愛の大きさではなく親のそばで感じた「感情の記憶」です。\n犠牲を払ってきたのに心が離れてしまう親と、一生信頼される親の違いはどこにあるのでしょうか。\n今回は、子どもの心を一生繋ぎ止める「心理的安全性」と「真の愛着」の築き方を解説します。\n\n【動画の要約】…\n\n【この動画のポイント】\n・愛の量や犠牲ではなく「安全基地」としての体験が絆を深める\n・過ちを正す際も存在否定をせず、基準と受容を両立させる大切さ\n・解決策の提示より「感情の共感」が子どもの脳に信頼を刻む\n\n#心理学 #親子の悩み #子育ての悩み #愛着障害 #人間関係",
+    "video": "AJLE5ny--Vo"
+   },
+   "tap1_lane_doc": "BAT_DAU_LANE/kokoro-kazoku.md đề xuất tập 1 「【心理学】親が\"してあげたこと\"より\"してしまったこと\"を子どもは覚えている」 = đúng khuôn H37 của AJLE5ny--Vo. Câu mở mẫu (1 câu): 「子どもは、親が“してあげたこと”よりも、親のそばで“してしまったこと”のほうを、ずっと長く覚えています。」 — sau đó 2 kiểu cha mẹ + loại đáp án ('không phải tiền, không phải giáo dục') trước giây 40.",
+   "gate_de_xuat_cho_profile": {
+    "cau_chot_t_max": 5,
+    "go_toi_t_max": 45,
+    "loi_hua_t_max": 45,
+    "so_lieu_hoac_hoc_gia_t_max": 120,
+    "tu_gioi_thieu": "cấm trong 120s",
+    "do_dai_phut": "18–24 (≈5.000–6.800 chữ ở 282 chữ/phút)",
+    "char_rate_tham_chieu": "277–290 chữ/phút (transcript tự động, không phải số calibrate)"
+   }
+  }
+ },
+ "videos": [
+  {
+   "video_id": "AJLE5ny--Vo",
+   "tag": "top",
+   "views": 836543,
+   "likes": 9053,
+   "comments": 493,
+   "like_rate_pct": 1.08,
+   "age_days": 37.4,
+   "duration_min": 15.7,
+   "title": "【心理学】子どもは親の愛よりも「これ」を記憶している",
+   "desc_first": "子どもが一生覚えているのは、親の愛の大きさではなく親のそばで感じた「感情の記憶」です。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\AJLE5ny--Vo.jpg",
+   "thumb_text": "子どもは親の愛より｜『これ』を一生覚えていま（chữ「す」cuối bị cắt khỏi mép phải ảnh）",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "子供は親が自分をどれほど愛してくれたかよりも、親のそばでどんな感情を感じながら育ったかをより長く記憶しています。そのためある親は一生子供のために犠牲を払ってきたのに結局最も遠い存在になってしまい。ある親は特別なことをしてあげなかったのに子供が一生で1番最初に頼る存在になります。",
+   "key_line_ja": "子供は親が自分をどれほど愛してくれたかよりも、親のそばでどんな感情を感じながら育ったかをより長く記憶しています。",
+   "key_t": 0,
+   "lock_line_ja": "この違いはお金でも教育でもありません。さらに驚くべきことに愛の大きさですらないという事実です。（→108s: しかし問題は愛の量ではなく子供の脳が親をどんな人として記憶したかにあります。）",
+   "lock_t": 30,
+   "intro_t": null,
+   "promise_t": 116,
+   "promise_ja": "本日は子供が一生親を1番心強い味方だと感じるようになる心理の原理を1つずつ見ていきます。そして多くの親が愛だと信じて繰り返しているけれど実は子供を最も早く遠ざけてしまう行動についても一緒にお伝えします。",
+   "cta_subscribe_t": 155,
+   "beats": {
+    "event": "0s — định luật ngược: con nhớ CẢM XÚC mình cảm thấy bên cha mẹ lâu hơn là cha mẹ yêu mình bao nhiêu",
+    "contradiction": "12–29s — 「ある親は一生子供のために犠牲を払ってきたのに結局最も遠い存在に」 / 「ある親は特別なことをしてあげなかったのに…1番最初に頼る存在に」",
+    "stake": "69–107s — checklist 「もしかしたらこのような経験はありませんか?」: con kể chuyện quan trọng cho bạn trước, tự giải quyết, gọi điện vì nghĩa vụ → 「親は愛が足りなかったのだろうかと自分を責めてしまいます」",
+    "open_loop": "30–38s loại trừ 3 đáp án (tiền, giáo dục, cả độ lớn tình yêu) → 108s 「問題は愛の量ではなく…」 → 116–150s hứa nguyên lý + 'hành vi đẩy con đi nhanh nhất'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H37"
+   ],
+   "closers": [
+    "K21",
+    "K22"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Tiêu đề giấu 「これ」; câu giây 0 nói luôn đáp án (感情を感じながら育ったか) — giữ lời hứa ngay, rồi chuyển câu hỏi sang 'vì sao hy sinh mà con vẫn xa'."
+   ],
+   "thumb_title": [
+    "K",
+    "Ảnh chép gần nguyên tiêu đề, đổi 記憶している → 『これ』を一生覚えていま(す) — thêm 「一生」. Lỗi kỹ thuật: chữ 「す」 cuối bị cắt khỏi khung."
+   ],
+   "thumb_hook": [
+    "K",
+    "「一生覚えています」 = câu giây 0 「より長く記憶しています」 + chữ 「一生」 ở giây 12; ảnh 3 vòng ký ức mẹ-con ấm = 'ký ức cảm xúc'."
+   ],
+   "why": "Định luật ngược đánh thẳng nỗi sợ số 1 của cha mẹ 60–80 (hy sinh cả đời mà con xa), đặt 2 kiểu cha mẹ cạnh nhau (hy sinh → xa nhất / chẳng làm gì → được tin đầu tiên), rồi loại lần lượt 3 đáp án người xem tự nghĩ ra (お金・教育・愛の大きさ). Người xem hết giả thuyết nên phải ở lại; checklist 69–99s cho họ tự nhận 'đúng nhà mình'.",
+   "weak": "0–68s hoàn toàn trừu tượng, không có cảnh/nhân vật nào; lời hứa nội dung tới 116s (muộn nhất nhóm top-5 có transcript); CTA đăng ký chen ở ~155s trước khi vào nội dung. 836k gấp 7× video #2 — phần lớn nhờ đề tài phổ quát nhất kênh (MỌI cha mẹ), đừng quy hết cho hook."
+  },
+  {
+   "video_id": "oeufz0zIDVg",
+   "tag": "top",
+   "views": 120960,
+   "likes": 1517,
+   "comments": 67,
+   "like_rate_pct": 1.25,
+   "age_days": 28.4,
+   "duration_min": 26.8,
+   "title": "【心理学】子どもと同居すると親子関係が崩れる理由",
+   "desc_first": "「家族だから一緒に暮らすのは当たり前」そう思っていませんか？",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\oeufz0zIDVg.jpg",
+   "thumb_text": "親と子が離れて｜暮らすべき心理学的な理由",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "人、こんな風に考えたことはありませんか?自分の子供なのに一緒に暮らして何が問題なの?親が大変な時に子供がそばにいてあげるのは当たり前でしょう。家族なんだから多少の不便は我慢して暮らすものだとですが不思議なことに同居を始めた途端言葉遣い1つに傷つきドアを閉める音1つに寂しさを覚え食事の時間にまで顔色を伺うようになってしまいます。",
+   "key_line_ja": "ですが不思議なことに同居を始めた途端言葉遣い1つに傷つきドアを閉める音1つに寂しさを覚え食事の時間にまで顔色を伺うようになってしまいます。",
+   "key_t": 21,
+   "lock_line_ja": "子供と同居してはいけない理由。正確に言えば愛がないからではなく愛だけでは一緒には暮らせないからです。",
+   "lock_t": 58,
+   "intro_t": null,
+   "promise_t": 69,
+   "promise_ja": "今日は心理学の視点から家族という言葉の影に隠された依存、罪悪感、コントロール、そして境界戦の問題について静かに紐も解いていきます。",
+   "cta_subscribe_t": 83,
+   "beats": {
+    "event": "0–20s — nói hộ niềm tin của khán giả: 「自分の子供なのに一緒に暮らして何が問題なの?」「家族なんだから多少の不便は我慢して暮らすものだ」",
+    "contradiction": "21–44s — vừa sống chung đã tổn thương vì 1 cách nói, 1 tiếng đóng cửa, nhìn sắc mặt cả bữa ăn; 「近くなればなるほど心は帰って狭くなっていくのです」",
+    "stake": "45–53s — 「子供は親の期待を負担に感じ、親は子供の無関心さを裏切りのように受け止めてしまいます」",
+    "open_loop": "54–69s — 「今日は少し耳の痛いお話」 + 'không phải thiếu yêu mà chỉ yêu thôi thì không sống chung được' + hứa 4 chủ đề (依存・罪悪感・コントロール・境界線)"
+   },
+   "kind": "C",
+   "patterns": [
+    "H38"
+   ],
+   "closers": [
+    "K21"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    1,
+    1,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Chữ 同居 xuất hiện ~21s (同居を始めた途端), nguyên cụm 「子供と同居してはいけない理由」 ở ~58s."
+   ],
+   "thumb_title": [
+    "P",
+    "Cùng luận điểm nhưng lật chiều: tiêu đề nói hậu quả (親子関係が崩れる理由), ảnh nói đơn thuốc (離れて暮らすべき心理学的な理由)."
+   ],
+   "thumb_hook": [
+    "K",
+    "Ảnh = câu khoá ~58s 「子供と同居してはいけない理由」 viết lại theo chiều khẳng định; hình 2 người đứng 2 phòng tách đôi."
+   ],
+   "why": "Nói hộ đúng câu cha mẹ tự bào chữa ('con mình thì sao'), rồi lật bằng 3 chi tiết nghe/nhìn được (言葉遣い1つ・ドアを閉める音1つ・食事の時間の顔色) — người đang sống chung nhận ra nhà mình. Câu 'không phải thiếu yêu, mà yêu thôi không đủ' vừa gỡ tội vừa đặt câu hỏi.",
+   "weak": "0–15s mở bằng câu hỏi 'bạn có từng nghĩ thế này' (chậm hơn kiểu tuyên bố); transcript ghi 「人、」 ở giây 0 — có thể là 「皆さん、」 bị nghe sai. CTA đăng ký 2 câu ở 83–102s trước khi vào nội dung. Dài nhất kênh (26,7 phút) mà vẫn #2 → độ dài không phải vấn đề."
+  },
+  {
+   "video_id": "3mqrh3HS6xw",
+   "tag": "top",
+   "views": 88281,
+   "likes": 1812,
+   "comments": 118,
+   "like_rate_pct": 2.05,
+   "age_days": 69.3,
+   "duration_min": 15.5,
+   "title": "【心理学】一番大切な人にすぐ怒ってしまう人の心理",
+   "desc_first": "外では礼儀正しいのに、家では大切な人に冷たく当たっていませんか？",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\3mqrh3HS6xw.jpg",
+   "thumb_text": "身近な人にだけ｜キレる人の心理",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "外では誰よりも親切で霊に正しいあなたがなぜ家のドアを開けて入った瞬間世界で最も鋭いトを立てる人になってしまうのでしょうか?もしかしてあなたにとって大切な人を感情のゴミ箱として扱ってはいませんか?これは単に正確の問題ではありません。あなたの脳が安全だと信じ込んだ瞬間に引き起こす知名的なエラーのせいなのです。",
+   "key_line_ja": "外では誰よりも親切で霊に正しいあなたがなぜ家のドアを開けて入った瞬間世界で最も鋭いトを立てる人になってしまうのでしょうか?",
+   "key_t": 0,
+   "lock_line_ja": "これは単に正確の問題ではありません。あなたの脳が安全だと信じ込んだ瞬間に引き起こす知名的なエラーのせいなのです。",
+   "lock_t": 20,
+   "intro_t": null,
+   "promise_t": 32,
+   "promise_ja": "この動画を最後までご覧いただければなぜ愛するほど腹が立つのかという不毛な真実と共に一瞬の爆発で一生かけて気づいてきた信頼を壊さないための具体的な脳のコントロール法を学ぶことができます。",
+   "cta_subscribe_t": null,
+   "beats": {
+    "event": "0s — bạn lịch sự nhất ngoài xã hội, bước qua cửa nhà là thành người 'gai' nhất thế giới",
+    "contradiction": "12s — 「もしかしてあなたにとって大切な人を感情のゴミ箱として扱ってはいませんか?」",
+    "stake": "32–50s — một lần bùng nổ phá niềm tin cả đời xây (一瞬の爆発で一生かけて築いてきた信頼を壊さない)",
+    "open_loop": "20–31s — không phải tính cách mà là 'lỗi chí mạng' của não khi tin là an toàn → 32s hứa 'cách điều khiển não cụ thể'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H36"
+   ],
+   "closers": [
+    "K22"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Câu giây 0 là tiêu đề nói bằng ngôi 2: 一番大切な人にすぐ怒ってしまう ↔ 家のドアを開けて入った瞬間…鋭いトゲを立てる人."
+   ],
+   "thumb_title": [
+    "K",
+    "すぐ怒ってしまう → キレる; 一番大切な人 → 身近な人にだけ — cùng nghĩa, khẩu ngữ, ngắn hơn."
+   ],
+   "thumb_hook": [
+    "K",
+    "Ảnh vẽ đúng giây 0: văn phòng xám bên trái, nhà lửa đỏ bên phải, mặt nạ cười rơi xuống đất (= 外では…家では)."
+   ],
+   "why": "Nghịch lý ngoài–trong (内弁慶) mà gần như ai cũng có, hỏi thẳng 'あなた' → chạm; 20s sau gỡ tội ngay ('không phải tính cách, là lỗi của não') → người xem được tha; 32s hứa mang về một thứ dùng được. Ba bước chạm–tha–hứa trong 50 giây.",
+   "weak": "51–113s đi vào giải thích văn hoá 迷惑 + số 70% nhân viên che cảm xúc — trừu tượng, không cảnh; câu hỏi 'なぜ…' giây 0 lặp lại gần nguyên văn ở ~113s (lãng phí). Transcript tự động nghe sai 霊に正しい(礼儀正しい)/正確(性格)/知名的(致命的)."
+  },
+  {
+   "video_id": "pbK_ZUSMfWY",
+   "tag": "top",
+   "views": 76644,
+   "likes": 2038,
+   "comments": 306,
+   "like_rate_pct": 2.66,
+   "age_days": 62.4,
+   "duration_min": 17.9,
+   "title": "50代なのに会話は小学生…「情緒的に未熟な人」のゾッとする特徴3選",
+   "desc_first": "50代なのに話が通じない、会話の後にどっと疲れる...。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\pbK_ZUSMfWY.jpg",
+   "thumb_text": "体だけ成長した｜幼稚な大人",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "自分は何も悪くないはずなのになぜあの人と話すだけでどっと疲れ果てしまうのでしょうか?年齢は50代なのに会話の質は5歳児と変わらない。体だけが大きくなった大人たちのせいです。今日も誰かと会話を終えた後、しばらくの間ぼんやりと座り込んで胸が締めつけられるような感覚に陥りませんでしたか。相手が義の両親であれ、配偶遇者であれ、あるいは職場の上司であれ、対象が変わるだけで私たちを消耗させるその不快な感覚は驚くほどに似っています。",
+   "key_line_ja": "自分は何も悪くないはずなのになぜあの人と話すだけでどっと疲れ果てしまうのでしょうか?年齢は50代なのに会話の質は5歳児と変わらない。体だけが大きくなった大人たちのせいです。",
+   "key_t": 0,
+   "lock_line_ja": "この動画はあなたが単に繊細だから辛いのではないということを心理学的に明確に証明します。",
+   "lock_t": 43,
+   "intro_t": null,
+   "promise_t": 43,
+   "promise_ja": "この動画はあなたが単に繊細だから辛いのではないということを心理学的に明確に証明します。（116–143s: 彼らがなぜ一生変わらないのか…しなやかな距離の取り方の技術まで順を追って解説していきます。まずは…第1の決定的サインから見ていきましょう。）",
+   "cta_subscribe_t": null,
+   "beats": {
+    "event": "0s — 'mình chẳng sai gì mà chỉ nói chuyện với người đó là kiệt sức — vì sao?'",
+    "contradiction": "8–16s — 「年齢は50代なのに会話の質は5歳児と変わらない。体だけが大きくなった大人たちのせいです。」",
+    "stake": "17–42s — ngồi thẫn thờ, tức ngực sau cuộc nói chuyện; người đó có thể là 義の両親・配偶者・上司",
+    "open_loop": "43s 'video này chứng minh bạn khổ không phải vì bạn nhạy cảm' → 52s Gibson/Bowen → 116–143s hứa: vì sao họ không bao giờ đổi, vì sao lòng tốt của bạn hại chính bạn, kỹ thuật giữ khoảng cách → 'dấu hiệu thứ 1'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H36"
+   ],
+   "closers": [
+    "K22"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "50代なのに会話は小学生 ↔ giây 8 「年齢は50代なのに会話の質は5歳児と変わらない」 (lệch chữ nhỏ: tiêu đề 小学生, hook 5歳児; 小学生 xuất hiện ~156s)."
+   ],
+   "thumb_title": [
+    "P",
+    "Ảnh bỏ 「50代」 và 「3選」, đổi thành 「体だけ成長した幼稚な大人」 — cùng đối tượng, khác chữ, không còn con số."
+   ],
+   "thumb_hook": [
+    "K",
+    "「体だけ成長した」 = câu giây 13 「体だけが大きくなった大人たち」; ảnh người lớn mặc yếm ăn vạ + người kiệt sức bò dưới sàn = giây 0."
+   ],
+   "why": "Đẩy lỗi ra ngoài: người xem được xác nhận 'không phải tại bạn' trong 43 giây; hình ảnh 50 tuổi = 5 tuổi vừa buồn cười vừa đúng, ai cũng nghĩ ngay tới 1 người cụ thể → kéo bình luận (306, tỉ lệ 0,40% cao nhất 7 video ≥40k).",
+   "weak": "Lời hứa '3選' không nói rõ trong hook (chỉ 'dấu hiệu thứ 1' ở ~143s); không có prefix 【心理学】. Bản đầu cùng đề tài d5y1wW8MgEU (9,6 phút, 25/05, thumb 「体だけ大人｜大人の特徴」) chỉ 2.849 view — bản làm lại 17,9 phút + thumb cảnh kịch tính mới lên 76k; không phải chỉ nhờ hook."
+  },
+  {
+   "video_id": "FYppHHdHgNs",
+   "tag": "top",
+   "views": 50826,
+   "likes": 211,
+   "comments": 1,
+   "like_rate_pct": 0.42,
+   "age_days": 9.4,
+   "duration_min": 21.7,
+   "title": "【心理学】親も子の帰省をストレスに感じる意外な5つの理由｜親子関係の真相",
+   "desc_first": "「今週末、遊びにおいで」という親の言葉。その直後の溜息の理由を知っていますか？",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\FYppHHdHgNs.jpg",
+   "thumb_text": "子供が来るのは｜客が来ること",
+   "timing_source": "none",
+   "hook_0_30s": "",
+   "hook_note": "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json) — KHÔNG chấm hook, chỉ chấm gói đăng",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "title_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "thumb_title": [
+    "P",
+    "Tiêu đề hứa '5 lý do', ảnh chỉ đưa 1 kết luận đảo 「子供が来るのは客が来ること」; ý 'khách' không có trong tiêu đề (mô tả nói 「3日間の大工事」)."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "why": "Chỉ từ gói: tiêu đề đảo vai (không phải con mệt khi về quê, mà CHA MẸ cũng mệt) — lật định kiến 'cha mẹ lúc nào cũng mong con về'. Mô tả dòng 1 gợi hook mở bằng câu thoại 「今週末、遊びにおいで」 + tiếng thở dài — CHƯA kiểm được bằng lời thoại.",
+   "weak": "Like 0,42%, 1 bình luận / 50.826 view — tương tác thấp nhất nhóm ≥40k (nhiều view từ gợi ý, ít người gắn bó). View 12.611 lúc snapshot DNA (~2 ngày tuổi) → 50.826 sau 9 ngày."
+  },
+  {
+   "video_id": "kz3V03RdzJU",
+   "tag": "top",
+   "views": 48367,
+   "likes": 676,
+   "comments": 21,
+   "like_rate_pct": 1.4,
+   "age_days": 33.3,
+   "duration_min": 22.9,
+   "title": "【夫婦心理学】会話が噛み合わない相手と暮らす中で、自分を守る心理テクニック",
+   "desc_first": "言葉が通じないパートナーとの生活で、自分の心が限界を感じていませんか？「自分が悪いのでは」と自分を責める必要はありません。相手を変えようとするのをやめ、心の尊厳を守る実践心理戦略をお伝えします。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\kz3V03RdzJU.jpg",
+   "thumb_text": "話が通じない配偶者と｜楽に暮らす心理テク",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "同じ言語で話しているはずなのになぜ自分の家で息が詰まってしまうのでしょうか?私の言い方が悪いのかな?私が神経質なだけなのかな?とご自分を疑っていませんか?会話をしようと口を開いたのに相手は攻められたと感じて防衛姿勢を取る。パートナーを説得しようとして自分の心が先に折れてしまう悪循環を断ち切り相手を変えずに自分の心を完璧に守る実践心理戦略をお伝えします。",
+   "key_line_ja": "同じ言語で話しているはずなのになぜ自分の家で息が詰まってしまうのでしょうか?",
+   "key_t": 0,
+   "lock_line_ja": "話の通じないパートナーと暮らしている時真っ先に崩れてしまうものは何でしょうか?それは愛ではありません。自分がまともかどうかという確信、つまり自分への信頼です。",
+   "lock_t": 37,
+   "intro_t": null,
+   "promise_t": 23,
+   "promise_ja": "パートナーを説得しようとして自分の心が先に折れてしまう悪循環を断ち切り相手を変えずに自分の心を完璧に守る実践心理戦略をお伝えします。",
+   "cta_subscribe_t": null,
+   "beats": {
+    "event": "0s — cùng một ngôn ngữ mà ở chính nhà mình lại thấy nghẹt thở",
+    "contradiction": "8–15s — độc thoại tự nghi đọc to: 「私の言い方が悪いのかな?私が神経質なだけなのかな?とご自分を疑っていませんか?」",
+    "stake": "16–22s — mở miệng nói chuyện thì đối phương thủ thế; cố thuyết phục thì lòng mình gãy trước",
+    "open_loop": "37–53s — thứ sụp đầu tiên 'không phải tình yêu mà là niềm tin vào chính mình' → 81s số liệu 4時間26分 vs 50分"
+   },
+   "kind": "C",
+   "patterns": [
+    "H36"
+   ],
+   "closers": [
+    "K22",
+    "K21"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    2,
+    2,
+    1,
+    1,
+    2,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "会話が噛み合わない相手と暮らす ↔ giây 0 同じ言語で話しているはずなのに…息が詰まる; 自分を守る心理テクニック ↔ 23s 自分の心を完璧に守る実践心理戦略."
+   ],
+   "thumb_title": [
+    "K",
+    "相手 → 配偶者, 自分を守る心理テクニック → 楽に暮らす心理テク — cùng nội dung, rút gọn."
+   ],
+   "thumb_hook": [
+    "K",
+    "Ảnh 2 người ngồi 2 đầu sofa: 1 người bình thản uống trà (楽に暮らす), 1 người khoanh tay quay đi (話が通じない) = giây 0 + 23s."
+   ],
+   "why": "Đọc to đúng câu tự nghi người xem đang nghĩ trong đầu (私の言い方が悪いのかな?) → người xem thấy mình 'được nghe thấy'; lời hứa 'không cần đổi đối phương' giải phóng gánh nặng mà vợ/chồng lâu năm đã bỏ cuộc.",
+   "weak": "Lời hứa giải pháp ra quá sớm (23s) nên câu hỏi mở yếu; nghịch lý 'cùng ngôn ngữ mà nghẹt thở' nhẹ; tiêu đề 37 ký tự dài nhất nhóm ≥40k; transcript nghe sai 糸(意図)/家庭再半所頃(家庭裁判所)/現稿."
+  },
+  {
+   "video_id": "x4bNtrZxlBg",
+   "tag": "extra(có transcript)",
+   "views": 42558,
+   "likes": 224,
+   "comments": 13,
+   "like_rate_pct": 0.53,
+   "age_days": 16.3,
+   "duration_min": 23.4,
+   "title": "【心理学】定年後に夫婦関係が急激に悪化する6つの段階",
+   "desc_first": "定年退職を迎えた後、夫婦の関係がなぜか重苦しくなり、すれ違ってしまうと感じていませんか？",
+   "thumb_file": "C:\\Users\\admin\\AppData\\Local\\Temp\\claude\\e--CLAUDE-YOUTUBE-TRENDING-RESEARCH\\f9ed46c9-a58f-4769-99ca-1dafd7dd5a7e\\scratchpad\\ch\\xthumbs\\x4bNtrZxlBg.jpg",
+   "thumb_text": "夫が家にいると｜妻が体調を崩します",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "妻が外出着を着て玄関で靴を履いた瞬間、後ろから低い夫の声が聞こえてきます。どこ行くの?その短い一言に妻は靴紐を結ぶ手を止め、思わず固まってしまいます。ちょっとスーパーにと言葉を濁し、慌ててドアを閉めて外に出て初めて深呼吸ができます。夫が定年退職してからまだたったの4ヶ月。家の中の空気はまるで息の詰まる韓国のように変わってしまいました。",
+   "key_line_ja": "妻が外出着を着て玄関で靴を履いた瞬間、後ろから低い夫の声が聞こえてきます。どこ行くの?その短い一言に妻は靴紐を結ぶ手を止め、思わず固まってしまいます。",
+   "key_t": 0,
+   "lock_line_ja": "30年を共に乗り越え子供たちを育て上げた夫婦がなぜ夫の定年退職直後に他人以下の関係に冷め切ってしまうのでしょうか。",
+   "lock_t": 35,
+   "intro_t": null,
+   "promise_t": 88,
+   "promise_ja": "自分でも気づかないうちに通りすぎてしまう恐ろしい6つの段階が存在します。（112s: …手前の4つの段階の中で気づくことができれば、冷めかけた関係をいくらでも修復できるからです。）",
+   "cta_subscribe_t": null,
+   "beats": {
+    "event": "0–14s — vợ mặc đồ ra ngoài, xỏ giày ở huyền quan; sau lưng chồng hỏi 「どこ行くの?」 → tay buộc dây giày khựng lại",
+    "contradiction": "15–34s — ra khỏi cửa mới thở được; chồng mới nghỉ hưu 4 tháng mà nhà như nhà tù (transcript: 韓国 = 監獄 nghe sai)",
+    "stake": "47–71s — 厚生労働省: ly hôn sau ≥20 năm chung sống 23,5% (kỷ lục), >30 năm 17,7%",
+    "open_loop": "83–138s — ly hôn tuổi già không phải bùng nổ một sáng mà có 6 giai đoạn; nhận ra ở 4 giai đoạn đầu thì cứu được → 'dấu hiệu đầu tiên là gì'"
+   },
+   "kind": "A",
+   "patterns": [
+    "H01"
+   ],
+   "closers": [
+    "K02",
+    "K21"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "定年 ở 24s (夫が定年退職してからまだたったの4ヶ月), 急激に悪化 ở 35s, 6つの段階 ở 88s — đúng chữ tiêu đề, dù con số N đến muộn."
+   ],
+   "thumb_title": [
+    "P",
+    "Ảnh chọn 1 triệu chứng cụ thể (妻が体調を崩します = 主人在宅ストレス症候群), tiêu đề nói '6 giai đoạn'."
+   ],
+   "thumb_hook": [
+    "P",
+    "Cảnh 'どこ行くの' đúng chủ đề chồng ở nhà, nhưng ý 'vợ phát bệnh' (夫源病・主人在宅ストレス症候群) chỉ xuất hiện ~658s (ước tính) — ngoài hook."
+   ],
+   "why": "Một câu thoại 4 chữ rất thường (どこ行くの?) mà vợ nào có chồng mới nghỉ hưu cũng nghe hằng ngày — cảnh nhỏ chính xác làm khán giả nữ nhận ra ngay; số liệu 23,5% đổi chuyện nhà thành xu hướng xã hội; 'nhận ra ở 4 giai đoạn đầu thì cứu được' giữ hy vọng.",
+   "weak": "Lời hứa '6 giai đoạn' tới 88s; khối số liệu 47–72s dày; thumbnail hứa 'vợ phát bệnh' mà hook không nhắc. Like 0,53% — thấp."
+  },
+  {
+   "video_id": "a1DEZVB6CrQ",
+   "tag": "extra(có transcript)",
+   "views": 25391,
+   "likes": 136,
+   "comments": 13,
+   "like_rate_pct": 0.54,
+   "age_days": 21.4,
+   "duration_min": 23.8,
+   "title": "結婚した子供が帰省した時に親が「絶対やってはいけない」3つのこと",
+   "desc_first": "結婚した子どもが帰省した際、良かれと思ってやった行動が逆効果になっていませんか？本動画では、親が無意識にやってしまいがちな3つの行動と、子どもの足を遠ざけないための具体的な改善策を徹底解説します！",
+   "thumb_file": "C:\\Users\\admin\\AppData\\Local\\Temp\\claude\\e--CLAUDE-YOUTUBE-TRENDING-RESEARCH\\f9ed46c9-a58f-4769-99ca-1dafd7dd5a7e\\scratchpad\\ch\\xthumbs\\a1DEZVB6CrQ.jpg",
+   "thumb_text": "結婚した子が帰省｜絶対NGな行動3選",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "朝早くから買い物に行き、普段は使わない高級な食器まで出して心を込めて料理を準備します。玄関の靴箱まで綺麗に整え、期待に胸を膨らませて子供を待ちます。しかし不思議なことに数時間後に子供が立ち去って玄関のドアが閉まると親の心の一角には寂しさと虚しさが残り。肝心の子供は来る前よりずっと疲れた顔で帰っていきます。",
+   "key_line_ja": "しかし不思議なことに数時間後に子供が立ち去って玄関のドアが閉まると親の心の一角には寂しさと虚しさが残り。肝心の子供は来る前よりずっと疲れた顔で帰っていきます。",
+   "key_t": 15,
+   "lock_line_ja": "子供の足を左右するのは食卓に並べられた豪華な料理やご馳想の数々ではなく、その家に滞在している間、自分という人間がどれほど尊重されたかという体験です。",
+   "lock_t": 102,
+   "intro_t": null,
+   "promise_t": 135,
+   "promise_ja": "今回の動画では親が愛情だと信じて疑わなかった3つの行動がなぜ関係をギャさせてしまったのか。そしてほんの少しの工夫で子供が自ら喜んで訪れる家を作る秘密を1つずつ紐解いていきます。",
+   "cta_subscribe_t": null,
+   "beats": {
+    "event": "0–14s — dậy sớm đi chợ, bày bát đĩa sang, dọn cả tủ giày ở huyền quan chờ con",
+    "contradiction": "15–39s — con về xong cha mẹ thấy trống trải; con ra về mệt hơn lúc đến; 「なぜこんな切ない結果に」",
+    "stake": "40–96s — 帰省ブルー 65,4%; >40% mệt vì phải giữ ý; nhịp về thăm giãn từ 2–3 tháng xuống 1 lần/năm",
+    "open_loop": "102–145s — thứ giữ chân con không phải món ăn mà là cảm giác được tôn trọng → 3 hành vi cha mẹ tưởng là yêu"
+   },
+   "kind": "D",
+   "patterns": [
+    "H38"
+   ],
+   "closers": [
+    "K21",
+    "K02"
+   ],
+   "score_0_12": 9,
+   "score_detail": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Cảnh 帰省 ở giây 0 đúng đề tài, nhưng '絶対やってはいけない3つ' chỉ tới ~135s."
+   ],
+   "thumb_title": [
+    "K",
+    "Rút gọn: 結婚した子供が帰省した時に親が「絶対やってはいけない」3つのこと → 結婚した子が帰省｜絶対NGな行動3選."
+   ],
+   "thumb_hook": [
+    "P",
+    "Ảnh cha mẹ soi kính lúp (= điều cấm thứ 1 'thẩm tra', ~154s) + bàn tiệc (khớp 0s); chữ '3選' không có trong 120s đầu."
+   ],
+   "why": "Cảnh chuẩn bị tận tình rất quen với cha mẹ 60–70 → cú lật 'con về mệt hơn lúc đến' làm họ giật mình vì chính mình từng thấy; câu 'không phải món ăn mà là được tôn trọng' đổi thước đo.",
+   "weak": "40–97s là khối số liệu 帰省ブルー trước khi có luận điểm; N mục hứa ở ~135s; tiêu đề kiểu 'điều cấm', không prefix. Cùng đề tài 帰省, FYppHHdHgNs đảo vai (親も…ストレスに感じる) được 50.826 view, gấp 2×."
+  },
+  {
+   "video_id": "o9BoLvxu18k",
+   "tag": "extra(có transcript)",
+   "views": 19191,
+   "likes": 150,
+   "comments": 3,
+   "like_rate_pct": 0.78,
+   "age_days": 23.3,
+   "duration_min": 23.5,
+   "title": "両家の親同士で絶対に言ってはいけない3つの言葉",
+   "desc_first": "両家の親同士で絶対に言ってはいけない3つの言葉とは？両家顔合わせ食事会から孫の祝い事まで、配慮や謙遜のつもりで発した一言が離婚原因や大きな誤解を生む理由を徹底解説します。",
+   "thumb_file": "C:\\Users\\admin\\AppData\\Local\\Temp\\claude\\e--CLAUDE-YOUTUBE-TRENDING-RESEARCH\\f9ed46c9-a58f-4769-99ca-1dafd7dd5a7e\\scratchpad\\ch\\xthumbs\\o9BoLvxu18k.jpg",
+   "thumb_text": "相手の親に｜絶対言ってはいけない言葉3選",
+   "timing_source": "est (vị trí ký tự ÷ tốc độ đọc trung bình của cả video, transcripts.json không có mốc giây; sai số ±5–10s)",
+   "hook_0_30s": "両家の顔合わせの席で謙のつもりで口にしたうちの子は本当に至らない点が多くてという一言。この丁寧な謙遜が10年後に子供夫婦の離婚原因になったり義の実家からの攻撃の武器に変わったりすることをご存知でしょうか?実際日本の最高裁は女コの司法統計によると親族や双方の親との不中は夫婦が離婚に至る非常に大きな原因の1つとして集計されています。",
+   "key_line_ja": "両家の顔合わせの席で謙のつもりで口にしたうちの子は本当に至らない点が多くてという一言。この丁寧な謙遜が10年後に子供夫婦の離婚原因になったり義の実家からの攻撃の武器に変わったりすることをご存知でしょうか?",
+   "key_t": 0,
+   "lock_line_ja": "多くの方が両家の親の関係が逆シして対立が生じる理由を霊が足りないからと考えがちです。しかし実態は完全に逆です。",
+   "lock_t": 65,
+   "intro_t": null,
+   "promise_t": 105,
+   "promise_ja": "子供夫婦を喧嘩させず、両家の親御さんみんなが心を穏やかにすために絶対に避けるべき両家親同士の3大絶対金を1つずつ紐解いていきましょう。",
+   "cta_subscribe_t": null,
+   "beats": {
+    "event": "0s — câu khiêm tốn ở buổi ra mắt hai nhà: 「うちの子は本当に至らない点が多くて」",
+    "contradiction": "9–20s — câu lịch sự đó 10 năm sau thành nguyên nhân ly hôn / vũ khí của nhà thông gia",
+    "stake": "21–64s — 最高裁 司法統計: bất hoà thông gia là nguyên nhân ly hôn lớn; 70–80% cặp mới cưới chọn 顔合わせ; quan hệ 'mơ hồ nhất đời'",
+    "open_loop": "65–105s — người ta tưởng do thiếu lễ, thật ra ngược lại: do lễ quá mức / nói vòng → hứa 3 điều cấm"
+   },
+   "kind": "D",
+   "patterns": [
+    "H38"
+   ],
+   "closers": [
+    "K21"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "title_hook": [
+    "K",
+    "Câu giây 0 chính là 1 ví dụ '言ってはいけない言葉' giữa 両家の親同士."
+   ],
+   "thumb_title": [
+    "K",
+    "両家の親同士で → 相手の親に; 3つの言葉 → 言葉3選."
+   ],
+   "thumb_hook": [
+    "K",
+    "Ảnh bàn tiệc ra mắt, 3 người căng thẳng, 1 người toát mồ hôi = cảnh giây 0."
+   ],
+   "why": "Hậu quả rất xa (10 năm sau, ly hôn) gắn vào câu nói lịch sự nhất → người xem buộc tự hỏi 'mình đã nói câu đó chưa'; 74s lật 'không phải thiếu lễ mà thừa lễ'.",
+   "weak": "Tình huống hẹp (chỉ ai sắp/đã ra mắt thông gia); cảm xúc thấp (lo xã giao hơn là đau); không prefix, không #心理学; like 0,78%. Transcript nghe sai 3大絶対金(禁)/霊(礼)."
+  },
+  {
+   "video_id": "BaZu68sdDeo",
+   "tag": "new",
+   "views": 10003,
+   "likes": 47,
+   "comments": 0,
+   "like_rate_pct": 0.47,
+   "age_days": 5.2,
+   "duration_min": 19.9,
+   "title": "【心理学】子供と心の距離が離れていく親の共通点",
+   "desc_first": "「子供のために良かれと思って連絡しているのに、なぜか避けられている気がする…」そんな悩みを抱えていませんか？",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\BaZu68sdDeo.jpg",
+   "thumb_text": "尽くしてきたのに｜なぜ離れていく？",
+   "timing_source": "none",
+   "hook_0_30s": "",
+   "hook_note": "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json) — KHÔNG chấm hook, chỉ chấm gói đăng",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "title_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "thumb_title": [
+    "K",
+    "Ảnh đổi 'điểm chung của cha mẹ bị con xa' thành lời than của cha mẹ 「尽くしてきたのに｜なぜ離れていく？」."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "why": "Chỉ từ gói: đề tài trùng lõi AJLE5ny--Vo (hy sinh mà con xa — đúng câu giây 12 của video 836k), mô tả có khái niệm 「愛の配送事故」.",
+   "weak": "Mới ~5 ngày, 10.003 view; so với FYppHHdHgNs (12.611 view lúc ~2 ngày tuổi) thì chậm hơn. Tái dùng đề tài hit nhưng tiêu đề 【心理学】子供と心の距離が離れていく親の共通点 không có nghịch lý/đảo vai như tiêu đề hit."
+  },
+  {
+   "video_id": "pg7eWMff4JE",
+   "tag": "new",
+   "views": 5864,
+   "likes": 34,
+   "comments": 4,
+   "like_rate_pct": 0.58,
+   "age_days": 2.0,
+   "duration_min": 19.1,
+   "title": "子どもの頃は一番近かったのに、なぜ年を重ねるときょうだいがよそよそしくなるのか？",
+   "desc_first": "大人になり、きょうだいと会っても会話が続かず気まずいと感じたことはありませんか？",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\pg7eWMff4JE.jpg",
+   "thumb_text": "一番近かったきょうだい｜なぜ他人より気まずい？",
+   "timing_source": "none",
+   "hook_0_30s": "",
+   "hook_note": "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json) — KHÔNG chấm hook, chỉ chấm gói đăng",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "title_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "thumb_title": [
+    "K",
+    "Ảnh rút tiêu đề 40 ký tự còn 「一番近かったきょうだい｜なぜ他人より気まずい？」 — thêm phép so sánh 'hơn cả người dưng' sắc hơn tiêu đề."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "why": "Chỉ từ gói: nghịch lý 'gần nhất hồi nhỏ → xa lạ khi già'; tiêu đề dạng câu hỏi dài nhất kênh (40 ký tự), không prefix.",
+   "weak": "Mới ~2 ngày — 5.864 view chưa so được với video ≥40k (đều ≥9 ngày tuổi)."
+  },
+  {
+   "video_id": "4q3Opuzy1gw",
+   "tag": "new",
+   "views": 432,
+   "likes": 8,
+   "comments": 0,
+   "like_rate_pct": 1.85,
+   "age_days": 0.6,
+   "duration_min": 19.9,
+   "title": "何でも一人で抱えて疲れる人｜助けを求めるのが苦手な理由",
+   "desc_first": "何でも一人で抱え込んで疲れ果てていませんか？「大丈夫です」と笑いながら一人で抱え込む完璧主義が、あなたの心を少しずつ削り取っているかもしれません。",
+   "thumb_file": "E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY\\thumbs\\4q3Opuzy1gw.jpg",
+   "thumb_text": "迷惑をかけたくなくて｜一人で抱えていませんか",
+   "timing_source": "none",
+   "hook_0_30s": "",
+   "hook_note": "không lấy được transcript (raw hook_segments rỗng, không có trong transcripts.json) — KHÔNG chấm hook, chỉ chấm gói đăng",
+   "key_line_ja": null,
+   "key_t": null,
+   "lock_line_ja": null,
+   "lock_t": null,
+   "intro_t": null,
+   "promise_t": null,
+   "beats": {},
+   "kind": null,
+   "patterns": [],
+   "closers": [],
+   "score_0_12": null,
+   "score_detail": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "title_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "thumb_title": [
+    "K",
+    "Ảnh viết lại tiêu đề thành câu hỏi thẳng người xem: 迷惑をかけたくなくて一人で抱えていませんか."
+   ],
+   "thumb_hook": [
+    "N/A",
+    "không có lời thoại để so"
+   ],
+   "why": "Chỉ từ gói: đề tài cá nhân (không nhờ được ai) — lệch 4 trụ cột quan hệ gia đình của kênh; không prefix; thumbnail dạng câu hỏi.",
+   "weak": "Mới <1 ngày (đăng 2026-09-22 21:15 UTC) — 432 view KHÔNG dùng để kết luận."
+  }
+ ],
+ "win_vs_lose": "So 5 video top có transcript (AJLE 836.543 · oeuf 120.960 · 3mqr 88.281 · pbK 76.644 · kz3V 48.367) với 3 video thấp hơn (x4bN 42.558 · a1DE 25.391 · o9Bo 19.191): khác ở CẢ hook lẫn đề tài, và hai thứ đi cùng nhau nên không tách được. (1) Hook: 5/5 top mở bằng nghịch lý nói với người xem, có câu gỡ tội trong ≤108s, hứa nội dung trung vị 43s; 3/3 thấp mở bằng cảnh cụ thể, chèn khối số liệu, hứa N mục ở 88–135s (trung vị 105s), không có câu gỡ tội — khung 'cảnh báo/điều cấm'. (2) Đề tài: top là quan hệ ai cũng có (cha mẹ–con nói chung, người thân gần nhất, người khó chịu, vợ chồng nói không hiểu nhau); thấp là tình huống hẹp (chồng mới nghỉ hưu, con đã cưới về quê, ra mắt thông gia). (3) Tiêu đề: 2/2 tiêu đề 絶対〜いけない chỉ 19–25k; cùng đề tài 帰省, tiêu đề đảo vai FYppHHdHgNs được 50.826 (gấp 2× a1DE). (4) Cặp duy nhất giữ nguyên đề tài: d5y1wW8MgEU (9,6 phút, 05/2026, thumb chữ nhỏ 「体だけ大人｜大人の特徴」) 2.849 view vs pbK_ZUSMfWY (17,9 phút, 07/2026, thumb cảnh kịch tính 「体だけ成長した｜幼稚な大人」) 76.644 → gói + độ dài (và tuổi kênh) đổi view 27×. Kết luận: ở kênh này đề tài phổ quát + khung nghịch lý/gỡ tội thắng; hook cảnh mở không phải nguyên nhân thua (x4bN vẫn 42k). Nhóm 'new' (4q3Opuzy1gw <1 ngày 432 view, pg7eWMff4JE ~2 ngày 5.864, BaZu68sdDeo ~5 ngày 10.003) chưa đủ tuổi để xếp thua; BaZu chậm hơn FYpp ở cùng tuổi (10k@5 ngày vs 12.611@~2 ngày) dù đề tài trùng lõi video 836k — tiêu đề BaZu không có nghịch lý.",
+ "our_eps": [],
+ "our_summary": "0 tập để chấm: E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\kokoro-kazoku\\ chỉ có branding\\ (KENH.json, avatar, banner); chưa có E:\\CLAUDE\\YOUTUBE\\h2dev\\profiles\\profiles\\kokoro-kazoku.json, chưa SOP_LANE_H.md, chưa kịch bản nào. formula.khuon_tap_dau + principles là khuôn cho tập 1 (hook theo giây, tiêu đề, chữ thumbnail, mô tả — mỗi cái có ví dụ nguyên văn kênh mẫu).",
+ "principles": [
+  {
+   "claim": "Mở giây 0 bằng một nghịch lý nói thẳng với người xem — không chào, không tên kênh, không tả cảnh.",
+   "cause": "Kênh là giải thích tâm lý, không kể chuyện: người xem bấm vào vì câu hỏi 'sao nhà mình lại thế này'. Nghịch lý 'tốt mà ra xấu' chính là câu hỏi đó; nói với 'あなた/親' làm họ tự đặt mình vào ngay.",
+   "evidence": "0/8 video tự giới thiệu trong 120s. 5/8 mở bằng nghịch lý không cảnh (AJLE5ny--Vo 836.543 · oeufz0zIDVg 120.960 · 3mqrh3HS6xw 88.281 · pbK_ZUSMfWY 76.644 · kz3V03RdzJU 48.367) = đúng 5 video view cao nhất có transcript; 3/8 mở bằng cảnh (x4bNtrZxlBg 42.558 · a1DEZVB6CrQ 25.391 · o9BoLvxu18k 19.191).",
+   "why": "Khán giả 60–80 nghe giọng chuyên gia không mặt; 1 câu nghịch lý đúng nỗi đau thay được cả cảnh mở và giới thiệu. Cảnh mở vẫn sống (x4bN 42k) nhưng kém hơn trong mẫu này.",
+   "how": "Câu 1 ≤47 chữ (≈10s ở 282 chữ/phút), khuôn H36 「〜はずなのに、なぜ〜てしまうのでしょうか？」 hoặc H37 「〜は〜よりも〜を長く覚えています」. Gate hook_stage: câu chốt ≤5s, cấm câu chào/tên kênh trước nó."
+  },
+  {
+   "claim": "Gỡ tội sớm: nói rõ 'không phải lỗi/tính cách/thiếu yêu của bạn, mà là cơ chế' trước giây 45.",
+   "cause": "Nỗi đau của khán giả kênh này đi kèm TỘI LỖI (hy sinh mà con xa, nói sai?). Bị cảnh báo thì phòng thủ; được tha thì ở lại để nghe cơ chế.",
+   "evidence": "5/5 video top có câu gỡ tội trong ≤108s: 3mqrh3HS6xw 20s 「これは単に正確の問題ではありません」, pbK_ZUSMfWY 43s 「あなたが単に繊細だから辛いのではない」, oeufz0zIDVg 61s 「愛がないからではなく」, AJLE5ny--Vo 99–108s 「自分を責めてしまいます。しかし問題は愛の量ではなく」, kz3V03RdzJU 8–13s gọi tên tự nghi. 0/3 video thấp (x4bN, a1DE, o9Bo dùng khung cảnh báo/điều cấm). pbK (gỡ tội rõ nhất) có 306 comment, tỉ lệ 0,40% cao nhất nhóm ≥40k.",
+   "why": "Lane doc đã chốt 'KHÔNG dạy đời, không đổ lỗi' — số liệu kênh mẫu cho thấy đây không chỉ là giọng văn mà là thiết bị giữ người ở phút 1.",
+   "how": "1 câu khuôn K22 trước 45s: 「これは決してあなたの〜のせいではありません。〜という心の仕組みのせいなのです。」 Với đề tài 'sai lầm của cha mẹ' (dễ thành đổ lỗi) càng phải có câu này."
+  },
+  {
+   "claim": "Hứa nội dung video trong ≤45 giây.",
+   "cause": "Sau nghịch lý + gỡ tội, người xem cần biết 'ở lại được gì'. Hứa muộn = 60–120s chỉ có số liệu, dễ rời.",
+   "evidence": "Mốc lời hứa top-5: kz3V 23s · 3mqr 32s · pbK 43s · oeuf 69s · AJLE 116s (trung vị 43s). 3 video thấp: x4bN 88s · o9Bo 105s · a1DE 135s (trung vị 105s). Mốc là ƯỚC TÍNH ±10s.",
+   "why": "Chênh trung vị 62s nhất quán giữa 2 nhóm; ngoại lệ AJLE (116s) bù bằng đề tài phổ quát nhất + loại đáp án ở 30s.",
+   "how": "Đặt câu hứa trong 212 chữ đầu script, khuôn 3mqr: 「この動画を最後までご覧いただければ、〜という理由と、〜する具体的な方法が分かります。」 Nếu tiêu đề có N, nói N ngay trong câu hứa (x4bN nói '6つの段階' ở 88s là quá muộn)."
+  },
+  {
+   "claim": "Neo 1 số liệu Nhật có nguồn hoặc 1 học giả có tên trước phút 2 — nhưng SAU lời hứa, không trước câu chốt.",
+   "cause": "Giọng không mặt cần 'bằng chứng chuyên gia' thay cho khuôn mặt; số liệu cơ quan Nhật/học giả nổi tiếng làm lời an ủi thành lời giải thích đáng tin.",
+   "evidence": "7/8 có trong 120s: o9Bo 21s 最高裁, x4bN 47s 厚生労働省 23.5%, pbK 52s リンジーギブソン, a1DE 55s 65.4%, 3mqr 70s 約70%, kz3V 81s 4時間26分, oeuf ~120s 家族システム理論; AJLE có Bowlby ở ~163s. Nhưng a1DE đặt khối số liệu 40–97s TRƯỚC luận điểm → 25.391.",
+   "why": "Lane doc bắt 'khái niệm/nghiên cứu nêu tên phải có thật' — đây cũng là thứ kênh mẫu dùng làm điểm neo, nên phải có trong series_ctx.txt có nguồn.",
+   "how": "series_ctx.txt mỗi tập ≥1 số liệu JP có URL nguồn + 1 học giả; đặt ở 45–110s sau câu hứa, tối đa 2 câu số liệu liền nhau."
+  },
+  {
+   "claim": "Tiêu đề: nghịch lý/đảo vai về một quan hệ ai cũng có — tránh khung 'điều cấm 絶対〜いけない' và tình huống hẹp.",
+   "cause": "Đảo vai (cha mẹ CŨNG mệt khi con về) lật định kiến nên tò mò; 'điều cấm' chỉ hút người đang ở đúng tình huống đó.",
+   "evidence": "5/7 tiêu đề ≥40k là nghịch lý/đảo vai. 2/2 tiêu đề 絶対〜いけない: a1DEZVB6CrQ 25.391, o9BoLvxu18k 19.191. Cùng đề tài 帰省: FYppHHdHgNs 「親も子の帰省をストレスに感じる意外な5つの理由」 50.826 vs a1DEZVB6CrQ 「…親が「絶対やってはいけない」3つのこと」 25.391.",
+   "why": "Cặp FYpp/a1DE giữ nguyên đề tài, chỉ đổi khung tiêu đề (và thumbnail) → gấp 2× view (cảnh báo: FYpp mới 9 ngày, like 0,42%).",
+   "how": "Dùng 3 khuôn trong formula.khuon_tap_dau.tieu_de; giữ prefix 【心理学】 (6/7 video ≥40k có, rẻ) nhưng đừng coi là nguyên nhân (pbK 76k không có)."
+  },
+  {
+   "claim": "Thumbnail: viết lại tiêu đề thành câu nói miệng 2 dòng (trắng: đối tượng / vàng: kết luận), dạng khẳng định, và dòng vàng phải là câu có trong hook ≤60s.",
+   "cause": "Người xem đọc thumbnail trong 1 giây; câu khẩu ngữ ngắn + nhân vật đầu tròn cảm xúc rõ đọc nhanh hơn tiêu đề dài. Khi dòng vàng nằm trong hook, người bấm vào nghe lại đúng câu đó ngay → không cảm thấy bị lừa.",
+   "evidence": "14/14 nhân vật đầu tròn trắng, 14/14 hai dòng, 13/14 trắng-trên vàng-dưới, 0/14 chép nguyên tiêu đề, 7/7 video ≥40k dạng khẳng định. Dòng vàng = câu hook: pbK 13s 「体だけが大きくなった大人たち」, 3mqr 0s, oeuf 58s. Cùng đề tài 'người lớn chưa trưởng thành': d5y1wW8MgEU (9,6 phút, thumb 「体だけ大人｜大人の特徴」 chữ nhỏ bên trái) 2.849 view vs pbK_ZUSMfWY (17,9 phút, thumb 「体だけ成長した｜幼稚な大人」 cảnh ăn vạ + người kiệt sức) 76.644.",
+   "why": "Cặp d5y1/pbK là bằng chứng duy nhất giữ nguyên đề tài mà đổi gói → 27× view (lẫn cả độ dài + tuổi kênh, không tách được).",
+   "how": "thumb_text.txt: dòng 1 ~7 ký tự, dòng 2 5–14 ký tự; grep dòng 2 trong 282 chữ đầu script.txt — không có thì sửa script hoặc sửa thumbnail; kiểm ảnh xuất không cắt chữ (lỗi AJLE)."
+  },
+  {
+   "claim": "Độ dài 18–24 phút; không làm video dưới 15 phút.",
+   "cause": "Khán giả lớn tuổi xem dài (nghe như radio); video dài có đủ chỗ cho 3 mục + ví dụ + giải pháp.",
+   "evidence": "7/7 video ≥40k dài ≥15 phút; 7 video, cao nhất 8,511 view. oeufz0zIDVg dài nhất 26,7 phút vẫn #2.",
+   "why": "Tương quan có lẫn tuổi kênh (video ngắn phần lớn đăng tháng 5 khi kênh mới), nhưng không có video ngắn nào vượt 8,5k.",
+   "how": "Mục tiêu ≈5.000–6.800 chữ (282 chữ/phút) — đo lại bằng calibrate.py khi đã chốt giọng."
+  }
+ ],
+ "new_patterns": [
+  {
+   "id": "H36",
+   "type": "pattern (mở 0–30s)",
+   "name": "Câu hỏi nghịch lý ngôi 2 về chính người xem",
+   "kind": "C",
+   "mechanism": "Câu đầu hỏi thẳng 'bạn' về 1 hành vi/cảm giác trái lẽ của chính họ (lịch sự ngoài xã hội mà cáu ở nhà; mình không sai mà nói chuyện là kiệt sức). Người xem vừa bị gọi tên vừa được mời một lời giải thích khoa học.",
+   "template": "{nơi/vai tốt đẹp}では誰よりも{tính tốt}なあなたが、なぜ{nơi thân nhất}では{hành vi xấu}てしまうのでしょうか？ / {điều lẽ ra bình thường}はずなのに、なぜ{hậu quả}のでしょうか？",
+   "when": "Kênh giải thích tâm lý ngôi 2; đề tài là hành vi/cảm giác chính khán giả có, hoặc người họ phải chịu đựng.",
+   "avoid": "Trả lời câu hỏi trước giây 20 (kz3V hứa giải pháp ở 23s → câu hỏi yếu); lặp lại nguyên câu hỏi ở phút 2 (3mqr 113s).",
+   "lanes_fit": [
+    "kokoro-kazoku",
+    "teinengo-fuufu"
+   ],
+   "examples": [
+    "3mqrh3HS6xw",
+    "pbK_ZUSMfWY",
+    "kz3V03RdzJU"
+   ]
+  },
+  {
+   "id": "H37",
+   "type": "pattern (mở 0–30s)",
+   "name": "Định luật ngược + 2 kiểu người + loại đáp án",
+   "kind": "C",
+   "mechanism": "Tuyên bố 1 'định luật' tâm lý ngược trực giác, đặt 2 kiểu người đối lập kết cục (hy sinh→xa / chẳng làm gì→được tin), rồi loại lần lượt các đáp án người xem sẽ nghĩ ra. Hết giả thuyết nên phải xem tiếp.",
+   "template": "{A}は{B}が{điều ai cũng nghĩ quan trọng}よりも、{điều bị bỏ qua}をより長く覚えています。ある{B}は{hy sinh}のに{kết cục xấu}。ある{B}は{không làm gì đặc biệt}のに{kết cục tốt}。この違いは{đáp án 1}でも{đáp án 2}でもありません。{đáp án 3}ですらないのです。",
+   "when": "Đề tài quan hệ cha mẹ–con/vợ chồng mà khán giả đã đầu tư nhiều (tiền, hy sinh) nhưng kết quả ngược.",
+   "avoid": "Để 60s tiếp theo toàn trừu tượng không có ví dụ (AJLE 0–68s) — thêm checklist 'bạn có từng…' sớm hơn.",
+   "lanes_fit": [
+    "kokoro-kazoku",
+    "teinengo-fuufu"
+   ],
+   "examples": [
+    "AJLE5ny--Vo"
+   ]
+  },
+  {
+   "id": "H38",
+   "type": "pattern (mở 0–30s)",
+   "name": "Thiện ý/lễ nghĩa → hậu quả ngược",
+   "kind": "D",
+   "mechanism": "Mở bằng 1 hành động tận tình/lịch sự rất quen với người già (nấu cỗ chờ con, câu khiêm tốn khi ra mắt thông gia, 'gia đình thì sống chung') rồi cắt sang kết cục ngược (con về mệt hơn, 10 năm sau thành nguyên nhân ly hôn). Người xem tự hỏi 'mình đã làm vậy chưa'.",
+   "template": "{hành động tận tình có đồ vật cụ thể}。{chờ đợi/kỳ vọng}。しかし不思議なことに、{kết cục ngược}。 / 「{câu lịch sự}」という一言。この{丁寧な謙遜}が{N年後}に{hậu quả lớn}になることをご存知でしょうか？",
+   "when": "Đề tài 'sai lầm cha mẹ không biết mình mắc'.",
+   "avoid": "Chèn khối số liệu dài ngay sau cảnh mở (a1DE 40–97s); thiếu câu gỡ tội → thành dạy đời. Trong mẫu này 3/3 video dạng này ở 19–121k, thấp hơn nhóm H36/2 trừ oeuf.",
+   "lanes_fit": [
+    "kokoro-kazoku",
+    "satori-jp-obaa"
+   ],
+   "examples": [
+    "a1DEZVB6CrQ",
+    "o9BoLvxu18k",
+    "oeufz0zIDVg"
+   ]
+  },
+  {
+   "id": "K21",
+   "type": "closer (khoá 30–150s)",
+   "name": "'Không phải X mà là Y' → hôm nay gỡ từng cái",
+   "kind": null,
+   "mechanism": "Phủ nhận nguyên nhân người xem đang tin, gọi tên nguyên nhân thật nhưng còn mơ hồ (cơ chế, ranh giới, cảm giác được tôn trọng), rồi hứa gỡ từng lớp. Câu hỏi của cả video chuyển từ 'có phải tại tôi' sang 'cơ chế đó là gì'.",
+   "template": "{多くの親／多くの方}は{nguyên nhân quen thuộc}からだと考えがちです。しかし{心理学は全く違う話をします／実態は完全に逆です}。問題は{X}ではなく{Y}にあります。今日は{その仕組み／N つの〜}を1つずつ紐解いていきます。",
+   "when": "Mọi tập kênh giải thích tâm lý (8/8 video mẫu có trong 140s).",
+   "avoid": "Đặt sau 110s khi chưa có lời hứa nào trước đó.",
+   "lanes_fit": [
+    "kokoro-kazoku",
+    "teinengo-fuufu",
+    "kenko-chiebukuro"
+   ],
+   "examples": [
+    "AJLE5ny--Vo",
+    "oeufz0zIDVg",
+    "kz3V03RdzJU",
+    "x4bNtrZxlBg",
+    "a1DEZVB6CrQ",
+    "o9BoLvxu18k"
+   ]
+  },
+  {
+   "id": "K22",
+   "type": "closer (khoá 10–60s)",
+   "name": "Gỡ tội + hứa lợi ích",
+   "kind": null,
+   "mechanism": "Ngay sau câu chốt: 'không phải tính cách/sự nhạy cảm của bạn' + 'xem hết sẽ hiểu … và làm được …'. Tha thứ trước rồi mới dạy — khán giả mang tội lỗi ở lại vì được nhẹ lòng.",
+   "template": "これは決してあなたの{tính cách/sự nhạy cảm}のせいではありません。{cơ chế não/tâm lý}のせいなのです。この動画を最後までご覧いただければ、{điều hiểu được}と{kỹ năng dùng ngay}が分かります。",
+   "when": "Đề tài có cảm giác tự trách (cha mẹ bị con xa, cáu với người thân, mệt vì người khó chịu).",
+   "avoid": "Hứa quá cụ thể quá sớm làm mất câu hỏi mở (kz3V 23s).",
+   "lanes_fit": [
+    "kokoro-kazoku",
+    "teinengo-fuufu"
+   ],
+   "examples": [
+    "3mqrh3HS6xw",
+    "pbK_ZUSMfWY",
+    "kz3V03RdzJU",
+    "AJLE5ny--Vo"
+   ]
+  }
+ ],
+ "caveats": [
+  "0/9 raw trong HOOK_LIBRARY\\raw có hook_segments (transcript_via='none', IpBlocked); mở lại lúc ghi file vẫn rỗng. Mọi mốc giây là ƯỚC TÍNH = vị trí ký tự ÷ (số chữ/thời lượng) từ E:\\CLAUDE\\YOUTUBE\\h2dev\\FlowHandoff_local\\results\\channel_dna\\iyashi-no-shinrigaku\\_raw\\transcripts.json; sai số ±5–10s, lệch thêm nếu video có nhạc intro/outro.",
+  "transcripts.json là phụ đề TỰ ĐỘNG, nhiều chữ nghe sai; trích dẫn giữ nguyên văn: 霊に正しい(礼儀正しい), 正確(性格), 知名的(致命的), トを立てる(トゲ), 韓国(監獄), 規制ブルー(帰省ブルー), 境界戦/教会戦(境界線), 3大絶対金(禁), 新辺調査(身辺調査), 暗足(安息), 内弁形(内弁慶), 糸(意図), 家庭再半所頃(家庭裁判所), 人、(có thể 皆さん、).",
+  "4/9 video được chọn không có transcript ở bất kỳ đâu (FYppHHdHgNs, BaZu68sdDeo, pg7eWMff4JE, 4q3Opuzy1gw) → chỉ chấm gói đăng, KHÔNG đưa vào seed (bản ghi kho không có nguyên văn hook sẽ dạy sai).",
+  "Thêm 3 video ngoài danh sách chọn (x4bNtrZxlBg, a1DEZVB6CrQ, o9BoLvxu18k, tag 'extra') vì có transcript — cần nhóm view thấp hơn để so. Thumbnail 3 video này + d5y1wW8MgEU + okAdnozYTyk tải từ i.ytimg.com vào C:\\Users\\admin\\AppData\\Local\\Temp\\claude\\e--CLAUDE-YOUTUBE-TRENDING-RESEARCH\\f9ed46c9-a58f-4769-99ca-1dafd7dd5a7e\\scratchpad\\ch\\xthumbs\\ (không ghi vào HOOK_LIBRARY\\thumbs).",
+  "View/like/comment/mô tả của 25 video lấy lại qua YouTube Data API videos.list ngày 2026-09-23 (C:\\Users\\admin\\AppData\\Local\\Temp\\claude\\e--CLAUDE-YOUTUBE-TRENDING-RESEARCH\\f9ed46c9-a58f-4769-99ca-1dafd7dd5a7e\\scratchpad\\ch\\kokoro_all_meta.json) — số mới hơn raw/transcripts.json.",
+  "Mẫu hook chỉ 8 transcript; mọi so sánh top/thấp là TƯƠNG QUAN, kiểu hook trùng hoàn toàn với độ rộng đề tài.",
+  "Lane doc E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\BAT_DAU_LANE\\kokoro-kazoku.md §5 ghi 'Title LUÔN có prefix 【心理学】 (5/21 thiếu prefix chết 1–4k)': số mới — prefix 13/25; pbK_ZUSMfWY không prefix 76.644, a1DE 25.391, o9Bo 19.191; các video không prefix mà dưới 5k đều đăng tháng 5 và <15 phút → prefix nên giữ nhưng không phải nguyên nhân.",
+  "CHANNEL_DNA.md ghi CTA đầu video 1:30–2:30 'nhất quán' và hook 'luôn' tái hiện hoạt cảnh: thực tế CTA sớm 2/8, mở bằng cảnh 3/8.",
+  "Mã H36..5 chưa có trong patterns.json → hook_library.py add sẽ từ chối seed cho tới khi thêm các mã này (theo brief không tự sửa patterns.json).",
+  "Lane kokoro-kazoku chưa có tập nào, chưa có profile JSON/char_rate — số chữ/giây trong khuon_tap_dau dùng tốc độ kênh mẫu (282 chữ/phút), phải đo lại sau khi chốt giọng."
+ ]
+}

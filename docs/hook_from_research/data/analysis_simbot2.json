@@ -1,0 +1,1380 @@
+{
+ "key": "simbot2",
+ "lane": "satori-jp-obaa",
+ "channel": {
+  "name": "노년의 마음소리 (simbot2)",
+  "id": "UCfB0fkB_giLFFZsmQmWgBWw",
+  "url": "https://www.youtube.com/@simbot2"
+ },
+ "dna_dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\docs\\channel_dna\\simbot2",
+ "formula": {
+  "summary": "Một khung cố định 15/15: câu thoại nghịch lý giây 0 (H22/H23) → lật thêm 1 lần → giới thiệu 1 câu ~20s → hứa N điều + 'điều cuối vẫn khó nói' ~31s (K12) → hỏi thẳng khán giả. Tiêu đề hứa THÔNG TIN, hook là CHUYỆN làm bằng chứng; chữ thumbnail = nguyên tiêu đề; mô tả = tiêu đề.",
+  "hook_beats": [
+   {
+    "t": "0–10s",
+    "name": "Câu thoại nghịch lý",
+    "desc": "Người trong cuộc nói điều trái lẽ, hoặc người kể tự thú hành động lạ",
+    "example_ja": "어머니, 그 돈 저도 못 꺼냅니다.",
+    "example_video": "TISOm_7M_vM"
+   },
+   {
+    "t": "10–25s",
+    "name": "Lật thêm một lần",
+    "desc": "Câu thứ hai làm câu đầu khó hiểu hơn",
+    "example_ja": "외로운 영감? 아니야. 외로운 영감은 오래 걸려.",
+    "example_video": "l0p1EnDcXYM"
+   },
+   {
+    "t": "15–30s",
+    "name": "Giới thiệu 1 câu",
+    "desc": "Tuổi, tên, nơi ở, sống một mình bao năm",
+    "example_ja": "저는 올해 일흔셋 된 박순례라고 합니다.",
+    "example_video": "TISOm_7M_vM"
+   },
+   {
+    "t": "25–50s",
+    "name": "Hứa đúng lời tiêu đề + điều cuối khó nói",
+    "desc": "Đọc lại tiêu đề thành N điều, nhử điều cuối",
+    "example_ja": "셋째는 지금도 입에 올리기가 조심스럽습니다.",
+    "example_video": "Hhe56wqubbU"
+   },
+   {
+    "t": "35–60s",
+    "name": "Hỏi thẳng khán giả",
+    "desc": "Hỏi về chính cuộc sống người xem rồi 'chuyện bắt đầu từ…'",
+    "example_ja": "여러분은 어떠십니까?",
+    "example_video": "66weQbaUZuk"
+   }
+  ],
+  "title": "Lời hứa thông tin: vấn đề/câu hỏi + 'N가지 / 진짜 이유 / 충격적인 진실' + người có thẩm quyền (은행 지점장, 간호사, 장례지도사).",
+  "thumbnail": "Chỉ chữ, không nhân vật, chép NGUYÊN tiêu đề (15/15), nền hoa mờ, chữ 3 màu viền dày.",
+  "description": "Tiêu đề chép lại hoặc viết lại một chút (15/15).",
+  "link_4_parts": "Một lời hứa lặp ở 4 chỗ: tiêu đề = thumbnail = mô tả; hook là bằng chứng sống và đọc lại lời hứa ở ~giây 30. 14/15 cảnh mở trúng chủ đề tiêu đề trong 10 giây đầu.",
+  "exceptions": "Tập 01 mở bằng chuyện bạn chuyển nhà, giây 35 mới nối về tiêu đề (vẫn 1 triệu view nhờ đề tài lương hưu).",
+  "counts": "Câu chốt giây 0–8: 15/15 · giới thiệu trung vị ~20s · hứa N điều trung vị ~31s · 'điều cuối khó nói' 15/15"
+ },
+ "videos": [
+  {
+   "video_id": "vU5PWT2zLDs",
+   "tag": "clone",
+   "views": 1011142,
+   "duration_min": 29.0,
+   "title": "연금 310만 원을 말한 뒤 40년 계모임이 깨졌습니다… 노후에 말하면 안 되는 4가지",
+   "desc_first": "친한 사이일수록 절대 입 밖으로 꺼내지 마세요… 73세 노인이 뼈저리게 후회한 4가지",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "김장김치 두통을 싸들고 50년직이 명잔의 아파트에 갔습니다. 그런데 문을 연 건 처음 보는 젊은 여자였습니다. 명잔네는 3년 전에 이사를 갔다더군요. 3년입니다. 저만 몰랐던 거지요. 그 주 목요일 하 벤치에서 따져",
+   "key_t": 5,
+   "lock_line_ja": "Hứa 5 chuyện (4 lời mất bạn + 1 điều bạn giữ), chuyện thứ 4 là 'vết nhơ của tôi'",
+   "lock_t": 35,
+   "intro_t": 28,
+   "promise_t": 35,
+   "beats": {
+    "event": "Mang kim chi tới nhà bạn 50 năm — người lạ mở cửa: 'chuyển đi 3 năm rồi'",
+    "contradiction": "Tuần nào cũng gặp ở ghế đá mà mình không biết",
+    "stake": "Chất vấn: 'sao giấu cả tao?' — bạn: 'nói với mày thì tao biết đi đâu?'",
+    "open_loop": "Hứa 5 chuyện (4 lời mất bạn + 1 điều bạn giữ), chuyện thứ 4 là 'vết nhơ của tôi'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H22",
+    "H23"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    1,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "P",
+    "Mở bằng chuyện bạn chuyển nhà, không phải chuyện lương hưu. Tới giây 35 mới nối về tiêu đề: 'hôm nay kể những điều tôi mất vì lỡ miệng'."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "P",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Bí ẩn 'bạn giấu địa chỉ' bật ở giây 5, câu đáp khó hiểu ở giây 20 — người xem cần 'cả một mùa' như người kể mới hiểu.",
+   "weak": "Tiêu đề hứa '4 điều không nên nói' nhưng hook là truyện bạn thân; kênh vẫn 1 triệu view nhờ đề tài lương hưu."
+  },
+  {
+   "video_id": "YU0rS1qW_aY",
+   "tag": "clone",
+   "views": 327668,
+   "duration_min": 31.6,
+   "title": "부모님이 오래 살수록 자식의 삶까지 무너질 수 있습니다. 부모와 함께 지옥으로 끌려가지 않으려면 절대 잊지 말아야 할 3가지",
+   "desc_first": "“부모님의 장수가 두려운 저는 쓰레기인가요?” 간병 지옥에서 가족 모두가 파멸하지 않으려면 절대 잊지 말아야 할 3가지",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "새벽 2시 부엌이었습니다. 물을 마시러 나왔다가 냉장고 문꼬이를 잡은 채 그대로 굳어 버렸지요. 베란다에서 딸이 울면서 전화를 하고 있었거든요. 나 요즘 무서운게 뭔지 알아? 엄마가 오래 살까 봐 무서워. 나 쓰레기",
+   "key_t": 5,
+   "lock_line_ja": "Vì 1 lý do 40 năm trước + 3 điều giữ nhà khỏi sập; điều 3 'run tay'; giọng con giống giọng ai 40 năm trước",
+   "lock_t": 28,
+   "intro_t": 12,
+   "promise_t": 28,
+   "beats": {
+    "event": "2h sáng, con gái ngoài ban công: 'mẹ sống lâu làm tao sợ. tao là rác nhỉ?'",
+    "contradiction": "Người mẹ nghe thấy mà không giận",
+    "stake": "Mẹ nằm liệt nửa người ở nhờ nhà con 3 năm",
+    "open_loop": "Vì 1 lý do 40 năm trước + 3 điều giữ nhà khỏi sập; điều 3 'run tay'; giọng con giống giọng ai 40 năm trước"
+   },
+   "kind": "B",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    1,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Câu thoại ở giây 5 ('sợ mẹ sống lâu') chính là nỗi sợ trong tiêu đề. Mô tả trích nguyên câu đó."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Câu thoại tàn nhẫn nhất có thể từ con → mẹ, rồi lật ngay 'tôi không giận' — mâu thuẫn chồng mâu thuẫn trong 20s.",
+   "weak": "Tiêu đề trừu tượng (3 điều không quên) không nhắc câu thoại."
+  },
+  {
+   "video_id": "Kmxva85WKec",
+   "tag": "clone",
+   "views": 415706,
+   "duration_min": 28.9,
+   "title": "노년 재혼·동거, 무엇이 가장 무서울까요? 직접 겪은 세 사람의 이야기｜많은 분들이 \"진작 볼 걸\" 후회합니다",
+   "desc_first": "노년 재혼·동거, 무엇이 가장 무서울까요? 직접 겪은 세 사람의 이야기｜많은 분들이 \"진작 볼 걸\" 후회합니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "7년을 남편처럼 산 사람의 장례식에서 저는 방명록에 아는 사람이라고 적었습니다. 장례식장 입구에서는 흰봉투를 만지작거렸지요. 부위금으로 5만 원이면 너무 야박하고 10만 원이면 남들이 이상하게 볼 거 같고 7년을 한",
+   "key_t": 0,
+   "lock_line_ja": "'Lúc đó tôi chưa biết trong hộp của ông có tờ giấy ghi tên tôi' + 3 người, câu trả lời cuối 'phải lấy hơi'",
+   "lock_t": 55,
+   "intro_t": 46,
+   "promise_t": 55,
+   "beats": {
+    "event": "Đám tang người sống cùng 7 năm, tôi ghi vào sổ tang: 'người quen'",
+    "contradiction": "Phong bì 5万 thì keo, 10万 thì người ta nhìn lạ",
+    "stake": "Không phải vợ, không phải gia đình",
+    "open_loop": "'Lúc đó tôi chưa biết trong hộp của ông có tờ giấy ghi tên tôi' + 3 người, câu trả lời cuối 'phải lấy hơi'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H23"
+   ],
+   "closers": [
+    "K03",
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Ghi 'người quen' ở sổ tang = nỗi sợ của sống chung không đăng ký. Tới giây 55 nói lại lời hứa '3 người'."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Hành động nhỏ (ghi 2 chữ) gói trọn nỗi đau pháp lý của sống chung không đăng ký; K03 ở giây 20 cài bí ẩn tờ giấy.",
+   "weak": ""
+  },
+  {
+   "video_id": "Fgc8IQvQVj8",
+   "tag": "clone",
+   "views": 669370,
+   "duration_min": 32.9,
+   "title": "요양원에서 진짜 무서운 건 학대가 아니었습니다… 74세 노인이 석 달을 못 버티고 짐을 싼 이유",
+   "desc_first": "74세에 요양원에 들어갔다가 88일 만에 뛰쳐나온 이유… 입소 전 꼭 확인해야 할 3가지",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "어르신,이 가방은 누구 겁니까? 요양원 현관에서 짐을 실어 주던 직원이 물었습니다.  하나는 내 거고 하나는 죽은 사람 거예요. 내가이 가방 인자한테 짜장면 빚이 있어서 그것부터 갚으러 가는 길입니다. 저는 올해 이",
+   "key_t": 3,
+   "lock_line_ja": "3 điều phải hỏi trước khi vào; điều 3 'vẫn dè dặt'; hỏi khán giả 'có đang gập dần chỗ của mình?'",
+   "lock_t": 25,
+   "intro_t": 12,
+   "promise_t": 25,
+   "beats": {
+    "event": "Nhân viên viện dưỡng lão: 'túi này của ai?' — 'một của tôi, một của người chết'",
+    "contradiction": "Tôi còn nợ bà ấy tô mì đen, đi trả trước",
+    "stake": "Tự vào viện, 88 ngày sau tự ra",
+    "open_loop": "3 điều phải hỏi trước khi vào; điều 3 'vẫn dè dặt'; hỏi khán giả 'có đang gập dần chỗ của mình?'"
+   },
+   "kind": "B",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Giây 0 là cảnh xách túi rời viện dưỡng lão. Giây 16 nói luôn '88 ngày thì ra' đúng như tiêu đề."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Câu đáp 'túi của người chết' + 'nợ tô mì' ở giây 5 — kỳ quặc, ấm áp, không đoán được.",
+   "weak": ""
+  },
+  {
+   "video_id": "Hhe56wqubbU",
+   "tag": "clone",
+   "views": 173756,
+   "duration_min": 44.1,
+   "title": "\"절대 장례식을 치르지 마라\" 갈수록 늘어나는 노인들의 유언… 장례지도사가 털어놓은 가슴 찢어지는 3가지 진실",
+   "desc_first": "\"내가 죽은 뒤 장례식은 치르지 마라\"는 노인들, 도대체 무슨 사연일까? 장례지도사가 털어놓은 3가지 현실",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "지난해 11월 끝자락이었습니다. 1은 넘은 할머니 한 분이 제 상담실 탁자 앞에 꽃꼬이 앉으시더니 인사가 책 끝나기도 전에 이렇게 물으셨습니다. 우리 영감이 그럽디다. 나는 받으면 안 되는 사람이야 하고요. 지도사님",
+   "key_t": 5,
+   "lock_line_ja": "3 sự thật; điều 3 dè dặt; 2 cụ cho phép kể; hỏi khán giả có người thân nói câu đó không",
+   "lock_t": 47,
+   "intro_t": 25,
+   "promise_t": 47,
+   "beats": {
+    "event": "Cụ bà ngồi xuống bàn tư vấn tang lễ: 'ông nhà tôi bảo: tôi là người không được nhận'",
+    "contradiction": "Người làm tang 32 năm cũng không hiểu, tới mùa xuân mới hiểu",
+    "stake": "'Đừng tổ chức đám tang cho tôi' — câu nghe nhiều nhất",
+    "open_loop": "3 sự thật; điều 3 dè dặt; 2 cụ cho phép kể; hỏi khán giả có người thân nói câu đó không"
+   },
+   "kind": "B",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Câu 'đừng tổ chức đám tang' của tiêu đề xuất hiện ở giây 38, người kể là giám đốc tang lễ như tiêu đề."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Câu thoại bí ẩn + chuyên gia 32 năm thú nhận không hiểu → người xem được mời giải đố cùng.",
+   "weak": "Video 44 phút, view thấp nhất nhóm (174k)."
+  },
+  {
+   "video_id": "sYRr33eHYSM",
+   "tag": "clone",
+   "views": 478311,
+   "duration_min": 36.2,
+   "title": "70세가 넘은 여성들이 여전히 남자를 찾는 진짜 이유… 예상 밖이었습니다",
+   "desc_first": "70세가 넘은 여성들은 왜 여전히 남자를 찾을까요? 그 이유는 뜻밖이었습니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "응급실 복도에서 내 딸이 소리를 질렀습니다.이 여자분이 왜 우리 아버지 보호자예요? 네. 아버지 휴대폰 비상 연락처에 왜이 아줌마가 1번이냐고요? 나는 혀가 굳어 말 한마디 못 하고 침대에 누워 그 소리를 다 들었습",
+   "key_t": 3,
+   "lock_line_ja": "Lý do thật đàn bà 70+ tìm đàn ông — tôi hiểu ở hành lang đó; 'đồn sai, con sai, tôi cũng sai'; hỏi khán giả có tên để ghi ô bảo lãnh",
+   "lock_t": 30,
+   "intro_t": 20,
+   "promise_t": 30,
+   "beats": {
+    "event": "Con gái hét ở hành lang cấp cứu: 'sao bà này là người bảo lãnh của bố? số khẩn cấp số 1?'",
+    "contradiction": "Người đàn bà mà cả xóm đồn 'đi tìm đàn ông'",
+    "stake": "Nằm liệt không nói được, nghe hết",
+    "open_loop": "Lý do thật đàn bà 70+ tìm đàn ông — tôi hiểu ở hành lang đó; 'đồn sai, con sai, tôi cũng sai'; hỏi khán giả có tên để ghi ô bảo lãnh"
+   },
+   "kind": "B",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Giây 30 đọc gần nguyên tiêu đề: 'lý do thật đàn bà 70+ tìm đàn ông, tôi hiểu ở hành lang bệnh viện'."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Chi tiết 'số khẩn cấp số 1' biến tin đồn tiêu cực thành câu hỏi, và câu 30s trả thẳng về tiêu đề.",
+   "weak": ""
+  },
+  {
+   "video_id": "TISOm_7M_vM",
+   "tag": "clone",
+   "views": 725736,
+   "duration_min": 38.2,
+   "title": "만약 어느 날 갑자기 세상을 떠난다면… 은행 예금 전액을 자녀가 받을 수 있을까? 은행 지점장이 밝힌 충격적인 진실",
+   "desc_first": "만약 어느 날 갑자기 세상을 떠난다면… 은행 예금 전액을 자녀가 받을 수 있을까? 은행 지점장이 밝힌 충격적인 진실",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "어머니 그 돈 저도 못 꺼냅니다. 은행에서 25년 밥을 먹고 지점장까지 단 큰아들이 제 아버지 빈소 복도에서 그리 말했습니다. 세상에 남도 아니고 자식이 그것도 은행 지점장이라는 사람이 아버지 통장에든 돈을 못 꺼낸",
+   "key_t": 0,
+   "lock_line_ja": "Chuyện ngân hàng con kể riêng; 'nhà nào có sổ tiết kiệm cũng không phải chuyện người khác'; sổ cuối cùng 'nghẹn'",
+   "lock_t": 30,
+   "intro_t": 16,
+   "promise_t": 30,
+   "beats": {
+    "event": "Con trai giám đốc chi nhánh ngân hàng 25 năm, ở linh đường: 'mẹ ơi, tiền đó con cũng không rút được'",
+    "contradiction": "Con ruột + dân ngân hàng mà không rút được tiền của bố",
+    "stake": "Mất chồng 50 năm sau 1 buổi sáng",
+    "open_loop": "Chuyện ngân hàng con kể riêng; 'nhà nào có sổ tiết kiệm cũng không phải chuyện người khác'; sổ cuối cùng 'nghẹn'"
+   },
+   "kind": "B",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Câu mở chính là tiêu đề: con trai giám đốc ngân hàng cũng không rút được tiền của bố."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Nghịch lý kép (con + chuyên gia vẫn bất lực) đúng nỗi sợ khán giả; khớp tiêu đề 100%.",
+   "weak": "Video 726k — hook mạnh nhất nhóm."
+  },
+  {
+   "video_id": "Kb5Ej4ZNBgQ",
+   "tag": "clone",
+   "views": 319314,
+   "duration_min": 25.1,
+   "title": "【전직 은행원의 경고】70세가 넘어서도 여기에 돈을 넣어 두고 있다면 당장 멈추세요｜은행은 절대 알려주지 않습니다",
+   "desc_first": "【전직 은행원의 경고】70세가 넘어서도 여기에 돈을 넣어 두고 있다면 당장 멈추세요｜은행은 절대 알려주지 않습니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "금자야, 그 서류. 내일 나랑 은행 가서 물리자. 아이고야. 첫말로 네가 뭔데 자꾸 물리라 말아야 은행 직원이라도 되나? 내가 그걸 팔던 사람이라 그런다. 38년을이 손으로 습관을 준 금자손이 그대로 멈췄습니다. 새",
+   "key_t": 8,
+   "lock_line_ja": "1 điều ngân hàng không bao giờ nói trước; chuyện 1 cụ giấu 18 năm; 'sổ trong tủ bạn có thể in cùng chữ'",
+   "lock_t": 31,
+   "intro_t": 18,
+   "promise_t": 31,
+   "beats": {
+    "event": "Nhà tắm công cộng: 'mai đi ngân hàng huỷ cái giấy đó' — 'mày là nhân viên NH à?' — 'tao là người từng bán nó'",
+    "contradiction": "Người bán sản phẩm lại khuyên huỷ",
+    "stake": "38 năm ở quầy NH",
+    "open_loop": "1 điều ngân hàng không bao giờ nói trước; chuyện 1 cụ giấu 18 năm; 'sổ trong tủ bạn có thể in cùng chữ'"
+   },
+   "kind": "B",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Giây 10 là 'tôi là người từng bán nó' = cựu nhân viên ngân hàng cảnh báo. Giây 31 đọc lại tiêu đề."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Câu 'tao là người từng bán nó' lật vai người kể ở giây 10 — uy tín nội gián.",
+   "weak": ""
+  },
+  {
+   "video_id": "rNGGuRG-wu0",
+   "tag": "clone",
+   "views": 241044,
+   "duration_min": 29.7,
+   "title": "나이 들어 돈이 있다면 가장 먼저 사야 할 3가지… 늦으면 반드시 후회합니다",
+   "desc_first": "나이 들어 돈이 있다면 가장 먼저 사야 할 3가지… 늦으면 반드시 후회합니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "지난달 월요일 아침 은행 창구에서 있었던 일부터 말씀드려야겠습니다. 번호표를 뽑고 한시간을 기다려서 통장하고 손수건에 싼 인도장을 내밀고 360만 원을 현금으로 찾겠다고 했지요. 그런데 젊은 창고 직원이 통장을 받아",
+   "key_t": 32,
+   "lock_line_ja": "3 thứ nên mua; 'thứ rẻ nhất 25.000 won lại đáng sợ nhất' — để cuối; 'đặt tay lên ngực'",
+   "lock_t": 50,
+   "intro_t": 38,
+   "promise_t": 50,
+   "beats": {
+    "event": "Rút 3,6 triệu won tiền mặt, nhân viên hỏi 'có ai gọi điện bảo bà rút không?'",
+    "contradiction": "'Tôi không bị lừa, tôi đang cố không bị lừa — bởi chính tôi'",
+    "stake": "Cả đời bị chính mình lừa (tiết kiệm)",
+    "open_loop": "3 thứ nên mua; 'thứ rẻ nhất 25.000 won lại đáng sợ nhất' — để cuối; 'đặt tay lên ngực'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Cảnh rút tiền ở ngân hàng, giây 50 đọc lại tiêu đề: 'có tiền thì mua 3 thứ trước'."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Nghi lừa đảo → lật thành tự lừa mình; teaser giá rẻ nhất đáng sợ nhất rất cụ thể.",
+   "weak": ""
+  },
+  {
+   "video_id": "66weQbaUZuk",
+   "tag": "clone",
+   "views": 207120,
+   "duration_min": 30.2,
+   "title": "죽기 한 달 전부터 몸에 나타나는 변화｜간호사가 알려줬습니다",
+   "desc_first": "죽기 한 달 전부터 몸에 나타나는 변화｜간호사가 알려줬습니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "죽는다던 사람이 부엌에서 국수를 삼고 있었습니다. 골목까지 멸치육수 냄새가 흘러나오기에 설마하고 문을 열었더니 보름 넘게 미음도 겨우 넘기던 사람이 머리까지 곱게 빚고 서서 웃는 겁니다. 예 왔니? 배고프지? 저는 ",
+   "key_t": 0,
+   "lock_line_ja": "'Yeongja, đây là dấu hiệu thứ 4' → 6 dấu hiệu trước khi mất, dấu hiệu 6 để cuối; hỏi 'đã nói hết lời chào cuối chưa?'",
+   "lock_t": 45,
+   "intro_t": 33,
+   "promise_t": 45,
+   "beats": {
+    "event": "'Người được bảo sắp chết đang đứng nấu mì trong bếp'",
+    "contradiction": "Nửa tháng chỉ nuốt được cháo loãng mà chải tóc đứng cười",
+    "stake": "'Mày sống rồi!'",
+    "open_loop": "'Yeongja, đây là dấu hiệu thứ 4' → 6 dấu hiệu trước khi mất, dấu hiệu 6 để cuối; hỏi 'đã nói hết lời chào cuối chưa?'"
+   },
+   "kind": "A",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    0,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Giây 25 'đây là dấu hiệu thứ 4', giây 45 hứa 6 dấu hiệu do y tá dạy = tiêu đề."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Câu đầu tiên đã là nghịch lý (sắp chết – đang nấu), câu 25s biến niềm vui thành dấu hiệu tử vong — cú lật mạnh.",
+   "weak": "Thumbnail chỉ có chữ, không cảnh."
+  },
+  {
+   "video_id": "DXXwIxhcfF0",
+   "tag": "clone",
+   "views": 536781,
+   "duration_min": 34.1,
+   "title": "\"통장에 얼마 있냐\"는 자식 물음에 81세가 내놓은 기막힌 대답",
+   "desc_first": "\"노후 통장에 얼마 있는지, 자식에게 말해야 하나…\" 81세 노인이 내놓은 뜻밖의 답",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "설날 아침이었습니다. 저는 40여선 먹은 아들 앞에 통장 대신 공책 한 권을 밀어 놓았습니다. 긴장날 네가 물었던 것 오늘 대답해 주마. 아들은 그 공책을 딱 두 장 넘기고는 떡국상 앞에서 울음을 터트렸습니다. 46",
+   "key_t": 0,
+   "lock_line_ja": "Câu trả lời của bà chị 81 tuổi; chuyện nặng hơn ở sau; 'con hỏi thì bạn có cười trả lời được không?'",
+   "lock_t": 25,
+   "intro_t": 15,
+   "promise_t": 25,
+   "beats": {
+    "event": "Sáng Tết, đẩy cho con trai cuốn vở THAY VÌ sổ tiết kiệm",
+    "contradiction": "Con trai 46 tuổi đọc 2 trang thì khóc",
+    "stake": "Trả lời câu hỏi 'mẹ còn bao nhiêu tiền'",
+    "open_loop": "Câu trả lời của bà chị 81 tuổi; chuyện nặng hơn ở sau; 'con hỏi thì bạn có cười trả lời được không?'"
+   },
+   "kind": "A",
+   "patterns": [
+    "H23"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 10,
+   "score_detail": [
+    2,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Giây 0 trả lời đúng câu hỏi trong tiêu đề (con hỏi mẹ có bao nhiêu), giây 25 nhắc 'câu trả lời của bà 81 tuổi'."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Vật thay thế (vở thay sổ) + phản ứng quá mức (đàn ông 46 tuổi khóc) → người xem muốn biết trong vở viết gì.",
+   "weak": ""
+  },
+  {
+   "video_id": "FBkmqYvEyXQ",
+   "tag": "clone",
+   "views": 190242,
+   "duration_min": 22.1,
+   "title": "70세를 막 넘겼는데 몇 년 안 돼 세상을 떠나는 노인이 많습니다… 대체 왜일까요?",
+   "desc_first": "70세를 막 넘겼는데 몇 년 안 돼 세상을 떠나는 노인이 많습니다… 대체 왜일까요?",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "여기 다 적어 놨어. 통장이 어느 서랍에 있고 도장이 어디 있고 보험은 뭐가 들었는지 나 없어도 임자 고생하지 말라고 남편이 석다를 공들여쓴 공책이었습니다. 저는 그걸 받아드는 대신 남편이 보는 앞에서 북 찢어버렸습",
+   "key_t": 20,
+   "lock_line_ja": "Vì sao người vừa qua 70 ra đi sớm; 'đáng sợ nhất không phải bệnh mà là AI khiến ông bắt đầu'; 'nếu ông nhà hay cho đồ đi…'",
+   "lock_t": 38,
+   "intro_t": 28,
+   "promise_t": 38,
+   "beats": {
+    "event": "Chồng: 'anh ghi hết rồi, sổ ở ngăn nào…' — tôi xé cuốn sổ trước mặt ông",
+    "contradiction": "Chồng viết vì thương vợ, vợ xé",
+    "stake": "'Cuốn này xong là ông chết. Bố tôi y như vậy'",
+    "open_loop": "Vì sao người vừa qua 70 ra đi sớm; 'đáng sợ nhất không phải bệnh mà là AI khiến ông bắt đầu'; 'nếu ông nhà hay cho đồ đi…'"
+   },
+   "kind": "A",
+   "patterns": [
+    "H23"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Giây 20 'cuốn này xong là ông chết' trả lời câu hỏi tiêu đề 'vì sao qua 70 thì ra đi sớm'."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Hành động bạo liệt của vợ hiền + lời giải thích ở giây 20 như một lời nguyền.",
+   "weak": ""
+  },
+  {
+   "video_id": "djMUfpGoUQI",
+   "tag": "clone",
+   "views": 155057,
+   "duration_min": 26.6,
+   "title": "65세에 ‘이만큼의 돈’이 있는 사람은… 노후의 승자입니다｜이 기준, 놀랄 만큼 정확합니다",
+   "desc_first": "65세에는 얼마가 있어야 노후의 승자일까요? 답은 바로 '이 금액'입니다｜이 기준, 놀랄 만큼 정확합니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "통장에는 2억이 넘는 돈이 들어 있었습니다. 그런데 저는 재작년 겨울 보일러가 죽은 집에서 전기 장판 한 장에 이불 두 채를 덮고 사흘밤을 잤습니다. 설비 기사 번호를 눌러 놓고는 통화 단추 하나를 끝내 못 눌렀지요",
+   "key_t": 0,
+   "lock_line_ja": "Công thức người thắng tuổi già học ở quán canh; con số phía sau dè dặt; 'sổ của bạn tháng trước tăng hay giảm?'",
+   "lock_t": 30,
+   "intro_t": 18,
+   "promise_t": 30,
+   "beats": {
+    "event": "Sổ có hơn 200 triệu won mà ngủ 3 đêm với nhà hỏng lò sưởi",
+    "contradiction": "Không bấm nổi nút gọi thợ — không phải vì không có tiền",
+    "stake": "Tuổi 72 sống một mình",
+    "open_loop": "Công thức người thắng tuổi già học ở quán canh; con số phía sau dè dặt; 'sổ của bạn tháng trước tăng hay giảm?'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H04",
+    "H23"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Có 200 triệu mà chịu lạnh = câu hỏi 'bao nhiêu tiền thì thắng'. Giây 30 hứa 'công thức'."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Nghịch lý có-nhiều-mà-thiếu bằng con số cụ thể + câu hỏi khán giả tự nhẩm sổ mình.",
+   "weak": ""
+  },
+  {
+   "video_id": "l0p1EnDcXYM",
+   "tag": "clone",
+   "views": 657031,
+   "duration_min": 27.3,
+   "title": "60세 이후, 절대 가까이하면 안 되는 여자 4부류… 잘못 만나면 말년이 처참합니다",
+   "desc_first": "60세 이후, 절대 가까이하면 안 되는 여자 4부류… 잘못 만나면 말년이 처참합니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "거울 속에서 그 여자가 웃으며 물었습니다. 원장님,  세상에서 제일 쉬운 영감이 어떤 영감인 줄 아세요? 파마로들을 말던 제 손이 저도 모르게 멈췄지요. 여자는 제 대답을 기다리지도 않고 옆자리에 앉은 젊은 여자한테",
+   "key_t": 0,
+   "lock_line_ja": "'Câu tiếp theo tôi không quên được' + 4 loại đàn bà, học từ tuổi già của anh trai; câu trả lời cuối để cuối",
+   "lock_t": 35,
+   "intro_t": 25,
+   "promise_t": 35,
+   "beats": {
+    "event": "Trong gương, khách hỏi chủ tiệm tóc: 'ông già nào dễ nhất thế gian?'",
+    "contradiction": "'Ông già cô đơn? Không, ông cô đơn lâu lắm'",
+    "stake": "Hội lừa tình săn người già",
+    "open_loop": "'Câu tiếp theo tôi không quên được' + 4 loại đàn bà, học từ tuổi già của anh trai; câu trả lời cuối để cuối"
+   },
+   "kind": "B",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K03",
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Kẻ lừa bàn nghề trong gương = 'loại đàn bà phải tránh'. Giây 35 hứa 4 loại."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Nghe lỏm kẻ lừa bàn nghề — người xem thành người trong cuộc; câu 'không phải ông cô đơn' lật dự đoán.",
+   "weak": ""
+  },
+  {
+   "video_id": "HD-ADEBz5oM",
+   "tag": "clone",
+   "views": 431117,
+   "duration_min": 31.1,
+   "title": "나이 들수록 예금은 어디에 둬야 할까? 73세 노인의 방법이 너무 현명했습니다",
+   "desc_first": "나이 들수록 예금은 어디에 둬야 할까? 73세 노인의 방법이 너무 현명했습니다",
+   "thumb_text": "= nguyên văn tiêu đề",
+   "key_line_ja": "이 돈을요, 내가 못 찾아가게 좀 막아주시오. 은행 창고에서 그런 말이 들려왔습니다. 창고아가 씨가 당황해서 되묻더군요. 천생님, 본인 예금인데 본인이 못 찾으시게요. 옆 창고에 앉아있던 저는 저도 모르게 고개를 돌",
+   "key_t": 0,
+   "lock_line_ja": "4 chỗ để tiền của cụ 73 tuổi; chỗ thứ 4 'nghẹn'; 'có tiền trong sổ chưa chắc là tiền của mình'",
+   "lock_t": 22,
+   "intro_t": 12,
+   "promise_t": 22,
+   "beats": {
+    "event": "Ở quầy ngân hàng: 'đừng cho tôi rút tiền này — giữ tiền này khỏi tôi'",
+    "contradiction": "Tiền của mình mà xin bị chặn",
+    "stake": "Goá, 210 triệu won khiến mất ngủ",
+    "open_loop": "4 chỗ để tiền của cụ 73 tuổi; chỗ thứ 4 'nghẹn'; 'có tiền trong sổ chưa chắc là tiền của mình'"
+   },
+   "kind": "C",
+   "patterns": [
+    "H22"
+   ],
+   "closers": [
+    "K12"
+   ],
+   "score_0_12": 11,
+   "score_detail": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "title_hook": [
+    "K",
+    "Câu xin ngân hàng chặn tiền của chính mình = 'để tiền ở đâu', sau đó hứa 4 chỗ."
+   ],
+   "thumb_title": [
+    "K",
+    "Chữ thumbnail chép nguyên tiêu đề"
+   ],
+   "thumb_hook": [
+    "K",
+    "Giống hook↔tiêu đề vì thumbnail = tiêu đề"
+   ],
+   "why": "Yêu cầu ngược đời ở giây 0, người kể là người ngồi quầy bên nghe lỏm.",
+   "weak": "Không lấy được transcript theo mốc giây (YouTube chặn) — nguyên văn lấy từ competitor.txt h2dev."
+  }
+ ],
+ "win_vs_lose": "Top (01 1,01tr; 07 726k) và thấp nhất (05 174k) dùng cùng khung; 05 thua do dài 44 phút và đề tài tang lễ hẹp, không do hook.",
+ "our_eps": [
+  {
+   "ep": "01",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-01-vU5PWT2zLDs",
+   "status": "có final.mp4",
+   "title": "「3年前に越されましたよ」毎週会う50年の親友が住所を隠した理由",
+   "desc_first": "50年来の親友は、住所を変えたことを3年間ひと言も告げずに、毎週木曜だけ会いに来てくれておりました。73歳の私がようやく知った、あの沈黙の意味をお話しいたします。",
+   "thumb_file": "thumbnail_final.png (mới hơn). Gói đăng DANG-TAI.txt lại trỏ thumb_final.png = 「光江の家｜三年前から｜知らない女｜正体は誰｜五十年の友が黙り続けた」",
+   "thumb_text": "毎週会っていたのに｜3年前に｜引っ越していた｜私だけ知らなかった",
+   "open_0_30_ja": "秋の煮しめを詰めた、重箱を二段、風呂敷に包み、五十年来の友、光江のマンションへ、向かいました。風は少し冷たく、車の中は醤油と、鰹の香りで、満ちておりました。袖に香りが移るのも、懐かしく思え、指先に秋が、灯っておりました。呼び鈴を押すと、扉を開けたのは、見知らぬ若い、女の方でした。",
+   "key_t": 32,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Câu trong ngoặc của tiêu đề có trong hook nhưng ở giây 32."
+   ],
+   "thumb_title": [
+    "K",
+    ""
+   ],
+   "thumb_hook": [
+    "K",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "tả cảnh 25s đầu, câu 'đã chuyển 3 năm' ở giây 32, tới giây 90 chưa có lời hứa N điều."
+   ],
+   "fix": [
+    "Bỏ 25 giây tả hộp thức ăn/mùi; mở ngay bằng người lạ mở cửa 'đã chuyển đi 3 năm'. Đưa câu chất vấn ở ghế đá + câu đáp khó hiểu của bạn vào trước giây 20."
+   ],
+   "model_video": "vU5PWT2zLDs",
+   "priority": "cao",
+   "priority_why": ""
+  },
+  {
+   "ep": "02",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-02-YU0rS1qW_aY",
+   "status": "chưa có final.mp4",
+   "title": "【老老介護】手帳の最後に鉛筆で「たすけて」…倒れたのは80歳の母ではなく娘",
+   "desc_first": "老老介護の限界は、母ではなく娘の体に先に来ました。八十の私が真夜中に聞いてしまった、娘の泣き声のお話でございます。",
+   "thumb_file": "thumbnail_final.png",
+   "thumb_text": "娘が泣いた｜長生きが怖い｜40年前の私も｜娘を責められなかった",
+   "open_0_30_ja": "千葉市にある、稲毛の団地で、深夜の二時に、起きたことで、ございました。私はその夜、喉が渇いて、冷たい水を、一口飲もうと、台所へと、出て参りました。暗がりの中、冷蔵庫の把手を、握ったままで、足がすくんで、動けなくなりました。ガラス戸の向こう、ベランダの隅で、六十を過ぎた娘が、電話口で小声で、泣いていたのです。",
+   "key_t": 39,
+   "intro_t": 65,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "L",
+    "Tiêu đề nói 「たすけて」 và 'người ngã là con gái', hook là cảnh con gái khóc lúc 2h sáng. Hook khớp thumbnail, không khớp tiêu đề."
+   ],
+   "thumb_title": [
+    "L",
+    ""
+   ],
+   "thumb_hook": [
+    "K",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "câu thoại ở giây 39, tự giới thiệu 65s, chưa hứa gì trước 90s."
+   ],
+   "fix": [
+    "Mở bằng NGUYÊN câu thoại của con gái (sợ mẹ sống lâu, 'tao là rác nhỉ?'), không dẫn địa danh/giờ trước. Sau đó 'tôi không giận — vì 1 chuyện 40 năm trước'."
+   ],
+   "model_video": "YU0rS1qW_aY",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "03",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-03-Kmxva85WKec",
+   "status": "chưa có final.mp4",
+   "title": "籍は入れぬまま七年…四十九日の後、事実婚の妻に長男が届けた封筒の中身",
+   "desc_first": "七年連れ添っても、記帳台で書けたのは「知人」の二文字だけ——事実婚のまま暮らした私の、紙一枚の話でございます。",
+   "thumb_file": "thumbnail_final.png",
+   "thumb_text": "本当の夫婦だ｜延命治療の相談に｜入れなかった｜法律上は赤の他人",
+   "open_0_30_ja": "葬儀場の入口で、白い香典袋を、じっと握り締め、立ち尽くしました。中の三万円に、触れる指先が、寒くもないのに、震えておりました。七年の歳月を、共に暮らしたのに、書ける肩書は、「知人」の二文字しか、浮かびません。記帳台へと進み、関係の欄の前で、筆先が止まりました。妻でも家族でもなく、",
+   "key_t": 18,
+   "intro_t": 74,
+   "promise_t": 83,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "'7 năm' và chữ 'người quen' có ở giây 18. 'Phong bì con trưởng mang tới' không được nhử trong 90 giây đầu."
+   ],
+   "thumb_title": [
+    "L",
+    ""
+   ],
+   "thumb_hook": [
+    "L",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "mở đúng cảnh nhưng đẩy 'tờ giấy có tên tôi' ra khỏi 90s đầu — mất câu khoá K03."
+   ],
+   "fix": [
+    "Giữ cảnh mở, nhưng rút gọn còn 15 giây và thêm lại câu khoá 'lúc đó tôi chưa biết trong hộp của ông có tờ giấy ghi tên tôi'."
+   ],
+   "model_video": "Kmxva85WKec",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "04",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-04-Fgc8IQvQVj8",
+   "status": "có final.mp4",
+   "title": "特養で本当に怖いのは虐待ではなかった…元看護婦が遺した四文字の言葉",
+   "desc_first": "特養に入る前に、必ず訊いておくべき三つのこと。八十八日で家に戻った私が、向かいのベッドの元看護婦から教わりました。",
+   "thumb_file": "thumb_final.png",
+   "thumb_text": "親友が逝った｜涙が出なかった｜心が渇いていた｜気づいた瞬間、家に帰った",
+   "open_0_30_ja": "私が、施設の玄関を、二つの鞄を、下げて、出てまいりますと、若い職員の方が、心配そうに、声を、かけてくださいました。片方は、私の荷物、もう片方は、亡くなられた、貞子さんという、大切な方の、お預かり物でございます。少し先の、路地の奥の、蕎麦屋さんに、貞子さんが、遺していかれた、蕎麦の、お礼が、まだ、支払わずに、残っていたのでございます。",
+   "key_t": 23,
+   "intro_t": 35,
+   "promise_t": 60,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Hook có cảnh rời viện, nhưng 'bốn chữ' của tiêu đề không có trong script.txt: tìm「文字」và mọi câu「」dài 4 ký tự đều không ra."
+   ],
+   "thumb_title": [
+    "L",
+    ""
+   ],
+   "thumb_hook": [
+    "L",
+    ""
+   ],
+   "broken_promises": [
+    "Tiêu đề hứa 「元看護婦が遺した四文字の言葉」 — không có「文字」hay câu「」4 ký tự nào trong script.txt"
+   ],
+   "problems": [
+    "giữ cấu trúc (hứa 3 điều 60s, điều 3 sợ 78s) nhưng bỏ dạng hội thoại, chậm gấp đôi."
+   ],
+   "fix": [
+    "Đổi đoạn tường thuật thành hội thoại: nhân viên hỏi 'túi này của ai?' — 'một của tôi, một của người đã mất'. Cấu trúc sau đó đã đúng, chỉ cần nén một nửa."
+   ],
+   "model_video": "Fgc8IQvQVj8",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "05",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-05-Hhe56wqubbU",
+   "status": "chưa có final.mp4",
+   "title": "葬式の帰り、79歳の夫が漏らした一言「わしは受け取ってはいけない人間じゃ」",
+   "desc_first": "「わしが死んでも葬式はするな」——五十年連れ添った七十九歳のご主人が、幼馴染みの葬儀の帰りに残された一言でございます。",
+   "thumb_file": "thumbnail_final.png",
+   "thumb_text": "弔いに丁寧な夫が｜香典帳は40年｜自分だけ拒んだ｜まだ終わっていない弔いがある",
+   "open_0_30_ja": "私は岐阜県中津川市で、葬祭ディレクターを、三十二年、務めております。田中修一と申します、今年で六十七になります。この山あいの町で、たった一つの葬儀場を、切り盛りしてまいりました。まずはご挨拶が遅くなりましたことを、お詫びいたします。昨年の十一月末の、寒い日のことでございました。七十二の中村千代子さんという方が、",
+   "key_t": 44,
+   "intro_t": 0,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Câu trích của tiêu đề ở giây 44. Hook mở bằng tự giới thiệu. Mô tả lại trích một câu khác (「わしが死んでも葬式はするな」)."
+   ],
+   "thumb_title": [
+    "P",
+    ""
+   ],
+   "thumb_hook": [
+    "L",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "mở bằng tự giới thiệu 24s (kiểu H12 bị cấm), câu thoại ở giây 44."
+   ],
+   "fix": [
+    "Đang mở bằng tự giới thiệu (kiểu H12 bị hook_stage cấm). Đưa câu thoại của cụ bà 'ông nhà tôi bảo: tôi là người không được nhận' lên giây 0."
+   ],
+   "model_video": "Hhe56wqubbU",
+   "priority": "cao",
+   "priority_why": ""
+  },
+  {
+   "ep": "06",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-06-sYRr33eHYSM",
+   "status": "có final.mp4",
+   "title": "78歳一人暮らしの私が倒れた朝…合鍵で駆け込んだのは「男を探す女」と噂の71歳",
+   "desc_first": "一人暮らし六年目、七十八歳の私が畳に崩れた朝、七時半を過ぎて合鍵で駆け込んできたのは、町で噂の七十一歳でした。",
+   "thumb_file": "thumb_final.png",
+   "thumb_text": "娘は疑った｜「お金ですか」と｜薬の時間まで知っていた｜恋でも、金でもなかった",
+   "open_0_30_ja": "点滴の管が右腕に、細く垂れ下がり、心電の機械が、低く鳴り続ける、病室でございました。舌は思うように、ものを言わず、目だけが天井を、追うばかりで、ございました。娘の美香が、病室に駆け込み、ベッド脇にそっと佇む、見知らぬ婦人に、足を止めました。父の傍らに、なぜあなた様が、おいでなのですか",
+   "key_t": 28,
+   "intro_t": 59,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Hook ở bệnh viện, con gái chất vấn bà. Cảnh 'chạy vào bằng chìa khoá dự phòng' của tiêu đề không nằm trong hook."
+   ],
+   "thumb_title": [
+    "P",
+    ""
+   ],
+   "thumb_hook": [
+    "K",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "tả phòng bệnh 18s, câu hỏi con gái ở giây 28 và bỏ chi tiết 'số khẩn cấp số 1'; câu nối về tiêu đề không có trong 90s."
+   ],
+   "fix": [
+    "Mở bằng tiếng hét của con gái và thêm lại chi tiết bị mất: 'số khẩn cấp số 1 của bố là bà này'. Nối ngay về tiêu đề: 'lý do thật tôi hiểu ở hành lang đó'."
+   ],
+   "model_video": "sYRr33eHYSM",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "07",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-07-TISOm_7M_vM",
+   "status": "có final.mp4",
+   "title": "夫を亡くした翌日、通帳が凍り督促状が届いた…通夜で義弟が囁いた一言",
+   "desc_first": "五十二年連れ添った夫を見送った翌朝、暮らしのすべてが止まりました。口座凍結という言葉を、私は初めて自分のお金で知ったのでございます。",
+   "thumb_file": "thumb_final.png. Câu 'con cũng không rút được' là câu của bản Hàn; script.txt JP không có nguyên câu này",
+   "thumb_text": "母さん｜その金は｜僕でも｜下ろせない｜夫が遺した三行の遺言",
+   "open_0_30_ja": "私は山本幸子、七十三歳で、ございます。去年の三月、五十二年、連れ添いました夫を、ある朝、突然に、見送ることに、なりました。今夜はその日から、始まりました、通帳と家族の、お話を、包み隠さず、お伝えいたします。長いお話に、なりますが、どうぞ最後まで、静かに、お付き合い、くださいませ。",
+   "key_t": null,
+   "intro_t": 0,
+   "promise_t": 14,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "L",
+    "Tiêu đề: tài khoản bị đóng băng + câu thì thầm của em chồng. Hook: tự giới thiệu rồi kể buổi sáng chồng ngã. Hai chi tiết đó không có trong 90 giây đầu."
+   ],
+   "thumb_title": [
+    "L",
+    ""
+   ],
+   "thumb_hook": [
+    "L",
+    ""
+   ],
+   "broken_promises": [
+    "Thumbnail 「その金は僕でも下ろせない」 là câu bản Hàn, script.txt JP không có nguyên câu"
+   ],
+   "problems": [
+    "bỏ hẳn câu thoại này khỏi 90s đầu, mở bằng tự giới thiệu (H12) rồi kể tuần tự sáng hôm đó."
+   ],
+   "fix": [
+    "Hook mạnh nhất kênh gốc (726k) bị bỏ hẳn. Mở bằng câu của con trai giám đốc ngân hàng: 'mẹ ơi, tiền đó con cũng không rút được'."
+   ],
+   "model_video": "TISOm_7M_vM",
+   "priority": "cao",
+   "priority_why": ""
+  },
+  {
+   "ep": "08",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-08-Kb5Ej4ZNBgQ",
+   "status": "có final.mp4",
+   "title": "元本非保証の信託に移った定期預金1800万円…30分で通帳に戻した三つの質問",
+   "desc_first": "元本非保証の五文字に、私の指はぴたりと止まりました。二十年来の友の満期金が、預金ではない場所へ移されていたのでございます。",
+   "thumb_file": "thumb_final.png",
+   "thumb_text": "「その書類｜預金じゃ｜なかった」｜老後を守る警告｜元銀行員が明かす真実",
+   "open_0_30_ja": "早朝の、あの、まだ湿った、公園のベンチでした。私の手が、缶コーヒーの上で、ぴたりと、止まったのです。「房江、その書類、明日、一緒に、銀行に、返しに行こう」。私は、声を、落として、そう申しました。房江は、答えず、書類の封筒を、ゆっくり、撫でていました。申し遅れました、",
+   "key_t": null,
+   "intro_t": 29,
+   "promise_t": 60,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Hook có 'trả giấy về ngân hàng', nhưng 「元本非保証」 và '3 câu hỏi' của tiêu đề không có trong 90 giây đầu."
+   ],
+   "thumb_title": [
+    "K",
+    ""
+   ],
+   "thumb_hook": [
+    "K",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "giữ hội thoại nhưng bỏ câu lật 'tôi từng bán nó'; hứa 1 điều ở 60s (KO 31s)."
+   ],
+   "fix": [
+    "Giữ hội thoại ở ghế đá nhưng thêm câu lật vai: 'vì tôi là người từng bán nó' (bản JP đang thiếu)."
+   ],
+   "model_video": "Kb5Ej4ZNBgQ",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "09",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-09-rNGGuRG-wu0",
+   "status": "có final.mp4",
+   "title": "夫に補聴器を諦めさせた声の正体…今度は73歳の私の耳元でささやいた",
+   "desc_first": "「もったいない」――主人に補聴器を諦めさせたその声が、今度は七十三歳の私の耳元で囁き始めたのでございます。",
+   "thumb_file": "thumbnail_final.png (thumb_text.txt CŨ ghi khác: 夫の遺した｜五十万円｜私が下ろす)",
+   "thumb_text": "娘にも黙って｜50万円｜銀行の窓口で｜詐欺ですかと聞かれた",
+   "open_0_30_ja": "先月のこと、月曜の朝に、千葉の銀行で、五十万の現金を、下ろす順番を、待っておりました。膝の上には、通帳と実印を、そっと置いて、呼ばれるのを、待っていたのです。三年間も、一度も動かない、口座から老人が、現金で下ろすと、申し出たため、受付の女性は、手を止めました。私を気遣い、誰かに電話で、",
+   "key_t": 38,
+   "intro_t": 59,
+   "promise_t": 83,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "'Tiếng nói' có ở giây 38 (tiếng nói tiết kiệm), còn 'máy trợ thính' không có trong 90 giây đầu."
+   ],
+   "thumb_title": [
+    "L",
+    ""
+   ],
+   "thumb_hook": [
+    "K",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "khá sát (ngân hàng 0s, câu hỏi 30s, 'giọng tiết kiệm' 38s) nhưng tự giới thiệu 59s, hứa 3 thứ ~90s, chưa có teaser 25.000."
+   ],
+   "fix": [
+    "Gần đạt. Chỉ cần nén: tự giới thiệu trước giây 45, hứa 3 thứ + câu nhử 'thứ rẻ nhất lại đáng sợ nhất' trước giây 70."
+   ],
+   "model_video": "rNGGuRG-wu0",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "10",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-10-66weQbaUZuk",
+   "status": "có final.mp4",
+   "title": "抗がん剤をやめた40年の親友が枕元に残した千円札一枚…11年越しの借りの正体",
+   "desc_first": "四十年の親友が抗がん剤をやめると告げたあの朝から、私は旅立ちの合図を一つずつ教わることになったのでございます。",
+   "thumb_file": "chưa có thumbnail",
+   "thumb_text": "",
+   "open_0_30_ja": "十一月最初の火曜日の朝、まだ空は低く、灰色の刻でした。路地の奥まで、鰹だしの香りが、ふわりと漂っておりました。半月ものあいだ粥さえほとんど口にできなかったあの人の家から、湯気が昇っていたのです。私は玄関で履物も揃えずに脱ぎ、上がり框を越えて、奥の引き戸を、勢いよく開けました。湯気の向こうには、桃色の",
+   "key_t": 14,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Người bạn thân có ngay giây 0, nhưng 'thôi hoá trị', 'tờ 1000 yên', 'món nợ 11 năm' đều không được nhử."
+   ],
+   "thumb_title": [
+    "",
+    ""
+   ],
+   "thumb_hook": [
+    "",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "dài dòng không khí 29s, không có câu 'dấu hiệu thứ 4' và lời hứa 6 dấu hiệu trong 90s."
+   ],
+   "fix": [
+    "Mở bằng câu nghịch lý 'người được bảo sắp chết đang đứng nấu mì', rồi câu lật 'đây là dấu hiệu thứ 4' trước giây 30. Hứa 6 dấu hiệu."
+   ],
+   "model_video": "66weQbaUZuk",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "11",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-11-DXXwIxhcfF0",
+   "status": "có final.mp4",
+   "title": "息子に通帳の残高を聞かれ、笑ってごまかした…5年で消えた930万円の行き先",
+   "desc_first": "通帳の残高を子どもに聞かれた夜から、七十三歳の私は眠れなくなりました。多すぎて言えないのなら、まだ幸せでした。",
+   "thumb_file": "thumb_final.png (DANG-TAI). Bản mới hơn thumbnail_final.png = 「全財産は約250万｜葬儀代は書けず｜420円ノートで筆止まる」",
+   "thumb_text": "通帳に｜いくらあるか｜息子に｜言うべきか｜八十一の姉さんの答え",
+   "open_0_30_ja": "お雑煮の湯気の立つ、元旦の午前十時、息子夫婦と、娘の恵子とが、居間の卓を囲んで、いらっしゃいました。四十六の誠の前に、私は分厚い、大学ノートを、静かに滑らせて、みたのでございます。年の瀬にあなたが、絞り出した、あの問いへの、返事なのだよと、口にはせず、ただ、目を合わせただけで、ございました。",
+   "key_t": 13,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Tiêu đề là cảnh 'cười cho qua', hook là cảnh đưa cuốn vở ngày Tết (xảy ra sau đó). Cùng chuyện nhưng là 2 cảnh khác nhau."
+   ],
+   "thumb_title": [
+    "L",
+    ""
+   ],
+   "thumb_hook": [
+    "P",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "mất vế 'thay vì sổ tiết kiệm' và không có tự giới thiệu/lời hứa trong 90s."
+   ],
+   "fix": [
+    "Thêm lại vế tương phản 'đẩy cuốn vở THAY VÌ sổ tiết kiệm'. Tự giới thiệu + lời hứa 'câu trả lời của bà 81 tuổi' trước giây 40."
+   ],
+   "model_video": "DXXwIxhcfF0",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "12",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-12-FBkmqYvEyXQ",
+   "status": "có final.mp4",
+   "title": "夫が一年近く書いた終活ノートを目の前で破いた…始まりは古稀祝いの一言",
+   "desc_first": "終活ノートを破いた妻の告白。「もう休んでいい」という優しい言葉が、夫から奪ったものとは",
+   "thumb_file": "chưa có thumbnail",
+   "thumb_text": "",
+   "open_0_30_ja": "あの日私は、夫が一年近く、書き溜めた、一冊のノートを、破き裂きました。夫の目の前で、真ん中から、両手で二つに、引き裂きました。四十年もの間、呑み込んできた、私の声が、あのノートを、裂いたのでございます。破いた紙の匂いが、いまも鼻の奥に、残っております。夫は目を丸くして、しばらくの間、息を忘れておりました。",
+   "key_t": 67,
+   "intro_t": null,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "K",
+    "Xé cuốn sổ ở giây 0–8, đúng câu đầu của tiêu đề."
+   ],
+   "thumb_title": [
+    "",
+    ""
+   ],
+   "thumb_hook": [
+    "",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "mở đúng (xé sổ 0s) nhưng câu giải thích 'ông sẽ chết' ở giây 67–80 (KO 20s)."
+   ],
+   "fix": [
+    "Mở đúng (xé sổ ở giây 0). Kéo câu 'cuốn này xong là ông chết, bố tôi y như vậy' từ giây 67 lên giây 20."
+   ],
+   "model_video": "FBkmqYvEyXQ",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "13",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-13-djMUfpGoUQI",
+   "status": "chưa có final.mp4",
+   "title": "通帳に1700万あるのに、修理代22万が惜しくて三晩震えた72歳",
+   "desc_first": "通帳には千七百万円の老後資金があるのに、二十二万円の修理代に指が止まり、私は三晩、暖房のない家で震えておりました。",
+   "thumb_file": "chưa có thumbnail",
+   "thumb_text": "",
+   "open_0_30_ja": "一昨年の冬でございます、通帳の中に、千七百万円、蓄えがあるのに、給湯暖房機の壊れた家で、三晩を過ごしました。電気毛布を、一枚だけ敷き、掛け布団を、二枚重ねて、寒さに震え、耐えておりました。修理を頼もうと、幾度も指を伸ばしては、その指がふと止まり、電話機は膝の上で、じっと震えておりました。",
+   "key_t": 2,
+   "intro_t": 57,
+   "promise_t": 79,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "K",
+    "1700万, 22万, 3 đêm ở giây 0–12, đúng nguyên tiêu đề."
+   ],
+   "thumb_title": [
+    "",
+    ""
+   ],
+   "thumb_hook": [
+    "",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "giữ tốt nhất nhóm (1700万 + 3 đêm ở giây 0–7), chỉ chậm phần hứa (79s)."
+   ],
+   "fix": [
+    "Tốt nhất nhóm. Chỉ bỏ đoạn cây hồng/tả cảnh, đưa tự giới thiệu + lời hứa 'công thức người thắng tuổi già' lên trước giây 40."
+   ],
+   "model_video": "djMUfpGoUQI",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "19",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-19-l0p1EnDcXYM",
+   "status": "có final.mp4",
+   "title": "山歩きの女に850万円を送金…契約の朝、76歳の兄に残ったのはバナナ箱二つ",
+   "desc_first": "「山歩きサークルは、いい猟場よ」鏡の前で聞いたその囁きが、六年会わなかった兄の八百五十万円と繋がるとは思いもしませんでした。",
+   "thumb_file": "thumb_final.png",
+   "thumb_text": "六十過ぎたら｜近づくな｜四人の女｜その正体は｜美容室ばあさんが暴く衝撃の代償",
+   "open_0_30_ja": "鏡の中で、その女は、口元だけを、静かに笑わせ、私にこう、尋ねました。「奥さんね、この街を、ぽつねんと歩いている、七十過ぎの男たちの中でね、いちばん財布の紐が、緩んでいるのは、どういう人か、ご存じかしらね」パーマロッドを、巻いておりました、私の手が、思わず宙で、止まりました。三十五年、髪を触って、まいりましたが、",
+   "key_t": 0,
+   "intro_t": 68,
+   "promise_t": null,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "P",
+    "Hook là kẻ lừa nói chuyện trong gương. '850 vạn' và 'người anh 76 tuổi' không có trong 90 giây đầu. Mô tả trích một câu khác với câu trong hook."
+   ],
+   "thumb_title": [
+    "L",
+    ""
+   ],
+   "thumb_hook": [
+    "P",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "đổi câu thành 'ai rộng hầu bao nhất' (mất vế lật 'không phải ông cô đơn'), tự giới thiệu 68s, chưa hứa 4 loại trong 90s."
+   ],
+   "fix": [
+    "Giữ câu gốc 'ông già nào dễ nhất?' + câu lật 'ông cô đơn à? không, ông cô đơn lâu lắm' (bản JP đổi thành 'ai rộng hầu bao nhất' mất cú lật)."
+   ],
+   "model_video": "l0p1EnDcXYM",
+   "priority": "vừa",
+   "priority_why": ""
+  },
+  {
+   "ep": "21",
+   "dir": "E:\\CLAUDE\\YOUTUBE\\h2dev\\assets\\satori_jp\\simbot2-21-HD-ADEBz5oM",
+   "status": "có final.mp4",
+   "title": "老後資金に自ら鍵をかけた元郵便屋の理由…配達先の畳の下の800万円と孤独死",
+   "desc_first": "七十三歳、通帳の二千万円に眠れぬ夜。銀行で耳にした「私が来ても下ろさせないで」の一言が、私の老後資金の置き場所を変えました。",
+   "thumb_file": "thumb_final.png",
+   "thumb_text": "七十三歳｜銀行で聞いた｜奇妙な一言｜その真意とは｜老後のお金・四つの置き場所",
+   "open_0_30_ja": "この通帳をね、私が窓口へ、ふらりと来ても、断ってくださいませね。銀行の窓口の、すぐ隣の席から、そんな奇妙な声が、聞こえて、まいりました。窓口の若い方が、目を丸くして、聞き返して、おります。ご本人様の、大切なお金なのに、ご自身で、下ろせないように、なさるのですか。私は思わず、隣の椅子に、座ったまま、首を回して、おりました。私は今年、七十三になります、上野静江と、申します。",
+   "key_t": 0,
+   "intro_t": 27,
+   "promise_t": 51,
+   "timing_source": "voice_paced.srt",
+   "title_hook": [
+    "K",
+    "'Tự khoá tiền của mình' đúng câu mở ở giây 0 (người nói là người ngồi quầy bên)."
+   ],
+   "thumb_title": [
+    "P",
+    ""
+   ],
+   "thumb_hook": [
+    "K",
+    ""
+   ],
+   "broken_promises": [],
+   "problems": [
+    "sát nhất nhóm, chỉ thiếu 'chỗ thứ 4'."
+   ],
+   "fix": [
+    "Sát nhất nhóm. Thêm 'bốn chỗ để tiền' + 'chỗ thứ tư đến giờ vẫn nghẹn' vào ngay sau câu giới thiệu."
+   ],
+   "model_video": "HD-ADEBz5oM",
+   "priority": "vừa",
+   "priority_why": ""
+  }
+ ],
+ "our_summary": "9/15 tập đẩy câu chốt muộn ≥18s hoặc bỏ mất; 8/15 chưa hứa N điều trong 90s; chỉ 1/15 có câu 'điều cuối khó nói'; 05 và 07 mở bằng tự giới thiệu. Tiêu đề JP kiểu truyện nên chỉ 3/15 trúng hook 30s đầu; 7/12 thumbnail lệch hẳn tiêu đề.",
+ "principles": [],
+ "new_patterns": [],
+ "caveats": [
+  "Tập 21: kênh gốc không có mốc giây (YouTube chặn), số liệu ~ là ước tính từ competitor.txt."
+ ]
+}

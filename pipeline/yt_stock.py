@@ -295,6 +295,20 @@ def viet_credits(tap_dir: Path, stock_dir=None, ra_file=None):
     ra_file = Path(ra_file) if ra_file else tap_dir / "credits.txt"
     import stock_cut
     man = stock_cut.doc_manifest(stock_dir)
+    # `evidence.json` của tập là nơi ghi CHÚ THÍCH tiếng Nhật của từng ảnh bằng chứng; một số bản
+    # ghi trong manifest (src="commons", tải tay) không có `title` lẫn `caption` — không có tầng
+    # này thì credits.txt tụt xuống in TÊN FILE (vd "ev03c_cessna182_reference.jpg"), đúng nhưng
+    # vô nghĩa với người đọc. KHÔNG bao giờ lùi tiếp xuống title của scene: với file bằng chứng,
+    # title trong scene chính là thứ đã bị gán nhầm (xem docstring).
+    cap_ev = {}
+    ev_f = tap_dir / "evidence.json"
+    if ev_f.exists():
+        try:
+            for e in json.loads(ev_f.read_text(encoding="utf-8")):
+                if e.get("file") and e.get("caption"):
+                    cap_ev[Path(e["file"]).name] = e["caption"]
+        except Exception as ex:
+            print(f"  ! đọc evidence.json lỗi, bỏ qua: {type(ex).__name__} {str(ex)[:80]}")
     scenes_f = next((tap_dir / t for t in ("scenes.json", "scenes_test.json")
                      if (tap_dir / t).exists()), None)
     if not scenes_f:
@@ -315,7 +329,8 @@ def viet_credits(tap_dir: Path, stock_dir=None, ra_file=None):
                     thieu.append(f)
                 rec = {"title": c.get("title") or f, "credit": c.get("credit") or "",
                        "license": c.get("license") or "?"}
-            d = dung[f] = {"n": 0, "title": rec.get("title") or rec.get("caption") or f,
+            d = dung[f] = {"n": 0,
+                           "title": rec.get("title") or rec.get("caption") or cap_ev.get(f) or f,
                            "credit": rec.get("credit") or "", "license": rec.get("license") or "?"}
         d["n"] += 1
     dong = ["【出典 / Sources】", ""]

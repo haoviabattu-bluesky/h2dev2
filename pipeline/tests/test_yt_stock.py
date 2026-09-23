@@ -187,3 +187,24 @@ def test_gan_bang_chung_khong_muon_title_cua_canh_bi_thay(tmp_path):
     assert c["title"] == "アヴェンジャー雷撃機"          # KHÔNG phải "sunset over ocean 1"
     assert c["credit"].startswith("https://commons.wikimedia.org")   # KHÔNG phải "Manav ."
     assert c["license"] == "Public domain"
+
+
+def test_viet_credits_lui_ve_caption_trong_evidence_json(tmp_path):
+    """Manifest src='commons' không có title lẫn caption → lấy caption từ evidence.json của tập,
+    KHÔNG tụt xuống tên file, và tuyệt đối không mượn title của scene (đó là title đã bị gán nhầm)."""
+    tap = tmp_path / "ep01"
+    stock = tap / "stock"
+    stock.mkdir(parents=True)
+    (stock / "manifest.jsonl").write_text(json.dumps(
+        {"file": "ev03c.jpg", "src": "commons", "license": "Public domain",
+         "credit": "Senior Airman Timothy Tweet"}, ensure_ascii=False) + "\n", encoding="utf-8")
+    (tap / "evidence.json").write_text(json.dumps(
+        [{"file": "ev03c.jpg", "caption": "セスナ182 同型機の参考写真"}], ensure_ascii=False), encoding="utf-8")
+    (tap / "scenes.json").write_text(json.dumps(
+        [{"i": 0, "file": "ev03c.jpg", "title": "canadian snowbirds jet on runway 28924896",
+          "credit": "Pexels ai đó", "license": "Public domain", "bangchung": True}],
+        ensure_ascii=False), encoding="utf-8")
+    YS.viet_credits(tap)
+    dong = (tap / "credits.txt").read_text(encoding="utf-8").splitlines()[-1]
+    assert "セスナ182" in dong and "snowbirds" not in dong and "ev03c.jpg —" not in dong
+    assert "Timothy Tweet" in dong

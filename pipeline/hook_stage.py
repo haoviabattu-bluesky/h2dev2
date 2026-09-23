@@ -554,6 +554,13 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
     cands_text = viet_candidates(d, prof, src, title, ctx, mode)
     cands = tach_candidates(cands_text)
     if len(cands) < 1:
+        # V2 (vá review, 2026-09-23): model bỏ khuôn === HOOK n === là kiểu thất bại HAY GẶP NHẤT
+        # trong sản xuất — trước đây raise thẳng, không để lại dấu vết gì. Ghi hook_qc.json trước
+        # khi raise, kèm số ký tự thô model trả về để người đọc sau dò được đang thiếu khuôn hay
+        # model trả rỗng.
+        (hd / "hook_qc.json").write_text(json.dumps(
+            {"candidates": 0, "state": "NO_CANDIDATES", "raw_chars": len(cands_text)},
+            ensure_ascii=False, indent=2), encoding="utf-8")
         raise SystemExit("✗ H2': model không trả ứng viên hook theo khuôn === HOOK n ===")
     thumb = (d / "thumb_text.txt").read_text(encoding="utf-8").strip() if (d / "thumb_text.txt").exists() else ""
     promise = _promise_text(d, ctx, mode)
@@ -568,7 +575,16 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
     if not hop:
         # thử vá ứng viên ít lỗi nhất 1 lần
         i, c = min(enumerate(cands, 1), key=lambda t: len(qc["check"][str(t[0])]))
-        c2 = patch_hook(prof, c, qc["check"][str(i)])
+        try:
+            c2 = patch_hook(prof, c, qc["check"][str(i)])
+        except Exception as e:
+            # V1 (vá review, 2026-09-23): patch_hook ném (LLMError khi bản trả về quá ngắn/cắt giữa
+            # câu, hoặc lỗi khác) — đây là lượt vá "cứu" duy nhất trước Sol, không có `chosen` nào để
+            # giữ. Vẫn phải ghi hook_qc.json state=BLOCK (kèm lý do patch cứu thất bại) TRƯỚC khi
+            # raise, kẻo mất luôn dấu vết vì sao BLOCK.
+            qc["log"].append(f"patch cứu thất bại: {type(e).__name__}: {e}")
+            (hd / "hook_qc.json").write_text(json.dumps({**qc, "state": "BLOCK"}, ensure_ascii=False, indent=2), encoding="utf-8")
+            raise SystemExit(f"✗ H3': cả 3 ứng viên trượt phép đo tất định, vá cứu cũng lỗi: {qc['check']}") from e
         qc["patches"] += 1
         if check(c2, prof, ctx):
             (hd / "hook_qc.json").write_text(json.dumps({**qc, "state": "BLOCK"}, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -582,18 +598,28 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
         qc["sol_rounds"] = vong
         chosen = dict(hop).get(chon) or hop[0][1]
         if verdict == "PASS":
-            text = chosen; qc["log"].append(f"sol{vong} PASS chọn {chon}"); break
+            # V3 (vá review, 2026-09-23): PASS THẬT do Sol chấm, phân biệt với PASS_LEAN (chốt theo
+            # luật FIX×3) — hook_lock.json không đổi, chỉ hook_qc.json.
+            text = chosen; qc["log"].append(f"sol{vong} PASS chọn {chon}"); qc["state"] = "PASS"; break
         viec = _viec_tu_sol(rep) or ["theo báo cáo Sol"]
         if vong > MAX_PATCH_HOOK:
-            text = chosen; qc["log"].append(f"sol{vong} FIX×{vong} → coi như PASS (luật lean)"); break
-        new = patch_hook(prof, chosen, viec)
+            text = chosen; qc["log"].append(f"sol{vong} FIX×{vong} → coi như PASS (luật lean)"); qc["state"] = "PASS_LEAN"; break
+        try:
+            new = patch_hook(prof, chosen, viec)
+        except Exception as e:
+            # V1 (vá review, 2026-09-23): patch_hook ném NGAY TRONG vòng Sol — lúc này đang giữ
+            # `chosen`, một ứng viên ĐÃ qua check() (hoặc bản trước đã hợp lệ). Ném ở đây trước sẽ
+            # làm ensure_locked chết TRƯỚC khi ghi hook_qc.json/khoá → mất cả hook đang có lẫn dấu
+            # vết. Giữ nguyên `chosen`, ghi log, chốt luôn (không lặp thêm vì model sửa vừa thất bại).
+            qc["log"].append(f"patch{vong} lỗi ({type(e).__name__}: {e}) → giữ bản trước")
+            text = chosen; qc["state"] = "PASS_LEAN"; break
         qc["patches"] += 1
         if check(new, prof, ctx):
             qc["log"].append(f"patch{vong} trượt tất định, giữ bản trước")
             new = chosen
         hop = [(chon, new)]
         cands_hop = f"=== HOOK {chon} ===\n{new}"
-    qc["state"] = "PASS"
+    qc.setdefault("state", "PASS")
     (hd / "hook_qc.json").write_text(json.dumps(qc, ensure_ascii=False, indent=2), encoding="utf-8")
     meta = khoa(d, text, mode=mode, extra={"sol_rounds": qc["sol_rounds"], "patches": qc["patches"],
                                           "source_video_id": src.get("video_id")})

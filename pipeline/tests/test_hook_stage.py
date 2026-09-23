@@ -647,9 +647,18 @@ def test_ensure_locked_fix_roi_pass(monkeypatch, tmp_path):
     assert qc["sol_rounds"] == 2 and qc["state"] == "PASS"
 
 
-def test_ensure_locked_tai_dung_lock(tmp_path):
+def test_ensure_locked_tai_dung_lock(tmp_path, monkeypatch):
     d = _tap(tmp_path)
     HS.khoa(d, "đã khoá。")
+    # V4 hermetic (vá review, 2026-09-23): test gốc không monkeypatch gì — nếu nhánh
+    # tái-dùng-khoá (`doc_lock(d)` có + không stale → return sớm) hỏng và rơi xuống nhánh viết
+    # mới, test sẽ ÂM THẦM gọi LLM/mạng THẬT thay vì fail sạch. Chặn cả 2 cửa ra ngoài (model
+    # VIẾT + Sol) bằng hàm ném lỗi, để test vừa CHỨNG MINH nhánh tái dùng khoá vừa KÍN offline.
+    def _cam(*a, **k):
+        raise AssertionError("khong duoc goi LLM khi da co lock")
+    monkeypatch.setattr(ai_steps, "_writer_chat", _cam)
+    import qc_script_sol as Q
+    monkeypatch.setattr(Q, "run_hook", _cam)
     assert HS.ensure_locked(d, PROF) == "đã khoá。"
 
 
@@ -662,3 +671,76 @@ def test_ensure_locked_block_khi_check_khong_qua(monkeypatch, tmp_path):
     monkeypatch.setattr(HS, "patch_hook", lambda prof, text, viec: text)
     with pytest.raises(SystemExit):
         HS.ensure_locked(d, PROF)
+
+
+# ---------------------------------------------------------------------------
+# Vá sau review Task 7 (2026-09-23): V1 patch_hook ném không được mất trắng,
+# V2 NO_CANDIDATES vẫn ghi dấu vết, V3 state PASS vs PASS_LEAN, V4 3 test luật quan trọng.
+# ---------------------------------------------------------------------------
+
+def _cands_fix_x3(d, monkeypatch):
+    """Dựng chung: 1 ứng viên hợp lệ (qua check tất định) để Sol luôn có cái để chọn/FIX."""
+    (d / "competitor.txt").write_text("x" * 3000, encoding="utf-8")
+    monkeypatch.setattr(HS, "phan_tich_nguon", lambda d, prof, proxy=None, force=False: {
+        "video_id": None, "hook_4_nhip": {}, "hook_kind": "none", "score_0_12": 0,
+        "video_hook_verdict": "khong_soi_duoc", "transcript_0_30s": "", "title": "", "promise_match": {}})
+    good = ("「三年前に引っ越しましたよ」隣人はそう言った。五十年の友が、黙って消えていた。私は箱を抱えたまま、"
+            "何をしたのか分からなかった。理由を知ったのは、ずっと後のことだった。それは私の一言から始まっていた。"
+            "あの日交わした約束を、私は忘れていたのだ。友の家族にも誰にも、本当のことは言えなかった。")
+    cands = f"=== HOOK 1 ===\n短い。\n=== HOOK 2 ===\n{good}\n=== HOOK 3 ===\nこんにちは。{good}"
+    monkeypatch.setattr(ai_steps, "_writer_chat",
+                        lambda prof, prompt, **k: type("R", (), {"text": cands, "model": "m", "provider": "p", "elapsed": 1})())
+    return good
+
+
+def test_ensure_locked_fix_x3_coi_nhu_pass(monkeypatch, tmp_path):
+    """V4.1: run_hook luôn trả FIX cả 3 vòng → vẫn khoá được, sol_rounds==3, state==PASS_LEAN,
+    log có dòng coi-như-PASS (luật lean FIX×3)."""
+    d = _tap(tmp_path, title="【漫画】63歳で年金を繰り上げた男…本当の後悔")
+    good = _cands_fix_x3(d, monkeypatch)
+    import qc_script_sol as Q
+    monkeypatch.setattr(Q, "run_hook", lambda c, title, thumb, promise, profile_id=None, out=None:
+                        ("FIX", 2, "KẾT QUẢ: FIX\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"))
+    monkeypatch.setattr(HS, "patch_hook", lambda prof, text, viec: text)  # vá không đổi gì, vẫn hợp lệ
+    hook = HS.ensure_locked(d, PROF, ctx="", title="T")
+    assert hook == good.strip()
+    qc = json.loads((d / "hook/hook_qc.json").read_text(encoding="utf-8"))
+    assert qc["sol_rounds"] == 3 and qc["state"] == "PASS_LEAN"
+    assert any("coi như PASS" in l or "coi nhu PASS" in l for l in qc["log"])
+
+
+def test_ensure_locked_ban_va_truot_giu_ban_truoc(monkeypatch, tmp_path):
+    """V4.2: patch_hook trả về 1 chuỗi CHẮC CHẮN trượt check() (quá ngắn) → hook khoá phải là bản
+    TRƯỚC khi vá (chosen), log có ghi nhận việc giữ bản trước."""
+    d = _tap(tmp_path, title="【漫画】63歳で年金を繰り上げた男…本当の後悔")
+    good = _cands_fix_x3(d, monkeypatch)
+    import qc_script_sol as Q
+    calls = {"n": 0}
+    def fake_run_hook(c, title, thumb, promise, profile_id=None, out=None):
+        calls["n"] += 1
+        return ("FIX" if calls["n"] == 1 else "PASS"), 2, "KẾT QUẢ: FIX\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"
+    monkeypatch.setattr(Q, "run_hook", fake_run_hook)
+    # bản vá trả về "短。" — chắc chắn trượt check() (quá ngắn so với muc±tol)
+    monkeypatch.setattr(HS, "patch_hook", lambda prof, text, viec: "短。")
+    hook = HS.ensure_locked(d, PROF, ctx="", title="T")
+    assert hook == good.strip()  # giữ nguyên bản trước, KHÔNG phải "短。"
+    qc = json.loads((d / "hook/hook_qc.json").read_text(encoding="utf-8"))
+    assert any("trượt tất định, giữ bản trước" in l for l in qc["log"])
+
+
+def test_ensure_locked_patch_hook_nem_khong_lam_sap(monkeypatch, tmp_path):
+    """V1/V4.3: patch_hook ném RuntimeError ngay trong vòng Sol → ensure_locked KHÔNG ném ra
+    ngoài, vẫn khoá được bản `chosen`, hook_qc.json vẫn được ghi, log có nêu lỗi vá."""
+    d = _tap(tmp_path, title="【漫画】63歳で年金を繰り上げた男…本当の後悔")
+    good = _cands_fix_x3(d, monkeypatch)
+    import qc_script_sol as Q
+    monkeypatch.setattr(Q, "run_hook", lambda c, title, thumb, promise, profile_id=None, out=None:
+                        ("FIX", 2, "KẾT QUẢ: FIX\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"))
+    def _no(prof, text, viec):
+        raise RuntimeError("claude -p quá thời gian (600s)")
+    monkeypatch.setattr(HS, "patch_hook", _no)
+    hook = HS.ensure_locked(d, PROF, ctx="", title="T")  # không được ném ra ngoài
+    assert hook == good.strip()
+    qc = json.loads((d / "hook/hook_qc.json").read_text(encoding="utf-8"))
+    assert qc["state"] == "PASS_LEAN"
+    assert any("lỗi" in l and "RuntimeError" in l for l in qc["log"])

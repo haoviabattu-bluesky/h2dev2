@@ -30,3 +30,38 @@ def test_lay_meta_video_loi_khong_nem(monkeypatch):
     monkeypatch.setitem(sys.modules, "yt_dlp", types.SimpleNamespace(YoutubeDL=Boom))
     m = FS.lay_meta_video("abc123XYZ00")
     assert m["title"] == "" and m["duration_sec"] == 0
+
+
+def test_tai_anh_ghi_file(monkeypatch, tmp_path):
+    import requests
+    class FakeResponse:
+        status_code = 200
+        content = b"x" * 3000
+    monkeypatch.setattr(requests, "get", lambda *a, **kw: FakeResponse())
+    out_file = tmp_path / "t.jpg"
+    result = FS.tai_anh("http://x/t.jpg", out_file)
+    assert result is True
+    assert out_file.exists()
+    assert out_file.read_bytes() == b"x" * 3000
+
+
+def test_tai_anh_that_bai_tra_false(monkeypatch, tmp_path):
+    import requests
+    # Case (a): status_code = 404
+    class FakeResponse404:
+        status_code = 404
+        content = b"not found"
+    monkeypatch.setattr(requests, "get", lambda *a, **kw: FakeResponse404())
+    out_file = tmp_path / "t404.jpg"
+    result = FS.tai_anh("http://x/t404.jpg", out_file)
+    assert result is False
+    assert not out_file.exists()
+
+    # Case (b): requests.get ném RuntimeError
+    def fake_get_boom(*a, **kw):
+        raise RuntimeError("net")
+    monkeypatch.setattr(requests, "get", fake_get_boom)
+    out_file2 = tmp_path / "t_boom.jpg"
+    result2 = FS.tai_anh("http://x/t_boom.jpg", out_file2)
+    assert result2 is False
+    assert not out_file2.exists()

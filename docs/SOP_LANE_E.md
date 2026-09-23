@@ -603,16 +603,95 @@ Lỗi 290/113 là đặc thù RIÊNG của nhánh não-Claude, không lan sang n
 ## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
 
 > ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+> Mục này viết sau khi làm thật tập 1 (`ep01-tento-kossetsu`, 2026-09-23) — số liệu đều đo được.
+
+### Khai trong hồ sơ kênh
 
 | | |
 |---|---|
 | Kiểu mở (`script.hook.patterns`) | H30 H31 H32 H33 H34 |
 | Câu khoá (`script.hook.closer`) | K18 |
 | Cách dựng hình (`script.hook.visual`) | `lien_mach_than` |
-| Nguồn hình | **KHÔNG dựng clip hook riêng** — hook là 30 giây đầu của chính `script.txt`, dựng chung một lần với thân video |
 | Công tắc (`script.hook.enabled`) | **đang BẬT** |
 
-Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
-cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+**`lien_mach_than` nghĩa là gì:** lane này KHÔNG dựng clip hook riêng. Hook là 30 giây ĐẦU của
+chính `script.txt`, được lồng tiếng và minh hoạ chung một lần với thân video. Vì vậy:
+- Gói giao máy 2 **cố ý không có thư mục `hook\`** — `dong_goi_may2.py` tự bỏ qua. Gửi kèm là mời
+  máy 2 vẽ thêm 7 ảnh rồi ghép một clip 30 giây nữa vào đầu → **đoạn mở đầu phát hai lần**.
+- Không phải cân mức tiếng, không phải khớp dải màu, không có điểm nối — khác hẳn satori và Lane A.
 
-Viết hook: `py -3.13 pipeline\hook_stage.py --profile kenko-chiebukuro --slug <tập> --mode repair`
+### Hook phải làm gì (đo từ 6 video xem nhiều nhất của kênh mẫu シニアいきいき健康)
+
+| Giây | Việc | Số đếm kênh mẫu |
+|---|---|---|
+| 0–10 | Mở bằng **cơ thể hoặc thói quen của chính người xem** | 6/6 · **0/6 có chào** |
+| 10–25 | Chặn lối thoát "tại tuổi rồi", hoặc khen nỗ lực rồi 「でも」 | 6/6 |
+| 20–50 | **Câu chốt: lật nguyên nhân sang chỗ không ngờ** | mốc thật 21,8s và 37,0s |
+| 40–100 | Hứa N mục **mà không nêu tên mục nào** | 6/6 giấu tên trong 120s |
+
+Ví dụ hook tập 1 đã qua Sol **ngay vòng đầu, 0 lần vá** (181 chữ):
+
+> 「お母さん、腕が細くなった」。訪ねてきた娘さんの、ひと言でした。六十八歳の女性は、その日まで
+> 何も気づいていませんでした。ご自宅の段差でふらついても、年のせいだと笑っていたのです。腕が細く
+> なる。それは、骨を支える筋肉が、静かに減っている合図かもしれません。転ぶ前に、体はあなたに何を
+> 伝えているのでしょうか。
+
+*(Mẹ ơi, tay mẹ gầy đi rồi — câu của cô con gái tới thăm. Bà cụ 68 tuổi tới hôm đó vẫn không nhận ra.
+Loạng choạng ở bậc thềm nhà mình, bà vẫn cười bảo tại tuổi già. Tay gầy đi — đó có thể là tín hiệu
+phần cơ nâng đỡ xương đang âm thầm mất dần. Trước khi ngã, cơ thể đang báo cho bạn điều gì?)*
+
+Ba thứ làm nó hiệu quả: **một câu nói đời thường** thay lời chào · **chặn ngay "tại tuổi"** ·
+**kết bằng câu hỏi để ngỏ**, không lộ đáp án nào. Nhân vật lấy từ chính thân bài (bà 68 tuổi vốn ở
+phút 3,7), không bịa thêm người.
+
+### Khối mở đầu NGAY SAU hook — 5 bước, khai ở `budget.label_mo_dau`
+
+1. Chặn lối thoát "tại tuổi rồi" · 2. Lật nguyên nhân sang chỗ bất ngờ · 3. **Giải thích cơ chế bằng
+ẩn dụ** (phần dài nhất) · 4. Báo có N mục **cấm nêu tên** · 5. Nêu điều kiện của danh sách (ai cũng
+làm được, không tốn kém, bắt đầu từ hôm nay = K18).
+
+### CẤM tuyệt đối
+
+- **Chào hỏi / cảm ơn / tự giới thiệu** — kênh mẫu 0/6 có; 7/8 tập cũ của mình đều có.
+- **Dòng nhãn `タイトル:` ở đầu `script.txt`** — công cụ lồng tiếng đọc to nó ra thành tiếng. Đo thật:
+  tập 1 cũ, từ giây 0,3 đến 2,5 giọng đọc đang đọc chữ "TIÊU ĐỀ".
+- **Đọc trước danh sách.** 7/7 tập cũ đổ hết 5 đáp án trong 11–47 giây, xong trước phút 5,1. Kênh mẫu
+  không gọi tên mục nào trong 120 giây, mục đầu ở phút 5,5–6,8.
+- **Khối cảnh báo cấp cứu ở đầu video.** Kênh mẫu 0/6 có trong 120 giây đầu. Tập 1 cũ mất 57 giây
+  ở phút 1–1,9 để dạy gọi 119. Dời xuống cuối, và rút thật ngắn.
+
+### Ngưỡng cổng của lane này — và hai cái bẫy đo đã trả giá
+
+| Trường | Giá trị | Đo từ đâu |
+|---|---|---|
+| `gate.hook_chars` | **[1500, 2000]** | 8/9 video kênh mẫu vào mục đầu ở 1.598–1.916 chữ (314–410 giây) |
+| `gate.hook_anchor_per_1000` | **3.5** | kênh mẫu 3,2 khi đếm cùng luật |
+| `gate.hook_marker` | `第五位` `五つ目` `5位` | mốc kết thúc mở đầu |
+
+**Bẫy 1 — bộ đếm mù với chữ Hán.** `qc_script.NEO_SO` từng chỉ đếm chữ số Ả-rập, mà lane này viết số
+bằng chữ Hán (六十八歳, 七割) cho giọng đọc phát âm đúng → cổng báo **0,0 neo ở mọi tập** và mắng
+"mở đầu nói suông" oan. Đã vá để đếm cả số Hán, nhưng bắt buộc đi kèm đơn vị đếm có nghĩa.
+
+**Bẫy 2 — đo hai bên bằng hai thước.** Ngưỡng từng đặt 9,0 vì đếm MỌI chữ số trong transcript kênh
+mẫu (8,8/1000), rồi đem chấm kịch bản mình bằng luật CHẶT hơn (loại 一つ/一度/二人 vì là văn kể).
+Đo lại kênh mẫu bằng đúng luật đó: chỉ **3,2/1000**. **Ngưỡng bất khả thi đẩy model tới chỗ bịa
+thống kê — đúng thứ lane y tế cấm tuyệt đối.** Đặt ngưỡng xong phải tự hỏi: nguồn số hợp lệ của tập
+có đủ để đạt không?
+
+### Trình tự đã chạy thật cho tập đã có kịch bản cũ
+
+```
+1. hook_stage.py --profile kenko-chiebukuro --slug <tập> --mode repair   → hook khoá
+2. Bỏ dòng nhãn `タイトル:` khỏi script.txt
+3. Fable viết lại KHỐI MỞ ĐẦU theo 5 bước trên (giữ nguyên thân từ 第五位 trở đi)
+4. Opus vá theo cổng: qc_script.py → qc_script_sol.py (soi y khoa)
+5. gate_common.ghi_lock(PASS)  → B5W (prompt ảnh) → sinh_img_doan.py → dong_goi_may2.py --job
+```
+
+Tập 1 tốn **7 lượt model**. Phần lớn không phải vì hook mà vì bản "đã duyệt" trước đây **chưa từng bị
+soi bằng ống kính y khoa** — Sol tìm ra điều kiện ép tim sai (dùng "hoặc" thay vì "và"), "hễ ngã là
+gọi 119", định nghĩa sarcopenia không theo chuẩn AWGS. **Tập nào cũng nên chạy Sol soi y khoa TRƯỚC
+khi đụng tới hook**, vì sửa y khoa sẽ làm xô lệch mọi thứ viết trước đó.
+
+Runbook dựng chung mọi lane: `docs\QUY_TAC_VIDEO_HOOK.md` (§5b so sánh cách dựng từng lane).
+Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.

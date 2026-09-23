@@ -51,7 +51,7 @@ def test_tai_tu_choi_khi_khong_ghi_noi_nguon(monkeypatch, tmp_path):
 def test_tai_cc_by_ghi_manifest_dung_schema(monkeypatch, tmp_path):
     monkeypatch.setattr(YS, "lay_thong_tin", lambda vid, proxy=None: _info(YS.LICENSE_CC_BY))
 
-    def fake_tai_doan(vid, a, b, tho, proxy=None):
+    def fake_tai_doan(vid, a, b, tho, proxy=None, **kw):
         f = Path(str(tho) + ".webm")
         f.write_bytes(b"x" * 20_000)
         return f
@@ -78,7 +78,7 @@ def test_tai_cc_by_ghi_manifest_dung_schema(monkeypatch, tmp_path):
 
 def test_tai_bo_qua_doan_hong_van_giu_doan_tot(monkeypatch, tmp_path):
     monkeypatch.setattr(YS, "lay_thong_tin", lambda vid, proxy=None: _info(YS.LICENSE_CC_BY))
-    monkeypatch.setattr(YS, "_tai_doan", lambda vid, a, b, tho, proxy=None:
+    monkeypatch.setattr(YS, "_tai_doan", lambda vid, a, b, tho, proxy=None, **kw:
                         None if a == 120.0 else Path(str(tho) + ".mp4"))
     monkeypatch.setattr(YS, "_chuan_hoa", lambda src, dest, crop_bottom=0.0, fps=30:
                         Path(dest).write_bytes(b"z" * 12_000))
@@ -208,3 +208,46 @@ def test_viet_credits_lui_ve_caption_trong_evidence_json(tmp_path):
     dong = (tap / "credits.txt").read_text(encoding="utf-8").splitlines()[-1]
     assert "セスナ182" in dong and "snowbirds" not in dong and "ev03c.jpg —" not in dong
     assert "Timothy Tweet" in dong
+
+
+def test_thu_client_doi_thu_tu_va_format_mac_dinh():
+    """--clients đổi được thứ tự player_client; client lạ vẫn có format mặc định để thử."""
+    assert YS._thu_client("") == YS.TAI_THU
+    t = YS._thu_client("tv_embedded,android")
+    assert [c for c, _ in t] == ["tv_embedded", "android"]
+    assert t[0][1] == YS.FMT_MAC_DINH and t[1][1] == dict(YS.TAI_THU)["android"]
+
+
+def test_viet_credits_gop_ca_tu_lieu_cua_hook(tmp_path):
+    """Tư liệu dùng trong hook 20–30s đầu KHÔNG nằm trong scenes.json — vẫn phải có trong credits,
+    nếu không là thiếu ghi nguồn cho CC BY (vi phạm giấy phép)."""
+    tap, stock = _kho(tmp_path)
+    (stock / "manifest.jsonl").open("a", encoding="utf-8").write(json.dumps(
+        {"file": "yt_abc_01.mp4", "src": "youtube_cc", "title": "STORY OF NAVAL AVIATION",
+         "credit": "PublicResourceOrg · https://www.youtube.com/watch?v=abc",
+         "license": YS.LICENSE_CC_BY}, ensure_ascii=False) + "\n")
+    (tap / "scenes.json").write_text(json.dumps(
+        [{"i": 0, "file": "pexels_1.mp4", "title": "sunset over ocean 1", "credit": "Manav .",
+          "license": "Pexels License"}], ensure_ascii=False), encoding="utf-8")
+    (tap / "hook").mkdir()
+    (tap / "hook" / "hook_shots.json").write_text(json.dumps(
+        [{"file": "yt_abc_01.mp4", "n": 2}], ensure_ascii=False), encoding="utf-8")
+    kq = YS.viet_credits(tap)
+    txt = (tap / "credits.txt").read_text(encoding="utf-8")
+    assert kq["n_nguon"] == 2 and "STORY OF NAVAL AVIATION" in txt
+    assert "PublicResourceOrg" in txt and "(2 cảnh · yt_abc_01.mp4)" in txt
+
+
+def test_viet_credits_credit_xuong_dong_khong_lam_vo_dong(tmp_path):
+    """Credit của Commons có thể chứa xuống dòng → phải ép về 1 dòng, kẻo dòng nguồn vỡ làm đôi."""
+    tap, stock = _kho(tmp_path)
+    (stock / "manifest.jsonl").open("a", encoding="utf-8").write(json.dumps(
+        {"file": "map.png", "src": "commons", "title": "Flight 19 raster map",
+         "credit": "NASA, Landsat image\n\nModified by Marikanto", "license": "Public domain"},
+        ensure_ascii=False) + "\n")
+    (tap / "scenes.json").write_text(json.dumps([{"i": 0, "file": "map.png"}], ensure_ascii=False),
+                                     encoding="utf-8")
+    YS.viet_credits(tap)
+    dong = [l for l in (tap / "credits.txt").read_text(encoding="utf-8").splitlines() if l.strip()]
+    assert len(dong) == 2                      # tiêu đề + đúng 1 dòng nguồn
+    assert "Modified by Marikanto" in dong[1] and dong[1].startswith("- ")

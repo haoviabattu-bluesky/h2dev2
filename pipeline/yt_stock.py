@@ -58,6 +58,13 @@ TAI_THU = (
     ("web", "bv*[height<=1080]+ba/b[height<=1080]/b"),
     ("ios", "bv*[height<=1080]/best"),
 )
+FMT_MAC_DINH = "bv*[height<=1080]/b[height<=1080]/b"
+# ⚠ ĐỘ PHÂN GIẢI (đo thật 2026-09-23): máy này CHƯA có JS runtime (Deno) nên yt-dlp không giải được
+# `nsig` ⇒ các format adaptive (720p+) KHÔNG hiện ra; client `android` chỉ còn đúng 1 format 360p, các
+# client `web`/`ios`/`mweb` trả thẳng "No video formats found". Client **`tv_embedded` cho tới 480p** —
+# cao nhất lấy được trong tình trạng hiện tại. Với phim tư liệu B&W thập niên 1940 thì 480p chấp nhận
+# được (hạt phim che bớt), nhưng cần nét hơn thì phải cài Deno rồi bỏ `--clients` đi.
+CLIENT_NET_NHAT = "tv_embedded,android"
 CANH_BAO_CHU = ("⚠ B-roll KHÔNG được mang chữ nước ngoài trên hình — xem lại từng clip đã tải; "
                 "còn thanh chú thích/watermark ở đáy thì tải lại với --crop-bottom lớn hơn.")
 
@@ -187,7 +194,15 @@ def _giay(v):
     return float(v)
 
 
-def _tai_doan(video_id, a, b, tho: Path, proxy=None):
+def _thu_client(clients):
+    """Đổi chuỗi '--clients' thành danh sách (client, format) để thử theo thứ tự. Rỗng → TAI_THU."""
+    if not clients:
+        return TAI_THU
+    co = dict(TAI_THU)
+    return tuple((c.strip(), co.get(c.strip(), FMT_MAC_DINH)) for c in clients.split(",") if c.strip())
+
+
+def _tai_doan(video_id, a, b, tho: Path, proxy=None, clients=""):
     """Tải đúng đoạn [a,b) ra file tạm `tho.<ext>`. Trả Path file tải được, hoặc None."""
     import hook_stage
     import qc_visual
@@ -200,7 +215,8 @@ def _tai_doan(video_id, a, b, tho: Path, proxy=None):
                 outtmpl=str(tho) + ".%(ext)s",
                 ffmpeg_location=str(shim) if shim else str(Path(qc_visual._ff()).parent))
     err = ""
-    for i, (client, fmt) in enumerate(TAI_THU):
+    thu = _thu_client(clients)
+    for i, (client, fmt) in enumerate(thu):
         opts = dict(base, format=fmt, extractor_args={"youtube": {"player_client": [client]}})
         try:
             with yt_dlp.YoutubeDL(opts) as y:
@@ -209,7 +225,7 @@ def _tai_doan(video_id, a, b, tho: Path, proxy=None):
             break
         except Exception as e:
             err = f"{type(e).__name__}: {e}"
-            if i < len(TAI_THU) - 1:
+            if i < len(thu) - 1:
                 time.sleep(3)
     # format video-only có thể ra .webm → không giả định đuôi file
     got = next((f for f in sorted(tho.parent.glob(tho.name + ".*")) if f.stat().st_size > 10_000), None)
@@ -240,7 +256,8 @@ def ghi_manifest(stock_dir: Path, rec: dict):
         os.fsync(f.fileno())
 
 
-def tai(video_id, ranges, out_dir, chapter="", crop_bottom=0.0, query="", proxy=None, fps=30):
+def tai(video_id, ranges, out_dir, chapter="", crop_bottom=0.0, query="", proxy=None, fps=30,
+        clients=""):
     """Tải các đoạn của MỘT video CC BY về kho stock + ghi manifest.
 
     Từ chối (ném KhongDuocPhep, KHÔNG tải byte nào) khi giấy phép ≠ CC BY hoặc không dựng nổi
@@ -255,7 +272,7 @@ def tai(video_id, ranges, out_dir, chapter="", crop_bottom=0.0, query="", proxy=
         tho = out_dir / f".tmp_yt_{info['id']}_{i:02d}"
         dest = out_dir / f"yt_{info['id']}_{i:02d}.mp4"
         try:
-            got = _tai_doan(info["id"], a, b, tho, proxy=proxy)
+            got = _tai_doan(info["id"], a, b, tho, proxy=proxy, clients=clients)
             if not got:
                 continue
             _chuan_hoa(got, dest, crop_bottom=crop_bottom, fps=fps)
@@ -314,6 +331,17 @@ def viet_credits(tap_dir: Path, stock_dir=None, ra_file=None):
     if not scenes_f:
         raise FileNotFoundError(f"không thấy scenes.json trong {tap_dir}")
     scenes = json.loads(scenes_f.read_text(encoding="utf-8"))
+    # HOOK 20–30s đầu video dùng tư liệu RIÊNG, không nằm trong `scenes.json` của thân video —
+    # bỏ qua là thiếu hẳn phần ghi nguồn của 20–30 giây mà người xem gặp ĐẦU TIÊN, và với CC BY
+    # thì thiếu ghi nguồn là vi phạm giấy phép. Script dựng hook ghi lại danh sách file đã dùng ở
+    # `hook/hook_shots.json` ([{file, n}] hoặc [{file}]), hàm này gộp vào như cảnh thường.
+    hook_f = tap_dir / "hook" / "hook_shots.json"
+    if hook_f.exists():
+        try:
+            for h in json.loads(hook_f.read_text(encoding="utf-8")):
+                scenes += [{"file": h["file"], "hook": True}] * int(h.get("n", 1))
+        except Exception as ex:
+            print(f"  ! đọc hook/hook_shots.json lỗi, bỏ qua: {type(ex).__name__} {str(ex)[:80]}")
     dung, thieu = {}, []
     for c in scenes:
         f = c.get("file")
@@ -333,10 +361,18 @@ def viet_credits(tap_dir: Path, stock_dir=None, ra_file=None):
                            "title": rec.get("title") or rec.get("caption") or cap_ev.get(f) or f,
                            "credit": rec.get("credit") or "", "license": rec.get("license") or "?"}
         d["n"] += 1
+    # Một dòng = một nguồn. Credit lấy từ Commons có thể chứa XUỐNG DÒNG (vd credit của bản đồ
+    # Flight 19: "NASA, Landsat image" + "Modified by Marikanto" cách nhau bằng dòng trống) — để
+    # nguyên là dòng đó vỡ làm đôi, nửa sau mất cả dấu "-" lẫn tên nguồn, đọc ra như một mục lạc
+    # loài. Ép mọi khoảng trắng về 1 dấu cách.
+    # lẫn tên nguồn, đọc ra như một mục lạc loài. Ép mọi khoảng trắng về 1 dấu cách.
+    def _1dong(x):
+        return re.sub(r"\s+", " ", str(x or "")).strip()
+
     dong = ["【出典 / Sources】", ""]
     for f, d in sorted(dung.items(), key=lambda x: -x[1]["n"]):
-        dong.append(f"- {d['title'][:70]} — {d['credit'] or '—'} [{d['license']}] "
-                    f"({d['n']} cảnh · {f})")
+        dong.append(f"- {_1dong(d['title'])[:70]} — {_1dong(d['credit']) or '—'} "
+                    f"[{_1dong(d['license'])}] ({d['n']} cảnh · {f})")
     ra_file.write_text("\n".join(dong) + "\n", encoding="utf-8")
     return {"file": ra_file, "n_nguon": len(dung), "thieu_manifest": sorted(set(thieu))}
 
@@ -364,6 +400,8 @@ def main():
     p2.add_argument("--query", default="", help="từ khoá đã dùng để tìm (stock_cut đọc field này)")
     p2.add_argument("--fps", type=int, default=30)
     p2.add_argument("--proxy", default="")
+    p2.add_argument("--clients", default="",
+                    help=f"thứ tự player_client, vd '{CLIENT_NET_NHAT}' (nét nhất khi máy chưa có Deno)")
 
     p3 = sub.add_parser("credits", help="sinh lại credits.txt của 1 tập từ manifest + scenes.json")
     p3.add_argument("--tap", required=True, help="thư mục tập")
@@ -387,7 +425,8 @@ def main():
     if a.lenh == "tai":
         try:
             recs = tai(a.id, doc_ranges(a.ranges), a.out, chapter=a.chapter,
-                       crop_bottom=a.crop_bottom, query=a.query, proxy=a.proxy or None, fps=a.fps)
+                       crop_bottom=a.crop_bottom, query=a.query, proxy=a.proxy or None, fps=a.fps,
+                       clients=a.clients)
         except KhongDuocPhep as e:
             print(f"⤫ {a.id}: {e}")
             return 2

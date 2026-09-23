@@ -272,7 +272,7 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
 
 ---
 
-## 8. CHECKLIST XONG VIỆC — ĐỦ CẢ 7 Ô (+1 Ô HOOK NẾU TẬP CÓ `hook\`) MỚI ĐƯỢC BÁO "XONG"
+## 8. CHECKLIST XONG VIỆC — ĐỦ CẢ 7 Ô (+1 Ô HOOK NẾU TẬP CÓ `hook\hook_storyboard.json`) MỚI ĐƯỢC BÁO "XONG"
 
 - [ ] Số ảnh nhận về **khớp** số dòng `prompts.txt`
 - [ ] `state.json` có **B8, B8Q, B9, B10, B11**

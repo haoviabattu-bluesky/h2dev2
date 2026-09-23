@@ -415,15 +415,16 @@ def test_sinh_hook_storyboard_neu_can_loi_khong_lam_hong_b5w(monkeypatch, capsys
 # ---------------------------------------------------------------------------
 
 def test_chon_video_nguon_uu_tien_final_with_hook(tmp_path):
-    """Việc 1a: tập có final_with_hook.mp4 → giao_hang.py phải chọn ĐÚNG file đó làm nguồn chép
+    """Việc 1a: tập có final_with_hook.mp4 ≥ 1 MB → giao_hang.py phải chọn ĐÚNG file đó làm nguồn chép
     (đích vẫn tên final.mp4 — không đổi quy ước tên file, chỉ đổi nguồn)."""
     import giao_hang as G
     (tmp_path / "final.mp4").write_bytes(b"khong hook")
-    (tmp_path / "final_with_hook.mp4").write_bytes(b"co hook")
+    # File giả ≥ 1 MB (1.000.000 byte)
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"x" * 2_000_000)
     mp4, co_hook = G.chon_video_nguon(tmp_path)
     assert co_hook is True
     assert mp4 == tmp_path / "final_with_hook.mp4"
-    assert mp4.read_bytes() == b"co hook"
+    assert mp4.stat().st_size == 2_000_000
 
 
 def test_chon_video_nguon_khong_co_hook_giu_nguyen_final(tmp_path):
@@ -433,6 +434,32 @@ def test_chon_video_nguon_khong_co_hook_giu_nguyen_final(tmp_path):
     mp4, co_hook = G.chon_video_nguon(tmp_path)
     assert co_hook is False
     assert mp4 == tmp_path / "final.mp4"
+
+
+def test_chon_video_nguon_hook_nho_hon_1mb_fallback(tmp_path, capsys):
+    """Việc 1b: tập có final_with_hook.mp4 nhưng nhỏ hơn 1 MB (ghi dở) → chọn final.mp4 + in cảnh báo."""
+    import giao_hang as G
+    (tmp_path / "final.mp4").write_bytes(b"x" * 500_000)  # 500 KB
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"y" * 500_000)  # 500 KB, dưới ngưỡng
+
+    capsys.readouterr()
+    mp4, co_hook = G.chon_video_nguon(tmp_path)
+
+    assert co_hook is False
+    assert mp4 == tmp_path / "final.mp4"
+    out = capsys.readouterr().out
+    assert "⚠️" in out and "final_with_hook.mp4" in out and "500000" in out
+
+
+def test_chon_video_nguon_hook_dung_1mb_chon_hook(tmp_path):
+    """Biên giới: final_with_hook.mp4 ĐÚNG 1 MB → vẫn chọn nó (≥ 1 MB)."""
+    import giao_hang as G
+    (tmp_path / "final.mp4").write_bytes(b"x")
+    (tmp_path / "final_with_hook.mp4").write_bytes(b"z" * 1_000_000)
+
+    mp4, co_hook = G.chon_video_nguon(tmp_path)
+    assert co_hook is True
+    assert mp4 == tmp_path / "final_with_hook.mp4"
 
 
 def test_qc_final_kiem_hook_thieu_final_with_hook(tmp_path):

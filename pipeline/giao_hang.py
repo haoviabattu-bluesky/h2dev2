@@ -191,13 +191,25 @@ def tom_tat_viet(slug: Path, tieu_de: str, force=False) -> str:
 def chon_video_nguon(slug: Path):
     """(mp4: Path, co_hook: bool) — file VIDEO NGUỒN sẽ chép đi, ưu tiên `final_with_hook.mp4`.
 
-    2026-09-23 (vá review HOOK, Việc 1a): tách riêng thành hàm nhỏ để test được mà không phải dựng
-    cả main() (argparse + profiles.load + ffmpeg…). Xem lý do đầy đủ ở chỗ gọi trong main().
+    2026-09-23 (vá review HOOK, Việc 1): tách riêng + kiểm kích thước file hook ≥ 1 MB.
+    Nếu file hook nhỏ hơn (ghi dở) thì fallback sang `final.mp4` + in cảnh báo.
     """
     mp4_hook = Path(slug) / "final_with_hook.mp4"
+    mp4_normal = Path(slug) / "final.mp4"
+
+    # 2026-09-23: chặn file video rỗng — ngưỡng an toàn 1 MB
+    THRESHOLD = 1_000_000
+
     if mp4_hook.exists():
-        return mp4_hook, True
-    return Path(slug) / "final.mp4", False
+        kích_thước = mp4_hook.stat().st_size
+        if kích_thước >= THRESHOLD:
+            return mp4_hook, True
+        else:
+            print(f"  ⚠️ {mp4_hook.name} tồn tại nhưng chỉ {kích_thước} byte (< 1 MB) — "
+                  f"hình như ghi dở. Giao bản {mp4_normal.name} thay thế.")
+            return mp4_normal, False
+
+    return mp4_normal, False
 
 
 def _pad_ep(n):

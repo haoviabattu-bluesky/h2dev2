@@ -5,7 +5,7 @@ Luồng: S0 hồ sơ → H1 bóc 0–30s + title/mô tả/thumb video nguồn �
 → S2 viết thân NỐI từ hook. Hook là pure prose (TTS đọc mọi ký tự) — marker/visual nằm ở JSON riêng.
 Repair mode (tập chưa đăng, có script.txt): nguồn = chính script.txt, không chạy S2, chỉ thêm hook đầu video.
 """
-import argparse, hashlib, json, re, subprocess, sys, time
+import argparse, hashlib, json, os, re, shutil, subprocess, sys, tempfile, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -209,15 +209,65 @@ def nguon_cua_tap(d):
     return j if j.get("video_id") else None
 
 
-# 2026-09-23 (Task 5 V4): "Requested format is not available" là lỗi TẠM THỜI phía YouTube khi 1
-# player_client cụ thể bị nghi bot/rate-limit — cùng nguyên nhân đã vá ở fetch_script.via_whisper.
-# Chuỗi (player_client, format) thử lần lượt, dừng ngay khi tải được; chỉ cần KHUNG HÌNH nên video-only
-# (bv*) là đủ, khỏi cần luồng tiếng.
+# 2026-09-23 (Task 5 V4, vá lần 2): "Requested format is not available" là lỗi TẠM THỜI phía
+# YouTube khi 1 player_client cụ thể bị nghi bot/rate-limit — cùng nguyên nhân đã vá ở
+# fetch_script.via_whisper. Chuỗi (player_client, format) thử lần lượt, dừng ngay khi tải được;
+# chỉ cần KHUNG HÌNH nên video-only (bv*) là đủ, khỏi cần luồng tiếng.
+# Thứ tự ĐÃ ĐO THẬT trên video thật (vá lần 2, 2026-09-23): client 'android' + format
+# 'bv*[height<=480]/b[height<=480]/b' tải được ngay (t2_android.mp4, 2.898.375 byte); client
+# 'web' trả "Requested format is not available" cho CHÍNH video đó → 'android' phải đứng ĐẦU.
 KHUNG_HINH_THU = (
-    ("web", "bv*[height<=480]+ba/b[height<=480]"),
     ("android", "bv*[height<=480]/b[height<=480]/b"),
+    ("web", "bv*[height<=480]+ba/b[height<=480]"),
     ("ios", "bv*[height<=720]/best"),
 )
+
+
+def _ffmpeg_tren_path():
+    """Tạo shim `ffmpeg.exe` rồi prepend vào PATH — vá lỗi yt_dlp download_ranges thiếu ffmpeg.
+
+    Gốc rễ đã ĐO THẬT (vá lần 2, 2026-09-23, đừng dò lại):
+    1. yt_dlp ở chế độ tải-MỘT-PHẦN (download_ranges) tự kiểm ffmpeg bằng một
+       `FFmpegPostProcessor()` KHÔNG NHẬN THAM SỐ → nó BỎ QUA HOÀN TOÀN `ffmpeg_location` và chỉ
+       dò biến môi trường PATH. Truyền ffmpeg_location kiểu thư mục hay kiểu file đều vô ích cho
+       phép kiểm này (đã thử cả hai, đều fail) — ffmpeg_location vẫn giữ lại vì có ích cho bước
+       ghép/cắt khác của yt_dlp, chỉ riêng phép kiểm "có ffmpeg không" là lờ nó đi.
+    2. Máy không có ffmpeg trên PATH; bản dùng chung của dự án là bundle imageio_ffmpeg,
+       qc_visual._ff() trả về đường dẫn kiểu
+       `...\\site-packages\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe` — TÊN FILE
+       không phải `ffmpeg.exe`, nên dù có thêm đúng thư mục đó vào PATH thì yt_dlp vẫn không
+       nhận ra (nó dò đúng tên `ffmpeg`/`ffmpeg.exe`).
+    3. Cách vá đã verify chạy thật: tạo 1 thư mục tạm chứa file ĐÚNG TÊN `ffmpeg.exe` (Windows)
+       / `ffmpeg` (nền tảng khác) — hardlink (os.link, cùng ổ C: nên hardlink được) tới binary
+       thật của imageio, lỗi thì fallback shutil.copy2 — rồi PREPEND thư mục đó vào
+       os.environ["PATH"]. Sau khi vá: FFmpegPostProcessor().available == True, basename ==
+       'ffmpeg', tải video-only client 'android' → OK (xem KHUNG_HINH_THU ở trên).
+
+    Idempotent (gọi nhiều lần không tạo lại file/không nhân đôi PATH). Lỗi bất kỳ (không tạo
+    được hardlink/copy, không mkdir được...) → in cảnh báo tiếng Việt, trả None, KHÔNG NÉM —
+    thiếu ffmpeg chỉ nên làm 1 lượt tải thất bại (rơi vào nhánh log lỗi có sẵn), không được chặn
+    cứng cả tập.
+    """
+    ten_file = "ffmpeg.exe" if sys.platform == "win32" else "ffmpeg"
+    thu_muc = Path(tempfile.gettempdir()) / "h2dev_ffmpeg_shim"
+    dich = thu_muc / ten_file
+    try:
+        thu_muc.mkdir(parents=True, exist_ok=True)
+        if not dich.exists():
+            import qc_visual
+            nguon = qc_visual._ff()
+            try:
+                os.link(nguon, dich)
+            except Exception:
+                shutil.copy2(nguon, dich)
+        path_hien_tai = os.environ.get("PATH", "")
+        if str(thu_muc) not in path_hien_tai.split(os.pathsep):
+            os.environ["PATH"] = str(thu_muc) + os.pathsep + path_hien_tai
+        return thu_muc
+    except Exception as e:
+        print(f"  ! không tạo được ffmpeg shim trên PATH (tải khung hình 0-30s có thể fail): "
+              f"{type(e).__name__} {str(e)[:100]}")
+        return None
 
 
 def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
@@ -228,6 +278,7 @@ def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
         # Đã có clip từ lần chạy trước thì dùng lại, khỏi tải lại (không cache phức tạp hơn 1 glob).
         clip = next((f for f in sorted(out_dir.glob("src_0_30s.*")) if f.stat().st_size > 10_000), None)
         if not clip:
+            _ffmpeg_tren_path()  # vá lần 2: ép yt_dlp thấy ffmpeg trên PATH trước khi thử tải
             import yt_dlp
             from yt_dlp.utils import download_range_func
             outtmpl = str(out_dir / "src_0_30s.%(ext)s")

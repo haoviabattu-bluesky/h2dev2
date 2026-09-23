@@ -320,8 +320,12 @@ def test_phan_tich_nguon_segments_hong_van_ghi_file(tmp_path):
 
 
 class _FakeYDLKhungHinh:
-    """Fake yt_dlp.YoutubeDL: client 'web' ném DownloadError-giả, client 'android' thì 'tải' thành công
-    (ghi ra .webm để mô phỏng format video-only). Ghi lại danh sách client đã thử vào `da_thu`."""
+    """Fake yt_dlp.YoutubeDL: client 'android' ném DownloadError-giả (mô phỏng lượt thử ĐẦU vẫn có
+    thể fail vì lý do khác video), client 'web' thì 'tải' thành công (ghi ra .webm để mô phỏng
+    format video-only). Ghi lại danh sách client đã thử vào `da_thu`.
+    Vá lần 2 (2026-09-23): KHUNG_HINH_THU đổi thứ tự 'android' lên ĐẦU (đã verify tải thật trên
+    video thật) — test này đổi client fail từ 'web'→'android' để vẫn khoá được HÀNH VI THỬ LẠI
+    (không phải chỉ khoá tên client đầu tiên), đồng thời chốt thứ tự thử mới ở da_thu."""
     da_thu = []
 
     def __init__(self, opts):
@@ -336,7 +340,7 @@ class _FakeYDLKhungHinh:
     def download(self, urls):
         client = self.opts["extractor_args"]["youtube"]["player_client"][0]
         _FakeYDLKhungHinh.da_thu.append(client)
-        if client == "web":
+        if client == "android":
             raise RuntimeError("Requested format is not available")
         out = Path(self.opts["outtmpl"].replace("%(ext)s", "webm"))
         out.write_bytes(b"0" * 20_000)
@@ -352,6 +356,9 @@ def test_khung_hinh_0_30s_thu_lai_doi_client(monkeypatch, tmp_path):
     monkeypatch.setitem(sys.modules, "yt_dlp.utils", fake_yt_dlp.utils)
     monkeypatch.setattr(HS.time, "sleep", lambda s: None)
     monkeypatch.setattr(qc_visual, "_ff", lambda: str(tmp_path / "ffmpeg_gia" / "ffmpeg.exe"))
+    # shim PATH đã có test riêng (test_ffmpeg_tren_path_*) — ở đây tắt hẳn để không đụng ổ đĩa
+    # thật/PATH thật của máy chạy test.
+    monkeypatch.setattr(HS, "_ffmpeg_tren_path", lambda: None)
 
     def fake_frame(mp4, t, out):
         from PIL import Image
@@ -361,7 +368,8 @@ def test_khung_hinh_0_30s_thu_lai_doi_client(monkeypatch, tmp_path):
 
     out = HS.khung_hinh_0_30s("vidX", tmp_path / "frames", n=2)
     assert out is not None and Path(out).exists() and Path(out).stat().st_size > 2000
-    assert _FakeYDLKhungHinh.da_thu == ["web", "android"]
+    # Vá lần 2: thứ tự thử mới android → web (android đứng đầu, đã verify tải thật).
+    assert _FakeYDLKhungHinh.da_thu == ["android", "web"]
 
 
 def test_khung_hinh_0_30s_ca_3_lan_deu_nem_tra_none(monkeypatch, tmp_path):
@@ -377,6 +385,65 @@ def test_khung_hinh_0_30s_ca_3_lan_deu_nem_tra_none(monkeypatch, tmp_path):
     monkeypatch.setitem(sys.modules, "yt_dlp.utils", fake_yt_dlp.utils)
     monkeypatch.setattr(HS.time, "sleep", lambda s: None)
     monkeypatch.setattr(qc_visual, "_ff", lambda: str(tmp_path / "ffmpeg_gia" / "ffmpeg.exe"))
+    monkeypatch.setattr(HS, "_ffmpeg_tren_path", lambda: None)
 
     out = HS.khung_hinh_0_30s("vidY", tmp_path / "frames2", n=2)
     assert out is None
+
+
+# ── _ffmpeg_tren_path: shim PATH cho yt_dlp download_ranges (vá lần 2, 2026-09-23) ──────────
+
+def test_ffmpeg_tren_path_tao_shim(monkeypatch, tmp_path):
+    """Tạo được ffmpeg.exe (hoặc 'ffmpeg' ngoài Windows) trong thư mục shim và prepend vào PATH."""
+    import sys
+    import qc_visual
+    nguon = tmp_path / "nguon" / "ffmpeg-win-x86_64-v7.1.exe"
+    nguon.parent.mkdir(parents=True, exist_ok=True)
+    nguon.write_bytes(b"gia lap binary ffmpeg")
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(nguon))
+    monkeypatch.setattr(HS.tempfile, "gettempdir", lambda: str(tmp_path))
+    monkeypatch.delenv("PATH", raising=False)
+    monkeypatch.setenv("PATH", str(tmp_path / "path_cu"))
+
+    thu_muc = HS._ffmpeg_tren_path()
+    assert thu_muc is not None
+    ten_file = "ffmpeg.exe" if sys.platform == "win32" else "ffmpeg"
+    dich = thu_muc / ten_file
+    assert dich.exists() and dich.read_bytes() == b"gia lap binary ffmpeg"
+    assert str(thu_muc) in HS.os.environ["PATH"].split(HS.os.pathsep)
+
+
+def test_ffmpeg_tren_path_idempotent(monkeypatch, tmp_path):
+    """Gọi 2 lần: không tạo lại file, không nhân đôi PATH, không ném."""
+    import qc_visual
+    nguon = tmp_path / "nguon" / "ffmpeg.exe"
+    nguon.parent.mkdir(parents=True, exist_ok=True)
+    nguon.write_bytes(b"binary that")
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(nguon))
+    monkeypatch.setattr(HS.tempfile, "gettempdir", lambda: str(tmp_path))
+    monkeypatch.setenv("PATH", str(tmp_path / "path_cu"))
+
+    thu_muc1 = HS._ffmpeg_tren_path()
+    thu_muc2 = HS._ffmpeg_tren_path()
+    assert thu_muc1 == thu_muc2
+    assert HS.os.environ["PATH"].split(HS.os.pathsep).count(str(thu_muc1)) == 1
+
+
+def test_ffmpeg_tren_path_loi_khong_nem(monkeypatch, tmp_path):
+    """os.link VÀ shutil.copy2 cùng ném → trả None, không lan lỗi ra ngoài."""
+    import qc_visual
+    nguon = tmp_path / "nguon" / "ffmpeg.exe"
+    nguon.parent.mkdir(parents=True, exist_ok=True)
+    nguon.write_bytes(b"binary that")
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(nguon))
+    monkeypatch.setattr(HS.tempfile, "gettempdir", lambda: str(tmp_path))
+
+    def boom_link(*a, **k):
+        raise OSError("khong hardlink duoc")
+
+    def boom_copy(*a, **k):
+        raise OSError("khong copy duoc")
+    monkeypatch.setattr(HS.os, "link", boom_link)
+    monkeypatch.setattr(HS.shutil, "copy2", boom_copy)
+
+    assert HS._ffmpeg_tren_path() is None

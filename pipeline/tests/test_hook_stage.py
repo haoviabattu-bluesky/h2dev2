@@ -24,12 +24,93 @@ def test_lay_meta_video(monkeypatch):
 
 
 def test_lay_meta_video_loi_khong_nem(monkeypatch):
+    """Task 1b (2026-09-23): lay_meta_video giờ có fallback đọc HTML khi yt_dlp chết — test này
+    phải mock LUÔN đường fallback (yt_tags._get) để không gọi mạng thật, giữ đúng kỳ vọng gốc
+    của Task 1 (cả 2 đường đều thất bại → title rỗng, duration 0, KHÔNG ném exception)."""
     import types, sys
+    import yt_tags
     class Boom(_FakeYDL):
         def extract_info(self, url, download=False): raise RuntimeError("net")
     monkeypatch.setitem(sys.modules, "yt_dlp", types.SimpleNamespace(YoutubeDL=Boom))
+    def boom_get(*a, **kw): raise RuntimeError("net html")
+    monkeypatch.setattr(yt_tags, "_get", boom_get)
     m = FS.lay_meta_video("abc123XYZ00")
     assert m["title"] == "" and m["duration_sec"] == 0
+    # điểm vá số 1: thumbnail_url mặc định (maxresdefault suy từ video_id) phải CÒN dù cả 2 đường lỗi
+    assert m["thumbnail_url"] == "https://i.ytimg.com/vi/abc123XYZ00/maxresdefault.jpg"
+
+
+def test_lay_meta_video_yt_dlp_loi_fallback_html_thanh_cong(monkeypatch):
+    """Task 1b: yt_dlp bị chặn bot (DownloadError giống bằng chứng thật 2026-09-23) nhưng fallback
+    đọc HTML trang watch (yt_tags) vẫn lấy được title/description → không còn rỗng."""
+    import types, sys
+    import yt_tags
+    class Boom(_FakeYDL):
+        def extract_info(self, url, download=False):
+            raise RuntimeError("Sign in to confirm you're not a bot")
+    monkeypatch.setitem(sys.modules, "yt_dlp", types.SimpleNamespace(YoutubeDL=Boom))
+    fake_html = "<html>...</html>"
+    monkeypatch.setattr(yt_tags, "_get", lambda *a, **kw: fake_html)
+    fake_data = {"videoDetails": {"title": "Tiêu đề thật", "shortDescription": "Mô tả thật",
+                                   "lengthSeconds": "1234"}}
+    monkeypatch.setattr(yt_tags, "_extract_json_var", lambda html, var: fake_data)
+    m = FS.lay_meta_video("abc123XYZ00")
+    assert m["title"] == "Tiêu đề thật"
+    assert m["description"] == "Mô tả thật"
+    assert m["duration_sec"] == 1234
+    # thumbnail_url vẫn là maxresdefault suy từ video_id (yt_tags không có field ảnh bìa)
+    assert m["thumbnail_url"] == "https://i.ytimg.com/vi/abc123XYZ00/maxresdefault.jpg"
+
+
+def test_lay_meta_video_thumbnail_mac_dinh_truoc_try():
+    """Task 1b điểm vá số 1 (đóng chốt riêng, không phụ thuộc mock nào): thumbnail_url mặc định
+    phải suy ra được từ video_id kể cả khi module yt_dlp không hề tồn tại trong môi trường —
+    chứng minh giá trị này nằm NGOÀI khối try/except, không phải sản phẩm phụ của 1 lần gọi mạng
+    thành công nào."""
+    import builtins
+    orig = builtins.__import__
+    def fake_import(name, *a, **kw):
+        if name in ("yt_dlp", "yt_tags"):
+            raise ImportError(f"{name} không có trong môi trường test này")
+        return orig(name, *a, **kw)
+    builtins.__import__ = fake_import
+    try:
+        m = FS.lay_meta_video("abc123XYZ00")
+    finally:
+        builtins.__import__ = orig
+    assert m["thumbnail_url"] == "https://i.ytimg.com/vi/abc123XYZ00/maxresdefault.jpg"
+    assert m["title"] == "" and m["duration_sec"] == 0
+
+
+def test_lay_meta_video_cookie_file(monkeypatch, tmp_path):
+    """Task 1b điểm vá số 2: YTDLP_COOKIES phải được gắn vào opts của yt_dlp.YoutubeDL, giống hệt
+    cơ chế via_ytdlp_subs đã có (đo thật: đường transcript sống nhờ cookie, đường meta thì không)."""
+    import types, sys
+    captured = {}
+    class _CapturingYDL(_FakeYDL):
+        def __init__(self, opts):
+            captured.update(opts)
+            super().__init__(opts)
+    monkeypatch.setenv("YTDLP_COOKIES", str(tmp_path / "cookies.txt"))
+    monkeypatch.delenv("YTDLP_COOKIES_BROWSER", raising=False)
+    monkeypatch.setitem(sys.modules, "yt_dlp", types.SimpleNamespace(YoutubeDL=_CapturingYDL))
+    FS.lay_meta_video("abc123XYZ00")
+    assert captured["cookiefile"] == str(tmp_path / "cookies.txt")
+
+
+def test_lay_meta_video_cookie_browser(monkeypatch):
+    """Task 1b điểm vá số 2, nhánh YTDLP_COOKIES_BROWSER (đọc cookie thẳng từ trình duyệt đang mở)."""
+    import types, sys
+    captured = {}
+    class _CapturingYDL(_FakeYDL):
+        def __init__(self, opts):
+            captured.update(opts)
+            super().__init__(opts)
+    monkeypatch.delenv("YTDLP_COOKIES", raising=False)
+    monkeypatch.setenv("YTDLP_COOKIES_BROWSER", "chrome")
+    monkeypatch.setitem(sys.modules, "yt_dlp", types.SimpleNamespace(YoutubeDL=_CapturingYDL))
+    FS.lay_meta_video("abc123XYZ00")
+    assert captured["cookiesfrombrowser"] == ("chrome",)
 
 
 def test_tai_anh_ghi_file(monkeypatch, tmp_path):

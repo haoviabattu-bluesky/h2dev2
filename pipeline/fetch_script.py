@@ -63,6 +63,22 @@ def via_api(vid, langs, proxy=None):
 
 
 # ------------------------------------------------------------- đường 2: yt-dlp
+def _ap_cookies(opts):
+    """Gắn cookie YouTube vào `opts` của yt_dlp nếu có khai qua biến môi trường (2026-09-23).
+
+    Dùng CHUNG cho `via_ytdlp_subs` và `lay_meta_video` — cả hai đều là request tới YouTube nên
+    đều ăn đòn chặn bot như nhau (đo thật: `lay_meta_video` bị "Sign in to confirm you're not a
+    bot" trên IP mà `via_ytdlp_subs` vẫn sống, đúng do bên kia có cookie còn bên này thì không).
+    `YTDLP_COOKIES=<đường dẫn file cookie Netscape>` (xem `pipeline/yt_cookies.py`) hoặc
+    `YTDLP_COOKIES_BROWSER=<tên trình duyệt>` đọc thẳng cookie của trình duyệt đang đăng nhập."""
+    import os
+    if os.environ.get("YTDLP_COOKIES"):
+        opts["cookiefile"] = os.environ["YTDLP_COOKIES"]
+    elif os.environ.get("YTDLP_COOKIES_BROWSER"):
+        opts["cookiesfrombrowser"] = (os.environ["YTDLP_COOKIES_BROWSER"],)
+    return opts
+
+
 def _ts(v):
     h, m, s = v.split(":")
     return int(h) * 3600 + int(m) * 60 + float(s.replace(",", "."))
@@ -105,10 +121,7 @@ def via_ytdlp_subs(vid, langs, workdir, tries=4, proxy=None):
             "outtmpl": str(workdir / "s.%(ext)s")}
     if proxy:
         opts["proxy"] = proxy
-    if os.environ.get("YTDLP_COOKIES"):
-        opts["cookiefile"] = os.environ["YTDLP_COOKIES"]
-    elif os.environ.get("YTDLP_COOKIES_BROWSER"):
-        opts["cookiesfrombrowser"] = (os.environ["YTDLP_COOKIES_BROWSER"],)
+    _ap_cookies(opts)
     files = []
     for i in range(tries):
         try:
@@ -277,23 +290,53 @@ def video_minutes(url_or_id, timeout=25, proxy=None):
 
 def lay_meta_video(url_or_id, timeout=25, proxy=None):
     """Title / mô tả / thumbnail / thời lượng của video nguồn (H1–H3 của hook_stage). Không ném — lỗi trả rỗng.
-    KHÔNG extract_flat: mô tả chỉ có ở lượt đọc trang watch đầy đủ (~1–2 s/video)."""
+    KHÔNG extract_flat: mô tả chỉ có ở lượt đọc trang watch đầy đủ (~1–2 s/video).
+
+    2026-09-23: chạy thật trên kênh @simbot2 (IP máy này) yt_dlp bị YouTube chặn thẳng
+    ("Sign in to confirm you're not a bot. Use --cookies-from-browser or --cookies") trong khi
+    đường transcript (`via_ytdlp_subs`) vẫn sống nhờ có cookie — 2 lỗ hổng cần vá:
+      1. `thumbnail_url` mặc định (suy ra từ video_id, không cần gọi mạng) phải đặt TRƯỚC `try`,
+         nếu không nó biến mất hẳn khi yt_dlp ném exception (trước đây nằm trong try nên mất).
+      2. Gắn cookie giống `via_ytdlp_subs` (qua `_ap_cookies`) + khi yt_dlp vẫn chết hoặc trả title
+         rỗng, tụt xuống đọc thẳng HTML trang watch bằng `yt_tags` (đã verify chạy thật
+         2026-09-17, không cần yt_dlp/API key) để ít nhất còn title/description."""
     vid = video_id(url_or_id)
-    out = {"video_id": vid, "title": "", "description": "", "thumbnail_url": "", "duration_sec": 0}
+    out = {"video_id": vid, "title": "", "description": "",
+           "thumbnail_url": f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg", "duration_sec": 0}
+    ydl_ok = False
     try:
         import yt_dlp
         opts = {"quiet": True, "no_warnings": True, "skip_download": True, "noprogress": True,
                 "socket_timeout": timeout}
         if proxy:
             opts["proxy"] = proxy
+        _ap_cookies(opts)
         with yt_dlp.YoutubeDL(opts) as y:
             info = y.extract_info(f"https://www.youtube.com/watch?v={vid}", download=False) or {}
         out["title"] = info.get("title") or ""
         out["description"] = info.get("description") or ""
-        out["thumbnail_url"] = info.get("thumbnail") or f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg"
+        out["thumbnail_url"] = info.get("thumbnail") or out["thumbnail_url"]
         out["duration_sec"] = int(info.get("duration") or 0)
+        ydl_ok = bool(out["title"])
     except Exception as e:
-        print(f"  ! không đọc được meta video {vid} ({type(e).__name__} {e})")
+        print(f"  ! không đọc được meta video {vid} qua yt_dlp ({type(e).__name__} {e})")
+
+    if not ydl_ok:
+        print(f"  … yt_dlp không lấy được title video {vid} — thử fallback đọc HTML trang watch")
+        try:
+            import yt_tags  # lazy: fetch_script không cần phụ thuộc cứng vào yt_tags lúc bình thường
+            html = yt_tags._get(f"https://www.youtube.com/watch?v={vid}", proxy=proxy)
+            data = yt_tags._extract_json_var(html, "ytInitialPlayerResponse") or {}
+            vd = data.get("videoDetails") or {}
+            if not vd.get("title"):
+                raise RuntimeError("videoDetails rỗng (trang watch không đọc được hoặc bị chặn)")
+            out["title"] = vd.get("title") or out["title"]
+            out["description"] = vd.get("shortDescription") or out["description"]
+            if not out["duration_sec"]:
+                out["duration_sec"] = int(vd.get("lengthSeconds") or 0)
+        except Exception as e:
+            print(f"  ! cả 2 đường (yt_dlp + fallback HTML) đều thất bại cho video {vid} "
+                  f"({type(e).__name__} {e})")
     return out
 
 

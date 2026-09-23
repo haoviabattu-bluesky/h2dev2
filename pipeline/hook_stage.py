@@ -171,3 +171,116 @@ def kiem_stale(d):
         m["stale"] = True
         (d / HOOK_DIR / "hook_lock.json").write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
     return bool(ly_do), ly_do
+
+
+# ── H1–H3: bóc hook video NGUỒN (phan_tich_nguon, Task 5, 2026-09-23) ──────────
+PROMPT_NGUON = """Bạn phân tích 30 GIÂY ĐẦU của một video YouTube (video NGUỒN mà tập mới sẽ nhân bản 70/30).
+TIÊU ĐỀ NGUỒN: {title}
+MÔ TẢ NGUỒN (rút gọn): {description}
+CHỮ TRÊN THUMBNAIL NGUỒN (nếu đọc được): {thumb_text}
+LỜI 0–30 GIÂY (nguyên văn): {t30}
+
+Trả ĐÚNG 1 JSON (không bọc ```):
+{{"hook_4_nhip": {{"event": "sự kiện cụ thể ở 0–5s hoặc null", "contradiction": "vì sao bất thường, 5–12s hoặc null",
+                  "stake": "mất mát/cảm xúc 12–20s hoặc null", "open_loop": "câu hỏi để ngỏ 20–30s hoặc null"}},
+ "hook_kind": "A|B|C|D|E|none  (A biến cố bất thường · B câu nói sốc · C mâu thuẫn · D hậu quả chưa rõ nguyên nhân · E hé reveal 20–40%)",
+ "score_0_12": 0,
+ "promise_match": {{"title": "PASS|FAIL", "thumb": "PASS|FAIL|NA", "description": "PASS|FAIL|NA", "verdict": "PASS|FAIL",
+                    "ly_do": "1 câu: hook nguồn có bán CÙNG lời hứa với tiêu đề/thumbnail không"}}}}
+Chấm score_0_12 = tổng 6 tiêu chí 0–2: liên quan title · liên quan thumbnail · có bất thường · có câu hỏi mở · có cảm xúc · dựng hình được."""
+
+PROMPT_KHUNG = """Đây là lưới {n} khung hình lấy đều trong 30 giây đầu của một video YouTube kể chuyện.
+Trả JSON: {{"so_shot_uoc": <số bố cục khác nhau>, "co_chu_tren_hinh": true/false, "co_nhan_vat": true/false,
+"hinh_bam_loi": "manh|yeu|khong", "verdict": "manh|yeu|khong", "ly_do": "1 câu"}}
+verdict = manh khi ≥3 bố cục khác nhau VÀ có nhân vật/vật thể gây chú ý; yeu khi 1–2 bố cục; khong khi chỉ ảnh nền/logo/chữ giới thiệu."""
+
+
+def nguon_cua_tap(d):
+    p = Path(d) / "competitor.segments.json"
+    if not p.exists():
+        return None
+    j = json.loads(p.read_text(encoding="utf-8"))
+    return j if j.get("video_id") else None
+
+
+def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
+    """Tải 30 giây đầu (yt_dlp download_sections) → n khung → 1 ảnh lưới contact.jpg. Lỗi trả None."""
+    import qc_visual
+    out_dir = Path(out_dir); out_dir.mkdir(parents=True, exist_ok=True)
+    mp4 = out_dir / "src_0_30s.mp4"
+    try:
+        import yt_dlp
+        from yt_dlp.utils import download_range_func
+        opts = {"quiet": True, "no_warnings": True, "noprogress": True, "format": "best[height<=480]",
+                "download_ranges": download_range_func(None, [(0, 30)]), "force_keyframes_at_cuts": True,
+                "outtmpl": str(mp4), "ffmpeg_location": str(Path(qc_visual._ff()).parent)}
+        if proxy:
+            opts["proxy"] = proxy
+        with yt_dlp.YoutubeDL(opts) as y:
+            y.download([f"https://www.youtube.com/watch?v={video_id}"])
+        if not mp4.exists():
+            return None
+        frames = []
+        for i in range(n):
+            f = out_dir / f"f{i+1:02d}.jpg"
+            if qc_visual._frame(mp4, 1.0 + i * (28.0 / max(n - 1, 1)), f):
+                frames.append(f)
+        if not frames:
+            return None
+        from PIL import Image
+        ims = [Image.open(f).convert("RGB").resize((480, 270)) for f in frames]
+        cols = 3
+        rows = (len(ims) + cols - 1) // cols
+        grid = Image.new("RGB", (480 * cols, 270 * rows), "black")
+        for i, im in enumerate(ims):
+            grid.paste(im, ((i % cols) * 480, (i // cols) * 270))
+        out = out_dir / "contact.jpg"
+        grid.save(out, quality=85)
+        return out
+    except Exception as e:
+        print(f"  ! không soi được khung hình nguồn {video_id}: {type(e).__name__} {str(e)[:100]}")
+        return None
+
+
+def phan_tich_nguon(d, prof, proxy=None, force=False):
+    import fetch_script, llm_client, qc_visual
+    d = Path(d); hd = d / HOOK_DIR; hd.mkdir(exist_ok=True)
+    out_p = hd / "source.json"
+    if out_p.exists() and not force:
+        return json.loads(out_p.read_text(encoding="utf-8"))
+    src = {"video_id": None, "url": None, "title": "", "description": "", "thumb_path": None, "transcript_0_30s": "",
+           "hook_4_nhip": {}, "hook_kind": "none", "score_0_12": 0, "video_hook_verdict": "khong_soi_duoc",
+           "promise_match": {"verdict": "NA", "ly_do": "không có video nguồn"}}
+    j = nguon_cua_tap(d)
+    if j:
+        vid = j["video_id"]
+        src.update(video_id=vid, url=f"https://www.youtube.com/watch?v={vid}", title=j.get("title", ""),
+                   description=j.get("description", ""), transcript_0_30s=cat_0_30s(j.get("segments") or []))
+        if not src["title"]:
+            m = fetch_script.lay_meta_video(vid, proxy=proxy)
+            src.update(title=m["title"], description=m["description"])
+            j["thumbnail_url"] = j.get("thumbnail_url") or m["thumbnail_url"]
+        if j.get("thumbnail_url") and fetch_script.tai_anh(j["thumbnail_url"], hd / "source_thumb.jpg", proxy=proxy):
+            src["thumb_path"] = str(hd / "source_thumb.jpg")
+        # H2 — khung hình
+        grid = khung_hinh_0_30s(vid, hd / "frames", proxy=proxy)
+        if grid:
+            try:
+                v = qc_visual._vision(PROMPT_KHUNG.format(n=6), grid)
+                src["video_hook_verdict"] = v.get("verdict", "khong_soi_duoc")
+                src["khung_hinh"] = v
+            except Exception as e:
+                print(f"  ! vision khung hình lỗi: {e}")
+        # H1 + H3 — 4 nhịp + promise
+        if src["transcript_0_30s"]:
+            r = llm_client.chat(PROMPT_NGUON.format(title=src["title"], description=src["description"][:800],
+                                                    thumb_text="(chưa đọc)", t30=src["transcript_0_30s"]),
+                                task="short", max_tokens=1500, temperature=0.2, verbose=False)
+            try:
+                a = json.loads(re.sub(r"^```[a-z]*\n?|\n?```$", "", r.text.strip()))
+                src.update(hook_4_nhip=a.get("hook_4_nhip") or {}, hook_kind=a.get("hook_kind", "none"),
+                           score_0_12=int(a.get("score_0_12") or 0), promise_match=a.get("promise_match") or {})
+            except Exception as e:
+                print(f"  ! JSON phân tích nguồn hỏng: {e}")
+    out_p.write_text(json.dumps(src, ensure_ascii=False, indent=2), encoding="utf-8")
+    return src

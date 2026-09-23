@@ -257,3 +257,27 @@ def test_stale_hook_sua_tay(tmp_path):
 
 def test_chua_co_lock(tmp_path):
     assert HS.kiem_stale(tmp_path) == (False, ["chưa có hook lock"])
+
+
+def test_phan_tich_nguon(monkeypatch, tmp_path):
+    d = tmp_path
+    (d / "competitor.segments.json").write_text(json.dumps({
+        "video_id": "vid1", "title": "T", "description": "D", "thumbnail_url": "http://x/t.jpg",
+        "segments": [{"start": 0, "duration": 5, "text": "「三年前に引っ越しました」"}, {"start": 31, "duration": 5, "text": "後半"}]}),
+        encoding="utf-8")
+    import llm_client, qc_visual
+    monkeypatch.setattr(llm_client, "chat", lambda prompt, **k: type("R", (), {"text": json.dumps({
+        "hook_4_nhip": {"event": "隣人が告げる", "contradiction": "50年の友", "stake": None, "open_loop": "理由は?"},
+        "hook_kind": "B", "score_0_12": 9,
+        "promise_match": {"title": "PASS", "thumb": "NA", "description": "PASS", "verdict": "PASS", "ly_do": "ok"}})})())
+    monkeypatch.setattr(HS, "khung_hinh_0_30s", lambda vid, out, n=6, proxy=None: None)
+    monkeypatch.setattr(FS, "tai_anh", lambda url, p, proxy=None: False)
+    src = HS.phan_tich_nguon(d, PROF)
+    assert src["transcript_0_30s"] == "「三年前に引っ越しました」"
+    assert src["hook_kind"] == "B" and src["video_hook_verdict"] == "khong_soi_duoc"
+    assert json.loads((d / "hook/source.json").read_text(encoding="utf-8"))["score_0_12"] == 9
+
+
+def test_phan_tich_nguon_khong_co_nguon(tmp_path):
+    src = HS.phan_tich_nguon(tmp_path, PROF)
+    assert src["video_id"] is None and src["video_hook_verdict"] == "khong_soi_duoc"

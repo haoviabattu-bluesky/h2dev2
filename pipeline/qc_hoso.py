@@ -128,6 +128,29 @@ def kiem_tieu_de(kq, ctx_text, rs, gate):
     return ds, hop
 
 
+# --------------------------------------------------------- hook 30 giây đầu
+def kiem_hook_ho_so(kq, ctx_text, prof):
+    """Trường 'HOOK 30 GIÂY ĐẦU:' của hồ sơ (docs/KHUON_HO_SO_DE_TAI.md) — trước 2026-09-23 không ai kiểm.
+
+    Khuôn hồ sơ đã có tiêu mục này từ lâu nhưng chưa ai gọi máy đo — hồ sơ có thể để trống hoặc
+    viết cảm thán suông ("mở đầu gây tò mò") mà không ai phát hiện tới tận B10/thành phẩm. Dùng lại
+    đúng regex neo dữ kiện của `hook_stage.NEO` (số/thoại「」/tên riêng) — cùng thước đo với cổng
+    kiểm hook thật ở H1-H4, tránh 2 chuẩn khác nhau cho cùng khái niệm "hook có neo hay không".
+    """
+    import hook_stage
+    m = re.search(r"HOOK 30 GIÂY ĐẦU\s*[:：]\s*\n(.*?)(?=\n\s*\n|\n[A-ZĐ][A-ZĐ ]{3,}[:：]|\Z)", ctx_text, re.S)
+    if not m or not m.group(1).strip():
+        _ra(kq, "nang", "hook_thieu", "hồ sơ không có tiêu mục 'HOOK 30 GIÂY ĐẦU:' hoặc để trống",
+            "bên research phải viết 1–2 câu hook: sự kiện cụ thể, neo NGÀY/NƠI/NGƯỜI, không kết luận suông")
+        return
+    h = m.group(1).strip()
+    if not hook_stage.NEO.search(h):
+        _ra(kq, "nang", "hook_noi_suong", f"hook hồ sơ không có neo cụ thể (số/tên/thoại): {h[:60]}…",
+            "thêm mốc ngày/nơi/người hoặc câu thoại")
+    if len(h) > 2 * hook_stage.so_chu_muc_tieu(prof):
+        _ra(kq, "nhe", "hook_qua_dai", f"hook hồ sơ {len(h)} ký tự — dài hơn 2×30 giây đọc")
+
+
 # ------------------------------------------------------------------ khung kể
 def kiem_competitor(kq, folder: Path, prof, rs):
     f = folder / "competitor.txt"
@@ -369,6 +392,7 @@ def main():
     if ctx.exists():
         text = ctx.read_text(encoding="utf-8", errors="replace")
         kiem_tieu_de(kq, text, rs, gate)
+        kiem_hook_ho_so(kq, text, prof)
     kiem_competitor(kq, folder, prof, rs)
     kiem_tu_lieu(kq, folder, rs, gate)
     kiem_stock_queries(kq, folder, rs, gate)

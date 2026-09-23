@@ -617,6 +617,15 @@ class Job:
         if level == "WARN" and lean:
             raise SystemExit(f"✗ {buoc}: lane flow=lean nhưng {msg} → chạy B3 (lean) trước.")
         print(f"[{buoc}] lock: {msg}")
+        # 2026-09-23 (Task 10): hook 20-30s là artifact THƯỢNG NGUỒN — hook lệch tiêu đề/thumbnail/
+        # lời hứa (HOOK_STALE) thì mọi ảnh/giọng/ghép dựng tiếp theo đều dựng trên nền sai, cấm đi tiếp.
+        # Tập cũ (trước tính năng hook) chưa có hook_lock.json thì chỉ NHẮC, không chặn — không hồi tố.
+        import hook_stage
+        stale, ly_do = hook_stage.kiem_stale(self.dir)
+        if stale:
+            raise SystemExit(f"✗ {buoc}: HOOK_STALE — " + " · ".join(ly_do))
+        if ly_do:   # ["chưa có hook lock"]
+            print(f"[{buoc}] ⚠️ {ly_do[0]} — tập cũ: chạy hook_stage.py --mode repair trước khi giao")
 
     def b3s_sol(self, force=False):
         """B3S — QC ĐỘC LẬP bằng GPT-5.6-sol (khác hãng hẳn với Gemini/Claude đang viết+B3Q/B3F),

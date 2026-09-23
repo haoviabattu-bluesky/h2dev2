@@ -444,10 +444,10 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook=""):
         else:
             warn.append(f"số học: {x['msg'][:120]}")
     # máy móc qc_script: trùng/lặp → việc; mở đầu → warn
-    for x in qc_script.mechanical(text, prof.get("language", "ja"), g):
+    for x in qc_script.mechanical(text, prof.get("language", "ja"), g, warn_no_marker=True):
         if x["kind"] in ("cau_trung_lap", "cau_gan_trung"):
             viec_len.append(f"TRÙNG: {x['msg'][:120]}")
-        elif x["kind"] in ("mo_dau_qua_dai", "mo_dau_qua_ngan", "mo_dau_noi_suong", "lap_y_ke_lai", "cum_lap", "doan_vun", "nhieu_moc_tuoi"):
+        elif x["kind"] in ("mo_dau_qua_dai", "mo_dau_qua_ngan", "mo_dau_noi_suong", "mo_dau_khong_do", "lap_y_ke_lai", "cum_lap", "doan_vun", "nhieu_moc_tuoi"):
             warn.append(x["msg"][:140])
         elif x["kind"] in ("sot_ngon_ngu_nguon",):
             viec_len.append(x["msg"][:120])

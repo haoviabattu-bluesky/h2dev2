@@ -98,7 +98,7 @@ NEO_SO = re.compile(r"[0-9０-９]+")
 NEO_KATA = re.compile(r"[ァ-ヴー]{3,}")
 
 
-def mo_dau(text, gate, marker="第1章"):
+def mo_dau(text, gate, marker="第1章", warn_no_marker=False):
     """Đo PHẦN MỞ ĐẦU (trước chương 1) — đủ dài chưa, đủ CHI TIẾT CỤ THỂ chưa.
 
     VÌ SAO ĐO "NEO DỮ KIỆN" CHỨ KHÔNG ĐO CẢM GIÁC
@@ -126,6 +126,14 @@ def mo_dau(text, gate, marker="第1章"):
         marks = [marks]
     pos = [text.find(m) for m in marks if text.find(m) > 0]
     if not pos:
+        # 2026-09-23 (Task 10): lane KHÔNG có marker chương (satori, Lane D, Lane F...) trước đây
+        # `return []` im lặng = ĐẠT GIẢ — không hề đo mở đầu. `warn_no_marker=True` (lean_script)
+        # trả 1 cảnh báo NHẸ để không ai tưởng nhầm "mở đầu đã được kiểm" — cổng mở đầu thật của
+        # các lane này nay do hook_stage.py đảm nhận (H1-H4 + kiem_stale), không phải mo_dau().
+        if warn_no_marker:
+            return [{"kind": "mo_dau_khong_do", "sev": "thap",
+                     "msg": "lane không có marker chương/mục → cổng mở đầu KHÔNG đo được ở đây (trước 2026-09-23 là ĐẠT giả); "
+                            "mở đầu do hook_stage kiểm"}]
         return []
     i = min(pos)
     h = text[:i].strip()
@@ -149,9 +157,9 @@ def mo_dau(text, gate, marker="第1章"):
     return ra
 
 
-def mechanical(text, lang="ja", gate=None):
+def mechanical(text, lang="ja", gate=None, warn_no_marker=False):
     """Các lỗi máy đọc được chắc chắn — không tốn tiền, không cần model."""
-    out = list(mo_dau(text, gate or {}))
+    out = list(mo_dau(text, gate or {}, warn_no_marker=warn_no_marker))
     body = text.replace("\n", "")
 
     han = HANGUL.findall(body)

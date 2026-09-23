@@ -41,3 +41,43 @@ def test_do_tat_dinh_hook(monkeypatch):
 def test_preserve_co_hook():
     import lean_script as L
     assert "hook" in L.PRESERVE.lower()
+
+
+# Test Task 10 (2026-09-23): mo_dau hết ĐẠT giả (warn_no_marker) + qc_final.kiem_hook + qc_hoso.kiem_hook_ho_so.
+# Toàn bộ test OFFLINE — không mạng, không LLM.
+def test_mo_dau_warn_no_marker():
+    import qc_script as Q
+    assert Q.mo_dau("không marker", {}) == []
+    r = Q.mo_dau("không marker", {}, warn_no_marker=True)
+    assert r and r[0]["kind"] == "mo_dau_khong_do"
+
+
+def test_qc_final_kiem_hook(tmp_path):
+    import qc_final as F, hook_stage as HS
+    (tmp_path / "title.txt").write_text("T", encoding="utf-8")
+    (tmp_path / "script.txt").write_text("khác。", encoding="utf-8")
+    ra = []
+    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    assert any("hook_lock" in x["msg"] for x in ra)
+    HS.khoa(tmp_path, "hook。")
+    ra = []
+    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    assert any("không bắt đầu" in x["msg"] for x in ra)
+    (tmp_path / "script.txt").write_text("hook。thân。", encoding="utf-8")
+    ra = []
+    F.kiem_hook(tmp_path, {"id": "x"}, ra)
+    assert ra == []
+
+
+def test_qc_hoso_kiem_hook(tmp_path):
+    import qc_hoso as H
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {}}
+    kq = []
+    H.kiem_hook_ho_so(kq, "TIÊU ĐỀ\n① a\n", prof)
+    assert any(x["ma"] == "hook_thieu" for x in kq)
+    kq = []
+    H.kiem_hook_ho_so(kq, "HOOK 30 GIÂY ĐẦU:\nそれは不思議だった。\n\nKHUNG N CHƯƠNG:", prof)
+    assert any(x["ma"] == "hook_noi_suong" for x in kq)
+    kq = []
+    H.kiem_hook_ho_so(kq, "HOOK 30 GIÂY ĐẦU:\n1978年10月21日、セスナが消えた。\n\nKHUNG N CHƯƠNG:", prof)
+    assert kq == []

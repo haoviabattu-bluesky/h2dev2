@@ -266,6 +266,35 @@ def kiem_du_kien(S: Path, ra):
              f"(vd 「{kq['nang'][0]['token']}」)", "sửa tư liệu hoặc kịch bản rồi dựng lại")
 
 
+def kiem_hook(S: Path, prof, ra):
+    """Mọi tập phải có hook khoá (anh chốt 2026-09-23). upstream: script bắt đầu bằng hook; repair: có hook_final.mp4.
+
+    Cố ý CHẠY BẤT KỂ `publish.listing_external` — hook là NỘI DUNG của chính video (nằm trong
+    final.mp4), không phải phần đóng gói đăng tải (thumbnail/tiêu đề/mô tả) mà dự án khác lo.
+    Tập LÀM TRƯỚC khi có tính năng hook (chưa từng chạy hook_stage) cũng bị báo `cao` ở đây —
+    cố ý, vì luật mới (2026-09-23) là MỌI tập giao đều phải có hook; sửa qua `--mode repair`.
+    """
+    import hook_stage
+    m = hook_stage.doc_lock(S)
+    if not m:
+        _loi(ra, "hook", "cao", "thiếu hook/hook_lock.json — tập chưa có hook 20–30s", "chạy hook_stage.py (--mode repair nếu tập đã có script)")
+        return
+    stale, ly_do = hook_stage.kiem_stale(S)
+    if stale:
+        _loi(ra, "hook", "cao", "HOOK_STALE: " + " · ".join(ly_do), "chạy lại H1–H4 (hook_stage.py --force)")
+    hook = hook_stage.doc_hook(S)
+    if m.get("mode") == "repair":
+        if not (S / "hook" / "hook_final.mp4").exists():
+            _loi(ra, "hook", "cao", "repair mode nhưng chưa có hook/hook_final.mp4", "bước 3 dựng hook_final.mp4 rồi final_with_hook.mp4")
+    else:
+        sc = (S / "script.txt").read_text(encoding="utf-8") if (S / "script.txt").exists() else ""
+        if not hook_stage.bat_dau_bang_hook(sc, hook):
+            _loi(ra, "hook", "cao", "script.txt không bắt đầu bằng hook đã khoá", "S3 phải bắt lỗi này — kiểm lại lean_script")
+    t = hook_stage._title(S)
+    if t and (m.get("promise") or {}).get("title") not in ("", t):
+        _loi(ra, "hook", "cao", f"title.txt ≠ title lúc khoá hook ({(m.get('promise') or {}).get('title')!r})", "HOOK_STALE — khoá lại")
+
+
 def kiem(slug_dir, profile_id):
     import profiles
     S = Path(slug_dir)
@@ -302,6 +331,7 @@ def kiem(slug_dir, profile_id):
     kiem_nguon(S, ra)
     kiem_bang_chung(S, ra)
     kiem_du_kien(S, ra)
+    kiem_hook(S, prof, ra)
     return {"phat_hien": ra, "nang": [x for x in ra if x["sev"] == "cao"], "video": v}
 
 

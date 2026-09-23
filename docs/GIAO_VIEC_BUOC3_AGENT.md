@@ -283,10 +283,94 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
       `thumbnail.png` + `listting.txt`
 - [ ] Ô **G** đúng dòng đã ghi đường dẫn thuần
 - [ ] Đã **đưa đường dẫn** cho chủ dự án trong câu trả lời, kèm số đo thời gian và kết quả các cổng
+- [ ] Nếu thư mục tập có `<thư mục tập>\hook\` (bước 1 đã khoá hook) → làm thêm **mục 9 dưới đây**
+      (dựng `hook_final.mp4` + `final_with_hook.mp4`) TRƯỚC khi báo xong; tập không có thư mục
+      `hook\` thì bỏ qua mục 9, không phải lỗi.
 
 ---
 
-## 9. TRA CỨU NHANH
+## 9. HOOK 20–30S ĐẦU VIDEO (mọi lane, từ 2026-09-23)
+
+> Mục này chỉ áp dụng cho tập có bước 1 sinh sẵn thư mục `hook\` (không phải mọi tập). `<tập>` dưới
+> đây là thư mục của đúng tập đang làm, ví dụ thật:
+> `E:\CLAUDE\YOUTUBE\h2dev\assets\toshi-densetsu-jp\ep02-walton` — nghĩa là đường dẫn đầy đủ
+> `<tập>\hook\hook_locked.txt` ở ví dụ đó là
+> `E:\CLAUDE\YOUTUBE\h2dev\assets\toshi-densetsu-jp\ep02-walton\hook\hook_locked.txt`.
+
+Đầu vào (bước 1 đã để sẵn trong `<tập>\hook\`): `hook_locked.txt` · `hook_lock.json` (`mode`
+upstream|repair) · `hook_storyboard.json` · `flow_prompts\shot_NN.txt` · `grok_jobs.csv`. Thiếu bất
+kỳ file nào → DỪNG, báo lane (xem mục 11).
+
+**9.1 Ảnh shot** — vẽ `<tập>\hook\img\shot_NN.png` (1280×720, 16:9) theo
+`<tập>\hook\flow_prompts\shot_NN.txt`; shot nào có `ref_image=REF` hoặc `REF2` trong
+`hook_storyboard.json` → REF-LOCK bằng ảnh master trong `<tập>\_ref\` (ima2 `--ref`), giống hệt quy
+trình ảnh thân video ở mục 2/3. Thường 4–7 ảnh mỗi tập (đúng số dòng trong `grok_jobs.csv`).
+
+**9.2 Clip** — chạy:
+```
+python E:\CLAUDE\YOUTUBE\GROK_VIDEO\grok_batch.py --jobs <tập>\hook\grok_jobs.csv --out <tập>\hook\clips --gap 5
+```
+(profile Grok cổng 9334; lỗi 429/403 xem skill `C:\Users\admin\.claude\skills\grok_video.md`).
+Fallback khi Grok chết hẳn: dùng ảnh tĩnh + hiệu ứng chuyển cảnh thay clip động, qua
+`C:\Users\admin\.claude\skills\video-chuyen-canh\scripts\ghep_anh_co_chuyen_canh.py --zoom 1.0`
+với timeline lấy từ mốc `t0`/`t1` của từng shot trong `hook_storyboard.json` (xem thiết kế V3 ở
+`E:\CLAUDE\YOUTUBE\h2dev\docs\PHUONG_AN_HOOK_VIDEO.md`).
+
+**9.3 Voice hook:**
+- **upstream**: KHÔNG làm gì — hook nằm trong `voice.mp3` chung của tập (là đoạn đầu). Lấy mốc kết
+  thúc hook = cue cuối cùng trong `<tập>\voice_paced.srt` có nội dung thuộc hook, gọi mốc đó là
+  `T_hook`.
+- **repair**: chạy
+  ```
+  py -3.13 E:\CLAUDE\YOUTUBE\h2dev\pipeline\tts.py --script <tập>\hook\hook_locked.txt --out <tập>\hook\hook_voice.mp3 --profile <lane>
+  ```
+  (cùng `--voice`/`--speed`/`--fx` của profile lane đang làm, xem `pipeline\tts.py --help` hoặc
+  channel.json của lane) → sinh `hook_voice.mp3` + `hook_voice.srt`; `T_hook` = thời lượng mp3 đó.
+
+**9.4 Dựng `<tập>\hook\hook_final.mp4`** (dùng `imageio_ffmpeg.get_ffmpeg_exe()` như
+`pipeline\assemble.py`, xuất 1920×1080 30fps h264 yuv420p — cùng thông số `final.mp4`):
+- Với mỗi shot n: cắt clip `<tập>\hook\clips\shot_NN.mp4` đúng `t1-t0` giây (`-ss 0 -t <dur>`),
+  scale/pad về 1920×1080. Clip ngắn hơn `dur` (kể cả clip tĩnh ở fallback 9.2) → đắp thêm bằng
+  `tpad=stop_mode=clone:stop_duration=<thiếu>`.
+- Nối các shot theo concat demuxer; giữa 2 shot dùng crossfade 12 khung (xfade `offset` = tổng thời
+  lượng các shot trước − 0.4s) — công thức đúng nằm ở skill
+  `C:\Users\admin\.claude\skills\video-chuyen-canh\SKILL.md` (xfade trả về `d−1` khung nên phải cấp
+  `d+1` rồi cắt lại bằng `-frames:v`).
+- Tổng khung của `hook_final.mp4` phải = `round(T_hook × 30)` ± 15 khung; thừa khung → cắt bớt ở
+  shot cuối; thiếu khung → nhân bản khung cuối (không dùng zoom/pan để bù, xem luật cấm hiệu ứng
+  giật/rung của dự án).
+- Âm thanh: **repair** → ghép `hook_voice.mp3`; **upstream** → KHÔNG ghép tiếng (tiếng đã nằm sẵn
+  trong thân video, xem 9.5). Nhạc nền hook: dùng cùng file BGM của thân video nhưng hạ **−6 dB**,
+  fade-in 1 giây; SFX không bắt buộc (không cần tiếng whoosh kiểu trailer).
+
+**9.5 Ghép vào thân video** — xuất `<tập>\final_with_hook.mp4`:
+- **upstream**: `final.mp4` đã chứa sẵn đoạn hook dựng bằng ảnh tĩnh ở khoảng 0–`T_hook` → THAY
+  đúng đoạn đó: `final_with_hook.mp4` = phần video của `hook_final.mp4` + phần video của `final.mp4`
+  tính từ `T_hook` trở đi, còn **âm thanh lấy nguyên của `final.mp4` từ giây 0** (không cắt/không
+  dịch tiếng), nối bằng chuyển cảnh mờ-vào 10 khung tại đúng mốc `T_hook`.
+- **repair**: `final_with_hook.mp4` = `hook_final.mp4` (đã có tiếng riêng) + chuyển cảnh crossfade
+  17 khung + toàn bộ `final.mp4` giữ nguyên vẹn (cả hình lẫn tiếng).
+- Xuất file **CẠNH** `final.mp4` trong cùng thư mục `<tập>\`, **KHÔNG ghi đè** `final.mp4`.
+- Phụ đề: **repair** → nối `hook_voice.srt` (giữ nguyên mốc) rồi dịch **mọi** mốc thời gian của
+  `voice_paced.srt` cộng thêm `T_hook + 17/30` giây → ghi ra `<tập>\final_with_hook.srt`. **upstream**
+  → phụ đề cũ đã đúng mốc (hook nằm trong voice.mp3 gốc), chỉ copy `voice_paced.srt` thành
+  `final_with_hook.srt` không cần dịch mốc.
+
+**9.6 Nghiệm thu:**
+- Đếm khung `final_with_hook.mp4` phải = khung(`hook_final.mp4`) + khung(`final.mp4` tính từ
+  `T_hook`) − số khung của đoạn chuyển cảnh dùng ở 9.5.
+- Chạy cổng nghe `qc_visual.kiem_tieng_ghep` (đã dùng ở mục 4) trên `final_with_hook.mp4` — không
+  được báo mất tiếng ở mốc ghép.
+- Xem tay 30 giây đầu: đủ 4–7 bố cục khác nhau theo `hook_storyboard.json`, không có chữ tiếng Anh/
+  watermark AI lọt vào khung hình (xem mục "B-roll không được mang chữ lạ"), mặt nhân vật khớp
+  REF/REF2 nếu có dùng REF-LOCK.
+- Ghi `<tập>\hook\render_info.json` dạng `{"T_hook": ..., "frames": ..., "mode": "upstream|repair"}`.
+- Cột **G** của sheet trỏ tới `final_with_hook.mp4` (không phải `final.mp4`) cho tập nào đã dựng
+  hook.
+
+---
+
+## 10. TRA CỨU NHANH
 
 | Thứ | Ở đâu |
 |---|---|
@@ -302,13 +386,16 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
 | Python | `py -3.13` |
 | Tra slug từ số dòng | `pipeline\quet_dong_can_anh.py --cho-ghep` |
 | Ghi cột G (có rào chắn) | `pipeline\ghi_cot_video.py` |
+| Hook 20–30s (nếu tập có) | `<thư mục tập>\hook\` — xem mục 9 |
+| Batch clip Grok cho hook | `E:\CLAUDE\YOUTUBE\GROK_VIDEO\grok_batch.py` |
+| Chuyển cảnh cho hook (fallback ảnh tĩnh) | `C:\Users\admin\.claude\skills\video-chuyen-canh\scripts\ghep_anh_co_chuyen_canh.py` |
 
 **Số tập = STT ở cột A**, thư mục luôn là `ep<nn>-<slug>` chữ Latin (`ep02-walton`), không dùng tên
 tiếng Nhật — chủ dự án gõ đường dẫn tay để vào lấy file.
 
 ---
 
-## 10. KHI NÀO PHẢI DỪNG VÀ HỎI (thay vì tự quyết)
+## 11. KHI NÀO PHẢI DỪNG VÀ HỎI (thay vì tự quyết)
 
 Dừng và báo, đừng tự xử lý, trong **mọi** trường hợp sau:
 

@@ -96,7 +96,7 @@ người xem gặp đầu tiên. Mẫu chạy thật:
 1. Soạn `stock_queries.txt` như cũ → chạy `stockfetch.py` (NASA/Wikimedia/Pexels) như cũ.
 2. **Đoạn nào cần hình xưa mà kho không có** (tàu/máy bay/thành phố thập niên 40–70) → `yt_stock.py tim`
    với từ khoá tiếng Anh + mốc năm (`"1945 newsreel"`, `"archive footage 1968"`, `"gov archives arc"`).
-   Các kho hay ra: `footagefarm`, các bản số hoá của US National Archives.
+   Kho sạch đã verify: `PublicResourceOrg`, `Archives New Zealand` — **tránh `footagefarm`**, xem §5b.
 3. Mở đúng những video CC BY đó, **xem bằng mắt**, ghi lại các mốc giây đẹp → `yt_stock.py tai`
    với `--crop-bottom` đủ để cắt hết chữ/watermark đáy.
 4. Xem lại từng clip đã tải: **còn chữ nước ngoài trên hình là bỏ hoặc tải lại với crop lớn hơn.**

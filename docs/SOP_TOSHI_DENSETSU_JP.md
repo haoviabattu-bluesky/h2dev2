@@ -293,6 +293,10 @@ cẩn thận hơn lúc soạn từ khoá), không cần thêm cổng QC/công c�
    Đo thật kho hiện tại: `pd` 653 cảnh · `permissive` 671 · `all` 701 → siết chặt gần như không mất gì.
 3. Nguồn: **NASA** (public domain, nhanh) + **Wikimedia Commons** (giấy phép từng file).
    Internet Archive ~2,5 MB/phút — quá chậm.
+4. **Nguồn thứ tư — PHIM TƯ LIỆU YouTube Creative Commons** (`pipeline/yt_stock.py`, 2026-09-23):
+   NASA/Wikimedia/Pexels không có phim thời sự 1940s–1970s, YouTube thì nhiều. Cách dùng + bẫy:
+   **`docs/HUONG_DAN_YT_STOCK.md`**. Chỉ tải video `license` đúng chuỗi CC BY (máy kiểm, không
+   phải khuyến nghị), bắt buộc ghi nguồn, và luôn `--crop-bottom` vì clip YouTube hay có chữ ở đáy.
 
 ⚠️ **Wikimedia trả 429 khi tải dồn** (đo thật: một lượt B5 tải về **0 file** mà không báo hỏng —
 kho vẫn "đủ" nhờ file cũ nên lỗi này âm thầm làm nghèo kho qua từng tập). `stockfetch.py` nay có

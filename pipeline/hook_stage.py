@@ -5,7 +5,7 @@ Luồng: S0 hồ sơ → H1 bóc 0–30s + title/mô tả/thumb video nguồn �
 → S2 viết thân NỐI từ hook. Hook là pure prose (TTS đọc mọi ký tự) — marker/visual nằm ở JSON riêng.
 Repair mode (tập chưa đăng, có script.txt): nguồn = chính script.txt, không chạy S2, chỉ thêm hook đầu video.
 """
-import argparse, hashlib, json, re, subprocess, sys
+import argparse, hashlib, json, re, subprocess, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -199,31 +199,65 @@ def nguon_cua_tap(d):
     p = Path(d) / "competitor.segments.json"
     if not p.exists():
         return None
-    j = json.loads(p.read_text(encoding="utf-8"))
+    try:
+        j = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as e:
+        # 2026-09-23: file có thể đang ghi dở (lần chạy trước bị ngắt) → JSON hỏng. phan_tich_nguon
+        # KHÔNG BAO GIỜ được ném — coi như chưa có video nguồn, không phải lỗi chặn cả tập.
+        print(f"  ! competitor.segments.json hỏng, coi như chưa có video nguồn: {type(e).__name__} {str(e)[:100]}")
+        return None
     return j if j.get("video_id") else None
+
+
+# 2026-09-23 (Task 5 V4): "Requested format is not available" là lỗi TẠM THỜI phía YouTube khi 1
+# player_client cụ thể bị nghi bot/rate-limit — cùng nguyên nhân đã vá ở fetch_script.via_whisper.
+# Chuỗi (player_client, format) thử lần lượt, dừng ngay khi tải được; chỉ cần KHUNG HÌNH nên video-only
+# (bv*) là đủ, khỏi cần luồng tiếng.
+KHUNG_HINH_THU = (
+    ("web", "bv*[height<=480]+ba/b[height<=480]"),
+    ("android", "bv*[height<=480]/b[height<=480]/b"),
+    ("ios", "bv*[height<=720]/best"),
+)
 
 
 def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
     """Tải 30 giây đầu (yt_dlp download_sections) → n khung → 1 ảnh lưới contact.jpg. Lỗi trả None."""
     import qc_visual
     out_dir = Path(out_dir); out_dir.mkdir(parents=True, exist_ok=True)
-    mp4 = out_dir / "src_0_30s.mp4"
     try:
-        import yt_dlp
-        from yt_dlp.utils import download_range_func
-        opts = {"quiet": True, "no_warnings": True, "noprogress": True, "format": "best[height<=480]",
-                "download_ranges": download_range_func(None, [(0, 30)]), "force_keyframes_at_cuts": True,
-                "outtmpl": str(mp4), "ffmpeg_location": str(Path(qc_visual._ff()).parent)}
-        if proxy:
-            opts["proxy"] = proxy
-        with yt_dlp.YoutubeDL(opts) as y:
-            y.download([f"https://www.youtube.com/watch?v={video_id}"])
-        if not mp4.exists():
-            return None
+        # Đã có clip từ lần chạy trước thì dùng lại, khỏi tải lại (không cache phức tạp hơn 1 glob).
+        clip = next((f for f in sorted(out_dir.glob("src_0_30s.*")) if f.stat().st_size > 10_000), None)
+        if not clip:
+            import yt_dlp
+            from yt_dlp.utils import download_range_func
+            outtmpl = str(out_dir / "src_0_30s.%(ext)s")
+            base_opts = {"quiet": True, "no_warnings": True, "noprogress": True,
+                         "download_ranges": download_range_func(None, [(0, 30)]), "force_keyframes_at_cuts": True,
+                         "outtmpl": outtmpl, "ffmpeg_location": str(Path(qc_visual._ff()).parent)}
+            if proxy:
+                base_opts["proxy"] = proxy
+            err = ""
+            for i, (client, fmt) in enumerate(KHUNG_HINH_THU):
+                opts = dict(base_opts, format=fmt, extractor_args={"youtube": {"player_client": [client]}})
+                try:
+                    with yt_dlp.YoutubeDL(opts) as y:
+                        y.download([f"https://www.youtube.com/watch?v={video_id}"])
+                    err = ""
+                    break
+                except Exception as e:
+                    err = f"{type(e).__name__}: {e}"
+                    if i < len(KHUNG_HINH_THU) - 1:
+                        time.sleep(3)
+            # format video-only có thể ra .webm chứ không phải .mp4 → không giả định đuôi file.
+            clip = next((f for f in sorted(out_dir.glob("src_0_30s.*")) if f.stat().st_size > 10_000), None)
+            if not clip:
+                if err:
+                    print(f"  ! không soi được khung hình nguồn {video_id}: {err[:150]}")
+                return None
         frames = []
         for i in range(n):
             f = out_dir / f"f{i+1:02d}.jpg"
-            if qc_visual._frame(mp4, 1.0 + i * (28.0 / max(n - 1, 1)), f):
+            if qc_visual._frame(clip, 1.0 + i * (28.0 / max(n - 1, 1)), f):
                 frames.append(f)
         if not frames:
             return None
@@ -244,7 +278,7 @@ def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
 
 def phan_tich_nguon(d, prof, proxy=None, force=False):
     import fetch_script, llm_client, qc_visual
-    d = Path(d); hd = d / HOOK_DIR; hd.mkdir(exist_ok=True)
+    d = Path(d); hd = d / HOOK_DIR; hd.mkdir(parents=True, exist_ok=True)
     out_p = hd / "source.json"
     if out_p.exists() and not force:
         return json.loads(out_p.read_text(encoding="utf-8"))
@@ -256,12 +290,17 @@ def phan_tich_nguon(d, prof, proxy=None, force=False):
         vid = j["video_id"]
         src.update(video_id=vid, url=f"https://www.youtube.com/watch?v={vid}", title=j.get("title", ""),
                    description=j.get("description", ""), transcript_0_30s=cat_0_30s(j.get("segments") or []))
-        if not src["title"]:
-            m = fetch_script.lay_meta_video(vid, proxy=proxy)
-            src.update(title=m["title"], description=m["description"])
-            j["thumbnail_url"] = j.get("thumbnail_url") or m["thumbnail_url"]
-        if j.get("thumbnail_url") and fetch_script.tai_anh(j["thumbnail_url"], hd / "source_thumb.jpg", proxy=proxy):
-            src["thumb_path"] = str(hd / "source_thumb.jpg")
+        # 2026-09-23 (Task 5 V2): lay_meta_video/tai_anh hợp đồng "không ném" nhưng vẫn là lời gọi
+        # mạng ngoài tầm kiểm soát → bọc để 1 lỗi mạng không kéo sập cả phan_tich_nguon.
+        try:
+            if not src["title"]:
+                m = fetch_script.lay_meta_video(vid, proxy=proxy)
+                src.update(title=m["title"], description=m["description"])
+                j["thumbnail_url"] = j.get("thumbnail_url") or m["thumbnail_url"]
+            if j.get("thumbnail_url") and fetch_script.tai_anh(j["thumbnail_url"], hd / "source_thumb.jpg", proxy=proxy):
+                src["thumb_path"] = str(hd / "source_thumb.jpg")
+        except Exception as e:
+            print(f"  ! lấy meta/thumbnail nguồn lỗi, đi tiếp với dữ liệu đang có: {type(e).__name__} {str(e)[:100]}")
         # H2 — khung hình
         grid = khung_hinh_0_30s(vid, hd / "frames", proxy=proxy)
         if grid:

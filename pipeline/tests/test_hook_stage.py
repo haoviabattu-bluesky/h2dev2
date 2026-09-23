@@ -281,3 +281,102 @@ def test_phan_tich_nguon(monkeypatch, tmp_path):
 def test_phan_tich_nguon_khong_co_nguon(tmp_path):
     src = HS.phan_tich_nguon(tmp_path, PROF)
     assert src["video_id"] is None and src["video_hook_verdict"] == "khong_soi_duoc"
+
+
+# Vá sau review Task 5 (2026-09-23): V1 nguon_cua_tap không ném khi JSON hỏng, V2 bọc lay_meta_video/
+# tai_anh, V3 mkdir(parents=True), V4 khung_hinh_0_30s thử lại đổi player_client.
+
+def test_nguon_cua_tap_json_hong_khong_nem(tmp_path):
+    (tmp_path / "competitor.segments.json").write_text("{broken", encoding="utf-8")
+    assert HS.nguon_cua_tap(tmp_path) is None
+
+
+def test_phan_tich_nguon_lay_meta_nem_van_ghi_file(monkeypatch, tmp_path):
+    """V2: fetch_script.lay_meta_video ném RuntimeError, sidecar thiếu title → vẫn ghi source.json,
+    vẫn trả dict, không ném ra ngoài."""
+    d = tmp_path
+    (d / "competitor.segments.json").write_text(json.dumps({
+        "video_id": "vid2", "title": "", "description": "", "thumbnail_url": None,
+        "segments": [{"start": 0, "duration": 5, "text": "テスト"}]}), encoding="utf-8")
+    import fetch_script
+
+    def boom(vid, proxy=None):
+        raise RuntimeError("mạng lỗi giả lập")
+    monkeypatch.setattr(fetch_script, "lay_meta_video", boom)
+    monkeypatch.setattr(HS, "khung_hinh_0_30s", lambda vid, out, n=6, proxy=None: None)
+    src = HS.phan_tich_nguon(d, PROF)
+    assert (d / "hook/source.json").exists()
+    assert src["video_hook_verdict"] == "khong_soi_duoc"
+    assert src["title"] == ""  # không lấy được meta, đi tiếp với chuỗi rỗng
+
+
+def test_phan_tich_nguon_segments_hong_van_ghi_file(tmp_path):
+    """V1: competitor.segments.json hỏng → phan_tich_nguon vẫn ghi source.json với video_id=None."""
+    d = tmp_path
+    (d / "competitor.segments.json").write_text("{broken", encoding="utf-8")
+    src = HS.phan_tich_nguon(d, PROF)
+    assert (d / "hook/source.json").exists()
+    assert src["video_id"] is None
+
+
+class _FakeYDLKhungHinh:
+    """Fake yt_dlp.YoutubeDL: client 'web' ném DownloadError-giả, client 'android' thì 'tải' thành công
+    (ghi ra .webm để mô phỏng format video-only). Ghi lại danh sách client đã thử vào `da_thu`."""
+    da_thu = []
+
+    def __init__(self, opts):
+        self.opts = opts
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        return False
+
+    def download(self, urls):
+        client = self.opts["extractor_args"]["youtube"]["player_client"][0]
+        _FakeYDLKhungHinh.da_thu.append(client)
+        if client == "web":
+            raise RuntimeError("Requested format is not available")
+        out = Path(self.opts["outtmpl"].replace("%(ext)s", "webm"))
+        out.write_bytes(b"0" * 20_000)
+
+
+def test_khung_hinh_0_30s_thu_lai_doi_client(monkeypatch, tmp_path):
+    import types, sys
+    import qc_visual
+    _FakeYDLKhungHinh.da_thu = []
+    fake_yt_dlp = types.SimpleNamespace(YoutubeDL=_FakeYDLKhungHinh,
+                                         utils=types.SimpleNamespace(download_range_func=lambda *a, **k: None))
+    monkeypatch.setitem(sys.modules, "yt_dlp", fake_yt_dlp)
+    monkeypatch.setitem(sys.modules, "yt_dlp.utils", fake_yt_dlp.utils)
+    monkeypatch.setattr(HS.time, "sleep", lambda s: None)
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(tmp_path / "ffmpeg_gia" / "ffmpeg.exe"))
+
+    def fake_frame(mp4, t, out):
+        from PIL import Image
+        Image.new("RGB", (20, 20), "white").save(out)
+        return True
+    monkeypatch.setattr(qc_visual, "_frame", fake_frame)
+
+    out = HS.khung_hinh_0_30s("vidX", tmp_path / "frames", n=2)
+    assert out is not None and Path(out).exists() and Path(out).stat().st_size > 2000
+    assert _FakeYDLKhungHinh.da_thu == ["web", "android"]
+
+
+def test_khung_hinh_0_30s_ca_3_lan_deu_nem_tra_none(monkeypatch, tmp_path):
+    import types, sys
+    import qc_visual
+
+    class LuonLoi(_FakeYDLKhungHinh):
+        def download(self, urls):
+            raise RuntimeError("Requested format is not available")
+    fake_yt_dlp = types.SimpleNamespace(YoutubeDL=LuonLoi,
+                                         utils=types.SimpleNamespace(download_range_func=lambda *a, **k: None))
+    monkeypatch.setitem(sys.modules, "yt_dlp", fake_yt_dlp)
+    monkeypatch.setitem(sys.modules, "yt_dlp.utils", fake_yt_dlp.utils)
+    monkeypatch.setattr(HS.time, "sleep", lambda s: None)
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(tmp_path / "ffmpeg_gia" / "ffmpeg.exe"))
+
+    out = HS.khung_hinh_0_30s("vidY", tmp_path / "frames2", n=2)
+    assert out is None

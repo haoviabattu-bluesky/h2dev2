@@ -108,11 +108,27 @@ def crawl_transcripts(rows, langs, out_dir, proxy=None):
             print(f"  … dùng lại {raw_path} ({len(cached)} video, bỏ qua crawl)")
             return cached
     out = []
-    for r in rows:
+    # 2026-09-23: bên cạnh transcript gộp, còn lưu thô để hook_stage.py (task sau) dùng lại mốc
+    # giây thật + mô tả gốc + ảnh thumbnail — không phải mọi kênh đều cần nhưng ghi chung, rẻ.
+    (out_dir / "_raw" / "segments").mkdir(parents=True, exist_ok=True)
+    (out_dir / "_raw" / "meta").mkdir(parents=True, exist_ok=True)
+    (out_dir / "_raw" / "thumbs").mkdir(parents=True, exist_ok=True)
+    for rank, r in enumerate(rows, 1):
         try:
             segs, used = fetch_script.fetch_any(r["id"], langs, proxy=proxy)
             text = re.sub(r"\s+", " ", " ".join(s["text"] for s in segs)).strip()
-            out.append({**r, "transcript": text})
+            dau = re.sub(r"\s+", " ", " ".join(s["text"] for s in segs if float(s.get("start", 0)) < 30)).strip()
+            meta = fetch_script.lay_meta_video(r["id"], proxy=proxy)
+            (out_dir / "_raw" / "segments" / f"{r['id']}.json").write_text(
+                json.dumps([{"start": float(s.get("start", 0)), "duration": float(s.get("duration", 0)),
+                             "text": s["text"]} for s in segs], ensure_ascii=False), encoding="utf-8")
+            (out_dir / "_raw" / "meta" / f"{r['id']}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1),
+                                                                        encoding="utf-8")
+            if meta.get("thumbnail_url"):
+                fetch_script.tai_anh(meta["thumbnail_url"],
+                                     out_dir / "_raw" / "thumbs" / f"{rank:02d}_{r.get('view_count', 0)}_{r['id']}.jpg",
+                                     proxy=proxy)
+            out.append({**r, "transcript": text, "description": meta.get("description", ""), "dau_0_30s": dau})
             print(f"  ✓ {r['id']} [{used}]: {len(text):,} ký tự — {r['title'][:50]}")
         except SystemExit as e:
             print(f"  ✗ {r['id']} bỏ qua: {e}")
@@ -125,6 +141,8 @@ def crawl_transcripts(rows, langs, out_dir, proxy=None):
 VIDEO_PROMPT = """Bạn phân tích 1 video YouTube ngách "{niche_hint}". Dữ liệu:
 TIÊU ĐỀ: {title}
 LƯỢT XEM: {view_count}
+MÔ TẢ (description gốc, rút gọn): {description}
+ĐOẠN ĐẦU 0–30 GIÂY (nguyên văn theo mốc giây): {dau_0_30s}
 TRANSCRIPT (rút gọn nếu quá dài):
 {transcript}
 
@@ -135,6 +153,12 @@ NHẤT (không ghép 2 khái niệm bằng dấu / hay dấu phẩy trong cùng 
 thành 2 phần tử riêng thay vì "UFO/UAP"):
 {{"topics": ["từ khoá ngắn 1 (ngôn ngữ gốc video)", "từ khoá ngắn 2 (ngôn ngữ gốc video)", "..."],
   "hook_type": "mô tả cách mở đầu, 1 câu",
+  "hook_0_30s": "chép lại nguyên văn 30 giây đầu (ngôn ngữ gốc), không tóm tắt",
+  "hook_4_nhip": {{"event": "sự kiện cụ thể ở 0–5s hoặc null", "contradiction": "mâu thuẫn ở 5–12s hoặc null",
+                   "stake": "cảm xúc/mất mát 12–20s hoặc null", "open_loop": "câu hỏi để ngỏ 20–30s hoặc null"}},
+  "hook_kind": "A biến cố bất thường | B câu nói sốc | C mâu thuẫn | D hậu quả chưa rõ nguyên nhân | E hé reveal | none",
+  "hook_score_0_12": 0,
+  "promise_match": {{"title": "PASS|FAIL", "description": "PASS|FAIL|NA", "verdict": "PASS|FAIL", "ly_do": "1 câu"}},
   "structure": "mô tả cấu trúc/chương chính, 1-2 câu",
   "emotional_beats": ["cảm xúc chính 1", "..."],
   "title_formula": "công thức tiêu đề video này áp dụng, 1 câu",
@@ -183,8 +207,12 @@ def load_or_analyze_video(row, niche_hint, out_dir):
 
 
 def analyze_one_video(row, niche_hint):
+    # description/dau_0_30s chỉ có ở transcript crawl MỚI (task 2 trở đi) — cache cũ không có 2
+    # khoá này (.get trả None/"") vẫn format được, không KeyError.
     prompt = VIDEO_PROMPT.format(niche_hint=niche_hint, title=row["title"],
                                  view_count=row["view_count"],
+                                 description=(row.get("description") or "")[:1500],
+                                 dau_0_30s=row.get("dau_0_30s") or row["transcript"][:300],
                                  transcript=row["transcript"][:20000])
     r = llm_client.chat(prompt, task="short", max_tokens=2000, temperature=0.3, verbose=False)
     data = json.loads(_strip_fence(r.text))

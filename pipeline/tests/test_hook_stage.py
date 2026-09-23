@@ -65,3 +65,25 @@ def test_tai_anh_that_bai_tra_false(monkeypatch, tmp_path):
     result2 = FS.tai_anh("http://x/t_boom.jpg", out_file2)
     assert result2 is False
     assert not out_file2.exists()
+
+
+def test_crawl_transcripts_luu_segments_meta(monkeypatch, tmp_path):
+    import channel_analyzer as CA
+    monkeypatch.setattr(FS, "fetch_any", lambda vid, langs, proxy=None: (
+        [{"start": 0.0, "duration": 10, "text": "A"}, {"start": 12.0, "duration": 10, "text": "B"},
+         {"start": 40.0, "duration": 10, "text": "C"}], "api"))
+    monkeypatch.setattr(FS, "lay_meta_video", lambda vid, proxy=None: {
+        "video_id": vid, "title": "T", "description": "DESC", "thumbnail_url": "http://x/t.jpg", "duration_sec": 100})
+    monkeypatch.setattr(FS, "tai_anh", lambda url, p, proxy=None: Path(p).write_bytes(b"x" * 3000) or True)
+    rows = [{"id": "v1", "title": "T", "view_count": 500, "duration": 100}]
+    out = CA.crawl_transcripts(rows, ["ja"], tmp_path)
+    assert out[0]["description"] == "DESC" and out[0]["dau_0_30s"] == "A B"
+    assert (tmp_path / "_raw/segments/v1.json").exists()
+    assert (tmp_path / "_raw/meta/v1.json").exists()
+    assert (tmp_path / "_raw/thumbs/01_500_v1.jpg").exists()
+
+
+def test_video_prompt_co_khoi_hook():
+    import channel_analyzer as CA
+    for k in ("hook_0_30s", "hook_4_nhip", "hook_kind", "hook_score_0_12", "promise_match", "{description}", "{dau_0_30s}"):
+        assert k in CA.VIDEO_PROMPT

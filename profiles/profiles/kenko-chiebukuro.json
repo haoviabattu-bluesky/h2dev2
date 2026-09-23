@@ -51,6 +51,10 @@
       "label_ket": "まとめ（5つのおさらい＋緊急時の注意＋今日からできる行動＋免責）"
     },
     "_budget_note": "ĐO THẬT 2026-09-20 trên 3 tập đã 'Done' của CHÍNH lane này (ep01/ep02/ep04, script.txt cuối cùng — không phải transcript kênh mẫu, vì kênh mẫu ASR không tách đoạn rõ): mo_dau đo được 8.3%/11.7%/12.2% (khớp với gate.hook_chars [550,750] đã đo trước đó qua kênh mẫu — dùng làm neo) → chọn 0.11; ket đo được 23.3%/23.5%/29.9% → chọn 0.25. KHÔNG khai `outro_line`: đã so 4 tập, câu kết MỖI TẬP viết riêng theo đúng nội dung y khoa của tập đó (vd ep01 nhắc lại cụ thể thuốc chống đông + đột quỵ đã nói ở mục 5), không có câu cố định lặp lại — outro_line ép literal 1 câu sẽ xoá mất phần an toàn đặc thù từng tập.",
+    "hook": {
+      "model": "claude-fable-5-1"
+    },
+    "_hook_note": "2026-09-23: model VIẾT hook (viet_candidates) ghim Fable, KHÁC brain_model=opus hiện tại (tạm thay Fable do hết quota). A/B thật cùng hồ sơ teinengo-tanoshimi (cùng cụm lean-flow, cùng cơ chế viết): Opus viết hook — cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá cứu (2 vòng chấm + 2 lượt vá); Fable viết — cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt vá, hook cuối 158 chữ). enabled vẫn để công tắc chính quyết định bật tính năng hay chưa, field này chỉ ghim model khi tính năng được bật.",
     "gate": {
       "comma_per_sentence": [
         1.0,

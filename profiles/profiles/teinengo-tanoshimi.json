@@ -57,6 +57,10 @@
     "_outro_note": "Xuất hiện nguyên văn ở cuối 8/8 video kênh mẫu (CHANNEL_DNA §CTA patterns). Dùng y nguyên — đây là câu chào chung, không phải câu biểu tượng riêng.",
     "sol_qc": true,
     "_sol_qc_note": "Bật B3S (GPT-5.6-sol độc lập) như Lane E — lane mới, chưa có tập nào để tin B3Q một mình. Tắt sau khi ≥5 tập PASS ổn định nếu thấy dư.",
+    "hook": {
+      "model": "claude-fable-5-1"
+    },
+    "_hook_note": "2026-09-23: model VIẾT hook (viet_candidates) ghim Fable, KHÁC brain_model=claude-opus-5 hiện tại (Opus tạm thay Fable do hết quota). A/B thật cùng hồ sơ này: Opus viết hook — cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá cứu (2 vòng chấm + 2 lượt vá); Fable viết — cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt vá, hook cuối 158 chữ). enabled vẫn để công tắc chính quyết định bật tính năng hay chưa, field này chỉ ghim model khi tính năng được bật.",
     "gate": {
       "comma_per_sentence": [
         0.5,

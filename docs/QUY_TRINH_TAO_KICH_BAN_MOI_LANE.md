@@ -159,6 +159,11 @@ Lớp 3 (Claude Code) đọc `hook_locked.txt` 2 phút trước khi S2 chạy ti
 sau khi script đã LOCK mà đổi title/thumb/promise → HOOK_STALE chặn ở pha asset (`Job.kiem_lock` gọi `hook_stage.kiem_stale()`),
 chạy `py -3.13 pipeline\hook_stage.py --profile <lane> --slug <tập> --force` rồi S2 lại.
 Field profile (tuỳ chọn, mặc định trong `hook_stage.MAC_DINH`): `script.hook = {"ratio_30s":0.5,"tol":0.15,"neo_ratio":0.4,"banned_openers":[...]}`.
+Thêm `script.hook.model` (2026-09-23, mặc định `""` = dùng `script.brain_model` như hiện nay): ghim model VIẾT riêng cho hook
+khi cần khác model viết thân — chỉ áp cho lượt viết 3 phương án (`viet_candidates`), mọi lượt SỬA vẫn dùng `patch_model`.
+Lý do 3 kênh (`teinengo-tanoshimi`/`teinengo-real`/`kenko-chiebukuro`) ghim `claude-fable-5-1`: A/B thật cùng hồ sơ, Opus viết
+hook vượt trần độ dài cả 3 phương án (259/232/221 chữ, trần 185) → 2 vòng chấm + 2 lượt vá; Fable viết qua cổng ngay lần đầu
+(1 vòng chấm, 0 lượt vá, hook 158 chữ).
 Tập đã có script (chưa đăng): `py -3.13 pipeline\hook_stage.py --profile <lane> --slug <tập> --mode repair` — không đụng script/voice/img;
 bước 3 dựng `hook_final.mp4` + `final_with_hook.mp4` theo `docs/GIAO_VIEC_BUOC3_AGENT.md` §9.
 

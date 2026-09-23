@@ -869,3 +869,43 @@ def test_check_doc_fact_exempt_units_tu_profile():
     assert any("số ngoài tư liệu" in v for v in HS.check(hook, prof_khong_khai, ctx))
     prof_mien = {**PROF, "script": {"fact_exempt_units": ["万円"]}}
     assert not any("số ngoài tư liệu" in v for v in HS.check(hook, prof_mien, ctx))
+
+
+# ---------------------------------------------------------------------------
+# script.hook.model (2026-09-23) — ghim model VIẾT hook khác brain_model khi kênh cần.
+# ---------------------------------------------------------------------------
+
+def test_viet_candidates_khai_model_truyen_xuong_writer_chat(monkeypatch, tmp_path):
+    """Profile khai script.hook.model → viet_candidates gọi _writer_chat KÈM model đó."""
+    d = _tap(tmp_path)
+    prof = {**PROF, "script": {"hook": {"model": "claude-fable-5-1"}}}
+    goi = {}
+    def fake(prof, prompt, **k):
+        goi.update(k)
+        return type("R", (), {"text": "x", "model": "m", "provider": "p", "elapsed": 1})()
+    monkeypatch.setattr(HS.ai_steps, "_writer_chat", fake)
+    HS.viet_candidates(d, prof, {}, "T", "")
+    assert goi.get("model") == "claude-fable-5-1"
+
+
+def test_viet_candidates_khong_khai_model_khong_truyen(monkeypatch, tmp_path):
+    """Không khai (hoặc rỗng) → giữ hành vi cũ: KHÔNG kèm `model` trong lời gọi _writer_chat,
+    để _writer_chat tự setdefault bằng brain_model_of(prof) (nhánh engine=claude_p)."""
+    d = _tap(tmp_path)
+    prof = {**PROF, "script": {}}  # không có khối hook
+    goi = {"da_goi": False}
+    def fake(prof, prompt, **k):
+        goi["da_goi"] = True
+        goi.update(k)
+        return type("R", (), {"text": "x", "model": "m", "provider": "p", "elapsed": 1})()
+    monkeypatch.setattr(HS.ai_steps, "_writer_chat", fake)
+    HS.viet_candidates(d, prof, {}, "T", "")
+    assert goi["da_goi"] is True
+    assert "model" not in goi
+
+    # Khai hook nhưng model rỗng → cũng không truyền.
+    prof2 = {**PROF, "script": {"hook": {"model": ""}}}
+    goi2 = {}
+    monkeypatch.setattr(HS.ai_steps, "_writer_chat", lambda prof, prompt, **k: (goi2.update(k) or type("R", (), {"text": "x"})()))
+    HS.viet_candidates(d, prof2, {}, "T", "")
+    assert "model" not in goi2

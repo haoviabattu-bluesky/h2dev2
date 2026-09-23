@@ -19,6 +19,16 @@ MAC_DINH = {
     # đây tính năng tự áp dụng cho MỌI kênh chỉ cần `script.flow == "lean"` — tập kế tiếp của cả 6
     # kênh sẽ cùng lúc là "tập thật đầu tiên" chạy tính năng mới, không bật dần được.
     "enabled": False,
+    # 2026-09-23 (Việc thêm field script.hook.model): hook do model VIẾT viết (viet_candidates →
+    # ai_steps._writer_chat → mặc định lấy `script.brain_model` của kênh — đúng nguyên tắc "model
+    # viết kịch bản thì viết luôn hook"). Trường NÀY chỉ để GHIM model viết HOOK khác với model viết
+    # THÂN kịch bản khi kênh cần — rỗng ("") = im lặng dùng brain_model như trước, không đổi hành vi
+    # cũ. Lý do có trường: A/B thật cùng hồ sơ teinengo-tanoshimi, chỉ đổi model viết hook — Opus
+    # viết: cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá cứu (2 vòng chấm +
+    # 2 lượt vá); Fable viết: cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt vá, hook cuối 158
+    # chữ). Trường này KHÔNG đụng brain_model/patch_model của kênh — mọi lượt SỬA hook (patch_hook,
+    # tức S4) vẫn dùng patch_model như luật chung, không đọc trường này.
+    "model": "",
     "ratio_30s": 0.5, "tol": 0.15, "neo_ratio": 0.4,
     "banned_openers": {
         "ja": ["こんにちは", "こんばんは", "皆さん", "みなさん", "チャンネル登録", "ご視聴", "私の名前は", "俺の名前は",
@@ -575,8 +585,18 @@ def viet_candidates(d, prof, src, title, ctx, mode="upstream"):
         promise=_promise_text(d, ctx, mode), khoi_repair=KHOI_REPAIR.format(doan1=doan1) if mode == "repair" else "",
         muc=muc, tol=int(cau_hinh(prof)["tol"] * 100),
         narrator=f"{n.get('persona','')} · {n.get('point_of_view','')} · {n.get('register','')}")
-    r = ai_steps._writer_chat(prof, prompt, system=ai_steps._skill_text(prof, "script"), task="short",
-                              min_chars=muc * 2, max_chars=muc * 6)
+    # script.hook.model (2026-09-23): ghim model VIẾT hook khác brain_model khi kênh cần (xem chú
+    # thích MAC_DINH["model"]). Rỗng ("", mặc định) → KHÔNG truyền `model`, y hệt hành vi cũ:
+    # _writer_chat tự setdefault bằng claude_p_bridge.brain_model_of(prof) ở nhánh engine=claude_p;
+    # ở nhánh Gemini (llm_client.chat) `model` chỉ có tác dụng khi đi kèm `provider` — lane không
+    # khai `provider` thì đây vẫn là no-op an toàn giống trước, không phải cách chọn model đầy đủ
+    # cho nhánh đó (xem báo cáo task, mục kiểm chữ ký 2 nhánh).
+    kwargs_viet = {"system": ai_steps._skill_text(prof, "script"), "task": "short",
+                   "min_chars": muc * 2, "max_chars": muc * 6}
+    model_hook = cau_hinh(prof).get("model") or ""
+    if model_hook:
+        kwargs_viet["model"] = model_hook
+    r = ai_steps._writer_chat(prof, prompt, **kwargs_viet)
     (d / HOOK_DIR).mkdir(exist_ok=True)
     (d / HOOK_DIR / "hook_candidates.txt").write_text(r.text, encoding="utf-8")
     return r.text

@@ -45,6 +45,10 @@
     "_engine_note": "Giống Lane E/satori: PASS 0+1 của B3 do Claude viết qua claude -p (claude_p_bridge.py); nén/phẩy vẫn Gemini; QC B3Q/B3F Gemini, B3S GPT-5.6-sol — 'Claude viết, hãng khác chấm'.",
     "sol_qc": true,
     "_sol_qc_note": "Bật B3S: lane có rủi ro 'số chế độ sai' + 'giọng bán hàng/giọng thuyết giáo' — cần lớp QC độc lập khác hãng.",
+    "hook": {
+      "model": "claude-fable-5-1"
+    },
+    "_hook_note": "2026-09-23: model VIẾT hook (viet_candidates) ghim Fable, KHÁC brain_model=claude-opus-5 hiện tại (Opus tạm thay Fable do hết quota). A/B thật cùng hồ sơ teinengo-tanoshimi (kênh cùng cụm, hồ sơ giống nhau): Opus viết hook — cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá cứu (2 vòng chấm + 2 lượt vá); Fable viết — cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt vá, hook cuối 158 chữ). enabled vẫn để công tắc chính quyết định bật tính năng hay chưa, field này chỉ ghim model khi tính năng được bật.",
     "gate": {
       "comma_per_sentence": [
         0.6,

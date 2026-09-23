@@ -153,12 +153,21 @@ Ghi sheet tab lane: **C = đường dẫn thư mục tập** ngay khi tạo hồ
 | `hook/promise.txt` | khuyến nghị | 4–6 dòng `core_event:/payoff:/reveal:/timeline_start:` — HOOK_STALE so theo file này thay vì hash cả `series_ctx.txt` |
 | `thumb_text.txt` | nếu đã có | Sol chấm THUMB_MATCH |
 Sinh ra: `hook/source.json` (H1–H3) · `hook_candidates.txt` · `hook_qc.json` · `hook_locked.txt` + `hook_lock.json` (H4) ·
-`hook_storyboard.json` + `flow_prompts/` + `grok_jobs.csv` (chạy `py -3.13 pipeline\hook_storyboard.py --profile <lane> --slug <tập>` sau LOCK —
-`hook_stage.py` khi chạy CLI trực tiếp đã TỰ gọi bước này, chỉ cần gọi tay khi chạy lại riêng lẻ).
+`hook_storyboard.json` + `flow_prompts/` + `grok_jobs.csv`. Storyboard NAY TỰ SINH trong luồng bình thường, không cần gọi
+tay: `make_video.py` tự gọi `hook_storyboard.sinh()` ở bước ghi tài sản B5W (`_sinh_hook_storyboard_neu_can()`, ngay sau khi
+có `characters.json`, cần continuity nhân vật cho @REF/@REF2); nếu chạy CLI `hook_stage.py` trực tiếp thì lệnh đó cũng tự
+gọi luôn `hook_storyboard.sinh()` sau khi khoá xong (Task 12). Lệnh
+`py -3.13 pipeline\hook_storyboard.py --profile <lane> --slug <tập> [--force]` giờ CHỈ dùng khi cần **sinh lại tay**
+(storyboard cũ lỗi, muốn ép sinh lại, hoặc đang gỡ lỗi riêng bước này).
 Lớp 3 (Claude Code) đọc `hook_locked.txt` 2 phút trước khi S2 chạy tiếp: kiểm 4 nhịp + khớp title. Sửa hook = sửa TRƯỚC S2;
 sau khi script đã LOCK mà đổi title/thumb/promise → HOOK_STALE chặn ở pha asset (`Job.kiem_lock` gọi `hook_stage.kiem_stale()`),
 chạy `py -3.13 pipeline\hook_stage.py --profile <lane> --slug <tập> --force` rồi S2 lại.
-Field profile (tuỳ chọn, mặc định trong `hook_stage.MAC_DINH`): `script.hook = {"ratio_30s":0.5,"tol":0.15,"neo_ratio":0.4,"banned_openers":[...]}`.
+⚠️ **Công tắc bật/tắt THEO TỪNG KÊNH, mặc định TẮT** (`hook_stage.MAC_DINH["enabled"] = False`) — kênh nào muốn
+dùng hook PHẢI tự khai tường minh `script.hook.enabled: true` trong profile, không có gì tự bật khi vào lean flow.
+Kênh chưa khai coi như chưa bật: `lean_script.run()`/`make_video.py`/`qc_final.py` đều đi qua đúng
+`hook_stage.is_enabled(prof)` (không tự suy theo tên/`id` kênh) và im lặng chạy như trước khi có tính năng hook.
+Field profile đầy đủ (mặc định trong `hook_stage.MAC_DINH`): `script.hook = {"enabled": false, "model": "",
+"ratio_30s":0.5,"tol":0.15,"neo_ratio":0.4,"banned_openers":[...]}` — bật cho lane thì thêm `"enabled": true`.
 Thêm `script.hook.model` (2026-09-23, mặc định `""` = dùng `script.brain_model` như hiện nay): ghim model VIẾT riêng cho hook
 khi cần khác model viết thân — chỉ áp cho lượt viết 3 phương án (`viet_candidates`), mọi lượt SỬA vẫn dùng `patch_model`.
 Lý do 3 kênh (`teinengo-tanoshimi`/`teinengo-real`/`kenko-chiebukuro`) ghim `claude-fable-5-1`: A/B thật cùng hồ sơ, Opus viết

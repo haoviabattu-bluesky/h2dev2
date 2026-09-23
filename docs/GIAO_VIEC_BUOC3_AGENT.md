@@ -295,8 +295,10 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
 
 ## 9. HOOK 20–30S ĐẦU VIDEO (mọi lane, từ 2026-09-23)
 
-> Mục này chỉ áp dụng cho tập có bước 1 sinh sẵn thư mục `hook\` (không phải mọi tập). `<tập>` dưới
-> đây là thư mục của đúng tập đang làm, ví dụ thật:
+> Mục này chỉ áp dụng cho tập có `<tập>\hook\hook_storyboard.json` (không phải mọi tập, và KHÔNG
+> phải cứ có thư mục `hook\` là đủ — thư mục `hook\` đã tồn tại SỚM HƠN, ngay lúc khoá hook, chỉ
+> chứa `hook_locked.txt`/`hook_lock.json`; căn cứ đúng để làm mục này là có thêm file storyboard,
+> giống điều kiện đã sửa ở mục 8 phía trên). `<tập>` dưới đây là thư mục của đúng tập đang làm, ví dụ thật:
 > `E:\CLAUDE\YOUTUBE\h2dev\assets\toshi-densetsu-jp\ep02-walton` — nghĩa là đường dẫn đầy đủ
 > `<tập>\hook\hook_locked.txt` ở ví dụ đó là
 > `E:\CLAUDE\YOUTUBE\h2dev\assets\toshi-densetsu-jp\ep02-walton\hook\hook_locked.txt`.
@@ -318,7 +320,11 @@ kỳ file nào → DỪNG, báo lane (xem mục 11).
 không bao giờ tự vẽ ảnh, kể cả ảnh shot hook. `<tập>\hook\flow_prompts\shot_NN.txt` và
 `<tập>\hook\grok_jobs.csv` là đơn máy 1 đã để sẵn cho máy 2 vẽ cùng đợt với ảnh thân video, ra
 `<tập>\hook\img\shot_NN.png` (1280×720, 16:9; shot nào có `ref_image=REF`/`REF2` trong
-`hook_storyboard.json` thì máy 2 REF-LOCK bằng ảnh master trong `<tập>\_ref\`). Việc của bạn: đếm số
+`hook_storyboard.json` thì máy 2 REF-LOCK bằng ảnh master trong `<tập>\_ref\`). Đơn này KHÔNG phải tự
+đi tìm/copy tay — `pipeline\dong_goi_may2.py` nay TỰ đóng gói cả thư mục `hook\` (`hook_locked.txt`,
+`hook_lock.json`, `hook_storyboard.json`, `grok_jobs.csv`, `flow_prompts\`) vào ĐÚNG gói giao máy 2
+cùng đợt với ảnh/prompt thân video, kèm tự đối chiếu số file khớp; tập chưa bật hook thì gói giao
+không có thư mục này, không phải lỗi. Việc của bạn: đếm số
 file `shot_NN.png` đã có trong `<tập>\hook\img\` phải khớp đúng số dòng trong `grok_jobs.csv`
 (thường 4–7 ảnh) — **thiếu ảnh thì DỪNG và đòi máy 2**, giống hệt cách xử lý thiếu ảnh thân video ở
 mục 1, không tự vẽ bù.
@@ -388,6 +394,15 @@ với timeline lấy từ mốc `t0`/`t1` của từng shot trong `hook_storyboa
 - Ghi `<tập>\hook\render_info.json` dạng `{"T_hook": ..., "frames": ..., "mode": "upstream|repair"}`.
 - Cột **G** của sheet trỏ tới `final_with_hook.mp4` (không phải `final.mp4`) cho tập nào đã dựng
   hook.
+- **BẮT BUỘC cả hai file** `<tập>\final_with_hook.mp4` VÀ `<tập>\hook\render_info.json` trước khi
+  báo xong: cổng nghiệm thu cuối `pipeline\qc_final.py::kiem_hook` CHẶN CỨNG (báo lỗi mức "cao")
+  nếu kênh đã bật `script.hook.enabled` và tập đã khoá hook mà thiếu MỘT trong hai file này — áp
+  dụng cho CẢ tập mới (upstream) lẫn tập chạy chế độ vá/sửa (patch/fix), không có ngoại lệ theo chế
+  độ. Thiếu `final_with_hook.mp4` mà chỉ giao `final.mp4` (không có hook) cũng bị B10 bắt lỗi y hệt
+  thiếu file, vì đó chính là dữ liệu B10 kiểm.
+- Khâu giao hàng (`pipeline\giao_hang.py`) tự chọn `final_with_hook.mp4` làm NGUỒN copy khi file đó
+  tồn tại (thay vì `final.mp4`) — TÊN FILE ĐÍCH ở thư mục giao hàng (`E:\CLAUDE\YOUTUBE\CHANEL\...`)
+  vẫn giữ nguyên quy ước cũ, chỉ đổi file NGUỒN, không phải đổi tên đích thành `final_with_hook.mp4`.
 
 ---
 

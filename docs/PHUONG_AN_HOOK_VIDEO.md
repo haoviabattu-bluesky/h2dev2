@@ -229,3 +229,26 @@ Việc **bước 2/3** (TTS hook repair, sinh clip Grok, ghép `hook_final.mp4`,
 2. Repair mode: được **sửa title/thumb_text** của tập chưa đăng khi lệch promise? (em giả định CÓ.)
 3. Opt-in "cắt đoạn 1 cũ khỏi audio" cho tập mở bằng thời tiết — mặc định TẮT, anh muốn bật cho satori ep13/ep14?
 4. Pilot: 1 tập mới Lane G + repair satori ep14 — đồng ý thì em viết kế hoạch triển khai chi tiết (task/file/test) và bắt đầu P0.
+
+---
+
+## 11. TRƯỚC KHI BẬT KÊNH ĐẦU TIÊN (`script.hook.enabled: true`) — 3 việc bắt buộc
+
+Chốt sau vòng review toàn nhánh cuối (2026-09-23, verdict: nhánh nhập được, "không có gì phải sửa trước khi nhập").
+Ba việc dưới KHÔNG chặn việc nhập nhánh — không thứ gì chạm tới chúng khi chưa kênh nào bật — nhưng phải làm ngay ở
+lần bật đầu tiên.
+
+1. **Ba con số ngưỡng hiện là SUY TỪ TÀI LIỆU, chưa đo trên video hook thật.**
+   `HOOK_REPAIR_TANG_TOI_THIEU_S = 10.0` · `HOOK_UPSTREAM_LECH_TOI_DA_S = 2.0` (cả hai trong
+   `E:\CLAUDE\YOUTUBE\h2dev\pipeline\qc_final.py`) và giả định ±15 khung của `hook_final.mp4` đều rút từ §9.4–9.5
+   của `docs/GIAO_VIEC_BUOC3_AGENT.md`, không phải từ số đo. Bật 1 kênh → chạy TRỌN 1 tập chế độ mới + 1 tập chế độ vá
+   → đo chênh lệch thật → ghi số đo vào chính hằng số đó kèm ngày, đúng lối mọi ngưỡng khác của dự án đã earned.
+
+2. **Tập chạy chế độ vá ĐẦU TIÊN gần như chắc chắn trượt B10 vì thiếu `listing_shifted_s`.**
+   Chưa agent bước 3 nào từng ghi khoá này vào `hook/render_info.json`. Đó là HỢP ĐỒNG ĐANG CHẠY ĐÚNG, không phải lỗi:
+   nếu không dời mốc chương thì mọi chương trên video đăng lên sẽ lệch sớm đúng bằng độ dài hook. Nói trước với người
+   vận hành/agent bước 3, đừng "sửa" bằng cách xoá phép kiểm.
+
+3. **Một nguyên nhân có thể ra HAI phát hiện.** Tập vá thiếu `render_info.json` sẽ vừa bị `kiem_video` báo "video lệch
+   giọng +T_hook" (vì phần bù T_hook rơi về 0) vừa bị `kiem_hook` báo thiếu file. Dòng thứ hai giải thích dòng thứ nhất
+   — đừng đuổi theo dòng lệch giọng.

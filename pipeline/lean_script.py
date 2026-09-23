@@ -459,10 +459,14 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook=""):
         kl = hook_stage.ke_lai_hook(text_goc, hook)
         if kl > 0.5:
             warn.append(f"thân kể lại hook ({kl:.0%} bigram hook xuất hiện lại ngay sau hook) — nối tiếp, đừng nhắc lại")
-    if not hook:
-        # 2026-09-23 (patch review Task 9, Minor V3): KHÔNG append vào `warn` — `warn` được ghi vào do.json/
-        # ESCALATION_REPORT, mọi tập CŨ (6 lane chưa có hook) sẽ dính thêm 1 dòng mãi mãi dù cam kết là
-        # "hook='' hành xử y hệt trước khi có tính năng này". Chỉ in ra console để người vận hành thấy.
+    if not hook and hook_stage.is_enabled(prof):
+        # 2026-09-23 (patch review Task 9, Minor V3 + vá thêm cùng ngày): KHÔNG append vào `warn` —
+        # `warn` được ghi vào do.json/ESCALATION_REPORT. Trước đây dòng print này chạy VÔ ĐIỀU KIỆN
+        # mỗi khi `hook` rỗng — vì công tắc `script.hook.enabled` mặc định TẮT cho cả 6 kênh đang
+        # sản xuất, `hook` luôn rỗng ⇒ dòng nhắc này in ra ở MỌI tập của MỌI kênh (trái với cam kết
+        # "hook='' hành xử y hệt trước khi có tính năng hook", tức im lặng khi công tắc tắt). Giờ chỉ
+        # in khi CÔNG TẮC ĐANG BẬT cho kênh này (qua hook_stage.is_enabled — không tự suy luận theo
+        # tên/id kênh) mà tập vẫn chưa có hook đã khoá; công tắc tắt thì im lặng hoàn toàn như cũ.
         print("   (warn) chưa có hook đã khoá (tập cũ?) — cổng mở đầu do hook_stage đảm nhận, chạy `hook_stage.py --mode repair`")
     m["tu_sua"] = tu_sua
     return text, m, viec_fact, viec_len, warn

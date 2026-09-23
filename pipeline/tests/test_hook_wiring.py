@@ -205,8 +205,11 @@ def test_is_enabled_mac_dinh_tat():
 
 def test_lean_script_run_khong_goi_ensure_locked_khi_tat(monkeypatch, tmp_path):
     """Kênh KHÔNG khai script.hook.enabled → lean_script.run() không được đụng tới
-    hook_stage.ensure_locked/doc_hook (chạy y hệt luồng trước khi có tính năng hook), và KHÔNG in
-    thêm dòng nào — kiểm bằng capsys không chứa chữ 'H1-H4'/'H4'."""
+    hook_stage.ensure_locked/doc_hook (chạy y hệt luồng trước khi có tính năng hook) — kiểm bằng
+    monkeypatch ném AssertionError nếu ensure_locked bị gọi (KHÔNG kiểm bằng capsys: test này dừng
+    ở S2 trước khi chạm đoạn code in cảnh báo trong do_tat_dinh — xem 2 test capsys ngay bên dưới,
+    test_do_tat_dinh_khong_in_canh_bao_khi_hook_tat/test_do_tat_dinh_in_canh_bao_khi_hook_bat, mới
+    là chỗ chứng minh hành vi in/không-in bằng capsys thật sự)."""
     import lean_script as L, hook_stage as HS
     import gate_common
 
@@ -233,6 +236,46 @@ def test_lean_script_run_khong_goi_ensure_locked_khi_tat(monkeypatch, tmp_path):
     # (không gọi ensure_locked) TRƯỚC KHI test dừng lại ở S2; bọc bằng pytest.raises.
     with pytest.raises(AssertionError, match="test chỉ cần kiểm khối H1-H4"):
         L.run(job, force=False)
+
+
+# Vá review (2026-09-23): do_tat_dinh() chỉ được in "(warn) chưa có hook đã khoá" khi ĐỒNG THỜI
+# (a) hook_stage.is_enabled(prof) True VÀ (b) hook="" (tập chưa chạy hook_stage). Trước đây dòng
+# print chạy VÔ ĐIỀU KIỆN mỗi khi hook rỗng — vì công tắc mặc định TẮT cho cả 6 kênh đang sản xuất,
+# dòng này in ra ở MỌI tập của MỌI kênh. Hai test dưới đây gọi THẲNG do_tat_dinh() (không đi vòng
+# qua lean_script.run() — không cần thiết cho mục đích này) và kiểm capsys thật sự.
+_CHECK_OK = lambda prof, text, minutes=None, tol=0.12: (
+    [], {"chars": 100, "minutes": 1, "comma_per_sentence": 1, "chars_per_breath": 8,
+         "dialogue_ratio": 0.1, "markers": []})
+
+
+def test_do_tat_dinh_khong_in_canh_bao_khi_hook_tat(monkeypatch, capsys):
+    """Công tắc script.hook.enabled TẮT (hoặc không khai — mặc định của 6 kênh đang sản xuất) +
+    hook="" → do_tat_dinh() phải im lặng tuyệt đối, không in dòng 'chưa có hook đã khoá' (đúng cam
+    kết 'hook="" hành xử y hệt trước khi có tính năng hook')."""
+    import lean_script as L, ai_steps, profiles
+    monkeypatch.setattr(ai_steps, "check", _CHECK_OK)
+    monkeypatch.setattr(ai_steps, "_go_cat_neu_ja", lambda prof, t: t)
+    monkeypatch.setattr(profiles, "target_chars", lambda prof, minutes=None, speed=None: 100)
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {"gate": {}}}  # không khai hook → is_enabled=False
+    capsys.readouterr()  # xả sạch mọi output trước đó
+    L.do_tat_dinh(prof, "晩秋の風。隣人はそう言った。", "", "", 1, hook="")
+    out = capsys.readouterr().out
+    assert "chưa có hook đã khoá" not in out
+
+
+def test_do_tat_dinh_in_canh_bao_khi_hook_bat(monkeypatch, capsys):
+    """Đối chứng: script.hook.enabled=True nhưng tập CHƯA có hook đã khoá (hook="") → PHẢI in
+    dòng nhắc 'chưa có hook đã khoá' để người vận hành biết chạy `hook_stage.py --mode repair`."""
+    import lean_script as L, ai_steps, profiles
+    monkeypatch.setattr(ai_steps, "check", _CHECK_OK)
+    monkeypatch.setattr(ai_steps, "_go_cat_neu_ja", lambda prof, t: t)
+    monkeypatch.setattr(profiles, "target_chars", lambda prof, minutes=None, speed=None: 100)
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300},
+            "script": {"gate": {}, "hook": {"enabled": True}}}
+    capsys.readouterr()
+    L.do_tat_dinh(prof, "晩秋の風。隣人はそう言った。", "", "", 1, hook="")
+    out = capsys.readouterr().out
+    assert "chưa có hook đã khoá" in out
 
 
 def test_job_kiem_lock_bo_qua_hook_khi_tat(tmp_path, monkeypatch):

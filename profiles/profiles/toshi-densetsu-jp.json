@@ -107,12 +107,12 @@
       "_sections_note": "Ratio = trung bình cộng 7/8 tập ĐÃ SẢN XUẤT có đủ 5 chương (ep01,02,03,05,06,08,10 — ep04 có 6 đoạn nên loại). Dao động thật per-tập RẤT LỚN (chương 1 dao động 10,5–32,3%) — vì đây chỉ là budget_block đưa vào PROMPT viết (gợi ý phân bổ chữ cho Fable), KHÔNG phải ngưỡng gate hậu kiểm (lean_script chỉ gate TỔNG chữ qua tol, không gate từng section — xem ngan_sach()/do_tat_dinh). tol nới 0,10 (thay 0,08 mặc định) vì lane này tổng độ dài vốn đã dao động nhiều hơn lane truyện (31,5' × char_rate riêng, không phải ngân sách chữ cố định như F/G)."
     },
     "hook": {
-      "enabled": false,
+      "enabled": true,
       "patterns": [
+        "H42",
         "H24",
         "H25",
         "H26",
-        "H27",
         "H39"
       ],
       "closer": "K13"

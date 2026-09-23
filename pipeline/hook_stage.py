@@ -243,18 +243,29 @@ def _ffmpeg_tren_path():
        os.environ["PATH"]. Sau khi vá: FFmpegPostProcessor().available == True, basename ==
        'ffmpeg', tải video-only client 'android' → OK (xem KHUNG_HINH_THU ở trên).
 
-    ⚠️ VÁ LẦN 3 (2026-09-23, đo thật, đọc kỹ trước khi "dọn code cho gọn"):
+    ⚠️ VÁ LẦN 3 (2026-09-23, đo thật):
     4. yt_dlp NHỚ kết quả dò ffmpeg trong CÙNG một tiến trình — `FFmpegPostProcessor().available`
        chỉ dò PATH một lần rồi cache; gọi `_ffmpeg_tren_path()` BÊN TRONG `khung_hinh_0_30s()` là
        QUÁ MUỘN nếu trước đó cùng tiến trình đã có lượt gọi yt_dlp khác (vd
        `fetch_script.lay_meta_video()` chạy ngay trước trong `phan_tich_nguon`) — lượt đó đã dò
-       ffmpeg và ghi nhận "không có", sửa PATH sau đó KHÔNG cứu được nữa (đã đo thật: sau khi gọi
-       `_ffmpeg_tren_path()` xong, `FFmpegPostProcessor().available` vẫn `False` nếu trước đó đã
-       có 1 lượt dò thất bại). ⇒ PATH BẮT BUỘC phải có shim từ TRƯỚC KHI BẤT CỨ THỨ GÌ trong tiến
-       trình dò yt_dlp lần đầu — vì vậy có biến module-level `FFMPEG_SHIM = _ffmpeg_tren_path()`
-       chạy ngay lúc `import hook_stage`, sớm hơn mọi lệnh gọi yt_dlp trong toàn bộ luồng H1-H3.
-       Lời gọi lại trong `khung_hinh_0_30s()` vẫn giữ nguyên (idempotent, vô hại) chỉ để cứu
-       trường hợp thư mục shim bị xoá giữa phiên chạy dài.
+       ffmpeg và ghi nhận "không có", sửa PATH sau đó KHÔNG cứu được nữa.
+
+    ⚠️ VÁ LẦN 4 (2026-09-23, đo thật — SỬA LẠI cách xử lý mục 4 ở trên, đọc kỹ trước khi đụng vào):
+    Chỗ NHỚ ở mục 4 không phải "không xoá được" — nó nằm CỤ THỂ ở 2 dict cấp CLASS trong
+    `yt_dlp/postprocessor/ffmpeg.py`: `FFmpegPostProcessor._version_cache` (khoá là tên trần
+    `'ffmpeg'`/`'ffprobe'` khi không truyền `ffmpeg_location`) và `_features_cache`. Đo thật trong
+    1 tiến trình: (1) trước shim → `available=False`, cache `{None: None, 'ffmpeg': False}`; (2)
+    sau khi tạo shim + sửa PATH nhưng CHƯA xoá memo → vẫn `False` (đúng như mục 4 mô tả); (3) sau
+    khi `_version_cache.pop('ffmpeg', None)` + `.pop('ffprobe', None)` + `_features_cache.clear()`
+    (giữ lại khoá `None: None`) → `available=True`. ⇒ memo XOÁ ĐƯỢC, nên KHÔNG cần side effect lúc
+    import nữa (blast radius quá rộng: `import hook_stage` sẽ ghi đĩa thật ~87MB + sửa PATH của cả
+    tiến trình dù người gọi chỉ cần `kiem_stale()`, kể cả mỗi lần pytest collect test) — hàm này
+    giờ CHỈ chạy khi thật sự cần (đầu `phan_tich_nguon()`, và lặp lại idempotent trong
+    `khung_hinh_0_30s()`), và tự xoá memo của `yt_dlp.postprocessor.ffmpeg` NẾU module đó đã nằm
+    trong `sys.modules` (nghĩa là đã có lượt dò trước đó trong tiến trình) — gọi muộn vẫn ăn.
+    Đây là API NỘI BỘ của yt_dlp (tên field có thể đổi ở bản sau) nên bọc try/except RIÊNG, lỗi chỉ
+    in cảnh báo, không ném — không xoá được memo thì tệ nhất là quay lại tình trạng cũ (dò 1 lần rồi
+    kẹt), không làm hỏng luồng chính.
     5. `ffmpeg_location` truyền vào yt_dlp KHÔNG được trỏ vào thư mục imageio_ffmpeg (nơi chứa
        `ffmpeg-win-x86_64-v7.1.exe`) — đọc `yt_dlp/postprocessor/ffmpeg.py::_determine_executables`
        thì khi `ffmpeg_location` là một THƯ MỤC, yt_dlp tự dựng đường dẫn `<thư mục>/ffmpeg` và
@@ -269,6 +280,7 @@ def _ffmpeg_tren_path():
     thiếu ffmpeg chỉ nên làm 1 lượt tải thất bại (rơi vào nhánh log lỗi có sẵn), không được chặn
     cứng cả tập.
     """
+    global FFMPEG_SHIM
     ten_file = "ffmpeg.exe" if sys.platform == "win32" else "ffmpeg"
     thu_muc = Path(tempfile.gettempdir()) / "h2dev_ffmpeg_shim"
     dich = thu_muc / ten_file
@@ -284,6 +296,21 @@ def _ffmpeg_tren_path():
         path_hien_tai = os.environ.get("PATH", "")
         if str(thu_muc) not in path_hien_tai.split(os.pathsep):
             os.environ["PATH"] = str(thu_muc) + os.pathsep + path_hien_tai
+        # V1 (vá lần 4, 2026-09-23): nếu yt_dlp.postprocessor.ffmpeg ĐÃ được nạp trong tiến trình
+        # này (đã có lượt dò trước đó, vd fetch_script.lay_meta_video chạy trước), xoá memo cấp
+        # CLASS của nó để lượt dò TIẾP THEO thấy PATH mới — xem mục 4 docstring ở trên. API nội bộ
+        # nên bọc try/except riêng, lỗi chỉ cảnh báo, không ném.
+        mod = sys.modules.get("yt_dlp.postprocessor.ffmpeg")
+        if mod is not None:
+            try:
+                pp = mod.FFmpegPostProcessor
+                pp._version_cache.pop("ffmpeg", None)
+                pp._version_cache.pop("ffprobe", None)
+                pp._features_cache.clear()
+            except Exception as e:
+                print(f"  ! không xoá được memo ffmpeg của yt_dlp (API nội bộ có thể đã đổi): "
+                      f"{type(e).__name__} {str(e)[:100]}")
+        FFMPEG_SHIM = thu_muc
         return thu_muc
     except Exception as e:
         print(f"  ! không tạo được ffmpeg shim trên PATH (tải khung hình 0-30s có thể fail): "
@@ -291,11 +318,13 @@ def _ffmpeg_tren_path():
         return None
 
 
-# Vá lần 3 (2026-09-23): PHẢI chạy NGAY LÚC IMPORT module, trước bất kỳ lệnh gọi yt_dlp nào khác
-# trong tiến trình (kể cả fetch_script.lay_meta_video chạy trước trong phan_tich_nguon) — xem lý
-# do đầy đủ ở mục 4 trong docstring _ffmpeg_tren_path ngay trên. Trả None (không ném) nếu môi
-# trường không tạo được shim — mọi chỗ dùng FFMPEG_SHIM đều tự rơi về hành vi cũ khi gặp None.
-FFMPEG_SHIM = _ffmpeg_tren_path()
+# V2 (vá lần 4, 2026-09-23): KHÔNG gọi _ffmpeg_tren_path() lúc import nữa — chỉ khai biến để các
+# hàm khác tham chiếu được. Gọi lúc import nghĩa là `import hook_stage` một mình đã ghi đĩa thật
+# (hardlink/copy binary ~87MB vào %TEMP%) và sửa os.environ["PATH"] của cả tiến trình, kể cả khi
+# người gọi chỉ cần kiem_stale() và không bao giờ chạm yt_dlp — kể cả mỗi lần pytest thu thập test.
+# Từ vá lần 4: memo dò-ffmpeg của yt_dlp XOÁ ĐƯỢC (xem V1 trong _ffmpeg_tren_path), nên gọi MUỘN ở
+# đầu phan_tich_nguon() vẫn ăn, không cần chạy sớm hơn mọi lệnh gọi yt_dlp như trước.
+FFMPEG_SHIM = None
 
 
 def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
@@ -370,6 +399,10 @@ def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
 
 def phan_tich_nguon(d, prof, proxy=None, force=False):
     import fetch_script, llm_client, qc_visual
+    # V2 (vá lần 4, 2026-09-23): gọi LƯỜI ở đây — TRƯỚC fetch_script.lay_meta_video() bên dưới —
+    # thay vì lúc import module (xem FFMPEG_SHIM/docstring _ffmpeg_tren_path). Idempotent, và từ vá
+    # lần 4 hàm này tự xoá memo yt_dlp nếu module đã lỡ được nạp trước đó trong cùng tiến trình.
+    _ffmpeg_tren_path()
     d = Path(d); hd = d / HOOK_DIR; hd.mkdir(parents=True, exist_ok=True)
     out_p = hd / "source.json"
     if out_p.exists() and not force:

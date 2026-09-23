@@ -449,23 +449,92 @@ def test_ffmpeg_tren_path_loi_khong_nem(monkeypatch, tmp_path):
     assert HS._ffmpeg_tren_path() is None
 
 
-# ── Vá lần 3 (2026-09-23): shim PHẢI chạy lúc IMPORT + ffmpeg_location trỏ đúng thư mục shim ──
-# Bằng chứng đo thật (controller): trong CÙNG 1 tiến trình, nếu yt_dlp đã dò ffmpeg một lần (vd
-# fetch_script.lay_meta_video chạy trước) thì kết quả "không có ffmpeg" bị NHỚ LẠI — sửa PATH
-# SAU lượt dò đó là vô ích. Vì vậy PATH phải có shim TỪ TRƯỚC khi hook_stage được import, không
-# phải khi khung_hinh_0_30s() chạy. 3 test dưới đây chỉ đọc TRẠNG THÁI ĐÃ CÓ SẴN sau import
-# (test 1) và bắt lại `opts` thật mà khung_hinh_0_30s() truyền cho yt_dlp (test 2) — không mô
-# phỏng lại việc "yt_dlp nhớ kết quả dò" (việc đó nằm trong yt_dlp, không kiểm được offline).
+# ── Vá lần 4 (2026-09-23): BỎ side effect lúc import, thay bằng gọi lười + tự xoá memo yt_dlp ──
+# Trước đó (vá lần 3) FFMPEG_SHIM = _ffmpeg_tren_path() chạy ngay lúc `import hook_stage` — blast
+# radius quá rộng (ghi đĩa thật ~87MB + sửa PATH cả tiến trình chỉ vì import, kể cả lúc pytest
+# collect). Controller đã đo thật: memo dò-ffmpeg của yt_dlp nằm ở 2 dict CẤP CLASS trong
+# `FFmpegPostProcessor` (_version_cache/_features_cache, khoá tên trần 'ffmpeg'/'ffprobe') và XOÁ
+# ĐƯỢC — nên _ffmpeg_tren_path() giờ tự xoá memo đó nếu module yt_dlp.postprocessor.ffmpeg đã nằm
+# trong sys.modules, và không cần chạy sớm hơn mọi lệnh gọi yt_dlp nữa (gọi muộn ở đầu
+# phan_tich_nguon() vẫn ăn).
 
-def test_ffmpeg_shim_da_co_tren_path_ngay_luc_import():
-    """V1: module hook_stage có FFMPEG_SHIM, và nếu khác None thì thư mục đó đã nằm trong PATH
-    NGAY SAU KHI IMPORT — không gọi lại _ffmpeg_tren_path() ở đây, vì mục đích của test là xác
-    nhận PATH đã đúng từ TRƯỚC (side effect của việc import), không phải xác nhận hàm chạy được."""
-    assert hasattr(HS, "FFMPEG_SHIM")
-    if HS.FFMPEG_SHIM is None:
-        pytest.skip("môi trường chạy test không tạo được ffmpeg shim (không có imageio_ffmpeg) — "
-                    "không kiểm được nhánh PATH, nhưng thuộc tính FFMPEG_SHIM vẫn phải tồn tại")
-    assert str(HS.FFMPEG_SHIM) in HS.os.environ.get("PATH", "").split(HS.os.pathsep)
+def test_import_hook_stage_khong_tao_shim_khong_sua_path():
+    """V2: import hook_stage KHÔNG được có side effect nào — không tạo shim, không sửa PATH. Kiểm
+    bằng tiến trình CON (không đụng PATH/biến toàn cục của chính tiến trình pytest đang chạy):
+    import xong, FFMPEG_SHIM phải là None."""
+    import subprocess, sys as _sys
+    thu_muc_pipeline = str(Path(__file__).resolve().parent.parent)
+    ma = ("import sys; sys.path.insert(0, r'%s'); import hook_stage; "
+          "print(hook_stage.FFMPEG_SHIM)") % thu_muc_pipeline
+    kq = subprocess.run([_sys.executable, "-c", ma], capture_output=True, text=True, timeout=30)
+    assert kq.returncode == 0, f"tiến trình con lỗi: {kq.stderr}"
+    assert kq.stdout.strip() == "None"
+
+
+class _FakeFFmpegPP:
+    """Mô phỏng yt_dlp.postprocessor.ffmpeg.FFmpegPostProcessor — chỉ 2 dict memo cấp CLASS mà
+    _ffmpeg_tren_path() phải xoá đúng 2 khoá, giữ nguyên khoá None."""
+    _version_cache = {None: None, "ffmpeg": False, "ffprobe": False}
+    _features_cache = {"ffmpeg": {"setts": True}}
+
+
+def _module_gia_yt_dlp_ffmpeg(cls):
+    import types
+    mod = types.SimpleNamespace(FFmpegPostProcessor=cls)
+    return mod
+
+
+def test_ffmpeg_tren_path_xoa_memo_yt_dlp_da_nap(monkeypatch, tmp_path):
+    """V1: nếu yt_dlp.postprocessor.ffmpeg ĐÃ nằm trong sys.modules (giả lập bằng monkeypatch),
+    _ffmpeg_tren_path() phải pop đúng 2 khoá 'ffmpeg'/'ffprobe' khỏi _version_cache, giữ khoá None,
+    và clear() _features_cache."""
+    import sys as _sys
+    import qc_visual
+    nguon = tmp_path / "nguon" / "ffmpeg.exe"
+    nguon.parent.mkdir(parents=True, exist_ok=True)
+    nguon.write_bytes(b"binary that")
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(nguon))
+    monkeypatch.setattr(HS.tempfile, "gettempdir", lambda: str(tmp_path))
+    monkeypatch.setenv("PATH", str(tmp_path / "path_cu"))
+
+    cls = type("FFmpegPostProcessor", (), {
+        "_version_cache": dict(_FakeFFmpegPP._version_cache),
+        "_features_cache": dict(_FakeFFmpegPP._features_cache)})
+    monkeypatch.setitem(_sys.modules, "yt_dlp.postprocessor.ffmpeg", _module_gia_yt_dlp_ffmpeg(cls))
+
+    thu_muc = HS._ffmpeg_tren_path()
+    assert thu_muc is not None
+    assert "ffmpeg" not in cls._version_cache and "ffprobe" not in cls._version_cache
+    assert cls._version_cache[None] is None
+    assert cls._features_cache == {}
+
+
+def test_ffmpeg_tren_path_loi_xoa_memo_khong_lam_nga(monkeypatch, tmp_path):
+    """Module yt_dlp giả có _version_cache ném lỗi khi truy cập (mô phỏng API nội bộ đã đổi) —
+    _ffmpeg_tren_path() vẫn phải trả về thư mục shim bình thường, không ném."""
+    import sys as _sys
+    import qc_visual
+    nguon = tmp_path / "nguon" / "ffmpeg.exe"
+    nguon.parent.mkdir(parents=True, exist_ok=True)
+    nguon.write_bytes(b"binary that")
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(nguon))
+    monkeypatch.setattr(HS.tempfile, "gettempdir", lambda: str(tmp_path))
+    monkeypatch.setenv("PATH", str(tmp_path / "path_cu"))
+
+    class _VersionCacheNem:
+        def pop(self, *a, **k):
+            raise RuntimeError("API noi bo da doi")
+
+    class FFmpegPostProcessorHong:
+        _version_cache = _VersionCacheNem()
+        _features_cache = {}
+    monkeypatch.setitem(_sys.modules, "yt_dlp.postprocessor.ffmpeg",
+                         _module_gia_yt_dlp_ffmpeg(FFmpegPostProcessorHong))
+
+    thu_muc = HS._ffmpeg_tren_path()
+    assert thu_muc is not None
+    ten_file = "ffmpeg.exe" if _sys.platform == "win32" else "ffmpeg"
+    assert (thu_muc / ten_file).exists()
 
 
 class _CapturingYDLKhungHinh(_FakeYDLKhungHinh):

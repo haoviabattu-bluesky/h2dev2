@@ -99,6 +99,8 @@ Cụm ghim `写真をよく見てほしい` (mục 2) vẫn chưa quyết — ng
 
 ---
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## 1. QUY TRÌNH 2 BƯỚC — TỔNG QUAN
 
 **Bước 1 (Claude, tab này)** — nghiên cứu → kịch bản → giọng → chuẩn bị đơn ảnh. **DỪNG CỨNG trước

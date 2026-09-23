@@ -269,6 +269,8 @@ Nguyên tắc chọn:
   memory `chi-chay-dong-duoc-chi-dinh`: "chạy dòng nào" phải hỏi rõ) — 10 dòng trên là DANH SÁCH
   CHỜ, không phải lệnh làm cả 10 cùng lúc.
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## 2. LỆNH CHẠY (khi viết tập đầu tiên)
 
 ```bash

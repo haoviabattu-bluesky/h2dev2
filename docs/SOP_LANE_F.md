@@ -138,6 +138,8 @@ viết lại theo gate `title_len` [26,44] — tựa trên là ĐỀ TÀI, khôn
 định mới bắt đầu** (memory `chi-chay-dong-duoc-chi-dinh`). Lane F ≠ Lane G: tập nào ngả sang "lối
 sống vui/rẻ N選" là của G, đừng viết ở đây.
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## 2. LỆNH CHẠY (tập đầu tiên)
 
 ```bash

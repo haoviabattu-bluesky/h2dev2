@@ -47,6 +47,8 @@
 6. Luật toàn dự án: `CLAUDE.md` (router + ⛔ Claude chỉ làm BƯỚC 1, không render, không tự upload-job lần đầu) ·
    `docs\QUY_TRINH_SETUP_KENH.md` (đã làm, chỉ đọc khi cần sửa kênh).
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## 4. QUY TRÌNH — làm bước nào trước
 ### Giai đoạn 2 — dựng hạ tầng lane (1 LẦN, đúng thứ tự, xong mới sang giai đoạn 3)
 1. ~~**Copy DNA**~~ ✅ XONG 2026-09-23 — đã copy VÀ mở rộng lên 21 video (xem mục 2).

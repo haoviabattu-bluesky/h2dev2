@@ -43,6 +43,8 @@
    cấu trúc list đếm (`script.structure="list_countdown"` đã có nhánh code trong `pipeline/ai_steps.py`).
 7. Luật toàn dự án: `CLAUDE.md` (router + ⛔ Claude chỉ làm BƯỚC 1) · `docs\QUY_TRINH_SETUP_KENH.md`.
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## 4. QUY TRÌNH — làm bước nào trước
 ### Giai đoạn 2 — dựng hạ tầng lane (1 LẦN, đúng thứ tự)
 1. **Copy DNA** `results\channel_dna\rougo-money-story\` → `docs\channel_dna\rougo-money-story\`.

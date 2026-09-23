@@ -61,6 +61,8 @@ trong kết quả trả về vẫn dùng làm `competitor.txt` ở B2 như cũ (
 mất nhịp câu — xem giới hạn định lượng của DNA tự động ở `docs/superpowers/specs/2026-09-16-gemini-
 channel-analyzer-design.md`, mục đã ghi ở SOP Lane A).
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## QUY TRÌNH 8 BƯỚC (đặt SLUG cho video, mọi file nằm ở assets/satori_jp/$SLUG/)
 
 ### B1 — CHỌN CHỦ ĐỀ (nguồn = simbot2 hoặc anh chỉ định)

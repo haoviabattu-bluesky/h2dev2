@@ -314,6 +314,8 @@ lệnh chạy, 3 trạng thái, kênh `viec_tay.txt`). Thiết kế + số đo: 
 **Quy tắc phân vai model (anh chốt 2026-09-22, mọi lane `engine: claude_p`): model VIẾT (`brain_model`, Fable) chạm kịch bản
 ĐÚNG 1 LẦN ở S2; mọi lượt SỬA (S4/B3S FIX/B3R FIX) = `patch_model` (Opus 5); Sol chỉ chấm.** Lane mới PHẢI khai cả 2 field —
 chi tiết + bảng vai ở file trên §0a.
+**HOOK 20–30s bắt buộc mọi tập (2026-09-23):** khoá TRƯỚC S2 bằng `pipeline/hook_stage.py`, đọc
+`docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b; phương án gốc `docs/PHUONG_AN_HOOK_VIDEO.md`.
 
 ## 🎞️ CHUYỂN CẢNH — skill toàn cục `video-chuyen-canh` (2026-09-20, mọi lane ảnh AI dùng chung)
 ⛔ **ẢNH ĐỨNG YÊN HOÀN TOÀN — TUYỆT ĐỐI KHÔNG zoom/pan/rung dưới bất kỳ hình thức nào (chốt
@@ -327,6 +329,8 @@ lane nào được bật lại, kể cả Lane E (`docs/SOP_LANE_E.md` cần đ�
 mới/agent bước 3 nhận việc dựng video phải đọc đúng dòng này trước khi chọn tham số `--zoom`.
 - `pipeline/assemble.py` đã đổi default **`--zoom 1.0`** (2026-09-21): ảnh tĩnh tuyệt đối, bỏ hẳn
   filter `zoompan` khi zoom≤1.0 (không chỉ đặt hệ số 0) — code thật ở `render_clip()`.
+- **Ngoại lệ hook (2026-09-23, xem §2b ở mục kịch bản trên):** 20–30s đầu là CLIP sinh sẵn (Grok/Veo)
+  theo storyboard — không phải zoom/pan giả trên ảnh, không vi phạm luật ảnh tĩnh ở trên.
 
 Muốn video có nhịp như kênh mẫu → gọi skill `C:\Users\admin\.claude\skills\video-chuyen-canh\SKILL.md`:
 - "đo công thức chuyển cảnh của <video>" → `scripts/do_chuyen_canh.py`, ghi mục mới vào

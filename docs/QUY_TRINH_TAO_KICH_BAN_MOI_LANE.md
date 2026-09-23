@@ -145,6 +145,25 @@ Ghi sheet tab lane: **C = đường dẫn thư mục tập** ngay khi tạo hồ
 
 ---
 
+### 2b. H1–H4 HOOK 20–30 GIÂY — bắt buộc TRƯỚC S2 (anh chốt 2026-09-23, mọi lane)
+`lean_script.run()` tự gọi `hook_stage.ensure_locked()` sau S1Q. Cần thêm trong thư mục tập:
+| File | Bắt buộc | Ghi chú |
+|---|---|---|
+| `competitor.segments.json` | lane nhân bản 1 video | `fetch_script.py` sinh kèm `competitor.txt` (có title/description/thumbnail nguồn) |
+| `hook/promise.txt` | khuyến nghị | 4–6 dòng `core_event:/payoff:/reveal:/timeline_start:` — HOOK_STALE so theo file này thay vì hash cả `series_ctx.txt` |
+| `thumb_text.txt` | nếu đã có | Sol chấm THUMB_MATCH |
+Sinh ra: `hook/source.json` (H1–H3) · `hook_candidates.txt` · `hook_qc.json` · `hook_locked.txt` + `hook_lock.json` (H4) ·
+`hook_storyboard.json` + `flow_prompts/` + `grok_jobs.csv` (chạy `py -3.13 pipeline\hook_storyboard.py --profile <lane> --slug <tập>` sau LOCK —
+`hook_stage.py` khi chạy CLI trực tiếp đã TỰ gọi bước này, chỉ cần gọi tay khi chạy lại riêng lẻ).
+Lớp 3 (Claude Code) đọc `hook_locked.txt` 2 phút trước khi S2 chạy tiếp: kiểm 4 nhịp + khớp title. Sửa hook = sửa TRƯỚC S2;
+sau khi script đã LOCK mà đổi title/thumb/promise → HOOK_STALE chặn ở pha asset (`Job.kiem_lock` gọi `hook_stage.kiem_stale()`),
+chạy `py -3.13 pipeline\hook_stage.py --profile <lane> --slug <tập> --force` rồi S2 lại.
+Field profile (tuỳ chọn, mặc định trong `hook_stage.MAC_DINH`): `script.hook = {"ratio_30s":0.5,"tol":0.15,"neo_ratio":0.4,"banned_openers":[...]}`.
+Tập đã có script (chưa đăng): `py -3.13 pipeline\hook_stage.py --profile <lane> --slug <tập> --mode repair` — không đụng script/voice/img;
+bước 3 dựng `hook_final.mp4` + `final_with_hook.mp4` theo `docs/GIAO_VIEC_BUOC3_AGENT.md` §9.
+
+---
+
 ## 3. CHẠY (1 lệnh, ~3–20' máy)
 ```
 py -3.13 -X utf8 pipeline\make_video.py --profile <mã lane> --slug epNN-<slug> --den B3G

@@ -113,6 +113,8 @@ không phụ thuộc phần còn lại của `pipeline/`.
 
 ---
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## 1. LỆNH CHẠY (một dòng cho cả tập)
 
 ```bash

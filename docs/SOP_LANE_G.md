@@ -215,6 +215,8 @@ ep03–ep10 chạy trong ~2h (2–3 tập song song). Bảng benchmark + 7 vá t
 chạy lại `--den B3G`; khi bản viết đầu lệch hẳn tiêu đề thì sửa `series_ctx.txt` (đổi "gợi ý" → "BẮT BUỘC") + đổi tên file cũ `_lan1_*`
 + xoá `B3` trong state.json → viết lại từ đầu (ep05, ep06). Phạm vi vẫn CHỈ kịch bản — B4 giọng/B5W prompt ảnh chưa chạy tập nào.
 
+⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+
 ## 2. LỆNH CHẠY (Giai đoạn 3 — 1 tập anh chỉ định)
 
 ```bat

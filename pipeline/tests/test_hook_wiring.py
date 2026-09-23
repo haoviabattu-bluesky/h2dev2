@@ -43,6 +43,26 @@ def test_preserve_co_hook():
     assert "hook" in L.PRESERVE.lower()
 
 
+# Patch review Task 9 (2026-09-23), Minor V4: nhánh hook="" (tập cũ / lane chưa bật hook) PHẢI hành xử y hệt
+# luồng trước khi có tính năng hook — không sinh việc "HOOK:" nào, không có cảnh báo hook trong `warn` (sau V3
+# đã chuyển sang print thay vì warn.append), các giá trị trả về khác chạy trót lọt bình thường.
+def test_do_tat_dinh_khong_hook(monkeypatch):
+    import lean_script as L, ai_steps
+    monkeypatch.setattr(ai_steps, "check", lambda prof, text, minutes=None, tol=0.12: ([], {"chars": 100, "minutes": 1, "comma_per_sentence": 1, "chars_per_breath": 8, "dialogue_ratio": 0.1, "markers": []}))
+    monkeypatch.setattr(ai_steps, "_go_cat_neu_ja", lambda prof, t: t)
+    import profiles
+    monkeypatch.setattr(profiles, "target_chars", lambda prof, minutes=None, speed=None: 100)
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {"gate": {}}}
+    text, m, vf, vl, warn = L.do_tat_dinh(prof, "晩秋の風。隣人はそう言った。", "", "", 1, hook="")
+    assert not any(v.startswith("HOOK: ") for v in vl)
+    # sau V3: cảnh báo "chưa có hook đã khoá" chuyển sang print(), KHÔNG còn nằm trong warn[] (ghi vào do.json/
+    # ESCALATION_REPORT) — không assert bằng substring "hook" chung chung vì mo_dau_khong_do (Task 10, không
+    # liên quan V3) hợp lệ nhắc tới hook_stage trong nội dung của nó.
+    assert not any("chưa có hook đã khoá" in w for w in warn)
+    assert isinstance(text, str) and text
+    assert isinstance(m, dict) and "chars" in m
+
+
 # Test Task 10 (2026-09-23): mo_dau hết ĐẠT giả (warn_no_marker) + qc_final.kiem_hook + qc_hoso.kiem_hook_ho_so.
 # Toàn bộ test OFFLINE — không mạng, không LLM.
 def test_mo_dau_warn_no_marker():

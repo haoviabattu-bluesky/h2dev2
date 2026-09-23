@@ -460,7 +460,10 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook=""):
         if kl > 0.5:
             warn.append(f"thân kể lại hook ({kl:.0%} bigram hook xuất hiện lại ngay sau hook) — nối tiếp, đừng nhắc lại")
     if not hook:
-        warn.append("chưa có hook đã khoá (tập cũ?) — cổng mở đầu do hook_stage đảm nhận, chạy `hook_stage.py --mode repair`")
+        # 2026-09-23 (patch review Task 9, Minor V3): KHÔNG append vào `warn` — `warn` được ghi vào do.json/
+        # ESCALATION_REPORT, mọi tập CŨ (6 lane chưa có hook) sẽ dính thêm 1 dòng mãi mãi dù cam kết là
+        # "hook='' hành xử y hệt trước khi có tính năng này". Chỉ in ra console để người vận hành thấy.
+        print("   (warn) chưa có hook đã khoá (tập cũ?) — cổng mở đầu do hook_stage đảm nhận, chạy `hook_stage.py --mode repair`")
     m["tu_sua"] = tu_sua
     return text, m, viec_fact, viec_len, warn
 
@@ -578,6 +581,8 @@ def run(job, force=False):
     sf = d / "script.txt"
     co_lock = (d / gate_common.LOCK_NAME).exists()
     se_viet_moi = force or not (sf.exists() and ((job.state.get("B3") or {}).get("flow") == "lean" or co_lock))
+    if se_viet_moi and force and (d / hook_stage.HOOK_DIR / "hook_lock.json").exists():
+        print("[H1-H4] ⚠️ --force: bỏ qua hook đã khoá, viết hook MỚI (tốn lượt LLM + gọi lại H1–H3)")
     if se_viet_moi:
         hook = hook_stage.ensure_locked(d, prof, ctx=ctx, title=_title(d), mode="upstream", force=force)
         bench["hook_sol_rounds"] = (hook_stage.doc_lock(d) or {}).get("sol_rounds", 0)
@@ -587,7 +592,11 @@ def run(job, force=False):
             print("[H4] ⚠️ tập đã có script.txt mà chưa có hook — dùng `py -3.13 hook_stage.py --profile … --slug … --mode repair`")
 
     # ---- S2
-    if sf.exists() and ((job.state.get("B3") or {}).get("flow") == "lean" or co_lock) and not force:
+    # 2026-09-23: PHẢI dùng đúng `se_viet_moi` (đã tính ở khối H1-H4 trên) — KHÔNG chép lại biểu thức. Hai nhánh này
+    # là phủ định của nhau theo thiết kế (viết mới ⟺ không dùng script.txt cũ); chép tay 2 lần từng lệch nhau âm thầm
+    # nếu chỉ sửa 1 chỗ, rơi vào 1 trong 2 trạng thái tệ nhất: chạy lại H1-H4 tốn tiền cho tập đã xong, hoặc S2 viết
+    # mới mà hook="" (patch review Task 9, Important finding V1).
+    if not se_viet_moi:
         # có lock (kể cả ESCALATE): bản đã qua vòng trước và/hoặc người đã sửa tay → chấm lại, KHÔNG viết lại từ đầu
         text = sf.read_text(encoding="utf-8")
         print(f"[S2] dùng script.txt đã có ({ai_steps.measure(text)['chars']:,} chữ) — chạy tiếp S3→Sol (không viết lại)")

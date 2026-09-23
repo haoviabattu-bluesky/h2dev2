@@ -275,6 +275,41 @@ def video_minutes(url_or_id, timeout=25, proxy=None):
         return 0.0
 
 
+def lay_meta_video(url_or_id, timeout=25, proxy=None):
+    """Title / mô tả / thumbnail / thời lượng của video nguồn (H1–H3 của hook_stage). Không ném — lỗi trả rỗng.
+    KHÔNG extract_flat: mô tả chỉ có ở lượt đọc trang watch đầy đủ (~1–2 s/video)."""
+    vid = video_id(url_or_id)
+    out = {"video_id": vid, "title": "", "description": "", "thumbnail_url": "", "duration_sec": 0}
+    try:
+        import yt_dlp
+        opts = {"quiet": True, "no_warnings": True, "skip_download": True, "noprogress": True,
+                "socket_timeout": timeout}
+        if proxy:
+            opts["proxy"] = proxy
+        with yt_dlp.YoutubeDL(opts) as y:
+            info = y.extract_info(f"https://www.youtube.com/watch?v={vid}", download=False) or {}
+        out["title"] = info.get("title") or ""
+        out["description"] = info.get("description") or ""
+        out["thumbnail_url"] = info.get("thumbnail") or f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg"
+        out["duration_sec"] = int(info.get("duration") or 0)
+    except Exception as e:
+        print(f"  ! không đọc được meta video {vid} ({type(e).__name__} {e})")
+    return out
+
+
+def tai_anh(url, out_path, proxy=None, timeout=30):
+    """Tải 1 ảnh (thumbnail nguồn). Trả True khi file > 2 KB."""
+    try:
+        import requests
+        r = requests.get(url, timeout=timeout, proxies={"http": proxy, "https": proxy} if proxy else None)
+        if r.status_code == 200 and len(r.content) > 2000:
+            Path(out_path).write_bytes(r.content)
+            return True
+    except Exception as e:
+        print(f"  ! không tải được {url} ({type(e).__name__})")
+    return False
+
+
 def _fix_dash_id(argv):
     """ID YouTube được phép BẮT ĐẦU bằng '-' (bộ chữ base64url), vd `-Gt6QYEFS38`.
 
@@ -317,15 +352,16 @@ def main():
     out.write_text(text, encoding="utf-8")
     # Sidecar cho cong B2Q (qc_transcript.py): moc thoi gian tung doan + thoi luong video. Ghi KEM,
     # khong doi dinh dang competitor.txt (moi tool khac van doc .txt nhu cu).
-    try:
-        dur_sec = round(video_minutes(vid, proxy=args.proxy or None) * 60, 1)
-    except Exception:
-        dur_sec = 0.0
+    meta = lay_meta_video(vid, proxy=args.proxy or None)
     side = out.with_name(out.stem + ".segments.json")
-    side.write_text(json.dumps({"video_id": vid, "source": used, "video_duration_sec": dur_sec,
+    side.write_text(json.dumps({"video_id": vid, "source": used, "video_duration_sec": meta["duration_sec"],
+                                "title": meta["title"], "description": meta["description"],
+                                "thumbnail_url": meta["thumbnail_url"],
                                 "segments": [{"start": float(s["start"]), "duration": float(s.get("duration", 0)),
                                               "text": s["text"]} for s in segs]},
                                ensure_ascii=False), encoding="utf-8")
+    if meta["thumbnail_url"]:
+        tai_anh(meta["thumbnail_url"], out.with_name(out.stem + "_thumb.jpg"), proxy=args.proxy or None)
     print(f"✓ {vid} [{used}]: {len(segs)} đoạn, {len(text):,} ký tự → {out}  (+{side.name})")
     print("─" * 60)
     print(text[:800] + (" ..." if len(text) > 800 else ""))

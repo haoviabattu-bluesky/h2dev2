@@ -447,3 +447,72 @@ def test_ffmpeg_tren_path_loi_khong_nem(monkeypatch, tmp_path):
     monkeypatch.setattr(HS.shutil, "copy2", boom_copy)
 
     assert HS._ffmpeg_tren_path() is None
+
+
+# ── Vá lần 3 (2026-09-23): shim PHẢI chạy lúc IMPORT + ffmpeg_location trỏ đúng thư mục shim ──
+# Bằng chứng đo thật (controller): trong CÙNG 1 tiến trình, nếu yt_dlp đã dò ffmpeg một lần (vd
+# fetch_script.lay_meta_video chạy trước) thì kết quả "không có ffmpeg" bị NHỚ LẠI — sửa PATH
+# SAU lượt dò đó là vô ích. Vì vậy PATH phải có shim TỪ TRƯỚC khi hook_stage được import, không
+# phải khi khung_hinh_0_30s() chạy. 3 test dưới đây chỉ đọc TRẠNG THÁI ĐÃ CÓ SẴN sau import
+# (test 1) và bắt lại `opts` thật mà khung_hinh_0_30s() truyền cho yt_dlp (test 2) — không mô
+# phỏng lại việc "yt_dlp nhớ kết quả dò" (việc đó nằm trong yt_dlp, không kiểm được offline).
+
+def test_ffmpeg_shim_da_co_tren_path_ngay_luc_import():
+    """V1: module hook_stage có FFMPEG_SHIM, và nếu khác None thì thư mục đó đã nằm trong PATH
+    NGAY SAU KHI IMPORT — không gọi lại _ffmpeg_tren_path() ở đây, vì mục đích của test là xác
+    nhận PATH đã đúng từ TRƯỚC (side effect của việc import), không phải xác nhận hàm chạy được."""
+    assert hasattr(HS, "FFMPEG_SHIM")
+    if HS.FFMPEG_SHIM is None:
+        pytest.skip("môi trường chạy test không tạo được ffmpeg shim (không có imageio_ffmpeg) — "
+                    "không kiểm được nhánh PATH, nhưng thuộc tính FFMPEG_SHIM vẫn phải tồn tại")
+    assert str(HS.FFMPEG_SHIM) in HS.os.environ.get("PATH", "").split(HS.os.pathsep)
+
+
+class _CapturingYDLKhungHinh(_FakeYDLKhungHinh):
+    """Như _FakeYDLKhungHinh (client 'android' fail, 'web' 'tải' được) nhưng lưu lại `opts` của
+    LƯỢT GỌI ĐẦU TIÊN — dùng để soi ffmpeg_location/cookiefile mà khung_hinh_0_30s() thật sự
+    truyền cho yt_dlp, không đoán qua hành vi bên ngoài."""
+    opts_da_goi = []
+
+    def __init__(self, opts):
+        super().__init__(opts)
+        _CapturingYDLKhungHinh.opts_da_goi.append(opts)
+
+
+def test_khung_hinh_0_30s_ffmpeg_location_va_cookie(monkeypatch, tmp_path):
+    """V2: ffmpeg_location truyền cho yt_dlp phải là ĐÚNG thư mục shim (HS.FFMPEG_SHIM hoặc thư
+    mục mà _ffmpeg_tren_path() trả về trong lượt gọi này), KHÔNG phải thư mục imageio_ffmpeg; và
+    _ap_cookies() phải được gọi (cookiefile xuất hiện trong opts khi có YTDLP_COOKIES)."""
+    import types, sys
+    import qc_visual
+    _FakeYDLKhungHinh.da_thu = []
+    _CapturingYDLKhungHinh.opts_da_goi = []
+    fake_yt_dlp = types.SimpleNamespace(YoutubeDL=_CapturingYDLKhungHinh,
+                                         utils=types.SimpleNamespace(download_range_func=lambda *a, **k: None))
+    monkeypatch.setitem(sys.modules, "yt_dlp", fake_yt_dlp)
+    monkeypatch.setitem(sys.modules, "yt_dlp.utils", fake_yt_dlp.utils)
+    monkeypatch.setattr(HS.time, "sleep", lambda s: None)
+    monkeypatch.setattr(qc_visual, "_ff", lambda: str(tmp_path / "ffmpeg_gia" / "ffmpeg.exe"))
+
+    thu_muc_shim = tmp_path / "shim_gia"
+    monkeypatch.setattr(HS, "_ffmpeg_tren_path", lambda: thu_muc_shim)
+
+    cookie_file = tmp_path / "cookie.txt"
+    cookie_file.write_text("gia lap cookie", encoding="utf-8")
+    monkeypatch.setenv("YTDLP_COOKIES", str(cookie_file))
+
+    def fake_frame(mp4, t, out):
+        from PIL import Image
+        Image.new("RGB", (20, 20), "white").save(out)
+        return True
+    monkeypatch.setattr(qc_visual, "_frame", fake_frame)
+
+    out = HS.khung_hinh_0_30s("vidZ", tmp_path / "frames3", n=2)
+    assert out is not None and Path(out).exists()
+    assert _CapturingYDLKhungHinh.opts_da_goi, "khung_hinh_0_30s không gọi tới yt_dlp.YoutubeDL"
+    opts0 = _CapturingYDLKhungHinh.opts_da_goi[0]
+    if thu_muc_shim is not None:
+        assert opts0["ffmpeg_location"] == str(thu_muc_shim)
+    else:
+        pytest.skip("_ffmpeg_tren_path() trả None trong test này — không kiểm được nhánh shim")
+    assert opts0.get("cookiefile") == str(cookie_file)

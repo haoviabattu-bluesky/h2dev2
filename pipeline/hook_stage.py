@@ -243,6 +243,27 @@ def _ffmpeg_tren_path():
        os.environ["PATH"]. Sau khi vá: FFmpegPostProcessor().available == True, basename ==
        'ffmpeg', tải video-only client 'android' → OK (xem KHUNG_HINH_THU ở trên).
 
+    ⚠️ VÁ LẦN 3 (2026-09-23, đo thật, đọc kỹ trước khi "dọn code cho gọn"):
+    4. yt_dlp NHỚ kết quả dò ffmpeg trong CÙNG một tiến trình — `FFmpegPostProcessor().available`
+       chỉ dò PATH một lần rồi cache; gọi `_ffmpeg_tren_path()` BÊN TRONG `khung_hinh_0_30s()` là
+       QUÁ MUỘN nếu trước đó cùng tiến trình đã có lượt gọi yt_dlp khác (vd
+       `fetch_script.lay_meta_video()` chạy ngay trước trong `phan_tich_nguon`) — lượt đó đã dò
+       ffmpeg và ghi nhận "không có", sửa PATH sau đó KHÔNG cứu được nữa (đã đo thật: sau khi gọi
+       `_ffmpeg_tren_path()` xong, `FFmpegPostProcessor().available` vẫn `False` nếu trước đó đã
+       có 1 lượt dò thất bại). ⇒ PATH BẮT BUỘC phải có shim từ TRƯỚC KHI BẤT CỨ THỨ GÌ trong tiến
+       trình dò yt_dlp lần đầu — vì vậy có biến module-level `FFMPEG_SHIM = _ffmpeg_tren_path()`
+       chạy ngay lúc `import hook_stage`, sớm hơn mọi lệnh gọi yt_dlp trong toàn bộ luồng H1-H3.
+       Lời gọi lại trong `khung_hinh_0_30s()` vẫn giữ nguyên (idempotent, vô hại) chỉ để cứu
+       trường hợp thư mục shim bị xoá giữa phiên chạy dài.
+    5. `ffmpeg_location` truyền vào yt_dlp KHÔNG được trỏ vào thư mục imageio_ffmpeg (nơi chứa
+       `ffmpeg-win-x86_64-v7.1.exe`) — đọc `yt_dlp/postprocessor/ffmpeg.py::_determine_executables`
+       thì khi `ffmpeg_location` là một THƯ MỤC, yt_dlp tự dựng đường dẫn `<thư mục>/ffmpeg` và
+       `<thư mục>/ffprobe`; thư mục imageio không có file tên đúng như vậy nên không khớp — và
+       tham số này ĐÈ LUÔN kết quả dò theo PATH (dù PATH đã có shim đúng, `ffmpeg_location` sai
+       vẫn làm yt_dlp kết luận "không có ffmpeg", lỗi thật đã gặp: "m3u8 download detected but
+       ffmpeg could not be found"). ⇒ `ffmpeg_location` phải trỏ ĐÚNG vào thư mục shim
+       (`FFMPEG_SHIM`, thư mục có file tên `ffmpeg.exe`), không phải thư mục imageio.
+
     Idempotent (gọi nhiều lần không tạo lại file/không nhân đôi PATH). Lỗi bất kỳ (không tạo
     được hardlink/copy, không mkdir được...) → in cảnh báo tiếng Việt, trả None, KHÔNG NÉM —
     thiếu ffmpeg chỉ nên làm 1 lượt tải thất bại (rơi vào nhánh log lỗi có sẵn), không được chặn
@@ -270,6 +291,13 @@ def _ffmpeg_tren_path():
         return None
 
 
+# Vá lần 3 (2026-09-23): PHẢI chạy NGAY LÚC IMPORT module, trước bất kỳ lệnh gọi yt_dlp nào khác
+# trong tiến trình (kể cả fetch_script.lay_meta_video chạy trước trong phan_tich_nguon) — xem lý
+# do đầy đủ ở mục 4 trong docstring _ffmpeg_tren_path ngay trên. Trả None (không ném) nếu môi
+# trường không tạo được shim — mọi chỗ dùng FFMPEG_SHIM đều tự rơi về hành vi cũ khi gặp None.
+FFMPEG_SHIM = _ffmpeg_tren_path()
+
+
 def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
     """Tải 30 giây đầu (yt_dlp download_sections) → n khung → 1 ảnh lưới contact.jpg. Lỗi trả None."""
     import qc_visual
@@ -278,15 +306,28 @@ def khung_hinh_0_30s(video_id, out_dir, n=6, proxy=None):
         # Đã có clip từ lần chạy trước thì dùng lại, khỏi tải lại (không cache phức tạp hơn 1 glob).
         clip = next((f for f in sorted(out_dir.glob("src_0_30s.*")) if f.stat().st_size > 10_000), None)
         if not clip:
-            _ffmpeg_tren_path()  # vá lần 2: ép yt_dlp thấy ffmpeg trên PATH trước khi thử tải
+            # vá lần 3 (2026-09-23): gọi lại đây chỉ để cứu trường hợp thư mục shim (FFMPEG_SHIM,
+            # đã tạo LÚC IMPORT module — xem mục 4 docstring _ffmpeg_tren_path) bị xoá giữa phiên
+            # chạy dài; idempotent nên gọi lại không hại gì. Việc PATH có shim TỪ TRƯỚC lúc import
+            # mới là điều kiện quyết định (yt_dlp nhớ kết quả dò trong cùng tiến trình).
+            shim = _ffmpeg_tren_path()
             import yt_dlp
             from yt_dlp.utils import download_range_func
             outtmpl = str(out_dir / "src_0_30s.%(ext)s")
+            # vá lần 3, mục 5: ffmpeg_location PHẢI là thư mục SHIM (có file tên đúng `ffmpeg.exe`),
+            # KHÔNG phải thư mục imageio_ffmpeg (chỉ có tên `ffmpeg-win-x86_64-v7.1.exe`, yt_dlp tự
+            # dựng `<thư mục>/ffmpeg` rồi không thấy → đè luôn kết quả dò PATH). Không tạo được shim
+            # (shim=None) thì rơi về hành vi cũ (thư mục imageio) để không mất hẳn khả năng chạy.
             base_opts = {"quiet": True, "no_warnings": True, "noprogress": True,
                          "download_ranges": download_range_func(None, [(0, 30)]), "force_keyframes_at_cuts": True,
-                         "outtmpl": outtmpl, "ffmpeg_location": str(Path(qc_visual._ff()).parent)}
+                         "outtmpl": outtmpl,
+                         "ffmpeg_location": str(shim) if shim else str(Path(qc_visual._ff()).parent)}
             if proxy:
                 base_opts["proxy"] = proxy
+            # cùng cookie với lay_meta_video (fetch_script._ap_cookies) — request này cũng là gọi
+            # thẳng YouTube nên ăn đòn chặn bot y hệt; bỏ sót ở vá lần 2, bổ sung ở vá lần 3.
+            import fetch_script
+            fetch_script._ap_cookies(base_opts)
             err = ""
             for i, (client, fmt) in enumerate(KHUNG_HINH_THU):
                 opts = dict(base_opts, format=fmt, extractor_args={"youtube": {"player_client": [client]}})

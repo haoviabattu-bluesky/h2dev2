@@ -45,6 +45,15 @@ def _writer_chat(prof, prompt, **kwargs):
 ROOT = OUT_ROOT
 LANG_NAME = {"ja": "Japanese (日本語)", "ko": "Korean (한국어)", "en": "English"}
 
+# HOOK khoá trước khi viết thân (Task 8, 2026-09-23): chèn vào _pass1_prompt khi có hook_locked.
+# Khối chữ đã được cân chỉnh — KHÔNG đổi wording khi sửa chỗ khác.
+HOOK_LOCK_BLOCK = (
+    "PHẦN MỞ ĐẦU ĐÃ KHOÁ — chép NGUYÊN VĂN làm đoạn ĐẦU TIÊN của bản kể, không đổi một chữ, không thêm gì phía trước:\n"
+    "{hook}\n"
+    "Viết phần còn lại NỐI TỰ NHIÊN từ câu cuối của đoạn trên: KHÔNG kể lại thông tin đoạn trên vừa nói, KHÔNG mở lại câu "
+    "chuyện từ đầu (không tả thời tiết/mùa/giới thiệu kênh), KHÔNG giới thiệu tên-tuổi-nghề người kể trước khi câu chuyện "
+    "cần đến; câu hỏi mà đoạn trên để ngỏ phải được TRẢ ở đúng chỗ khung sự kiện quy định, không trả ngay lập tức.")
+
 # Marker/rác tuyệt đối không được lọt vào bản đọc (narrator sẽ đọc cả marker).
 # ⚠️ 停止/続けて là TỪ TIẾNG NHẬT BÌNH THƯỜNG (「続けてきた」…) → chỉ tính là marker khi nằm trong
 # 「」 hoặc đứng một mình cả dòng. Không có luật này thì gate báo sai mọi kịch bản tốt.
@@ -291,7 +300,7 @@ def _comment_insight_block(insight):
     return out
 
 
-def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_insight=None, budget_block=None):
+def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_insight=None, budget_block=None, hook_locked=""):
     n = prof.get("narrator", {}) or {}
     lang = LANG_NAME.get(prof.get("language", "ja"), prof.get("language"))
     mode = ((prof.get("script", {}) or {}).get("mode") or "").lower()
@@ -349,6 +358,8 @@ def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_in
     # Luật NHỊP phải viết bằng NGÔN NGỮ ĐÍCH mới ăn (bài học 2026-09-08: luật tiếng Việt bị bỏ qua
     # → ra 25% hội thoại, 1,6 phẩy/câu, PASS 2 phải sửa lại toàn bộ).
     parts += ["", _pacing_block(prof)]
+    if hook_locked:
+        parts += ["", HOOK_LOCK_BLOCK.format(hook=hook_locked.strip())]
     parts += ["", "KHUNG SỰ KIỆN CẦN ĐI THEO:", competitor]
     return "\n".join(parts)
 
@@ -888,13 +899,17 @@ def analyze_comments(prof, transcript, comments):
     return d if (d["diem_cham"] or d["thieu_sot"]) else None
 
 
-def extract_beats(prof, competitor, n=10):
+def extract_beats(prof, competitor, n=10, hook_locked=""):
     """PASS 0 — bóc KHUNG SỰ KIỆN trừu tượng từ bản gốc.
 
     ⚠️ BÀI HỌC 2026-09-08 (đo 2 lần): đưa NGUYÊN VĂN transcript cho PASS 1 thì model DỊCH SÁT, dù
     prompt cấm rõ ràng và bắt đổi tên/nghề/vùng. QC chấm bám gốc 100% + SAO_CHEP cả 2 lần → rủi ro
     lỗi "sử dụng lại nội dung" của YouTube. Cách duy nhất ăn: **giấu hẳn bản gốc khỏi PASS 1**,
     chỉ đưa khung chức năng (nhịp nào làm gì) — không câu thoại, không tên, không vật đặc trưng.
+
+    hook_locked (Task 8, 2026-09-23): hook 20-30s đã khoá trước (hook_stage.py) coi như Beat 0 —
+    N01 phải SETUP nối tiếp từ N00, không mô tả lại sự kiện N00; output được gắn thêm 1 dòng JSON
+    header + dòng "N00. [HOOK — ĐÃ KHOÁ] ..." ở đầu để PASS 1 nhìn thấy khung đủ Beat 0..N.
     """
     rules = [
         "Đọc transcript dưới đây và rút ra KHUNG SỰ KIỆN để người khác viết một câu chuyện MỚI cùng kiểu cảm xúc.",
@@ -908,11 +923,20 @@ def extract_beats(prof, competitor, n=10):
         "TRANSCRIPT:",
         competitor,
     ]
+    if hook_locked:
+        rules.insert(2, "N00 = HOOK đã khoá (cho sẵn, KHÔNG viết lại). N01 là SETUP nối từ N00: không mô tả lại sự kiện N00; "
+                        "nếu transcript mở bằng đúng sự kiện đó thì N01 bắt đầu từ SAU nó.\nN00 (tham khảo, không chép vào output): "
+                        + hook_locked.strip())
     ask = "\n".join(rules)
     r = _writer_chat(prof, ask, task="short", max_tokens=2000, min_chars=150)
     beats = r.text.strip()
     print(f"[B3 PASS 0] khung {len(beats)} ký tự · {r.provider}:{r.model} {r.elapsed:.0f}s "
           f"(bản gốc {len(competitor):,} chữ được GIẤU khỏi PASS 1)")
+    if hook_locked:
+        import hashlib
+        head = json.dumps({"beat0": {"beat_type": "hook", "locked": True, "source": "hook_locked.txt",
+                                     "sha256": hashlib.sha256(hook_locked.strip().encode("utf-8")).hexdigest()}}, ensure_ascii=False)
+        beats = head + "\n" + "N00. [HOOK — ĐÃ KHOÁ] " + hook_locked.strip().replace("\n", " ") + "\n" + beats
     return beats
 
 

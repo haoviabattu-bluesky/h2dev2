@@ -113,5 +113,7 @@ làm lại: **35–50 phút**; ep3-sougi mất ~1,5 giờ vì vừa làm vừa d
 
 1. **Ai ghép (bước 3)?** `CLAUDE.md` chỉ cho Lane A tự render; satori thì ep3-sougi máy 1 đã ghép
    (anh đồng ý tại chỗ). Giữ nguyên cách đó cho 6 tập này, hay đóng gói `hook\` giao máy 2 ghép?
-2. **`ep3-sougi` xử lý sao?** Bản dựng 07/09 + `final_with_hook.mp4` 628 MB không có trong sheet,
-   cùng câu chuyện với ep05 đã dựng lại. Giữ làm bản mẫu tham chiếu, hay xoá để lấy lại ~1,2 GB?
+2. ~~**`ep3-sougi` xử lý sao?**~~ → **ĐÃ XỬ LÝ 24/09**: anh chốt dọn rác, thư mục còn 51 MB —
+   xoá `final.mp4` + `final_with_hook.mp4` + `img\` + clip/segment, giữ bộ hook làm khuôn và
+   `hook\hook_final_JP_lv.mp4` (26 giây) để anh xem lại. Chi tiết:
+   `E:\CLAUDE\YOUTUBE\h2dev\docs\BIEN_BAN_DON_LANE_SATORI_2026-09-24.md`.

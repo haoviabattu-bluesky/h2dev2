@@ -42,8 +42,17 @@ Máy 2 có sẵn toàn bộ mã nguồn (`dong_goi_may2.py --bundle` copy hết 
 lane). Sau khi nhận job:
 
 ```
+cd <FlowHandoff_local của máy 2>\shareduoc2_3_tool\pipeline
 py -3.13 make_video.py --profile <lane> --slug <tập> --from B4
 ```
+
+⚠️ **CHẠY TỪ ĐÂU: luôn là `shareduoc2_3_tool\pipeline` (cây BUNDLE), KHÔNG phải `h2dev\pipeline`
+của máy 2.** Bundle là cây duy nhất được máy 1 làm mới mỗi lần đóng gói, nên profile + cổng mới
+(`kiem_phu_chu`, `kiem_lock`) chỉ chắc chắn có ở đó; `h2dev\pipeline` bên máy 2 là checkout git
+riêng, có thể cũ hơn nhiều ngày. Chạy sai cây sẽ báo "Không có profile '<lane>'" — đó là dấu hiệu
+đang đứng ở `h2dev\pipeline`, không phải profile thiếu. (Máy 2 hỏi đúng chỗ này 24/09 vì §3 bản cũ
+không ghi `cd`.) KHÔNG copy profile/tts.py/gate_common.py từ bundle sang `h2dev` cho "đồng bộ 2 cây"
+— hai cây khác thế hệ, trộn tay là mất luôn cách biết bản nào đang chạy.
 
 `--from B4` = bắt đầu từ lồng tiếng, vì B0–B3 (kịch bản) máy 1 đã làm và đã khoá sha256.
 Cổng `kiem_lock()` sẽ chặn nếu `script.txt` bị sửa sau khi khoá.

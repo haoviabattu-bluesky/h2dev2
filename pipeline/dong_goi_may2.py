@@ -286,32 +286,47 @@ def cmd_job(profile_id, slug):
     n, n_face, cost = _dem_anh(job_dir)
     n_scene = n - n_face
     kenh = (prof.get("publish") or {}).get("upload_channel", profile_id)
+    tab = (prof.get("publish") or {}).get("sheet_tab", kenh)
+    visual = ((prof.get("script") or {}).get("hook") or {}).get("visual", "")
     bg = (
-        f"# ĐƠN GIAO VIỆC MÁY 2 — {profile_id} / {slug}\n"
-        f"Đóng gói lúc: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
-        f"## Chặng A — VẼ ẢNH (đọc FlowHandoff_local/shared/GIAO_VIEC_MAY2_LANE_F.md VIỆC 2 trước khi chạy)\n"
-        f"{n} ảnh: {n_face} khoá mặt (@REF/@REF2) + {n_scene} cảnh vật ≈ {cost - 600:,}đ"
-        + (f" — ẢNH MASTER ĐÃ VẼ SẴN + QC (@REF/@REF2 trong _ref//_ref2/, ~600đ máy 1 đã tiêu) → "
-           f"KHÔNG vẽ lại, gen_images tự nhận ra đã có\n" if ref_masters else " + master ×2 ≈ 600đ\n")
-        + f"→ tổng ≈ {cost:,}đ\n"
-        f"cd FlowHandoff_local\\shared\\buoc2_3_tool\\pipeline\n"
+        f"# \u0110\u01a0N GIAO VI\u1ec6C M\u00c1Y 2 \u2014 {profile_id} / {slug}\n"
+        f"\u0110\u00f3ng g\u00f3i l\u00fac: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
+        f"\u0110\u1eccC TR\u01af\u1edaC: shared\\QUY_TRINH_GIAO_VIEC_MAY2.md (ranh gi\u1edbi m\u00e1y 1 / m\u00e1y 2, 2 c\u1ed5ng b\u1eaft bu\u1ed9c)\n"
+        f"M\u1ecdi \u0111\u01b0\u1eddng d\u1eabn d\u01b0\u1edbi \u0111\u00e2y T\u00cdNH T\u1eea th\u01b0 m\u1ee5c Syncthing `FlowHandoff_local\\` c\u1ee7a CH\u00cdNH M\u00c1Y B\u1ea0N\n"
+        f"(m\u00e1y 1 \u0111\u1ec3 \u1edf h2dev\\FlowHandoff_local, m\u00e1y 2 \u1edf ch\u1ed7 kh\u00e1c \u2014 \u0111\u1eebng ch\u00e9p nguy\u00ean \u0111\u01b0\u1eddng d\u1eabn tuy\u1ec7t \u0111\u1ed1i c\u1ee7a nhau).\n\n"
+        f"## M\u1ed8T L\u1ec6NH DUY NH\u1ea4T\n"
+        f"cd shared\\buoc2_3_tool\\pipeline\n"
         f"xcopy /E /I ..\\..\\..\\jobs\\{slug} ..\\assets\\{profile_id}\\{slug}\n"
-        f"py make_video.py --profile {profile_id} --slug {slug} --only B5 --sample-only\n"
-        f"  (DỪNG sau mẫu dù QC PASS — chờ máy 1 xem rồi mới bỏ --sample-only ở lệnh dưới, xem VIỆC 2)\n"
-        f"py make_video.py --profile {profile_id} --slug {slug} --only B5\n"
-        f"py make_video.py --profile {profile_id} --slug {slug} --only B5Q\n\n"
-        f"## Chặng B — GIỌNG + GHÉP VIDEO (CHỈ chạy khi dòng VOICE= dưới đây ĐÃ được máy 1 điền)\n"
-        f"VOICE=\n"
-        f"py make_video.py --profile {profile_id} --slug {slug} --voice <giá trị VOICE ở trên>\n\n"
-        f"## 6 LUẬT CẤM — đọc đủ ở GIAO_VIEC_MAY2_LANE_F.md trước khi chạy\n"
-        f"1. KHÔNG --from sớm hơn B4 (script.lock.json đã khoá — xoá lại từ B3 là mất công máy 1, và "
-        f"   máy 2 không có Fable/claude -p để viết lại).\n"
-        f"2. KHÔNG sửa script.txt / img_prompts.txt / img_doan.txt / characters.json / profiles/*.json.\n"
-        f"3. B5S/B5Q rớt → đọc logs/*.json rồi báo lại, KHÔNG --force-qc.\n"
-        f"4. Hết tiền gpti2 (402/429 cả 3 key) → DỪNG báo lại, KHÔNG tự đổi provider khác.\n"
-        f"5. Mọi báo cáo kèm số đo THỜI GIAN THẬT + số ảnh/tiền THẬT đã tiêu (không ước lượng).\n"
-        f"6. Xong → results/video_render/{kenh}/{slug}/ đủ 3 file (final.mp4, phude.srt, review-vi.mp4) "
-        f"— Syncthing tự mang về máy 1, không cần copy đi đâu thêm.\n"
+        f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --from B4\n\n"
+        f"L\u1ec7nh n\u00e0y t\u1ef1 l\u00e0m: l\u1ed3ng ti\u1ebfng \u2192 n\u1eafn ph\u1ee5 \u0111\u1ec1 theo k\u1ecbch b\u1ea3n \u2192 v\u1ebd {n} \u1ea3nh \u2192 d\u1ef1ng final.mp4.\n"
+        f"B0\u2013B3 (k\u1ecbch b\u1ea3n) m\u00e1y 1 \u0111\u00e3 xong v\u00e0 \u0111\u00e3 kho\u00e1 sha256.\n\n"
+        f"## \u1ea2NH: {n} t\u1ea5m ({n_face} kho\u00e1 m\u1eb7t + {n_scene} c\u1ea3nh v\u1eadt)\n"
+        + (f"\u1ea2nh master \u0111\u00e3 v\u1ebd s\u1eb5n + QC (_ref/, _ref2/) \u2014 KH\u00d4NG v\u1ebd l\u1ea1i.\n" if ref_masters else "")
+        + f"V\u1ebd b\u1eb1ng Google Flow th\u00ec 0\u0111; d\u00f9ng gpti2 th\u00ec \u2248 {cost:,}\u0111. Ch\u1ecdn c\u00e1ch n\u00e0o l\u00e0 quy\u1ec1n m\u00e1y 2, nh\u01b0ng\n"
+        f"b\u00e1o l\u1ea1i s\u1ed1 ti\u1ec1n TH\u1eacT \u0111\u00e3 ti\u00eau.\n\n"
+        f"## HAI C\u1ed4NG KH\u00d4NG \u0110\u01af\u1ee2C T\u1eaeT\n"
+        f"1. C\u1ed5ng PH\u1ee6 CH\u1eee (tts.py::kiem_phu_chu) \u2014 so s\u1ed1 ch\u1eef ph\u1ee5 \u0111\u1ec1 server tr\u1ea3 v\u1ec1 v\u1edbi K\u1ecaCH B\u1ea2N G\u1ed0C,\n"
+        f"   thi\u1ebfu qu\u00e1 5% l\u00e0 d\u1eebng. \u0110o th\u1eadt 23/09: 3/4 l\u01b0\u1ee3t ai33 NU\u1ed0T TR\u1eccN M\u1ed8T C\u00c2U, kh\u00f4ng b\u00e1o l\u1ed7i.\n"
+        f"   G\u1eb7p l\u1ed7i n\u00e0y th\u00ec CH\u1ea0Y L\u1ea0I \u0111\u00fang l\u1ec7nh \u0111\u00f3 \u2014 \u0111\u1eebng \u0111em b\u1ea3n thi\u1ebfu \u0111i gh\u00e9p.\n"
+        f"2. C\u1ed5ng KHO\u00c1 (gate_common.kiem_lock) \u2014 script.txt b\u1ecb s\u1eeda sau khi kho\u00e1 l\u00e0 ch\u1eb7n c\u1ee9ng.\n\n"
+        f"## 5 LU\u1eacT C\u1ea4M\n"
+        f"1. KH\u00d4NG --from s\u1edbm h\u01a1n B4 (m\u00e1y 2 kh\u00f4ng c\u00f3 Fable/claude -p \u0111\u1ec3 vi\u1ebft l\u1ea1i k\u1ecbch b\u1ea3n).\n"
+        f"2. KH\u00d4NG s\u1eeda script.txt / img_prompts.txt / img_doan.txt / characters.json / profiles/*.json.\n"
+        f"3. QC r\u1edbt \u2192 \u0111\u1ecdc logs/*.json r\u1ed3i b\u00e1o l\u1ea1i, KH\u00d4NG --force-qc.\n"
+        f"4. H\u1ebft ti\u1ec1n / h\u1ebft h\u1ea1n m\u1ee9c \u2192 D\u1eeaNG b\u00e1o l\u1ea1i, KH\u00d4NG t\u1ef1 \u0111\u1ed5i provider.\n"
+        f"5. B\u00e1o c\u00e1o k\u00e8m TH\u1edcI GIAN TH\u1eacT + s\u1ed1 \u1ea3nh/ti\u1ec1n TH\u1eacT (kh\u00f4ng \u01b0\u1edbc l\u01b0\u1ee3ng).\n\n"
+        + (f"## HOOK\n"
+           f"Lane n\u00e0y khai script.hook.visual = `{visual}`: hook l\u00e0 30 gi\u00e2y \u0110\u1ea6U c\u1ee7a ch\u00ednh script.txt,\n"
+           f"l\u1ed3ng ti\u1ebfng v\u00e0 minh ho\u1ea1 chung M\u1ed8T L\u1ea6N v\u1edbi th\u00e2n video. G\u00f3i n\u00e0y C\u1ed0 \u00dd KH\u00d4NG c\u00f3 th\u01b0 m\u1ee5c hook\\\n"
+           f"\u2014 \u0111\u1ec3 nguy\u00ean, \u0111\u1eebng d\u1ef1ng th\u00eam clip 30 gi\u00e2y n\u1eefa (s\u1ebd th\u00e0nh ph\u00e1t hai l\u1ea7n).\n\n"
+           if visual == "lien_mach_than" else
+           f"## HOOK\nLane khai script.hook.visual = `{visual}`: hook l\u00e0 CLIP RI\u00caNG, \u0111\u01a1n v\u1ebd \u1edf hook\\.\n"
+           f"D\u1ef1ng xong n\u1ed1i v\u00e0o TR\u01af\u1edaC final.mp4 \u2192 final_with_hook.mp4, qua 4 ph\u00e9p ki\u1ec3m \u1edf\n"
+           f"shared\\QUY_TAC_VIDEO_HOOK.md \u00a72 (m\u1ee9c ti\u1ebfng \u00b7 fps \u00b7 ki\u1ec3u ph\u1ee5 \u0111\u1ec1 \u00b7 \u0111i\u1ec3m n\u1ed1i).\n\n"
+           if visual else "")
+        + f"## TR\u1ea2 H\u00c0NG\n"
+        f"results\\{tab}\\{slug}\\  \u2014 \u0111\u00fang c\u1ea5u tr\u00fac n\u00e0y (theo T\u00caN TAB SHEET, kh\u00f4ng ph\u1ea3i t\u00ean lane).\n"
+        f"Syncthing t\u1ef1 mang v\u1ec1 m\u00e1y 1.\n"
     )
     (dst / "_BANGIAO.txt").write_text(bg, encoding="utf-8")
     print(f"✓ đóng gói {dst} ({n_copied} file + logs/) · {n} ảnh ≈ {cost:,}đ")

@@ -1,0 +1,8 @@
+2026/09/24-08:32:14.533 4d68 Creating DB e:\CLAUDE\YOUTUBE\h2dev\CLAUDEYOUTUBEGROK_PROFILE\Default\Local Storage\leveldb since it was missing.
+2026/09/24-08:32:14.564 4d68 Reusing MANIFEST e:\CLAUDE\YOUTUBE\h2dev\CLAUDEYOUTUBEGROK_PROFILE\Default\Local Storage\leveldb/MANIFEST-000001
+2026/09/24-08:33:14.580 58dc Level-0 table #5: started
+2026/09/24-08:33:14.588 58dc Level-0 table #5: 186540 bytes OK
+2026/09/24-08:33:14.594 58dc Delete type=0 #3
+2026/09/24-08:33:52.698 4d68 Level-0 table #7: started
+2026/09/24-08:33:52.703 4d68 Level-0 table #7: 184209 bytes OK
+2026/09/24-08:33:52.708 4d68 Delete type=0 #4

@@ -6,8 +6,8 @@ mọi quyết định chạy tiếp / dừng / thử lại nằm CỨNG trong co
 docs/GIAO_VIEC_VIET_CHAY_BUOC3.md (file tự chứa, đọc trước khi sửa).
 
 Dùng:
-  py -3.13 chay_buoc3.py --tab Lopezzapa68 --dong <STT>
-  py -3.13 chay_buoc3.py --tab Lopezzapa68 --dong <STT> --thu     (chỉ kiểm, không chạy gì)
+  py -3.13 chay_buoc3.py --tab Satori-Lopezzapa68 --dong <STT>
+  py -3.13 chay_buoc3.py --tab Satori-Lopezzapa68 --dong <STT> --thu     (chỉ kiểm, không chạy gì)
 
 Chỉ nhận MỘT STT mỗi lần chạy (luật dự án: cấm tự chạy dải/tất cả). Bên gọi muốn nhiều dòng thì tự lặp.
 
@@ -61,9 +61,10 @@ sys.path.insert(0, str(HERE))
 # Import chung cơ chế có sẵn — KHÔNG tự viết lại logic (luật 3.3 của hồ sơ)
 import ghi_cot_video as gcv      # noqa: E402  (lane_theo_tab, thu_muc_tap — đã sửa folder_pattern)
 import quet_dong_can_anh as qd   # noqa: E402  (svc() — cơ chế đọc Google Sheets dùng chung)
+import sheet_tab                 # noqa: E402  (tên tab {Lane}-{kênh})
 
 SHEET_ID = "1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU"
-TAB_MAC_DINH = "Lopezzapa68"
+TAB_MAC_DINH = "Satori-Lopezzapa68"     # tab đổi tên 2026-09-24 theo {Lane}-{kênh}
 LANE_MAC_DINH = "satori-jp-obaa"
 BAO_CAO_DIR = ROOT / "BAO_CAO_BUOC3"
 KHOANG_NGHI = (10, 30, 90)          # loại A: nghỉ giữa các lần thử
@@ -209,6 +210,7 @@ def main():
     ap.add_argument("--dong", required=True, type=int, help="STT ở cột A (KHÔNG phải số dòng sheet)")
     ap.add_argument("--thu", action="store_true", help="chỉ kiểm tra trạng thái, KHÔNG chạy gì")
     a = ap.parse_args()
+    a.tab = sheet_tab.tab_that(a.tab)
 
     bat_dau = gio_day()
     t_dau = time.perf_counter()

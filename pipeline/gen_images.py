@@ -30,6 +30,8 @@ _REF_MARK = re.compile(r"^\s*@ref\b[:\s]*", re.IGNORECASE)     # \b: KHÔNG kh�
 _REF2_MARK = re.compile(r"^\s*@ref2\b[:\s]*", re.IGNORECASE)
 _REF12_MARK = re.compile(r"^\s*@ref12\b[:\s]*", re.IGNORECASE)   # cả 2 nhân vật trong 1 khung (Lane G, 2026-09-20)
 _GROK_MARK = re.compile(r"^\s*@grok\b[:\s]*", re.IGNORECASE)
+# Lane K (2026-09-24): khoá mặt N nhân vật/tập — `@CAST:shu,tencho <prompt>` → master `<cast-root>/_ref_<id>/001.png`
+_CAST_MARK = re.compile(r"^\s*@cast:([A-Za-z0-9_\-]+(?:\s*,\s*[A-Za-z0-9_\-]+)*)\s+", re.IGNORECASE)
 _print_lock = threading.Lock()
 
 
@@ -47,6 +49,11 @@ def parse_prompts(path):
         if not s or _HEADER.match(s):
             continue
         tag = "plain"
+        mc = _CAST_MARK.match(s)
+        if mc:
+            ids = [x.strip() for x in mc.group(1).split(",") if x.strip()]
+            out.append(("cast:" + ",".join(ids), _NUM.sub("", s[mc.end():].strip()).strip()))
+            continue
         for mark, t in ((_GROK_MARK, "grok"), (_REF12_MARK, "ref12"), (_REF2_MARK, "ref2"), (_REF_MARK, "ref")):
             m = mark.match(s)
             if m:
@@ -76,6 +83,8 @@ def main():
                     help="ảnh master NHÂN VẬT 1 (dòng @REF). Ảnh đầu = master ưu tiên giữ.")
     ap.add_argument("--ref2", action="append", default=[],
                     help="ảnh master NHÂN VẬT 2 (dòng @REF2) — vd người kể + 1 người quan trọng.")
+    ap.add_argument("--cast-root", default="",
+                    help="thư mục tập chứa _ref_<id>/001.png — cho dòng @CAST:id1,id2 (khoá mặt N nhân vật, Lane K)")
     ap.add_argument("--skip-stock-plan", default="",
                     help="đường dẫn stock_plan.tsv (lane hybrid) — dòng nào group=STOCK thì BỎ QUA "
                          "hoàn toàn (không gen AI cho dòng đó), giữ đúng số thứ tự ảnh còn lại.")
@@ -118,7 +127,9 @@ def main():
             continue   # dòng STOCK (hybrid) — không gen AI
         if (outdir / name).exists():
             continue   # resume: bỏ ảnh đã có
-        if tag == "grok":
+        if tag.startswith("cast:"):
+            route = tag if args.cast_root else "plain"
+        elif tag == "grok":
             route = "grok"
         elif tag == "ref12" and refs and refs2:
             route = "ref12"
@@ -142,6 +153,9 @@ def main():
         mode += f" + REF2 {n['ref2']}"
     if n["ref12"]:
         mode += f" + REF12 {n['ref12']} (2 mặt)"
+    n_cast = sum(1 for *_, x in tasks if x.startswith("cast:"))
+    if n_cast:
+        mode += f" + CAST {n_cast} (khoá mặt theo id)"
     if n["grok"]:
         mode += f" + GROK {n['grok']} (trẻ em)"
     log(f"Tổng prompt: {len(prompts)} | cần gen: {len(tasks)} | đã có: {len(prompts)-len(tasks)}"
@@ -162,6 +176,13 @@ def main():
                 img = gpti2_edit.edit(prompt, refs, orientation=args.orient, quality=args.quality)
             elif route == "ref2":
                 img = gpti2_edit.edit(prompt, refs2, orientation=args.orient, quality=args.quality)
+            elif route.startswith("cast:"):
+                ms = [Path(args.cast_root) / f"_ref_{x}" / "001.png" for x in route[5:].split(",")]
+                thieu = [str(m) for m in ms if not m.exists()]
+                if thieu:
+                    raise RuntimeError(f"thiếu master khoá mặt: {thieu}")
+                img = gpti2_edit.edit(prompt, [(m.read_bytes(), m.name) for m in ms],
+                                      orientation=args.orient, quality=args.quality)
             elif route == "ref12":
                 img = gpti2_edit.edit(prompt, refs + refs2, orientation=args.orient, quality=args.quality)
             else:

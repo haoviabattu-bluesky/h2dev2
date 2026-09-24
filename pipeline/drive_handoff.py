@@ -260,6 +260,20 @@ def dung_local():
     return goc_local() is not None
 
 
+def _thu_goi_title(local_dir):
+    """2026-09-24 (anh chốt): upload-job xong thì TỰ gọi dự án YT-TITLE-RESEARCH — cùng cơ chế với
+    dong_goi_may2.py (xem goi_title.py: tự dò lane, tự kiểm cổng, DỪNG nếu lane chưa đủ điều kiện).
+    local_dir ở đây LÀ thư mục tập thật (không phải bản copy trong FlowHandoff_local)."""
+    try:
+        HERE = Path(__file__).resolve().parent
+        if str(HERE) not in sys.path:
+            sys.path.insert(0, str(HERE))
+        import goi_title
+        goi_title.goi(str(Path(local_dir).resolve()))
+    except Exception as e:
+        print(f"  ⚠️ goi_title lỗi khi bắn nền TITLE: {e}")
+
+
 def chay_local(cmd, goc):
     """Thuc thi lenh trong che do LOCAL. Tra ve exit code."""
     jobs = goc / "jobs"
@@ -289,7 +303,10 @@ def chay_local(cmd, goc):
         copy_cay(local_dir, dst)
         for ten, p in phang:
             shutil.copy2(p, dst / ten)
-        return 0 if doi_chieu_local(dst, local_dir, f"job '{slug}'") else 1
+        ok = doi_chieu_local(dst, local_dir, f"job '{slug}'")
+        if ok and not os.environ.get("GOI_TITLE_TAT") == "1":
+            _thu_goi_title(local_dir)
+        return 0 if ok else 1
 
     elif cmd == "verify-job":
         slug, local_dir = sys.argv[2], sys.argv[3]
@@ -530,7 +547,10 @@ def main():
         for ten, p in phang:      # ban phang o goc, cho may 2 chay ban cu (xem phang_master)
             up_mot_file(drive, p, slug_folder, ten)
         print()
-        return 0 if doi_chieu(drive, slug_folder, local_dir, f"job '{slug}'") else 1
+        ok = doi_chieu(drive, slug_folder, local_dir, f"job '{slug}'")
+        if ok and not os.environ.get("GOI_TITLE_TAT") == "1":
+            _thu_goi_title(local_dir)
+        return 0 if ok else 1
 
     elif cmd == "verify-job":
         slug, local_dir = sys.argv[2], sys.argv[3]

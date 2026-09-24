@@ -580,6 +580,150 @@ def g8_khong_chep_nhau(d, c, prof, loi_doc, title):
     return chan, canh
 
 
+# ───────────────────────────────── CỔNG THƯỢNG NGUỒN: chặn TRƯỚC KHI VIẾT (anh chốt 2026-09-24)
+# Vì sao có hàm này thay vì thêm một dòng vào tài liệu: luật hook + gói đăng đã được chốt 2026-09-23
+# và viết vào CLAUDE.md, nhưng đo thật ngày 24/09 thì `script.hook.enabled` mới BẬT ở 3/6 lane
+# (satori · kenko · toshi) — 3 lane còn lại (iro · real · tano) vẫn TẮT, tức luật "hook bắt buộc mọi
+# tập" chỉ chạy khi có người nhớ ra mà bật. Luật nằm trong VĂN BẢN thì phải có người đọc; luật nằm
+# trong CỔNG thì không ai đi qua được mà không làm. Đây là cùng bài học đã ghi ở memory
+# `khong-giao-viec-thu-cong-rao-nam-trong-tool`.
+#
+# Gọi ở `lean_script.run()` NGAY SAU S1Q, trước H1–H4 và trước S2 — nghĩa là trượt cổng này thì
+# CHƯA TỐN LƯỢT LLM NÀO.
+# Hook có HAI chiều thông tin, cố ý tách làm 2 field — trộn vào 1 field là chỗ sinh lỗi (đã dính thật
+# 2026-09-24: đổi `visual` cho gọn thì (a) chết nhánh `visual == "lien_mach_than"` trong
+# dong_goi_may2.py, (b) mất thông tin REF-LOCK mà tên `anh_ai_ref_grok`/`manga_ai_ref` đang mang, mà
+# SOP từng lane + memory đang trỏ vào):
+#   · `script.hook.visual`      = NGUỒN HÌNH + cách khoá mặt (riêng từng lane, có code đọc)
+#   · `script.hook.visual_kind` = hook là VIDEO SINH hay ẢNH TĨNH (luật của anh, cổng này kiểm)
+VISUAL_KIND_VIDEO = "video_sinh"
+
+
+def cong_truoc_khi_viet(d, prof):
+    """Trả list lỗi BLOCK (rỗng = được viết). 0 LLM, 0 mạng.
+
+    Năm điều kiện, đều là điều kiện THƯỢNG NGUỒN (phải có TRƯỚC khi viết, không phải sửa sau):
+      1. `script.hook.enabled` — hook 20–30s là luật MỌI LANE.
+      2. `goi_dang.enabled` — lane phải khai ngưỡng gói đăng ĐO TỪ KÊNH MẪU CỦA CHÍNH NÓ.
+      3. `promise.txt` — MỘT lời hứa, 1 câu. Đây là thứ model VIẾT cần để viết đúng ngay lần đầu
+         (xem `khoi_luat_cho_prompt`); thiếu nó thì chỉ còn cách chấm-rồi-sửa, tốn lượt Sol.
+      4. `script.hook.visual_kind == "video_sinh"` (Flow/Grok) — hoặc khai `visual_exception` ghi lý do.
+      5. `script.hook.sfx` — hiệu ứng âm thanh BẮT BUỘC.
+    Điều 4–5 anh chốt 2026-09-24: hook ghép từ ảnh tĩnh nhìn ra ngay là video AI rẻ ở đúng 20 giây
+    quyết định người xem ở lại hay thoát; lane satori đã chạy thật clip Grok nên không còn là giả
+    thiết. Ngoại lệ chính danh hiện có: `toshi-densetsu-jp` và `irogatatarukioku` bán SỰ THẬT CÓ HỒ SƠ
+    — đưa clip AI vào hook là tự phá thứ kênh đang bán, chưa kể phá quy ước credits.txt.
+    """
+    import hook_stage
+    loi = []
+    h = (prof.get("script", {}) or {}).get("hook") or {}
+    if not hook_stage.is_enabled(prof):
+        loi.append("profile chưa khai `script.hook.enabled: true` — hook 20–30s đầu là luật MỌI LANE "
+                   "(chốt 2026-09-23). Đọc docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §2b")
+    if not is_enabled(prof):
+        loi.append("profile chưa khai `goi_dang.enabled: true` — ngưỡng gói đăng phải ĐO TỪ KÊNH MẪU "
+                   "của chính lane này rồi khai vào `profile.goi_dang` kèm `_nguon`. "
+                   "Đọc docs/QUY_TAC_GOI_DANG.md §3")
+    kind = str(h.get("visual_kind") or "")
+    if kind != VISUAL_KIND_VIDEO and not str(h.get("visual_exception") or "").strip():
+        loi.append(f"`script.hook.visual_kind` = {kind!r} — mặc định MỌI LANE hook phải là "
+                   f"{VISUAL_KIND_VIDEO!r} (video sinh từ Google Flow hoặc Grok Imagine, như "
+                   f"satori-jp-obaa đã chạy thật ở ep3-sougi), KHÔNG còn là video ghép từ ảnh render. "
+                   f"Muốn dùng ảnh tĩnh/clip stock thì khai `script.hook.visual_exception` ghi RÕ LÝ "
+                   f"DO. Đọc docs/QUY_TAC_VIDEO_HOOK.md §5b")
+    if not h.get("sfx", False):
+        loi.append("profile chưa khai `script.hook.sfx: true` — hiệu ứng âm thanh trong hook là BẮT "
+                   "BUỘC (anh chốt 2026-09-24). Sinh bằng ai33 `POST /v1/task/sound-effect`, để "
+                   "`duration_seconds` AUTO (memory sfx-ai33-mac-dinh-auto)")
+    promise, _ = doc_promise(d)
+    if not promise:
+        loi.append(f"thiếu {Path(d) / 'promise.txt'} — chốt MỘT lời hứa (1 câu) TRƯỚC khi viết; tiêu đề, "
+                   f"chữ thumbnail, câu đầu mô tả và 30–45s đầu hook đều phải nói lại đúng câu đó "
+                   f"(nguyên tắc 1). Đọc docs/QUY_TAC_GOI_DANG.md §1")
+    elif len([x for x in promise.splitlines() if x.strip()]) > 1:
+        loi.append(f"{Path(d) / 'promise.txt'} có nhiều dòng — lời hứa phải gói trong ĐÚNG 1 câu, "
+                   f"vì nó sẽ được nhồi vào prompt viết và vào 4 chỗ của gói đăng")
+    return loi
+
+
+def khoi_luat_cho_prompt(d, prof):
+    """Khối chữ chèn vào PROMPT của model VIẾT. Rỗng nếu lane chưa bật (không đổi hành vi cũ).
+
+    Đây là nửa còn lại của rào: cổng ở trên chỉ CHẶN, khối này mới làm model viết ĐÚNG NGAY LẦN ĐẦU.
+    Trước đây `qc_goi_dang.py` chỉ chấm SAU khi viết xong — mà chấm sau nghĩa là phải sửa, tức thêm
+    lượt Sol + lượt patch cho mỗi tập. Luật rẻ nhất là luật model đọc trước khi đặt bút.
+    """
+    if not is_enabled(prof):
+        return ""
+    c = dict(cau_hinh(prof))
+    # `sfx` sống ở `script.hook` (cùng chỗ với enabled/visual), không phải trong `goi_dang` — đọc từ
+    # đúng nguồn rồi mới đưa vào c, để chỗ khai và chỗ dùng không lệch nhau.
+    _h = (prof.get("script", {}) or {}).get("hook") or {}
+    c["hook_sfx"] = bool(_h.get("sfx", False))
+    c["hook_kind"] = str(_h.get("visual_kind") or "")
+    promise, _ = doc_promise(d)
+    dong = [
+        "LỜI HỨA CỦA TẬP NÀY (luật G1 — bắt buộc):",
+        f"   「{promise}」" if promise else "   (chưa chốt)",
+        "   Lời hứa này phải được nói lại trong "
+        f"{c['promise_window_s']:.0f} GIÂY ĐẦU của bản đọc. Tiêu đề, chữ thumbnail và câu đầu mô tả "
+        "cũng nói đúng lời hứa đó — nên đừng viết một câu chuyện đi chỗ khác.",
+        "",
+        "THỨ TỰ BẮT BUỘC CỦA MỞ ĐẦU (luật G3, đo từ kênh mẫu của chính kênh này):",
+        f"   · Câu MÂU THUẪN/nghịch lý chính phải nằm trong {c['contradiction_max_s']:.0f} giây đầu.",
+        f"   · Câu hỏi/lời hứa của TIÊU ĐỀ phải nói ra trong {c['title_core_max_s']:.0f} giây đầu.",
+        "   · CẤM mở bằng chào hỏi, cảm ơn, tự giới thiệu tên-tuổi, tiểu sử, năm sinh, hay đọc to "
+        "chữ 「タイトル」. Tên-tuổi đến SAU câu mâu thuẫn, đúng 1 câu.",
+    ]
+    if c["ritual"]:
+        dong.append("   · Câu NGHI THỨC của kênh phải có mặt (trong "
+                    f"{c['ritual_max_s']:.0f} giây đầu): " + " · ".join(f"「{r}」" for r in c["ritual"]))
+    dong += [
+    ]
+    # anh chốt 2026-09-24: hook là VIDEO SINH → 20–30s đầu bị ràng buộc bởi thứ dựng được thành clip.
+    # Phải nói cho model VIẾT biết TRƯỚC, vì nó là bên duy nhất quyết định đoạn mở có dựng nổi hay
+    # không; phát hiện ở khâu dựng thì đã phải viết lại đoạn mở (tốn lượt patch). Lane có ngoại lệ
+    # ảnh tĩnh (toshi/iro) KHÔNG được nhận khối này — dặn sai là model viết cảnh không có tư liệu thật.
+    if c.get("hook_kind") == VISUAL_KIND_VIDEO:
+        dong += [
+            "",
+            "20–30 GIÂY ĐẦU SẼ ĐƯỢC DỰNG THÀNH VIDEO SINH (Flow/Grok), không phải ảnh tĩnh:",
+            "   · Mỗi 5–6 giây là MỘT cảnh dựng được: một chủ thể, một chuyển động tả được bằng lời "
+            "(cúi xuống, mở phong bì, quay đầu lại). CẤM cảnh cần ≥3 nhân vật cùng hành động, cấm đổi "
+            "bối cảnh giữa một cảnh, cấm chữ/biểu đồ trên hình.",
+            "   · Viết sao cho mỗi câu mở neo vào MỘT hình cụ thể — câu bình luận trừu tượng không "
+            "dựng được thành clip, để dành cho thân bài.",
+        ]
+    if c.get("hook_sfx", True):
+        dong.append("   · Hook sẽ có HIỆU ỨNG ÂM THANH (bắt buộc) — viết chừa chỗ cho tiếng thật của "
+                    "cảnh (tiếng cửa, tiếng mưa, tiếng bước chân), đừng lấp kín 30 giây bằng lời đọc.")
+    dong += [
+        "",
+        "LỜI HỨA PHẢI GIỮ ĐƯỢC (luật G2):",
+        "   Mọi vế của tiêu đề và mọi dòng chữ thumbnail sẽ được máy grep lại trong bản đọc này (so cả "
+        "chữ số lẫn chữ Hán: 76秒 ↔ 七十六秒). Đừng để tiêu đề hứa một điều mà bản đọc không nói, và "
+        "TUYỆT ĐỐI đừng viết câu PHỦ ĐỊNH chính điều tiêu đề đang hứa.",
+    ]
+    if c["list_mode"]:
+        dong += [
+            "",
+            "VIDEO DANH SÁCH (luật G4):",
+            f"   · CẤM đọc trước danh sách: {c['list_preview_ban_s']:.0f} giây đầu KHÔNG được nêu tên "
+            "hay số thứ tự của bất kỳ mục nào. Chỉ được nhử bằng đặc điểm.",
+            "   · CẤM các câu tự tháo đếm ngược kiểu 「この順位は重要度を示すものではありません」 — nó xoá "
+            "lý do xem tới cuối.",
+        ]
+        # Chỉ dặn thứ tự khi lane CHỐT HẲN một kiểu. `list_order: "auto"` = kênh mẫu dùng CẢ HAI
+        # (第N位 đếm ngược cho video xếp hạng, 1つ目 đếm xuôi cho video thói quen) — ở đó cổng G4 cố ý
+        # BỎ QUA phép kiểm thứ tự, nên prompt cũng phải im: dặn một kiểu là dạy model sai một nửa số
+        # tập, mà cổng lại không bắt được (đo thật khi nghiệm thu prompt lane tano 2026-09-24).
+        if c["list_order"] == "countdown":
+            dong.append("   · Đếm NGƯỢC: mục số 1 để CUỐI cùng.")
+        elif c["list_order"] == "ascending":
+            dong.append("   · Đếm XUÔI: mục số 1 mở đầu danh sách.")
+    return "\n".join(dong)
+
+
 # ──────────────────────────────────────────────────────────── chạy cả cổng
 def kiem(slug_dir, profile_id):
     d = Path(slug_dir)

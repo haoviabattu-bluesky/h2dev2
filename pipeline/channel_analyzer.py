@@ -196,6 +196,109 @@ def _thumb_block(r):
     return " / ".join(d.get("dong_chu") or []) + f"   [bố cục: {d.get('bo_cuc', '')}]"
 
 
+# ────────────── CỔNG CHỐNG CHẠY TRÙNG KÊNH MÁY 2 ĐÃ NGHIÊN CỨU (anh chốt 2026-09-24)
+# Yêu cầu từ TRENDING-RESEARCH (máy 2):
+# `FlowHandoff_local\shared\YEU_CAU_MAY1_2026-09-24_dung_chay_lai_k1k2.md` — máy 1 đã chạy lại K1+K2
+# cho kênh 千種テンカ (Lane K) mà máy 2 đã nghiên cứu, tốn quota Gemini lần hai và có rủi ro hai bản
+# CHANNEL_DNA.md lệch nhau (Gemini không tất định).
+#
+# Rào đặt trong TOOL chứ không trong tài liệu (memory `khong-giao-viec-thu-cong-rao-nam-trong-tool`):
+# tài liệu thì phải có người nhớ mới tra, cổng thì không ai đi qua được mà không thấy.
+#
+# ⚠️ Cổng chỉ chặn khi bản của máy 2 THẬT SỰ DÙNG ĐƯỢC — tức có `CHANNEL_DNA.md` **và**
+# `VIDEO_ANALYSIS/*.json` (K3 `retrieve_videos.py` bắt buộc cần cái sau). Đo thật 2026-09-24: gói
+# `results\laneK_from_research\` chỉ có phiếu việc + report HTML + `data\`, KHÔNG có hai thứ này —
+# nên chặn theo kiểu "hễ máy 2 có đụng vào kênh đó là cấm chạy" sẽ khoá máy 1 khỏi thứ nó buộc phải
+# có. Thiếu → cổng chỉ CẢNH BÁO và chỉ đường xin bổ sung, vẫn cho chạy.
+CHANNEL_ID_PAT = re.compile(r"UC[A-Za-z0-9_-]{20,}")
+
+
+def _dinh_danh(channel_url):
+    """Rút (channel_id, handle) từ URL để so khớp với bản máy 2 đã giao. Thiếu thì trả None."""
+    u = (channel_url or "").strip()
+    cid = CHANNEL_ID_PAT.search(u)
+    m = re.search(r"@([A-Za-z0-9_.-]+)", u)
+    return (cid.group(0) if cid else None), (m.group(1).lower() if m else None)
+
+
+def ban_cua_may2(channel_url, goc=None):
+    """Tìm bản nghiên cứu của máy 2 cho ĐÚNG kênh này.
+
+    Trả list dict {thu_muc, co_dna, n_video_analysis, nguon}. Quét 2 kênh truyền:
+      · `FlowHandoff_local\\results\\channel_dna\\<slug>\\` — kênh truyền CHUẨN (6 kênh đang dùng),
+        channel_id nằm trong `run_log.txt`;
+      · `FlowHandoff_local\\results\\*_from_research\\` — kênh truyền hồ sơ ngách, channel_id nằm
+        trong `data\\channel.json` (`meta.channel_id`).
+    """
+    cid, handle = _dinh_danh(channel_url)
+    if not (cid or handle):
+        return []
+    goc = Path(goc) if goc else Path(__file__).resolve().parents[1] / "FlowHandoff_local" / "results"
+    ra = []
+
+    def _khop(text):
+        t = (text or "").lower()
+        return (cid and cid.lower() in t) or (handle and f"@{handle}" in t)
+
+    for d in sorted((goc / "channel_dna").glob("*")) if (goc / "channel_dna").is_dir() else []:
+        if d.is_dir() and _khop(_doc_an_toan(d / "run_log.txt")):
+            ra.append(_mo_ta_ban(d, "results/channel_dna"))
+    for d in sorted(goc.glob("*_from_research")):
+        if not d.is_dir():
+            continue
+        if _khop(_doc_an_toan(d / "data" / "channel.json")) or any(
+                _khop(_doc_an_toan(f)) for f in d.glob("*.md")):
+            ra.append(_mo_ta_ban(d, "results/*_from_research"))
+    return ra
+
+
+def _doc_an_toan(p):
+    p = Path(p)
+    try:
+        return p.read_text(encoding="utf-8", errors="ignore") if p.is_file() else ""
+    except OSError:
+        return ""
+
+
+def _mo_ta_ban(d, nguon):
+    va = d / "VIDEO_ANALYSIS"
+    return {"thu_muc": d, "nguon": nguon, "co_dna": (d / "CHANNEL_DNA.md").is_file(),
+            "n_video_analysis": len(list(va.glob("*.json"))) if va.is_dir() else 0}
+
+
+def cong_chong_trung(channel_url, force=False, goc=None):
+    """In cảnh báo / chặn. Trả True = ĐƯỢC chạy tiếp.
+
+    `goc` để test trỏ vào thư mục giả — nhận tham số thay vì bắt test monkeypatch `ban_cua_may2`
+    (bản đầu làm vậy và dính đệ quy vô hạn: hàm giả gọi lại chính hàm đã bị vá)."""
+    ban = ban_cua_may2(channel_url, goc=goc)
+    if not ban:
+        return True
+    dung_duoc = [b for b in ban if b["co_dna"] and b["n_video_analysis"] > 0]
+    for b in ban:
+        print(f"  · máy 2 đã nghiên cứu kênh này: {b['thu_muc']} "
+              f"(CHANNEL_DNA.md: {'có' if b['co_dna'] else 'KHÔNG'} · "
+              f"VIDEO_ANALYSIS: {b['n_video_analysis']} file) [{b['nguon']}]")
+    if not dung_duoc:
+        print("  ⚠ Bản máy 2 giao THIẾU `CHANNEL_DNA.md` và/hoặc `VIDEO_ANALYSIS/*.json` — K3 "
+              "(retrieve_videos.py) không chạy được nếu không có. VẪN CHẠY K1+K2 ở đây, nhưng hãy "
+              "nhắn máy 2 bổ sung qua `FlowHandoff_local\\shared\\YEU_CAU_MAY2_*.md` để lần sau "
+              "khỏi tốn quota Gemini hai lần.")
+        return True
+    if force:
+        print("  ⚠ --force: vẫn chạy lại dù máy 2 đã giao bản dùng được (tốn quota Gemini lần hai, "
+              "và sẽ có HAI bản CHANNEL_DNA.md có thể lệch nhau).")
+        return True
+    print(f"\n✗ DỪNG — kênh này máy 2 (TRENDING-RESEARCH) đã nghiên cứu và giao bản DÙNG ĐƯỢC.\n"
+          f"  Dùng thẳng bản đó, đừng chạy lại (yêu cầu 2026-09-24:\n"
+          f"  FlowHandoff_local\\shared\\YEU_CAU_MAY1_2026-09-24_dung_chay_lai_k1k2.md).\n"
+          f"  Copy sang chỗ lane đọc:\n"
+          f"     robocopy \"{dung_duoc[0]['thu_muc']}\" \"docs\\channel_dna\\<slug>\" /E\n"
+          f"  Thiếu gì thì nhắn máy 2 qua FlowHandoff_local\\shared\\YEU_CAU_MAY2_*.md.\n"
+          f"  Thật sự cần chạy lại (vd bản cũ hỏng) thì thêm --force.")
+    return False
+
+
 # ---------------------------------------------------------------- K2: Gemini
 VIDEO_PROMPT = """Bạn phân tích 1 video YouTube ngách "{niche_hint}". Dữ liệu:
 TIÊU ĐỀ: {title}
@@ -341,7 +444,14 @@ def main():
     ap.add_argument("--no-tags", action="store_true",
                     help="tắt bước gom Video Tags/Channel Tags → TAG_STATS.json (bật mặc định, "
                          "phụ trợ, không ảnh hưởng K1/K2 nếu lỗi)")
+    ap.add_argument("--force", action="store_true",
+                    help="chạy lại K1+K2 dù máy 2 (TRENDING-RESEARCH) đã giao bản dùng được — TỐN "
+                         "QUOTA GEMINI LẦN HAI và sinh bản CHANNEL_DNA.md thứ hai có thể lệch bản cũ")
     args = ap.parse_args()
+
+    # Cổng chống chạy trùng — đặt TRƯỚC mọi thứ (kể cả mkdir out_dir) để trượt là chưa tốn gì.
+    if not cong_chong_trung(args.channel_url, force=args.force):
+        return 1
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -409,4 +519,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # `sys.exit(main())` chứ không phải `main()` trần: cổng chống chạy trùng trả 1 khi chặn, gọi trần
+    # thì mã thoát vẫn là 0 — người/script gọi qua `&&` sẽ tưởng đã chạy xong và đi tiếp.
+    sys.exit(main() or 0)

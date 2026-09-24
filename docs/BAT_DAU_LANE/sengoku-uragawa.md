@@ -7,7 +7,7 @@
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
-| Mã lane / profile id | `sengoku-uragawa` (= tên tab sheet = thư mục `assets/sengoku-uragawa/`) |
+| Mã lane / profile id | `sengoku-uragawa` (thư mục `assets/sengoku-uragawa/`; tab sheet hiện `sengoku-uragawa`, theo quy ước 24/09 sẽ là `I-sengoku-uragawa`) |
 | Kênh thật | 戦国の裏側 · `@sengoku-uragawa` · `UCxBOdUsVT8g8WnpvJ8SdjyQ` |
 | Mail (GMAIL dòng 10) | `AldenorRodrigues626@gmail.com` — profile GPMLogin cùng tên, anh login tay |
 | Kênh mẫu (clone) | どっこい日本史 `https://www.youtube.com/channel/UCxXV78OIGchz13GAA7RGbEQ` |
@@ -55,7 +55,7 @@
 2. **Profile** `profiles\profiles\sengoku-uragawa.json` (chép khuôn teinengo-real/teinengo-tanoshimi, sửa từng field):
    `id/slug_dir/competitor/channel_dossier/channel_dna_dir` · `narrator` theo Format mục 1 · documentary: nhân vật/sự kiện CÓ THẬT — mọi dữ kiện (năm, tên tài liệu, nơi lưu trữ) phải kiểm chứng, tách rõ 'truyền thuyết' vs 'sử liệu' ·
    script.structure = 'hook tên quen + lật huyền thoại → bằng chứng gốc → chuyện → nối game/anime' (khai structure_block; gần chapters5 của toshi nhưng 1 nhân vật) · `body.mode=ai_images` · ref_lock=true cho NHÂN VẬT CHÍNH của tập (1 võ tướng chibi lặp suốt tập; phụ không khoá); không xuyên tập · `image.style_suffix` theo Format ·
-   `thumbnail` = chibi nhân vật + chữ lớn, màu truyền thống (đỏ/vàng/đen) · `publish.sheet_tab="sengoku-uragawa"` · `script.brain_model` Fable như F/G nếu anh giữ chủ trương đó.
+   `thumbnail` = chibi nhân vật + chữ lớn, màu truyền thống (đỏ/vàng/đen) · `publish.sheet_tab=<tên tab thật, quy ước I-sengoku-uragawa>` · `script.brain_model` Fable như F/G nếu anh giữ chủ trương đó.
    **`script.gate` PHẢI ĐO** từ transcript thật trong `_raw/` (title_len, hook_chars, comma/breath) — không chép số lane khác.
 3. **Giọng**: Nam, kể tài liệu có nhịp tò mò (gần toshi-densetsu-jp hơn satori) — CHƯA CHỐT: hỏi anh clone kênh mẫu hay giọng kho. Nếu clone: tách 20–30s sạch từ 1 video kênh mẫu → `POST /voice-clone` (skill `openspeaker_voice_clone.md`)
    → nghe A/B → **HỎI ANH trước khi giữ voice_id** (giọng người thật). Ghi `voice.id`.

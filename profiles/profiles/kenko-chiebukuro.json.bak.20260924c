@@ -1,0 +1,250 @@
+{
+ "id": "kenko-chiebukuro",
+ "market": "JP",
+ "language": "ja",
+ "niche": "シニア健康・食事習慣 — 医師解説風リスト動画（実在人物のエピソード＋研究データ引用）",
+ "competitor": "https://www.youtube.com/channel/UCBODlDy5sXo_49pC7KPr7vQ",
+ "slug_dir": "assets/kenko-chiebukuro",
+ "folder_pattern": "ep{nn:02d}-*",
+ "channel_dossier": "FlowHandoff_local/results/laneE_from_research/LANE_E_HANDOFF.md",
+ "channel_dna_dir": "docs/channel_dna/ikiiki-kenko",
+ "narrator": {
+  "gender": "female",
+  "age_band": "50-65",
+  "persona": "医師・アナウンサー風の語り手。落ち着いた低めの声で、聞き手をいたわりながらも権威を感じさせる話し方。自分の身の上話はせず、常に視聴者（皆さん/あなた）に語りかける第二人称の語り。",
+  "point_of_view": "二人称・語りかけ（視聴者に直接語りかける説明体、自分語りはしない）",
+  "register": "です・ます調の敬語、断定は避けつつも権威を感じさせる説明体",
+  "_gender_fix_note": "SỬA 2026-09-17 (male→female): F0 đo thật của video nguồn clone giọng (aWXuORPaoH0, nhóm A) = 176-195Hz, nằm trong dải NỮ (nam 85-180Hz, nữ 165-255Hz) — xem docs/SOP_LANE_E.md §0c, đã ghi mâu thuẫn này từ 2026-09-16 nhưng CHƯA sửa trước khi sản xuất ep01 (lỗi quy trình). 'male' cũ chỉ chọn theo cảm nhận văn phong, không đo. Anh xác nhận thật qua sản phẩm ep01 (nghe giọng + xem hình không khớp giới) 2026-09-17."
+ },
+ "voice": {
+  "id": "minimax_209536448462914",
+  "name": "Dependable Woman (MiniMax) + fx già hoá nhẹ — anh chọn qua nghe thử A/B 2026-09-17",
+  "speed": 0.88,
+  "fx": "old-mild",
+  "calib_style": "story",
+  "char_rate": 318.6,
+  "pace": false,
+  "char_rate_measured_at": "2026-09-21",
+  "char_rate_speed": 0.88,
+  "_note_nhom_giong_khac": "Kênh mẫu có ÍT NHẤT 2 giọng — nhóm B (nam trầm F0~95Hz, dùng cho video hướng nam giới kiểu 「87歳の壁」) CHƯA clone, chỉ làm khi thật sự sản xuất tập thuộc nhóm này (xem §1b STT9 trong SOP). Giọng mới này (Dependable Woman) KHÔNG phải clone từ kênh mẫu — là giọng có sẵn kho, chọn theo tiêu chí 'trầm ấm, đáng tin, không quá trẻ' sau khi nghe A/B, không nhằm khớp 100% giọng gốc.",
+  "char_rate_from": "video thật ep06-koenshou-shokuhin"
+ },
+ "script": {
+  "skill": "skills/youtube-script/SKILL.md",
+  "target_minutes": 20.0,
+  "two_pass": true,
+  "structure": "list_countdown",
+  "mode": "documentary",
+  "engine": "claude_p",
+  "_engine_note": "Anh chốt 2026-09-17: PASS 0 (bóc khung) + PASS 1 (viết bản nháp) của B3 dùng CHÍNH CLAUDE qua `claude -p` headless (pipeline/claude_p_bridge.py), KHÔNG dùng Gemini — giống mô hình 'não Claude viết' của satori-jp-obaa. Nén khúc/hội thoại/phẩy VẪN Gemini (mechanical, không sáng tạo). QC (qc_script.py B3Q, qc_facts.py B3F) VẪN Gemini — 'Claude viết, Gemini chấm độc lập', giống hệt satori (qc_script.py bên đó cũng Gemini). Field này CHỈ áp cho lane này — lane khác (toshi-densetsu-jp, irogatatarukioku) không khai field, mặc định vẫn Gemini viết như cũ.",
+  "ctx_label": "TƯ LIỆU GỐC — số liệu/nghiên cứu PHẢI lấy đúng từ đây, cấm bịa % hay tên viện nghiên cứu",
+  "flow": "lean",
+  "brain_model": "claude-fable-5-1",
+  "patch_model": "claude-opus-5",
+  "final_review_model": "opus",
+  "_flow_note": "Chốt 2026-09-20 (anh quyết định): bật luồng gọn docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md từ ep06 trở đi (ep01-05 đã 'Done' theo luồng cũ, KHÔNG retrofit). Thay B3→B3Q→B3F→B3S→B3R→B3G cũ (đã tắt khi flow=lean) bằng S1Q→S2 Fable viết đúng ngân sách→S3 đo tất định→S5 Sol chấm hợp lý→khoá SHA256. `sol_qc`/`_sol_qc_note` cũ đã bỏ vì trùng vai trò với `script_qc` bên dưới (lean không gọi qc_script_sol.py kiểu cũ nữa).",
+  "_brain_model_note": "2026-09-23 ĐỔI LẠI claude-fable-5-1 (chốt của việc nối kho hook — xem báo cáo task-kho-hook). Lịch sử: TẠM đổi claude-fable-5-1 → opus 2026-09-21 (anh báo Fable hết quota). Trước khi có `patch_model` riêng, `brain_model_of()` đọc field này cho CẢ viet() (S2) lẫn patch() (S4) trong lean_script.py — đổi 1 chỗ là đủ. TỪ 2026-09-23: đã thêm `patch_model=claude-opus-5` riêng (đúng luật chung mọi lane claude_p — model VIẾT chạm bản thảo 1 lần, mọi lượt SỬA dùng patch_model, xem docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §0a) — nếu không thêm, `patch_model_of()` sẽ rơi về CHÍNH brain_model (nay là Fable) cho mọi lượt sửa, sai luật.",
+  "budget": {
+   "mo_dau": 0.25,
+   "ket": 0.25,
+   "tol": 0.08,
+   "label_mo_dau": "導入（①視聴者の体の症状・今朝の習慣で始める ②「年のせい」を否定 ③原因を意外な場所へ反転 ④N個を予告するが名前は一切出さない ⑤仕組みを比喩で説明。挨拶・自己紹介・緊急受診ブロック・項目名は禁止）",
+   "label_ket": "まとめ（5つのおさらい＋緊急時の注意＋今日からできる行動＋免責）",
+   "_label_mo_dau_note": "Sửa 2026-09-23 theo audit 6 video top kênh mẫu シニアいきいき健康. Nghĩa: Dẫn nhập gồm 5 bước — (1) mở bằng triệu chứng/thói quen sáng nay CỦA NGƯỜI XEM, (2) phủ nhận lối thoát 'tại tuổi rồi', (3) lật nguyên nhân sang chỗ bất ngờ, (4) báo trước có N mục NHƯNG TUYỆT ĐỐI KHÔNG NÊU TÊN MỤC NÀO, (5) giải thích cơ chế bằng ẩn dụ. CẤM: chào hỏi, tự giới thiệu, khối cảnh báo cấp cứu, và tên bất kỳ mục nào."
+  },
+  "_budget_note": "ĐO THẬT 2026-09-20 trên 3 tập đã 'Done' của CHÍNH lane này (ep01/ep02/ep04, script.txt cuối cùng — không phải transcript kênh mẫu, vì kênh mẫu ASR không tách đoạn rõ): mo_dau đo được 8.3%/11.7%/12.2% (khớp với gate.hook_chars [550,750] đã đo trước đó qua kênh mẫu — dùng làm neo) → chọn 0.11; ket đo được 23.3%/23.5%/29.9% → chọn 0.25. KHÔNG khai `outro_line`: đã so 4 tập, câu kết MỖI TẬP viết riêng theo đúng nội dung y khoa của tập đó (vd ep01 nhắc lại cụ thể thuốc chống đông + đột quỵ đã nói ở mục 5), không có câu cố định lặp lại — outro_line ép literal 1 câu sẽ xoá mất phần an toàn đặc thù từng tập.",
+  "gate": {
+   "comma_per_sentence": [
+    1.0,
+    3.0
+   ],
+   "chars_per_breath": [
+    10.0,
+    24.0
+   ],
+   "dialogue_ratio_max": 0.05,
+   "require_next_ep_teaser": false,
+   "list_item_count": 5,
+   "title_len": [
+    35,
+    55
+   ],
+   "hook_chars": [
+    1500,
+    2000
+   ],
+   "hook_marker": [
+    "第五位",
+    "五つ目",
+    "5位"
+   ],
+   "list_order": "countdown",
+   "_gate_note": "comma_per_sentence + chars_per_breath ĐO TỪ 3 TRANSCRIPT THẬT (kN6wHIqYA0Q/JCyxahsO0ew/aWXuORPaoH0, data/ikiki_transcripts_final.json) nhưng transcript là dạng ASR gần như KHÔNG có dấu phẩy thật (đo thô ra 0.15-0.30 phẩy/câu — không tin được) — 2 số này đã HIỆU CHỈNH theo văn phong 'câu dài trang trọng' mô tả trong writing_style của channel_analysis_ikiki.json, tham chiếu chéo với toshi-densetsu-jp (nhịp tài liệu gần nhất đã có). title_len [35,55] và hook_chars [550,750] là ĐO THẬT đáng tin (không phụ thuộc dấu câu): title đo trên 5 tiêu đề HIT (37-51 ký tự), hook đo trên 120 giây đầu của 3 video thật (596-650 chữ). CẦN ĐO LẠI comma/breath khi có kịch bản đầu tiên qua B3Q để xác nhận.",
+   "_hook_marker_note": "2 kiểu đếm đã thấy trong 4 tập đã xong: 第五位/第四位…第一位 (ep01/ep02) và 五つ目/四つ目…一つ目 (ep04) — cùng là countdown 5→1, khác chữ đếm. Cả 2 marker đều liệt kê để máy đo không bỏ sót.",
+   "_hook_chars_note": "Sửa 2026-09-23: đo từ 8/9 video kênh mẫu (1.598-1.916 chữ ≈ 314-410 giây mới gọi tên mục đầu tiên). Ngưỡng cũ [550,750] ép mở đầu ngắn nên mọi tập đổ hết 5 đáp án ở phút 2-3 rồi mới kể - đúng thứ kênh mẫu không làm.",
+   "khoi_cap_cuu_trong_mo_dau": false,
+   "_khoi_cap_cuu_note": "Kênh mẫu 0/6 video có khối cảnh báo cấp cứu trong 120 giây đầu. lane_rules chỉ đòi cảnh báo đứng TRƯỚC hoặc CÙNG hành động rủi ro, không đòi ở đầu video - dời xuống đúng chỗ, trả lại 40-58 giây cho mở đầu.",
+   "hook_anchor_per_1000": 3.5,
+   "_hook_anchor_note": "Đo 2026-09-23 từ 1.700 chữ đầu của 20 transcript kênh mẫu シニアいきいき健康 (docs/channel_dna/ikiiki-kenko/_raw/transcripts.json). ⚠️ BÀI HỌC ĐO SAI, đừng lặp lại: lần đầu đặt 9,0 vì đếm MỌI chữ số trong transcript kênh mẫu (8,8/1000) rồi đem chấm kịch bản của mình bằng luật CHẶT hơn — kịch bản viết số bằng chữ Hán và NEO_SO chỉ tính số ĐI KÈM đơn vị đếm (歳/年/人/グラム…), cố ý loại 一つ/一度/二人 vì đó là văn kể. Hai bên đo bằng hai thước khác nhau = vô nghĩa. Đo lại kênh mẫu bằng ĐÚNG luật đó: chỉ 3,2/1000. Lấy 3,5 (chặt hơn kênh mẫu một chút) làm ngưỡng. Mặc định chung 18,0 là của Lane A, nơi katakana là tên riêng nước ngoài nên đáng tính là dữ kiện; ở lane sức khoẻ Nhật katakana chỉ là コメント/トイレ/テレビ/スーパー."
+  },
+  "hook": {
+   "enabled": true,
+   "patterns": [
+    "H30",
+    "H31",
+    "H32",
+    "H33",
+    "H34"
+   ],
+   "closer": "K18",
+   "visual": "anh_ai_clip_grok",
+   "_visual_note": "KHÔNG dựng clip hook riêng. Hook là 30 giây ĐẦU của chính script.txt, dùng chung ảnh AI minh hoạ và chung một lần dựng với thân video. Lý do: lane này viết lại cả kịch bản nên dựng liền mạch rẻ hơn và không có chỗ nối. CẤM ghép clip rời vào đầu.",
+   "sfx": true,
+   "_sfx_note": "Anh chốt 2026-09-24: hiệu ứng âm thanh trong hook là BẮT BUỘC (trước đây coi là phụ hoạ). Sinh bằng ai33 `POST /v1/task/sound-effect`, để `duration_seconds` AUTO — xem memory sfx-ai33-mac-dinh-auto (cách gọi không đổi, chỉ nâng mức bắt buộc).",
+   "visual_kind": "video_sinh",
+   "_visual_doi_note": "ĐỔI 2026-09-24 từ `lien_mach_than`: luật mới của anh là hook = VIDEO SINH, mà `lien_mach_than` nghĩa là KHÔNG dựng clip riêng (hook là 30 giây đầu của chính script.txt, dựng chung 1 lần với thân) — hai thứ loại trừ nhau. Nay hook là CLIP RIÊNG dựng từ ảnh AI minh hoạ của tập → clip Grok, rồi nối vào trước final.mp4. HỆ QUẢ phải làm theo: (a) mất lợi thế 'không có điểm nối' nên PHẢI cân mức tiếng + khớp fps/độ phân giải theo docs/QUY_TAC_VIDEO_HOOK.md §2; (b) gói giao máy 2 nay đi nhánh 'hook là clip riêng' của dong_goi_may2.py, tức máy 2 nhận thêm đơn vẽ ảnh hook. docs/SOP_LANE_E.md mục hook cần sửa theo."
+  }
+ },
+ "script_qc": {
+  "lens": "medical",
+  "domain_focus": "Video liệt kê 5 dấu hiệu/thói quen sức khoẻ theo kiểu đếm ngược cho người cao tuổi Nhật; người dẫn là giọng đọc thân thiện kiểu MC/y tá, KHÔNG tự xưng là bác sĩ — đây là video thông tin sức khoẻ đại chúng, không phải tư vấn y khoa cá nhân.",
+  "lane_rules": [
+   "Thứ tự liệt kê PHẢI đúng kiểu đếm ngược (第五位→第一位 hoặc 五つ目→一つ目), không phải tăng dần.",
+   "Mỗi ví dụ nhân vật (tuổi + nghề cũ) là hư cấu minh hoạ, KHÔNG phải ca bệnh thật — không cần nguồn riêng cho chi tiết cá nhân đó, nhưng phải hợp lý với bối cảnh.",
+   "Cảnh báo cấp cứu (gọi 119, dấu hiệu đột quỵ/nghẹn/đau ngực/mất ý thức) PHẢI đặt TRƯỚC hoặc CÙNG lúc với bất kỳ hành động nào có rủi ro tiềm ẩn (ăn hạt, gác chân, tăng chất xơ, tắm nước nóng…), không đặt sau khi đã khuyến khích hành động.",
+   "Kết bài PHẢI có 1 câu disclaimer y khoa (đây là thông tin chung, không thay thế khám bệnh) — câu này ĐỔI theo từng tập cho khớp nội dung y khoa cụ thể đã nói, KHÔNG bắt phải là 1 câu cố định lặp lại (lane không khai outro_line, xem script._budget_note).",
+   "KHÔNG nêu tên bác sĩ/bệnh viện/trường đại học/nghiên cứu cụ thể không có trong series_ctx.txt — số liệu/nguồn phải bám đúng tư liệu đã cho."
+  ]
+ },
+ "image": {
+  "skill": "skills/youtube-image-prompts/SKILL.md",
+  "character_sheet": "There is NO single main character in this episode. This is a countdown list video; EACH ranked item introduces a DIFFERENT anonymous elderly Japanese person illustrated only within that item's own short story (age/occupation mentioned in the narration, e.g. 'a 72-year-old retired supermarket cashier'). It is fine to keep the SAME face consistent across the ~3-4 shots that belong to one single item's mini-story, but NEVER reuse the same face across DIFFERENT items. Do not lock any one description as 'the' character of the whole episode.",
+  "_character_sheet_note_vi": "Bản tiếng Việt để người đọc hiểu: KHÔNG có 1 nhân vật host cố định — mỗi video là danh sách N mục, MỖI mục có 1 người minh hoạ ẩn danh riêng (tuổi/nghề nêu trong lời đọc, vd '68歳の元スーパー店員の女性'). Không dùng lại cùng một khuôn mặt GIỮA CÁC MỤC (trong 1 mục thì được giữ cùng mặt cho các cảnh của riêng mục đó). Trường `character_sheet` ở trên đã viết sẵn bằng tiếng Anh, prompt-ready — B5 (`write_img_prompts`) dùng NGUYÊN VĂN, KHÔNG cần truyền `--sheet` tay mỗi tập nữa (đã verify tập 1, 2026-09-16: 89 prompt đa dạng đúng ý, B5Q 0 vấn đề — xem docs/SOP_LANE_E.md §0c/§6).",
+  "style_suffix": "gentle hand-drawn watercolor illustration style, warm pastel color palette (cream, soft orange, muted green), cozy Japanese elderly lifestyle setting, soft natural lighting, nostalgic peaceful atmosphere, 16:9, no text, no watermark",
+  "seconds_per_image": 14,
+  "ref_lock": false,
+  "ref_quality": "low",
+  "workers": 24,
+  "qc_sample": 10,
+  "_note": "ref_lock=false: KHÔNG có nhân vật lặp lại (khác satori/simbot2) — mỗi mục trong list là 1 người minh hoạ khác nhau, không cần REF-LOCK khoá mặt xuyên video. Cảnh cận thực phẩm có thể dùng phong cách ảnh thật thay vì minh hoạ nếu skill cho phép override theo dòng.",
+  "b5p_qc": true,
+  "_b5p_qc_note": "Bật B5P (make_video.py, gate_common.py + qc_prompt_consistency.py) 2026-09-19 — cổng prompt-ảnh-khớp-cốt-truyện trước đây chỉ satori-jp-obaa/brain_channel.py dùng, nay lắp lại cho não-ramcloud KHÔNG import brain_channel.py (chỉ dùng chung gate_common.py, module viết pipeline-agnostic). Mode WARN cố định (chưa đủ số liệu false-positive để chuyển FAIL). Đi kèm B5W (viết img_prompts.txt tách khỏi B5 gen ảnh thật) + STALE fingerprint (artifact_meta.json) chống prompt bám bản script cũ sau khi REMAKE sửa lại."
+ },
+ "body": {
+  "mode": "ai_images"
+ },
+ "thumbnail": {
+  "skill": "skills/youtube-thumbnail/SKILL.md",
+  "palette": [
+   "ORANGE",
+   "WHITE",
+   "RED",
+   "GREEN"
+  ],
+  "dedicated_bg": true,
+  "require_face": false,
+  "wrap": true,
+  "max_font": 140,
+  "side_width": 0.62,
+  "_side_width_note": "SỬA 2026-09-17 lần 3 (0.62→0.70→0.78→0.54): lần 0.78 làm chữ TO (138px) nhưng ĐÈ LÊN ảnh chính thật (đo trực tiếp trên `_thumb/001.png`: bát natto/đũa bắt đầu hiện rõ từ ~56% chiều ngang, cột chữ 78% lấn sâu vào đó) — đúng ảnh gốc `thumb_bg_prompt.txt` đã xin 'main subject ở 1/3 PHẢI, NỬA TRÁI để trống' nhưng code không tôn trọng ranh giới đó. 0.54 khớp sát ranh giới đo thật (còn chừa ~2% đệm) — ảnh chính giữ SẮC NÉT hoàn toàn, không bị chữ/vùng mờ chạm vào. Bù lại cỡ chữ nhỏ hơn lần 0.78 → PHẢI đi cùng việc siết `max_chars` xuống ≤5 (xem dưới) để chữ vẫn to nhất có thể trong cột hẹp hơn. Chữ cũng đã đổi sang NEO SÁT MÉP TRÁI (`--side left` giờ dùng anchor trái thay vì canh giữa cột, xem `thumbnail_text.py` hàm `draw_line`/`main`) thay vì bập bềnh giữa cột.",
+  "art_style": "real photograph of the specific food/ingredient named in the episode, natural lighting, appetizing close-up, shallow depth of field, photorealistic, no people, no text",
+  "template": {
+   "bo_cuc": "chữ neo SÁT MÉP TRÁI, phủ ~54% khung bên trái; ảnh đồ ăn thật SẮC NÉT KHÔNG BỊ CHE/MỜ ở ~46% bên phải (ranh giới đo thật trên ảnh nền, không phải số ước lượng); nền đen",
+   "tiers": [
+    {
+     "color": "ORANGE",
+     "role": "tiền đề/chủ đề chung (vd tên bệnh/nỗi lo) — CỰC NGẮN, 1 cụm danh từ khoá",
+     "max_chars": 5
+    },
+    {
+     "color": "WHITE",
+     "role": "hành động/cách làm chính — CỰC NGẮN",
+     "max_chars": 5
+    },
+    {
+     "color": "RED",
+     "role": "cụm gây sốc — CỰC NGẮN, bỏ dấu 「」 nếu cần để đủ chỗ (màu đỏ đã đủ nổi bật, không bắt buộc phải có ngoặc)",
+     "max_chars": 5
+    },
+    {
+     "color": "GREEN",
+     "role": "kết quả hứa hẹn (tuỳ chọn, có thể bỏ nếu 3 tầng đã đủ) — CỰC NGẮN",
+     "max_chars": 5
+    }
+   ],
+   "_note": "Đo từ thumbnail thật kênh mẫu (data/ikiki_thumb_all.png + ikiki_comments_breakout.json mô tả): nền đen + chữ lớn đỏ/vàng/trắng chiếm 60-70% diện tích + 1 ảnh thật đồ ăn liên quan trực tiếp claim. Dùng ORANGE thay YELLOW cho tầng 1 (đúng màu thật đã thấy trên thumbnail kênh mẫu, không phải vàng thuần).",
+   "_max_chars_note": "SIẾT LẠI 2026-09-17 lần 2 (6/7/8/7 → 5/5/5/5): sau khi rút side_width về 0.54 (để hết đè ảnh chính) phải siết thêm max_chars xuống ≤5 mới giữ được cỡ chữ to — cỡ chữ tỉ lệ nghịch số ký tự/dòng NHÂN cột hẹp lại càng nhạy. Viết súc tích tối đa: bỏ trợ từ (の/へ/に/で có thể giữ nếu vẫn ≤5), ưu tiên can cả danh từ ghép không dấu ngắt (vd 転倒骨折 thay vì 転倒・骨折) — xem ep01 `thumb_text.txt` làm mẫu (転倒骨折 / スーパー / 折れぬ骨 / 一生歩ける)."
+  },
+  "flat_bg": true,
+  "_flat_bg_note": "THÊM 2026-09-17 lần 4, THAY THẾ hẳn photo_scale ở trên (đã bỏ): sau khi đổi `thumb_bg_prompt.txt` sang bối cảnh mâm cơm thật (bàn gỗ, đầy đủ background) do prompt đã TỰ chừa đúng bố cục (trái đen thuần/phải ảnh thật), `photo_scale=0.82` (co ảnh 82% + ghim giữa dọc) hoá ra ĐẺ RA viền đen trên/dưới ('thọt lõm') dù ảnh gốc cao kín khung, và dải blend Gaussian 60px của `--side left` mặc định vẫn làm mờ mép trái ảnh thật — user chê thẳng cả hai (đo bằng mắt trên ep01, ảnh v4). `flat_bg=true` → `_thumb_flags()` phát `--flat-bg` (bỏ hẳn `--photo-scale`): `thumbnail_text.py` dùng NGUYÊN VẸN ảnh nền (chỉ crop 16:9), không blend mờ/tối, không vignette, không co ảnh — vì ảnh nền RIÊNG (`dedicated_bg`) đã tự đúng bố cục ngay từ prompt, hai bước blend/co vốn chỉ cần cho ảnh THÂN VIDEO mượn tạm làm nền. CHỈ áp dụng khi `dedicated_bg=true` — lane dùng ảnh thân video làm nền dự phòng vẫn cần blend/co như cũ."
+ },
+ "thumbnail_qc": {
+  "claim_focus": "Ngách SỨC KHỎE người già Nhật — rủi ro chính là claim y tế tuyệt đối. Đặc biệt kiểm tra:\n- Thumbnail có biến 'hỗ trợ/giảm nguy cơ' thành 'chữa khỏi/ngăn chặn hoàn toàn' không (vd '骨折を防ぐ' = tuyệt đối, nên tránh; '骨を守る' = quảng bá bình thường, chấp nhận được)?\n- Có claim dạng '絶対に', '100%', '必ず治る', 'もう二度と〜しない' không?\n- Số liệu/thống kê hiển thị trên thumbnail (nếu có) có khớp với mô tả/tóm tắt video không, hay bị phóng đại?",
+  "image_prompt_constraints": "1. Ảnh tỉ lệ ngang 16:9.\n2. real photograph, photorealistic, ultra-sharp, appetizing, no people, no hands, no text, no watermark, no logo, không vẽ chữ/số/ký tự tiếng Nhật trong ảnh.\n3. VÙNG BÊN TRÁI (60-65% chiều ngang từ mép trái) PHẢI là nền ĐEN THUẦN, không vật thể/ánh sáng/bóng đổ nào lấn vào — chỗ dành cho chữ overlay.\n4. VÙNG BÊN PHẢI (phần còn lại, sát mép phải) PHẢI là MỘT BỨC ẢNH CÓ ĐẦY ĐỦ BỐI CẢNH THẬT (bàn ăn gỗ, ánh sáng tự nhiên ấm áp, có đũa/khăn/bát đĩa xung quanh) — TUYỆT ĐỐI không phải vật thể cắt rời nổi trên nền đen studio, phải trông như 1 tấm ảnh chụp thật có chiều sâu.\n5. Ánh sáng SÁNG RÕ, không tối, không moody, không cinematic.\n6. Nếu tiêu đề nói RÕ SỐ LƯỢNG (vd '5選'/'5つ'), ảnh phải thể hiện ĐỦ SỐ LƯỢNG món/vật thể khác nhau tương ứng, không được chỉ vẽ 1 món duy nhất.",
+  "_note": "Form riêng của lane kenko-chiebukuro cho pipeline/qc_thumbnail_sol.py + gen_thumb_bg_prompt_sol.py — xem docs/QC_THUMBNAIL_GPT_SOL.md để biết cách 2 field này được dùng. Field trống ở lane khác thì tool tự dùng bản mặc định chung (ít đặc thù hơn)."
+ },
+ "assemble": {
+  "zoom": 1.0,
+  "_zoom_note": "1.0 = TAT hieu ung Ken Burns (zoom/pan lien tuc tren anh) theo yeu cau user 2026-09-20: khan gia la nguoi gia, hieu ung 'rung' anh lien tuc de gay chong mat/kho chiu. assemble.py: zoom<=1.0 -> zstep=0 -> anh dung yen hoan toan. Dung tang lai so nay cho lane E.",
+  "transition": "xfade",
+  "xfade": 0.5,
+  "sub_font": "Yu Gothic",
+  "sub_size": 32,
+  "sub_margin": 7,
+  "sub_outline": 3,
+  "burn_subs": false,
+  "_burn_subs_note": "CỐ Ý false — mặc định toàn dự án từ 2026-09-11 là KHÔNG cháy phụ đề vào hình; phụ đề giao kèm file .srt để bật CC trên YouTube (docs/GIAO_VIEC_LANE_E_BUOC2.md §4). Chỉ lane nào anh chốt riêng mới true (hiện teinengo-tanoshimi, toshi-densetsu-jp). B10 qc_final KHÔNG rớt vì burn_subs=false — nó rẽ nhánh: lane không cháy thì BẮT BUỘC có voice.srt/voice_paced.srt, và rớt nếu render_info.json khai đã cháy. Ghi chú này thêm 24/09 vì máy 2 tưởng là lỗi thiếu khai.",
+  "qc_sample": 10
+ },
+ "blocklist": [
+  "child",
+  "children",
+  "baby",
+  "infant",
+  "naked",
+  "nude",
+  "blood",
+  "gore",
+  "corpse",
+  "real politician",
+  "real celebrity face",
+  "medical procedure graphic",
+  "surgery"
+ ],
+ "_note": "Lane E — mở 2026-09-16. Nghiên cứu kênh làm bởi dự án TRENDING-RESEARCH (KHÁC SPACE_RESEARCH), giao qua Syncthing FlowHandoff_local/results/laneE_from_research/, user duyệt 2026-09-13 — KHÔNG khai field `research` (không dùng cổng B0/qc_hoso.py của SPACE_RESEARCH). channel_dna/ (channel_analyzer.py) KHÔNG chạy cho lane này vì hồ sơ TRENDING-RESEARCH đã đầy đủ hơn — xem SOP §0b để biết khi nào mới cần retrieve_videos.py. Ngách sức khoẻ có RỦI RO Y KHOA: mọi kịch bản BẮT BUỘC có câu dạng '一般的な健康情報です。持病のある方は医師にご相談ください', KHÔNG tuyên bố chữa bệnh tuyệt đối. Kênh đã đặt tên/handle/avatar/banner/upload-defaults xong 2026-09-16 (mail dòng 6 sheet GMAIL, normaneileenpm218@gmail.com).",
+ "publish": {
+  "upload_channel": "kenko-chiebukuro",
+  "sheet_tab": "E-70dai-kenko",
+  "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+  "review_vi": true,
+  "_sheet_tab_note": "2026-09-17: upload_channel (tên thư mục CHANEL\\...) KHÁC tên tab trang tính (E-70dai-kenko từ 2026-09-24, trước là 70dai-kenko; theo handle YouTube @70dai-kenko) — ghi_cot_video.py đọc field này để tra đúng lane khi --tab E-70dai-kenko (tên cũ 70dai-kenko vẫn tra được qua pipeline/sheet_tab.py)."
+ },
+ "goi_dang": {
+  "enabled": true,
+  "contradiction_max_s": 40,
+  "title_core_max_s": 60,
+  "promise_window_s": 60,
+  "promise_giu_duoc_max_s": 120,
+  "title_core_len": [
+   35,
+   55
+  ],
+  "mo_dau_cam": [
+   "タイトル",
+   "ありがとうございます",
+   "感謝",
+   "尊敬しています"
+  ],
+  "list_mode": true,
+  "list_preview_ban_s": 120,
+  "list_order": "countdown",
+  "cau_tu_thao": [
+   "この順位は",
+   "順位は重要度",
+   "順番は重要",
+   "証明されたわけでは",
+   "順位は重要度を示すもの"
+  ],
+  "_nguon": "シニアいきいき健康: giây 0 là triệu chứng/thói quen của người xem (6/6, 0/6 chào) · câu chốt lật nguyên nhân ở 21,8s và 37,0s (mốc thật) → 40s · hứa N mục 40–100s KHÔNG nêu tên mục nào (6/6 không nêu tên món trong 120s) · mục đầu đếm ngược ở 329–410s · tiêu đề 37–51 ký tự, 0/9 rào. Tập của mình: 7/8 mở bằng chào, 4/6 đọc to chữ 「タイトル」 ở 0,3s, 8/8 đọc trước cả 5 mục."
+ }
+}

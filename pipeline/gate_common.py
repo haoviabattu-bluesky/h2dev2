@@ -105,11 +105,12 @@ ARTIFACTS_MAC_DINH = ("img_prompts.txt", "img_doan.txt")
 
 def sha256_file(path):
     import hashlib
-    h = hashlib.sha256()
+    # 2026-09-24: chuẩn hoá CRLF→LF trước khi băm. Trước đây băm byte thô, còn hook_stage._sha_file đọc
+    # dạng văn bản (Python tự đổi CRLF→LF) → cùng 1 script lưu CRLF ra 2 mã khác nhau, cổng HOOK báo
+    # "lỗi thời" oan trên máy 2 (kenko ep01). File LF: kết quả y hệt cũ, không lock cũ nào bị đổi.
     with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+        data = f.read()
+    return hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
 
 
 def ghi_fingerprint(slug_dir, artifacts=ARTIFACTS_MAC_DINH):
@@ -284,6 +285,13 @@ def kiem_lock(slug_dir):
     if meta.get("state") != "PASS":
         return False, f"script state={meta.get('state')} — kịch bản CHƯA được Sol PASS, không được sang pha asset", "FAIL"
     now = sha256_file(d / "script.txt") if (d / "script.txt").exists() else None
+    if now != meta.get("script_sha256") and (d / "script.txt").exists():
+        # 2026-09-24: lock ký TRƯỚC khi sha256_file chuẩn hoá CRLF→LF (băm byte thô). File CRLF không đổi 1 byte
+        # nào vẫn ra mã mới khác → báo STALE oan (Lane G ep01). Chấp nhận mã byte thô nếu khớp lock.
+        import hashlib
+        raw = hashlib.sha256((d / "script.txt").read_bytes()).hexdigest()
+        if raw == meta.get("script_sha256"):
+            now = raw
     if now != meta.get("script_sha256"):
         return False, (f"FINAL_QC_STALE: script.txt đã bị sửa SAU Sol PASS ({str(meta.get('script_sha256'))[:10]}… → "
                        f"{str(now)[:10]}…) — cấm mọi mutation sau lock; chạy lại B3 (lean) để Sol chấm lại"), "FAIL"

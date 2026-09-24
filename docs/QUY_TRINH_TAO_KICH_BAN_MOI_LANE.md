@@ -50,6 +50,33 @@ liên quan; satori não-Claude (`brain_channel.py`) là agent riêng, không qua
 ## 1. BẬT LEAN CHO LANE — sửa `profiles/profiles/<mã>.json` (1 lần/lane)
 
 ### 1.1 Điều kiện cứng (hàng rào #1) — thiếu là `make_video` DỪNG
+- ⛔ **Khối `script.hook` — 4 field, thiếu bất kỳ cái nào là cổng S1L DỪNG.** Copy rồi sửa:
+  ```json
+  "hook": {
+    "enabled": true,
+    "visual": "<nguồn hình + cách khoá mặt của RIÊNG lane này, vd manga_ai_ref>",
+    "visual_kind": "video_sinh",
+    "sfx": true
+  }
+  ```
+  | Field | Luật |
+  |---|---|
+  | `enabled: true` | hook 20–30 giây đầu là luật MỌI LANE (anh chốt 2026-09-23). Xem §2b. |
+  | `visual` | NGUỒN HÌNH + cách khoá mặt, riêng từng lane, **cấm mượn của lane khác** — bảng ở `docs/QUY_TAC_VIDEO_HOOK.md` §5b |
+  | `visual_kind: "video_sinh"` | **anh chốt 2026-09-24:** hook là **VIDEO SINH** (Google Flow / Grok Imagine), **KHÔNG còn là video ghép từ ảnh render**. Lane satori đã chạy thật clip Grok (`ep3-sougi`). Muốn ảnh tĩnh/clip stock thì đặt `"anh_tinh"` **và** khai `visual_exception` ghi RÕ LÝ DO — hiện chỉ 2 lane có ngoại lệ chính danh (`toshi-densetsu-jp`, `irogatatarukioku`: bán SỰ THẬT CÓ HỒ SƠ, clip AI phá `credits.txt`) |
+  | `sfx: true` | **anh chốt 2026-09-24:** hiệu ứng âm thanh trong hook là **BẮT BUỘC**. ai33 `POST /v1/task/sound-effect`, để `duration_seconds` AUTO |
+
+  > ⚠️ **Hook là video sinh nên KỊCH BẢN PHẢI ĐỔI THEO.** 20–30 giây đầu bị ràng buộc bởi thứ dựng
+  > được thành clip 5–6 giây: một chủ thể, một chuyển động tả được bằng lời. Cấm cảnh cần ≥3 nhân vật
+  > cùng hành động, cấm đổi bối cảnh giữa một cảnh, cấm chữ/biểu đồ trên hình; và chừa chỗ cho tiếng
+  > thật của cảnh, đừng lấp kín 30 giây bằng lời đọc. Luật này được nhồi **tự động** vào prompt của
+  > model VIẾT (`qc_goi_dang.khoi_luat_cho_prompt`) nên không phải dặn tay mỗi tập.
+- ⛔ **`goi_dang.enabled: true`** + khối `goi_dang` khai ngưỡng **đo từ kênh mẫu CỦA CHÍNH LANE NÀY**
+  kèm field `_nguon` — luật gói đăng G1–G8, xem `docs/QUY_TAC_GOI_DANG.md` §3.
+  > Hai field trên do **cổng S1L** (`qc_goi_dang.cong_truoc_khi_viet`) chặn, chạy ngay sau S1Q nên
+  > trượt là DỪNG **trước khi tốn lượt LLM nào**. Vì sao phải thành cổng: luật hook chốt 2026-09-23
+  > và đã viết vào CLAUDE.md, nhưng đo thật ngày **2026-09-24 mới có 3/6 lane bật công tắc** — luật
+  > bằng văn bản thì phải có người nhắc mới chạy (anh chốt siết mức này 2026-09-24).
 - `voice.char_rate` **đo thật** bằng `calibrate.py` (không mượn lane khác).
 - `script.gate` **đo từ transcript kênh mẫu** của chính lane (memory `nguong-gate-phai-do-tu-du-lieu`).
 - `script.gate.list_item_count` — dạng list (N選 / countdown 第N位): máy kiểm đủ mục bằng marker `1つ目…`/`第N位`.
@@ -113,13 +140,14 @@ gọi 119, sai cổng).
 
 ## 2. MỖI TẬP — S1 HỒ SƠ (Claude Code làm tay, ~10–15')
 
-Thư mục `assets/<lane>/epNN-<slug>/`, 3 file:
+Thư mục `assets/<lane>/epNN-<slug>/`, 4 file:
 
 | File | Yêu cầu | Máy kiểm ở S1Q (thiếu = BLOCK, chưa tốn Fable) |
 |---|---|---|
 | `competitor.txt` | transcript kênh mẫu **cùng dạng đếm** với tập (5選 ↔ 5選, countdown ↔ countdown), ≥3.000 ký tự | độ dài |
 | `series_ctx.txt` | khuôn dưới | có ≥1 dòng `[Dn]` · có URL · có `SỐ ĐƯỢC PHÉP:` (không có → cả file làm nguồn số) |
 | `title.txt` | 1 dòng tiêu đề đã chốt (trong `gate.title_len`) | chỉ cảnh báo — nhưng thiếu thì Sol không kiểm "lời hứa tiêu đề" (lỗi nặng nhất Sol bắt ở ep01) |
+| ⛔ `promise.txt` | **ĐÚNG 1 câu** — lời hứa của tập. Tiêu đề · chữ thumbnail · câu đầu mô tả · 30–45 giây đầu hook đều phải nói lại đúng câu này (nguyên tắc 1) | **S1L: thiếu = BLOCK.** Câu này còn được nhồi thẳng vào prompt của model VIẾT (`qc_goi_dang.khoi_luat_cho_prompt`) để nó viết đúng ngay lần đầu — không có nó thì chỉ còn cách chấm-rồi-sửa, tức thêm lượt Sol + lượt patch cho mỗi tập |
 
 Khuôn `series_ctx.txt` (Lane G ep01 làm mẫu — `assets/teinengo-tanoshimi/ep01-asa-shukan/series_ctx.txt`):
 ```

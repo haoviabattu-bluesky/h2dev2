@@ -231,6 +231,12 @@ def test_lean_script_run_khong_goi_ensure_locked_khi_tat(monkeypatch, tmp_path):
     def _cam_ensure(*a, **k):
         raise AssertionError("KHÔNG được gọi ensure_locked khi script.hook.enabled=False")
     monkeypatch.setattr(HS, "ensure_locked", _cam_ensure)
+    # 2026-09-24: cổng S1L (qc_goi_dang.cong_truoc_khi_viet) nay CHẶN mọi lane chưa bật hook, nên
+    # đường đi tới khối H1–H4 với hook=False không còn tới được qua run() ở lane thật. Test này vẫn
+    # có giá trị: nó canh DÂY NỐI "hook tắt ⇒ không đụng ensure_locked" cho mọi nhánh còn dùng
+    # hook=False (luồng cũ không lean, hoặc lúc gỡ lỗi) — nên nó vô hiệu hoá riêng cổng S1L, KHÔNG
+    # phải nới cổng. Luật mới được canh bằng test riêng ngay bên dưới.
+    monkeypatch.setattr(L.qc_goi_dang, "cong_truoc_khi_viet", lambda d, prof: [])
 
     prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {"gate": {}},
             "narrator": {}}
@@ -251,6 +257,32 @@ def test_lean_script_run_khong_goi_ensure_locked_khi_tat(monkeypatch, tmp_path):
     # (không gọi ensure_locked) TRƯỚC KHI test dừng lại ở S2; bọc bằng pytest.raises.
     with pytest.raises(AssertionError, match="test chỉ cần kiểm khối H1-H4"):
         L.run(job, force=False)
+
+
+def test_lean_script_run_CHAN_khi_lane_chua_bat_hook(monkeypatch, tmp_path):
+    """Luật mới (anh chốt 2026-09-24): lane chưa khai `script.hook.enabled` thì KHÔNG ĐƯỢC VIẾT.
+
+    Vì sao thành cổng chứ không để trong tài liệu: luật "hook 20–30s bắt buộc mọi tập" chốt
+    2026-09-23 và đã viết vào CLAUDE.md, nhưng đo thật ngày 24/09 mới có 3/6 lane bật công tắc —
+    luật bằng văn bản thì phải có người nhắc mới chạy. Cổng chặn ở S1L, TRƯỚC khi tốn lượt LLM nào.
+    """
+    import lean_script as L
+
+    prof = {"id": "x", "language": "ja", "voice": {"char_rate": 300}, "script": {"gate": {}},
+            "narrator": {}}
+
+    class FakeJob:
+        p = prof
+        dir = tmp_path
+        slug = "ep_test"
+        minutes = 1
+        state = {}
+
+    monkeypatch.setattr(L, "s1q_ho_so", lambda d, prof, competitor, ctx: [])
+    monkeypatch.setattr(L, "viet", lambda *a, **k: (_ for _ in ()).throw(
+        AssertionError("S1L phải chặn TRƯỚC khi gọi S2 — không được tốn lượt viết nào")))
+    with pytest.raises(SystemExit, match="S1L"):
+        L.run(FakeJob(), force=False)
 
 
 # Vá review (2026-09-23): do_tat_dinh() chỉ được in "(warn) chưa có hook đã khoá" khi ĐỒNG THỜI
@@ -562,6 +594,8 @@ def test_dong_goi_hook_gop_du_file_khi_tap_co_hook(tmp_path):
     n = D._dong_goi_hook(job_dir, dst)
     assert n == 6  # 4 file gốc + 2 file trong flow_prompts/
     for ten in D.HOOK_FILES_GOC:
+        if not (job_dir / "hook" / ten).exists():   # từ 24/09 danh sách có thêm file tuỳ chọn (timeline, voice...)
+            continue
         d = dst / "hook" / ten
         assert d.exists()
         assert d.read_bytes() == (job_dir / "hook" / ten).read_bytes()
@@ -924,3 +958,39 @@ def test_viet_candidates_khong_canh_bao_khi_claude_p(monkeypatch, tmp_path, caps
     HS.viet_candidates(tmp_path, prof, {"score_0_12": 10}, "T", "", mode="upstream")
     out = capsys.readouterr().out
     assert "BỎ QUA" not in out
+
+
+def test_dong_goi_hook_mang_ca_anh_clip_va_chan_khi_thieu_clip(tmp_path):
+    """2026-09-24 (anh chốt mọi lane): máy 1 sinh ảnh + clip hook, gói máy 2 PHẢI mang img/ + clip/ + sfx/;
+    hook_timeline.json khai clip mà thiếu file → DỪNG, không giao thiếu."""
+    import json
+    import pytest
+    import dong_goi_may2 as D
+    job_dir, dst = tmp_path / "job", tmp_path / "goi"
+    hook = job_dir / "hook"
+    for sub in ("img", "clip", "sfx"):
+        (hook / sub).mkdir(parents=True)
+    (hook / "img" / "001.png").write_bytes(b"png1")
+    (hook / "clip" / "clip_01.mp4").write_bytes(b"mp4-1")
+    (hook / "sfx" / "01.mp3").write_bytes(b"mp3")
+    tl = {"shots": [{"n": 1, "clip": "clip/clip_01.mp4", "img": "img/001.png"},
+                    {"n": 2, "clip": "clip/clip_02.mp4", "img": "img/002.png"}]}
+    (hook / "hook_timeline.json").write_text(json.dumps(tl), encoding="utf-8")
+    dst.mkdir()
+    with pytest.raises(SystemExit):
+        D._dong_goi_hook(job_dir, dst)
+    (hook / "clip" / "clip_02.mp4").write_bytes(b"mp4-2")
+    D._dong_goi_hook(job_dir, dst)
+    for rel in ("img/001.png", "clip/clip_01.mp4", "clip/clip_02.mp4", "sfx/01.mp3", "hook_timeline.json"):
+        assert (dst / "hook" / rel).exists(), rel
+
+
+def test_sha_script_crlf_khop_giua_cong_khoa_va_cong_hook(tmp_path):
+    """2026-09-24 (máy 2 bắt được, kenko ep01): script.txt lưu CRLF → gate_common.sha256_file (byte thô) và
+    hook_stage._sha_file (đọc văn bản) từng ra 2 mã khác nhau → cổng HOOK báo 'lỗi thời' oan. Nay phải khớp."""
+    import gate_common
+    import hook_stage
+    a, b = tmp_path / "crlf.txt", tmp_path / "lf.txt"
+    a.write_bytes("一行目\r\n\r\n二行目".encode("utf-8"))
+    b.write_bytes("一行目\n\n二行目".encode("utf-8"))
+    assert gate_common.sha256_file(a) == gate_common.sha256_file(b) == hook_stage._sha_file(a)

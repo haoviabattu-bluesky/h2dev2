@@ -26,6 +26,35 @@ nằm ở đây.
 
 ---
 
+## 1b. CỔNG S1L — chặn TRƯỚC KHI VIẾT (anh chốt 2026-09-24)
+
+G1–G8 ở trên là cổng chấm **sau** khi có kịch bản. Nhưng chấm sau nghĩa là phải sửa, và mỗi lần sửa
+là thêm một lượt Sol + một lượt patch. Nên có thêm một cổng **thượng nguồn**:
+
+`qc_goi_dang.cong_truoc_khi_viet(thư_mục_tập, profile)` — gọi ở **cả hai** luồng viết
+(`lean_script.run()` ngay sau S1Q, và `make_video.Job.b3_script()` cho luồng cũ). Ba điều kiện:
+
+| Điều kiện | Trượt thì |
+|---|---|
+| `script.hook.enabled: true` trong profile | DỪNG — hook 20–30s là luật MỌI LANE |
+| `goi_dang.enabled: true` trong profile | DỪNG — lane phải đo ngưỡng từ kênh mẫu của chính nó |
+| `promise.txt` trong thư mục tập, **đúng 1 câu** | DỪNG — lời hứa phải chốt TRƯỚC khi viết |
+
+Trượt là `SystemExit` **trước khi tốn lượt LLM nào** (`script.lock.json` ghi `state: BLOCK`,
+`reason: S1L`).
+
+**Nửa còn lại của rào — và là nửa quan trọng hơn:** `qc_goi_dang.khoi_luat_cho_prompt()` sinh một
+khối chữ từ `promise.txt` + `profile.goi_dang`, chèn vào prompt của **model VIẾT**
+(`ai_steps._pass1_prompt(..., luat_goi_dang=...)`). Model đọc lời hứa + mốc giây bắt buộc + các điều
+cấm TRƯỚC khi đặt bút, nên viết đúng ngay lần đầu. Lane chưa bật → khối rỗng → prompt y hệt trước.
+
+> **Vì sao phải là cổng, không phải một dòng trong tài liệu.** Luật "hook 20–30s bắt buộc mọi tập"
+> được chốt **2026-09-23** và đã viết vào `CLAUDE.md`. Đo thật **2026-09-24**: `script.hook.enabled`
+> mới bật ở **3/6 lane** (satori · kenko · toshi); iro · real · tano vẫn TẮT. Không ai làm sai cả —
+> công tắc mặc định TẮT và không có gì bắt phải bật. Luật bằng văn bản thì phải có người đọc và nhớ;
+> luật bằng cổng thì không ai đi qua được mà không làm. Cùng bài học memory
+> `khong-giao-viec-thu-cong-rao-nam-trong-tool`.
+
 ## 2. Chạy cổng
 
 ```

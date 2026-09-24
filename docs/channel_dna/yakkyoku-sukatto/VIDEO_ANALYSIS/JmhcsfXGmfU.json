@@ -1,0 +1,29 @@
+{
+  "topics": [
+    "薬剤師",
+    "調剤薬局",
+    "じゃあ辞めます",
+    "退職",
+    "転職",
+    "在宅医療",
+    "因果応報",
+    "スカッと",
+    "職場トラブル",
+    "主任昇格"
+  ],
+  "hook_type": "Mở đầu trực tiếp bằng lời độc thoại tự phụ của nhân vật chính về 'câu thần chú' đe dọa nghỉ việc giúp anh ta lười biếng suốt 8 năm.",
+  "structure": "Cấu trúc tam đoạn tiến triển: Giới thiệu thói quen đe dọa của nhân vật và 2 lần ép quản lý nhượng bộ -> Sự xuất hiện của đồng nghiệp mới chịu khó làm bộc lộ mâu thuẫn -> Lần thứ 3 đe dọa dẫn đến kết cục bị cho nghỉ ngay lập tức cùng bài học quả báo.",
+  "emotional_beats": [
+    "Tự mãn",
+    "Bất mãn ngầm",
+    "Hả hê",
+    "Bàng hoàng",
+    "Thỏa mãn"
+  ],
+  "title_formula": "【漫画】「[Câu cửa miệng gây tranh cãi]」が口ぐせの[Nghề nghiệp]が、[Số lần/Thời điểm tới hạn]に同じことを言った結果…",
+  "notes": "Khai thác mô-típ 'nhân viên lâu năm tự cho mình là trung tâm' bị thay thế bởi người có thái độ tốt, đánh trúng tâm lý bức xúc chốn công sở của người xem.",
+  "video_id": "JmhcsfXGmfU",
+  "title": "【漫画】「じゃあ、辞めます」が口ぐせの薬剤師が、3回目に同じことを言った結果…",
+  "view_count": 309000,
+  "duration_min": 17.5
+}

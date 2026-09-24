@@ -1,0 +1,332 @@
+{
+  "id": "yakkyoku-sukatto",
+  "market": "JP",
+  "language": "ja",
+  "niche": "職場漫画・薬局 — 口ぐせの悪い薬剤師が、組織の仕組みによって静かに因果応報を受ける話（三人称ナレーション＋主人公の心の声、VOICEVOX多声）",
+  "competitor": "https://www.youtube.com/channel/UCEBA1RFfkXQtqgiDVLh4bcw",
+  "slug_dir": "assets/yakkyoku-sukatto",
+  "folder_pattern": "ep{nn:02d}-*",
+  "channel_dossier": "FlowHandoff_local/results/laneK_from_research/KENH_MAU_REPORT.html",
+  "channel_dna_dir": "docs/channel_dna/yakkyoku-sukatto",
+  "narrator": {
+    "gender": "male",
+    "age_band": "40-50",
+    "persona": "落ち着いた男性ナレーター（三人称）。調剤薬局の日常を淡々と、感情を煽らずに語る。主人公を「彼」「その男」と呼び、責めも擁護もしない。主人公の心の声（「俺は〜」）は括弧なしの独立した一文で挟まる（ナレーターではなく主人公の声で読まれる）。",
+    "point_of_view": "三人称「彼」＋主人公の心の声「俺」（括弧なしの独立文）。台詞は必ず「」だけの独立した一文",
+    "register": "ナレーションは だ・である体、短い文。台詞は口語（主人公は「〜っすね」「〜なんで」系のくだけた口調、店長・事務さんは丁寧語）",
+    "_note": "ĐO THẬT 2026-09-24 (docs/channel_dna/yakkyoku-sukatto/GIONG_VAI.md): người kể = giọng nam 玄野武宏 ở 4/4 video; câu nội tâm「俺…」do giọng NHÂN VẬT CHÍNH đọc, không phải người kể."
+  },
+  "voice": {
+    "provider": "voicevox",
+    "_provider_note": "Ngã rẽ DUY NHẤT sang tts_voicevox.py (make_video.b4_voice + tts.py). Engine local :50021 — E:\\CLAUDE\\YOUTUBE\\VOICEVOX_ENGINE\\0.25.2\\run.exe. Máy 2 phải cài y hệt (0đ).",
+    "narrator": {
+      "speaker": "玄野武宏",
+      "style": "ノーマル"
+    },
+    "fixed_cast": {
+      "shu": {
+        "speaker": "黒沢冴白",
+        "style": "ノーマル",
+        "vai": "主人公（口ぐせの薬剤師）— thoại + tâm thoại「俺」"
+      },
+      "jimu": {
+        "speaker": "波音リツ",
+        "style": "ノーマル",
+        "vai": "事務さん"
+      }
+    },
+    "cast_bank": {
+      "店長・男性上司": [
+        {
+          "speaker": "雀松朱司",
+          "style": "ノーマル"
+        }
+      ],
+      "面接官・結果を告げる人": [
+        {
+          "speaker": "四国めたん",
+          "style": "ノーマル"
+        },
+        {
+          "speaker": "離途",
+          "style": "ノーマル"
+        },
+        {
+          "speaker": "東北イタコ",
+          "style": "ノーマル"
+        }
+      ],
+      "若い女性同僚・新人": [
+        {
+          "speaker": "春日部つむぎ",
+          "style": "ノーマル"
+        }
+      ],
+      "先輩女性・パート": [
+        {
+          "speaker": "冥鳴ひまり",
+          "style": "ノーマル"
+        }
+      ],
+      "後輩男性": [
+        {
+          "speaker": "白上虎太郎",
+          "style": "ふつう"
+        }
+      ],
+      "年配男性・患者": [
+        {
+          "speaker": "ちび式じい",
+          "style": "ノーマル"
+        },
+        {
+          "speaker": "麒ヶ島宗麟",
+          "style": "ノーマル"
+        }
+      ],
+      "別の店の店長・中年男性": [
+        {
+          "speaker": "夜語トバリ",
+          "style": "ノーマル"
+        }
+      ],
+      "女性面接官（30代）": [
+        {
+          "speaker": "九州そら",
+          "style": "ノーマル"
+        }
+      ]
+    },
+    "_cast_note": "Kho giọng vai phụ = ĐÚNG các giọng kênh mẫu đã dùng cho vai tương ứng (GIONG_VAI.md §2). 店長 gốc ở video 1–2 là 阿井田茂 (AivisSpeech) — anh chốt KHÔNG clone/không cài thêm, dùng 雀松朱司 như video 3 gốc.",
+    "speed": 1.0,
+    "pause_sentence_ms": 500,
+    "pause_para_ms": 900,
+    "pre_s": 0.05,
+    "post_s": 0.05,
+    "pace": false,
+    "fx": "none",
+    "char_rate": 316.7,
+    "_competitor_rate_note": "Kênh mẫu 294–323 chữ/phút (whisper 4 video: 5.295/17,5' · 5.655/19,1' · 5.318/18,1' · 5.214/16,2'), đã gồm nghỉ + nhạc. char_rate của mình PHẢI đo bằng chính tts_voicevox.py (calibrate), ghi char_rate_measured_at.",
+    "char_rate_speed": 1.0,
+    "char_rate_measured_at": "2026-09-24",
+    "char_rate_from": "video thật ep01-tantou-janai"
+  },
+  "script": {
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 17.5,
+    "_target_minutes_note": "4 video dài kênh mẫu: 16,2' · 17,5' · 18,1' · 19,1' (video 307k view = 17,5').",
+    "structure": "shokuba_kuchiguse7",
+    "structure_block": "video kể chuyện manga NƠI LÀM VIỆC (nhà thuốc 調剤薬局), người kể NGÔI 3 gọi nhân vật chính là「彼」/「その男」, xen CÂU NỘI TÂM ngôi 1「俺…」của nhân vật chính (câu độc lập, KHÔNG ngoặc). KHÔNG có tiêu đề chương/số thứ tự trong bản đọc. 7 chặng:\n   · HOOK (≈3%): câu đầu tiên là CÂU CỬA MIỆNG của nhân vật chính, đứng riêng trong「」(vd kênh mẫu 「じゃあ、辞めます」). Rồi 1–2 câu người kể: câu đó là 口ぐせ của một dược sĩ + anh ta đã dùng nó để qua chuyện bao năm. Kết hook bằng câu khung 「これは、この男が〜までの話だ。」(nói ra điểm đến, KHÔNG nói kết quả). Không chào hỏi, không tự giới thiệu kênh.\n   · CON NGƯỜI ĐÓ (≈13%): nhà thuốc nhỏ cụ thể (khu dân cư, bao nhiêu người: 店長・薬剤師・パート・事務さん), nhân vật chính làm ở đây bao lâu, THÓI QUEN XẤU thể hiện bằng HÀNH VI đời thường (đến đúng giờ, về đúng giờ, không đụng việc người khác) + câu nội tâm tự biện minh「俺は〜」. Người kể KHÔNG phán xét, chỉ tả.\n   · LẶP CÂU CỬA MIỆNG (≈37%): câu cửa miệng được dùng 2 lần trong 2 tình huống NGHIỆP VỤ khác nhau (trực chủ nhật・在宅訪問・giao ca・kiểm kho・ca đóng cửa・hướng dẫn người mới…), mỗi lần nặng hơn. Mỗi lần: có người nhờ → nói câu cửa miệng → được nhượng bộ → NGƯỜI KHÁC lặng lẽ gánh thay (người kể cho khán giả thấy cái giá mà nhân vật chính không thấy: 店長 ăn trưa lúc 3 giờ, 事務さん về muộn, con của 店長 chờ ở sân bóng). Nhân vật chính không nhận ra.\n   · NGƯỜI ĐỐI LẬP (≈16%): xuất hiện 1 người làm việc tử tế, lặng lẽ nhận phần việc khó (dược sĩ mới vào giữa chừng / đồng nghiệp trẻ / người giao hàng…). Bệnh nhân và đồng nghiệp dần tìm đến người này. Nhân vật chính coi thường họ trong nội tâm.\n   · LẦN CUỐI + HẬU QUẢ (≈17%): nhân vật chính dùng câu cửa miệng lần cuối trong chuyện quan trọng (thăng chức, hợp đồng, phỏng vấn) — lần này người kia chỉ đáp NGẮN, bình thản, bằng cơ chế tổ chức (「分かりました。退職届を出しておいてください」「次の契約は更新しません」). KHÔNG ai mắng, KHÔNG ai trả thù, KHÔNG cảnh hả hê. Hậu quả đến từ hệ thống/quy định có thật.\n   · SAU ĐÓ CỦA ANH TA (≈6%): nơi mới / buổi phỏng vấn mới — câu cửa miệng không còn tác dụng (vd 「じゃあ…」rồi không nói tiếp được). Anh ta vẫn nghĩ mình không sai.\n   · SAU ĐÓ CỦA NHÀ THUỐC (≈8%): nhà thuốc cũ ấm lại bằng chi tiết nhỏ cụ thể (店長 về kịp xem con đá bóng, 事務さん kịp bữa tối, パート được nghỉ trưa đủ). CÂU CUỐI CÙNG lặp lại đúng câu cửa miệng trong ngữ cảnh 'ở đó không còn ai nói câu ấy nữa' (vd 「じゃあ、辞めます。あの店でその言葉を聞く人は、もういない。」).\n   LUẬT VIẾT BẮT BUỘC (máy đếm câu để gắn giọng từng vai): mỗi câu thoại là MỘT câu riêng chỉ gồm「…」, KHÔNG dính lời dẫn trong cùng câu (cấm「…」と彼は言った / 彼は「…」と言った — muốn nói ai nói thì viết câu người kể riêng TRƯỚC hoặc SAU). Câu nội tâm「俺は〜」viết riêng 1 câu, không ngoặc. NGƯỜI NÓI PHẢI RÕ: trước mỗi lượt thoại mới (đổi người nói) có câu người kể nêu ai lên tiếng hoặc ai đang ở đó (vd「事務さんが受話器を置いて振り向いた。」rồi mới tới「…」) — máy gắn giọng và bóng thoại dựa vào đó, thoại không rõ chủ là lỗi. Chi tiết nghiệp vụ dược (処方箋, 在宅, 管理薬剤師, 調剤報酬, 当番…) phải đúng như tư liệu; nhân vật/nhà thuốc hư cấu.",
+    "mode": "fiction_facts",
+    "_mode_note": "Nhân vật + nhà thuốc hư cấu; QUY ĐỊNH/nghiệp vụ dược (giờ làm, 管理薬剤師, 在宅, hợp đồng, 36協定…) phải có trong series_ctx.txt kèm nguồn.",
+    "ctx_label": "TƯ LIỆU NGHIỆP VỤ NHÀ THUỐC NHẬT (quy định/chế độ/quy trình PHẢI lấy đúng từ đây, kèm nguồn; nhân vật và nhà thuốc là hư cấu)",
+    "engine": "claude_p",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
+    "final_review_model": "claude-opus-5",
+    "sol_qc": true,
+    "flow": "lean",
+    "sol_pass_need": 2,
+    "budget": {
+      "tol": 0.08,
+      "sections": [
+        {
+          "label": "フック（口ぐせ＋これは〜までの話だ）",
+          "ratio": 0.03
+        },
+        {
+          "label": "口ぐせの男（職場と習慣と心の声）",
+          "ratio": 0.13
+        },
+        {
+          "label": "一回目・二回目（周りが静かに背負う）",
+          "ratio": 0.37
+        },
+        {
+          "label": "対照の人物（黙って引き受ける人）",
+          "ratio": 0.16
+        },
+        {
+          "label": "最後の口ぐせと、仕組みによる結末",
+          "ratio": 0.17
+        },
+        {
+          "label": "その後の彼",
+          "ratio": 0.06
+        },
+        {
+          "label": "その後の薬局（口ぐせの反復で締め）",
+          "ratio": 0.08
+        }
+      ],
+      "_note": "ĐO từ もくじ (mục lục có mốc giây) trong mô tả 4 video gốc: mở 1–3,5% · con người đó 11–20% · lặp câu cửa miệng 33–47% · người đối lập/điểm ngoặt 12–25% · lần cuối+hậu quả 12–29% · sau đó của anh ta 3–8% · sau đó của nhà thuốc 6–10%."
+    },
+    "fact_exempt_units": [
+      "万円",
+      "円",
+      "年",
+      "歳",
+      "回",
+      "人",
+      "分"
+    ],
+    "_fact_exempt_note": "Số CÁ NHÂN trong truyện hư cấu (8年いる, 3回目, 閉店2分前, 20年, 65歳, 6社目) không phải dữ kiện chế độ. Quy định (%/giờ/điều luật) vẫn đối chiếu tư liệu.",
+    "gate": {
+      "comma_per_sentence": [
+        0.6,
+        2.0
+      ],
+      "chars_per_breath": [
+        7.0,
+        14.0
+      ],
+      "dialogue_ratio_max": 0.45,
+      "require_next_ep_teaser": false,
+      "title_len": [
+        31,
+        46
+      ],
+      "hook_chars": [
+        60,
+        220
+      ],
+      "list_item_count": 0,
+      "dialogue_own_sentence": true,
+      "_gate_note": "ĐO 2026-09-24: title_len 31–46 ký tự kể cả【漫画】(4 tiêu đề gốc 31/39/42/46). Câu ngắn: trung vị 18–20 chữ/câu (whisper 4 video; hộp chữ trên hình 1 câu 15–30 chữ, 1–2 dấu 、) → comma 0,6–2 · 7–14 chữ/nhịp. dialogue_ratio_max 0,45: đo bằng máy gán giọng — đoạn KHÔNG phải người kể chiếm 33–44% (3/4 video; video 3 cao hơn) — gồm cả nội tâm, nên thoại「」thuần thấp hơn. hook_chars: câu cửa miệng + khung 「これは…までの話」ở kênh mẫu dài 10–30s. dialogue_own_sentence: lane_rule mới (S3) — mỗi câu「」đứng riêng để gắn giọng.",
+      "_repeat_ok_note": "Câu cửa miệng CỦA TẬP (cụm「…」đầu tiên trong title.txt) được phép lặp nguyên văn — luật kênh: 3 lần + câu kết. lean_script.do_tat_dinh tự rút theo tập; có thể khai thêm gate.repeat_ok cố định. Không có field này máy tự xoá lần lặp (đo thật ep01: mất payoff + câu kết, Sol FIX 2 vòng).",
+      "repeat_title_quote": true
+    },
+    "hook": {
+      "enabled": true,
+      "patterns": [
+        "H22",
+        "H14",
+        "H02"
+      ],
+      "closer": "K19",
+      "visual": "manga_ai_ref_grok",
+      "_visual_note": "Ảnh manga AI khoá mặt bằng master CỦA CHÍNH TẬP (_ref_<id>) → clip Grok 6s. Cấm tư liệu thật, cấm clip stock. Mỗi cảnh thấy MẶT + cảm xúc.",
+      "visual_kind": "video_sinh",
+      "sfx": true,
+      "_hook_note": "HOOK_LIBRARY (TRENDING-RESEARCH nạp 4 video gốc 2026-09-24): H22 ×2, H14, H02; closer K19 ×2 (「これは〜までの話です」 ở video 3, 4). Kênh mẫu là ngôi 3 → câu khung là「これは、この男が〜までの話だ」."
+    }
+  },
+  "script_qc": {
+    "lens": "plain",
+    "domain_focus": "Manga kể chuyện hư cấu nơi làm việc ở một nhà thuốc Nhật (調剤薬局), người kể ngôi 3 + câu nội tâm của nhân vật chính. Không phải video y khoa, không phải lời khuyên dược. Chỉ cần soi tính HỢP LÝ: nhân quả, thời gian, nghiệp vụ nhà thuốc có đúng thực tế không, nhân vật nhất quán.",
+    "lane_rules": [
+      "Hậu quả phải đến từ HỆ THỐNG/quy định (không gia hạn hợp đồng, trượt phỏng vấn, quyết định nhân sự) — KHÔNG có cảnh trả thù, mắng nhiếc, hả hê. Đừng đề nghị thêm cảnh 'trả đũa'.",
+      "Câu cuối cùng lặp lại ĐÚNG câu cửa miệng trong ngữ cảnh 'không còn ai nói' — đó là luật kênh, không phải lặp thừa.",
+      "Mỗi câu thoại đứng riêng thành 1 câu「…」; câu nội tâm「俺は〜」không ngoặc là chủ ý (đọc bằng giọng nhân vật chính) — đừng đề nghị gộp vào lời dẫn.",
+      "Người kể không phán xét nhân vật chính; khán giả tự thấy qua chi tiết. Đừng đề nghị thêm câu bình luận đạo đức.",
+      "Nghiệp vụ dược (処方箋・在宅・当番・管理薬剤師・契約) phải hợp lý với nhà thuốc nhỏ ở Nhật; không có lời khuyên dùng thuốc cho người xem.",
+      "Không dùng lại câu cửa miệng / tình tiết đặc trưng của 4 video kênh mẫu (「じゃあ、辞めます」「自分、仕事できるんで」「残業代入んないんで」「代わりはいくらでもいる」, người giao hàng thành người phỏng vấn, 閉店2分前).",
+      "Hook 20–30s đầu đã KHOÁ (sha256) và dùng「六年間」theo nghĩa xấp xỉ 'suốt ngần ấy năm' — không đề nghị sửa hook; chỉ soi thân bài có nhất quán mốc năm hay không."
+    ]
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "Each episode defines its OWN cast in characters.json (id, age, gender, look, ref). Every character with a speaking line or appearing in 2+ images has its own locked master portrait (_ref_<id>/001.png). A single image may show AT MOST 3 locked faces (Flow Tool limit). Characters are fictional pharmacy staff/patients; never resemble a real public figure; faces do not carry over between episodes.",
+    "style_suffix": "clean modern Japanese anime illustration, crisp confident line art, soft cel shading, natural human proportions (not chibi), bright soft daylight, realistic Japanese adults, gentle colors, calm everyday atmosphere; leave some open uncluttered space beside the speaking person for a speech balloon added later; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no speech bubbles, no watermark",
+    "_style_suffix_note": "Viết theo khung hình THẬT video gốc JmhcsfXGmfU (docs/channel_dna/yakkyoku-sukatto/_raw/video/khung/sheet_v1.png): anime nét sạch tỉ lệ người thật, ánh sáng ban ngày dịu, nhà thuốc gỗ sáng; chữ/bóng thoại do MÁY vẽ sau (tate_text --bubble) nên ảnh cấm chữ. · 2026-09-24 GỠ cụm bối cảnh 'warm light-wood pharmacy interior (...)' khỏi style: style nối vào MỌI prompt nên kéo cả cảnh ga tàu/sân bóng/phòng họp về quầy thuốc (QC hook ep01 trượt 2/7 ảnh vì lỗi này). Bối cảnh tả trong từng prompt.",
+    "seconds_per_image": 8,
+    "_seconds_note": "ĐO THẬT 2026-09-24: dò đổi khung 2 video gốc (fps 2) → 129–140 lần đổi / 17,5–18' · trung bình 7,7–8,1s, trung vị 6,5s.",
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 8,
+    "qc_sample": 10,
+    "b5p_qc": true,
+    "prompts_by": "fable_doan",
+    "characters_from_bible": true,
+    "cast_max_per_image": 3,
+    "sample_gate": 5
+  },
+  "body": {
+    "mode": "ai_images"
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "_note": "Tiêu đề/mô tả/thumbnail do YT-TITLE-RESEARCH (listing_external). Mô-típ kênh mẫu (report §thumbnail): 3 vùng — trái ~42% người đưa hậu quả + bóng XANH DƯƠNG, giữa băng VÀNG chữ viền đen, phải ~42% nhân vật chính + bóng ĐỎ chứa câu cửa miệng."
+  },
+  "assemble": {
+    "zoom": 1.025,
+    "transition": "xfade",
+    "xfade": 0.3,
+    "burn_subs": false,
+    "sync": "anchors",
+    "qc_sample": 10,
+    "bubble": {
+      "enabled": true,
+      "font": "Yu Gothic",
+      "font_size": 40,
+      "max_chars_per_col": 11,
+      "max_cols": 3,
+      "title_card_s": 3.0,
+      "_note": "Kênh mẫu: MỌI câu hiện trên hình — lời kể trong hộp chữ nhật trắng chữ dọc, thoại + nội tâm trong bóng tròn trắng có đuôi chỉ về người nói (khung gốc 0:17, 0:25, 1:00, 5:00). Giây ~11 có thẻ tiêu đề (ảnh mờ + tên tập chữ ngang). Không phụ đề đáy.",
+      "font_size_ke": 64,
+      "font_size_thoai": 48,
+      "max_chars_per_col_ke": 8,
+      "ke_split_chars": 24,
+      "_note_co_chu": "Anh chốt 2026-09-24 sau khi xem ep01 + ảnh so 3 mức (assets/.../ep01-tantou-janai/_mau_chu/): lời kể 64px cột ≤8 chữ (hộp vuông), dài >24 chữ tách nhiều hộp nối tiếp chia thời gian theo số chữ; thoại 48px. Hộp lời kể SÁT MÉP phải, mép phải có người thì mép trái."
+    },
+    "zoom_dir": "in",
+    "bgm": "assets/yakkyoku-sukatto/_bgm/bgm_lane_k.mp3",
+    "bgm_volume": 0.075,
+    "bgm_keep_voice": true,
+    "_note_chuyen_canh_nhac": "Anh chốt 2026-09-24 (NGOẠI LỆ riêng Lane K với luật cấm zoom 21/09): giống kênh mẫu đo máy 2 video — mờ chồng 0,3s (9 khung) + mỗi cảnh phóng vào chậm ×1,02–1,03 (88/91 cảnh) → zoom 1.025 zoom_dir=in, dựng bằng warpAffine dưới-pixel (không rung). Nhạc nền: kênh mẫu có 1 bài acoustic guitar đời thường lặp suốt video, nền khoảng lặng thấp hơn giọng ~17,7 dB, KHÔNG SFX (Gemini nghe 3 đoạn + đo mức). bgm_lane_k.mp3 = Suno qua ai33 (bgm_cand1, Gemini chấm 9/10), nối vòng acrossfade 5s thành 20:41; volume 0.075 đo cho chênh ~17,8 dB."
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse",
+    "suicide",
+    "real politician",
+    "real celebrity face",
+    "brand logo",
+    "pill close-up with brand name"
+  ],
+  "publish": {
+    "upload_channel": "yakkyoku-sukatto",
+    "sheet_tab": "K-yakkyoku-sukatto",
+    "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+    "review_vi": true,
+    "hashtags": "#薬剤師 #薬局 #漫画 #スカッと #因果応報",
+    "tags_seed": [
+      "薬剤師",
+      "薬局",
+      "漫画",
+      "スカッと",
+      "因果応報",
+      "調剤薬局",
+      "職場 あるある",
+      "会社員 漫画"
+    ],
+    "listing_external": true,
+    "title_auto": false,
+    "_title_auto_note": "Kênh mới: TẮT theo luật (docs/QUY_TRINH_GIAO_VIEC_MAY2.md §7) — anh setup TITLE tập đầu bằng tay rồi mới `goi_title.py --bat yakkyoku-sukatto`. Mô tả PHẢI có khối ▼素材 lấy từ credits_giong.txt của tập (điều khoản VOICEVOX)."
+  },
+  "goi_dang": {
+    "enabled": true,
+    "promise_window_s": 30,
+    "contradiction_max_s": 15,
+    "title_core_max_s": 10,
+    "promise_giu_duoc_max_s": 60,
+    "ritual": [],
+    "title_core_len": [
+      27,
+      42
+    ],
+    "title_suffix_ignore": [
+      "【漫画】"
+    ],
+    "list_mode": false,
+    "_nguon": "4 video gốc 千種テンカ: câu cửa miệng (= lõi tiêu đề) ở giây 0,7–0,8 (4/4) · câu khung/lời hứa 「これは…までの話です」/「今日は転職の面接の日だ」 ở 10,9–29,5s · lõi tiêu đề bỏ【漫画】 27–42 ký tự."
+  },
+  "_note": "Lane K — 薬局スカッと帳 @yakkyoku-sukatto, mail GMAIL dòng 12, NOTE dòng 8. Clone 千種テンカ UCEBA1RFfkXQtqgiDVLh4bcw. Khác mọi lane: ĐA GIỌNG VOICEVOX (tts_voicevox.py + vai.txt), khoá mặt N nhân vật/tập (@CAST), bóng thoại có đuôi do máy vẽ. Phương án: docs/PHUONG_AN_LANE_K_DA_GIONG_BONG_THOAI.md. Cửa vào: docs/BAT_DAU_LANE/yakkyoku-sukatto.md."
+}

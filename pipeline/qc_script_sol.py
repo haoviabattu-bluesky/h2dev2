@@ -74,6 +74,15 @@ của bạn cho ĐÚNG chủ đề đang đọc, đừng chỉ so khớp với d
      ghép như て+しまう/ていく/てくる/てきている, hoặc cắt giữa định ngữ và danh từ nó bổ nghĩa) làm câu
      mất tự nhiên khi đọc thành tiếng không? Liệt kê CHÍNH XÁC từng câu bị lỗi kiểu này nếu có.
 
+RANH GIỚI HƯ CẤU (anh chốt 2026-09-24 — áp cho CẢ 6 lăng kính):
+- ĐƯỢC PHÉP bịa: bối cảnh, nhân vật minh hoạ (tuổi, nghề, gia đình, câu nói), phân cảnh, tình huống đời
+  thường — kể cả người kể xưng "私" nhập vai nhân vật. KHÔNG phải lỗi, KHÔNG đòi nguồn, và CẤM yêu cầu
+  thêm câu thanh minh kiểu "nhân vật là hư cấu / không phải bệnh nhân thật / đây là ví dụ giả định".
+- CẤM bịa (bắt lỗi nghiêm): thuốc, liều dùng, cách điều trị, cơ chế sinh học, số liệu/tỷ lệ, nghiên cứu,
+  tổ chức, tiêu chuẩn chẩn đoán, hiệu quả của thực phẩm/biện pháp — mọi thông tin Y TẾ phải đúng sự thật.
+- Nhân vật hư cấu mà "trải nghiệm" một kết quả y khoa (vd ăn X rồi khỏi bệnh) thì kết quả đó vẫn phải
+  hợp với bằng chứng thật — chỉ con người/bối cảnh là được bịa, không phải hiệu quả y tế.
+
 {domain_focus}{hook_block}
 
 QUY TẮC ĐÁNH GIÁ:

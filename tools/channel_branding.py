@@ -603,10 +603,18 @@ LANE_TAB_HEADER = ["STT", None, "FOLDER", "KỊCH BẢN", "TITLE-DESCREPTION", "
 
 
 def ensure_lane_tab(cfg):
-    """Sau setup kênh: tạo tab sản xuất riêng tên = lane_id, dòng 1 header A→K giống tab 70dai-kenko
-    (anh chốt 2026-09-20). Tab đã có / dòng 1 đã có dữ liệu -> không đụng."""
+    """Sau setup kênh: tạo tab sản xuất riêng, dòng 1 header A→K giống tab E-70dai-kenko
+    (anh chốt 2026-09-20). Tab đã có / dòng 1 đã có dữ liệu -> không đụng.
+    Tên tab = `{Lane}-{tên kênh}` (anh chốt 2026-09-24, vd A-shinya_shiryoshitsu, F-teinengo-real):
+    KENH.json khai `sheet_tab` thì dùng nguyên, không thì ghép chữ lane từ `lane_label` ("LANE H" → H)
+    + handle. Nhớ khai CÙNG tên đó vào profile `publish.sheet_tab` (pipeline/sheet_tab.py đọc ở đó)."""
     svc = sheets_svc()
-    tab = cfg["lane_id"]
+    tab = cfg.get("sheet_tab")
+    if not tab:
+        chu = (cfg.get("lane_label") or "").replace("LANE", "").replace("Lane", "").strip()
+        if not chu:
+            raise SystemExit("✗ KENH.json thiếu cả sheet_tab lẫn lane_label — không đặt được tên tab {Lane}-{kênh}")
+        tab = f"{chu}-{cfg['handle'].lstrip('@')}"
     meta = svc.spreadsheets().get(spreadsheetId=SHEET_ID).execute()
     have = {sh["properties"]["title"] for sh in meta["sheets"]}
     if tab not in have:

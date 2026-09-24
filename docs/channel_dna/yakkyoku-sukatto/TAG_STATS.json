@@ -1,0 +1,146 @@
+{
+  "video_tags": {
+    "薬剤師": {
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    "薬局": {
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    "調剤薬局": {
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    "スカッとする話": {
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    "フィクション": {
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    "創作": {
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    }
+  },
+  "top_tags": [
+    {
+      "tag": "薬剤師",
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    {
+      "tag": "薬局",
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    {
+      "tag": "調剤薬局",
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    {
+      "tag": "スカッとする話",
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    {
+      "tag": "フィクション",
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    },
+    {
+      "tag": "創作",
+      "n_videos": 4,
+      "total_views": 421000,
+      "video_ids": [
+        "JmhcsfXGmfU",
+        "2D9SU1GMZf4",
+        "3zIxI4ZDqcc",
+        "_aNUqjYEebI"
+      ],
+      "avg_views": 105250
+    }
+  ],
+  "n_videos_with_tags": 4,
+  "n_videos_total": 4
+}

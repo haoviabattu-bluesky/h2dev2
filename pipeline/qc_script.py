@@ -179,7 +179,9 @@ def mechanical(text, lang="ja", gate=None, warn_no_marker=False):
                     "msg": f"{len(lat)} từ Latin lạ: {', '.join(dict.fromkeys(lat))[:120]}"})
 
     # câu trùng lặp — dấu hiệu 2 khúc cùng kể 1 cảnh
-    ss = sentences(text, 12)
+    # `gate.repeat_ok` (Lane K, 2026-09-24): câu cửa miệng lặp nguyên văn là LUẬT KÊNH, không phải lỗi cắt ghép.
+    lap_ok = tuple((gate or {}).get("repeat_ok") or ())
+    ss = [s for s in sentences(text, 12) if not (lap_ok and any(c and c in s for c in lap_ok))]
     dup = [(s, c) for s, c in Counter(ss).items() if c > 1]
     if dup:
         out.append({"kind": "cau_trung_lap", "sev": "cao",

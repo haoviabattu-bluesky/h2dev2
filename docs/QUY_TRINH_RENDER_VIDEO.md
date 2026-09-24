@@ -37,7 +37,7 @@ Runbook bước 3 của lane đó: **`docs/GIAO_VIEC_BUOC3_AGENT.md`**.
 
 ## 1. TÌM TẬP CẦN RENDER
 
-Mở trang tính, tab `Lopezzapa68`, nhìn cột **F (STATUS-IMG)**. Tập nào ghi:
+Mở trang tính, tab `Satori-Lopezzapa68`, nhìn cột **F (STATUS-IMG)**. Tập nào ghi:
 
 ```
 Img done - <n>/<m> ảnh (<ngày giờ>)
@@ -51,7 +51,7 @@ ví dụ `E:\...\assets\satori_jp\simbot2-07-TISOm_7M_vM\` thì slug là `simbot
 Hoặc để máy tra hộ:
 ```bat
 cd E:\CLAUDE\YOUTUBE\h2dev\pipeline
-py -3.13 quet_dong_can_anh.py --tab Lopezzapa68 --dong 1-25
+py -3.13 quet_dong_can_anh.py --tab Satori-Lopezzapa68 --dong 1-25
 ```
 
 ---

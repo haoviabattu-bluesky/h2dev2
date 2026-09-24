@@ -17,6 +17,8 @@ Luật: mỗi shot 3–6 s, 1 ý, 1 hành động, 1 điểm nhấn; shot mới 
 câu voice của shot; KHÔNG spoil reveal bằng hình; không text trên hình. `voice` mỗi shot = đoạn con NGUYÊN VĂN của HOOK,
 ghép lại đúng thứ tự phải ra đủ HOOK. `flow_prompt` tiếng Anh, 11 mục: SUBJECT / AGE-FACE-CLOTHING / LOCATION / ACTION /
 EMOTION / CAMERA / LIGHTING / MOVEMENT / DURATION / CONTINUITY / NEGATIVE (no text, no subtitles, no distorted hands).
+Nếu characters.json có trường "id" (khoá mặt nhiều nhân vật): `ref_image` = các id THẤY MẶT trong shot, nối bằng dấu phẩy
+(tối đa 3, vd "shu,tencho"), hoặc "none"; mỗi shot phải thấy MẶT ít nhất 1 nhân vật + cảm xúc đúng câu voice.
 Trả ĐÚNG 1 JSON: {{"shots": [{{"n":1,"t0":0.0,"t1":4.0,"voice":"...","visual":"1 câu tiếng Việt","shot_type":"close-up|medium|wide|reaction|detail|establishing|memory","ref_image":"REF|REF2|none","flow_prompt":"...","continuity":"..."}}]}}"""
 
 

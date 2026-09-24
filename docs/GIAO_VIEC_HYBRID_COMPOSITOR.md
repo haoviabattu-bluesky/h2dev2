@@ -155,7 +155,7 @@ audio/thiếu anchors" rồi DỪNG chờ hỏi, dù đây đều là việc bư
 
 | Việc | Ai làm | Công cụ |
 |---|---|---|
-| Vẽ ảnh cho dòng nhóm `AI` | **Bước 2 (máy 2)** | Google Flow, trả về `FlowHandoff_local/results/<slug>/` |
+| Vẽ ảnh cho dòng nhóm `AI` | **Bước 2 (máy 2)** | Google Flow, trả về `FlowHandoff_local/results/video_render/<publish.upload_channel>/<slug>/` (⛔ chỗ trả hàng DUY NHẤT mọi lane, chốt 24/09 — `docs\QUY_TRINH_GIAO_VIEC_MAY2.md` §6) |
 | Đổi dòng STOCK bị loại → `AI_FALLBACK` | **Bước 1** | `hybrid_chuan_bi.py` (mục A) |
 | Tự vẽ bù ảnh cho dòng `AI_FALLBACK` | **Bước 1** | `hybrid_chuan_bi.py` (mục C, gọi `gen_images.py`) |
 | Copy ảnh máy 2 từ FlowHandoff vào `img/` | **Bước 1** | `hybrid_chuan_bi.py` (mục B) — máy 2 KHÔNG tự copy |

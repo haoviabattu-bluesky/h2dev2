@@ -118,6 +118,16 @@ def save(prof):
     return f
 
 
+DA_GIONG_PROVIDERS = ("voicevox", "ai33")
+
+
+def da_giong(prof):
+    """Lane ĐA GIỌNG (mỗi câu một giọng theo vai.txt → tts_voicevox.chay): voice.provider = "voicevox" (Lane K,
+    engine local) hoặc "ai33" (Lane L 2026-09-24, OpenSpeaker/MiniMax — kênh mẫu không phải VOICEVOX).
+    Lane một giọng không khai provider → False, đường tts.py cũ y nguyên."""
+    return ((prof.get("voice") or {}).get("provider") or "") in DA_GIONG_PROVIDERS
+
+
 def voice_conf(prof):
     v = prof.get("voice", {}) or {}
     return v.get("id", ""), v.get("fx", "none"), float(v.get("speed", 0.95) or 0.95)

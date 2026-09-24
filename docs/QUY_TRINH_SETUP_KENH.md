@@ -46,6 +46,12 @@ video...). Dừng ở avatar/tên/mô tả cơ bản là THIẾU quy trình, kh�
    thừa nếu bấm Add link quá 1 lần).
 10. Profile → Contact info → Email = mail cột B của dòng sheet (mail đăng nhập kênh).
 
+**C. Tiêu đề/thumbnail tự động (dự án YT-TITLE-RESEARCH) — kênh mới MẶC ĐỊNH TẮT (anh chốt 2026-09-24):**
+11. Không khai `publish.title_auto` khi lập profile. Tạo cấu hình lane bên TITLE (`cli.py lane-init` /
+    `lane-pilot`), chạy tay tập đầu tới khi anh ưng tiêu đề + thumbnail, rồi mới bật:
+    `py -3.13 E:\CLAUDE\YOUTUBE\h2dev\pipeline\goi_title.py --bat <lane>` (kèm `publish.listing_external: true`).
+    Chi tiết: `docs/QUY_TRINH_GIAO_VIEC_MAY2.md` §7.
+
 **⚠️ Trước khi sửa bất kỳ mục nào ở B, RELOAD trang thật để kiểm tra trạng thái hiện tại** — nhiều
 mục (Links, Contact email, đôi khi cả Handle) có thể **ĐÃ ĐÚNG SẴN** do Google tự điền mặc định;
 đừng suy diễn từ form đang mở dở, và đừng ghi đè nếu đã đúng.

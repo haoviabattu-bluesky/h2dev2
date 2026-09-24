@@ -416,6 +416,18 @@ def main():
     args = ap.parse_args()
 
     prof_id = args.profile or args.channel
+    # Lane ĐA GIỌNG (profiles.da_giong: voice.provider "voicevox"/"ai33"): mọi nơi gọi tts.py --profile (hook, dung_hook, calibrate…) tự
+    # chuyển sang tts_voicevox.py — giọng từng câu lấy từ vai.txt của tập (dò lên từ thư mục script).
+    if prof_id:
+        try:
+            import profiles as _pf
+            _p = _pf.load(prof_id)
+        except Exception:
+            _p = {}
+        if _p and _pf.da_giong(_p):          # voicevox (Lane K) | ai33 đa giọng (Lane L)
+            import tts_voicevox
+            tts_voicevox.chay(args.script, args.out, _p)
+            return
     resolve_voice_conf(args, prof_id)
 
     text = clean(Path(args.script).read_text(encoding="utf-8"))

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ghi_cot_video.py — ghi ĐÚNG MỘT Ô cột G (VIDEO) sau khi đã giao hàng xong.
 
-    py -3.13 ghi_cot_video.py --tab shinya_shiryoshitsu --dong 2
+    py -3.13 ghi_cot_video.py --tab A-shinya_shiryoshitsu --dong 2
 
 VÌ SAO CÓ FILE NÀY
 ------------------------------------------------------------------------------------------------
@@ -34,6 +34,8 @@ from pathlib import Path
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
+import sheet_tab  # noqa: E402  (tên tab {Lane}-{kênh} — nguồn: profile.publish.sheet_tab)
+
 try:
     sys.stdout.reconfigure(encoding="utf-8")
 except Exception:
@@ -63,16 +65,11 @@ def lane_theo_tab(tab):
     `publish.sheet_tab` (tuỳ chọn) GHI ĐÈ tên tab khi tên tab trang tính KHÁC tên thư mục kênh
     trong CHANEL — vd Lane E: `upload_channel="kenko-chiebukuro"` (đúng tên thư mục CHANEL\\...) nhưng
     tab trang tính lại là `70dai-kenko` (đúng handle YouTube @70dai-kenko). Không khai thì mặc định
-    = `upload_channel` như cũ (mọi lane khác không đổi hành vi)."""
-    for f in sorted((ROOT / "profiles" / "profiles").glob("*.json")):
-        try:
-            p = json.loads(f.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-        pub = p.get("publish") or {}
-        if (pub.get("sheet_tab") or pub.get("upload_channel") or "") == tab:
-            return p
-    return None
+    = `upload_channel` như cũ (mọi lane khác không đổi hành vi).
+
+    Từ 2026-09-24 tra qua `sheet_tab.py`: nhận tên tab mới `{Lane}-{kênh}`, tên tab cũ, thư mục kênh
+    hoặc mã lane đều được."""
+    return sheet_tab.lane_theo_tab(tab)
 
 
 def thu_muc_tap(prof, stt):
@@ -100,6 +97,7 @@ def main():
     ap.add_argument("--thu", action="store_true", help="chi kiem va in ra, KHONG ghi")
     a = ap.parse_args()
 
+    a.tab = sheet_tab.tab_that(a.tab)          # tên cũ/mã lane → tên tab thật (A-shinya_shiryoshitsu...)
     prof = lane_theo_tab(a.tab)
     if not prof:
         raise SystemExit(f"✗ không profile nào khai publish.upload_channel = '{a.tab}'")

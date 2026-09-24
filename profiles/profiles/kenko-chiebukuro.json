@@ -97,8 +97,12 @@
     "H34"
    ],
    "closer": "K18",
-   "visual": "lien_mach_than",
-   "_visual_note": "KHÔNG dựng clip hook riêng. Hook là 30 giây ĐẦU của chính script.txt, dùng chung ảnh AI minh hoạ và chung một lần dựng với thân video. Lý do: lane này viết lại cả kịch bản nên dựng liền mạch rẻ hơn và không có chỗ nối. CẤM ghép clip rời vào đầu."
+   "visual": "anh_ai_clip_grok",
+   "_visual_note": "KHÔNG dựng clip hook riêng. Hook là 30 giây ĐẦU của chính script.txt, dùng chung ảnh AI minh hoạ và chung một lần dựng với thân video. Lý do: lane này viết lại cả kịch bản nên dựng liền mạch rẻ hơn và không có chỗ nối. CẤM ghép clip rời vào đầu.",
+   "sfx": true,
+   "_sfx_note": "Anh chốt 2026-09-24: hiệu ứng âm thanh trong hook là BẮT BUỘC (trước đây coi là phụ hoạ). Sinh bằng ai33 `POST /v1/task/sound-effect`, để `duration_seconds` AUTO — xem memory sfx-ai33-mac-dinh-auto (cách gọi không đổi, chỉ nâng mức bắt buộc).",
+   "visual_kind": "video_sinh",
+   "_visual_doi_note": "ĐỔI 2026-09-24 từ `lien_mach_than`: luật mới của anh là hook = VIDEO SINH, mà `lien_mach_than` nghĩa là KHÔNG dựng clip riêng (hook là 30 giây đầu của chính script.txt, dựng chung 1 lần với thân) — hai thứ loại trừ nhau. Nay hook là CLIP RIÊNG dựng từ ảnh AI minh hoạ của tập → clip Grok, rồi nối vào trước final.mp4. HỆ QUẢ phải làm theo: (a) mất lợi thế 'không có điểm nối' nên PHẢI cân mức tiếng + khớp fps/độ phân giải theo docs/QUY_TAC_VIDEO_HOOK.md §2; (b) gói giao máy 2 nay đi nhánh 'hook là clip riêng' của dong_goi_may2.py, tức máy 2 nhận thêm đơn vẽ ảnh hook. docs/SOP_LANE_E.md mục hook cần sửa theo."
   }
  },
  "script_qc": {
@@ -106,7 +110,7 @@
   "domain_focus": "Video liệt kê 5 dấu hiệu/thói quen sức khoẻ theo kiểu đếm ngược cho người cao tuổi Nhật; người dẫn là giọng đọc thân thiện kiểu MC/y tá, KHÔNG tự xưng là bác sĩ — đây là video thông tin sức khoẻ đại chúng, không phải tư vấn y khoa cá nhân.",
   "lane_rules": [
    "Thứ tự liệt kê PHẢI đúng kiểu đếm ngược (第五位→第一位 hoặc 五つ目→一つ目), không phải tăng dần.",
-   "Mỗi ví dụ nhân vật (tuổi + nghề cũ) là hư cấu minh hoạ, KHÔNG phải ca bệnh thật — không cần nguồn riêng cho chi tiết cá nhân đó, nhưng phải hợp lý với bối cảnh.",
+   "ĐƯỢC PHÉP hư cấu bối cảnh, nhân vật minh hoạ (tuổi, nghề, gia đình, lời nói) và phân cảnh — kể cả hook người kể xưng 私 nhập vai nhân vật (anh chốt 2026-09-24). KHÔNG đòi nguồn cho chi tiết đời tư đó và CẤM yêu cầu câu thanh minh 'nhân vật hư cấu/không phải bệnh nhân thật'. Chỉ thông tin Y TẾ (thuốc, liều, điều trị, cơ chế, số liệu, nghiên cứu, hiệu quả) là cấm bịa.",
    "Cảnh báo cấp cứu (gọi 119, dấu hiệu đột quỵ/nghẹn/đau ngực/mất ý thức) PHẢI đặt TRƯỚC hoặc CÙNG lúc với bất kỳ hành động nào có rủi ro tiềm ẩn (ăn hạt, gác chân, tăng chất xơ, tắm nước nóng…), không đặt sau khi đã khuyến khích hành động.",
    "Kết bài PHẢI có 1 câu disclaimer y khoa (đây là thông tin chung, không thay thế khám bệnh) — câu này ĐỔI theo từng tập cho khớp nội dung y khoa cụ thể đã nói, KHÔNG bắt phải là 1 câu cố định lặp lại (lane không khai outro_line, xem script._budget_note).",
    "KHÔNG nêu tên bác sĩ/bệnh viện/trường đại học/nghiên cứu cụ thể không có trong series_ctx.txt — số liệu/nguồn phải bám đúng tư liệu đã cho."
@@ -210,10 +214,14 @@
  "_note": "Lane E — mở 2026-09-16. Nghiên cứu kênh làm bởi dự án TRENDING-RESEARCH (KHÁC SPACE_RESEARCH), giao qua Syncthing FlowHandoff_local/results/laneE_from_research/, user duyệt 2026-09-13 — KHÔNG khai field `research` (không dùng cổng B0/qc_hoso.py của SPACE_RESEARCH). channel_dna/ (channel_analyzer.py) KHÔNG chạy cho lane này vì hồ sơ TRENDING-RESEARCH đã đầy đủ hơn — xem SOP §0b để biết khi nào mới cần retrieve_videos.py. Ngách sức khoẻ có RỦI RO Y KHOA: mọi kịch bản BẮT BUỘC có câu dạng '一般的な健康情報です。持病のある方は医師にご相談ください', KHÔNG tuyên bố chữa bệnh tuyệt đối. Kênh đã đặt tên/handle/avatar/banner/upload-defaults xong 2026-09-16 (mail dòng 6 sheet GMAIL, normaneileenpm218@gmail.com).",
  "publish": {
   "upload_channel": "kenko-chiebukuro",
-  "sheet_tab": "70dai-kenko",
+  "sheet_tab": "E-70dai-kenko",
+  "listing_external": true,
+  "_listing_external_note": "2026-09-24: tieu de/mo ta/tags/thumbnail giao HET cho YT-TITLE-RESEARCH (goi_title.py) — h2dev thoi lam B7/B9.",
   "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
   "review_vi": true,
-  "_sheet_tab_note": "2026-09-17: upload_channel (tên thư mục CHANEL\\...) KHÁC tên tab trang tính (70dai-kenko, theo handle YouTube @70dai-kenko) — ghi_cot_video.py đọc field này để tra đúng lane khi --tab 70dai-kenko."
+  "_sheet_tab_note": "2026-09-17: upload_channel (tên thư mục CHANEL\\...) KHÁC tên tab trang tính (E-70dai-kenko từ 2026-09-24, trước là 70dai-kenko; theo handle YouTube @70dai-kenko) — ghi_cot_video.py đọc field này để tra đúng lane khi --tab E-70dai-kenko (tên cũ 70dai-kenko vẫn tra được qua pipeline/sheet_tab.py).",
+  "title_auto": true,
+  "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat kenko-chiebukuro"
  },
  "goi_dang": {
   "enabled": true,

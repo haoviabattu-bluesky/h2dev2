@@ -7,7 +7,7 @@
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
-| Mã lane / profile id | `kokoro-kazoku` (= tên tab sheet = thư mục `assets/kokoro-kazoku/`) |
+| Mã lane / profile id | `kokoro-kazoku` (thư mục `assets/kokoro-kazoku/`; tab sheet hiện `kokoro-kazoku`, theo quy ước 24/09 sẽ là `H-kokoro-kazokugaku`) |
 | Kênh thật | 心の家族学 · `@kokoro-kazokugaku` · `UClHVEGr-4pG0CDW_YUKJ26g` |
 | Mail (GMAIL dòng 9) | `FuentesMitsy202@gmail.com` — profile GPMLogin cùng tên, anh login tay |
 | Kênh mẫu (clone) | 癒しの心理学 `https://www.youtube.com/channel/UCV_8D2Agr2EaGxod0s7KBtg` |
@@ -47,7 +47,7 @@
 2. **Profile** `profiles\profiles\kokoro-kazoku.json` (chép khuôn teinengo-real/teinengo-tanoshimi, sửa từng field):
    `id/slug_dir/competitor/channel_dossier/channel_dna_dir` · `narrator` theo Format mục 1 · fiction_facts: ví dụ gia đình hư cấu, nhưng khái niệm tâm lý học/nghiên cứu nêu tên PHẢI có thật và có nguồn ·
    script.structure = khối 'nghịch lý → cơ chế → 2 kiểu → lời khuyên' (khai qua structure_block như Lane F, KHÔNG list_countdown) · `body.mode=ai_images` · ref_lock=false (mỗi ví dụ 1 gia đình minh hoạ khác nhau, không host cố định — giống Lane E) · `image.style_suffix` theo Format ·
-   `thumbnail` = illustration ấm, nhân vật đầu tròn, tông cam/nóng + chữ lớn; tiêu đề LUÔN có prefix 【心理学】 · `publish.sheet_tab="kokoro-kazoku"` · `script.brain_model` Fable như F/G nếu anh giữ chủ trương đó.
+   `thumbnail` = illustration ấm, nhân vật đầu tròn, tông cam/nóng + chữ lớn; tiêu đề LUÔN có prefix 【心理学】 · `publish.sheet_tab=<tên tab thật, quy ước H-kokoro-kazokugaku>` · `script.brain_model` Fable như F/G nếu anh giữ chủ trương đó.
    **`script.gate` PHẢI ĐO** từ transcript thật trong `_raw/` (title_len, hook_chars, comma/breath) — không chép số lane khác.
 3. **Giọng**: Nam trầm, điềm đạm, giải thích (không phải kể chuyện đời) — CHƯA CHỐT: hỏi anh clone kênh mẫu hay giọng kho. Nếu clone: tách 20–30s sạch từ 1 video kênh mẫu → `POST /voice-clone` (skill `openspeaker_voice_clone.md`)
    → nghe A/B → **HỎI ANH trước khi giữ voice_id** (giọng người thật). Ghi `voice.id`.

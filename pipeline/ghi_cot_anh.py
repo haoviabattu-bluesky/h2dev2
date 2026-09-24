@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ghi_cot_anh.py — ghi ĐÚNG MỘT Ô cột F (STATUS-IMG) sau khi đã gói + gửi job cho máy 2.
 
-    py -3.13 ghi_cot_anh.py --tab shinya_shiryoshitsu --dong 8 --trang-thai "Da gui may 2 | jobs/ep08"
+    py -3.13 ghi_cot_anh.py --tab A-shinya_shiryoshitsu --dong 8 --trang-thai "Da gui may 2 | jobs/ep08"
 
 Cùng khuôn an toàn với `ghi_cot_video.py` (cột G): chỉ ghi được đúng cột F cố định trong code, đọc
 lại tiêu đề thật trước khi ghi, không đè ô đã có sẵn trừ khi `--ghi-de`. Khác `ghi_cot_video.py`:
@@ -15,6 +15,8 @@ from pathlib import Path
 
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+
+import sheet_tab  # noqa: E402  (tên tab {Lane}-{kênh} — nguồn: profile.publish.sheet_tab)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -42,6 +44,7 @@ def main():
     ap.add_argument("--ghi-de", action="store_true")
     ap.add_argument("--thu", action="store_true")
     a = ap.parse_args()
+    a.tab = sheet_tab.tab_that(a.tab)          # tên cũ/mã lane → tab thật {Lane}-{kênh}
 
     dong_sheet = a.dong + 1
     s = svc(doc_thoi=True)

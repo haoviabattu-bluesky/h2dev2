@@ -40,7 +40,7 @@ và mọi lane khác; ep01 Lane G là ngoại lệ có phép, em ghi rõ vào SO
 | 8 | **B5 vẽ ảnh** gpti2 (~86 ảnh: @REF/@REF2 110đ, cảnh vật 50đ) + B5Q (QC mẫu 10 ảnh, vẽ lại ảnh hỏng) | **Máy 2** | QC vision | `img/001..086.png` |
 | 9 | **Neo** `sinh_neo.py` (img_doan + SRT → `anchors.txt`, kiểm mỗi ảnh ≥1s) | **Máy 2** | — | `anchors.txt` |
 | 10 | **B8 ghép** `assemble.py --anchors` (zoom 1.0, xfade 0.5, không cháy phụ đề) + B8Q (khớp lời) | **Máy 2** | QC vision | `final.mp4` |
-| 11 | B10 (chỉ kiểm video/phụ đề) + B11 giao `final.mp4`·`phude.srt`·`review-vi.mp4` → `results/video_render/<slug>/` | **Máy 2** | — | Syncthing đưa về máy 1 |
+| 11 | B10 (chỉ kiểm video/phụ đề) + B11 giao `final.mp4`·`phude.srt`·`review-vi.mp4` → `results/video_render/teinengo-tanoshimi/<slug>/` (⛔ chỗ trả hàng DUY NHẤT mọi lane, chốt 24/09 — `docs\QUY_TRINH_GIAO_VIEC_MAY2.md` §6) | **Máy 2** | — | Syncthing đưa về máy 1 |
 | 12 | Em kiểm bản về (độ dài, B8Q log) → copy `CHANEL\teinengo-tanoshimi\epNN-slug\` → ghi cột I VIDEO | Máy 1 | đọc | sheet |
 
 **Test ep01 tại máy 1: em chạy cả 7–11 tại máy 1 (ngoại lệ 1 lần).** Từ ep02: dừng ở #6.

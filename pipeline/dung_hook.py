@@ -57,9 +57,20 @@ def do_loudness(f):
 
 
 def seg_tu_clip(clip, ra, dai):
-    """Clip Grok: 1280x720@24fps -> phong len 1920x1080@30fps, cat dung do dai can."""
+    """Clip Grok: 1280x720@24fps -> phong len 1920x1080@30fps, cat dung do dai can.
+
+    Tai khoan FREE trong pool GPM chi sinh duoc clip 6s (xin 10s la 429 gia, xem memory
+    grok-pool-3-luat-bat-buoc). Neu canh can dai hon 6s thi GIU KHUNG CUOI (dong bang) cho du
+    thoi luong, thay vi doi Grok — dung dung nhu skill grok_video.md da dan.
+    """
+    clip_dur = do_dai(clip)
+    vf = f"scale={W}:{H}:flags=lanczos,fps={FPS},format=yuv420p"
+    if clip_dur + 0.05 < dai:
+        them = dai - clip_dur
+        vf += f",tpad=stop_mode=clone:stop_duration={them:.3f}"
+        print(f"    (clip Grok chi {clip_dur:.2f}s, giu khung cuoi them {them:.2f}s cho du {dai:.2f}s)")
     chay(["-i", str(clip), "-t", f"{dai:.3f}", "-an",
-          "-vf", f"scale={W}:{H}:flags=lanczos,fps={FPS},format=yuv420p",
+          "-vf", vf,
           "-c:v", "libx264", "-preset", "medium", "-crf", "18",
           "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709",
           "-video_track_timescale", "15360", str(ra)])

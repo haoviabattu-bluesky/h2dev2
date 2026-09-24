@@ -489,6 +489,15 @@ def kiem_goi_dang(S: Path, profile_id, ra):
     except Exception as e:                       # thiếu module/phụ thuộc không được làm gãy cả B10
         _loi(ra, "gói đăng", "thap", f"không nạp được qc_goi_dang: {type(e).__name__} {str(e)[:80]}")
         return
+    # HOOK_TAP.md — file hook text giao cho dự án tiêu đề + máy 2 (anh chốt 2026-09-24). Mức 「cao」
+    # chứ không phải 「vua」 như G1–G8: đây không phải chuyện hay/dở của nội dung mà là GÓI GIAO
+    # THIẾU FILE, và tập nào đã có hook thì đã sinh được file này, không có tồn kho 52 tập như G1.
+    try:
+        import hook_tap_md
+        for x in hook_tap_md.kiem(S):
+            _loi(ra, "gói đăng", "cao", x, "py -3.13 pipeline\\hook_tap_md.py --slug <tập> --profile <lane>")
+    except Exception as e:
+        _loi(ra, "gói đăng", "thap", f"không kiểm được HOOK_TAP.md: {type(e).__name__} {str(e)[:80]}")
     try:
         kq = qc_goi_dang.kiem(S, profile_id)
     except Exception as e:

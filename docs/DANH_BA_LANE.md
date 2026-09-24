@@ -26,6 +26,8 @@ Không đặt mã mới. Hai thứ này **đã có sẵn** trong `profiles/profi
 | `kokoro-kazoku` | 心の家族学 (Lane H) — tâm lý gia đình người già Nhật, illustration ấm + narration | `assets/kokoro-kazoku/` | `docs/BAT_DAU_LANE/kokoro-kazoku.md` (SOP chưa viết — giai đoạn 2) |
 | `sengoku-uragawa` | 戦国の裏側 (Lane I) — lịch sử Chiến quốc Nhật, manga chibi, lật huyền thoại bằng sử liệu | `assets/sengoku-uragawa/` | `docs/BAT_DAU_LANE/sengoku-uragawa.md` (SOP chưa viết — giai đoạn 2) |
 | `teinengo-fuufu` | 定年後の夫婦のカタチ (Lane J) — vợ chồng sau hưu trí Nhật, manga cảm xúc | `assets/teinengo-fuufu/` | `docs/BAT_DAU_LANE/teinengo-fuufu.md` (SOP chưa viết — giai đoạn 2) |
+| `yakkyoku-sukatto` | 薬局スカッと帳 (Lane K) — công sở/nghề nghiệp Nhật, dược sĩ quả báo, clone 千種テンカ | `assets/yakkyoku-sukatto/` | `docs/BAT_DAU_LANE/yakkyoku-sukatto.md` (cửa vào) · `docs/SOP_LANE_K.md` |
+| `shakai_no_naze` | 社会のなぜ研究室 (Lane L) — xã hội/tâm lý xã hội Nhật, giải thích bằng số liệu, clone 社会のウラガワ | `assets/shakai_no_naze/` | `docs/BAT_DAU_LANE/shakai_no_naze.md` (cửa vào) · `docs/SOP_LANE_L.md` |
 
 **Cách xưng hô giữa các tab:** `@lane:<mã>`. Ví dụ `@lane:satori-jp-obaa`.
 Mỗi tab mở đầu báo cáo bằng mã của mình, để nhìn là biết ngay đang đứng ở đâu.

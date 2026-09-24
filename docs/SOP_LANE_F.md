@@ -255,7 +255,7 @@ lệch) → viết `viec_tay` trích câu + câu thay → vòng sau PASS ngay; l
 
 ## 5. PUBLISH
 `publish.upload_channel = teinengo-real` (thư mục `E:\CLAUDE\YOUTUBE\CHANEL\teinengo-real\ep<NN>-<slug>\`),
-`publish.sheet_tab = teinengo-real`. Hashtag/tag seed trong profile `publish` (từ `branding/KENH.json`
+`publish.sheet_tab = F-teinengo-real` (đổi tên tab 24/09). Hashtag/tag seed trong profile `publish` (từ `branding/KENH.json`
 + `TAG_STATS.json`: 老後 · 年金 · お金 lặp 8/8 video kênh mẫu). Category People & Blogs, 2–3 video/tuần.
 
 ## 5b. PHÂN VAI (cập nhật 2026-09-21, thay bản cũ nói "ima2" — đã bỏ ima2, xem `docs/PHUONG_AN_LANE_F_BUOC2_3.md`)

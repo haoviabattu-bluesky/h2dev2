@@ -1,5 +1,17 @@
 # SOP — LANE E: 健康の知恵袋 (シニア健康・食事習慣, Nhật, medical-explainer list video)
 
+> ⛔ **NỢ QUY TRÌNH — SỬA TRƯỚC KHI LÀM TẬP MỚI (ghi 2026-09-24).** Anh chốt hook phải là **VIDEO
+> SINH** (Flow/Grok) cho mọi lane, nên lane này đã đổi `script.hook.visual` từ `lien_mach_than`
+> (hook nằm trong `script.txt`, KHÔNG dựng clip riêng) sang `anh_ai_clip_grok` + `visual_kind:
+> video_sinh`. Hai cách cũ/mới loại trừ nhau, nên MỌI mục "hook liền mạch" trong file này đã LỖI THỜI.
+> Ba việc phải làm theo: (a) hook thành CLIP RIÊNG nối vào trước `final.mp4` → phải cân mức tiếng +
+> khớp fps/độ phân giải theo `docs/QUY_TAC_VIDEO_HOOK.md` §2 (trước đây lane này không cần vì không
+> có điểm nối); (b) gói giao máy 2 nay đi nhánh "hook là clip riêng" của `dong_goi_may2.py` → máy 2
+> nhận thêm đơn vẽ ảnh hook; (c) thêm bước sinh hiệu ứng âm thanh (`script.hook.sfx: true`, ai33
+> `POST /v1/task/sound-effect`, `duration_seconds` AUTO). Chưa ai làm — đừng chạy tập mới của lane này
+> trước khi dọn xong mục hook.
+
+
 > Kênh mẫu: シニアいきiki健康 (https://www.youtube.com/channel/UCBODlDy5sXo_49pC7KPr7vQ).
 > Kênh của mình: **健康の知恵袋** `@70dai-kenko` (profile `kenko-chiebukuro`, mail dòng 6 sheet
 > GMAIL — normaneileenpm218@gmail.com). Khác 3 lane kia ở chỗ: không có nhân vật host cố định
@@ -241,7 +253,7 @@ cuối làm `wc -l` phía máy 2 đếm thiếu 1 dòng so với `_BANGIAO.txt`,
 + `_BANGIAO.txt` (job Loại B — plain, không REF-LOCK, vì Lane E không khoá nhân vật; nếu có dòng
 bắt đầu bằng `@GROK` thì `_BANGIAO.txt` phải ghi rõ số dòng đó + lý do — cảnh có trẻ em/minor,
 Nano Banana Pro/gpti2 chặn content-policy nên phải vẽ bằng Grok Imagine, phần chữ sau `@GROK ` vẫn
-là prompt bình thường không bỏ đi). Kết quả máy 2 trả về ở `FlowHandoff_local\results\<slug>\`
+là prompt bình thường không bỏ đi). Kết quả máy 2 trả về ở `FlowHandoff_local\results\video_render\kenko-chiebukuro\<slug>\` (⛔ chỗ trả hàng DUY NHẤT mọi lane, chốt 24/09 — `docs\QUY_TRINH_GIAO_VIEC_MAY2.md` §6)
 (`NNN.png` + `manifest.json`).
 
 ### 10 tập đầu đã chọn (STT = thứ tự ưu tiên, dàn đều 5 trụ cột nội dung kênh mẫu)

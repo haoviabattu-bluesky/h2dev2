@@ -40,6 +40,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug", required=True)
     ap.add_argument("--out-root", default="")
+    ap.add_argument("--no-title", action="store_true",
+                    help="không tự bắn nền dự án YT-TITLE-RESEARCH sau khi gói xong")
     a = ap.parse_args()
 
     src = ROOT / "assets" / "toshi-densetsu-jp" / a.slug
@@ -76,6 +78,16 @@ def main():
               f"còn chờ Google Flow (chốt 2026-09-17).")
     print("  Syncthing sẽ tự đồng bộ thư mục trên sang máy 2. Kết quả trả về ở "
           "FlowHandoff_local/results/video_render/<slug>/.")
+
+    # 2026-09-24 (anh chốt): gói xong thì TỰ gọi dự án YT-TITLE-RESEARCH — file này CHỈ dùng cho
+    # Lane A (toshi-densetsu-jp, hardcode ở `src` phía trên) nên truyền thẳng profile, không cần dò.
+    if not a.no_title:
+        try:
+            sys.path.insert(0, str(HERE))
+            import goi_title
+            goi_title.goi(str(src), "toshi-densetsu-jp")
+        except Exception as e:
+            print(f"  ⚠️ goi_title lỗi khi bắn nền TITLE: {e}")
     return 0
 
 

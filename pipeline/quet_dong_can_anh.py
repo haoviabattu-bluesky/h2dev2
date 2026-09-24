@@ -3,8 +3,8 @@ r"""quet_dong_can_anh.py — doc trang tinh, tra ve DANH SACH JOB CAN SINH ANH t
 Vi sao co file nay (anh chot 2026-09-11): giao viec bang slug (`chay job simbot2-11-DXXwIxhcfF0`)
 la bat nguoi doc va go mot chuoi dai vo nghia. Cach giao viec CHUAN cua du an la theo DONG:
 
-    "vao tab Lopezzapa68, chay job tao anh cho dong 11"
-    "vao tab shinya_shiryoshitsu, chay job tao anh cho dong 2-8"
+    "vao tab Satori-Lopezzapa68, chay job tao anh cho dong 11"
+    "vao tab A-shinya_shiryoshitsu, chay job tao anh cho dong 2-8"
 
 Dong -> slug do MAY tra, khong phai nguoi nho. Slug lay tu doan cuoi duong dan o cot E (FOLDER),
 khong co thi lay o cot F sau dau `|`.
@@ -14,9 +14,9 @@ TU TREN XUONG. Dong da `Dang tao anh` / `Img done` / `LOI:` deu bo qua (in ra de
 
 CHI DOC, KHONG GHI — dung chung cho MOI tab/lane. Ghi cot F la viec cua lenh khac.
 
-  py -3.13 quet_dong_can_anh.py --tab Lopezzapa68 --dong 11
-  py -3.13 quet_dong_can_anh.py --tab shinya_shiryoshitsu --dong 2-8
-  py -3.13 quet_dong_can_anh.py --tab Lopezzapa68 --dong 11 --lenh      (in san lenh download-job)
+  py -3.13 quet_dong_can_anh.py --tab Satori-Lopezzapa68 --dong 11
+  py -3.13 quet_dong_can_anh.py --tab A-shinya_shiryoshitsu --dong 2-8
+  py -3.13 quet_dong_can_anh.py --tab Satori-Lopezzapa68 --dong 11 --lenh      (in san lenh download-job)
 
 exit 0 = co it nhat 1 job can chay · exit 1 = khong co dong nao can anh trong dai do.
 
@@ -30,6 +30,8 @@ from pathlib import Path
 
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+
+import sheet_tab  # noqa: E402  (tên tab {Lane}-{kênh} — nguồn: profile.publish.sheet_tab)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -99,15 +101,9 @@ def thu_muc_lane(tab):
     khong chon duoc cai nao. Ten tab chinh la `publish.upload_channel` trong profile, nen tra nguoc
     duoc ma khong phai hardcode bang tab->lane o day (dung luat: khac biet lane = field profile).
     """
-    import json
-    d = Path(__file__).resolve().parent.parent / "profiles" / "profiles"
-    for f in sorted(d.glob("*.json")):
-        try:
-            p = json.loads(f.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-        if ((p.get("publish") or {}).get("upload_channel") or "") == tab:
-            return ASSETS.parent / (p.get("slug_dir") or "assets"), p
+    p = sheet_tab.lane_theo_tab(tab)          # 2026-09-24: tab {Lane}-{kênh}, tên cũ vẫn tra được
+    if p:
+        return ASSETS.parent / (p.get("slug_dir") or "assets"), p
     return None, None
 
 
@@ -145,6 +141,7 @@ def main():
                     help="BUOC 3: liet ke dong may 2 DA VE XONG (cot F 'Img done') va cot G con "
                          "trong — tuc la dang cho ghep video")
     a = ap.parse_args()
+    a.tab = sheet_tab.tab_that(a.tab)
 
     stt_list = doc_dai(a.dong)
     if not stt_list:

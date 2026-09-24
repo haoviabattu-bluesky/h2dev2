@@ -389,7 +389,7 @@ py -3.13 pipeline\tim_anh_that.py --slug <thư mục tập>                   (�
 py -3.13 pipeline\sinh_anh_canh.py --slug <thư mục tập> --chi-don        (ra đơn, không vẽ)
 py -3.13 pipeline\qc_can_anh.py --folder "<thư mục tập>"                 (cổng trước khi giao)
 py -3.13 pipeline\drive_handoff.py upload-job ep<nn>-<slug> "<thư mục tập>\img_ai"
-py -3.13 pipeline\ghi_don_buoc3.py --tab shinya_shiryoshitsu --dong <nn>   ← ĐƠN BƯỚC 3 vào cột H
+py -3.13 pipeline\ghi_don_buoc3.py --tab A-shinya_shiryoshitsu --dong <nn>   ← ĐƠN BƯỚC 3 vào cột H
    … máy 2 vẽ ảnh, đổi cột F thành "Img done" …
    … agent bước 3 đọc cột H rồi tự làm nốt — tab này KHÔNG chạy `--from B8` nữa …
 ```
@@ -641,7 +641,7 @@ thể). Phần dưới đây chỉ là bổ sung RIÊNG cho lane này — phân 
 
 Anh không ngồi giao việc thủ công. Xong bước 1 chạy:
 ```
-py -3.13 pipeline\ghi_don_buoc3.py --tab shinya_shiryoshitsu --dong <nn>
+py -3.13 pipeline\ghi_don_buoc3.py --tab A-shinya_shiryoshitsu --dong <nn>
 ```
 Nó làm 2 việc: (1) dựng **`CLAUDE-DEEPSEEK.TXT`** ở gốc dự án — PHẦN 1 việc phải làm ngay (thư mục
 tập, số ảnh, 5 lệnh, ngưỡng cổng, danh sách CẤM) + PHẦN 2 toàn văn `docs/GIAO_VIEC_BUOC3_AGENT.md`;

@@ -1,0 +1,26 @@
+{
+  "topics": [
+    "薬剤師",
+    "管理薬剤師",
+    "定年退職",
+    "面接",
+    "因果応報",
+    "調剤薬局",
+    "パワハラ",
+    "再就職"
+  ],
+  "hook_type": "Mở đầu trực diện bằng câu thoại hách dịch '代わりはいくらでもいる' và dự báo trước cuộc tái ngộ định mệnh đầy nhân quả ở buổi phỏng vấn thứ 6.",
+  "structure": "Mô tả 20 năm lộng quyền và coi thường đồng nghiệp tại nhà thuốc -> Cảnh về hưu cô độc cùng chuỗi ngày xin việc bị từ chối phũ phàng -> Buổi phỏng vấn định mệnh gặp lại người từng bị mình chèn ép và cái kết nhân quả.",
+  "emotional_beats": [
+    "ức chế trước sự ngạo mạn",
+    "cô lập và hụt hẫng",
+    "hả hê khi quả báo ập đến",
+    "chua chát trước sự bảo thủ"
+  ],
+  "title_formula": "【漫画】「[Câu nói hách dịch]」が口ぐせだった[Nghề nghiệp]が、[Cột mốc/Biến cố]を受けた結果…",
+  "notes": "Khai thác triệt để mô típ đảo ngược vị thế (người giao hàng bị chèn ép nay thành người phỏng vấn tuyển dụng) để tạo catharsis (sự thỏa mãn) cho người xem.",
+  "video_id": "_aNUqjYEebI",
+  "title": "【漫画】「代わりはいくらでもいる」が口ぐせだった薬剤師が、定年後に6社目の面接を受けた結果…",
+  "view_count": 20000,
+  "duration_min": 16.1
+}

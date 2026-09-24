@@ -413,3 +413,140 @@ def test_mien_khong_anh_huong_ve_khac(tmp_path):
     (d / "goi_dang_ok.txt").write_text("元看護婦が遺した四文字の言葉 | lý do\n", encoding="utf-8")
     chan, _ = G.g2_loi_hua_giu_duoc(d, G.cau_hinh(p), moc(d, p, sc), "", ["まったく別の約束をした男"])
     assert any("KHÔNG có trong lời đọc" in x for x in chan)
+
+
+# ═══════════════════════════════ CỔNG THƯỢNG NGUỒN: chặn TRƯỚC KHI VIẾT (anh chốt 2026-09-24)
+def _prof_day(hook=None, **kw):
+    """Profile đủ điều kiện: hook bật + goi_dang bật + visual_kind video sinh + sfx."""
+    p = prof(**kw)
+    p["script"]["hook"] = {"enabled": True, "visual": "video_grok",
+                           "visual_kind": "video_sinh", "sfx": True, **(hook or {})}
+    return p
+
+
+def test_cong_chan_khi_lane_chua_bat_hook(tmp_path):
+    """Luật 'hook bắt buộc mọi tập' chốt 23/09 nhưng 3/6 lane chưa ai bật — đó là lý do có cổng này."""
+    p = prof()                                   # goi_dang bật, hook KHÔNG khai
+    d = tap(tmp_path, script="あ" * 100, promise="một câu")
+    loi = G.cong_truoc_khi_viet(d, p)
+    assert any("script.hook.enabled" in x for x in loi)
+
+
+def test_cong_chan_khi_lane_chua_khai_goi_dang(tmp_path):
+    p = _prof_day()
+    p["goi_dang"]["enabled"] = False
+    d = tap(tmp_path, script="あ" * 100, promise="một câu")
+    assert any("goi_dang.enabled" in x for x in G.cong_truoc_khi_viet(d, p))
+
+
+def test_cong_chan_khi_thieu_promise(tmp_path):
+    d = tap(tmp_path, script="あ" * 100)          # không có promise.txt
+    loi = G.cong_truoc_khi_viet(d, _prof_day())
+    assert any("promise.txt" in x for x in loi)
+
+
+def test_cong_chan_khi_promise_nhieu_dong(tmp_path):
+    d = tap(tmp_path, script="あ" * 100, promise="câu một\ncâu hai")
+    assert any("nhiều dòng" in x for x in G.cong_truoc_khi_viet(d, _prof_day()))
+
+
+def test_cong_cho_qua_khi_du_ba_dieu_kien(tmp_path):
+    d = tap(tmp_path, script="あ" * 100, promise="図書館は定年後で一番贅沢な場所だ")
+    assert G.cong_truoc_khi_viet(d, _prof_day()) == []
+
+
+def test_cong_doc_duoc_promise_o_thu_muc_hook_ban_cu(tmp_path):
+    d = tap(tmp_path, script="あ" * 100)
+    (d / "hook").mkdir()
+    (d / "hook" / "promise.txt").write_text("một câu", encoding="utf-8")
+    assert G.cong_truoc_khi_viet(d, _prof_day()) == []
+
+
+# ─────────────── khối luật nhồi vào PROMPT của model VIẾT
+def test_khoi_luat_rong_khi_lane_chua_bat(tmp_path):
+    p = prof()
+    p["goi_dang"]["enabled"] = False
+    d = tap(tmp_path, script="あ", promise="x")
+    assert G.khoi_luat_cho_prompt(d, p) == "", "lane chưa bật thì prompt phải y hệt trước, không đổi hành vi"
+
+
+def test_khoi_luat_mang_loi_hua_va_moc_giay(tmp_path):
+    p = _prof_day(promise_window_s=45, contradiction_max_s=12, title_core_max_s=36)
+    d = tap(tmp_path, script="あ", promise="図書館は定年後で一番贅沢な場所だ")
+    t = G.khoi_luat_cho_prompt(d, p)
+    assert "図書館は定年後で一番贅沢な場所だ" in t
+    assert "45 GIÂY ĐẦU" in t and "12 giây đầu" in t and "36 giây đầu" in t
+    assert "タイトル" in t                        # cấm đọc to chữ tiêu đề
+    assert "PHỦ ĐỊNH" in t                       # G2 nói trước cho model
+
+
+def test_khoi_luat_co_cau_nghi_thuc_khi_lane_khai(tmp_path):
+    p = _prof_day(ritual=["この写真をカラー化してみる"], ritual_max_s=160)
+    d = tap(tmp_path, script="あ", promise="x")
+    t = G.khoi_luat_cho_prompt(d, p)
+    assert "この写真をカラー化してみる" in t and "160 giây" in t
+
+
+def test_khoi_luat_them_phan_danh_sach_chi_khi_list_mode(tmp_path):
+    d = tap(tmp_path, script="あ", promise="x")
+    assert "CẤM đọc trước danh sách" not in G.khoi_luat_cho_prompt(d, _prof_day(list_mode=False))
+    t = G.khoi_luat_cho_prompt(d, _prof_day(list_mode=True, list_order="countdown"))
+    assert "CẤM đọc trước danh sách" in t and "mục số 1 để CUỐI" in t
+
+
+def test_khoi_luat_im_lang_ve_thu_tu_khi_list_order_auto(tmp_path):
+    """Lane tano khai `auto` (kênh mẫu dùng cả 2 kiểu) — cổng G4 bỏ qua phép kiểm thứ tự, nên prompt
+    cũng KHÔNG được dặn một kiểu: dặn là dạy model sai một nửa số tập mà cổng không bắt được."""
+    d = tap(tmp_path, script="あ", promise="x")
+    t = G.khoi_luat_cho_prompt(d, _prof_day(list_mode=True, list_order="auto"))
+    assert "CẤM đọc trước danh sách" in t
+    assert "mục số 1" not in t.lower()
+
+
+# ─────────────── luật 2026-09-24: hook = VIDEO SINH + BẮT BUỘC có SFX
+def test_cong_chan_khi_hook_khong_phai_video_sinh(tmp_path):
+    """Mặc định mọi lane: hook là video sinh Flow/Grok, không còn là video ghép từ ảnh render."""
+    d = tap(tmp_path, script="あ" * 100, promise="một câu")
+    p = _prof_day(hook={"visual_kind": "anh_tinh"})
+    loi = G.cong_truoc_khi_viet(d, p)
+    assert any("video_sinh" in x for x in loi)
+
+
+def test_cong_cho_qua_anh_tinh_khi_co_visual_exception(tmp_path):
+    """Ngoại lệ chính danh (toshi/iro bán sự thật có hồ sơ) — nhưng phải khai LÝ DO, không im lặng."""
+    d = tap(tmp_path, script="あ" * 100, promise="một câu")
+    p = _prof_day(hook={"visual_kind": "anh_tinh",
+                        "visual_exception": "kênh bán sự thật có hồ sơ, clip AI phá credits.txt"})
+    assert G.cong_truoc_khi_viet(d, p) == []
+
+
+def test_cong_chan_khi_chua_khai_sfx(tmp_path):
+    d = tap(tmp_path, script="あ" * 100, promise="một câu")
+    loi = G.cong_truoc_khi_viet(d, _prof_day(hook={"sfx": False}))
+    assert any("sfx" in x for x in loi)
+
+
+def test_khoi_luat_dan_dung_hinh_chi_cho_lane_video_sinh(tmp_path):
+    """Lane có ngoại lệ ảnh tĩnh KHÔNG được nhận lời dặn 'dựng thành clip' — dặn sai là model viết
+    cảnh không có tư liệu thật để dựng."""
+    d = tap(tmp_path, script="あ", promise="x")
+    assert "VIDEO SINH" in G.khoi_luat_cho_prompt(d, _prof_day())
+    p_anh = _prof_day(hook={"visual_kind": "anh_tinh", "visual_exception": "lý do"})
+    assert "VIDEO SINH" not in G.khoi_luat_cho_prompt(d, p_anh)
+
+
+def test_khoi_luat_dan_chua_cho_cho_SFX(tmp_path):
+    d = tap(tmp_path, script="あ", promise="x")
+    assert "HIỆU ỨNG ÂM THANH" in G.khoi_luat_cho_prompt(d, _prof_day())
+    assert "HIỆU ỨNG ÂM THANH" not in G.khoi_luat_cho_prompt(d, _prof_day(hook={"sfx": False}))
+
+
+def test_moi_lane_that_deu_qua_cong(tmp_path):
+    """Nghiệm thu trên profile THẬT: cả 6 lane phải qua được cổng (chỉ thiếu promise.txt là bình
+    thường vì đó là file của TỪNG TẬP). Test này bắt được lúc ai đó thêm lane mới mà quên khai field."""
+    import profiles as P
+    for pid in ("satori-jp-obaa", "toshi-densetsu-jp", "irogatatarukioku",
+                "kenko-chiebukuro", "teinengo-real", "teinengo-tanoshimi"):
+        d = tap(tmp_path, script="あ", promise="x", ten=f"ep-{pid}")
+        loi = G.cong_truoc_khi_viet(d, P.load(pid))
+        assert loi == [], f"{pid}: {loi}"

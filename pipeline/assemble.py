@@ -18,6 +18,7 @@ Cơ chế sync: chia N ảnh theo M cue trong SRT → mỗi ảnh hiển thị �
 rơi vào ranh giới câu, không cắt giữa câu, nhịp bám lời đọc). Không SRT → chia đều theo audio.
 """
 import argparse
+import json
 import os
 import concurrent.futures as cf
 import threading
@@ -249,6 +250,34 @@ def check_aspect(imgs, W, H, fit, tol=0.03):
         print("     → ảnh vuông/dọc nên dùng --fit blur (không méo, không viền đen).")
 
 
+def _warp_clip(img, frames, W, H, fps, zoom, zoom_in, out, threads, fit):
+    import numpy as np
+    import cv2
+    sw, sh = int(W * zoom + 3) // 2 * 2, int(H * zoom + 3) // 2 * 2
+    base_png = Path(str(out) + ".base.png")
+    subprocess.run([FF, "-y", "-loglevel", "error", "-i", str(img), "-vf", fit_filter(fit, sw, sh), "-frames:v", "1",
+                    str(base_png)], check=True, capture_output=True)
+    base = cv2.imread(str(base_png))
+    base_png.unlink(missing_ok=True)
+    cx, cy = base.shape[1] / 2, base.shape[0] / 2
+    p = subprocess.Popen([FF, "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}",
+                          "-r", str(fps), "-i", "-", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+                          "-pix_fmt", "yuv420p", "-threads", str(threads), str(out)], stdin=subprocess.PIPE)
+    try:
+        for k in range(frames):
+            tien = k / max(1, frames - 1)
+            z = 1.0 + (zoom - 1.0) * (tien if zoom_in else 1.0 - tien)
+            h = z * W / base.shape[1]                     # hệ số từ ảnh nền (khổ W*zoom) ra khung W
+            M = np.array([[h, 0, W / 2 - h * cx], [0, h, H / 2 - h * cy]], np.float32)
+            p.stdin.write(cv2.warpAffine(base, M, (W, H), flags=cv2.INTER_CUBIC,
+                                         borderMode=cv2.BORDER_REFLECT).tobytes())
+    finally:
+        p.stdin.close()
+        p.wait()
+    if p.returncode != 0:
+        raise subprocess.CalledProcessError(p.returncode, "ffmpeg warp")
+
+
 def render_clip(img, dur, W, H, fps, zoom, zoom_in, out, threads=2, fit="cover"):
     frames = max(1, int(round(dur * fps)))
     # ⛔ CẤM Ken Burns zoom/pan (chốt 2026-09-21, mọi lane): ảnh phải ĐỨNG YÊN HOÀN TOÀN, chỉ hiệu
@@ -259,19 +288,13 @@ def render_clip(img, dur, W, H, fps, zoom, zoom_in, out, threads=2, fit="cover")
         sw, sh = W, H
         vf = f"{fit_filter(fit, sw, sh)},format=yuv420p"
     else:
-        zstep = (zoom - 1.0) / frames
-        if zoom_in:
-            zexpr = f"min(zoom+{zstep:.6f},{zoom})"
-        else:  # zoom-out: bắt đầu ở zoom, giảm dần (đa dạng hướng cho đỡ đơn điệu)
-            zexpr = f"if(eq(on,0),{zoom},max(zoom-{zstep:.6f},1.0))"
-        # Kích thước làm việc = khung ra × zoom + chút dư cho pan mượt (zoompan chạy theo pixel
-        # nguyên, đưa đúng 1080p vào thì zoom ra ảnh mềm + pan giật). CHỈ CẦN thế là đủ.
-        # ⚠️ Bản cũ scale lên W*2 = 3840×2160: ảnh gốc gpti2 chỉ 2560×1440 nên KHÔNG thêm chi tiết
-        # nào, mà mỗi frame phải xử lý ~2,5× số pixel → đó là toàn bộ 18 phút bước B8 (đo 2026-09-08).
-        sw, sh = int(W * (zoom + 0.13)) // 2 * 2, int(H * (zoom + 0.13)) // 2 * 2
-        vf = (f"{fit_filter(fit, sw, sh)},"
-              f"zoompan=z='{zexpr}':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
-              f"s={W}x{H}:fps={fps},format=yuv420p")
+        # Ken Burns CHỈ còn cho lane khai assemble.zoom>1 (ngoại lệ anh cho Lane K 2026-09-24: kênh mẫu
+        # 千種テンカ đo máy ×1,02–1,03 phóng chậm suốt cảnh, 88/91 cảnh). KHÔNG dùng zoompan: nó cắt theo
+        # pixel NGUYÊN → ở tốc độ ~0,07 px/khung hình nhảy bậc = đúng cái "giật/rung" bị cấm 21/09 (đo thật:
+        # độ lệch chuẩn dịch chuyển/khung 0,39 px với zoompan, 0,12 px dù phóng ảnh 4×). Dựng bằng
+        # warpAffine dưới-pixel (cv2) rồi đẩy thẳng khung thô sang ffmpeg: 0,016 px — trôi mượt tuyệt đối.
+        _warp_clip(img, frames, W, H, fps, zoom, zoom_in, out, threads, fit)
+        return
     # Clip trung gian sẽ bị encode LẠI ở bước crossfade → preset chậm là công toi. crf thấp hơn
     # (18) để lần encode cuối không bị cộng dồn mất nét.
     subprocess.run([FF, "-y", "-loop", "1", "-i", str(img), "-t", f"{dur}",
@@ -336,13 +359,20 @@ def main():
     ap.add_argument("--tate-size", type=int, default=42)
     ap.add_argument("--tate-max-chars", type=int, default=14)
     ap.add_argument("--tate-max-cols", type=int, default=2)
+    ap.add_argument("--bubble-roles", default="",
+                    help="voice_roles.json (tts_voicevox) → hộp lời kể + bóng thoại có đuôi (bong_thoai.py, Lane K)")
+    ap.add_argument("--bubble-faces", default="", help="img_faces.json (bong_thoai.do_mat) — vị trí mặt/miệng từng ảnh")
+    ap.add_argument("--bubble-cfg", default="", help="JSON cấu hình assemble.bubble của profile")
     ap.add_argument("--bgm", default="")
     ap.add_argument("--bgm-volume", type=float, default=0.10)
+    ap.add_argument("--bgm-keep-voice", action="store_true", help="amix normalize=0: giọng giữ nguyên mức")
     ap.add_argument("--transition", default="xfade", choices=["xfade", "fade", "cut"])
     ap.add_argument("--xfade", type=float, default=0.6, help="thời lượng crossfade (giây)")
     ap.add_argument("--sec", type=float, default=8.0, help="giây/ảnh khi KHÔNG có audio")
     ap.add_argument("--fps", type=int, default=30)
     ap.add_argument("--size", default="1920x1080")
+    ap.add_argument("--zoom-dir", default="alt", choices=["alt", "in"],
+                    help="alt = phóng/thu xen kẽ; in = cảnh nào cũng phóng vào (kênh mẫu Lane K 88/91 cảnh)")
     ap.add_argument("--zoom", type=float, default=1.0,
                      help="1.0 = ảnh đứng yên hoàn toàn (mặc định, chốt 2026-09-21 — CẤM Ken Burns "
                           "giật/rung, chỉ dùng hiệu ứng CHUYỂN CẢNH --transition). >1.0 chỉ bật tay "
@@ -395,7 +425,7 @@ def main():
 
     def _one(i):
         render_clip(imgs[i], render_durs[i], W, H, args.fps, args.zoom,
-                    zoom_in=(i % 2 == 0), out=clips[i], threads=args.clip_threads, fit=args.fit)
+                    zoom_in=(args.zoom_dir == "in" or i % 2 == 0), out=clips[i], threads=args.clip_threads, fit=args.fit)
         with lock:
             done[0] += 1
             print(f"  clip {done[0]}/{n}", end="\r", flush=True)
@@ -455,6 +485,25 @@ def main():
         fc.append(f"{vin}[{tate_idx}:v]overlay=eof_action=pass[vt]")
         vin = vmap = "[vt]"
 
+    if args.bubble_roles:
+        # Lane K (2026-09-24): mọi câu lên hình — hộp lời kể / bóng thoại có đuôi chỉ người nói. Dòng thời gian
+        # ảnh = ĐÚNG segs ở trên (ảnh i hiện từ tổng segs[:i]) để bóng thoại biết lúc đó đang hiện ảnh nào.
+        import bong_thoai
+        tl, t0 = [], 0.0
+        for i_, s_ in enumerate(segs):
+            tl.append((imgs[i_].name, t0, t0 + s_))
+            t0 += s_
+        bt_path = tmp / "bubble_track.mov"
+        t_bt = time.time()
+        bong_thoai.build_track(args.bubble_roles, tl, args.bubble_faces or None, bt_path, W, H, args.fps,
+                               json.loads(args.bubble_cfg) if args.bubble_cfg else {}, total_dur=audio_len,
+                               tmp_dir=tmp / "bubble_frames")
+        print(f"  -> bubble track {time.time()-t_bt:.0f}s")
+        bt_idx = inputs.count("-i")
+        inputs += ["-i", str(bt_path.resolve())]
+        fc.append(f"{vin}[{bt_idx}:v]overlay=eof_action=pass[vb]")
+        vin = vmap = "[vb]"
+
     # ⚠️ --srt có HAI vai: (1) đồng bộ đổi cảnh theo ranh giới câu — LUÔN dùng; (2) CHÁY chữ vào
     # hình — chỉ khi --burn-sub. User chốt 2026-09-11: MẶC ĐỊNH KHÔNG cháy phụ đề (YouTube tự bật
     # CC từ file .srt mình up kèm; khán giả Nhật nghe hiểu, chữ cháy chỉ che hình).
@@ -467,8 +516,11 @@ def main():
         vmap = "[v]"
     amap = None
     if args.audio and args.bgm:
+        # --bgm-keep-voice (Lane K 2026-09-24): amix mặc định CHIA ĐÔI mọi đầu vào → giọng tụt 6 dB so với
+        # bản không nhạc. normalize=0 giữ nguyên mức giọng đã loudnorm ở B4. Lane cũ không khai → như cũ.
+        norm = ":normalize=0" if args.bgm_keep_voice else ""
         fc.append(f"[{na_idx}:a]volume=1.0[na];[{bg_idx}:a]volume={args.bgm_volume}[bg];"
-                  f"[na][bg]amix=inputs=2:duration=first:dropout_transition=3[a]")
+                  f"[na][bg]amix=inputs=2:duration=first:dropout_transition=3{norm}[a]")
         amap = "[a]"
     elif args.audio:
         amap = f"{na_idx}:a"
@@ -483,7 +535,7 @@ def main():
     if amap:
         cmd += ["-map", amap, "-c:a", "aac", "-b:a", "192k"]
     # chi copy duoc khi da co san silent.mp4 va khong burn phu de
-    copy_ok = (not (args.srt and args.burn_sub)) and not fused and not args.tate
+    copy_ok = (not (args.srt and args.burn_sub)) and not fused and not args.tate and not args.bubble_roles
     cmd += (["-c:v", "copy"] if copy_ok else
             ["-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p"])
     if args.audio:

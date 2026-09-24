@@ -20,10 +20,17 @@ giọng dẫn nam — cả hai đều chạy trót lọt, không báo lỗi, ch�
 | "tâm lý gia đình người già Nhật · 【心理学】 · Lane H · 心の家族学" | `kokoro-kazoku` | `assets/kokoro-kazoku/` | ⭐ `docs/BAT_DAU_LANE/kokoro-kazoku.md` (cửa vào; SOP chưa viết) | Illustration ấm + narration, không REF-LOCK |
 | "lịch sử Chiến quốc Nhật · manga chibi · Lane I · 戦国の裏側" | `sengoku-uragawa` | `assets/sengoku-uragawa/` | ⭐ `docs/BAT_DAU_LANE/sengoku-uragawa.md` (cửa vào; SOP chưa viết) | Manga chibi, REF-LOCK nhân vật chính trong tập, documentary |
 | "vợ chồng sau hưu trí Nhật · manga cảm xúc · Lane J · 定年後の夫婦のカタチ" | `teinengo-fuufu` | `assets/teinengo-fuufu/` | ⭐ `docs/BAT_DAU_LANE/teinengo-fuufu.md` (cửa vào; SOP chưa viết) | Manga AI, REF-LOCK 2 nhân vật (vợ chồng) trong tập |
+| "công sở/nghề nghiệp Nhật · dược sĩ quả báo · Lane K · 薬局スカッと帳" | `yakkyoku-sukatto` | `assets/yakkyoku-sukatto/` | ⭐ `docs/BAT_DAU_LANE/yakkyoku-sukatto.md` (cửa vào) · `docs/SOP_LANE_K.md` (runbook, 2026-09-24) | Manga AI, khoá mặt N nhân vật/tập (@CAST), ĐA GIỌNG VOICEVOX, bóng thoại có đuôi do máy vẽ |
+| "xã hội/tâm lý xã hội Nhật · giải thích bằng số liệu · Lane L · 社会のなぜ研究室" | `shakai_no_naze` | `assets/shakai_no_naze/` | ⭐ `docs/BAT_DAU_LANE/shakai_no_naze.md` (cửa vào) · `docs/SOP_LANE_L.md` (runbook, 2026-09-24) | Anime AI kể chuyện, Sakura khoá mặt XUYÊN TẬP (1 ảnh gốc lane), ĐA GIỌNG ai33, bóng thoại không đuôi do máy vẽ |
 
 **⚡ CÂU LỆNH "thực hiện lane <mã>"** (anh chốt 2026-09-20) → đọc HẾT `docs/BAT_DAU_LANE/<mã>.md` trước khi làm
 bất cứ gì: file đó nói tài liệu ở đâu, tab sheet nào, cột gì, làm bước nào trước. Mỗi kênh mới sau khi setup
-xong (`tools/channel_branding.py`) BẮT BUỘC có 1 file như vậy + 1 tab sheet tên = mã lane (tool tự tạo tab).
+xong (`tools/channel_branding.py`) BẮT BUỘC có 1 file như vậy + 1 tab sheet (tool tự tạo tab).
+
+**TÊN TAB SHEET = `{Lane}-{tên kênh}` (anh chốt 2026-09-24)** — KHÔNG phải mã lane: `A-shinya_shiryoshitsu` ·
+`Satori-Lopezzapa68` · `E-70dai-kenko` · `F-teinengo-real` · `G-teinengo-tanoshimi` (H/I/J chưa đổi; Lane D chưa có tab).
+Nguồn chân lý: profile `publish.sheet_tab`; tool tra bằng `pipeline/sheet_tab.py` (`--tab` nhận cả tên cũ/mã lane).
+Tab ≠ thư mục giao hàng: `CHANEL\<kênh>` giữ tên kênh không tiền tố (`publish.upload_channel`).
 
 **Mỗi tab chat = một lane.** Mã lane chính là `id` trong `profiles/profiles/<mã>.json`, địa chỉ
 làm việc chính là `slug_dir` của nó — cả hai đã có sẵn trong code nên không lệch nhau được.
@@ -68,6 +75,12 @@ qua `pipeline/yt_tags.py`, KHÔNG cần cài extension vidIQ — xem
 từ khoá ngách đối thủ đưa vào B7 khi viết tags cho video mình, (b) copy `channel_keywords` (Channel
 Tags — chủ kênh tự khai) làm gợi ý điền Channel keywords lúc setup kênh mới thay vì hardcode tay.
 
+⛔ **KHÔNG tự chạy lại K1+K2 cho kênh MÁY 2 đã nghiên cứu (máy 2 yêu cầu 2026-09-24)** — tốn quota
+Gemini lần hai + hai bản `CHANNEL_DNA.md` có thể lệch nhau. `channel_analyzer.py` đã có cổng tự chặn
+(exit 1, in sẵn lệnh copy; `--force` để vượt). Cổng CHỈ chặn khi bản máy 2 dùng được (có
+`CHANNEL_DNA.md` **và** `VIDEO_ANALYSIS/*.json`); thiếu thì vẫn chạy + nhắc gửi
+`FlowHandoff_local/shared/YEU_CAU_MAY2_*.md`. Kênh máy 1 tự tìm: chạy bình thường.
+
 **K1+K2 chạy được ở BẤT KỲ đâu có Python + mạng** — không bắt buộc phải qua máy 2. Máy 2 chỉ là 1
 lựa chọn (gói tự chứa `FlowHandoff_local\shared\channel_analyzer_tool\` + hướng dẫn
 `FlowHandoff_local\shared\GIAO_VIEC_MAY2_CHANNEL_ANALYZER.md`, dùng khi muốn tách khỏi máy 1 hoàn
@@ -85,6 +98,8 @@ cũng tự chạy được** tại chỗ, không cần máy 2, không cần mạ
 | `toshi-densetsu-jp` | ✅ `imayamo-toshidensetsu` (đã mở rộng 8→**28 video** trong phiên, xem `run_log.txt`) | 今夜も都市伝説 `UCoFEha9rNMFqUio-4GQITfw` | ✅ `SOP_TOSHI_DENSETSU_JP.md` §0b | Chạy K3 (`retrieve_videos.py`) rồi vào §2 B2-tư-liệu như cũ |
 | `satori-jp-obaa` | ✅ `simbot2` (mới 4 video test — nên chạy lại `--n-videos 8` khi rảnh) | simbot2 `@simbot2` | ✅ `SOP_SATORI_JP.md` §0b | Chạy K3 rồi vào B1-chọn-chủ-đề như cũ |
 | `irogatatarukioku` (Lane D) | 🔄 đang chạy trực tiếp trên máy 1 (2026-09-16, không qua máy 2 — hợp lệ, xem lưu ý trên) | 色でたどる戦争の記録 `UCaj1dslbibbHEnOAOh0tyYw` (xem `docs/laneD_from_research/LANE_D_HANDOFF.md`) | Xem `docs/SOP_LANE_D.md` (đã có, kiểm lại §0b) | Kiểm kết quả K1+K2 xong chưa, cập nhật dòng này |
+| `yakkyoku-sukatto` (Lane K) | ✅ `yakkyoku-sukatto` (4 video, 2026-09-24) | 千種テンカ `UCEBA1RFfkXQtqgiDVLh4bcw` | ✅ `SOP_LANE_K.md` §0b | Chạy K3 rồi vào §2 của SOP |
+| `shakai_no_naze` (Lane L) | ✅ `shakai-no-naze` (8 video + số đo thật, 2026-09-24) | 社会のウラガワ `UCFWFKb3Yr_1SrAT0kcvwFdw` | ✅ `SOP_LANE_L.md` §0b | Chạy K3 rồi vào §2 của SOP |
 | `Lopezzapa68` | ❌ chưa chạy | **CHƯA RÕ** — chưa có kênh mẫu nào được xác nhận trong tài liệu dự án | ❌ chưa có SOP | Hỏi user kênh mẫu trước khi chạy `channel_analyzer.py`, đừng tự đoán/bịa URL |
 
 **Quy trình nhận hàng (mọi lane, cả 2 cách — qua máy 2 hoặc tự chạy tại máy 1):** nếu qua máy 2,
@@ -316,6 +331,38 @@ lệnh chạy, 3 trạng thái, kênh `viec_tay.txt`). Thiết kế + số đo: 
 chi tiết + bảng vai ở file trên §0a.
 **HOOK 20–30s bắt buộc mọi tập (2026-09-23):** khoá TRƯỚC S2 bằng `pipeline/hook_stage.py`, đọc
 `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b; phương án gốc `docs/PHUONG_AN_HOOK_VIDEO.md`.
+**GÓI ĐĂNG — MỘT LỜI HỨA ở 4 chỗ (tiêu đề · thumbnail · câu đầu mô tả · 30–45s đầu hook), chốt
+2026-09-23:** luật G1–G8 + cổng tất định `pipeline/qc_goi_dang.py` (0 LLM, 0đ) → đọc
+`docs/QUY_TAC_GOI_DANG.md`. Ngưỡng riêng từng lane khai ở `profile.goi_dang` kèm `_nguon`.
+⛔ **CỔNG S1L — KHÔNG LANE NÀO VIẾT ĐƯỢC KỊCH BẢN NẾU CHƯA QUA (anh chốt 2026-09-24):** năm điều kiện
+`script.hook.enabled: true` · `goi_dang.enabled: true` · `promise.txt` (1 câu) trong thư mục tập ·
+`script.hook.visual_kind: "video_sinh"` · `script.hook.sfx: true`.
+Trượt = DỪNG trước khi tốn lượt LLM nào (`qc_goi_dang.cong_truoc_khi_viet`, gọi ở CẢ luồng lean và
+luồng cũ). Lời hứa còn được nhồi vào prompt của model VIẾT để nó viết đúng ngay lần đầu, thay vì
+chấm-rồi-sửa. Lý do phải thành cổng: luật hook chốt 23/09 mà tới 24/09 mới có 3/6 lane bật công tắc —
+luật nằm trong tài liệu thì phải có người nhắc mới chạy.
+
+⛔ **HOOK LÀ VIDEO SINH, KHÔNG PHẢI ẢNH RENDER (anh chốt 2026-09-24, mặc định MỌI KÊNH kể cả chưa
+lập):** hook dựng từ **Google Flow (Veo) hoặc Grok Imagine**, như `satori-jp-obaa` đã chạy thật
+(`ep3-sougi`). Ảnh tĩnh/clip stock là NGOẠI LỆ, phải khai `script.hook.visual_exception` ghi lý do —
+hiện chỉ `toshi-densetsu-jp` + `irogatatarukioku` (bán sự thật có hồ sơ, clip AI phá `credits.txt`).
+**Hiệu ứng âm thanh BẮT BUỘC** (`script.hook.sfx`). **Kịch bản phải đổi theo clip** — 20–30s đầu chỉ
+được dùng cảnh dựng nổi thành clip 5–6s; luật này tự nhồi vào prompt model VIẾT, không phải dặn tay.
+Chi tiết + bảng nguồn hình từng lane: `docs/QUY_TAC_VIDEO_HOOK.md` §5b.
+
+⛔ **HÌNH HOOK DO MÁY 1 LÀM, MÁY 2 CHỈ GHÉP (anh chốt 2026-09-24, MỌI lane — đang làm, chưa làm, tập đã làm):**
+máy 1 vẽ ảnh hook (gpti2) + sinh clip hook (hiện: Grok free, tài khoản ở tab **GROK**, 1 clip/tài khoản/ngày)
++ QC (`pipeline/qc_hook_clip.py`: mỗi cảnh phải thấy MẶT + cảm xúc đúng) + SFX → giao máy 2 KÈM ĐỦ
+`hook\{img,clip,sfx,qc}` + `hook_timeline.json`; `dong_goi_may2.py` tự gói và DỪNG nếu thiếu clip.
+Máy 2 không vẽ/không sinh clip hook. Chi tiết: `docs/QUY_TAC_VIDEO_HOOK.md` §0.
+
+⛔ **XONG VIỆC MÁY 1 = PHẢI GỬI KÈM FILE HOOK TEXT (anh chốt 2026-09-24, mọi lane):**
+`<thư mục tập>\HOOK_TAP.md` — dự án tiêu đề `E:\CLAUDE\YOUTUBE\YT-TITLE-RESEARCH` **và máy 2** đọc file
+này để viết tiêu đề · mô tả · chữ thumbnail cùng MỘT lời hứa với hook. Sinh/nghiệm thu:
+`py -3.13 pipeline\hook_tap_md.py --slug <tập> --profile <lane>` (máy rút phần tất định; chỗ
+`<<CẦN NGƯỜI:…>>` là bước 1 phải tự viết). Cổng chặn ở `dong_goi_may2.py` + B10 — thiếu file hoặc còn
+chỗ chưa viết là KHÔNG giao được. Chi tiết: `docs/QUY_TAC_VIDEO_HOOK.md` §0b.
+
 **Dựng CLIP hook (ảnh → clip Grok 6s → ghép vào đầu video cũ): `docs/QUY_TAC_VIDEO_HOOK.md`** — 7 bước, 4 thứ phải khớp (mức tiếng/fps/kiểu phụ đề/điểm nối), bảng kiểu hook từng lane. Nguyên tắc nội dung (10 nguyên tắc + khung 9 kênh mẫu): `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
 
 ## 🎞️ CHUYỂN CẢNH — skill toàn cục `video-chuyen-canh` (2026-09-20, mọi lane ảnh AI dùng chung)
@@ -330,6 +377,7 @@ lane nào được bật lại, kể cả Lane E (`docs/SOP_LANE_E.md` cần đ�
 mới/agent bước 3 nhận việc dựng video phải đọc đúng dòng này trước khi chọn tham số `--zoom`.
 - `pipeline/assemble.py` đã đổi default **`--zoom 1.0`** (2026-09-21): ảnh tĩnh tuyệt đối, bỏ hẳn
   filter `zoompan` khi zoom≤1.0 (không chỉ đặt hệ số 0) — code thật ở `render_clip()`.
+- **Ngoại lệ Lane K `yakkyoku-sukatto` (anh chốt 2026-09-24, CHỈ lane này):** phóng vào chậm ×1,025/cảnh giống kênh mẫu đo máy, dựng bằng warpAffine dưới-pixel (không rung) — chi tiết `docs/SOP_LANE_K.md` §9. Lane khác vẫn cấm.
 - **Ngoại lệ hook (2026-09-23, xem §2b ở mục kịch bản trên):** 20–30s đầu là CLIP sinh sẵn (Grok/Veo)
   theo storyboard — không phải zoom/pan giả trên ảnh, không vi phạm luật ảnh tĩnh ở trên.
 
@@ -348,6 +396,17 @@ và rẽ nhánh ở `b8_assemble`, giữ nguyên nhánh xfade cũ.
 sinh `timeline.csv` và viết spec; chạy ghép là việc của agent bước 3.
 
 ## QUY TẮC LÀM VIỆC DỰ ÁN NÀY
+00. ⛔ **CHỖ MÁY 2 TRẢ HÀNG — MỘT CHỖ DUY NHẤT, MỌI LANE (chốt 2026-09-24):**
+   `FlowHandoff_local\results\video_render\<publish.upload_channel>\<slug>\` (vd lane E:
+   `results\video_render\kenko-chiebukuro\<slug>\`). KHÔNG theo tên tab sheet (tên tab đổi được), KHÔNG
+   `results\<slug>\`. Nguồn chân lý = dòng TRẢ HÀNG trong `_BANGIAO.txt` do `pipeline\dong_goi_may2.py` sinh —
+   viết đơn/SOP/giao việc nào cũng CHỈ chép dòng đó, cấm tự gõ đường dẫn khác. Chi tiết: `docs/QUY_TRINH_GIAO_VIEC_MAY2.md` §6.
+000. ⛔ **XONG TẬP (phần máy 1) = GHI SHEET NGAY, MỌI lane (anh chốt 2026-09-24):** tab `{Lane}-{kênh}` →
+   **cột D (KỊCH BẢN) = `Done`** + **cột H (STATUS-IMG) = `cần ảnh (N ảnh, ~Xđ)`** (= lệnh giao việc để máy 2
+   biết mà làm). `pipeline\dong_goi_may2.py --job` tự ghi cả hai; đóng gói tay/làm ngoài công cụ thì phải tự ghi.
+0. ⛔ **MỌI chữ tiếng Nhật / tiếng nước ngoài trong báo cáo, bảng, câu hỏi gửi anh PHẢI kèm dịch tiếng Việt
+   ngay sau, trong ngoặc** — vd 「六十八歳の私は」 (tôi 68 tuổi). Không có ngoại lệ, kể cả trích 1 từ, tên
+   mục, câu trong bảng. Anh chốt 2026-09-24: không dịch thì anh không quyết được.
 1. **Công thức nội dung 70/30:** giữ 70% cấu trúc/kịch bản đối thủ + 30% sáng tạo thêm. Output kịch
    bản luôn VOICEOVER-READY (pure prose, không bracket/heading) để dán thẳng vào TTS.
 2. **Chọn ngách = chọn từ kho key có sẵn** trong `docs/COURSE_NOTES.md` mục 3 (ưu tiên RPM cao,
@@ -399,7 +458,9 @@ sinh `timeline.csv` và viết spec; chạy ghép là việc của agent bước
 ## ⛔ CẤM TUYỆT ĐỐI
 - **Claude Code (mọi tab/lane) CHỈ LÀM BƯỚC 1 — ĐẦU NÃO: viết kịch bản, lên phương án, phân loại/
   chọn asset, viết spec thuật toán, kiểm tra/nghiệm thu (anh chốt 2026-09-16).**
-  **⭐ NGOẠI LỆ DUY NHẤT ĐÃ CHO PHÉP: lane `toshi-densetsu-jp` (Lane A) — anh chốt 2026-09-21, tab
+  **⭐ NGOẠI LỆ MỌI LANE (2026-09-24): HÌNH HOOK** — máy 1 được vẽ ảnh hook + sinh clip hook (Grok) +
+  dựng bản xem thử hook; KHÔNG áp cho ảnh/ghép thân video. Xem mục hook phía trên.
+  **⭐ NGOẠI LỆ ĐÃ CHO PHÉP: lane `toshi-densetsu-jp` (Lane A) — anh chốt 2026-09-21, tab
   Lane A được tự tải kho stock, tự vẽ ảnh gpti2 (bước 2) VÀ tự chạy render/ghép `final.mp4` (bước 3)
   cho CHÍNH lane này. Chi tiết + lý do xem `docs/SOP_TOSHI_DENSETSU_JP.md` §Ngoại lệ tự render.
   KHÔNG áp dụng cho bất kỳ lane nào khác — lane khác vẫn theo đúng luật CẤM dưới đây, không suy diễn

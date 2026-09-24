@@ -7,7 +7,7 @@
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
-| Mã lane / profile id | `teinengo-tanoshimi` (= tên tab sheet = thư mục `assets/teinengo-tanoshimi/`) |
+| Mã lane / profile id | `teinengo-tanoshimi` (thư mục `assets/teinengo-tanoshimi/`; tab sheet = **`G-teinengo-tanoshimi`** từ 24/09) |
 | Kênh thật | 定年後の楽しみ方 · `@teinengo-tanoshimi` · `UClETn8eAXgRRKM4PkYEKzvA` |
 | Mail (GMAIL dòng 8) | `cobbytheona159@gmail.com` — profile GPMLogin cùng tên, anh login tay |
 | Kênh mẫu (clone) | 老後のお金ストーリー `https://www.youtube.com/channel/UCI2cPqBmCPMxxKI4u2Gqs_Q` |
@@ -53,7 +53,7 @@
    `script.mode` fiction có ràng buộc dữ kiện thật (địa điểm/chi phí/thông tin Nhật phải có nguồn) ·
    `target_minutes` 18–25 · `body.mode=ai_images` · `image.ref_lock=true` cho NHÂN VẬT CHÍNH trong 1 tập (khác Lane E
    không REF-LOCK — ở đây 1 người dẫn xuyên suốt tập; không xuyên tập) · `image.style_suffix` manga tươi sáng ·
-   `thumbnail` manga + nhân vật nam trung niên + chữ lớn (handoff §3.8) · `publish.sheet_tab="teinengo-tanoshimi"`.
+   `thumbnail` manga + nhân vật nam trung niên + chữ lớn (handoff §3.8) · `publish.sheet_tab="G-teinengo-tanoshimi"`.
    **`script.gate` PHẢI ĐO** từ 3 transcript thật trong `data/` — không chép số Lane E/F.
 3. **Giọng CLONE RIÊNG** (anh chốt): tách 20–30s giọng sạch từ 1 video kênh mẫu 老後のお金ストーリー (bỏ intro, chọn
    đoạn kể không nhạc) → `POST /voice-clone` theo skill `openspeaker_voice_clone.md` → nghe thử A/B → **HỎI ANH trước

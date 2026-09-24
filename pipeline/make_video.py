@@ -31,6 +31,7 @@ import profiles
 import qc_audio
 import qc_facts
 import qc_final
+import qc_goi_dang  # S1L luật hook + gói đăng (anh chốt 2026-09-24) — chặn cả luồng CŨ, không chỉ lean
 import qc_script
 import qc_visual
 
@@ -328,6 +329,15 @@ class Job:
                 f"✗ B3: hồ sơ '{self.p['id']}' chưa khai `script.gate` riêng → sẽ mượn nhịp văn "
                 f"của kênh satori. DỪNG. Thêm gate vào profiles/{self.p['id']}.json "
                 f"(mẫu: docs/PROFILE_ARCHITECTURE.md §5) rồi chạy lại.")
+        # S1L — LUẬT HOOK + GÓI ĐĂNG, đặt Ở ĐÂY để luồng CŨ (`flow != "lean"`) không đi cửa sau.
+        # Cổng chính nằm ở lean_script.run(); 6 lane đang sản xuất đều lean nên nhánh này hiện không
+        # ai đi qua — nhưng hễ mở 1 lane không khai `flow` (mặc định = luồng cũ) là luật lại bị bỏ
+        # lọt y như trước. Bài học memory `soi-pham-vi-moi-file-dung-chung`: vá 1 nhánh thì phải soi
+        # nhánh còn lại của CÙNG một việc.
+        loi_luat = qc_goi_dang.cong_truoc_khi_viet(self.dir, self.p)
+        if loi_luat and not force:
+            raise SystemExit("✗ B3/S1L: chưa đủ điều kiện luật hook + gói đăng → DỪNG "
+                             "(chưa tốn lượt viết nào)\n   - " + "\n   - ".join(loi_luat))
         comp = self.f("competitor.txt").read_text(encoding="utf-8")
         series_f = self.f("series_ctx.txt")
         ctx = series_f.read_text(encoding="utf-8") if series_f.exists() else ""
@@ -877,15 +887,22 @@ class Job:
         if self.skip("B4", out):
             return
         self.kiem_lock("B4")    # đọc giọng cho đúng bản script đã khoá (máy 2 chạy B4 sau máy 1 nhiều ngày)
-        cmd = pycmd("tts.py", "--script", self.f("script.txt"), "--profile", self.p["id"],
-                    "--out", out)
-        vid, vfx, vsp = self.pick_voice()
-        if vid:
-            cmd += ["--voice", vid]
-        if vfx:
-            cmd += ["--fx", vfx]
-        if vsp:
-            cmd += ["--speed", str(vsp)]
+        # Lane ĐA GIỌNG (voice.provider="voicevox", Lane K 2026-09-24): mỗi câu đọc bằng giọng của vai trong
+        # vai.txt; SRT ghi thẳng từ độ dài thật từng câu (chữ = script) nên KHÔNG qua B4a nắn phụ đề.
+        da_giong = profiles.da_giong(self.p)     # voicevox (Lane K) | ai33 (Lane L)
+        if da_giong:
+            cmd = pycmd("tts_voicevox.py", "--script", self.f("script.txt"), "--profile", self.p["id"],
+                        "--out", out, "--vai", self.f("vai.txt"), "--chars", self.f("characters.json"))
+        else:
+            cmd = pycmd("tts.py", "--script", self.f("script.txt"), "--profile", self.p["id"],
+                        "--out", out)
+            vid, vfx, vsp = self.pick_voice()
+            if vid:
+                cmd += ["--voice", vid]
+            if vfx:
+                cmd += ["--fx", vfx]
+            if vsp:
+                cmd += ["--speed", str(vsp)]
         run(cmd, "B4 giọng + SRT")
         from tts import mp3_seconds
         sec = round(mp3_seconds(out), 1)
@@ -896,7 +913,7 @@ class Job:
         # simbot2-vU5PWT2zLDs: 70 chỗ sai chữ + 517 dấu phẩy bị mất — trong đó
         # 終の棲家 (nơi an nghỉ cuối đời) thành 衆の成果, 冷たい澱 thành 冷たいヒレ.
         # Đây là lỗi CÂM: ảnh vẫn đẹp, tiếng vẫn hay, chỉ khán giả Nhật đọc phụ đề mới thấy sai.
-        if self.f("voice.srt").exists() and self.f("script.txt").exists():
+        if self.f("voice.srt").exists() and self.f("script.txt").exists() and not da_giong:
             try:
                 run(pycmd("srt_from_script.py", "--srt", self.f("voice.srt"),
                           "--script", self.f("script.txt")), "B4a phụ đề bám kịch bản")
@@ -1023,7 +1040,7 @@ class Job:
                 prompts = self._soften_hands(prompts, bad)
             for nm in bad:
                 (self.f("img") / nm).unlink(missing_ok=True)
-            n_face = sum(1 for l in prompts if l.lower().lstrip().startswith("@ref"))
+            n_face = sum(1 for l in prompts if l.lower().lstrip().startswith(("@ref", "@cast:")))
             run(self.gen_cmd(self.f("img_prompts.txt"), self.f("img"), n_face), "B5Q vẽ lại ảnh")
             r2 = qc_visual.qc_images(self.f("img"), prompts, world, sample)
             n2 = qc_visual.report(f"B5Q LOẠT ẢNH (sau khi vẽ lại lượt {rnd})", r2)
@@ -1392,7 +1409,10 @@ class Job:
                "--quality", img.get("ref_quality", "low"),
                "--workers", str(self.img_workers or int(img.get("workers", 24))))
         if n_face and img.get("ref_lock"):
-            if self.characters_from_bible():
+            if self.characters_from_bible() and self.cast_mode():
+                self.masters_from_bible()                 # vẽ đủ _ref_<id>/001.png cho mọi nhân vật ref:true
+                cmd += ["--cast-root", self.dir]
+            elif self.characters_from_bible():
                 m1, m2 = self.masters_from_bible()
                 cmd += ["--ref", m1]
                 if m2:
@@ -1415,15 +1435,31 @@ class Job:
             raise SystemExit("✗ image.characters_from_bible=true nhưng thiếu characters.json (lớp 1 viết trước B5W)")
         data = json.loads(cf.read_text(encoding="utf-8"))
         chars = data.get("characters") or []
-        can_ve = [c for c in chars if c.get("ref_marker") in ("@REF", "@REF2")]
+        cast = self.cast_mode()
+        # Lane K (2026-09-24): hồ sơ kiểu mới {id, ref:true} → mỗi nhân vật 1 thư mục _ref_<id>, số lượng tuỳ tập.
+        can_ve = ([c for c in chars if c.get("ref")] if cast
+                  else [c for c in chars if c.get("ref_marker") in ("@REF", "@REF2")])
 
         def _lam(c):
-            mk = c["ref_marker"]
-            sub = "_ref" if mk == "@REF" else "_ref2"
+            mk = c["id"] if cast else c["ref_marker"]
+            sub = f"_ref_{c['id']}" if cast else ("_ref" if mk == "@REF" else "_ref2")
             master = self.f(c.get("master") or f"{sub}/001.png")
             if master.exists():
                 return mk, master
-            mp = self.f(f"master_prompt{'' if mk == '@REF' else '2'}.txt")
+            # Lane L (2026-09-24): nhân vật XUYÊN TẬP (Sakura) khoá bằng 1 ảnh gốc CỦA LANE — image.fixed_refs
+            # {id: đường dẫn từ gốc dự án}. Chép vào _ref_<id>/001.png của tập → mọi bước sau (gen_images
+            # --cast-root, đóng gói máy 2, Flow Tool) chạy y như master của tập, không vẽ mặt mới.
+            goc = ((self.p.get("image") or {}).get("fixed_refs") or {}).get(c.get("id"))
+            if cast and goc:
+                src = HERE.parent / goc
+                if not src.exists():
+                    raise SystemExit(f"✗ image.fixed_refs[{c['id']}] trỏ tới {src} nhưng không có file")
+                master.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, master)
+                c["master"] = str(master.relative_to(self.dir)).replace("\\", "/")
+                print(f"  ✓ master {c['id']}: ảnh gốc của lane ({goc})")
+                return mk, master
+            mp = self.f(f"master_prompt_{c['id']}.txt" if cast else f"master_prompt{'' if mk == '@REF' else '2'}.txt")
             # ⚠️ KHÔNG dùng chữ "character reference sheet": gpti2 vẽ ra BẢNG NHIỀU Ô (front/side/biểu cảm), rồi mọi ảnh
             # @REF edit từ master đó cũng thành trang manga nhiều ô (đo thật ep01 Lane G 2026-09-21: 6/14 ảnh mẫu là collage).
             # ⚠️ style_suffix của lane thường có cụm "everyday Japanese settings: living room, bank
@@ -1456,6 +1492,10 @@ class Job:
             for mk, master in ex.map(_lam, can_ve):
                 out[mk] = master
         cf.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        if cast:
+            if not out:
+                raise SystemExit("✗ characters.json không có nhân vật nào ref:true")
+            return out
         if "@REF" not in out:
             raise SystemExit("✗ characters.json không có nhân vật ref_marker=\"@REF\"")
         return out["@REF"], out.get("@REF2")
@@ -1484,6 +1524,18 @@ class Job:
     def prompts_by_fable_doan(self):
         """image.prompts_by == "fable_doan": Fable viết prompt theo ĐOẠN + img_doan.txt (prompt_doan.py)."""
         return ((self.p.get("image", {}) or {}).get("prompts_by") or "").lower() == "fable_doan"
+
+    def cast_mode(self):
+        """characters.json kiểu MỚI (Lane K 2026-09-24): nhân vật có `id` + `ref` (không `ref_marker`) → khoá mặt
+        N nhân vật/tập, prompt ảnh dùng @CAST:id1,id2. File kiểu cũ (@REF/@REF2) → False, nhánh cũ y nguyên."""
+        cf = self.f("characters.json")
+        if not cf.exists():
+            return False
+        try:
+            chars = json.loads(cf.read_text(encoding="utf-8")).get("characters") or []
+        except Exception:
+            return False
+        return bool(chars) and all("id" in c and "ref" in c and not c.get("ref_marker") for c in chars)
 
     def characters_from_bible(self):
         """image.characters_from_bible: master REF-LOCK lấy từ characters.json (nhiều nhân vật/tập)."""
@@ -1816,7 +1868,7 @@ class Job:
                 print("  ⚠️ KHÔNG dùng được storyboard (thiếu/lỗi voice.srt) → ảnh chỉ rải đều, "
                       "sẽ lệch lời ở khúc giữa. Nên chạy lại B5 sau khi có SRT.")
         lines = [l for l in pf.read_text(encoding="utf-8").splitlines() if l.strip()]
-        n_face = sum(1 for l in lines if l.lower().lstrip().startswith("@ref"))
+        n_face = sum(1 for l in lines if l.lower().lstrip().startswith(("@ref", "@cast:")))
         n_scene = len(lines) - n_face
         cost = n_scene * 50 + n_face * (110 if img.get("ref_lock") else 50)
         print(f"[B5] {len(lines)} ảnh: {n_face} khoá mặt (@REF) + {n_scene} cảnh vật ≈ {cost:,}đ")
@@ -1979,7 +2031,7 @@ class Job:
               f"{', '.join(imgs[i].name for i in sorted(idx))}")
         for i in sorted(idx):
             imgs[i].unlink(missing_ok=True)
-        n_face = sum(1 for l in prompts if l.lower().lstrip().startswith("@ref"))
+        n_face = sum(1 for l in prompts if l.lower().lstrip().startswith(("@ref", "@cast:")))
         run(self.gen_cmd(pf, self.f("img"), n_face), "B8Q vẽ lại ảnh lệch")
         return True
 
@@ -2246,7 +2298,7 @@ class Job:
         cmd = pycmd("assemble.py", "--img", self.f("img"), "--audio", self.voice_audio(),
                "--out", out, "--zoom", a.get("zoom", 1.12),
                "--transition", a.get("transition", "xfade"), "--xfade", a.get("xfade", 0.6),
-               "--size", "1920x1080")
+               "--size", "1920x1080", "--zoom-dir", a.get("zoom_dir", "alt"))
         if self.asm_jobs:
             cmd += ["--jobs", str(self.asm_jobs)]
         srt = self.voice_srt()
@@ -2283,9 +2335,31 @@ class Job:
                              ("max_cols", "--tate-max-cols")):
                 if tt.get(khoa) is not None:
                     cmd += [co, str(tt[khoa])]
+        bb = a.get("bubble", {}) or {}
+        if bb.get("enabled"):
+            # Lane K (2026-09-24): mọi câu hiện trên hình — hộp lời kể + bóng thoại có đuôi (bong_thoai.py).
+            # Cần voice_roles.json (tts_voicevox ghi ở B4) + img_faces.json (định vị mặt, vision, chạy 1 lần).
+            roles = self.f("voice_roles.json")
+            if not roles.exists():
+                raise SystemExit("✗ B8: assemble.bubble cần voice_roles.json (B4 lồng tiếng đa giọng chưa chạy)")
+            if "--srt" not in cmd and srt.exists():
+                cmd += ["--srt", srt]
+            import bong_thoai
+            bong_thoai.do_mat(self.dir)
+            cmd += ["--bubble-roles", roles, "--bubble-faces", self.f("img_faces.json"),
+                    "--bubble-cfg", json.dumps(bb, ensure_ascii=False)]
         if a.get("bgm") and (ROOT / a["bgm"]).exists():
             cmd += ["--bgm", ROOT / a["bgm"], "--bgm-volume", a.get("bgm_volume", 0.09)]
+            if a.get("bgm_keep_voice"):
+                cmd += ["--bgm-keep-voice"]
         run(cmd, "B8 ghép video")
+        # Lane L 2026-09-24: hiệu ứng âm thanh THÂN video (assemble.sfx) — sfx_plan.txt do máy 1 chọn theo nội dung,
+        # ở đây chỉ sinh kho (nếu thiếu) rồi trộn vào final.mp4 vừa dựng (video giữ nguyên, mỗi lần B8 dựng lại từ đầu).
+        if ((a.get("sfx") or {}).get("enabled")):
+            if not self.f("sfx_plan.txt").exists():
+                raise SystemExit("✗ B8: assemble.sfx bật nhưng thiếu sfx_plan.txt (máy 1: sfx_than.py --plan)")
+            run(pycmd("sfx_than.py", "--profile", self.p["id"], "--slug", self.dir, "--kho"), "B8s kho hiệu ứng âm thanh")
+            run(pycmd("sfx_than.py", "--profile", self.p["id"], "--slug", self.dir, "--tron"), "B8s trộn hiệu ứng âm thanh")
         self.done("B8", mp4=out.name)
 
 

@@ -7,7 +7,7 @@
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
-| Mã lane / profile id | `teinengo-fuufu` (= tên tab sheet = thư mục `assets/teinengo-fuufu/`) |
+| Mã lane / profile id | `teinengo-fuufu` (thư mục `assets/teinengo-fuufu/`; tab sheet hiện `teinengo-fuufu`, theo quy ước 24/09 sẽ là `J-teinengo-fuufu`) |
 | Kênh thật | 定年後の夫婦のカタチ · `@teinengo-fuufu` · `UC6IkfxpGTksDdzG3ENYbVdg` |
 | Mail (GMAIL dòng 11) | `MinyardJuan231@gmail.com` — profile GPMLogin cùng tên, anh login tay |
 | Kênh mẫu (clone) | 老後のゴローさん `https://www.youtube.com/channel/UCxD2Exs2Q4lf7x0Q28OuKvg` |
@@ -47,7 +47,7 @@
 2. **Profile** `profiles\profiles\teinengo-fuufu.json` (chép khuôn teinengo-real/teinengo-tanoshimi, sửa từng field):
    `id/slug_dir/competitor/channel_dossier/channel_dna_dir` · `narrator` theo Format mục 1 · fiction_facts: nhân vật hư cấu; số tiền/chế độ/giá (du thuyền, 修繕費, lương hưu) phải có nguồn thật ·
    script.structure = 7 chặng như Lane F nhưng trục là QUAN HỆ VỢ CHỒNG (không phải tiền mất): hook cảnh kịch tính → 2 vợ chồng tên/tuổi/nghề → quyết định → hậu quả → ngoặt → bài học · `body.mode=ai_images` · ref_lock=true 2 nhân vật (chồng @REF + vợ @REF2) trong 1 tập; không xuyên tập · `image.style_suffix` theo Format ·
-   `thumbnail` = manga cặp vợ chồng 60 tuổi, tông ấm có khoảng cách, chữ vàng/đỏ lớn (khác F kịch tính tối, khác G vui sáng) · `publish.sheet_tab="teinengo-fuufu"` · `script.brain_model` Fable như F/G nếu anh giữ chủ trương đó.
+   `thumbnail` = manga cặp vợ chồng 60 tuổi, tông ấm có khoảng cách, chữ vàng/đỏ lớn (khác F kịch tính tối, khác G vui sáng) · `publish.sheet_tab=<tên tab thật, quy ước J-teinengo-fuufu>` · `script.brain_model` Fable như F/G nếu anh giữ chủ trương đó.
    **`script.gate` PHẢI ĐO** từ transcript thật trong `_raw/` (title_len, hook_chars, comma/breath) — không chép số lane khác.
 3. **Giọng**: Nam trung niên hồi ức (kênh mẫu 871k dùng giọng nam) — CHƯA CHỐT: hỏi anh clone kênh mẫu hay giọng kho; KHÔNG dùng chung voice_id với F/G. Nếu clone: tách 20–30s sạch từ 1 video kênh mẫu → `POST /voice-clone` (skill `openspeaker_voice_clone.md`)
    → nghe A/B → **HỎI ANH trước khi giữ voice_id** (giọng người thật). Ghi `voice.id`.

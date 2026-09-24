@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """ghi_don_buoc3.py — ghi ĐƠN VIỆC BƯỚC 3 vào cột H (GHI CHÚ) của trang tính.
 
-    py -3.13 ghi_don_buoc3.py --tab shinya_shiryoshitsu --dong 2
-    py -3.13 ghi_don_buoc3.py --tab shinya_shiryoshitsu --dong 1-6 --thu
+    py -3.13 ghi_don_buoc3.py --tab A-shinya_shiryoshitsu --dong 2
+    py -3.13 ghi_don_buoc3.py --tab A-shinya_shiryoshitsu --dong 1-6 --thu
 
 VÌ SAO CÓ FILE NÀY (anh chốt 2026-09-12)
 ------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ Ba thứ đơn TỰ TRA, không nhận gõ tay (gõ tay là chỗ sai chính t�
 soát lại):
   · slug + thư mục tập  ← `<slug_dir của lane>/ep<nn>-*` với nn = STT cột A
   · số ảnh phải có      ← đếm dòng `img_ai/prompts.txt` của chính tập đó
-  · lane + tên profile  ← profile nào khai `publish.upload_channel` == tên tab
+  · lane + tên profile  ← profile có `publish.sheet_tab` == tên tab (sheet_tab.py)
 
 RÀO CHẮN (cùng kiểu với `ghi_cot_video.py`):
   1. **Chỉ ghi được cột H.** Cột đích cố định trong code, không tham số nào đổi được. Không có
@@ -34,6 +34,8 @@ from pathlib import Path
 
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+
+import sheet_tab  # noqa: E402  (tên tab {Lane}-{kênh} — nguồn: profile.publish.sheet_tab)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -129,14 +131,7 @@ def doc_dai(s):
 
 
 def lane_theo_tab(tab):
-    for f in sorted((ROOT / "profiles" / "profiles").glob("*.json")):
-        try:
-            p = json.loads(f.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-        if ((p.get("publish") or {}).get("upload_channel") or "") == tab:
-            return p
-    return None
+    return sheet_tab.lane_theo_tab(tab)        # tab mới / tab cũ / thư mục kênh / mã lane (2026-09-24)
 
 
 def thu_muc_tap(prof, stt):
@@ -189,6 +184,7 @@ def main():
     stt_list = doc_dai(a.dong)
     if not stt_list:
         raise SystemExit("✗ --dong không đọc được")
+    a.tab = sheet_tab.tab_that(a.tab)
     prof = lane_theo_tab(a.tab)
     if not prof:
         raise SystemExit(f"✗ không profile nào khai publish.upload_channel = '{a.tab}'")

@@ -314,7 +314,12 @@ def _comment_insight_block(insight):
     return out
 
 
-def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_insight=None, budget_block=None, hook_locked=""):
+def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_insight=None, budget_block=None,
+                  hook_locked="", luat_goi_dang=""):
+    """luat_goi_dang (2026-09-24): khối luật G1–G4 của lane, do `qc_goi_dang.khoi_luat_cho_prompt()`
+    sinh từ `promise.txt` + `profile.goi_dang`. Rỗng = lane chưa bật → prompt y hệt trước, không đổi
+    hành vi lane cũ. Vì sao đưa luật vào ĐẦU VÀO chứ không chỉ chấm ở đầu ra: cổng `qc_goi_dang.kiem()`
+    chạy SAU khi viết, nên mỗi lỗi nó bắt được đều phải trả bằng thêm một lượt Sol + một lượt patch."""
     n = prof.get("narrator", {}) or {}
     lang = LANG_NAME.get(prof.get("language", "ja"), prof.get("language"))
     mode = ((prof.get("script", {}) or {}).get("mode") or "").lower()
@@ -374,6 +379,8 @@ def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_in
     parts += ["", _pacing_block(prof)]
     if hook_locked:
         parts += ["", HOOK_LOCK_BLOCK.format(hook=hook_locked.strip())]
+    if luat_goi_dang.strip():
+        parts += ["", "=== LUẬT GÓI ĐĂNG — ĐỌC TRƯỚC KHI ĐẶT BÚT ===", luat_goi_dang.strip()]
     parts += ["", "KHUNG SỰ KIỆN CẦN ĐI THEO:", competitor]
     return "\n".join(parts)
 

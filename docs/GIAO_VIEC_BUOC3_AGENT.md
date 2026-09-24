@@ -316,7 +316,12 @@ kỳ file nào → DỪNG, báo lane (xem mục 11).
 > là dấu hiệu bước 1 gặp lỗi khi sinh (xem cảnh báo trong log B5W), chạy lại lệnh trên rồi đối
 > chiếu `hook\hook_storyboard.err.json` (nếu có) trước khi báo lane.
 
-**9.1 Ảnh shot — do MÁY 2 vẽ, bạn chỉ kiểm đủ** — đây KHÔNG phải ngoại lệ của luật mục 1: bạn vẫn
+> ⛔ **ĐỔI 2026-09-24 (anh chốt, mọi lane) — thay mục 9.1 dưới đây:** ảnh hook VÀ clip video hook nay do
+> **MÁY 1** làm sẵn và gửi kèm gói (`<tập>\hook\img\`, `<tập>\hook\clip\`, `<tập>\hook\sfx\`,
+> `<tập>\hook\hook_timeline.json`). Máy 2 **chỉ ghép**, không vẽ ảnh shot, không sinh clip. Thiếu clip → DỪNG,
+> đòi máy 1. Xem `docs\QUY_TAC_VIDEO_HOOK.md` §0. Nội dung 9.1 cũ giữ lại làm lịch sử.
+
+**9.1 (CŨ, trước 24/09) Ảnh shot — do MÁY 2 vẽ, bạn chỉ kiểm đủ** — đây KHÔNG phải ngoại lệ của luật mục 1: bạn vẫn
 không bao giờ tự vẽ ảnh, kể cả ảnh shot hook. `<tập>\hook\flow_prompts\shot_NN.txt` và
 `<tập>\hook\grok_jobs.csv` là đơn máy 1 đã để sẵn cho máy 2 vẽ cùng đợt với ảnh thân video, ra
 `<tập>\hook\img\shot_NN.png` (1280×720, 16:9; shot nào có `ref_image=REF`/`REF2` trong

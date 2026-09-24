@@ -288,7 +288,7 @@ Lý do: STT1 viết chay đúng rubric docx chỉ 5 view; SERP JP cùng ngách 6
 cd E:\CLAUDE\YOUTUBE\YT-TITLE-RESEARCH
 py -3.13 cli.py run   --slug ../h2dev/assets/satori_jp/$SLUG --profile satori-jp-obaa   # ~12 phút, cache từng bước
 py -3.13 cli.py view  --slug ../h2dev/assets/satori_jp/$SLUG                            # XEM.html để duyệt (có mục ESCALATE)
-py -3.13 cli.py sheet --profile satori-jp-obaa                                          # ghi tiêu đề lên cột E tab Lopezzapa68
+py -3.13 cli.py sheet --profile satori-jp-obaa                                          # ghi tiêu đề lên cột E tab Satori-Lopezzapa68
 ```
 Tool ghi `TIEU_DE_MO_TA.txt` đúng khuôn B7b (backup `.bak`, giữ Timestamps) + vá `DANG-TAI.txt` 1/2/3/5. Chạy SAU khi script đạt QC.
 

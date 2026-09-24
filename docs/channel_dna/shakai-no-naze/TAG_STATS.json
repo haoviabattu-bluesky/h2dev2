@@ -1,0 +1,93 @@
+{
+  "video_tags": {
+    "転職": {
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    "スカウトメール": {
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    "氷河期世代": {
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    "中途採用": {
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    "製造業": {
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    }
+  },
+  "top_tags": [
+    {
+      "tag": "転職",
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    {
+      "tag": "スカウトメール",
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    {
+      "tag": "氷河期世代",
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    {
+      "tag": "中途採用",
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    },
+    {
+      "tag": "製造業",
+      "n_videos": 1,
+      "total_views": 8800,
+      "video_ids": [
+        "qwV8VWwe5Qk"
+      ],
+      "avg_views": 8800
+    }
+  ],
+  "n_videos_with_tags": 1,
+  "n_videos_total": 11
+}

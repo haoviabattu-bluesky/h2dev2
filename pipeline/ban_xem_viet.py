@@ -112,14 +112,14 @@ def dich_srt(nguon: Path, dich: Path, lam_lai=False):
     return dich
 
 
-def chay_chu(slug: Path, srt_vi: Path, out: Path, jobs=0):
+def chay_chu(slug: Path, srt_vi: Path, out: Path, jobs=0, video="final.mp4"):
     """Cháy phụ đề Việt lên bản 480p.
 
     ⚠️ Bộ lọc `subtitles=` của ffmpeg hiểu dấu `:` là dấu ngăn tham số, nên đường dẫn Windows kiểu
     `E:\\...` làm nó hiểu nhầm và báo lỗi khó hiểu (cùng một bẫy đã làm `drawtext` không dùng được
     trên máy này). Cách chắc ăn: **chạy ffmpeg NGAY TRONG thư mục tập** rồi truyền tên file trần.
     """
-    cmd = [FF, "-y", "-i", "final.mp4",
+    cmd = [FF, "-y", "-i", video,
            "-vf", f"scale=854:-2,subtitles={srt_vi.name}:force_style="
                   f"'FontName=Arial,FontSize=16,Outline=2,Shadow=0,MarginV=18'",
            "-c:v", "libx264", "-preset", "veryfast", "-crf", "30",
@@ -137,6 +137,9 @@ def main():
     ap.add_argument("--profile", required=True)
     ap.add_argument("--dich-lai", action="store_true")
     ap.add_argument("--jobs", type=int, default=0)
+    ap.add_argument("--video", default="final.mp4",
+                    help="video nguồn trong thư mục tập; final_with_hook.mp4 CHỈ dùng khi hook ghép kiểu THAY HÌNH "
+                         "(thời gian thân không dịch, phụ đề Việt khớp nguyên) — nối trước thì phụ đề lệch")
     a = ap.parse_args()
 
     import profiles
@@ -144,7 +147,7 @@ def main():
     slug = Path(a.slug)
     if not slug.is_absolute():
         slug = ROOT / prof.get("slug_dir", "assets") / slug
-    mp4 = slug / "final.mp4"
+    mp4 = slug / a.video
     if not mp4.exists():
         raise SystemExit(f"✗ chưa có {mp4}")
     srt = next((slug / t for t in ("voice_paced.srt", "voice.srt") if (slug / t).exists()), None)
@@ -152,8 +155,8 @@ def main():
         raise SystemExit("✗ không có file .srt để dịch")
 
     vi = dich_srt(srt, slug / "voice.vi.srt", a.dich_lai)
-    out = slug / "review_vi.mp4"
-    chay_chu(slug, vi, out, a.jobs)
+    out = slug / ("review_vi.mp4" if a.video == "final.mp4" else f"review_vi_{Path(a.video).stem}.mp4")
+    chay_chu(slug, vi, out, a.jobs, a.video)
     print(f"✓ bản xem thử tiếng Việt: {out} ({out.stat().st_size/1024/1024:.0f} MB)")
 
 

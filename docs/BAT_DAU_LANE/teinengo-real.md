@@ -8,7 +8,7 @@
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
-| Mã lane / profile id | `teinengo-real` (= tên tab sheet = thư mục `assets/teinengo-real/`) |
+| Mã lane / profile id | `teinengo-real` (thư mục `assets/teinengo-real/`; tab sheet = **`F-teinengo-real`** từ 24/09) |
 | Kênh thật | 定年後のリアル · `@teinengo-real` · `UCIimxP275YufOXXIlu9y9Lg` |
 | Mail (GMAIL dòng 7) | `VirgiliTraino95@gmail.com` — profile GPMLogin cùng tên, anh login tay |
 | Kênh mẫu (clone) | 老後の暮らし研究所 `https://www.youtube.com/channel/UCRkP44Mcw-K8IktdTqxC9dg` |
@@ -65,7 +65,7 @@
    ghi `ctx_label`) · `script.structure` = 7 chặng handoff §6 (KHÔNG `list_countdown`, KHÔNG `chapters5`) ·
    `script.target_minutes` 16–24 · `body.mode=ai_images` · `image.ref_lock=true` (2 nhân vật: @REF/@REF2 trong
    1 tập, KHÔNG xuyên tập — kênh RỜI RẠC) · `image.style_suffix` manga nam trung niên, nội thất/đường phố Nhật ·
-   `thumbnail` = ảnh người gần thật kịch tính + nền tối + chữ vàng/đỏ (handoff §11) · `publish.sheet_tab="teinengo-real"`.
+   `thumbnail` = ảnh người gần thật kịch tính + nền tối + chữ vàng/đỏ (handoff §11) · `publish.sheet_tab="F-teinengo-real"`.
    **`script.gate` PHẢI ĐO** từ 3 transcript thật (`data/transcripts_LaneF.json`): title_len, hook_chars,
    comma/breath — không chép số của lane khác (hàng rào #1 CLAUDE.md).
 3. **Giọng CLONE** (anh chốt): tách 20–30s giọng sạch từ 1 video kênh mẫu (bỏ intro) → `POST /voice-clone`

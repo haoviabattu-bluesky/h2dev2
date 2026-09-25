@@ -192,18 +192,21 @@ def chia_cot(text, max_chu, max_cot):
     return cols
 
 
-def _ve_chu_doc(img, cols, x_phai, y_tren, font, cell):
+def _ve_chu_doc(img, cols, x_phai, y_tren, font, cell, fill=(20, 20, 20, 255)):
+    """fill = 1 màu, HOẶC danh sách màu theo từng cột/từng chữ (cùng dáng `cols`) — thumbnail Lane K tô đỏ vài cụm
+    (YT-TITLE-RESEARCH thumbnail_engine/dialogue_split.py dùng lại hàm này, không chép code)."""
     d = ImageDraw.Draw(img)
     for ci, col in enumerate(cols):
         cx = x_phai - cell * ci - cell / 2
         for ri, ch in enumerate(col):
+            mau = fill[ci][ri] if isinstance(fill, list) else fill
             cy = y_tren + cell * ri + cell / 2
             if ch in XOAY:
                 tmp = Image.new("RGBA", (cell, cell), (0, 0, 0, 0))
                 td = ImageDraw.Draw(tmp)
                 bb = td.textbbox((0, 0), ch, font=font)
                 td.text((cell / 2 - (bb[2] - bb[0]) / 2 - bb[0], cell / 2 - (bb[3] - bb[1]) / 2 - bb[1]), ch,
-                        font=font, fill=(20, 20, 20, 255))
+                        font=font, fill=mau)
                 tmp = tmp.rotate(-90)
                 img.alpha_composite(tmp, (int(cx - cell / 2), int(cy - cell / 2)))
                 continue
@@ -214,7 +217,7 @@ def _ve_chu_doc(img, cols, x_phai, y_tren, font, cell):
                 dx, dy = cell * 0.30, -cell * 0.30
             elif ch in NHO:
                 dx, dy = cell * 0.10, -cell * 0.08
-            d.text((cx - tw / 2 - bb[0] + dx, cy - th / 2 - bb[1] + dy), ch, font=font, fill=(20, 20, 20, 255))
+            d.text((cx - tw / 2 - bb[0] + dx, cy - th / 2 - bb[1] + dy), ch, font=font, fill=mau)
 
 
 # ---------------------------------------------------------------- 3) đặt khung

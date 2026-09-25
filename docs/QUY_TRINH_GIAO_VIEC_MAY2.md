@@ -83,6 +83,49 @@ chừng một lane → thư mục `jobs\` của lane đó sẽ có 2 tên tab c�
 
 Bỏ được ~30 MB mỗi tập qua Syncthing, và máy 1 hết phải chờ lồng tiếng.
 
+### 4a. ⭐ `_BANGIAO.txt` = 3 CHẶNG, không phải "một lệnh duy nhất" (chốt 2026-09-25)
+
+Lane có ảnh AI (mọi lane trừ lane D, xem `image.flow_tool` dưới) nhận **3 khối lệnh riêng**, không
+còn 1 lệnh `make_video.py --redo-voice` chạy thẳng từ lồng tiếng tới hết (lệnh đó tự trôi qua B5 gọi
+gpti2, mâu thuẫn với luật "ảnh thân video luôn vẽ bằng Flow Tool"):
+
+1. **CHẶNG 1 — lồng tiếng**: `make_video.py --redo-voice --den B4Q` (dừng TRƯỚC khi vẽ ảnh).
+2. **CHẶNG 2 — vẽ ảnh bằng Flow Tool** (xem mục 4b bên dưới).
+3. **CHẶNG 3 — dựng + giao**: `make_video.py --dry-run` (phải in "0 ảnh cần vẽ / 0đ") rồi mới chạy
+   thật `make_video.py` không cờ gì thêm — B5 tự bỏ qua ảnh đã có, không vẽ lại.
+
+Lane **không** dùng Flow Tool (hiện chỉ lane D — ảnh là ảnh thật tô màu, không sinh từ prompt) khai
+`profile.image.flow_tool: false` để opt-out tường minh, nhận lại "MỘT LỆNH DUY NHẤT" như cũ. Field
+này mặc định `true` cho mọi lane khác — không cần khai gì thêm.
+
+Nguồn chân lý: `pipeline/dong_goi_may2.py::cmd_job()` (khối `khoi_lenh`, nhánh `else:` khi job chưa
+có `final.mp4`). Sinh lại `_BANGIAO.txt` của 1 tập đã đóng gói từ trước code này (trước 2026-09-25)
+= chạy lại đúng lệnh `--job` như bình thường, không cần sửa gì tay.
+
+### 4b. Vẽ ảnh bằng Google Flow "Create Tool" (3 tool trong `pipeline/`)
+
+`don_flow_tool.py` (ra bộ 3 file) → `chay_flow_tool.py` (lái Flow, `py -3.14`) →
+`nghiemthu_flow_tool.py` (nghiệm thu + giao ảnh vào tập). Chi tiết đầy đủ + bảng bẫy đã biết:
+`pipeline/README_flow_tool.md`.
+
+**Marker nhân vật trong `img_prompts.txt` — 2 kiểu, tool tự nhận biết, không cần cờ:**
+
+| Kiểu | Ví dụ | Nguồn tra nhân vật | Lane dùng |
+|---|---|---|---|
+| `@REF` / `@REF2` / `@REF12` (cũ) | `@REF @REF2 wide shot...` | `_BANGIAO.txt` (`@REF = Tên`) hoặc thứ tự `characters.json`, nạp **CẢ JOB** (tối đa 5 nhân vật/tập) | simbot2-*, lane F/G |
+| `@CAST:id1,id2` (mới, 2026-09-24) | `@CAST:shu,tencho MEDIUM two-shot...` | khớp thẳng theo `id` trong `characters.json`, o ref tính **THEO TỪNG LÔ** (chỉ nhân vật xuất hiện trong `--dong` đã chọn) | lane K, lane L — tập có >5 nhân vật/tập |
+
+`@CAST` giải quyết đúng ca "tập có 6-8 nhân vật nhưng khuôn Create Tool chỉ có 5 ô": máy 1 không cần
+giới hạn nhân vật trong tập, máy 2 tự **chia `--dong` thành nhiều LÔ ≤5 nhân vật/lô** — vượt 5 là
+`don_flow_tool.py` tự `sys.exit` kèm danh sách id + dải dòng từng người, không lọt sai. Tên ô ref =
+id viết HOA ASCII (`SHU`, `TENCHO`…), ảnh trong `_ref_upload/` tự resize ≤1600px cho Flow tải nhanh
+(ảnh master gốc `_ref_<id>/001.png` không đổi).
+
+⚠️ **`--suffix` (cắt đuôi chung) không phải lúc nào cũng dùng được** — nếu dòng cảnh vật (PLAIN) và
+dòng có nhân vật kết thúc bằng 2 cụm khác hẳn nhau (thường gặp: PLAIN kết "...no watermark", dòng có
+nhân vật kết "...reference image"), dùng `--suffix-them "<style cố định>"` (nối thêm, không cắt gì)
+thay vì `--suffix`. Không phải lỗi tool — là đặc điểm nội dung `img_prompts.txt`.
+
 ## 5. Hook thì sao
 
 Xem `docs\QUY_TAC_VIDEO_HOOK.md` §5b — mỗi lane một cách dựng hình khác nhau, khai ở

@@ -130,19 +130,33 @@ Phép thứ 8 tool không làm thay: mở 5–6 ảnh có TAG so mặt với `_r
 > `CAN = [f"{n:03d}" for n in range(28, 46)]` và số 18, nên **báo trượt oan** cho mọi dải NNN khác.
 > Bản trong `pipeline\` đọc dải NNN và TAG từ chính `flow_batch_prompts.txt` của lô.
 
-## Ba kiểu marker đều đọc được (đừng đoán thêm kiểu thứ tư)
+## Bốn kiểu marker đều đọc được (đừng đoán thêm kiểu thứ năm)
 
 | Kiểu | Ví dụ | Job dùng |
 |---|---|---|
 | marker rời, nhiều cái đầu dòng | `@REF @REF2 wide shot of...` | simbot2-* |
 | marker gộp | `@REF12 MEDIUM 65-year-old...` | lane F (`ep*`), theo `flow_batch_laneF.MARKER_ORDER` |
+| **`@CAST:id1,id2` (mới, 2026-09-24)** | `@CAST:shu,tencho MEDIUM two-shot...` | lane K, lane L — tập có **>5 nhân vật/tập**, xem dưới |
 | không marker | `Wide shot of the riverbank...` | → `PLAIN` |
 
-Marker → nhân vật lấy từ `_BANGIAO.txt` (`@REF = Tên`) nếu có, không thì theo **thứ tự nhân vật CÓ
-`master`** trong `characters.json`. Nhân vật **không có `master`** = không khoá mặt = không có marker
+**Kiểu 1+2 (`@REF...`)** — nhân vật lấy từ `_BANGIAO.txt` (`@REF = Tên`) nếu có, không thì theo
+**thứ tự nhân vật CÓ `master`** trong `characters.json`, nạp **CẢ JOB một lần** (tối đa 5 nhân vật/tập
+— khuôn Create Tool chỉ có 5 ô). Nhân vật **không có `master`** = không khoá mặt = không có marker
 (vd 千恵子 ở `ep01-fuufu-nenkin-sa`) — đúng, không phải thiếu ảnh.
 Dòng còn sót `@...` sau khi bóc ⇒ tool **dừng** và in bảng marker đang hiểu; phải thêm vào
 `bang_marker()`, **không đoán**.
+
+**Kiểu 3 (`@CAST:id1,id2 <mô tả>`)** — dành cho job có **NHIỀU HƠN 5 nhân vật trong cả tập** (kiểu
+`@REF` cũ không đủ 5 ô cho cả tập thì bó tay). Khác biệt cốt lõi: `id` khớp THẲNG vào field `id`
+trong `characters.json` (không qua thứ tự @REF/@REF2), và **ô ảnh gốc tính THEO TỪNG LÔ** — chỉ gồm
+nhân vật XUẤT HIỆN trong các dòng `--dong` đã chọn cho lần chạy đó, không nạp cả 8 nhân vật của tập
+làm tràn khuôn 5 ô. Vượt 5 nhân vật/lô → tool tự `sys.exit`, in danh sách id + dải dòng từng người
+xuất hiện, không lọt sai — chia `--dong` nhỏ hơn là xong (vd tách theo đoạn cảnh khác nhân vật).
+Tên ô ref = **id viết HOA ASCII** (`SHU`, `TENCHO`, `KIRIYAMA`…, KHÔNG phải `MAIN/FRIEND`), và ảnh
+trong `_ref_upload/` được **tự resize ≤1600px cạnh dài** (PNG gốc 2-4 MB làm picker Flow kẹt "Đang
+tải lên" — đo thật 2/2 lần không xong sau 90s; ảnh master gốc `_ref_<id>/001.png` KHÔNG bị đụng vào).
+Job KHÔNG có dòng `@CAST:` nào thì chạy đúng y hệt bản `@REF` cũ, không hồi quy.
+`--slot`/`--khong-ref` KHÔNG dùng được cho job kiểu `@CAST` (tên ô cố định = id, không đổi tay).
 
 ## Khi nào vẫn dùng lane Playwright cũ
 

@@ -62,7 +62,13 @@ trường trên máy 2, không ghi vào file trong gói job.
 
 ## 4. Gói job máy 1 gửi đi
 
-`pipeline/dong_goi_may2.py --job --profile <lane> --slug <tập>` → `FlowHandoff_local\jobs\<slug>\`
+`pipeline/dong_goi_may2.py --job --profile <lane> --slug <tập>` → `FlowHandoff_local\jobs\<tên tab>\<slug>\`
+(⭐ anh chốt 2026-09-25: chia theo `publish.sheet_tab` — trước đó `jobs\` phẳng theo slug, 2 lane
+lỡ trùng slug là đè job nhau không báo gì; đã migrate 27 tập cũ sang cấu trúc mới cùng ngày).
+⚠️ Lưu ý khác chiều TRẢ HÀNG ở mục 6 bên dưới: **hai chiều dùng 2 khoá khác nhau** — chiều ĐI (mục
+này) khoá theo TÊN TAB (đổi tên tab thì lần đóng gói SAU đi vào thư mục tab mới, không tự gộp lại
+với các tập cũ của cùng lane), chiều VỀ khoá theo `upload_channel` (không đổi tên). Đổi tên tab giữa
+chừng một lane → thư mục `jobs\` của lane đó sẽ có 2 tên tab cũ/mới nằm cạnh nhau, tự biết mà gộp khi đọc.
 
 | File | Bắt buộc |
 |---|---|
@@ -122,7 +128,7 @@ Chi tiết đầy đủ: `docs/PHUONG_AN_TU_GOI_TITLE.md`.
 - **Công tắc từng lane — `publish.title_auto` (anh chốt 2026-09-24):** KÊNH MỚI MẶC ĐỊNH TẮT. Anh chạy
   setup TITLE tập đầu bằng tay, ưng rồi mới bật: `py -3.13 pipeline\goi_title.py --bat <lane>`
   (`--tat <lane>` để tắt, `--trang-thai` xem mọi lane). Đang BẬT: satori-jp-obaa, toshi-densetsu-jp,
-  kenko-chiebukuro, teinengo-real, teinengo-tanoshimi. Đang TẮT: irogatatarukioku (chưa từng chạy
+  kenko-chiebukuro, teinengo-real, teinengo-tanoshimi, shakai_no_naze (bật 2026-09-25). Đang TẮT: irogatatarukioku (chưa từng chạy
   thumbnail bên TITLE lần nào).
 - **Điều kiện kèm:** `publish.listing_external: true` (h2dev **thôi** tự viết tiêu đề/mô tả/thumbnail,
   bỏ B7/B9 — hai bên KHÔNG được cùng ghi 1 file).

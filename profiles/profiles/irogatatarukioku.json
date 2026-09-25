@@ -123,7 +123,8 @@
   "ref_lock": false,
   "ref_quality": "",
   "thumbnail_only": false,
-  "_note": "KHONG dung gen_images.py/ai_steps.write_img_prompts (sinh anh tu prompt) — anh la ANH THAT co san trong photos.json cua ho so SPACE_RESEARCH, chi TO MAU qua gpti2_edit.py quality=medium (da verify lane-d-colorize-test). B5 cua lane nay la buoc THU CONG/rieng, khong goi qua make_video.py b5_images."
+  "flow_tool": false,
+  "_note": "KHONG dung gen_images.py/ai_steps.write_img_prompts (sinh anh tu prompt) — anh la ANH THAT co san trong photos.json cua ho so SPACE_RESEARCH, chi TO MAU qua gpti2_edit.py quality=medium (da verify lane-d-colorize-test). B5 cua lane nay la buoc THU CONG/rieng, khong goi qua make_video.py b5_images. flow_tool=false (2026-09-25): lane nay KHONG dung Google Flow Create Tool — anh khong sinh tu prompt nen khong co gi de dua vao Flow, dong_goi_may2.py doc field nay de KHONG in huong dan 3 CHANG Flow Tool vao _BANGIAO.txt cho lane nay."
  },
  "body": {
   "mode": "ai_images",

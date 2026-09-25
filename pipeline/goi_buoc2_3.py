@@ -18,6 +18,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
+import profiles  # noqa: E402
 
 # Thư mục con/tệp KHÔNG gửi đi — rác trung gian của chính máy 1, máy 2 không cần và gửi chỉ tốn
 # băng thông/dung lượng Syncthing (đặc biệt _truoc_khi_sua/_truoc_khi_viet_lai có thể nặng vài chục MB).
@@ -58,7 +59,11 @@ def main():
     # jobs_buoc23"). "jobs/<slug>/" trước đây chỉ chứa img_ai/ (từ drive_handoff.py upload-job cho
     # luồng Flow cũ) — gói bước-2-3 nay ĐỔ THÊM vào cùng thư mục đó (không xoá gì có sẵn), thành nơi
     # giao nhận DUY NHẤT cho 1 slug thay vì 2 quy ước khác nhau.
-    dst_root = Path(a.out_root) if a.out_root else ROOT / "FlowHandoff_local" / "jobs"
+    # ⭐ anh chốt 2026-09-25: jobs/ chia theo TÊN TAB TRANG TÍNH (publish.sheet_tab), không phẳng
+    # theo slug — cùng lý do đã sửa ở dong_goi_may2.py (chống 2 lane trùng slug đè job của nhau).
+    _prof = profiles.load("toshi-densetsu-jp")
+    _tab = (_prof.get("publish") or {}).get("sheet_tab") or (_prof.get("publish") or {}).get("upload_channel") or "toshi-densetsu-jp"
+    dst_root = Path(a.out_root) if a.out_root else ROOT / "FlowHandoff_local" / "jobs" / _tab
     dst = dst_root / a.slug
     # KHÔNG rmtree trước khi copy: "jobs/<slug>/" có thể đã có sẵn "img_ai/" từ một lượt
     # `drive_handoff.py upload-job` cũ (luồng Flow) — xoá sạch rồi mới copy sẽ mất dữ liệu máy 2 đã

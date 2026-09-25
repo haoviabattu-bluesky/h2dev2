@@ -1,0 +1,139 @@
+Build a batch scene-image generator app for a single video storyboard, with locked character
+consistency for MULTIPLE named characters, a fixed art style, and adjustable concurrency.
+
+Before anything else: keep this app as SIMPLE as it can be while still producing images. If any
+requirement below is hard to implement in this environment, implement the simplest version that still
+generates and downloads images, and say so in the app's log - never leave the app in a state where it
+loads but generates nothing. A plain app that produces all the images beats a sophisticated one that
+produces none.
+
+Fixed style suffix (the app must silently append this exact text to the end of EVERY prompt sent to the
+image model, for every image, no exceptions):
+"{SUFFIX}"
+
+Inputs:
+- A large multi-line text box where I paste many prompt lines, OR a .txt file upload containing the same
+  lines. Each line follows this exact format:
+  "NNN|TAG|description text"
+  where NNN is a 3-digit scene number (already provided in the input, do not regenerate or reorder it),
+  TAG is always the literal word "PLAIN" on every line: this batch has no recurring named character
+  and no reference image anywhere. Keep the field, do not drop it, and do not invent other tag values.
+  description text is the scene content.
+- A project/folder name text input.
+- A concurrency number input, range 1 to 10, default 3, labeled "Parallel generations".
+- ONE SINGLE model-selector dropdown, labeled "Image model", listing whatever image generation models
+  are available in this project and defaulting to the first one. This ONE model is used for EVERY image
+  regardless of tag - do NOT add extra model selectors.
+
+Interface:
+- A large text area for pasting prompt lines, plus a file-upload button as an alternative way
+  to provide the same lines from a .txt file.
+- A project name input field.
+- The concurrency number input and the single model-selector dropdown, grouped together as "Generation
+  settings".
+- A "Generate All" button, plus a way to select and re-generate only specific line numbers (for
+  re-running a handful of lines after fixing something, without redoing the whole batch).
+- A scrollable preview grid below, showing each generated image as it completes, labeled with its NNN
+  number.
+- A progress panel showing: total lines parsed, how many are currently generating in parallel right now,
+  completed count, failed count.
+- A "Download All as ZIP" button, enabled once generation finishes (or partially, to download what is
+  done so far).
+
+Workflow:
+- Step 1: Parse the input into individual lines, each producing (NNN, TAG, description).
+- Step 2: For each line, build the final prompt by taking the description text and appending the fixed
+  style suffix defined above.
+- Step 3: Generate every line with the SAME single selected "Image model", in ordinary text-to-image
+  mode. Never pass a reference-image parameter of any kind - not an image, not an empty list, not an
+  empty array, not a null: leave the parameter out of the call entirely. An empty reference list is
+  rejected by some image endpoints and would fail every line in this batch.
+- Step 4: Save each generated image with filename exactly matching its NNN number, for example
+  "{NNN_A}.png", "{NNN_B}.png" (zero-padded to 3 digits, no other text in the filename). The NNN values come
+  from the input and are NOT necessarily 1, 2, 3 - they may start at any number and may contain gaps.
+  Keep them exactly as given; never renumber them.
+- Step 5: Process the queue using a worker-pool equal to the concurrency setting: start that many
+  prompts generating at the same time, and the moment any one finishes (success or failure), immediately
+  pull the next pending prompt from the queue and start it, keeping the number of in-flight generations
+  at the concurrency setting until the queue is empty. Do not wait for a full batch to finish before
+  starting new ones, and do not process strictly one-at-a-time.
+- Step 6: If a single prompt fails (safety block, timeout, error), skip it, keep going with the rest, and
+  list it in a separate "failed_prompts.txt" inside the final ZIP, including its NNN and the reason if
+  available. Do not stop the whole batch because of one failure.
+- Step 7: When finished (or when I click "Download All as ZIP" early), bundle every successfully
+  generated image plus "failed_prompts.txt" (if any) into one ZIP file named after the project name
+  input, and let me download it.
+- Step 8: Put a "manifest.csv" in that same ZIP with one row per line: NNN, TAG, state, attempts,
+  image size in bytes, and seconds taken. This is the file I check the batch
+  against, so it must describe THIS run only and must never carry rows over from an earlier run.
+  "attempts" must be the real number of image-generation calls actually made for that line: a line that
+  succeeded on its first call must show 1, and a line that succeeded only after two retries must show 3.
+  Never pre-fill this column with the retry budget or any other constant - a manifest in which every row
+  carries the same attempts value is wrong and makes the whole manifest untrustworthy.
+
+Robustness - this part matters more than the interface. A previous version of this app silently stopped
+after 46 of 85 lines with no error shown, and everything already generated was lost. Build it so that
+cannot happen:
+- Do NOT rely on IndexedDB or localStorage to keep finished images. This environment gives the app a
+  DIFFERENT random sandbox origin on every page load (measured: the runner origin changes on each
+  reload), so any browser storage the app writes becomes unreachable the moment the page reloads, and
+  the app will silently come back empty. Do not spend effort on a storage layer that cannot work here.
+- Instead, the finished images must be got OUT of the page automatically: the moment the LAST line of
+  the queue finishes, the app must build the ZIP and start its download on its own, without waiting for
+  me to click anything. The "Download ZIP" button stays as well, and must work at any time during the
+  run to download whatever is finished so far.
+  This automatic download must fire EXACTLY ONCE per run. Guard it with a flag that survives
+  re-renders (a ref, a module-level variable, anything that is not component state), set the flag
+  BEFORE starting the download, and never re-arm it unless I start a new run. Do NOT put the
+  download inside an effect whose dependencies change on every render. Measured on 2026-09-24: a
+  build without this guard rebuilt the ZIP about six times a second for fifteen minutes and wrote
+  5,120 copies of the same file - 12.4 GB - into the downloads folder before anyone noticed.
+- Show a permanent red banner at the top: "Do not reload this page - reloading destroys all finished
+  images. The ZIP downloads automatically when the run ends." Keep a visible counter of how many images
+  are currently held in memory, so I can see at a glance what I would lose.
+- Keep the in-memory store of ONE run only, exactly as described below for the project name.
+- On page load, read that stored state back and show it. A "Resume" button continues the queue and skips
+  every NNN already marked done, so reloading the tab or losing the connection costs nothing.
+- Keep the stored images of ONE run only. "Download All as ZIP" must contain exactly the images of the
+  current run and never images left over from an earlier project name. When the project name changes, or
+  when I press "Clear stored images", drop everything stored before starting.
+- Retry each failed line automatically up to 3 times with growing waits of about 2, 6 and 15 seconds
+  before marking it failed. A failure never stops the queue.
+- If 5 lines fail one after another, PAUSE the whole queue and say so on screen in plain words (this
+  usually means a rate limit or an expired session, and hammering it makes things worse). Nothing is
+  lost: the Resume button restarts from where it paused.
+- Process the queue in chunks of 20 lines with a pause of about 5 seconds between chunks.
+- Reduce the concurrency automatically by 1 (never below 1) whenever a rate-limit or server error comes
+  back.
+- Show a status table with one row per line: NNN, TAG, state, attempts, and the verbatim error message of
+  the last failure. Above it show counts: total / done / running / failed / remaining.
+- Show a running log with timestamps for every state change, and keep a heartbeat line updating at least
+  every 10 seconds while the queue is active, so a stall is visible instead of looking like normal work.
+- Buttons: "Generate All", "Resume (skip finished)", "Retry failed only", "Generate a range" (from NNN to
+  NNN), "Download All as ZIP" (works at any time from whatever is stored), and "Clear stored images".
+- Building the ZIP must not exhaust memory on a batch of a hundred and fifty large images. If a
+  memory-safe ZIP turns out to be awkward here, offer "Download as ZIP in parts" (fifty images per file)
+  instead of failing.
+- Add a "Test one line" button: it runs ONE line only (I type its NNN) and prints on screen the verbatim
+  request summary and the verbatim error text if it fails, without touching the rest of the queue. Every
+  error message shown anywhere in this app must be the raw text from the model or the API - never
+  replace it with a friendly summary, and never swallow it.
+
+Interface contract - these exact names and element types are read by an automation script, so they are
+fixed and must come out identical in every build. Do not rename, relabel, merge, drop or "improve" any
+of them, and do not swap an element type for a nicer-looking one:
+- The parallel-generations setting must be an <input type="number"> with min 1 and max 10. It must NOT
+  be a slider, a range input, a dropdown or a stepper widget.
+- The project name must be an <input type="text">. It must NOT be an inline-editable heading.
+- These buttons must all exist, with exactly these visible labels, in this capitalisation:
+  "Generate All", "Resume", "Retry Failed", "Test One Line", "Download ZIP", "Clear Storage".
+  A build that drops "Resume" or "Retry Failed" because it seems redundant is a failed build.
+- The progress counters must be labelled exactly: TOTAL, DONE, RUNNING, FAILED, REMAINING.
+- The first line of manifest.csv must be exactly this header, same order, same spelling:
+  NNN,TAG,state,attempts,size_bytes,seconds
+
+Output:
+- One ZIP file containing the images that succeeded, plus failed_prompts.txt listing any that failed,
+  plus manifest.csv describing this run.
+- Do not alter, translate, shorten, or improve the description text in any prompt line - use it exactly
+  as given, only appending the fixed style suffix.

@@ -6,7 +6,7 @@ HAI VIỆC, DÙNG RIÊNG:
   --bundle                          copy TOÀN BỘ pipeline/*.py + profile các lane khai + requirements.txt
                                      vào FlowHandoff_local/shared/buoc2_3_tool/ (làm 1 lần, hoặc mỗi khi
                                      pipeline/ có sửa mới muốn máy 2 dùng bản mới nhất).
-  --job <profile> <slug>            đóng gói 1 TẬP cụ thể vào FlowHandoff_local/jobs/<slug>/ + ghi
+  --job <profile> <slug>            đóng gói 1 TẬP cụ thể vào FlowHandoff_local/jobs/<tên tab>/<slug>/ + ghi
                                      _BANGIAO.txt (lệnh chặng A/B, tiền dự kiến) + ghi cột H (STATUS-IMG).
 
 VÌ SAO CÓ FILE NÀY
@@ -109,6 +109,17 @@ def _bundle_pipeline():
         shutil.copy2(f, dst / f.name)
         n += 1
     print(f"  pipeline/: {n} file .py")
+    # 2026-09-25: don_flow_tool.py doc khuon tu 2 file .txt nay luc chay (KHONG phai .py nen vong lap
+    # tren khong bat) + README lam tai lieu tra cuu cho may 2 — thieu la don_flow_tool.py sys.exit
+    # ngay khi may 2 chay lo dau tien, bat ngo vi cac lenh .py khac deu chay binh thuong.
+    _them = ["flow_tool_template_va3.txt", "flow_tool_template_plain.txt", "README_flow_tool.md"]
+    n_them = 0
+    for ten in _them:
+        f = ROOT / "pipeline" / ten
+        if f.is_file():
+            shutil.copy2(f, dst / ten)
+            n_them += 1
+    print(f"  pipeline/: {n_them} file .txt/.md phu (khuon Flow Tool + README)")
 
 
 def _bundle_profiles(profile_ids):
@@ -144,6 +155,17 @@ def _bundle_profiles(profile_ids):
             (BUNDLE / bgm).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT / bgm, BUNDLE / bgm)
             print(f"  nhạc nền {bgm}")
+        # Lane L 2026-09-25: kho hiệu ứng âm thanh lane (assemble.sfx, sfx_than.kho_dir = <slug_dir>/_sfx) — chép kèm
+        # để máy 2 dùng ĐÚNG bộ tiếng tập trước (ai33 sinh lại là ra tiếng khác, mất nhất quán giữa các tập).
+        kho = ROOT / data.get("slug_dir", f"assets/{pid}") / "_sfx"
+        if ((data.get("assemble") or {}).get("sfx") or {}).get("enabled") and kho.is_dir():
+            dk = BUNDLE / data.get("slug_dir", f"assets/{pid}") / "_sfx"
+            dk.mkdir(parents=True, exist_ok=True)
+            n_sfx = 0
+            for f_ in kho.glob("*.mp3"):
+                shutil.copy2(f_, dk / f_.name)
+                n_sfx += 1
+            print(f"  kho SFX lane: {n_sfx} file → {dk}")
         print(f"  profile {pid}.json (upload_dir → relative results/video_render)")
 
 
@@ -302,6 +324,10 @@ def cmd_job(profile_id, slug, no_title=False):
     job_dir = ROOT / prof["slug_dir"] / slug
     if not job_dir.is_dir():
         raise SystemExit(f"✗ không thấy {job_dir}")
+    # ⭐ anh chốt 2026-09-25: jobs/ PHẢI chia theo TÊN TAB TRANG TÍNH (publish.sheet_tab), không để
+    # phẳng theo slug — slug trùng giữa 2 lane khác nhau (vd 2 lane cùng đặt "ep01-...") từng có nguy
+    # cơ đè job của nhau vì jobs/<slug>/ không phân biệt lane. Một nguồn chân lý DUY NHẤT: sheet_tab.py.
+    tab = (prof.get("publish") or {}).get("sheet_tab") or (prof.get("publish") or {}).get("upload_channel") or profile_id
     ok, msg, level = gate_common.kiem_lock(job_dir)
     if level == "FAIL":
         raise SystemExit(f"✗ CHƯA đóng gói — kịch bản chưa khoá đúng: {msg}")
@@ -361,7 +387,7 @@ def cmd_job(profile_id, slug, no_title=False):
         if m.exists() and m not in ref_masters:
             ref_masters.append(m)
 
-    dst = JOBS / slug
+    dst = JOBS / tab / slug
     dst.mkdir(parents=True, exist_ok=True)
     n_copied = 0
     for name in JOB_FILES:
@@ -383,7 +409,7 @@ def cmd_job(profile_id, slug, no_title=False):
     n, n_face, cost = _dem_anh(job_dir)
     n_scene = n - n_face
     kenh = (prof.get("publish") or {}).get("upload_channel", profile_id)
-    tab = (prof.get("publish") or {}).get("sheet_tab", kenh)
+    # `tab` đã tính ở đầu hàm (dùng để đặt thư mục jobs/<tab>/<slug>/) — dùng lại, không tính lại.
     visual = ((prof.get("script") or {}).get("hook") or {}).get("visual", "")
     # \u26a0\ufe0f 2026-09-24 (ph\u00e1t hi\u1ec7n th\u1eadt khi v\u00e1 hook Lane F): job \u0111\u00f3ng g\u00f3i L\u1ea0I cho t\u1eadp \u0110\u00c3 C\u00d3 final.mp4
     # (ki\u1ec3m th\u1eb3ng ROOT/FlowHandoff_local/results/video_render/<upload_channel>/<slug>/final.mp4 \u2014
@@ -393,33 +419,75 @@ def cmd_job(profile_id, slug, no_title=False):
     da_xong = (ROOT / "FlowHandoff_local" / "results" / "video_render" / kenh / slug / "final.mp4").exists()
     if da_xong:
         khoi_lenh = (
-            f"## \u26a0\ufe0f T\u1eacP N\u00c0Y \u0110\u00c3 C\u00d3 final.mp4 (ch\u1eb7ng A+B \u0111\u00e3 xong) \u2014 \u0110\u1eeaNG ch\u1ea1y l\u1ea1i make_video.py\n"
-            f"\u0110\u00f3ng g\u00f3i l\u1ea1i l\u1ea7n n\u00e0y CH\u1ec8 \u0111\u1ec3 th\u00eam hook/ (xem m\u1ee5c HOOK b\u00ean d\u01b0\u1edbi). KH\u00d4NG c\u00f3 vi\u1ec7c g\u00ec kh\u00e1c\n"
-            f"c\u1ea7n ch\u1ea1y \u1edf \u0111\u00e2y \u2014 gi\u1ecdng/\u1ea3nh/video gi\u1eef nguy\u00ean b\u1ea3n \u0111\u00e3 giao tr\u01b0\u1edbc.\n\n")
+            "## ⚠️ TẬP NÀY ĐÃ CÓ final.mp4 (chặng A+B đã xong) — ĐỪNG chạy lại make_video.py\n"
+            "Đóng gói lại lần này CHỈ để thêm hook/ (xem mục HOOK bên dưới). KHÔNG có việc gì khác\n"
+            "cần chạy ở đây — giọng/ảnh/video giữ nguyên bản đã giao trước.\n\n")
     else:
-        khoi_lenh = (
-            f"## M\u1ed8T L\u1ec6NH DUY NH\u1ea4T\n"
-            f"cd shared\\buoc2_3_tool\\pipeline\n"
-            f"xcopy /E /I ..\\..\\..\\jobs\\{slug} ..\\assets\\{profile_id}\\{slug}\n"
-            f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice\n\n"
-            f"L\u1ec7nh n\u00e0y t\u1ef1 l\u00e0m: l\u1ed3ng ti\u1ebfng \u2192 n\u1eafn ph\u1ee5 \u0111\u1ec1 theo k\u1ecbch b\u1ea3n \u2192 v\u1ebd {n} \u1ea3nh \u2192 d\u1ef1ng final.mp4.\n"
-            f"B0\u2013B3 (k\u1ecbch b\u1ea3n) m\u00e1y 1 \u0111\u00e3 xong v\u00e0 \u0111\u00e3 kho\u00e1 sha256.\n\n"
-            f"## \u1ea2NH: {n} t\u1ea5m ({n_face} kho\u00e1 m\u1eb7t + {n_scene} c\u1ea3nh v\u1eadt)\n"
-            + (f"\u1ea2nh master \u0111\u00e3 v\u1ebd s\u1eb5n + QC (_ref/, _ref2/) \u2014 KH\u00d4NG v\u1ebd l\u1ea1i.\n" if ref_masters else "")
-            # 2026-09-24 Lane K: kho\u00e1 m\u1eb7t N nh\u00e2n v\u1eadt (_ref_<id>) + \u0111a gi\u1ecdng VOICEVOX + b\u00f3ng tho\u1ea1i do m\u00e1y v\u1ebd
-            + (f"KHO\u00c1 M\u1eb6T THEO ID: m\u1ed7i th\u01b0 m\u1ee5c _ref_<id>\\001.png = 1 nh\u00e2n v\u1eadt. Trong Flow Tool t\u1ea1o M\u1ed6I id 1 Character "
-               f"(t\u00ean = id) trong C\u00d9NG 1 project, r\u1ed3i d\u00f2ng prompt `@CAST:a,b <prompt>` \u2192 mention \u0111\u00fang @a @b (t\u1ed1i \u0111a 3/\u1ea3nh).\n"
-               if cast_lane else "")
-            + (f"GI\u1eccNG \u0110A VAI: lane n\u00e0y l\u1ed3ng ti\u1ebfng b\u1eb1ng VOICEVOX engine (0\u0111, KH\u00d4NG d\u00f9ng ai33). M\u00e1y 2 c\u00e0i 1 l\u1ea7n theo "
-               f"shared\\GIAO_VIEC_MAY2_CAI_VOICEVOX.md; B4 t\u1ef1 \u0111\u1ecdc vai.txt. M\u00f4 t\u1ea3 video PH\u1ea2I ch\u00e9p credits_giong.txt (\u25bc\u7d20\u6750).\n"
-               if (prof.get("voice") or {}).get("provider") == "voicevox" else "")
-            # 2026-09-24 Lane L: đa giọng bằng ai33 (MiniMax) — cần AI33_API_KEY, không cần VOICEVOX
-            + (f"GIỌNG ĐA VAI: lane này lồng tiếng ĐA GIỌNG bằng ai33 (mỗi câu 1 task, cần AI33_API_KEY như mọi lane). "
-               f"B4 tự đọc vai.txt + characters.json; hết credit là B4 DỪNG trước khi gửi (không lồng tiếng cụt).\n"
-               if (prof.get("voice") or {}).get("provider") == "ai33" else "")
-            # anh ch\u1ed1t 2026-09-24: m\u00e1y 2 v\u1ebd \u1ea3nh Google Flow b\u1eb1ng FLOW TOOL, kh\u00f4ng c\u00f2n ch\u1ea1y Playwright.
-            + f"V\u1ebc \u1ea2NH B\u1eb0NG FLOW TOOL tr\u00ean Google Flow (0\u0111) \u2014 KH\u00d4NG ch\u1ea1y Playwright/script t\u1ef1 b\u1ea5m Flow n\u1eefa.\n"
-            f"gpti2 ch\u1ec9 l\u00e0 d\u1ef1 ph\u00f2ng khi Flow Tool h\u1ecfng (\u2248 {cost:,}\u0111). B\u00e1o l\u1ea1i c\u00e1ch \u0111\u00e3 d\u00f9ng + s\u1ed1 ti\u1ec1n TH\u1eacT \u0111\u00e3 ti\u00eau.\n\n")
+        _img_flow = (prof.get("image") or {}).get("flow_tool", True)
+        _dung_flow_tool = _img_flow and n > 0
+        if _dung_flow_tool:
+            khoi_lenh = (
+                "## CHẶNG 1 — LỒNG TIẾNG (DỪNG TRƯỚC khi vẽ ảnh)\n"
+                "cd shared\\buoc2_3_tool\\pipeline\n"
+                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\assets\\{profile_id}\\{slug}\n"
+                f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice --den B4Q\n\n"
+                "Lệnh này CHỈ lồng tiếng → nắn phụ đề theo kịch bản rồi DỪNG "
+                "(KHÔNG vẽ ảnh, KHÔNG dựng video).\n"
+                "B0–B3 (kịch bản) máy 1 đã xong và đã khoá sha256.\n"
+                + ("GIỌNG ĐA VAI: lane này lồng tiếng bằng VOICEVOX engine (0đ, KHÔNG dùng ai33). "
+                   "Máy 2 cài 1 lần theo shared\\GIAO_VIEC_MAY2_CAI_VOICEVOX.md; B4 tự đọc vai.txt. "
+                   "Mô tả video PHẢI chép credits_giong.txt (▼素材).\n"
+                   if (prof.get("voice") or {}).get("provider") == "voicevox" else "")
+                + ("GIỌNG ĐA VAI: lane này lồng tiếng ĐA GIỌNG bằng ai33 (mỗi câu 1 task, "
+                   "cần AI33_API_KEY như mọi lane). B4 tự đọc vai.txt + characters.json; "
+                   "hết credit là B4 DỪNG trước khi gửi (không lồng tiếng cụt).\n"
+                   if (prof.get("voice") or {}).get("provider") == "ai33" else "")
+                + "\n"
+                + f"## CHẶNG 2 — VẼ {n} ẢNH BẰNG FLOW TOOL (Google Flow > Create Tool, 0đ)\n"
+                + ("Ảnh master đã vẽ sẵn + QC (_ref/, _ref2/) — KHÔNG vẽ lại, chỉ vẽ ảnh còn thiếu.\n"
+                   if ref_masters else "")
+                + ("KHOÁ MẶT THEO ID: mỗi thư mục _ref_<id>\\001.png = 1 nhân vật. Trong Flow Tool "
+                   "KHÔNG dùng tính năng Character của Flow — dùng Ô ẢNH THAM CHIẾU "
+                   "(≤ 5 ô/project, tên ô = id viết HOA, do don_flow_tool.py tự tính theo TỪNG LÔ). "
+                   "Dòng prompt dùng `@CAST:id1,id2 <mô tả>` (id lấy trong characters.json), "
+                   "don_flow_tool.py tự đọc — KHÔNG tự tạo Character.\n"
+                   "1 tập có nhiều nhân vật hơn 5 thì phải chia nhiều LÔ (--dong), "
+                   "mỗi lô ≤ 5 nhân vật xuất hiện trong lô đó — vượt là "
+                   "don_flow_tool.py tự dừng và in danh sách id, tách --dong nhỏ hơn là xong.\n"
+                   if cast_lane else "")
+                + (f"py -3.13 don_flow_tool.py --job ..\\assets\\{profile_id}\\{slug} --dong <lô> --ten {slug}-lo<k> [--kiem]\n"
+                   "py -3.14 chay_flow_tool.py --bo3 \"<thư mục bộ 3 của lô>\" --port <cổng lấy từ sổ cổng>\n"
+                   f"py -3.13 nghiemthu_flow_tool.py <zip> --bo3 \"<bộ 3>\" --giao \"..\\assets\\{profile_id}\\{slug}\\img\"\n"
+                   f"→ lặp lại cho từng lô, đếm đủ {n} ảnh NNN trong img\\ mới sang CHẶNG 3\n\n")
+                + f"gpti2 chỉ là dự phòng khi Flow Tool hỏng (≈ {cost:,}đ). Báo lại cách đã dùng + "
+                  "số tiền THẬT đã tiêu nếu phải sa về gpti2.\n\n"
+                + "## CHẶNG 3 — DỰNG + GIAO\n"
+                + f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --dry-run   ← PHẢI in B5 = 0 ảnh cần vẽ / 0đ "
+                  f"(đủ {n} ảnh NNN trong img\\ rồi)\n"
+                + f"py -3.13 make_video.py --profile {profile_id} --slug {slug}\n\n"
+            )
+        else:
+            khoi_lenh = (
+                "## MỘT LỆNH DUY NHẤT (lane này không dùng Flow Tool — xem image.flow_tool trong profile)\n"
+                "cd shared\\buoc2_3_tool\\pipeline\n"
+                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\assets\\{profile_id}\\{slug}\n"
+                f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice\n\n"
+                "Lệnh này tự làm: lồng tiếng → nắn phụ đề theo kịch bản"
+                + (f" → vẽ {n} ảnh" if n > 0 else "") + " → dựng final.mp4.\n"
+                "B0–B3 (kịch bản) máy 1 đã xong và đã khoá sha256.\n\n"
+                + (f"## ẢNH: {n} tấm ({n_face} khoá mặt + {n_scene} cảnh vật)\n" if n > 0 else "")
+                + (f"Ảnh master đã vẽ sẵn + QC (_ref/, _ref2/) — KHÔNG vẽ lại.\n" if ref_masters else "")
+            )
+    # Lane L 2026-09-25: assemble.hook_tu_ghep \u2192 B8 t\u1ef1 gh\u00e9p hook (m\u1ed1c t\u00ednh l\u1ea1i theo c\u00e2u t\u1eeb gi\u1ecdng th\u00e2n m\u00e1y 2 l\u1ed3ng)
+    tu_ghep = bool((prof.get("assemble") or {}).get("hook_tu_ghep")) and (job_dir / "hook" / "hook_timeline.json").exists()
+    khoi_tu_ghep = (
+        f"## HOOK \u2014 M\u00c1Y 1 \u0110\u00c3 L\u00c0M XONG H\u00ccNH, make_video.py T\u1ef0 GH\u00c9P (KH\u00d4NG ch\u1ea1y gh\u00e9p tay)\n"
+        f"hook\\ \u0111\u00e3 c\u00f3 \u0111\u1ee7: img\\ \u00b7 clip\\ (clip Grok, QC PASS) \u00b7 sfx\\ \u00b7 hook_timeline.json (m\u1ed1c theo S\u1ed0 C\u00c2U).\n"
+        f"KH\u00d4NG v\u1ebd \u1ea3nh, KH\u00d4NG sinh clip, KH\u00d4NG thay clip b\u1eb1ng \u1ea3nh t\u0129nh. Thi\u1ebfu g\u00ec \u2192 D\u1eeaNG, b\u00e1o m\u00e1y 1.\n"
+        f"B8 t\u1ef1: d\u1ef1ng th\u00e2n \u2192 tr\u1ed9n SFX \u2192 t\u00ednh l\u1ea1i m\u1ed1c hook t\u1eeb voice_roles.json (gi\u1ecdng m\u00e1y 2 v\u1eeba l\u1ed3ng) \u2192 ph\u1ee7 clip hook\n"
+        f"l\u00ean \u0111o\u1ea1n m\u1edf \u0111\u1ea7u (gi\u1eef ti\u1ebfng th\u00e2n) \u2192 B10 nghi\u1ec7m thu \u2192 B11 giao. \u0110\u1eebng ch\u1ea1y ghep_hook_noi_truoc.py b\u1eb1ng tay.\n"
+        f"T\u1ef1 ki\u1ec3m: xem 40 gi\u00e2y \u0111\u1ea7u final.mp4 trong th\u01b0 m\u1ee5c tr\u1ea3 h\u00e0ng \u2014 clip hook c\u00f3 b\u00f3ng tho\u1ea1i, h\u00ecnh kh\u1edbp l\u1eddi, kh\u00f4ng khung \u0111en.\n"
+        f"Xong ghi c\u1ed9t I (VIDEO) d\u00f2ng t\u1eadp n\u00e0y: Video done - {slug} + xu\u1ed1ng d\u00f2ng + \u0111\u01b0\u1eddng d\u1eabn th\u01b0 m\u1ee5c tr\u1ea3 h\u00e0ng.\n\n")
     bg = (
         f"# \u0110\u01a0N GIAO VI\u1ec6C M\u00c1Y 2 \u2014 {profile_id} / {slug}\n"
         f"\u0110\u00f3ng g\u00f3i l\u00fac: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
@@ -438,7 +506,8 @@ def cmd_job(profile_id, slug, no_title=False):
         f"3. QC r\u1edbt \u2192 \u0111\u1ecdc logs/*.json r\u1ed3i b\u00e1o l\u1ea1i, KH\u00d4NG --force-qc.\n"
         f"4. H\u1ebft ti\u1ec1n / h\u1ebft h\u1ea1n m\u1ee9c \u2192 D\u1eeaNG b\u00e1o l\u1ea1i, KH\u00d4NG t\u1ef1 \u0111\u1ed5i provider.\n"
         f"5. B\u00e1o c\u00e1o k\u00e8m TH\u1edcI GIAN TH\u1eacT + s\u1ed1 \u1ea3nh/ti\u1ec1n TH\u1eacT (kh\u00f4ng \u01b0\u1edbc l\u01b0\u1ee3ng).\n\n"
-        + (f"## HOOK\n"
+        + (khoi_tu_ghep if tu_ghep else
+           f"## HOOK\n"
            f"Lane n\u00e0y khai script.hook.visual = `{visual}`: hook l\u00e0 30 gi\u00e2y \u0110\u1ea6U c\u1ee7a ch\u00ednh script.txt,\n"
            f"l\u1ed3ng ti\u1ebfng v\u00e0 minh ho\u1ea1 chung M\u1ed8T L\u1ea6N v\u1edbi th\u00e2n video. G\u00f3i n\u00e0y C\u1ed0 \u00dd KH\u00d4NG c\u00f3 th\u01b0 m\u1ee5c hook\\\n"
            f"\u2014 \u0111\u1ec3 nguy\u00ean, \u0111\u1eebng d\u1ef1ng th\u00eam clip 30 gi\u00e2y n\u1eefa (s\u1ebd th\u00e0nh ph\u00e1t hai l\u1ea7n).\n\n"
@@ -447,7 +516,7 @@ def cmd_job(profile_id, slug, no_title=False):
             f"hook\\ đã có đủ: img\\ (ảnh) · clip\\ (clip Grok, QC PASS) · sfx\\ · hook_voice.mp3 · hook_timeline.json.\n"
             f"KHÔNG vẽ ảnh, KHÔNG sinh clip, KHÔNG thay clip bằng ảnh tĩnh. Thiếu gì → DỪNG, báo máy 1.\n"
             f"1. Chép nguyên thư mục hook\\ sang CẠNH final.mp4 (chỗ máy 2 đã trả hàng thân video):\n"
-            f"   xcopy /E /I /Y FlowHandoff_local\\jobs\\{slug}\\hook FlowHandoff_local\\results\\video_render\\{kenh}\\{slug}\\hook\n"
+            f"   xcopy /E /I /Y FlowHandoff_local\\jobs\\{tab}\\{slug}\\hook FlowHandoff_local\\results\\video_render\\{kenh}\\{slug}\\hook\n"
             f"2. Chạy TỪ CÂY BUNDLE (không phải h2dev\\pipeline):\n"
             f"   cd FlowHandoff_local\\shared\\buoc2_3_tool\\pipeline\n"
             f"   py -3.13 ghep_hook_noi_truoc.py --tap ..\\..\\..\\results\\video_render\\{kenh}\\{slug} --profile {profile_id}\n"
@@ -462,7 +531,11 @@ def cmd_job(profile_id, slug, no_title=False):
            f"shared\\QUY_TAC_VIDEO_HOOK.md \u00a72 (m\u1ee9c ti\u1ebfng \u00b7 fps \u00b7 ki\u1ec3u ph\u1ee5 \u0111\u1ec1 \u00b7 \u0111i\u1ec3m n\u1ed1i).\n\n"
            if visual else "")
         + f"## TR\u1ea2 H\u00c0NG\n"
-        f"results\\video_render\\{kenh}\\{slug}\\ \u2014 \u0111\u00fang \u0111\u01b0\u1eddng gi\u00e1o_hang.py t\u1ef1 ghi (theo publish.upload_channel\n"
+        + (f"\u0110\u00daNG 2 VIDEO (anh ch\u1ed1t 2026-09-25): final.mp4 = b\u1ea3n \u0110\u0102NG, \u0110\u00c3 C\u00d3 HOOK (100% video giao b\u1eaft bu\u1ed9c c\u00f3 hook\n"
+           f"n\u00ean KH\u00d4NG c\u00f2n file t\u00ean final_with_hook) + final-vietsub.mp4 = c\u00f9ng video, ch\u00e1y ph\u1ee5 \u0111\u1ec1 TI\u1ebeNG VI\u1ec6T cho anh \u0111\u1ecdc.\n"
+           f"B11 t\u1ef1 \u0111\u1eb7t t\u00ean + ch\u00e9p c\u1ea3 hai (k\u00e8m phude.srt, tomtat.txt). Th\u1ea5y file t\u00ean *with_hook* trong th\u01b0 m\u1ee5c tr\u1ea3 h\u00e0ng = SAI.\n"
+           if tu_ghep else "")
+        + f"results\\video_render\\{kenh}\\{slug}\\ \u2014 \u0111\u00fang \u0111\u01b0\u1eddng gi\u00e1o_hang.py t\u1ef1 ghi (theo publish.upload_channel\n"
         f"= `{kenh}`, KH\u00d4NG ph\u1ea3i t\u00ean tab sheet `{tab}` \u2014 2 c\u00e1i kh\u00e1c nhau, \u0111\u1eebng nh\u1ea7m; \u0111\u00e3 verify th\u1eadt\n"
         f"tr\u00ean 3 t\u1eadp Lane F 2026-09-24). Syncthing t\u1ef1 mang v\u1ec1 m\u00e1y 1.\n"
     )

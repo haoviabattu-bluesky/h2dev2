@@ -153,6 +153,13 @@ Công cụ (không tạo chat mới, dùng khoá + selector của `gpt_web_clien
 
 **Bẫy đã trả giá (lượt 8):** bài vượt TRẦN ngân sách 32 chữ → S3 ra việc `NÉN: rút 595–743` (tính về ĐÍCH chứ không về trần) → Opus nén cả bài, **xoá luôn dữ kiện [D7] 二十時間以上** và mọi câu "có ghế" → Sol quay ra bắt "hạng 1 không xác nhận ngồi". Xử: khôi phục bản trước patch (`script.pre_patch1.txt`), nâng `target_minutes` 22→23 (vẫn trong 18–24'), chạy lại chỉ với việc thay thế nguyên văn. **Luật: bản soát bổ sung nội dung thì kiểm độ dài dự kiến < trần TRƯỚC khi chạy; đừng để S3 tự nén.**
 
+**Ep02 `ep02-shuu3-gozen` (2026-09-26, giao máy 2 23:25):** 7.863 chữ, sha 2c30c7fdce · GPT 8,8/10 (hook 9,3), nhận cả 9 góp ý, không cần phản biện ·
+8 vai CAST (+ 大村館長, 榊係長, 佐伯, 送迎運転手, 西野; 柳瀬 dùng lại master ep01) · 171 prompt · hook 4 cảnh gộp theo câu, 4 clip Grok PASS.
+Bẫy mới: (1) Sol bắt mãi 1 lỗi cấp TIÊU ĐỀ (「体もラクだった」 thì quá khứ) sau khi mọi lỗi nội dung đã sửa → khoá tay theo luật lean "FIX nhiều vòng, không REMAKE"
+(`gate_common.ghi_lock(d,'PASS',...)` + `review_may3.share` → BAO_CAO_SUA.md → D=Đã sửa → `--nhan`); bản khoá = bản trước patch Sol vượt trần.
+(2) Grok free clip **10 giây → 429** (mất 3 tài khoản) — giữ **6 giây**, cảnh dài hơn thì `ghep_hook_noi_truoc` tự giãn chậm.
+(3) Mỗi cảnh hook phải khớp RANH GIỚI CÂU (hook_timeline theo số câu): storyboard cắt giữa câu → gộp lại thành 4–5 cảnh.
+
 ## 2. LỆNH CHẠY — "chạy tập X" = làm HẾT máy 1 rồi giao máy 2 (anh chốt 2026-09-26)
 Không dừng chờ máy 3: kịch bản khoá xong thì tab lane tự soát bằng ChatGPT web (§1e) và đi tiếp tới đóng gói.
 ```bat

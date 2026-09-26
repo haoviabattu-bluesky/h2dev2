@@ -164,6 +164,11 @@
       "visual_kind": "video_sinh",
       "sfx": true,
       "_hook_note": "HOOK_LIBRARY (6 video kênh mẫu): hit 92k = H02 (người ngoài nói thẳng 1 câu hạ bệ: 'tháng sau tạm 4 ngày') + K06; các video khác H01 (cảnh đau hiện tại có giờ + cơ thể), H21 (câu thoại vợ lật kỳ vọng). Closer K09 (hứa N mục trong câu chuyện) thay K06 vì K8 bắt vào danh sách sớm — lời hứa '7つ, 第7位から' phải nói trong hook."
+    },
+    "soat_gptweb": {
+      "enabled": true,
+      "url": "https://chatgpt.com/g/g-p-6ab7b6307fcc81918a542065f7c6cd85-m-teinengo-anaba/c/6ab7b795-063c-83ec-b11b-3c7f8cc99d7e",
+      "_note": "Anh chốt 2026-09-26: Lane M MẶC ĐỊNH soát kịch bản bằng ChatGPT web trong hội thoại này, KHÔNG chờ máy 3 (review_may3 vẫn bật làm cổng: soát xong ghi BAO_CAO_SUA.md + D=Đã sửa kịch bản rồi --nhan). Tool: pipeline/soat_kb_gptweb.py; quy trình SOP_LANE_M §1e."
     }
   },
   "script_qc": {

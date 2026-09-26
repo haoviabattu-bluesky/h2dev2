@@ -147,33 +147,46 @@ https://chatgpt.com/g/g-p-6ab7b6307fcc81918a542065f7c6cd85-m-teinengo-anaba/c/6a
 2. Tab lane đọc từng mục: hợp lý → nhận; chưa hợp lý → phản biện có lý do; 1 lượt cuối để GPT chốt.
 3. Tổng hợp thành `viec_tay.txt` (thay thế NGUYÊN VĂN) → `make_video --den B3G` (Opus vá → S3 → Sol ×2 → LOCK). Không sửa tay.
 4. Ghi `BAO_CAO_SUA.md` vào `jobs\M-teinengo-anaba\<slug>\review\` → cột D = `Đã sửa kịch bản` → `review_may3.py --nhan`.
-Công cụ gửi vào hội thoại có sẵn (không tạo chat mới, dùng khoá + selector của `gpt_web_client`): `E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep01-suwatte-anaba\soat_gptweb\gpt_hoi.py <tin.txt> <tra_loi.md>`; nguyên văn 2 lượt hỏi/đáp ep01 cùng thư mục.
+Công cụ (không tạo chat mới, dùng khoá + selector của `gpt_web_client`, link hội thoại ở `profile.script.soat_gptweb.url`): `E:\CLAUDE\YOUTUBE\h2dev\pipeline\soat_kb_gptweb.py` (`--lan1` tự dựng tin lượt 1 từ title/series_ctx/script; `--tin <file>` lượt tiếp); nguyên văn 2 lượt hỏi/đáp ep01 cùng thư mục.
 
 **Ep01 (2026-09-26):** GPT chấm 8,6/10 (hook 9,2). Nhận 9 sửa: rút câu giới thiệu nhưng GIỮ 4 lời hứa tiêu đề · đưa tên hạng 4 lên trước chuyện 柳瀬 · cắt mạnh đoạn 在職老齢年金 · thay gag găng tay (giống kết video gốc) bằng callback tờ lịch · 湿布 callback ở hạng 7 · 「また、都合のいい数字だけ見ていた」 ở hạng 5 · đóng khung giờ làm là "tin tuyển dụng này" · bỏ khái quát 保護者 · bỏ 「ずっと椅子だ」. Phản biện thắng 2: giữ 「倉庫に騙された」 (nấc trước trưởng thành) và giữ lời hứa tiêu đề. Sol bắt thêm: lời hứa 初期費用0円 vs 年会費, giới hạn 月10日 chỉ của シルバー, hạng 1 thiếu ai hợp/không hợp, tiêu chí xếp hạng, xác nhận có ghế ở hạng 1/3. Bản khoá cuối **7.684 chữ**, sha a42dfcb1aa…, 第七位 ở ~3,4'.
 
 **Bẫy đã trả giá (lượt 8):** bài vượt TRẦN ngân sách 32 chữ → S3 ra việc `NÉN: rút 595–743` (tính về ĐÍCH chứ không về trần) → Opus nén cả bài, **xoá luôn dữ kiện [D7] 二十時間以上** và mọi câu "có ghế" → Sol quay ra bắt "hạng 1 không xác nhận ngồi". Xử: khôi phục bản trước patch (`script.pre_patch1.txt`), nâng `target_minutes` 22→23 (vẫn trong 18–24'), chạy lại chỉ với việc thay thế nguyên văn. **Luật: bản soát bổ sung nội dung thì kiểm độ dài dự kiến < trần TRƯỚC khi chạy; đừng để S3 tự nén.**
 
-## 2. LỆNH CHẠY (Giai đoạn 3 — 1 tập anh chỉ định)
-
+## 2. LỆNH CHẠY — "chạy tập X" = làm HẾT máy 1 rồi giao máy 2 (anh chốt 2026-09-26)
+Không dừng chờ máy 3: kịch bản khoá xong thì tab lane tự soát bằng ChatGPT web (§1e) và đi tiếp tới đóng gói.
 ```bat
-cd E:\CLAUDE\YOUTUBE\h2dev\pipeline
-:: 0) Đọc COMMENT_INSIGHT.md + bình luận đúng video gốc trong COMMENTS_TOP.md (K5)
-:: 1) thư mục tập + hồ sơ (ghi cột C ngay)
-mkdir ..\assets\M-teinengo-anaba\ep01-suwatte-anaba
-py -3.13 -X utf8 retrieve_videos.py --dna-dir ..\docs\channel_dna\otonanomouten --topic "60代 座って働ける アルバイト 7選" --top 3
-::    competitor.txt  = transcript video gốc (cột K)
-::    series_ctx.txt  = SỐ ĐƯỢC PHÉP + [Dn] lương giờ/chế độ CÓ URL (mhlw.go.jp, nenkin.go.jp, trang tuyển dụng…) + QUY ƯỚC
-::                    (lỗi khán giả đã bắt → quy ước; 7 việc BẮT BUỘC có tên; hạng 1 trả lời tiêu đề thế nào)
-::    title.txt · promise.txt (1 câu) · characters.json kiểu CAST (makoto, harue, vai phụ)
-:: 2) viết → tự DỪNG sau LOCK, gửi máy 3 (D = "Cần check kịch bản")
-py -3.13 -X utf8 make_video.py --profile teinengo-anaba --slug ep01-suwatte-anaba --den B3G
-:: 3) anh báo D = "Đã sửa kịch bản" →
-py -3.13 -X utf8 review_may3.py --nhan --profile teinengo-anaba --slug ep01-suwatte-anaba
-:: 4) ĐA GIỌNG: characters.json (CAST, mỗi vai có voice.voice_id theo §0c) → gắn vai từng câu (Opus, chỉ đọc bản khoá):
-py -3.13 -X utf8 gan_vai.py --profile teinengo-anaba --slug ..\assets\M-teinengo-anaba\ep01-suwatte-anaba
-:: 5) B5W (Opus) → B5P → hook storyboard (Fable) → ảnh hook → clip Grok → QC (Sol) → SFX → hook_timeline.json (mốc THEO CÂU,
-::    máy 1 KHÔNG lồng giọng) → HOOK_TAP.md → dong_goi_may2.py --job (tự ghi D=Done + H=cần ảnh) → giao máy 2. Claude Code KHÔNG render.
+cd E:\CLAUDE\YOUTUBE\h2dev
+:: A. HỒ SƠ (tay, tab lane) — thư mục assets\M-teinengo-anaba\epNN-<slug>\, ghi cột C sheet ngay
+::    competitor.txt (transcript video gốc cột K) · series_ctx.txt (SỐ ĐƯỢC PHÉP + [Dn] có URL chính thức + QUY ƯỚC:
+::    7 việc BẮT BUỘC có tên, KHÁC danh sách các tập trước; tình tiết mới, không lặp tập trước) · title.txt = cột B · promise.txt
+:: B. VIẾT + KHOÁ (Fable viết hook+thân, Opus vá, Sol ×2) — tự dừng, ghi D = "Cần check kịch bản"
+py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug epNN-<slug> --den B3G
+:: C. SOÁT CHATGPT WEB (thay máy 3, §1e): lượt 1 → tab lane thẩm định → (phản biện 1 lượt) → viec_tay.txt
+py -3.13 -X utf8 pipeline\soat_kb_gptweb.py --profile teinengo-anaba --slug epNN-<slug> --lan1
+py -3.13 -X utf8 pipeline\soat_kb_gptweb.py --profile teinengo-anaba --slug epNN-<slug> --tin <file phản biện>
+::    viết viec_tay.txt (thay thế NGUYÊN VĂN, ước lượng độ dài < trần) → ghi_lock ESCALATE → chạy lại B
+py -3.13 -X utf8 -c "import sys;sys.path.insert(0,'pipeline');import gate_common;from pathlib import Path;gate_common.ghi_lock(Path('assets/M-teinengo-anaba/epNN-<slug>'),'ESCALATE',reason='soat ChatGPT web')"
+py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug epNN-<slug> --den B3G
+::    lớp 3 đọc bản khoá → BAO_CAO_SUA.md vào FlowHandoff_local\jobs\M-teinengo-anaba\epNN-<slug>\review\ → D = "Đã sửa kịch bản"
+py -3.13 -X utf8 pipeline\review_may3.py --nhan --profile teinengo-anaba --slug epNN-<slug>
+:: D. CAST + GIỌNG: characters.json (makoto/harue + vai phụ, voice_id từ cast_bank, look khác nhau rõ) →
+py -3.13 -X utf8 pipeline\gan_vai.py --profile teinengo-anaba --slug assets\M-teinengo-anaba\epNN-<slug>
+:: E. PROMPT ẢNH — dùng --only (--from B5W KHÔNG bỏ B4 = lồng tiếng ở máy 1, SAI ranh giới)
+py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug epNN-<slug> --only B5W
+py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug epNN-<slug> --only B5P
+:: F. HOOK (máy 1 làm trọn hình): storyboard (Fable) → sửa cảnh không thấy mặt → img_prompts_hook.txt (@CAST) + grok_jobs.csv (id clip_NN, 6s)
+py -3.13 -X utf8 pipeline\hook_storyboard.py --profile teinengo-anaba --slug epNN-<slug>
+::    master vai phụ: make_video.Job(...).masters_from_bible() · ảnh hook: gen_images.py --cast-root <tập> --quality low
+::    QC ảnh: qc_hook_clip.py --hook <tập>\hook --anh N  ·  hook_timeline.json THEO SỐ CÂU (shots[].cau, sfx[].cau+lech)
+set GROK_SHEET_ID=1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU
+py -3.13 -X utf8 tools\hook_lane_g\grok_1tk.py <tập>\hook 14     :: tự --close profile GPM trong vòng lặp
+::    QC clip: qc_hook_clip.py --clip N (FAIL → chỉnh prompt clip, chạy lại đúng clip đó) · SFX: tools\hook_lane_g\sfx.py
+py -3.13 -X utf8 pipeline\hook_tap_md.py --slug E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\epNN-<slug> --profile teinengo-anaba   :: viết hết <<CẦN NGƯỜI>> rồi --kiem
+:: G. GIAO MÁY 2 (tự ghi D = Done, H = cần ảnh) — đọc lại _BANGIAO.txt
+py -3.13 -X utf8 pipeline\dong_goi_may2.py --job teinengo-anaba epNN-<slug>
 ```
+Kiểm cuối: `Get-CimInstance Win32_Process -Filter "Name='chrome.exe'" | ? CommandLine -match 'GPMLogin'` = 0.
 Lớp 3 (đọc bản khoá) kiểm thêm riêng lane: mục đầu trước phút 4 · mỗi mục đủ 5 phần · số lương/chế độ khớp [Dn] đúng điều kiện ·
 nửa đầu có thật sự ức chế · 春江 không bị quát · không có 高瀬/恵子/盲点だった · kết đủ cảm ơn + 高評価 + チャンネル登録.
 

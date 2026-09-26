@@ -62,8 +62,9 @@
 ### Giai đoạn 3 — 1 tập (CHỈ tập anh chỉ định)
 1. Đọc `COMMENT_INSIGHT.md` + bình luận của đúng video gốc trong `COMMENTS_TOP.md` → lỗi dữ kiện khán giả bắt ghi vào QUY ƯỚC `series_ctx.txt`.
 2. Tạo `assets\M-teinengo-anaba\ep<NN>-<slug>\`, ghi cột C. Hồ sơ đề tài: `competitor.txt` (`retrieve_videos.py --dna-dir docs\channel_dna\otonanomouten`) + `series_ctx.txt` (lương giờ/chế độ/giới hạn tuổi CÓ NGUỒN) + `promise.txt`.
-3. `py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug ep<NN>-<slug>` → tự dừng sau LOCK chờ máy 3 (cột D = `Cần check kịch bản`).
-4. Nhận máy 3 → B4/B5W/hook → `dong_goi_may2.py --job` (tự ghi D=`Done` + H=`cần ảnh`) → `HOOK_TAP.md` → giao máy 2. Claude Code KHÔNG render.
+3. `py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug ep<NN>-<slug> --den B3G` → tự dừng sau LOCK (cột D = `Cần check kịch bản`).
+   ⭐ **Anh chốt 2026-09-26: Lane M KHÔNG chờ máy 3** — tab lane tự soát bằng ChatGPT web (`pipeline\soat_kb_gptweb.py`, hội thoại ở `profile.script.soat_gptweb.url`) → viec_tay → Opus → Sol ×2 → `BAO_CAO_SUA.md` + D = `Đã sửa kịch bản` → `review_may3.py --nhan`. Chi tiết `docs\SOP_LANE_M.md` §1e + §2.
+4. Nhận bản soát → gan_vai → B5W/B5P (`--only`) → hook → `dong_goi_may2.py --job` (tự ghi D=`Done` + H=`cần ảnh`) → `HOOK_TAP.md` → giao máy 2. Claude Code KHÔNG render.
 
 ## 5. ⛔ LUẬT KHOÁ CỨNG LANE M (anh chốt 2026-09-26 — vi phạm 1 điều = DỪNG, không tự "linh hoạt")
 **K1 — Tên:** thư mục làm việc = tên tab = thư mục giao hàng = `M-teinengo-anaba` (`assets\M-teinengo-anaba\`,

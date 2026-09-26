@@ -2,6 +2,8 @@
   "id": "teinengo-anaba",
   "market": "JP",
   "language": "ja",
+  "source_lang": "ja,en",
+  "_source_lang_note": "Kênh mẫu tiếng Nhật — B2 fetch_script thử phụ đề ja trước. Thiếu field này B2 mặc định 'ko,ja,en' → ep01 lần đầu kéo về bản Hàn rác (26/09).",
   "niche": "定年後の穴場ノート — hưu trí Nhật, MANGA CHIBI ngôi 1 + xếp hạng N選 VIỆC LÀM tuổi 60 (アルバイト・パート · 再就職 · 再雇用 · thu nhập đi làm vs 年金), nhân vật chính CỐ ĐỊNH xuyên tập",
   "competitor": "https://www.youtube.com/@otonanomouten",
   "slug_dir": "assets/M-teinengo-anaba",
@@ -170,7 +172,7 @@
     "lane_rules": [
       "Nửa đầu cố ý gây ức chế (quản lý cắt ca tuỳ tiện, nơi tuyển coi người 60 là đồ bỏ, đồng nghiệp cũ bám chức danh) — đó là thiết kế cung cảm xúc, không đề nghị làm dịu; chỉ bắt khi phi lý/không nhất quán.",
       "Lương giờ/chế độ (在職老齢年金, giới hạn tuổi, bảo hiểm, cắt ca) phải khớp tư liệu và nói rõ điều kiện; kết luận 'trái luật' khi tư liệu không nói chắc là lỗi.",
-      "Mỗi mục phải có đủ: tên việc cụ thể · con số (giờ/lương giờ/ca/sức nặng) · ưu điểm · cái bẫy · ai hợp/không hợp. Hạng 1 để cuối.",
+      "Mỗi mục phải có: tên việc cụ thể · ÍT NHẤT MỘT con số hoặc điều kiện cụ thể (giờ/ngày/ca trên tờ tuyển dụng của truyện, HOẶC điều kiện chế độ/luật có nguồn như giờ mở cửa 投票所, giới hạn シルバー, 20時間 研修) · ưu điểm · cái bẫy · ai hợp/không hợp. Không bắt mọi mục phải có đủ giờ bắt đầu–kết thúc. LƯƠNG GIỜ TỪNG VIỆC CỐ Ý KHÔNG NÊU (không có nguồn) — chỉ nói mức sàn 最低賃金; ĐỪNG đề nghị thêm lương giờ.",
       "Nhân vật 60+ không được yếu phi thực tế (vd 2 người khiêng 5kg) — khán giả là người đang đi làm thật."
     ]
   },

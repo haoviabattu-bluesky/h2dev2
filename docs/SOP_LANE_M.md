@@ -103,7 +103,8 @@ nhánh ai33 đọc `vai.txt`; `gan_vai.py` ở máy 1 gắn vai từng câu; `sc
 - `cung_cam_xuc` / `cam_on_cuoi` / `review_may3` **cố ý VẮNG = BẬT**. Hook `video_sinh` + `sfx:true`, `goi_dang.enabled:true` (cổng S1L qua).
 - `publish.listing_external=true` (TITLE-RESEARCH làm tiêu đề/mô tả/thumbnail), `title_auto=false` (kênh mới — anh `--bat` mới chạy).
 - Ảnh tĩnh tuyệt đối (`assemble.zoom=1.0`). Nhạc nền không "ngớ ngẩn" (K11).
-- `image.seconds_per_image=8` là **TẠM** — chưa đo nhịp cảnh kênh mẫu; đo bằng skill `video-chuyen-canh` trên `wG4fI9voims` trước B5W tập 1.
+- `image.seconds_per_image=8.6` — **ĐO THẬT 2026-09-26** (skill `video-chuyen-canh`, video 92k `wG4fI9voims`): 218 cảnh/31,4' · trung bình 8,6 s (trung vị 9,3) · 95% cắt thẳng, 5% blur-in/xfade · Ken Burns ~1,01 (gần như đứng yên). Khung thật = manga bán thực + **bóng thoại chữ dọc không đuôi** (như Lane L); `黒田` là bà tóc bạc. Bóng thoại CHƯA bật ở lane — anh quyết.
+- `source_lang="ja,en"` bắt buộc — thiếu thì B2 kéo phụ đề Hàn (ep01 lần đầu dính). competitor.txt ep01 dùng bản YouTube ASR `_raw` (tốt hơn whisper).
 
 ## 1b. 10 TẬP ĐẦU + CỘT SHEET TAB `M-teinengo-anaba`
 
@@ -124,6 +125,18 @@ Nguyên tắc: chỉ việc làm (K4) · góc LỢI ÍCH (thắng góc cảnh b�
 | 8 | 【漫画】事務・総務の経験がそのまま活きる60代の穴場の仕事7選｜元会社員の経験は武器になる (tận dụng kinh nghiệm văn phòng) | `TIoRmIZKkAg` |
 | 9 | 【漫画】年金を減らさずに働ける60代の穴場バイト7選｜在職老齢年金で損しないちょうどいい稼ぎ方 (đi làm không bị trừ lương hưu) | `SN2VjauDlJA` 6,6k |
 | 10 | 【漫画】家から自転車10分で通える60代の穴場バイト7選｜交通費0円で手取りが減らない仕事 (xe đạp 10 phút, 0 yên đi lại) | `HvLbO2pqUcI` 1k ⚠️ nguồn yếu |
+
+## 1d. TẬP 1 `ep01-suwatte-anaba` — chạy thật 2026-09-26 (5 lượt B3, LOCK PASS 19:00, gửi máy 3)
+
+| Lượt | Kết quả | Nguyên nhân → xử lý |
+|---|---|---|
+| 1 | ESCALATE | Hook khoá chứa thoại dính lời dẫn (「はい」とだけ答えた) trong khi lane bật `dialogue_own_sentence` → S3 đòi vừa chép nguyên văn hook vừa tách thoại. **Vá code** `hook_stage.check`: kiểm luật này ngay lúc khoá hook (field-driven). Khoá lại hook. |
+| 2 | ESCALATE | Opus (claude -p, không đọc được file) được bảo "chép lại hook" mà không được đưa hook → bịa đoạn gần giống. **Vá code** `lean_script.do_tat_dinh`: việc HOOK kèm NGUYÊN VĂN hook. 6 việc lớp 3 (bám gốc ×4, lớn tiếng với vợ, CTA trùng) Opus làm đủ. |
+| 3 | ESCALATE | Sol đòi "mỗi mục có lương giờ" (do lane_rules em viết) → Opus bịa 千二百円 → S3 bắt. Sửa lane_rules: lương từng việc CỐ Ý không nêu. |
+| 4 | ESCALATE | lane_rules vẫn quá cứng (đòi giờ bắt đầu–kết thúc mọi mục) → patch Sol dài quá trần. Nới: ≥1 con số HOẶC điều kiện có nguồn. |
+| 5 | **PASS** | Sol FIX→PASS→PASS · 7.527 chữ · 第七位 ở ~3,3' · D2 = `Cần check kịch bản` · ghi chú lớp 3 cho máy 3: `FlowHandoff_local\jobs\M-teinengo-anaba\ep01-suwatte-anabaeview\GHI_CHU_LOP3_MAY1.md` |
+
+Bài học lane: (1) `lane_rules` là lệnh cho Sol — viết cứng quá là tự tạo vòng lặp; (2) hồ sơ tập cấm số nào thì lane_rules phải nói rõ cấm, kẻo Sol đòi và Opus bịa.
 
 ## 2. LỆNH CHẠY (Giai đoạn 3 — 1 tập anh chỉ định)
 

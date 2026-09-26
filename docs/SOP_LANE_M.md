@@ -134,7 +134,8 @@ Nguyên tắc: chỉ việc làm (K4) · góc LỢI ÍCH (thắng góc cảnh b�
 | 2 | ESCALATE | Opus (claude -p, không đọc được file) được bảo "chép lại hook" mà không được đưa hook → bịa đoạn gần giống. **Vá code** `lean_script.do_tat_dinh`: việc HOOK kèm NGUYÊN VĂN hook. 6 việc lớp 3 (bám gốc ×4, lớn tiếng với vợ, CTA trùng) Opus làm đủ. |
 | 3 | ESCALATE | Sol đòi "mỗi mục có lương giờ" (do lane_rules em viết) → Opus bịa 千二百円 → S3 bắt. Sửa lane_rules: lương từng việc CỐ Ý không nêu. |
 | 4 | ESCALATE | lane_rules vẫn quá cứng (đòi giờ bắt đầu–kết thúc mọi mục) → patch Sol dài quá trần. Nới: ≥1 con số HOẶC điều kiện có nguồn. |
-| 5 | **PASS** | Sol FIX→PASS→PASS · 7.527 chữ · 第七位 ở ~3,3' · D2 = `Cần check kịch bản` · ghi chú lớp 3 cho máy 3: `FlowHandoff_local\jobs\M-teinengo-anaba\ep01-suwatte-anabaeview\GHI_CHU_LOP3_MAY1.md` |
+| 5 | **PASS** | Sol FIX→PASS→PASS · 7.527 chữ · 第七位 ở ~3,3' · D2 = `Cần check kịch bản` · ghi chú lớp 3 cho máy 3: `FlowHandoff_local\jobs\M-teinengo-anaba\ep01-suwatte-anaba
+eview\GHI_CHU_LOP3_MAY1.md` |
 
 Bài học lane: (1) `lane_rules` là lệnh cho Sol — viết cứng quá là tự tạo vòng lặp; (2) hồ sơ tập cấm số nào thì lane_rules phải nói rõ cấm, kẻo Sol đòi và Opus bịa.
 

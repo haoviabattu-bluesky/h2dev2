@@ -233,6 +233,8 @@ def xoa_cay(drive, folder_id):
 # Cau truc giong Drive:  <goc>/jobs/<slug>  <goc>/results/<slug>  <goc>/shared
 # =======================================================================
 import shutil
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import duong_ket_qua   # noi may 2 tra ket qua (quy uoc chot 2026-09-25)
 
 CANDIDATE_GOC = [
     r"E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local",   # may 1
@@ -282,6 +284,12 @@ def chay_local(cmd, goc):
     for d in (jobs, results, shared):
         d.mkdir(parents=True, exist_ok=True)
 
+    # 2026-09-25: ket qua khong con nam phang o goc results/ nua, moi nhanh deu co tang TEN TAB
+    # SHEET (vd E-70dai-kenko). Tham so thu 4 cua lenh = ten tab, de ghi/doc dung cho.
+    # Thieu tham so do thi lenh DOC van chay duoc voi tap CU (duong_ket_qua tu do quy uoc cu).
+    def _kenh_tuy_chon():
+        return sys.argv[4] if len(sys.argv) > 4 else None
+
     def copy_cay(src, dst):
         """Copy toan bo cay src -> dst, bo file theo BO_QUA/BO_QUA_DUOI (nhu Drive)."""
         src = Path(src)
@@ -327,26 +335,31 @@ def chay_local(cmd, goc):
 
     elif cmd == "upload-result":
         slug, local_dir = sys.argv[2], sys.argv[3]
-        dst = results / slug
-        print(f"Chuyen ket qua '{slug}' -> FlowHandoff_local/results/{slug}/ (Syncthing tu dong gui may 1)")
+        kenh = _kenh_tuy_chon()
+        if not kenh:
+            print("! Thieu tham so <ten tab>: upload-result <slug> <local_dir> <sheet_tab>")
+            print("  (tu 2026-09-25 ket qua phai nam o results/img_render/<sheet_tab>/<slug>/)")
+            return 1
+        dst = duong_ket_qua.dich_anh(slug, kenh, goc=results)
+        print(f"Chuyen ket qua '{slug}' -> results/img_render/{kenh}/{slug}/ (Syncthing tu dong gui may 1)")
         copy_cay(local_dir, dst)
         return 0 if doi_chieu_local(dst, local_dir, f"ket qua '{slug}'") else 1
 
     elif cmd == "verify-result":
         slug, local_dir = sys.argv[2], sys.argv[3]
-        d = results / slug
-        if not d.exists():
+        d = duong_ket_qua.tim_anh(slug, _kenh_tuy_chon(), goc=results)
+        if d is None:
             print(f"Khong thay ket qua '{slug}' trong FlowHandoff_local/results/")
             return 1
         return 0 if doi_chieu_local(d, local_dir, f"ket qua '{slug}'") else 1
 
     elif cmd == "download-result":
         slug, dest_dir = sys.argv[2], sys.argv[3]
-        d = results / slug
-        if not d.exists():
+        d = duong_ket_qua.tim_anh(slug, _kenh_tuy_chon(), goc=results)
+        if d is None:
             print(f"Khong thay ket qua '{slug}' trong FlowHandoff_local/results/")
             return 1
-        print(f"Lay ket qua '{slug}' -> {dest_dir}")
+        print(f"Lay ket qua '{slug}' -> {dest_dir} (nguon: {d})")
         copy_cay(d, dest_dir)
 
     elif cmd == "clean-job":

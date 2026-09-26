@@ -13,7 +13,9 @@ Số đo kênh mẫu: `docs/channel_dna/shakai-no-naze/DO_THUC_TE_2026-09-24.md`
 | Khoá mặt | N nhân vật/tập như K **+ Sakura khoá XUYÊN TẬP** bằng 1 ảnh gốc lane (`image.fixed_refs`) | N nhân vật/tập, không xuyên tập |
 | Bóng thoại | oval **KHÔNG đuôi** (`assemble.bubble.tail=false`) | có đuôi |
 | Chuyển cảnh | **mờ chồng 0,3s + zoom nhẹ 2,5% luân phiên vào/ra** (warpAffine, không rung) — anh chốt 24/09 sau ep01 | xfade 0,3s + zoom vào 2,5% |
-| Chữ trên hình | lời kể 64px (cột ≤8, >24 chữ tách hộp) · thoại 48px (>30 chữ tách bóng) — mức B tạm, **chờ anh chọn A/B/C** | 64/48 |
+| Chữ trên hình | **mức C (anh chốt 25/09, từ tập 2): lời kể 72px · thoại 56px** (cột ≤8, >24 chữ tách hộp; >30 chữ tách bóng). Tập 1 giao ở mức B 64/48 | 64/48 |
+| Giao máy 2 | ĐÚNG 2 video `final.mp4` (đã có hook) + `final-vietsub.mp4`; hook tự ghép trong B8, mốc theo SỐ CÂU | final_with_hook.mp4 |
+| Tiêu đề/mô tả/thumbnail | dự án TITLE, **`title_auto` BẬT từ tập 2** (25/09) | — |
 | Hiệu ứng âm thanh | **CÓ trong thân video** (`assemble.sfx`, kho 14 tiếng ai33 `assets\shakai_no_naze\_sfx\`) + hook | không SFX, có nhạc nền |
 | Nhịp ảnh | 7,5 s/ảnh (~145 ảnh/tập 18') | 8 s |
 | Slide số liệu | **KHÔNG** (anh chốt: AI vẽ số không chuẩn) — số nằm trong lời kể/hộp chữ | — |
@@ -65,8 +67,11 @@ py -3.13 -X utf8 pipeline\make_video.py --profile shakai_no_naze --slug epNN-<sl
 py -3.13 -X utf8 pipeline\gan_vai.py --profile shakai_no_naze --slug assets\shakai_no_naze\epNN-<slug>
 py -3.13 -X utf8 pipeline\make_video.py --profile shakai_no_naze --slug epNN-<slug> --only B5W
 py -3.13 -X utf8 pipeline\make_video.py --profile shakai_no_naze --slug epNN-<slug> --only B5P
-:: HOOK (máy 1 làm trọn hình, docs\QUY_TAC_VIDEO_HOOK.md): giọng hook đa vai (tts.py tự chuyển nhánh ai33, cần vai.txt)
-::   → ảnh hook @CAST (gen_images.py --cast-root <tập>) → clip Grok → qc_hook_clip → SFX → hook_timeline.json → HOOK_TAP.md
+:: HOOK (máy 1 làm trọn HÌNH, docs\QUY_TAC_VIDEO_HOOK.md): ảnh hook @CAST (gen_images.py --cast-root <tập>) → clip Grok
+::   → qc_hook_clip → SFX hook → hook_timeline.json → HOOK_TAP.md. Từ tập 2 (2026-09-25): GIỌNG thân do máy 2 lồng (ai33 không
+::   tất định) nên hook_timeline.json ghi mốc THEO SỐ CÂU, KHÔNG theo giây: shots[].cau=[a,b] (câu a..b của voice_roles, nối
+::   tiếp từ câu 1, mỗi cảnh nên ≥3s ⇒ gộp câu ngắn), sfx[].cau + lech (giây sau lúc câu bắt đầu). Máy 1 KHÔNG lồng giọng hook.
+::   B8 máy 2 tự tính lại giây + cắt hook_voice.* từ giọng thân (ghep_hook_noi_truoc.neo_lai_theo_cau) rồi ghép THAY HÌNH.
 py -3.13 -X utf8 pipeline\sfx_than.py --profile shakai_no_naze --slug assets\shakai_no_naze\epNN-<slug> --plan
 ::   (Opus chọn 18–40 chỗ đặt tiếng theo nội dung → sfx_plan.txt; thiếu file này dong_goi DỪNG; B8 máy 2 tự --kho + --tron)
 py -3.13 -X utf8 pipeline\dong_goi_may2.py --job shakai_no_naze epNN-<slug>
@@ -78,8 +83,11 @@ Lần giao ĐẦU TIÊN của lane: bundle máy 2 phải có profile + code nhá
 ## §2b MÁY 2 (làm theo `_BANGIAO.txt`)
 `make_video.py --profile shakai_no_naze --slug <tập> --redo-voice` → B4 đọc `vai.txt` bằng ai33 đa giọng (cần `AI33_API_KEY`)
 → ảnh bằng Flow Tool (mỗi id 1 Character trong CÙNG 1 project, `sakura` dùng đúng `_ref_sakura\001.png`) → B8:
-`bong_thoai.do_mat` định vị mặt → assemble `--bubble-roles/--bubble-faces` (bóng không đuôi, cắt thẳng) → final.mp4 → ghép hook
-→ trả `results\video_render\shakai_no_naze\<slug>\`.
+`bong_thoai.do_mat` định vị mặt → assemble (bóng không đuôi, xfade + zoom 2,5%) → trộn SFX → **ghép hook TỰ ĐỘNG**
+(`assemble.hook_tu_ghep`, 2026-09-25) → B10 → B11 giao `results\video_render\shakai_no_naze\<slug>\`.
+**Giao ĐÚNG 2 video (anh chốt 2026-09-25):** `final.mp4` = bản đăng, ĐÃ có hook (100% video giao bắt buộc có hook ⇒ không còn
+tên `final_with_hook`) + `final-vietsub.mp4` = cùng video cháy phụ đề Việt 720p cho anh đọc (`publish.ten_review`,
+`review_vi_cao`). Kèm `phude.srt` + `tomtat.txt` (text). Máy 2 KHÔNG chạy ghep_hook tay.
 
 ## §3 GATE (profile, đo từ 11 video gốc)
 title 21–35 ký tự (kể cả【漫画】) · 18' ≈ 5.600 chữ · 6 chặng `budget.sections` (chặng 1 đo, 2–6 ước lượng — đo lại sau 2 tập) ·
@@ -116,6 +124,8 @@ Fable viết (S2) · Opus vá (S4) + gắn vai (`gan_vai.py`) · Sol chấm (len
 | `ghep_hook_noi_truoc.py --tap ..\assets\...` ffmpeg lỗi | chạy ffmpeg với cwd=hook\ nên đường tương đối hỏng | đã vá `.resolve()`; vẫn nên truyền đường tuyệt đối |
 | G1 gói đăng trượt vì promise.txt là CÂU TRẢ LỜI | cổng đo độ phủ lời hứa trong tiêu đề + 60s đầu | promise.txt viết dạng câu hỏi bám tiêu đề (ep01: 「エースの若手はなぜ出世を拒むのか。」) |
 
+| ep02: S3 ESCALATE "script không bắt đầu bằng hook" | patch S4 của Opus chèn 1 đoạn số liệu TRƯỚC hook đã khoá (và vòng sau chèn chi tiết luật lao động/truy lĩnh tăng ca) | lớp 3 xoá đoạn chèn + sửa tay theo report Sol cuối → lock PASS; luôn soi đoạn đầu + chi tiết pháp lý mới xuất hiện sau patch |
+| ep02: sfx_plan gắn tiếng vào câu 2 của hook | hook viết mỗi câu 1 dòng → trải nhiều "đoạn", bản cũ chỉ bỏ para 1 | đã vá `sfx_than.plan`: bỏ theo SỐ CÂU của hook_locked.txt |
 | Anh xem ep01: chữ nhỏ · không chuyển cảnh · thiếu tiếng động | profile ban đầu 40px, cut, không SFX | 24/09: cỡ 64/48 + tách câu dài · xfade 0,3 + zoom 2,5% alt · `sfx_than.py` (plan máy 1 / trộn B8) |
 
 ## §10 SỐ ĐO TẬP 1 (máy 1 làm trọn, anh cho phép ngoại lệ 2026-09-24)

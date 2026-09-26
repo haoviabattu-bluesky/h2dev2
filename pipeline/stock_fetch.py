@@ -132,7 +132,9 @@ def pick(prompt, cands, used, log):
          "\n\nPick the single best matching candidate by SUBJECT/SETTING (Japanese context preferred, but any plausible match is acceptable). "
          "Score relevance 0-10. Reply ONLY JSON: {\"pick\": \"<id>\" or null, \"score\": N}")
     try:
-        r = L.chat(q, provider="ramclouds", model="gemini-3.8-flash", max_tokens=100, temperature=0, tries_per_model=2, verbose=False)
+        # task="short" thay cho provider/model ghim cung (2026-09-26) — xem ghi chu cung ngay o
+        # phan_loai_stock.ask(): ghim 1 model = khong co luoi do khi ramclouds/gemini hong.
+        r = L.chat(q, task="short", max_tokens=100, temperature=0, tries_per_model=2, verbose=False)
         j = json.loads(re.sub(r"^```(?:json)?|```$", "", r.text.strip(), flags=re.M).strip())
         pid, sc = (str(j.get("pick")) if j.get("pick") else None), float(j.get("score") or 0)
     except Exception as e:

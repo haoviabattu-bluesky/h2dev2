@@ -22,8 +22,12 @@ def ask(batch, log):
     body = "\n".join(f"{n}: {p}" for n, p in batch)
     for k in range(2):
         t = time.time()
-        r = L.chat(RULE + "\n\nPROMPTS:\n" + body, system=SYS, provider="ramclouds",
-                   model="gemini-3.8-flash", max_tokens=6000, temperature=0, tries_per_model=2, verbose=False)
+        # task="short" thay cho provider/model ghim cung (2026-09-26): ghim thang ramclouds:
+        # gemini-3.8-flash lam chuoi fallback chi con DUNG MOT muc — ramclouds hong la buoc nay
+        # chet han. Chuoi "short" van bat dau bang CHINH model do, chi khac la co nguoi do phia sau
+        # (ns24 gemini -> ramclouds luna -> gpt-5.6-sol).
+        r = L.chat(RULE + "\n\nPROMPTS:\n" + body, system=SYS, task="short",
+                   max_tokens=6000, temperature=0, tries_per_model=2, verbose=False)
         txt = r.text.strip(); txt = re.sub(r"^```(?:json)?|```$", "", txt, flags=re.M).strip()
         try:
             arr = json.loads(txt)

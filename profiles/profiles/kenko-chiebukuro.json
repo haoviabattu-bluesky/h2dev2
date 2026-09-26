@@ -213,7 +213,7 @@
  ],
  "_note": "Lane E — mở 2026-09-16. Nghiên cứu kênh làm bởi dự án TRENDING-RESEARCH (KHÁC SPACE_RESEARCH), giao qua Syncthing FlowHandoff_local/results/laneE_from_research/, user duyệt 2026-09-13 — KHÔNG khai field `research` (không dùng cổng B0/qc_hoso.py của SPACE_RESEARCH). channel_dna/ (channel_analyzer.py) KHÔNG chạy cho lane này vì hồ sơ TRENDING-RESEARCH đã đầy đủ hơn — xem SOP §0b để biết khi nào mới cần retrieve_videos.py. Ngách sức khoẻ có RỦI RO Y KHOA: mọi kịch bản BẮT BUỘC có câu dạng '一般的な健康情報です。持病のある方は医師にご相談ください', KHÔNG tuyên bố chữa bệnh tuyệt đối. Kênh đã đặt tên/handle/avatar/banner/upload-defaults xong 2026-09-16 (mail dòng 6 sheet GMAIL, normaneileenpm218@gmail.com).",
  "publish": {
-  "upload_channel": "kenko-chiebukuro",
+  "upload_channel": "E-70dai-kenko",
   "sheet_tab": "E-70dai-kenko",
   "listing_external": true,
   "_listing_external_note": "2026-09-24: tieu de/mo ta/tags/thumbnail giao HET cho YT-TITLE-RESEARCH (goi_title.py) — h2dev thoi lam B7/B9.",
@@ -221,7 +221,8 @@
   "review_vi": true,
   "_sheet_tab_note": "2026-09-17: upload_channel (tên thư mục CHANEL\\...) KHÁC tên tab trang tính (E-70dai-kenko từ 2026-09-24, trước là 70dai-kenko; theo handle YouTube @70dai-kenko) — ghi_cot_video.py đọc field này để tra đúng lane khi --tab E-70dai-kenko (tên cũ 70dai-kenko vẫn tra được qua pipeline/sheet_tab.py).",
   "title_auto": true,
-  "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat kenko-chiebukuro"
+  "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat kenko-chiebukuro",
+  "_upload_channel_note": "2026-09-25 anh chốt: đổi CHANEL sang tên TAB (E-70dai-kenko), áp cho toàn bộ lane cùng lúc."
  },
  "goi_dang": {
   "enabled": true,

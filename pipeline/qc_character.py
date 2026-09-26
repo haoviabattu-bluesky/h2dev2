@@ -32,7 +32,97 @@ MODELS = ["gemini-3.8-flash", "grok-4.6"]   # gemini-3.8-flash = QC chính (user
 AGE_TOL = 12                                  # lệch quá 12 tuổi so thiết kế = flag
 
 
-def _chat(model, prompt, img_b64):
+# ---------------------------------------------------------------- THANG DỰ PHÒNG VISION
+# Chốt 2026-09-26 sau khi đo 15 model ở 3 proxy trên CÙNG 2 tấm ảnh thật (xem
+# docs/FALLBACK_GEMINI_SANG_SOL.md §đo model rẻ). Mốc so sánh là chính gemini-3.8-flash: 52/M và
+# 70/F. Ba bậc dưới đây đều đoán sát mốc đó, và mỗi bậc đổi sang một NHÀ khác — hỏng cùng lúc cả
+# ba là chuyện khó xảy ra hơn nhiều so với hỏng một nhà.
+#
+# Vì sao KHÔNG chọn mấy cái tưởng ngon:
+#   · `grok-4.5`/`grok-4.6` ở ramclouds: 503 kéo dài, một lượt treo 250 giây rồi mới báo lỗi.
+#   · `qwen3.8-flash` ở ramclouds: đọc ảnh 2 ra 30 tuổi trong khi mọi model khác đọc 70–80 — sai
+#     tới mức cổng QC sẽ đánh trượt oan ảnh đúng.
+#   · `deepseek-v4.1-flash` ở RAMCLOUDS: trả rỗng khi có ảnh (chỉ bản ở ns24 mới nhìn được ảnh).
+#     Cùng tên model, khác nhà, khác hẳn khả năng — đừng suy từ nhà này sang nhà kia.
+#
+# ⚠️ BẪY ĐÃ DÍNH KHI ĐO: `glm-5.3-flash` và `kimi-k3` là model CÓ SUY NGHĨ TRƯỚC — phần suy nghĩ ăn
+# vào chính hạn `max_tokens`, nên cho hạn nhỏ (80–120 như bản ramclouds đang dùng) thì trả về RỖNG
+# mà HTTP vẫn 200, trông y hệt "model không đọc được ảnh". Vì vậy mọi bậc dự phòng ở đây dùng hạn
+# rộng `_MAX_TOKENS_DP` chứ không dùng lại 120 của đường chính.
+_MAX_TOKENS_DP = 700
+THANG_DU_PHONG = [
+    ("ns24", "deepseek-v4.1-flash"),    # khớp mốc (55/M 75/F) và NHANH nhất: 7 giây cho cả 2 ảnh
+    ("hhtech", "glm-5.3-flash"),        # khớp mốc (55/M 75/F), đổi hẳn nhà thứ ba
+]
+_PROXY = {
+    "ramclouds": ("https://ramclouds.me/v1", API_KEY),
+    "ns24": ("https://api.ns24.io/v1", "sk-up-0ef5398f1893e50f6a8d9055c7b9e7cb4f847dac7601d09f"),
+    "hhtech": ("https://hhtechapi.net/v1", "sk-d4108f8b284a42b48df72bf4"),
+}
+
+
+def _chat(model, prompt, img_b64, cho_phep_sol=True):
+    """Lõi VISION dùng chung. ramclouds trước; hỏng thì lần lượt xuống `THANG_DU_PHONG` rồi sol.
+
+    VÌ SAO (2026-09-26): hàm này là lõi vision của `qc_character` (QC master nhân vật), `qc_canh.py`
+    (soi từng cảnh), `soi_kho.py` (chấm kho tư liệu → `tim_anh_that.py` gọi tiếp) và `audit_stock.py`.
+    Trước đây nó gọi THẲNG ramclouds, không lưới đỡ: ramclouds/gemini hỏng là cả 4 bước chết cùng
+    lúc. Quan trọng nhất, mấy bước này chạy Ở MÁY 2 (vẽ ảnh + dựng video) — nơi KHÔNG có 9router,
+    nên lưới phải là model chạy được từ xa, không phải proxy nội bộ của máy 1.
+
+    Thứ tự: ramclouds → ns24 → hhtech → sol. Sol xếp cuối vì đắt hơn và chậm hơn ba bậc trên.
+    `cho_phep_sol=False` cho người gọi ĐÃ CÓ lưới sol ở tầng trên (`qc_visual._vision`), khỏi chờ
+    sol hai lần chồng nhau.
+    """
+    loi = []
+    try:
+        return _chat_ramclouds(model, prompt, img_b64)
+    except Exception as e:
+        loi.append(f"ramclouds({model}): {type(e).__name__} {str(e)[:80]}")
+    for nha, mod in THANG_DU_PHONG:
+        try:
+            return _chat_proxy(nha, mod, prompt, img_b64)
+        except Exception as e:
+            loi.append(f"{nha}({mod}): {type(e).__name__} {str(e)[:80]}")
+    if not cho_phep_sol:
+        raise RuntimeError("vision hỏng mọi bậc (sol để tầng trên lo): " + " | ".join(loi))
+    import sol_client
+    import tempfile
+    # sol_client nhận ĐƯỜNG DẪN ảnh (nó tự đọc + base64), còn ở đây ảnh đã ở dạng b64 → ghi ra file
+    # tạm thay vì sửa chữ ký sol_client (file đó đang được 5 chỗ khác gọi theo đúng chữ ký cũ).
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
+        f.write(base64.b64decode(img_b64))
+        tam = f.name
+    try:
+        text, _usage = sol_client.chat(prompt, image_path=tam, max_tokens=_MAX_TOKENS_DP, timeout=120)
+        return text
+    except Exception as e:
+        loi.append(f"sol: {type(e).__name__} {str(e)[:100]}")
+        raise RuntimeError("vision hỏng MỌI đường: " + " | ".join(loi)) from None
+    finally:
+        Path(tam).unlink(missing_ok=True)
+
+
+def _chat_proxy(nha, model, prompt, img_b64, max_tokens=None):
+    """Một lượt vision non-stream tới proxy bất kỳ trong `_PROXY` (dùng cho các bậc dự phòng)."""
+    base, key = _PROXY[nha]
+    body = json.dumps({"model": model, "stream": False,
+        "max_tokens": max_tokens or _MAX_TOKENS_DP,
+        "messages": [{"role": "user", "content": [
+            {"type": "text", "text": prompt},
+            {"type": "image_url", "image_url": {"url": "data:image/png;base64," + img_b64}}]}]}).encode()
+    req = urllib.request.Request(base + "/chat/completions", data=body,
+        headers={"Authorization": f"Bearer {key}", "User-Agent": _UA,
+                 "Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(req, timeout=120) as r:
+        noi_dung = json.loads(r.read())["choices"][0]["message"]["content"]
+    if not (noi_dung or "").strip():
+        # Rỗng mà HTTP 200 = model suy nghĩ hết sạch hạn token (xem bẫy ở ghi chú THANG_DU_PHONG).
+        raise RuntimeError(f"{nha}:{model} trả RỖNG dù HTTP 200 (nghi hết hạn token vì phần suy nghĩ)")
+    return noi_dung
+
+
+def _chat_ramclouds(model, prompt, img_b64):
     body = json.dumps({"model": model, "stream": False, "max_tokens": 120,
         "messages": [{"role": "user", "content": [
             {"type": "text", "text": prompt},
@@ -41,7 +131,10 @@ def _chat(model, prompt, img_b64):
         headers={"Authorization": f"Bearer {API_KEY}", "User-Agent": _UA,
                  "Content-Type": "application/json"}, method="POST")
     with urllib.request.urlopen(req, timeout=120) as r:
-        return json.loads(r.read())["choices"][0]["message"]["content"]
+        noi_dung = json.loads(r.read())["choices"][0]["message"]["content"]
+    if not (noi_dung or "").strip():
+        raise RuntimeError(f"ramclouds:{model} trả RỖNG dù HTTP 200")
+    return noi_dung
 
 
 def _parse_json(txt):
@@ -58,7 +151,9 @@ def estimate(path):
     ages, genders, adults, raw = [], [], [], []
     for m in MODELS:
         try:
-            d = _parse_json(_chat(m, prompt, b64))
+            # Chỉ model ĐẦU được rơi sang sol: ramclouds chết thì cả 2 vòng đều rơi xuống CÙNG một
+            # model sol, mất hẳn ý nghĩa cross-check mà tốn gấp đôi thời gian chờ.
+            d = _parse_json(_chat(m, prompt, b64, cho_phep_sol=(m == MODELS[0])))
             if "apparent_age" in d:
                 ages.append(int(d["apparent_age"])); genders.append(str(d.get("gender", "?")).upper()[:1])
                 adults.append(bool(d.get("adult", True))); raw.append(f"{m}={d.get('apparent_age')}/{d.get('gender')}")

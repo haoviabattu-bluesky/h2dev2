@@ -266,7 +266,7 @@
   "evidence_min": 8
  },
  "publish": {
-  "upload_channel": "shinya_shiryoshitsu",
+  "upload_channel": "A-shinya_shiryoshitsu",
   "sheet_tab": "A-shinya_shiryoshitsu",
   "listing_external": true,
   "_listing_external_note": "2026-09-24: tieu de/mo ta/tags/thumbnail giao HET cho YT-TITLE-RESEARCH (goi_title.py) — h2dev thoi lam B7/B9.",
@@ -275,7 +275,8 @@
   "_note": "B11 giao_hang.py gom DUNG 3 file (final.mp4 / thumbnail.png / listting.txt) vao <upload_dir>/<upload_channel>/ep<N>-<ten tap>/. Doi kenh hoac doi cho = doi field nay, khong sua code.",
   "review_vi": true,
   "title_auto": true,
-  "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat toshi-densetsu-jp"
+  "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat toshi-densetsu-jp",
+  "_upload_channel_note": "2026-09-25 anh chốt: đổi CHANEL sang tên TAB (A-shinya_shiryoshitsu), áp cho toàn bộ lane cùng lúc."
  },
  "script_qc": {
   "lens": "plain",

@@ -244,12 +244,18 @@ def main():
         raise SystemExit(f"✗ không thấy thư mục tập: {slug}")
 
     pub = prof.get("publish", {}) or {}
-    kenh = a.kenh or pub.get("upload_channel")
-    if not kenh:
-        raise SystemExit("✗ chưa biết kênh. Khai `publish.upload_channel` trong profile "
-                         "hoặc truyền --kenh")
     # Thư mục kênh nằm NGOÀI dự án: mỗi kênh một nơi, không lẫn vào assets của pipeline.
     goc = Path(a.out or pub.get("upload_dir") or GOC_KENH)
+    # HAI ĐÍCH, HAI CÁCH ĐẶT TÊN (anh chốt 2026-09-25):
+    #   · đích là `results\video_render\` (băng chuyền máy 2) → tên thư mục = TÊN TAB SHEET
+    #     (`E-70dai-kenko`), vì nhìn có chữ cái lane là biết ngay của lane nào;
+    #   · đích là `CHANEL\` (chỗ giao hàng thật) → GIỮ tên kênh không tiền tố (`kenko-chiebukuro`).
+    # Profile thiếu `sheet_tab` thì tụt về `upload_channel`, không vỡ.
+    _theo_tab = "video_render" in goc.as_posix()
+    kenh = a.kenh or (pub.get("sheet_tab") if _theo_tab else None) or pub.get("upload_channel")
+    if not kenh:
+        raise SystemExit("✗ chưa biết kênh. Khai `publish.upload_channel` (và `publish.sheet_tab` "
+                         "nếu giao vào results\\video_render) trong profile hoặc truyền --kenh")
     # TÊN THƯ MỤC GIAO HÀNG = ĐÚNG TÊN SLUG, chữ Latin: `ep03-bob-lazar`.
     #
     # ⚠️ ANH CHỐT 2026-09-11, ĐỪNG ĐỔI LẠI SANG TÊN TIẾNG NHẬT.
@@ -323,10 +329,12 @@ def main():
     # chi tim mot ten nen ban tieng Viet cua lane kia roi mat IM LANG khi giao hang.
     rv = next((slug / t for t in ("review_vi.mp4", "final_vi.mp4") if (slug / t).exists()), slug / "review_vi.mp4")
     if rv.exists():
-        ra_rv = dich / TEN_REVIEW
+        # Lane L 2026-09-25: anh chốt tên giao `final-vietsub.mp4` (profile publish.ten_review); lane khác giữ review-vi.mp4
+        ten_rv = pub.get("ten_review") or TEN_REVIEW
+        ra_rv = dich / ten_rv
         if not (ra_rv.exists() and ra_rv.stat().st_size == rv.stat().st_size):
             shutil.copy2(rv, ra_rv)
-        print(f"  ✓ {TEN_REVIEW}  ({ra_rv.stat().st_size/1024/1024:.0f} MB · bản xem, đừng đăng)")
+        print(f"  ✓ {ten_rv}  ({ra_rv.stat().st_size/1024/1024:.0f} MB · bản xem, đừng đăng)")
 
     tt = tom_tat_viet(slug, noi_dung.splitlines()[0] if noi_dung else nhan, a.tomtat_moi)
     if tt:

@@ -85,6 +85,12 @@ def kiem(giai, don):
     return loi, anh
 
 
+def _chuan_strategy(v):
+    import re as _re
+    tok = _re.sub(r"[^a-z]+", " ", (v or "").lower()).split()
+    return "a" if tok and tok[0] in ("a", "all") else (v or "").lower().strip()
+
+
 def kiem_manifest(giai, don, loi):
     man = list(giai.rglob("manifest.csv"))
     if not man:
@@ -116,7 +122,10 @@ def kiem_manifest(giai, don, loi):
     if "state" in cols:
         print(f"   state: {dict(Counter(lay(r, 'state') for r in data))}")
     if "strategy" in cols:
-        st = {lay(r, "nnn"): lay(r, "strategy").lower() for r in data}
+        # 2026-09-25 (vá theo YEU_CAU_MAY1_..._thieu_hook_promise.md §BỔ SUNG 11:32): app ghi strategy
+        # "toàn A" một kiểu khác nhau mỗi lần dựng — "(a)" / "(a) all references" / "all" / "a" — so
+        # thẳng == "a" báo TỤT OAN cho các biến thể đó. Chuẩn hoá: bất kỳ token đầu là a/all → "a".
+        st = {lay(r, "nnn"): _chuan_strategy(lay(r, "strategy")) for r in data}
         print(f"6. strategy: {dict(Counter(st.values()))}")
         # chi tinh la TUT khi dong CO trong manifest ma strategy khac 'a'; dong thieu han da bi
         # phep dem dong bat roi — gop vao day se bao "chi khoa duoc 1 mat" cho mot dong khong ton tai.
@@ -179,15 +188,24 @@ def main():
         print("   ⚠️ CHUA duoc reload trang Flow — anh co the con trong RAM, bam lai 'Download ZIP'.")
         return 1
     if a.giao:
+        # 2026-09-25 (vá theo YEU_CAU_MAY1_..._thieu_hook_promise.md §BỔ SUNG 11:32): app ZIP lúc xuất
+        # .png lúc .jpg/.jpeg tuỳ lô — pipeline (assemble.py/gen_images.py/make_video.py B5) chỉ nhận
+        # diện NNN.png, thiếu .png là bị coi là chưa vẽ rồi TỰ VẼ LẠI bằng gpti2 (tốn tiền). LUÔN ghi
+        # ra .png bất kể đuôi gốc.
         d = Path(a.giao)
         d.mkdir(parents=True, exist_ok=True)
-        de = [x for x in anh if (d / x.name).exists()]
+        dich = [d / f"{x.stem}.png" for x in anh]
+        de = [p for p in dich if p.exists()]
         if de and not a.ghi_de:
             sys.exit(f"\nLOI: {len(de)} anh da co trong {d} (vd {de[0].name}). "
                      "Xem lai roi chay lai kem --ghi-de neu chac.")
-        for x in anh:
-            shutil.copy2(x, d / x.name)
-        print(f"\nDA GIAO {len(anh)} anh -> {d}")
+        from PIL import Image as _Image
+        for x, p in zip(anh, dich):
+            if x.suffix.lower() == ".png":
+                shutil.copy2(x, p)
+            else:
+                _Image.open(x).convert("RGB").save(p)
+        print(f"\nDA GIAO {len(anh)} anh -> {d} (deu .png)")
     co_tag = len([1 for t in don.values() if t != "PLAIN"])
     if co_tag:
         print(f"\nCON MOT PHEP NUA, TOOL KHONG LAM THAY: mo {min(6, co_tag)} anh co TAG "

@@ -126,53 +126,83 @@ def _chat_backup2(text, image_path, max_tokens, timeout):
     return data["choices"][0]["message"]["content"], data.get("usage", {})
 
 
-def chat(text, image_path=None, max_tokens=2000, timeout=180):
-    """Gửi 1 lượt chat (kèm ảnh nếu có) tới GPT-5.6-sol. Thử proxy CHÍNH (9router local) trước, LỖI GÌ
-    CŨNG (connection refused/timeout/HTTP khác 200) tự chuyển sang DỰ PHÒNG 1 (ns24) rồi DỰ PHÒNG 2
-    (hhtechapi.net) — không cần người gọi biết đang dùng đường nào. Chỉ ném lỗi khi CẢ BA đều hỏng."""
-    try:
-        return _chat_primary(text, image_path, max_tokens, timeout)
-    except Exception as e_primary:
-        print(f"  ! sol primary (9router) lỗi: {type(e_primary).__name__} {e_primary} "
-              f"→ thử dự phòng 1 (ns24)…", file=sys.stderr)
-        try:
-            return _chat_backup(text, image_path, max_tokens, timeout)
-        except Exception as e_backup:
-            print(f"  ! sol backup1 (ns24) lỗi: {type(e_backup).__name__} {e_backup} "
-                  f"→ thử dự phòng 2 (hhtechapi)…", file=sys.stderr)
+# 9router = proxy chạy TRÊN MÁY 1 (anh chốt 2026-09-26: máy 1 viết kịch bản thì cứ dùng; máy 2 chỉ
+# vẽ ảnh + dựng video, ở đó KHÔNG có 9router). Cùng một file code chạy ở cả hai máy nên không thể
+# bật/tắt bằng hằng số — phải TỰ NHẬN RA mình đang ở máy nào.
+#
+# Cách nhận: gõ cửa cổng 20128 bằng một kết nối TCP hạn 0,4 giây, nhớ kết quả cho cả tiến trình.
+#   · Máy 1: gõ thấy → 9router lên đầu hàng như cũ.
+#   · Máy 2: không ai mở cửa → bỏ qua NGAY trong 0,4 giây, không phải chờ hết timeout HTTP rồi mới
+#     rơi xuống ns24. Đây chính là chỗ tốn oan nếu cứ để nguyên: mỗi tập QC hàng trăm lượt ảnh.
+# Ép tay khi cần: `SOL_DUNG_9ROUTER=1` (luôn dùng) hoặc `=0` (không bao giờ dùng).
+_9ROUTER_EP = None
+
+
+def _co_9router():
+    """9router có đang mở ở máy này không (đo 1 lần rồi nhớ)."""
+    global _9ROUTER_EP
+    if _9ROUTER_EP is None:
+        ep = str(keys.get("sol_dung_9router", env="SOL_DUNG_9ROUTER", default="")).strip().lower()
+        if ep in ("1", "true", "yes"):
+            _9ROUTER_EP = True
+        elif ep in ("0", "false", "no"):
+            _9ROUTER_EP = False
+        else:
+            import socket
+            from urllib.parse import urlparse
+            u = urlparse(BASE_URL)
             try:
-                return _chat_backup2(text, image_path, max_tokens, timeout)
-            except Exception as e_backup2:
-                raise RuntimeError(
-                    f"sol_client: CẢ BA đường đều lỗi.\n  primary(9router): {e_primary}\n"
-                    f"  backup1(ns24): {e_backup}\n  backup2(hhtechapi): {e_backup2}") from e_backup2
+                with socket.create_connection((u.hostname or "localhost", u.port or 80), timeout=0.4):
+                    _9ROUTER_EP = True
+            except OSError:
+                _9ROUTER_EP = False
+    return _9ROUTER_EP
+
+
+def chat(text, image_path=None, max_tokens=2000, timeout=180):
+    """Gửi 1 lượt chat (kèm ảnh nếu có) tới GPT-5.6-sol.
+
+    Thứ tự: 9router (chỉ khi máy này thật sự có nó — xem `_co_9router`) → ns24 → hhtechapi.
+    LỖI GÌ CŨNG chuyển đường (connection refused/timeout/HTTP khác 200) — người gọi không cần biết
+    đang đi đường nào. Chỉ ném lỗi khi MỌI đường đều hỏng."""
+    duong = ([("9router", _chat_primary)] if _co_9router() else []) + \
+            [("ns24", _chat_backup), ("hhtechapi", _chat_backup2)]
+    loi = []
+    for i, (ten, ham) in enumerate(duong):
+        try:
+            return ham(text, image_path, max_tokens, timeout)
+        except Exception as e:
+            loi.append(f"{ten}: {e}")
+            con = duong[i + 1][0] if i + 1 < len(duong) else None
+            print(f"  ! sol {ten} lỗi: {type(e).__name__} {e}"
+                  + (f" → thử {con}…" if con else ""), file=sys.stderr)
+    raise RuntimeError("sol_client: MỌI đường đều lỗi.\n  " + "\n  ".join(loi))
 
 
 def selftest():
-    """`py -3.13 sol_client.py` — kiểm cả 3 đường (chính + 2 dự phòng) độc lập."""
+    """`py -3.13 sol_client.py` — kiểm từng đường độc lập.
+
+    9router chỉ được kiểm khi máy này thật sự có nó (máy 1); ở máy 2 nó không nằm trong đường chạy
+    nên báo hỏng ở đây chỉ gây hoang mang."""
     sys.stdout.reconfigure(encoding="utf-8")
-    ok = True
-    try:
-        content, usage = _chat_primary("Reply with exactly: OK", None, 10, 30)
-        print(f"✓ CHÍNH    {BASE_URL} model={MODEL} → {content!r}")
-    except Exception as e:
-        ok = False
-        print(f"✗ CHÍNH    {BASE_URL}: {type(e).__name__} {e}")
-    try:
-        content, usage = _chat_backup("Reply with exactly: OK", None, 10, 30)
-        print(f"✓ DỰ PHÒNG1 {BACKUP_BASE_URL} model={BACKUP_MODEL} → {content!r}")
-    except Exception as e:
-        ok = False
-        print(f"✗ DỰ PHÒNG1 {BACKUP_BASE_URL}: {type(e).__name__} {e}")
-    try:
-        content, usage = _chat_backup2("Reply with exactly: OK", None, 10, 30)
-        print(f"✓ DỰ PHÒNG2 {BACKUP2_BASE_URL} model={BACKUP2_MODEL} → {content!r}")
-    except Exception as e:
-        ok = False
-        print(f"✗ DỰ PHÒNG2 {BACKUP2_BASE_URL}: {type(e).__name__} {e}")
-    if not ok:
-        print("  (còn ít nhất 1 đường sống thì chat() vẫn hoạt động — chỉ FAIL khi cả 3 đều hỏng)")
-    sys.exit(0 if ok else 1)
+    bo = ([("9router", _chat_primary, BASE_URL, MODEL)] if _co_9router() else []) + \
+         [("ns24", _chat_backup, BACKUP_BASE_URL, BACKUP_MODEL),
+          ("hhtechapi", _chat_backup2, BACKUP2_BASE_URL, BACKUP2_MODEL)]
+    if not _co_9router():
+        print(f"(máy này KHÔNG mở 9router ở {BASE_URL} — bỏ qua; ép bật bằng SOL_DUNG_9ROUTER=1)")
+    song = 0
+    for ten, ham, base, model in bo:
+        try:
+            content, _usage = ham("Reply with exactly: OK", None, 10, 30)
+            print(f"✓ {ten:10s} {base} model={model} → {content!r}")
+            song += 1
+        except Exception as e:
+            print(f"✗ {ten:10s} {base}: {type(e).__name__} {e}")
+    if song == 0:
+        print("  → KHÔNG còn đường nào sống: mọi bước gọi sol sẽ hỏng.")
+    elif song < len(bo):
+        print(f"  ({song}/{len(bo)} đường sống — chat() vẫn chạy, chỉ hỏng khi về 0)")
+    sys.exit(0 if song else 1)
 
 
 if __name__ == "__main__":

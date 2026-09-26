@@ -82,7 +82,7 @@ def main():
         print(f"  → Lane không REF-LOCK: máy 2 luôn dùng gpti2 vẽ thẳng (bất kể số lượng), không "
               f"còn chờ Google Flow (chốt 2026-09-17).")
     print("  Syncthing sẽ tự đồng bộ thư mục trên sang máy 2. Kết quả trả về ở "
-          "FlowHandoff_local/results/video_render/<slug>/.")
+          "FlowHandoff_local/results/video_render/<upload_channel>/<slug>/.")
 
     # 2026-09-24 (anh chốt): gói xong thì TỰ gọi dự án YT-TITLE-RESEARCH — file này CHỈ dùng cho
     # Lane A (toshi-densetsu-jp, hardcode ở `src` phía trên) nên truyền thẳng profile, không cần dò.

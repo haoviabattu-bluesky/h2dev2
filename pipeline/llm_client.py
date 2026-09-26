@@ -43,23 +43,55 @@ PROVIDERS = {
              "default": "sk-up-0ef5398f1893e50f6a8d9055c7b9e7cb4f847dac7601d09f"},
 }
 
+# Mắt xích CUỐI của mọi chuỗi (thêm 2026-09-26): GPT-5.6-sol qua `sol_client`.
+#
+# VÌ SAO PHẢI CÓ (đo thật 2026-09-26): cả 3 mắt xích cũ đều là gemini-3.8-flash hoặc gpt-5.6-luna,
+# mà `ramclouds:gpt-5.6-luna` hôm nay trả HTTP 503 → chuỗi thực chất chỉ còn ĐÚNG MỘT model
+# (gemini-3.8-flash) ở 2 proxy. Gemini hỏng (hết quota / chặn chính sách nội dung / proxy sập) là
+# TOÀN BỘ bước LLM của pipeline chết, không còn gì đỡ.
+#
+# VÌ SAO GỌI QUA `sol_client` CHỨ KHÔNG THÊM 1 DÒNG (provider, model) NHƯ CÁC MẮT XÍCH KHÁC:
+# sol_client đã có sẵn đường tới cùng model đó ở nhiều proxy (ns24 stream+UA → hhtechapi
+# non-stream; 9router đã TẮT vì máy 2 không có nó) với ĐÚNG cách gọi của từng proxy. Đo thật
+# 2026-09-26: hhtechapi khi gọi stream trả HTTP 200 + SSE RỖNG, tức nó KHÔNG dùng được bằng bộ gọi
+# stream của file này. Nhét thẳng vào PROVIDERS/CHAINS sẽ phải chép lại logic đó lần thứ hai và
+# chắc chắn lệch dần.
+#
+# ⚠️ Đây là LƯỚI CUỐI, không phải model viết văn: bản ghi 2026-09-07 (docstring #5) cho thấy sol
+# hỏi lại bằng tiếng Việt khi được giao VIẾT truyện. Đặt cuối chuỗi nên chỉ chạm tới khi gemini đã
+# chết hẳn; nếu nó né việc thật thì `BAD_CONTENT` bắt được và chuỗi kết thúc đúng như cũ.
+SOL_TAIL = ("sol", "gpt-5.6-sol")
+
 # Chuỗi fallback theo việc — chỉ model ĐÃ VERIFY. Đừng thêm model chưa test vào đây.
 CHAINS = {
     # viết/nén kịch bản dài: gemini-3.8-flash ramclouds (văn hay nhất, Nhật hoá 8/9)
     "script": [("ramclouds", "gemini-3.8-flash"),
-               ("ramclouds", "gpt-5.6-luna"),
-               ("ns24", "gemini-3.8-flash")],
-    # việc ngắn/máy móc (prompt ảnh, chữ thumbnail, tóm tắt): cùng model, rẻ và nhanh
+               ("ns24", "gemini-3.8-flash"),
+               SOL_TAIL],
+    # việc ngắn/máy móc (prompt ảnh, chữ thumbnail, tóm tắt, cổng QC trả JSON): cùng model, rẻ, nhanh
     "short": [("ramclouds", "gemini-3.8-flash"),
               ("ns24", "gemini-3.8-flash"),
-              ("ramclouds", "gpt-5.6-luna")],
+              ("ns24", "deepseek-v4.1-flash"),   # rẻ, KHÔNG phải gemini — xem ghi chú BAC_RE dưới
+              SOL_TAIL],
     # tổng hợp DNA kênh (nhiều transcript gộp 1 lượt, pipeline/channel_analyzer.py) — TÁCH RIÊNG
     # khỏi "script" dù cùng model: đổi tham số viết-sáng-tạo sau này không vô tình ảnh hưởng bước
     # phân tích kênh (2 việc khác bản chất dù dùng chung model đã verify).
     "analysis": [("ramclouds", "gemini-3.8-flash"),
-                 ("ramclouds", "gpt-5.6-luna"),
-                 ("ns24", "gemini-3.8-flash")],
+                 ("ns24", "gemini-3.8-flash"),
+                 ("ns24", "deepseek-v4.1-flash"),
+                 SOL_TAIL],
 }
+
+# BẬC RẺ `ns24:deepseek-v4.1-flash` (thêm 2026-09-26) — vì sao đúng model này, đúng nhà này:
+#   · Đo thật cùng lúc 15 model ở 3 proxy: nó trả JSON đúng khuôn, viết được tiếng Nhật, và là bậc
+#     NHANH NHẤT (dưới 1 giây cho việc ngắn).
+#   · CÙNG TÊN MODEL nhưng ở RAMCLOUDS thì hỏng với ảnh — nên đừng đổi `ns24` thành `ramclouds` ở
+#     dòng trên cho "gọn"; hai nhà chạy hai bản khác nhau.
+#   · KHÔNG đưa vào chuỗi "script": phép thử chỉ chứng minh nó viết nổi HAI CÂU tiếng Nhật, không
+#     chứng minh nổi bài kể 10.000 chữ. Việc viết vẫn gemini → sol.
+# Tránh dùng làm bậc dự phòng (đã đo, đừng thử lại): `grok-4.5`/`grok-4.6` ở ramclouds treo 250
+# giây rồi 503; `qwen3.8-flash` đọc ảnh sai tuổi tới 40 năm; `glm-5.3-flash` và `kimi-k3` là model
+# SUY NGHĨ TRƯỚC — phần suy nghĩ ăn hết `max_tokens` nên hạn nhỏ là trả RỖNG mà HTTP vẫn 200.
 
 # Nội dung TRẢ VỀ nhưng thực chất là lỗi/né việc → coi như FAIL, đổi model.
 BAD_CONTENT = (
@@ -70,7 +102,7 @@ BAD_CONTENT = (
     # lỗi. Không liệt kê ở đây thì coi như output hợp lệ ⇒ KHÔNG đổi model, cả chuỗi fallback đứng
     # yên. Đo thật 2026-09-11: cổng QC nội dung B3Q chết vì câu này trên một kịch bản kể chuyện
     # viện dưỡng lão — mà ngách satori thì tập nào cũng có tang ma/bệnh tật, nên sẽ dính liên tục.
-    # Model kế trong chuỗi (gpt-5.6-luna) không vướng chính sách này nên chỉ cần cho nó đổi là qua.
+    # Model kế trong chuỗi (deepseek/sol) không vướng chính sách này nên chỉ cần cho nó đổi là qua.
     "prompt could not be submitted", "prohibited use policy", "contains sensitive words",
     "blocked by the safety", "safety_ratings", "i'm not able to help with that",
 )
@@ -166,6 +198,23 @@ def _stream_once(provider, model, messages, max_tokens, temperature, timeout, on
     return "".join(parts), usage or {}, finish, time.time() - t0
 
 
+def _sol_once(model, messages, max_tokens, timeout):
+    """Mắt xích cuối — GPT-5.6-sol qua `sol_client` (tự đi ns24 → hhtechapi).
+
+    sol_client chỉ nhận MỘT khối text nên `system` được gộp vào đầu prompt; nó không phát từng
+    mẩu nên `on_chunk` không áp dụng ở nhánh này (người gọi vẫn nhận đủ text ở cuối).
+    Trả cùng bộ 4 giá trị như `_stream_once` để phần dưới không phải biết đây là nhánh khác.
+    """
+    import sol_client
+    hoi = "\n\n".join(m["content"] for m in messages if isinstance(m.get("content"), str))
+    t0 = time.time()
+    # `model` chỉ để ghi nhật ký: mỗi proxy trong sol_client khai tên model riêng của nó
+    # (`cx/gpt-5.6-sol` ở 9router, `gpt-5.6-sol` ở ns24/hhtechapi) nên chat() không nhận tham số này.
+    text, usage = sol_client.chat(hoi, image_path=None, max_tokens=max_tokens,
+                                  timeout=min(timeout, 300))
+    return text, usage or {}, "stop", time.time() - t0
+
+
 def _reject_reason(text, finish, min_chars, require_sentence_end):
     """Trả lý do FAIL, hoặc None nếu output dùng được."""
     if not text.strip():
@@ -197,8 +246,11 @@ def chat(prompt, system=None, task="short", model=None, provider=None,
         for k in range(1, tries_per_model + 1):
             tag = f"{prov}:{mod} (lần {k})"
             try:
-                text, usage, finish, el = _stream_once(prov, mod, messages, max_tokens,
-                                                       temperature, timeout, on_chunk)
+                if prov == "sol":
+                    text, usage, finish, el = _sol_once(mod, messages, max_tokens, timeout)
+                else:
+                    text, usage, finish, el = _stream_once(prov, mod, messages, max_tokens,
+                                                           temperature, timeout, on_chunk)
             except urllib.error.HTTPError as e:
                 detail = e.read()[:160].decode("utf-8", "replace")
                 msg = f"HTTP {e.code} {detail}"
@@ -241,7 +293,7 @@ def main():
     args = ap.parse_args()
     if args.ping:
         for prov, mod in [("ramclouds", "gemini-3.8-flash"), ("ns24", "gemini-3.8-flash"),
-                          ("ramclouds", "gpt-5.6-luna")]:
+                          ("ns24", "deepseek-v4.1-flash"), SOL_TAIL]:
             t0 = time.time()
             try:
                 r = chat("Reply with exactly: ok", provider=prov, model=mod,

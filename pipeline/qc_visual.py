@@ -40,12 +40,40 @@ class QcError(RuntimeError):
     """Hạ tầng hỏng — KHÔNG phải lỗi nội dung."""
 
 
+_VISION_TIMEOUT_S = 45   # đo thật máy 2 2026-09-25: ramclouds ĐỨNG IM (không lỗi/không timeout dù
+# urllib.request.urlopen(timeout=120)) — một số mạng/tường lửa/anti-virus chặn kiểu "giữ socket im
+# lặng" mà timeout ở tầng Python không bao giờ kích hoạt (khác hẳn 503/refused đã có QcError sẵn).
+# Ép cứng bằng thread + .result(timeout=) để KHÔNG BAO GIỜ treo vô hạn, rồi rơi sang dự phòng.
+
+
 def _vision(prompt, img_path, model="gemini-3.8-flash"):
+    """Ramclouds (gemini) trước; treo/lỗi → rơi sang sol_client (ns24/hhtechapi, cloud — khác hẳn
+    9router chỉ chạy trên máy 1) làm model QC THỨ HAI. Ép cứng thời gian bằng thread vì urllib có
+    thể bỏ qua `timeout=` khi kết nối bị chặn kiểu im lặng (đo thật máy 2 2026-09-25)."""
+    b64 = base64.b64encode(Path(img_path).read_bytes()).decode()
+    loi = []
+    # KHÔNG dùng `with` — nếu thread bị treo thật, __exit__ (shutdown(wait=True)) sẽ chờ nó tới vô
+    # tận, y hệt lỗi đang vá. `wait=False` bỏ mặc thread cũ (zombie) chạy nốt rồi tự thoát khi có
+    # kết quả/lỗi, tiến trình chính đi tiếp ngay.
+    ex = ThreadPoolExecutor(max_workers=1)
+    # `cho_phep_sol=False`: hàm này ĐÃ tự rơi sang sol ở dưới. Để qcc._chat cũng thử sol bên trong
+    # thì lượt sol đó nằm TRONG hạn 45s của thread → gần như chắc chắn bị cắt giữa chừng rồi lại
+    # chạy sol lần hai ở ngoài (đo thật 2026-09-26: sol kèm ảnh mất ~26s, sát trần).
+    fut = ex.submit(qcc._chat, model, prompt, b64, False)
     try:
-        b64 = base64.b64encode(Path(img_path).read_bytes()).decode()
-        return qcc._parse_json(qcc._chat(model, prompt, b64))
+        ket_qua = qcc._parse_json(fut.result(timeout=_VISION_TIMEOUT_S))
+        ex.shutdown(wait=False)
+        return ket_qua
     except Exception as e:
-        raise QcError(f"{type(e).__name__}: {str(e)[:120]}") from None
+        loi.append(f"ramclouds({model}): {type(e).__name__} {str(e)[:120]}")
+        ex.shutdown(wait=False)
+    try:
+        import sol_client
+        text_out, _usage = sol_client.chat(prompt, img_path, max_tokens=300, timeout=90)
+        return qcc._parse_json(text_out)
+    except Exception as e:
+        loi.append(f"sol_client: {type(e).__name__} {str(e)[:200]}")
+    raise QcError(" | ".join(loi))
 
 
 # ============================================================ B4Q — giọng/SRT

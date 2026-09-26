@@ -256,6 +256,31 @@ class Job:
         order = str(self.p.get("source_lang") or f"ko,{lang},en")
         run(pycmd("fetch_script.py", source, "--lang", order, "--out", out), "B2 transcript")
         self.done("B2", chars=len(out.read_text(encoding="utf-8")))
+        self._ghi_video_goc_tu_source(source)
+
+    def _ghi_video_goc_tu_source(self, source):
+        """Ghi lại ID/tiêu đề video gốc cho YT-TITLE-RESEARCH đối chiếu tiêu đề/thumbnail
+        (docs/GIAO_VIEC_H2DEV_VIDEO_GOC_TUNG_TAP_2026-09-25.md) — CHỈ khi B2 fetch từ 1 nguồn
+        THẬT (không phải nhánh mượn _khung_nhip.txt chung lane, khi đó không có 1 video gốc nào
+        đúng nghĩa). BỔ TRỢ — lỗi ở đây không được chặn tập."""
+        try:
+            import video_goc
+            from fetch_script import video_id, lay_meta_video
+            vid = video_id(source)
+            meta = lay_meta_video(vid)
+            if not meta.get("title"):
+                print(f"  (video_goc: không lấy được title video {vid} → bỏ qua, không chặn tập)")
+                return
+            video_goc.ghi_video_goc(
+                self.dir, video_id=vid, title=meta["title"],
+                channel=self.p.get("competitor_name") or "", channel_id=None,
+                cach_xac_dinh="Ghi tự động ở B2 (make_video.py::b2_competitor) lúc tải transcript nguồn.",
+                do_chac="chac_chan", duration_s=meta.get("duration_sec") or None,
+                slug_dir=self.p.get("slug_dir"), lane_id=self.p.get("id"))
+            video_goc.hook_tap_ghi_video_goc(self.dir, vid, meta["title"])
+            print(f"  [video_goc] {vid} — {meta['title'][:50]}")
+        except Exception as e:
+            print(f"  (video_goc: lỗi ngoài dự kiến {type(e).__name__} {e} → bỏ qua, không chặn tập)")
 
     def b2b_comments(self, source):
         """Đọc BÌNH LUẬN THẬT (công khai, miễn phí) dưới video gốc → điểm chạm cảm xúc (nhấn ở
@@ -1035,6 +1060,15 @@ class Job:
             bad = [nm for nm, _, _ in (r.get("vision_bad") or [])]
             if not (bad and fix and not r["infra"]):
                 break
+            if self.flow_tool_lane():
+                print(f"[B5Q] {len(bad)} ảnh hỏng cần vẽ lại BẰNG FLOW TOOL (lane này không tự vẽ "
+                      f"gpti2): {', '.join(bad)}")
+                self.f("qc_images.json").write_text(json.dumps(r, ensure_ascii=False, indent=1),
+                                                    encoding="utf-8")
+                self.done("B5Q", images=r.get("n"), problems=n, vision_bad=len(bad),
+                          can_ve_lai_flow=bad)
+                raise SystemExit(f"✗ B5Q: {len(bad)} ảnh hỏng — máy 2 vẽ lại bằng Flow Tool "
+                                 f"(danh sách trên), KHÔNG tự gọi gpti2.")
             print(f"[B5Q] vẽ lại {len(bad)} ảnh hỏng (lượt {rnd}/2): {', '.join(bad)}")
             if rnd == 2:
                 prompts = self._soften_hands(prompts, bad)
@@ -1197,11 +1231,20 @@ class Job:
         # của lần dựng trước, mà đây đúng là file dùng để soi "hình có khớp lời không".
         rv = self.f("review_vi.mp4")
         mp4 = self.f("final.mp4")
+        # Hook ghép kiểu THAY HÌNH (thời gian thân không đổi, phụ đề Việt khớp nguyên) → bản xem dựng từ ĐÚNG file sẽ
+        # giao (có hook), để anh xem y như người xem (Lane L 2026-09-25: giao final.mp4 + final-vietsub.mp4).
+        try:
+            ri = json.loads(self.f("hook/render_info.json").read_text(encoding="utf-8"))
+        except Exception:
+            ri = {}
+        if ri.get("mode") == "thay_hinh" and self.f("final_with_hook.mp4").exists():
+            mp4 = self.f("final_with_hook.mp4")
         cu = rv.exists() and mp4.exists() and rv.stat().st_mtime < mp4.stat().st_mtime - 1
         if pub.get("review_vi") and (not rv.exists() or cu):
             if cu:
-                print("  ⚠️ review_vi.mp4 cũ hơn final.mp4 → dựng lại bản xem thử")
-            run(pycmd("ban_xem_viet.py", "--slug", self.f(""), "--profile", self.p["id"]),
+                print(f"  ⚠️ review_vi.mp4 cũ hơn {mp4.name} → dựng lại bản xem thử")
+            run(pycmd("ban_xem_viet.py", "--slug", self.f(""), "--profile", self.p["id"], "--video", mp4.name,
+                      "--out", "review_vi.mp4", "--cao", str(pub.get("review_vi_cao", 480))),
                 "B11a bản xem thử tiếng Việt")
         run(pycmd("giao_hang.py", "--slug", self.f(""), "--profile", self.p["id"]),
             "B11 giao hàng")
@@ -1358,7 +1401,14 @@ class Job:
         # CLI đã có `--no-sub` từ trước nhưng lệnh gọi thư viện này quên truyền, nên 1 lane ai_images
         # đầu tiên dùng burn_subs=false (kenko-chiebukuro) mới lộ ra — không lane nào khác dính vì
         # satori/toshi trước đó không đi qua đúng nhánh này với burn_subs=false.
-        r = qc_visual.qc_video(self.f("final.mp4"), srt if srt.exists() else None, sec, sample,
+        # 2026-09-25 (vá theo YEU_CAU_MAY1_..._b8q_do_nham_file.md): lane bật `assemble.hook_tu_ghep`
+        # ghép hook NGAY trong B8 (final_with_hook.mp4) — người xem/máy 2 nhận bản ĐÓ, không phải
+        # final.mp4 (bản nháp thân, chưa hook). Đo nhầm final.mp4 báo VỠ TIẾNG oan (đỉnh dBFS của
+        # bản nháp ≠ bản ghép hook đã tự hạ mức + có limiter). Ưu tiên file có hook nếu tồn tại.
+        video_de_qc = self.f("final_with_hook.mp4")
+        if not video_de_qc.exists():
+            video_de_qc = self.f("final.mp4")
+        r = qc_visual.qc_video(video_de_qc, srt if srt.exists() else None, sec, sample,
                                want_sub=self.chay_phu_de(), voice=self.voice_audio())
         n = qc_visual.report("B8Q VIDEO HOÀN CHỈNH", r)
         self.f("qc_video.json").write_text(json.dumps(r, ensure_ascii=False, indent=1),
@@ -1554,6 +1604,17 @@ class Job:
         ảnh mẫu rồi QC vision (khớp prompt + KHÔNG collage/nhiều ô) — bắt lỗi KIỂU ẢNH hệ thống
         sớm. 0/thiếu = tắt (nhánh B5 cũ y nguyên)."""
         return int((self.p.get("image", {}) or {}).get("sample_gate") or 0)
+
+    def flow_tool_lane(self):
+        """True khi lane vẽ ảnh thân bằng Google Flow Tool (máy 2, không phải gpti2 của máy 1).
+
+        Khai ở profile.image.flow_tool (mặc định True, khớp `dong_goi_may2.py::_img_flow`). Dùng để
+        CHẶN B5Q/B8Q tự gọi gen_images.py (gpti2) vẽ lại ảnh hỏng — bundle giao cho máy 2 không có
+        keys.json (rơi vào key mặc định cứng trong code, vi phạm luật "máy 2 không tự đổi provider" —
+        xem YEU_CAU_MAY1_..._b8q_do_nham_file.md). Lane không dùng Flow Tool (vd toshi-densetsu-jp tự
+        vẽ gpti2 tại máy 1) giữ hành vi cũ, tự vẽ lại như trước.
+        """
+        return bool((self.p.get("image", {}) or {}).get("flow_tool", True))
 
     def body_mode(self):
         """Thân video dựng bằng gì: 'ai_images' (satori) hay 'stock_clips' (ngách kể tài liệu).
@@ -2027,8 +2088,13 @@ class Job:
         idx = {i for i in idx if i < len(imgs)}
         if not idx:
             return False
-        print(f"[B8Q] vẽ lại {len(idx)} ảnh ở mốc lệch: "
-              f"{', '.join(imgs[i].name for i in sorted(idx))}")
+        ten_anh = [imgs[i].name for i in sorted(idx)]
+        if self.flow_tool_lane():
+            print(f"[B8Q] {len(idx)} ảnh lệch lời CẦN VẼ LẠI BẰNG FLOW TOOL (lane này không tự vẽ "
+                  f"gpti2): {', '.join(ten_anh)}")
+            raise SystemExit(f"✗ B8Q: {len(idx)} ảnh lệch lời — máy 2 vẽ lại bằng Flow Tool "
+                             f"(danh sách trên), KHÔNG tự gọi gpti2, rồi chạy lại B8Q.")
+        print(f"[B8Q] vẽ lại {len(idx)} ảnh ở mốc lệch: {', '.join(ten_anh)}")
         for i in sorted(idx):
             imgs[i].unlink(missing_ok=True)
         n_face = sum(1 for l in prompts if l.lower().lstrip().startswith(("@ref", "@cast:")))
@@ -2360,6 +2426,16 @@ class Job:
                 raise SystemExit("✗ B8: assemble.sfx bật nhưng thiếu sfx_plan.txt (máy 1: sfx_than.py --plan)")
             run(pycmd("sfx_than.py", "--profile", self.p["id"], "--slug", self.dir, "--kho"), "B8s kho hiệu ứng âm thanh")
             run(pycmd("sfx_than.py", "--profile", self.p["id"], "--slug", self.dir, "--tron"), "B8s trộn hiệu ứng âm thanh")
+        # Lane L 2026-09-25 (anh chốt: 100% video giao phải có hook): assemble.hook_tu_ghep → ghép hook NGAY trong B8
+        # (máy 2 khỏi chạy tay), mốc hook tính lại theo câu từ voice_roles.json của giọng thân (ai33 không tất định).
+        if a.get("hook_tu_ghep"):
+            if not self.f("hook/hook_timeline.json").exists():
+                raise SystemExit("✗ B8: assemble.hook_tu_ghep bật nhưng thiếu hook/hook_timeline.json — máy 1 chưa giao hook")
+            if self.f("final_with_hook.mp4").exists():
+                self.f("final_with_hook.mp4").unlink()
+            run(pycmd("ghep_hook_noi_truoc.py", "--tap", self.dir, "--profile", self.p["id"]), "B8h ghép hook")
+            if not self.f("final_with_hook.mp4").exists():
+                raise SystemExit("✗ B8h: ghép hook không ra final_with_hook.mp4")
         self.done("B8", mp4=out.name)
 
 
@@ -2425,7 +2501,7 @@ def main():
     if args.redo_voice:
         # Khác --from B4: KHÔNG pop B5W/B5P/B5/B5Q → prompt/ảnh giữ nguyên, chỉ giọng + những gì phụ thuộc giọng làm lại.
         xoa = ["voice.mp3", "voice.srt", "voice.stt.srt", "voice_paced.wav", "voice_paced.srt", "anchors.txt",
-               "final.mp4", "review_vi.mp4", "qc_video.json", "qc_final.json"]
+               "final.mp4", "final_with_hook.mp4", "review_vi.mp4", "qc_video.json", "qc_final.json"]
         for f_ in xoa:
             if job.f(f_).exists():
                 job.f(f_).unlink()

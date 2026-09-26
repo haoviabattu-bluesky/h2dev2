@@ -29,6 +29,7 @@ import time
 from pathlib import Path
 
 import llm_client
+import duong_ket_qua   # noi may 2 tra ket qua (chot 2026-09-25)
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -243,12 +244,12 @@ def ban_cua_may2(channel_url, goc=None):
     for d in sorted((goc / "channel_dna").glob("*")) if (goc / "channel_dna").is_dir() else []:
         if d.is_dir() and _khop(_doc_an_toan(d / "run_log.txt")):
             ra.append(_mo_ta_ban(d, "results/channel_dna"))
-    for d in sorted(goc.glob("*_from_research")):
-        if not d.is_dir():
-            continue
+    # 2026-09-25: ho so nghien cuu doi ve thu muc `nghien_cuu` (moi thu muc con = 1 ma lane);
+    # helper do CA ten cu (`<lane>_from_research` o goc) nen cong nay dung duoc du may 2 da don hay chua.
+    for d in duong_ket_qua.thu_muc_nghien_cuu(goc):
         if _khop(_doc_an_toan(d / "data" / "channel.json")) or any(
                 _khop(_doc_an_toan(f)) for f in d.glob("*.md")):
-            ra.append(_mo_ta_ban(d, "results/*_from_research"))
+            ra.append(_mo_ta_ban(d, "results/nghien_cuu (hoac *_from_research)"))
     return ra
 
 

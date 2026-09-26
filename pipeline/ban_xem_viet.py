@@ -112,7 +112,7 @@ def dich_srt(nguon: Path, dich: Path, lam_lai=False):
     return dich
 
 
-def chay_chu(slug: Path, srt_vi: Path, out: Path, jobs=0, video="final.mp4"):
+def chay_chu(slug: Path, srt_vi: Path, out: Path, jobs=0, video="final.mp4", cao=480):
     """Cháy phụ đề Việt lên bản 480p.
 
     ⚠️ Bộ lọc `subtitles=` của ffmpeg hiểu dấu `:` là dấu ngăn tham số, nên đường dẫn Windows kiểu
@@ -120,7 +120,7 @@ def chay_chu(slug: Path, srt_vi: Path, out: Path, jobs=0, video="final.mp4"):
     trên máy này). Cách chắc ăn: **chạy ffmpeg NGAY TRONG thư mục tập** rồi truyền tên file trần.
     """
     cmd = [FF, "-y", "-i", video,
-           "-vf", f"scale=854:-2,subtitles={srt_vi.name}:force_style="
+           "-vf", f"scale=-2:{int(cao)},subtitles={srt_vi.name}:force_style="
                   f"'FontName=Arial,FontSize=16,Outline=2,Shadow=0,MarginV=18'",
            "-c:v", "libx264", "-preset", "veryfast", "-crf", "30",
            "-c:a", "aac", "-b:a", "96k", out.name]
@@ -136,6 +136,8 @@ def main():
     ap.add_argument("--slug", required=True)
     ap.add_argument("--profile", required=True)
     ap.add_argument("--dich-lai", action="store_true")
+    ap.add_argument("--out", default="", help="tên file ra trong thư mục tập (mặc định review_vi*.mp4)")
+    ap.add_argument("--cao", type=int, default=480, help="chiều cao khung bản xem (480 mặc định; Lane L 720)")
     ap.add_argument("--jobs", type=int, default=0)
     ap.add_argument("--video", default="final.mp4",
                     help="video nguồn trong thư mục tập; final_with_hook.mp4 CHỈ dùng khi hook ghép kiểu THAY HÌNH "
@@ -155,8 +157,8 @@ def main():
         raise SystemExit("✗ không có file .srt để dịch")
 
     vi = dich_srt(srt, slug / "voice.vi.srt", a.dich_lai)
-    out = slug / ("review_vi.mp4" if a.video == "final.mp4" else f"review_vi_{Path(a.video).stem}.mp4")
-    chay_chu(slug, vi, out, a.jobs, a.video)
+    out = slug / (a.out or ("review_vi.mp4" if a.video == "final.mp4" else f"review_vi_{Path(a.video).stem}.mp4"))
+    chay_chu(slug, vi, out, a.jobs, a.video, a.cao)
     print(f"✓ bản xem thử tiếng Việt: {out} ({out.stat().st_size/1024/1024:.0f} MB)")
 
 

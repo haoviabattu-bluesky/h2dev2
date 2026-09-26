@@ -84,6 +84,22 @@ def video_dir(prof, handle, idx, vid, title=""):
     return OUT_ROOT / slug_dir / _slugify(handle, idx, vid, title)
 
 
+def _ghi_video_goc(d, video, vid, prof, emit):
+    """Ghi lại ID/tiêu đề video gốc cho YT-TITLE-RESEARCH đối chiếu tiêu đề/thumbnail
+    (docs/GIAO_VIEC_H2DEV_VIDEO_GOC_TUNG_TAP_2026-09-25.md). BỔ TRỢ — lỗi không chặn tập."""
+    try:
+        import video_goc
+        title = video.get("title", "") if isinstance(video, dict) else ""
+        video_goc.ghi_video_goc(
+            d, video_id=vid, title=title, channel=prof.get("competitor_name") or "",
+            channel_id=None,
+            cach_xac_dinh="Ghi tự động ở B2 (brain_channel.py::prepare_video) lúc tải transcript nguồn.",
+            do_chac="chac_chan", slug_dir=prof.get("slug_dir"), lane_id=prof.get("id"))
+        video_goc.hook_tap_ghi_video_goc(d, vid, title)
+    except Exception as e:
+        emit(f"  (video_goc: lỗi ngoài dự kiến {type(e).__name__} {e} → bỏ qua, không chặn tập)")
+
+
 def prepare_video(video, prof, handle, idx, lang="", on_line=None):
     """B2 cào transcript + phát hiện giọng → ghi competitor.txt + voice.json. Trả (dir, voice_dict).
 
@@ -101,6 +117,7 @@ def prepare_video(video, prof, handle, idx, lang="", on_line=None):
         if not (ok and comp.exists()):
             emit(f"✗ B2 không cào được transcript {vid}")
             return d, None
+        _ghi_video_goc(d, video, vid, prof, emit)
     # 🎙 giọng theo video (ghi voice.json để render_engine + brain đọc)
     vj = d / "voice.json"
     if vj.exists():

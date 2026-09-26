@@ -519,8 +519,12 @@ def main():
         # --bgm-keep-voice (Lane K 2026-09-24): amix mặc định CHIA ĐÔI mọi đầu vào → giọng tụt 6 dB so với
         # bản không nhạc. normalize=0 giữ nguyên mức giọng đã loudnorm ở B4. Lane cũ không khai → như cũ.
         norm = ":normalize=0" if args.bgm_keep_voice else ""
+        # 2026-09-25 (vá theo YEU_CAU_MAY1_..._b8q_do_nham_file.md): amix normalize=0 cộng dồn giọng+BGM
+        # KHÔNG có limiter/true-peak → đo thật lane K ep02 đỉnh +0.5 dBFS (vỡ nhẹ). alimiter chặn trần
+        # -1 dBTP (limit=0.891 ~ -1dB) mà không đổi cảm giác to/nhỏ tương đối giữa giọng và nhạc.
         fc.append(f"[{na_idx}:a]volume=1.0[na];[{bg_idx}:a]volume={args.bgm_volume}[bg];"
-                  f"[na][bg]amix=inputs=2:duration=first:dropout_transition=3{norm}[a]")
+                  f"[na][bg]amix=inputs=2:duration=first:dropout_transition=3{norm}[amix];"
+                  f"[amix]alimiter=limit=0.891[a]")
         amap = "[a]"
     elif args.audio:
         amap = f"{na_idx}:a"

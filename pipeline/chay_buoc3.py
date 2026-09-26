@@ -386,7 +386,12 @@ def main():
 
         # ---------- XONG — báo cáo ĐẠT ----------
         pub = prof.get("publish") or {}
-        giao = Path(pub.get("upload_dir") or "") / str(pub.get("upload_channel")) / tap.name
+        # Giống giao_hang.py (anh chốt 2026-09-25): đích results\video_render\ đặt theo TÊN TAB,
+        # đích CHANEL\ giữ tên kênh không tiền tố.
+        _goc_giao = Path(pub.get("upload_dir") or "")
+        _ten = (pub.get("sheet_tab") if "video_render" in _goc_giao.as_posix()
+                else None) or pub.get("upload_channel")
+        giao = _goc_giao / str(_ten) / tap.name
         muc4 = [str(giao)]
         tong = (time.perf_counter() - t_dau) / 60
         ket_qua = f"ĐẠT (tổng {tong:.1f} phút)"

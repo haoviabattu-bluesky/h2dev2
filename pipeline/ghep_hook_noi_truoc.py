@@ -47,8 +47,67 @@ def lufs(p, giay=None):
     return float(m[-1]) if m else None
 
 
+def _giua(roles, i):
+    """Điểm cắt sau câu i: giữa khoảng lặng tới câu i+1 (không có câu sau → +0,3s)."""
+    e, nxt = roles[i]["end"], roles.get(i + 1)
+    return round((e + nxt["start"]) / 2 if nxt else e + 0.3, 3)
+
+
+def neo_lai_theo_cau(tap: Path) -> bool:
+    """Lane L 2026-09-25: hook ghi mốc theo SỐ CÂU (`shots[].cau=[a,b]`, `sfx[].cau` + `lech`) thay vì giây.
+
+    Vì sao: giọng thân do MÁY 2 lồng lại bằng ai33 — không tất định, mỗi lượt đọc dài ngắn khác nhau — nên mốc giây
+    máy 1 đo trên giọng thử sẽ lệch hình/lời 1–2s. Ở đây tính lại giây từ `voice_roles.json` của CHÍNH giọng thân,
+    rồi cắt `hook_voice.mp3`/`.srt`/`_roles.json` từ giọng thân (THAY HÌNH giữ tiếng thân, file cắt chỉ để đo mức
+    tiếng + dựng bóng thoại hook). Timeline không có `cau` → không đụng gì (lane khác giữ nguyên hành vi cũ).
+    """
+    hook = tap / "hook"
+    f = hook / "hook_timeline.json"
+    tl = json.loads(f.read_text(encoding="utf-8"))
+    shots = tl["shots"]
+    if not shots or not all("cau" in s for s in shots):
+        return False
+    rf = tap / "voice_roles.json"
+    if not rf.exists():
+        sys.exit(f"✗ hook neo theo câu cần {rf} (B4 lồng tiếng đa giọng chưa chạy)")
+    roles = {int(r["i"]): r for r in json.loads(rf.read_text(encoding="utf-8"))}
+    truoc = 0
+    for k, s in enumerate(shots):
+        a, b = int(s["cau"][0]), int(s["cau"][1])
+        if a != truoc + 1 or b < a or b not in roles:
+            sys.exit(f"✗ hook cảnh {s.get('n')}: cau={s['cau']} không nối tiếp cảnh trước / vượt số câu thân")
+        truoc = b
+        s["t0"] = 0.0 if k == 0 else shots[k - 1]["t1"]
+        s["t1"] = _giua(roles, b)
+        if s["t1"] - s["t0"] < 0.5:
+            sys.exit(f"✗ hook cảnh {s.get('n')} chỉ {s['t1'] - s['t0']:.2f}s — gộp câu lại ở máy 1")
+    for x in tl.get("sfx", []):
+        if "cau" in x:
+            x["t"] = round(roles[int(x["cau"])]["start"] + float(x.get("lech", 0)), 3)
+    T = shots[-1]["t1"]
+    tl["hook_voice_end_s"] = T
+    f.write_text(json.dumps(tl, ensure_ascii=False, indent=1), encoding="utf-8")
+    voice = tap / "voice.mp3"
+    if not voice.exists():
+        sys.exit(f"✗ thiếu {voice}")
+    subprocess.run([FF, "-y", "-v", "error", "-i", str(voice), "-t", f"{T:.3f}", "-c:a", "libmp3lame", "-q:a", "2",
+                    str(hook / "hook_voice.mp3")], check=True)
+    r_hook = [dict(r, end=min(r["end"], T)) for r in roles.values() if r["start"] < T]
+    (hook / "hook_voice_roles.json").write_text(json.dumps(r_hook, ensure_ascii=False, indent=1), encoding="utf-8")
+    srt = next((tap / t for t in ("voice.srt", "voice_paced.srt") if (tap / t).exists()), None)
+    if srt:
+        cues = [(a, min(b, T), t) for a, b, t in _doc_cue(srt) if a < T]
+        (hook / "hook_voice.srt").write_text(
+            "\n".join(f"{i}\n{_tc(a)} --> {_tc(b)}\n{t}\n" for i, (a, b, t) in enumerate(cues, 1)), encoding="utf-8")
+    print(f"hook neo theo câu: {len(shots)} cảnh = câu 1–{truoc} của giọng thân → T = {T:.2f}s "
+          f"(cắt hook_voice.mp3/srt/roles từ voice.mp3)")
+    return True
+
+
 def dung(tap: Path, xem_thu: bool, tate=None, bubble=None):
     hook = tap / "hook"
+    if not xem_thu:
+        neo_lai_theo_cau(tap)
     tl = json.loads((hook / "hook_timeline.json").read_text(encoding="utf-8"))
     shots = tl["shots"]
     thieu = [s["clip"] for s in shots if not (hook / s["clip"]).exists()]
@@ -175,6 +234,11 @@ def dung(tap: Path, xem_thu: bool, tate=None, bubble=None):
         sys.exit("✗ độ dài lệch > 0,5s — KHÔNG giao, báo máy 1")
     lh2 = lufs(out, T)
     print(f"  nghiệm thu mức tiếng: đoạn hook {lh2} LUFS (thân gốc {lufs(final, 180)} LUFS)")
+    # B10 (qc_final.kiem_hook) đòi bản ghi này — ghi ngay khi ghép xong, không để người chạy tự ghi.
+    (hook / "render_info.json").write_text(json.dumps({
+        "mode": "thay_hinh" if thay_hinh else "noi_truoc", "T_hook": round(T, 3), "shots": len(shots),
+        "out": out.name, "dur_out": round(d_out, 3), "dur_final": round(d_final, 3), "fps": fps, "w": W, "h": H},
+        ensure_ascii=False, indent=1), encoding="utf-8")
     if thay_hinh:
         print("  phụ đề: dùng nguyên voice.srt (mốc không đổi vì hook nằm trong thân)")
         return

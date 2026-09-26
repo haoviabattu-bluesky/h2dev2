@@ -81,6 +81,9 @@ JOB_FILES = ["script.txt", "script.lock.json", "characters.json", "img_prompts.t
 # theo gói sang máy 2: hook bị rơi mất hoàn toàn mà không cổng nào biết (giống bài học cũ ở
 # drive_handoff.py về `_ref/`, xem docstring đầu file drive_handoff.py mục 2).
 HOOK_FILES_GOC = ["hook_locked.txt", "hook_lock.json", "hook_storyboard.json", "grok_jobs.csv",
+                  # 2026-09-25 (vá theo YEU_CAU_MAY1_..._thieu_hook_promise.md): thiếu file này làm
+                  # hook_stage.promise_snapshot() không tìm thấy hash gốc → mọi tập kẹt HOOK_STALE ở B4.
+                  "promise.txt",
                   # 2026-09-24 (anh chốt, MỌI lane): MÁY 1 tự vẽ ảnh hook + sinh clip hook, máy 2 CHỈ GHÉP
                   # → gói phải mang đủ ảnh + clip + SFX + mốc cắt + công cụ ghép (xem docs/QUY_TAC_VIDEO_HOOK.md §0).
                   "hook_timeline.json", "img_prompts_hook.txt", "GROK_HUONG_DAN.md", "hook_voice.mp3",

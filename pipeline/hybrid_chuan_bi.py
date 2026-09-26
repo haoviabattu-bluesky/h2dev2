@@ -46,6 +46,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import gate_common   # noqa: E402  (rao STALE fingerprint, P0 2026-09-18)
 import qc_img_doan   # noqa: E402  (rao invariant mapping img_doan.txt, P0 2026-09-18)
+import profiles      # noqa: E402  (lay publish.upload_channel de dung duong ket qua)
+import duong_ket_qua # noqa: E402  (results\img_render\<kenh>\<slug>, chot 2026-09-25)
 
 
 def read_tsv(path: Path):
@@ -122,7 +124,13 @@ def main():
     ai_lines = sorted(ai_group | fallback_group)
 
     # ---- B. Copy anh nhom AI tu FlowHandoff (may 2) vao img/ --------------------------------
-    fh = Path(a.flowhandoff) if a.flowhandoff else (HERE.parent / "FlowHandoff_local" / "results" / name)
+    if a.flowhandoff:
+        fh = Path(a.flowhandoff)
+    else:
+        _pub = (profiles.load(a.profile).get("publish") or {})
+        _tab = _pub.get("sheet_tab") or _pub.get("upload_channel") or a.profile
+        fh = (duong_ket_qua.tim_anh(name, _tab, _pub.get("upload_channel"))
+              or duong_ket_qua.dich_anh(name, _tab))
     copied = 0
     if fh.is_dir():
         for p in fh.glob("*.png"):

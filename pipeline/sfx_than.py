@@ -93,7 +93,11 @@ def plan(prof, d: Path):
         cues.append({"i": c["i"], "start": t, "vai": vai.get(c["i"], "?"), "text": c["text"], "para": c["para"]})
         t += len(cau_vai._chuan(c["text"])) / cps + 0.4
     # hook (đoạn 1 khi script mở bằng hook) đã có SFX riêng trong hook_timeline.json → bỏ
-    than = [c for c in cues if not ((d / "hook" / "hook_locked.txt").exists() and c["para"] == 1)]
+    # 2026-09-25 (ep02): hook viết mỗi câu 1 dòng → trải nhiều "đoạn" (cau_vai: mỗi dòng = 1 đoạn), bỏ para==1 là SÓT
+    # câu hook 2..n → tiếng thân chồng tiếng hook. Bỏ theo SỐ CÂU của hook_locked.txt (script mở bằng hook).
+    hl = d / "hook" / "hook_locked.txt"
+    n_hook = len(cau_vai.tach_cau(hl.read_text(encoding="utf-8"))) if hl.exists() else 0
+    than = [c for c in cues if c["i"] > n_hook]
     r = claude_p_bridge.ask(_prompt(than, bank, cfg), model=claude_p_bridge.patch_model_of(prof), timeout=1500,
                             min_chars=20)
     (d / "logs").mkdir(exist_ok=True)

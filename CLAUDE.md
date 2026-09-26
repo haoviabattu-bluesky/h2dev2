@@ -316,6 +316,13 @@ LOCAL — **đọc đầy đủ ở `docs/QC_THUMBNAIL_GPT_SOL.md`** (endpoint/m
 + `pipeline/gen_thumb_bg_prompt_sol.py`, cách khai form riêng từng lane qua `profile.thumbnail_qc`,
 bẫy "lỗi tưởng ở ảnh AI nhưng thật ra ở tool overlay chữ"). Ví dụ đã khai thật: `kenko-chiebukuro.json`.
 
+## 🛟 GEMINI HỎNG → TỰ RƠI SANG MODEL KHÁC (2026-09-26, mọi lane + CẢ 2 MÁY, không phải khai gì)
+Mọi bước dùng `gemini-3.8-flash` nay có lưới, bật sẵn trong `pipeline/llm_client.py` (chữ) +
+`pipeline/qc_character.py` (nhìn ảnh). Nhìn ảnh: ramclouds gemini → ns24 deepseek-v4.1-flash →
+hhtech glm-5.3-flash → gpt-5.6-sol. **9router tự nhận máy** (máy 1 dùng, máy 2 bỏ qua trong 0,4
+giây) nên lưới chạy được ở cả nơi QC ảnh của máy 2. Bảng "bước nào gemini làm gì" · số đo 15 model
+rẻ ở 3 proxy · bẫy model-suy-nghĩ ăn hết `max_tokens`: `docs/FALLBACK_GEMINI_SANG_SOL.md`.
+
 ## 📝✅ QC KỊCH BẢN ĐỘC LẬP BẰNG GPT-5.6-SOL (verify thật 2026-09-18, mọi lane dùng chung)
 Lớp QC THỨ HAI cho KỊCH BẢN (khác Gemini đang dùng ở B3Q/B3F), cùng mô hình với QC thumbnail ở trên
 — **đọc đầy đủ ở `docs/QC_SCRIPT_GPT_SOL.md`** (bước **B3S** trong `make_video.py`, tool
@@ -396,11 +403,44 @@ và rẽ nhánh ở `b8_assemble`, giữ nguyên nhánh xfade cũ.
 sinh `timeline.csv` và viết spec; chạy ghép là việc của agent bước 3.
 
 ## QUY TẮC LÀM VIỆC DỰ ÁN NÀY
-00. ⛔ **CHỖ MÁY 2 TRẢ HÀNG — MỘT CHỖ DUY NHẤT, MỌI LANE (chốt 2026-09-24):**
-   `FlowHandoff_local\results\video_render\<publish.upload_channel>\<slug>\` (vd lane E:
-   `results\video_render\kenko-chiebukuro\<slug>\`). KHÔNG theo tên tab sheet (tên tab đổi được), KHÔNG
-   `results\<slug>\`. Nguồn chân lý = dòng TRẢ HÀNG trong `_BANGIAO.txt` do `pipeline\dong_goi_may2.py` sinh —
-   viết đơn/SOP/giao việc nào cũng CHỈ chép dòng đó, cấm tự gõ đường dẫn khác. Chi tiết: `docs/QUY_TRINH_GIAO_VIEC_MAY2.md` §6.
+0000. ⛔ **VIDEO GỐC TỪNG TẬP — MỌI LANE, kể cả lane mới khởi tạo (chốt 2026-09-25, giao bởi
+   `E:\CLAUDE\YOUTUBE\YT-TITLE-RESEARCH\docs\GIAO_VIEC_H2DEV_VIDEO_GOC_TUNG_TAP_2026-09-25.md`):**
+   dự án tiêu đề `YT-TITLE-RESEARCH` viết tiêu đề/mô tả/thumbnail bằng cách đối chiếu với VIDEO GỐC mà
+   tập đó nhân bản (giữ cấu trúc tiêu đề + mô-típ thumbnail + tags của video gốc) — thiếu ID video gốc
+   là bên đó không làm được việc. Ở BƯỚC 2 (nơi ghi `competitor.txt`), pipeline **tự động** ghi
+   `<thư mục tập>\video_goc.json` + cập nhật `assets\<lane>\VIDEO_GOC.json` + thêm dòng "Video gốc:"
+   vào `HOOK_TAP.md` — đã nối sẵn trong `pipeline\video_goc.py` (gọi từ `make_video.py::b2_competitor`
+   VÀ `brain_channel.py::prepare_video`, bổ trợ không chặn tập nếu lỗi). **KHÔNG cần làm gì thêm khi
+   B2 chạy qua 1 trong 2 hàm đó** — chỉ khi viết B2 kiểu MỚI (không dùng `make_video.py`/`brain_channel.py`)
+   mới phải tự gọi `video_goc.ghi_video_goc(...)`.
+   ⚠️ Không ghi khi B2 rơi vào nhánh MƯỢN `_khung_nhip.txt` dùng chung cả lane (competitor.txt lúc đó
+   chỉ dạy NHỊP kể, không phải nguồn nội dung của tập — ghi video đó vào `video_goc` là SAI, gây hiểu
+   nhầm bên tiêu đề đi sao chép nhầm tiêu đề của 1 video không liên quan chủ đề). Lane không có khái
+   niệm "video gốc" (vd Lane D `irogatatarukioku` dựng từ ảnh/lịch sử thật, không clone 1 video) thì
+   để `video_goc: null` kèm lý do trong `VIDEO_GOC.json` — KHÔNG bỏ qua file, vẫn phải có file với lý
+   do rõ ràng để bên kia biết là "đã kiểm, không áp dụng" chứ không phải "quên làm".
+   Backfill lane cũ/tập cũ (chưa từng chạy qua bản pipeline đã vá): `py -3.13 pipeline\video_goc.py
+   --scan --profile <lane> --channel-dna-dir docs\channel_dna\<slug> --channel "<tên kênh mẫu>"`
+   (so `competitor.txt` với `docs\channel_dna\<slug>\_raw\transcripts.json` bằng difflib, ratio ≥0.9
+   = `chac_chan`, 0.3–0.9 = `uoc_doan`, dưới nữa = null + lý do — KHÔNG BAO GIỜ bịa ID khi ratio thấp).
+00. ⛔ **CHỖ MÁY 2 TRẢ HÀNG — MỌI NHÁNH ĐỀU CÓ TẦNG LANE (anh chốt lại 2026-09-25, thay bản 24/09):**
+   `results\img_render\<sheet_tab>\<slug>\` (ảnh) · `results\video_render\<sheet_tab>\<slug>\` (video) ·
+   `results\channel_dna\<slug kênh mẫu>\` · `results\nghien_cuu\<mã lane>\`. **Cấm để thư mục `<slug>` nằm
+   thẳng ở gốc `results\`.** ⛔ **TÊN THƯ MỤC BẮT BUỘC LÀ TÊN TAB SHEET** (`publish.sheet_tab`, vd
+   `E-70dai-kenko` · `L-shakai-no-naze`) — anh chốt 2026-09-25, **không có ngoại lệ**: thấy thư mục nào
+   trong `img_render\`/`video_render\` mang tên khác tên tab thì **đổi ngay**, đừng để đó rồi báo cáo.
+   Kiểm bằng `duong_ket_qua.kiem_ten_thu_muc()`. Lý do: tên tab có sẵn chữ cái lane, nhìn là biết của ai.
+   ⭐ **SỬA 2026-09-25 16:19 — `CHANEL\` GIỜ CŨNG ĐỔI THEO TÊN TAB, không còn giữ tên kênh không tiền tố
+   như dòng cũ ghi lúc chiều cùng ngày** (đo thật: mọi lane có tab đều đã đổi —
+   `CHANEL\K-yakkyoku-sukatto\`, `CHANEL\E-70dai-kenko\`, `CHANEL\A-shinya_shiryoshitsu\`... — riêng
+   `irogatatarukioku` (Lane D) chưa có tab nên còn tên cũ). Cấu hình dự án TITLE (`deliver_root` trong
+   `YT-TITLE-RESEARCH\config\lanes\<id>.json` + `.thumb.yaml`) đã đổi theo, có bản `.bak-...-doi-ten-chanel`
+   cạnh mỗi file làm chứng. Tra đường bằng `pipeline\duong_ket_qua.py`, cấm hardcode — thấy tài liệu nào
+   (kể cả file `shared\` cũ) còn ghi CHANEL không tiền tố thì tin theo TRẠNG THÁI ĐĨA THẬT, không tin theo
+   chữ trong tài liệu.
+   ⚠️ `results\` ở máy 1 là **receiveonly** → cấu trúc do MÁY 2 quyết định: muốn đổi bố cục thì **ra đơn cho
+   máy 2**, máy 1 tự `mv` là vô nghĩa (Syncthing không gửi đi, kéo bản cũ về lại) và **xoá mất file thật**
+   (25/09 mất 4 video Lane E kiểu này). Chi tiết + lý do: `docs/QUY_TRINH_GIAO_VIEC_MAY2.md` §6.0.
 000. ⛔ **XONG TẬP (phần máy 1) = GHI SHEET NGAY, MỌI lane (anh chốt 2026-09-24):** tab `{Lane}-{kênh}` →
    **cột D (KỊCH BẢN) = `Done`** + **cột H (STATUS-IMG) = `cần ảnh (N ảnh, ~Xđ)`** (= lệnh giao việc để máy 2
    biết mà làm). `pipeline\dong_goi_may2.py --job` tự ghi cả hai; đóng gói tay/làm ngoài công cụ thì phải tự ghi.

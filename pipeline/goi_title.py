@@ -170,13 +170,18 @@ def _cmd(args):
     return [sys.executable, "-X", "utf8", str(TITLE_CLI), *args]
 
 
+# worker cha chạy DETACHED (không console) → con nếu không xin CREATE_NO_WINDOW sẽ bị
+# Windows tự cấp console MỚI và HIỆN LÊN cho từng lệnh cli.py (nháy cửa sổ đen liên tục)
+_NO_WINDOW = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
+
+
 def _chay(args, log, out_path):
     """Chạy 1 lệnh cli.py, ghi THẲNG stdout vào out_path (xem được khi đang chạy). Trả exit code."""
     log(f"$ cli.py {' '.join(args)}")
     with open(out_path, "a", encoding="utf-8") as fo:
         fo.flush()
         r = subprocess.run(_cmd(args), cwd=str(TITLE_ROOT), stdout=fo, stderr=subprocess.STDOUT,
-                           env={**os.environ, "PYTHONUNBUFFERED": "1"})
+                           env={**os.environ, "PYTHONUNBUFFERED": "1"}, creationflags=_NO_WINDOW)
     return r.returncode
 
 
@@ -184,7 +189,8 @@ def _thumb_co_auto():
     """Bên TITLE đã có cờ `thumb --auto` (phương án B) chưa — có thì dùng, chưa thì chạy như cũ."""
     try:
         r = subprocess.run(_cmd(["thumb", "--help"]), cwd=str(TITLE_ROOT), capture_output=True,
-                           text=True, encoding="utf-8", errors="replace", timeout=60)
+                           text=True, encoding="utf-8", errors="replace", timeout=60,
+                           creationflags=_NO_WINDOW)
         return "--auto" in (r.stdout or "")
     except Exception:
         return False
@@ -227,9 +233,9 @@ def worker(profile_id, job_dir: Path):
                 open(research / "TU_DONG_TITLE.thumb.log", "a", encoding="utf-8") as fh:
             p_tags = subprocess.Popen(_cmd(["tags", *sl, "--write"]),   # --write: ghi cột F khi PASS (thiếu cờ này ep04 lane E không lên Sheet, sửa 2026-09-24)
                                       cwd=str(TITLE_ROOT), stdout=ft,
-                                      stderr=subprocess.STDOUT, env=env)
+                                      stderr=subprocess.STDOUT, env=env, creationflags=_NO_WINDOW)
             p_thumb = subprocess.Popen(_cmd(thumb_args), cwd=str(TITLE_ROOT), stdout=fh,
-                                       stderr=subprocess.STDOUT, env=env)
+                                       stderr=subprocess.STDOUT, env=env, creationflags=_NO_WINDOW)
             rc_thumb = p_thumb.wait()
             rc_tags = p_tags.wait()
         log(f"  tags exit {rc_tags} · thumb exit {rc_thumb}")

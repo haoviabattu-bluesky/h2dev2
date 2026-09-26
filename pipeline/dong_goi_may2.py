@@ -69,6 +69,8 @@ JOB_FILES = ["script.txt", "script.lock.json", "characters.json", "img_prompts.t
              # cùng MỘT lời hứa với hook). `promise.txt` đi kèm vì nó là lời hứa gốc mà cả hai
              # bên phải bám — thiếu là bên kia viết tiêu đề trên file rỗng nghĩa.
              "HOOK_TAP.md", "promise.txt",
+             # 2026-09-26 (máy 2 báo thiếu ở gốc tập, CLAUDE.md quy tắc 0000): ID video gốc đi kèm job.
+             "video_goc.json",
              # 2026-09-24 Lane K (đa giọng): vai.txt = câu nào ai đọc (máy 1 gắn, máy 2 lồng tiếng + vẽ bóng thoại theo đó)
              "vai.txt", "yomi.txt",
              # 2026-09-24 Lane L: chỗ đặt hiệu ứng âm thanh thân video (máy 1 chọn theo nội dung, máy 2 B8 trộn)
@@ -150,7 +152,7 @@ def _bundle_profiles(profile_ids):
                              "tuyet doi cua may 1 — profiles bundle nay do dong_goi_may2.py --bundle "
                              "ghi tu dong, sua tay se mat khi chay lai --bundle.")
         (dst / f"{pid}.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-        (BUNDLE / "assets" / pid).mkdir(parents=True, exist_ok=True)
+        (BUNDLE / data.get("slug_dir", f"assets/{pid}")).mkdir(parents=True, exist_ok=True)   # Lane M: slug_dir ≠ id
         # Nhạc nền lane (assemble.bgm, đường dẫn tính từ ROOT): make_video máy 2 tra ROOT/<bgm> = gốc bundle,
         # không có file là B8 LẶNG LẼ dựng video KHÔNG nhạc (nhánh `if ... exists()`) → phải chép kèm.
         bgm = (data.get("assemble") or {}).get("bgm")

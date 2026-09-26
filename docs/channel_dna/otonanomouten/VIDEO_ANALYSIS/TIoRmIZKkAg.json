@@ -1,0 +1,51 @@
+{
+  "topics": [
+    "定年後",
+    "60代",
+    "アルバイト",
+    "パート",
+    "後悔",
+    "シニア再就職",
+    "仕事選び",
+    "客室清掃",
+    "求人票"
+  ],
+  "hook_type": "Mở đầu trực tiếp bằng cảnh hiện trường kịch tính khi nhân vật chính đang chật vật dọn phòng và bị giục thời gian",
+  "hook_0_30s": "このシーツ様よ隅あるよな。どうして 5つ目が出てくるんだ? 高瀬さん、そこはもう 7分です。あと6部屋あります。 7 分?家なら掃除機を出すか迷っている時間だ。午前 11時18分。県一の腰はすでに午後 6時だった。 枕の向きが逆です。髪の毛も 1本残っています。 髪の毛1本に私の最終職が負けるのか。",
+  "hook_4_nhip": {
+    "event": "高瀬健一がホテルの客室清掃でシーツの四隅に苦戦し、残り時間を急かされる。",
+    "contradiction": "7分経過でまだあと6部屋あり、家なら掃除機を出すか迷うわずかな時間なのに現場では限界を迎えている。",
+    "stake": "腰の限界と「髪の毛1本に私の再就職が負けるのか」という再就職失敗への焦り・絶望感。",
+    "open_loop": "求人票に書かれた『簡単清掃』が、なぜ60代にとって想定外の落とし穴になるのか。"
+  },
+  "hook_kind": "C mâu thuẫn",
+  "hook_score_0_12": 11,
+  "loi_hua_video": "定年後60代が「楽そう」と選んで後悔しがちなバイト・パート13選と、現場の落とし穴を見抜く5つの数字を教える。",
+  "promise_match": {
+    "title": "PASS",
+    "description": "PASS",
+    "thumbnail": "NA",
+    "hook": "PASS",
+    "verdict": "PASS",
+    "ly_do": "Tiêu đề, mô tả và mở đầu 30s đều đồng nhất về trải nghiệm vỡ mộng khi chọn việc tưởng nhàn hạ sau tuổi 60 và hướng dẫn cách tránh bẫy tuyển dụng; thumbnail không có dữ liệu để đánh giá."
+  },
+  "cap_khop": {
+    "hook_tieu_de": "Khớp",
+    "thumbnail_tieu_de": "Lệch",
+    "thumbnail_hook": "Lệch",
+    "ly_do": "Hook minh họa trực tiếp cho công việc top 1 khiến người 60 tuổi hối hận vì tưởng nhàn như tiêu đề nêu · Chưa đọc được ảnh thumbnail nên để trống · Chưa đọc được ảnh thumbnail nên để trống"
+  },
+  "structure": "Kịch bản manga drama mở màn bằng thất bại dọn phòng thực tế, hồi tưởng buổi tư vấn việc làm, lần lượt bóc tách 13 công việc từ hạng 13 về hạng 1 cùng 5 chỉ số ẩn sau求人, kết thúc bằng bài học chọn việc có quãng nghỉ hồi phục.",
+  "emotional_beats": [
+    "Bối rối và kiệt sức tại hiện trường làm việc",
+    "Đồng cảm với áp lực tài chính và thể lực của tuổi 60",
+    "Tỉnh ngộ trước những bẫy tuyển dụng vô hình",
+    "Nhẹ nhõm và an tâm khi tìm được công việc phù hợp với nhịp sống"
+  ],
+  "title_formula": "【漫画】[Đối tượng]が「[Đặc điểm lầm tưởng]」で選ぶと後悔する[Loại hình công việc] [Số lượng]選｜[Góc khuất/Hệ quả]",
+  "notes": "Video giải quyết insight thực tế của người cao tuổi Nhật Bản khi tái hòa nhập thị trường lao động; khéo léo kết hợp dữ liệu thống kê của chính phủ với khung phân tích '5 con số cần hỏi trước khi nhận việc'.",
+  "video_id": "TIoRmIZKkAg",
+  "title": "【漫画】60代が「楽そう」で選ぶと後悔するアルバイト・パート13選｜定年後の仕事選びの落とし穴",
+  "view_count": 10000,
+  "duration_min": 38.1
+}

@@ -1,0 +1,50 @@
+{
+  "topics": [
+    "60代",
+    "定年後",
+    "人間関係",
+    "口癖",
+    "コミュニケーション",
+    "シニア",
+    "孤独回避",
+    "漫画ドラマ"
+  ],
+  "hook_type": "Đồng cảm nỗi đau bị cô lập vô thức và lật ngược nguyên nhân bằng nghịch lý 'quá đúng đắn'",
+  "hook_0_30s": "60代になってから近所で話しかけられる 回数が減った。バイト先でなぜか自分だけ 相談されない。家に帰ると妻や子供が話の 途中で黙る。もし1つでも心当たりがある なら性格が悪いから嫌われたとは限らない 。正しいことを言いすぎて相手がもう話さ なくていいと思っているのかもしれない。 この動画では周りから自然に頼られる60",
+  "hook_4_nhip": {
+    "event": "60代になってから近所やバイト先、家庭で急に話しかけられなくなる",
+    "contradiction": "性格が悪いからではなく、正しいことを言いすぎているせいで敬遠されている",
+    "stake": "無意識のうちに人が静かに離れていき、定年後に居場所を失う孤独感",
+    "open_loop": "周りから自然に頼られ愛されるようになる7つの口癖とは何か"
+  },
+  "hook_kind": "C mâu thuẫn",
+  "hook_score_0_12": 10,
+  "loi_hua_video": "周りから自然に愛され頼られる60代になるための具体的な7つの魔法の口癖と人間関係改善の秘訣を漫画ドラマで教える。",
+  "promise_match": {
+    "title": "PASS",
+    "description": "PASS",
+    "thumbnail": "NA",
+    "hook": "PASS",
+    "verdict": "PASS",
+    "ly_do": "Tiêu đề, mô tả và 30s đầu đều thống nhất hứa hẹn về 7 câu cửa miệng giúp người U60 được yêu quý và khắc phục tình trạng bị xa lánh."
+  },
+  "cap_khop": {
+    "hook_tieu_de": "Khớp",
+    "thumbnail_tieu_de": "Một phần",
+    "thumbnail_hook": "Một phần",
+    "ly_do": "Hook tái hiện trực tiếp tiền đề và lời hứa của tiêu đề · Không có dữ liệu chữ thumbnail nên để mặc định trung tính · Không có dữ liệu chữ thumbnail nên để mặc định trung tính"
+  },
+  "structure": "Video mở đầu bằng khủng hoảng bị gạt tên khỏi trực nhật xóm của nhân vật chính, sau đó lần lượt lồng ghép câu chuyện đi làm thêm/gia đình để tiết lộ và ứng dụng 7 câu cửa miệng từ hạng 7 đến hạng 1, kết lại bằng bài học chiêm nghiệm.",
+  "emotional_beats": [
+    "Hụt hẫng khi bị ngấm ngầm cô lập",
+    "Cay đắng nhận ra sự bảo thủ của bản thân",
+    "Thấu hiểu góc nhìn người khác",
+    "Ấm áp và nhẹ nhõm khi được đón nhận trở lại"
+  ],
+  "title_formula": "【漫画】周りから愛される[Target]が使う魔法の[Phương pháp/Vật phẩm]N選｜[Lợi ích lớn]",
+  "notes": "Cách kể chuyện dạng漫画ドラマ khéo léo kết hợp giữa câu chuyện đời thường (trực nhật tổ dân phố, làm thêm quán cơm) với định dạng danh sách (ranking 7 bí quyết) giúp giữ chân người xem cao tuổi rất tốt.",
+  "video_id": "vritvBsvYjc",
+  "title": "【漫画】周りから愛される60代が使う魔法の口癖7選｜幸せな人生・人間関係を作る秘訣",
+  "view_count": 11000,
+  "duration_min": 28.5
+}

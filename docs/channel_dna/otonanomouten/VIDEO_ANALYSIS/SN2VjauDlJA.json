@@ -1,0 +1,53 @@
+{
+  "topics": [
+    "定年後",
+    "シニアの仕事",
+    "再就職",
+    "アルバイト",
+    "パート",
+    "老後資金",
+    "夫婦関係",
+    "生きがい",
+    "働き方"
+  ],
+  "hook_type": "Kể lại trải nghiệm thể xác kiệt sức lúc 6 giờ sáng và sự rạn nứt lời hứa với người vợ ngay sau ngày đi làm thêm ngắn hạn.",
+  "hook_0_30s": "朝6 時右のふハぎが痛くて目覚ましより先に目が覚めた。昨日は 3 時間しか働いていないなのに階段では手すりを離せない。足が重く 1段降りるたびに力が入る。 今日も行くの休みだって言ってなかった? 1 人足りないそうなんだ。 うちも1人足りないんだけど。 [泣き声]食卓には2 人で出かけるはずだった買い物のメモがあった。俺は高瀬一",
+  "hook_4_nhip": {
+    "event": "朝6時に右のふくらはぎが痛くて目覚ましより先に目が覚め、手すりを離せない足取りで階段を降りる。",
+    "contradiction": "昨日は3時間しか働いていないのに体が重く、休みと言っていたはずなのに人手不足を理由にまた出勤しようとする。",
+    "stake": "妻から「うちも1人足りないんだけど」と泣かれ、食卓に残された買い物メモと夫婦の約束を反故にしてしまう罪悪感。",
+    "open_loop": "信用金庫を辞めてもう働かないはずだった男が、なぜ疲れても休みの日に出勤したくなるのかという疑問。"
+  },
+  "hook_kind": "C mâu thuẫn",
+  "hook_score_0_12": 11,
+  "loi_hua_video": "定年退職後にシニアが働き続ける7つの本当の理由と、家庭や健康を壊さずに無理なく続ける働き方の教訓を明かす。",
+  "promise_match": {
+    "title": "PASS",
+    "description": "PASS",
+    "thumbnail": "NA",
+    "hook": "PASS",
+    "verdict": "PASS",
+    "ly_do": "Tiêu đề, mô tả và hook mở đầu đều thống nhất dẫn dắt vào câu chuyện tìm kiếm lý do tại sao người trên 60 tuổi tiếp tục đi làm và cách điều chỉnh công việc phù hợp; thumbnail để NA do chưa có dữ liệu ảnh."
+  },
+  "cap_khop": {
+    "hook_tieu_de": "Khớp",
+    "thumbnail_tieu_de": "NA",
+    "thumbnail_hook": "NA",
+    "ly_do": "Hook mở đầu bằng mâu thuẫn gia đình và dẫn thẳng vào câu hỏi vì sao sau định niên vẫn đi làm cùng 7 lý do như tiêu đề nêu · Chưa đọc được ảnh thumbnail nên không đánh giá khớp với tiêu đề · Chưa đọc được ảnh thumbnail nên không đánh giá khớp với hook"
+  },
+  "structure": "Cấu trúc 7 chương dạng phim kịch manga ngôi thứ nhất, đan xen 7 lý do tâm lý/tài chính thực tế cùng số liệu chính sách việc làm cao niên, kết thúc bằng bài tập tình huống A/B/C kích thích bình luận.",
+  "emotional_beats": [
+    "Hụt hẫng và trống trải sau khi rời công sở",
+    "Va chạm thực tế và tự ái khi làm việc tay chân",
+    "Hưng phấn khi tìm lại cảm giác được cần đến",
+    "Lo âu tiền bạc và áp lực ngầm về hao hụt tiết kiệm",
+    "Cắn rứt vì bỏ quên người bạn đời",
+    "Thấu hiểu và tìm được điểm cân bằng giữa công việc và gia đình"
+  ],
+  "title_formula": "【漫画】＋ Câu hỏi nhức nhối số đông (なぜ〜が増えたのか？) ＋ Đối tượng & hoàn cảnh cụ thể (60代以降が退職後に...) ＋ Con số giải pháp (7つの理由とは)",
+  "notes": "Lồng ghép số liệu Bạch thư người cao tuổi Reiwa 7 và sự khác biệt giữa nghĩa vụ 65 tuổi với nỗ lực 70 tuổi rất tự nhiên vào drama tự sự; câu hỏi tình huống A/B/C ở phút 27:20 thúc đẩy tỉ lệ tương tác comment cao.",
+  "video_id": "SN2VjauDlJA",
+  "title": "【漫画】なぜ定年後も働き続けるシニアが増えたのか？60代以降が退職後に再就職・アルバイトをする7つの理由とは",
+  "view_count": 6600,
+  "duration_min": 30.1
+}

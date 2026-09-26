@@ -1,0 +1,50 @@
+{
+  "topics": [
+    "60代",
+    "定年後",
+    "趣味",
+    "一人遊び",
+    "老後生活",
+    "定年退職",
+    "シニアライフ"
+  ],
+  "hook_type": "Mở đầu kịch tính bằng tình huống bẽ mặt tại buổi tập huấn hưu trí khi lịch trình trống rỗng bị chiếu lên màn hình",
+  "hook_0_30s": "スクリーンに移された俺の予定表を見て 会議室の空気が一瞬だけ止まった。高瀬 さん、退職後の水曜日は朝から夜まで テレビということでよろしいですか?いや 、違います。これは仮です。まだ考えてい ないだけでやりたいことならいくらでも あります。では1つだけでも書いてみ ましょう。白い容姿の上で俺のペンは動か",
+  "hook_4_nhip": {
+    "event": "Lịch trình sau khi nghỉ hưu của nhân vật chính bị chiếu lên màn hình trước cả phòng họp",
+    "contradiction": "Bị hỏi thẳng có phải sau nghỉ hưu cả ngày chỉ xem tivi, nhân vật chống chế rằng mình có rất nhiều thứ muốn làm",
+    "stake": "Bị yêu cầu viết ra một thứ duy nhất thì bút hoàn toàn bất động, bộc lộ sự trống rỗng và xấu hổ tột cùng",
+    "open_loop": "Trước tờ giấy trắng tinh, nhân vật nhận ra mình thực sự không biết sẽ làm gì sau khi rời công ty"
+  },
+  "hook_kind": "C mâu thuẫn",
+  "hook_score_0_12": 11,
+  "loi_hua_video": "60代以降でも一人で無理なく一生続けられ、定年後の毎日が待ち遠しくなる娯楽・趣味の選び方とおすすめ7選を伝える。",
+  "promise_match": {
+    "title": "PASS",
+    "description": "PASS",
+    "thumbnail": "NA",
+    "hook": "PASS",
+    "verdict": "PASS",
+    "ly_do": "Tiêu đề, mô tả và đoạn hook mở đầu đều tập trung đồng nhất vào nỗi sợ hụt hẫng, không có việc gì làm sau khi nghỉ hưu ở tuổi 60 và hướng giải quyết bằng các thú vui một mình."
+  },
+  "cap_khop": {
+    "hook_tieu_de": "Khớp",
+    "thumbnail_tieu_de": "Một phần",
+    "thumbnail_hook": "Một phần",
+    "ly_do": "Hook tái hiện trực diện nỗi bế tắc không có sở thích mà tiêu đề hứa hẹn giải quyết · Thumbnail chưa có dữ liệu hình ảnh nên không thể đối chiếu trực tiếp với tiêu đề · Thumbnail chưa có dữ liệu hình ảnh nên không thể đối chiếu trực tiếp với hook"
+  },
+  "structure": "Video xây dựng dưới dạng truyện tranh kịch tính: mở đầu bằng khủng hoảng không có sở thích khi sắp nghỉ hưu, gặp người hướng dẫn tại trung tâm văn hóa để học các quy tắc chọn thú vui, lần lượt trải nghiệm bảng xếp hạng từ hạng 7 đến hạng 1 kèm 'mặt trái/độc tố' của từng món, và kết thúc bằng bài học giữ lại hai niềm vui phù hợp nhất.",
+  "emotional_beats": [
+    "Xấu hổ và hoảng loạn vì lịch trình hưu trí trống rỗng",
+    "Vỡ mộng khi nhận ra vợ có cuộc sống riêng còn mình phụ thuộc vào gia đình",
+    "Thức tỉnh khi được chỉ ra sai lầm vung tiền mua dụng cụ đắt tiền",
+    "Bất ngờ và thích thú khi thử nghiệm từng thú vui bình dị",
+    "Thanh thản và nhẹ nhõm khi chấp nhận sự không hoàn hảo và để lại khoảng trống cho cuộc sống"
+  ],
+  "title_formula": "【Định dạng】+ Đối tượng mục tiêu + Lợi ích/Đặc điểm cốt lõi + Danh sách con số + Giá trị cảm xúc/Kết quả kỳ vọng",
+  "notes": "Khai thác xuất sắc tâm lý sĩ diện của nam giới trung niên Nhật Bản khi về hưu (sợ bị coi là kẻ rảnh rỗi, thích mua đồ đắt tiền để ra vẻ本格派) và lồng ghép khéo léo triết lý 'độc tố của từng thú vui' để tạo chiều sâu thực tế thay vì chỉ liệt kê đơn thuần.",
+  "video_id": "do0n9Wirigs",
+  "title": "【漫画】60代以降でも一人で一生遊べる人気の娯楽・趣味7選｜定年後が待ち遠しくなる楽しみ",
+  "view_count": 26000,
+  "duration_min": 40.4
+}

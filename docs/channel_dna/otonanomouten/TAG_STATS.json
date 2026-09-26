@@ -1,0 +1,2545 @@
+{
+  "video_tags": {
+    "大人の盲点": {
+      "n_videos": 6,
+      "total_views": 146600,
+      "video_ids": [
+        "wG4fI9voims",
+        "do0n9Wirigs",
+        "vritvBsvYjc",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 24433
+    },
+    "60代の仕事": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "60代アルバイト": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "60代パート": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "60代男性仕事": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "60代再就職": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "定年後の仕事": {
+      "n_videos": 3,
+      "total_views": 108600,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 36200
+    },
+    "定年後再就職": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "定年後アルバイト": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "定年後パート": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "シニアの仕事": {
+      "n_videos": 2,
+      "total_views": 98600,
+      "video_ids": [
+        "wG4fI9voims",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 49300
+    },
+    "シニアアルバイト": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "シニアパート": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "シニア求人": {
+      "n_videos": 2,
+      "total_views": 102000,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 51000
+    },
+    "高齢者の仕事": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "高齢者アルバイト": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "老後の仕事": {
+      "n_videos": 2,
+      "total_views": 93000,
+      "video_ids": [
+        "wG4fI9voims",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 46500
+    },
+    "老後の働き方": {
+      "n_videos": 2,
+      "total_views": 102000,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 51000
+    },
+    "人気のアルバイト": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "気楽に働ける仕事": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "無理なく続く仕事": {
+      "n_videos": 2,
+      "total_views": 93000,
+      "video_ids": [
+        "wG4fI9voims",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 46500
+    },
+    "体が楽な仕事": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "座り仕事": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "接客が少ない仕事": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "短時間勤務": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "試験監督": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "駐輪場管理": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "マンション管理員": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "公共施設受付": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "スーパー品出し": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "書類点検": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "データ確認": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "検品作業": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "軽作業": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "再就職": {
+      "n_videos": 2,
+      "total_views": 98600,
+      "video_ids": [
+        "wG4fI9voims",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 49300
+    },
+    "求人票": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "仕事選び": {
+      "n_videos": 2,
+      "total_views": 102000,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 51000
+    },
+    "漫画": {
+      "n_videos": 4,
+      "total_views": 134600,
+      "video_ids": [
+        "wG4fI9voims",
+        "do0n9Wirigs",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 33650
+    },
+    "漫画動画": {
+      "n_videos": 4,
+      "total_views": 134600,
+      "video_ids": [
+        "wG4fI9voims",
+        "do0n9Wirigs",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 33650
+    },
+    "人生の盲点": {
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    "60代 趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "60代 娯楽": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "60代 暇つぶし": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "定年後 趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "定年後 娯楽": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "定年後 暇つぶし": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "定年後の過ごし方": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "老後 趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "老後 娯楽": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "老後の楽しみ": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "老後の生きがい": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "シニア 趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "シニア 娯楽": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "シニアライフ": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "セカンドライフ": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "一人でできる趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "一人で楽しめる趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "お金のかからない趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "長く続けられる趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "生涯楽しめる趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "趣味がない": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "定年後 やることがない": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "暇つぶし": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "最強の暇つぶし": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "娯楽7選": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "趣味7選": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "一人映画": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "図書館 読書": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "音声散歩": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "思い出料理": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "野鳥観察": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "定点写真": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "ものづくり": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "60代 男性 趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "70代 趣味": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "シニア向け漫画": {
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    "60代 口癖": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "60代 人間関係": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "愛される口癖": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "人に好かれる口癖": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "人が離れる口癖": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "人間関係 改善": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "60代 会話術": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "シニア 人間関係": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "定年後 人間関係": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "コミュニケーション": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "魔法の口癖": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "60代": {
+      "n_videos": 3,
+      "total_views": 18600,
+      "video_ids": [
+        "vritvBsvYjc",
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 6200
+    },
+    "好かれる人": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "好かれる話し方": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "人間関係": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "人間関係 うまくいかない": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "伝え方": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "シニア": {
+      "n_videos": 2,
+      "total_views": 17600,
+      "video_ids": [
+        "vritvBsvYjc",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 8800
+    },
+    "幸せな人生": {
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    "老後の生活": {
+      "n_videos": 2,
+      "total_views": 17600,
+      "video_ids": [
+        "vritvBsvYjc",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 8800
+    },
+    "60代 バイト": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "60代 アルバイト": {
+      "n_videos": 2,
+      "total_views": 11000,
+      "video_ids": [
+        "TIoRmIZKkAg",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 5500
+    },
+    "60代 パート": {
+      "n_videos": 2,
+      "total_views": 11000,
+      "video_ids": [
+        "TIoRmIZKkAg",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 5500
+    },
+    "60代 仕事": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "定年後 アルバイト": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "定年後 パート": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "定年後 再就職": {
+      "n_videos": 2,
+      "total_views": 11000,
+      "video_ids": [
+        "TIoRmIZKkAg",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 5500
+    },
+    "シニア バイト": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "シニア パート": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "シニアの仕事探し": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "再就職 60代": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "60代 男性 仕事": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "バイト きつい": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "バイト 後悔": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "パート 続かない": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "楽な仕事": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "短時間バイト": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "未経験歓迎": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "軽作業 きつい": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "コンビニ バイト": {
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    "定年後": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "定年後の再就職": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "定年後の生活": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "定年後の働き方": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "定年退職": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "60歳以降": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "60代の再就職": {
+      "n_videos": 2,
+      "total_views": 7600,
+      "video_ids": [
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 3800
+    },
+    "シニア就労": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "高齢者雇用": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "働くシニア": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "働き続ける理由": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "年金": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "老後資金": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "老後の不安": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "老後の生活費": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "シニアのアルバイト": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "年金生活": {
+      "n_videos": 2,
+      "total_views": 7600,
+      "video_ids": [
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 3800
+    },
+    "60歳": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "65歳": {
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    "60代 再就職": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "60代 再就職 アルバイト": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "シニア 再就職": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "シニア アルバイト": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "定年後 仕事": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "月5万円": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "月5万円 稼ぐ": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "アルバイト パート": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    "シニア歓迎 求人": {
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    }
+  },
+  "top_tags": [
+    {
+      "tag": "大人の盲点",
+      "n_videos": 6,
+      "total_views": 146600,
+      "video_ids": [
+        "wG4fI9voims",
+        "do0n9Wirigs",
+        "vritvBsvYjc",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 24433
+    },
+    {
+      "tag": "漫画",
+      "n_videos": 4,
+      "total_views": 134600,
+      "video_ids": [
+        "wG4fI9voims",
+        "do0n9Wirigs",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 33650
+    },
+    {
+      "tag": "漫画動画",
+      "n_videos": 4,
+      "total_views": 134600,
+      "video_ids": [
+        "wG4fI9voims",
+        "do0n9Wirigs",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 33650
+    },
+    {
+      "tag": "定年後の仕事",
+      "n_videos": 3,
+      "total_views": 108600,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 36200
+    },
+    {
+      "tag": "60代",
+      "n_videos": 3,
+      "total_views": 18600,
+      "video_ids": [
+        "vritvBsvYjc",
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 6200
+    },
+    {
+      "tag": "シニア求人",
+      "n_videos": 2,
+      "total_views": 102000,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 51000
+    },
+    {
+      "tag": "老後の働き方",
+      "n_videos": 2,
+      "total_views": 102000,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 51000
+    },
+    {
+      "tag": "仕事選び",
+      "n_videos": 2,
+      "total_views": 102000,
+      "video_ids": [
+        "wG4fI9voims",
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 51000
+    },
+    {
+      "tag": "シニアの仕事",
+      "n_videos": 2,
+      "total_views": 98600,
+      "video_ids": [
+        "wG4fI9voims",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 49300
+    },
+    {
+      "tag": "再就職",
+      "n_videos": 2,
+      "total_views": 98600,
+      "video_ids": [
+        "wG4fI9voims",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 49300
+    },
+    {
+      "tag": "老後の仕事",
+      "n_videos": 2,
+      "total_views": 93000,
+      "video_ids": [
+        "wG4fI9voims",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 46500
+    },
+    {
+      "tag": "無理なく続く仕事",
+      "n_videos": 2,
+      "total_views": 93000,
+      "video_ids": [
+        "wG4fI9voims",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 46500
+    },
+    {
+      "tag": "シニア",
+      "n_videos": 2,
+      "total_views": 17600,
+      "video_ids": [
+        "vritvBsvYjc",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 8800
+    },
+    {
+      "tag": "老後の生活",
+      "n_videos": 2,
+      "total_views": 17600,
+      "video_ids": [
+        "vritvBsvYjc",
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 8800
+    },
+    {
+      "tag": "60代 アルバイト",
+      "n_videos": 2,
+      "total_views": 11000,
+      "video_ids": [
+        "TIoRmIZKkAg",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 5500
+    },
+    {
+      "tag": "60代 パート",
+      "n_videos": 2,
+      "total_views": 11000,
+      "video_ids": [
+        "TIoRmIZKkAg",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 5500
+    },
+    {
+      "tag": "定年後 再就職",
+      "n_videos": 2,
+      "total_views": 11000,
+      "video_ids": [
+        "TIoRmIZKkAg",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 5500
+    },
+    {
+      "tag": "60代の再就職",
+      "n_videos": 2,
+      "total_views": 7600,
+      "video_ids": [
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 3800
+    },
+    {
+      "tag": "年金生活",
+      "n_videos": 2,
+      "total_views": 7600,
+      "video_ids": [
+        "SN2VjauDlJA",
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 3800
+    },
+    {
+      "tag": "60代の仕事",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "60代アルバイト",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "60代パート",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "60代男性仕事",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "60代再就職",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "定年後再就職",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "定年後アルバイト",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "定年後パート",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "シニアアルバイト",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "シニアパート",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "高齢者の仕事",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "高齢者アルバイト",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "人気のアルバイト",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "気楽に働ける仕事",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "体が楽な仕事",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "座り仕事",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "接客が少ない仕事",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "短時間勤務",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "試験監督",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "駐輪場管理",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "マンション管理員",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "公共施設受付",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "スーパー品出し",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "書類点検",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "データ確認",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "検品作業",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "軽作業",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "求人票",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "人生の盲点",
+      "n_videos": 1,
+      "total_views": 92000,
+      "video_ids": [
+        "wG4fI9voims"
+      ],
+      "avg_views": 92000
+    },
+    {
+      "tag": "60代 趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "60代 娯楽",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "60代 暇つぶし",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "定年後 趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "定年後 娯楽",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "定年後 暇つぶし",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "定年後の過ごし方",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "老後 趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "老後 娯楽",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "老後の楽しみ",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "老後の生きがい",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "シニア 趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "シニア 娯楽",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "シニアライフ",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "セカンドライフ",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "一人でできる趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "一人で楽しめる趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "お金のかからない趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "長く続けられる趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "生涯楽しめる趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "趣味がない",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "定年後 やることがない",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "暇つぶし",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "最強の暇つぶし",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "娯楽7選",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "趣味7選",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "一人映画",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "図書館 読書",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "音声散歩",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "思い出料理",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "野鳥観察",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "定点写真",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "ものづくり",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "60代 男性 趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "70代 趣味",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "シニア向け漫画",
+      "n_videos": 1,
+      "total_views": 26000,
+      "video_ids": [
+        "do0n9Wirigs"
+      ],
+      "avg_views": 26000
+    },
+    {
+      "tag": "60代 口癖",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "60代 人間関係",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "愛される口癖",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "人に好かれる口癖",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "人が離れる口癖",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "人間関係 改善",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "60代 会話術",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "シニア 人間関係",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "定年後 人間関係",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "コミュニケーション",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "魔法の口癖",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "好かれる人",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "好かれる話し方",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "人間関係",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "人間関係 うまくいかない",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "伝え方",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "幸せな人生",
+      "n_videos": 1,
+      "total_views": 11000,
+      "video_ids": [
+        "vritvBsvYjc"
+      ],
+      "avg_views": 11000
+    },
+    {
+      "tag": "60代 バイト",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "60代 仕事",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "定年後 アルバイト",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "定年後 パート",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "シニア バイト",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "シニア パート",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "シニアの仕事探し",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "再就職 60代",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "60代 男性 仕事",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "バイト きつい",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "バイト 後悔",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "パート 続かない",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "楽な仕事",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "短時間バイト",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "未経験歓迎",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "軽作業 きつい",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "コンビニ バイト",
+      "n_videos": 1,
+      "total_views": 10000,
+      "video_ids": [
+        "TIoRmIZKkAg"
+      ],
+      "avg_views": 10000
+    },
+    {
+      "tag": "定年後",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "定年後の再就職",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "定年後の生活",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "定年後の働き方",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "定年退職",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "60歳以降",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "シニア就労",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "高齢者雇用",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "働くシニア",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "働き続ける理由",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "年金",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "老後資金",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "老後の不安",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "老後の生活費",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "シニアのアルバイト",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "60歳",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "65歳",
+      "n_videos": 1,
+      "total_views": 6600,
+      "video_ids": [
+        "SN2VjauDlJA"
+      ],
+      "avg_views": 6600
+    },
+    {
+      "tag": "60代 再就職",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "60代 再就職 アルバイト",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "シニア 再就職",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "シニア アルバイト",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "定年後 仕事",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "月5万円",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "月5万円 稼ぐ",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "アルバイト パート",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    },
+    {
+      "tag": "シニア歓迎 求人",
+      "n_videos": 1,
+      "total_views": 1000,
+      "video_ids": [
+        "HvLbO2pqUcI"
+      ],
+      "avg_views": 1000
+    }
+  ],
+  "n_videos_with_tags": 6,
+  "n_videos_total": 6,
+  "channel_keywords": [
+    "大人の盲点",
+    "おとなの盲点",
+    "漫画でわかる人生の裏側",
+    "漫画動画",
+    "シニア向け漫画",
+    "シニア",
+    "50代",
+    "60代",
+    "70代",
+    "定年後",
+    "退職後",
+    "老後",
+    "セカンドライフ",
+    "定年後の生活",
+    "老後の暮らし",
+    "定年後の仕事",
+    "60代の仕事",
+    "シニアの仕事",
+    "シニアの再就職",
+    "定年後の趣味",
+    "老後の楽しみ",
+    "老後のお金",
+    "年金",
+    "夫婦関係",
+    "家族関係",
+    "人間関係",
+    "人生の教訓",
+    "大人の生き方"
+  ],
+  "channel_title": "大人の盲点【漫画でわかる人生の裏側】"
+}

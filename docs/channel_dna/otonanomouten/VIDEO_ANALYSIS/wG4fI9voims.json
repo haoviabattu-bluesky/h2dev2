@@ -1,0 +1,51 @@
+{
+  "topics": [
+    "シニアバイト",
+    "定年退職",
+    "再就職",
+    "コールセンター",
+    "求人票",
+    "軽作業",
+    "60代の働き方",
+    "アルバイト選び"
+  ],
+  "hook_type": "Mở đầu trực diện bằng cuộc hội thoại bất ngờ khi nhân vật chính bị cắt giảm ca làm việc nghiêm trọng so với kỳ vọng.",
+  "hook_0_30s": "高瀬さん、来月のシフトですが、ひとまず 4日でお願いします。 4 日?週4日ではなくて1月に4日ですか? はい。入電予測が下がりまして、まずは半日だけになります。 でも面接では週 3日から4日と 希望としては伺っています。ただ金務日数を保証する契約ではありません。 その言葉を聞いた瞬間、手の中の給与迷彩 が急に薄くなった気がした。初めて",
+  "hook_4_nhip": {
+    "event": "Quản lý thông báo ca làm tháng tới của nhân vật chỉ vỏn vẹn 4 buổi nửa ngày",
+    "contradiction": "Kỳ vọng tuần làm 3-4 ngày như lúc phỏng vấn đối lập với thực tế hợp đồng không hề bảo đảm số ngày công",
+    "stake": "Cảm giác sốc và hụt hẫng tột độ khi thu nhập thực tế sụp đổ chỉ còn chưa tới một nửa dự tính",
+    "open_loop": "Làm thế nào để người 60 tuổi tìm được công việc vừa sức, không bị bẫy bởi các con số hấp dẫn trên giấy tuyển dụng?"
+  },
+  "hook_kind": "C mâu thuẫn",
+  "hook_score_0_12": 11,
+  "loi_hua_video": "60代以降でも無理なく長く続けられる人気のアルバイト7選と、失敗しない求人の見極め方を漫画ドラマで伝える。",
+  "promise_match": {
+    "title": "PASS",
+    "description": "PASS",
+    "thumbnail": "NA",
+    "hook": "PASS",
+    "verdict": "PASS",
+    "ly_do": "Tiêu đề, mô tả và hook mở đầu đều tập trung vào bài toán chọn việc làm thêm tuổi 60+, từ cú sốc vỡ mộng thực tế dẫn dắt người xem đến giải pháp là 7 công việc và cách chọn đúng."
+  },
+  "cap_khop": {
+    "hook_tieu_de": "Khớp",
+    "thumbnail_tieu_de": "NA",
+    "thumbnail_hook": "NA",
+    "ly_do": "Hook tái hiện đúng thất bại chọn việc ban đầu của nhân vật 64 tuổi để mở đường cho 7 công việc phù hợp như tiêu đề hứa · Không có dữ liệu ảnh thumbnail · Không có dữ liệu ảnh thumbnail"
+  },
+  "structure": "Cấu trúc gồm 4 màn: Trải nghiệm vỡ mộng tại trung tâm CSKH vì bị cắt ca và áp lực thời gian -> Cuộc tư vấn việc làm hé lộ 7 công việc phổ biến cho tuổi 60+ kèm 7 tiêu chí hỏi trước khi ứng tuyển -> Nhân vật đi phỏng vấn, thử việc thực tế tại kho kiểm tra hàng đổi trả -> Bài học đúc kết về tiêu chí thứ 8 (thiết kế cuộc sống 1 tuần).",
+  "emotional_beats": [
+    "bàng hoàng hụt hẫng",
+    "tủi thân khi kinh nghiệm cũ bị chê bai",
+    "bừng tỉnh khi được tư vấn thực tế",
+    "hồi hộp thử sức môi trường mới",
+    "nhẹ nhõm và tìm lại tiếng cười"
+  ],
+  "title_formula": "【漫画】[Đối tượng] でも [Trạng thái mong muốn] 人気の [Phân loại việc làm + Số lượng]｜[Nhân vật cụ thể] が見つけた [Giải pháp/Giá trị]",
+  "notes": "Sự kết hợp mượt mà giữa cốt truyện kịch tính (drama) và nội dung danh sách (ranking 7 lựa chọn), biến lời khuyên nghề nghiệp khô khan thành trải nghiệm đồng cảm sâu sắc cho tệp khán giả cao niên.",
+  "video_id": "wG4fI9voims",
+  "title": "【漫画】60代以降でも気楽に働ける人気のアルバイト・パート7選｜64歳男性が見つけた“無理なく続く仕事”",
+  "view_count": 92000,
+  "duration_min": 31.4
+}

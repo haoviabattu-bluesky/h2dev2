@@ -1,0 +1,53 @@
+{
+  "topics": [
+    "60代",
+    "再就職",
+    "定年後",
+    "アルバイト",
+    "パート",
+    "月5万円",
+    "シニア求人",
+    "シルバー人材センター",
+    "働き方",
+    "時給"
+  ],
+  "hook_type": "Mở đầu bằng cuộc phỏng vấn nhận việc nhẹ nhàng 4 tiếng buổi sáng để kiếm 5 vạn yên, lập tức đảo chiều bằng cảnh sáng hôm sau chân đau nhức không thể bước xuống giường.",
+  "hook_0_30s": "月5万円くらい稼げたら助かるんです。 では週3日、朝7時から4 時間でかがでしょう? 朝7時ですか? はい。会館前の準備と終わった後に少し片付けがあります。 頭の中で時給勤務時間をかけた。これなら月 5 万円になりそうだ。午前中だけなら続けられるかな。初めて働いた次の朝。足が痛くて起き上がれなかった。",
+  "hook_4_nhip": {
+    "event": "Nhân vật 64 tuổi nhận một công việc part-time 4 tiếng từ 7 giờ sáng với kỳ vọng kiếm 5 vạn yên/tháng.",
+    "contradiction": "Tưởng rằng chỉ làm nửa ngày là nhẹ nhàng, nhưng ngay sáng hôm sau toàn thân đau đớn không thể bước xuống giường.",
+    "stake": "Chân đau đến mức không thể đi lại hay sinh hoạt bình thường, nguy cơ vừa mất sức khỏe vừa không duy trì được công việc.",
+    "open_loop": "Làm thế nào để chọn được công việc kiếm đủ 5 vạn yên mà không hủy hoại sức khỏe tuổi 60?"
+  },
+  "hook_kind": "C mâu thuẫn",
+  "hook_score_0_12": 10,
+  "loi_hua_video": "60代が体に無理なく続けながら月5万円を目指すためのアルバイト・パートの選び方とおすすめの仕事11選を紹介する。",
+  "promise_match": {
+    "title": "PASS",
+    "description": "PASS",
+    "thumbnail": "NA",
+    "hook": "PASS",
+    "verdict": "PASS",
+    "ly_do": "Tiêu đề, mô tả và 30 giây đầu đều thống nhất về bài toán người ngoài 60 tuổi muốn kiếm 5 vạn yên nhưng bị kiệt sức nếu chỉ nhìn vào mức lương theo giờ; thumbnail chưa có dữ liệu để đối chiếu."
+  },
+  "cap_khop": {
+    "hook_tieu_de": "Khớp",
+    "thumbnail_tieu_de": "Một phần",
+    "thumbnail_hook": "Một phần",
+    "ly_do": "Hook tái hiện trực tiếp câu chuyện kiếm 5 vạn yên nhưng bị kiệt sức đúng theo đề bài của tiêu đề · Thumbnail chưa đọc được dữ liệu ảnh nên không thể đối chiếu chính xác với tiêu đề · Thumbnail chưa đọc được dữ liệu ảnh nên không thể đối chiếu chính xác với hook."
+  },
+  "structure": "Video đi từ thất bại thực tế của nhân vật khi chọn việc theo mức lương, dẫn dắt vào bảng xếp hạng đếm ngược 11 công việc từ vị trí 11 đến vị trí 1, phân tích cặn kẽ tiêu chí gánh nặng thể lực, thời gian di chuyển và chốt lại bằng nguyên tắc bảo toàn ngày nghỉ dưỡng sức.",
+  "emotional_beats": [
+    "háo hức muốn kiếm thêm tiền tiêu vặt",
+    "thất vọng và đau đớn vì kiệt sức sau ca làm",
+    "bừng tỉnh khi nhận ra cạm bẫy của việc chỉ nhìn mức lương",
+    "thấu suốt qua từng phân tích công việc cụ thể",
+    "thanh thản và an tâm khi tìm được nhịp sống cân bằng"
+  ],
+  "title_formula": "【漫画】[Đối tượng mục tiêu] + [Mục tiêu thu nhập cụ thể] + [Lời hứa giải pháp không quá sức] + [Danh sách xếp hạng số lẻ]",
+  "notes": "Điểm sáng của kịch bản là đưa ra công thức tính thời gian thực tế rời khỏi nhà và gánh nặng phục hồi thể lực thay vì chỉ tính tiền lương trên giờ làm việc.",
+  "video_id": "HvLbO2pqUcI",
+  "title": "【漫画】60代の再就職で月5万円を目指すには？無理なく続けやすい定年後のアルバイト・パート11選",
+  "view_count": 1000,
+  "duration_min": 27.7
+}

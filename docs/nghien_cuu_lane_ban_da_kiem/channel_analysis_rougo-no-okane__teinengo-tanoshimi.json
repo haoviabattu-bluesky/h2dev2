@@ -1,0 +1,510 @@
+{
+  "schema_version": "1.0",
+  "analysis_type": "youtube_channel_analysis",
+  "channel": {
+    "channel_name": "老後のお金ストーリー",
+    "channel_url": "https://www.youtube.com/channel/UCI2cPqBmCPMxxKI4u2Gqs_Q",
+    "channel_id": "UCI2cPqBmCPMxxKI4u2Gqs_Q",
+    "language": "ja",
+    "country": "JP",
+    "subscriber_count": 5260,
+    "total_videos": 16,
+    "channel_age_days": 1378,
+    "channel_created_at": "2022-12-15",
+    "oldest_video_age_days": 61,
+    "is_revival_channel": true,
+    "upload_frequency_per_week": 1.9,
+    "typical_video_duration_seconds": 1407,
+    "channel_age_source": "ngày tạo kênh 2022-12-15 → 2026-09-23",
+    "upload_frequency_basis": "16 video trong 59 ngày (2026-07-14 → 2026-09-11) = 16/(59/7)",
+    "videos_span_days": 59
+  },
+  "data_quality": {
+    "videos_discovered": 16,
+    "videos_used_for_baseline": 16,
+    "videos_deep_analyzed": 3,
+    "transcripts_available": 3,
+    "thumbnails_available": 0,
+    "missing_fields": [
+      "thumbnail grid chưa ghép — đã verify 4 frame video thật (manga)"
+    ],
+    "limitations": [
+      "kênh TẠO 2022-12-15 (1.368 ngày) nhưng video cũ nhất chỉ 61 ngày — kênh hồi sinh/xoá video cũ",
+      "like-rate thấp 0.3–1.6% — view mạnh nhưng tương tác yếu hơn Lane E (4.8%)",
+      "chỉ 3/16 video lấy được transcript; còn lại suy từ title/thumbnail",
+      "retention chỉ ghi observed — không claim đo được"
+    ],
+    "overall_confidence": "medium",
+    "confidence_basis": "deep-analyze 3/16 video (19%); quy ước <70% không được là high"
+  },
+  "verdict": "ĐÁNG LÀM — kênh mới hồi sinh 61 ngày, trend 4.16, med 34.6k trên 5.2k subs (view/sub 6.6×), format manga list 'N選' giống Lane F — kênh duy nhất đạt nhóm A trong rà ngách 2026-09-13. LƯU Ý: like-rate thấp — theo dõi kỹ trước khi đặt kỳ vọng.",
+  "positioning": {
+    "primary_niche": "Hưu trí/lối sống sau nghỉ hưu (Nhật) — manga story + list N選",
+    "target_audience": "Nam 55–70 tuổi Nhật vừa nghỉ hưu/chuẩn bị nghỉ hưu, quan tâm trẻ khoẻ, du lịch trong nước, thú tiêu khiển không tốn kém",
+    "audience_age": "55–70",
+    "audience_problems": [
+      "lão hoá/tuổi tác",
+      "nhàn rỗi sau nghỉ hưu",
+      "tiền tiêu khiển",
+      "cô đơn/thiếu thú vui"
+    ],
+    "audience_desires": [
+      "trông trẻ hơn",
+      "cuộc sống hưu trí vui vẻ rẻ tiền",
+      "địa điểm đi chơi",
+      "cách sống nhẹ nhàng"
+    ],
+    "channel_promise": "Sau nghỉ hưu KHÔNG phải chán chết — có N cách cụ thể để trẻ khoẻ/vui/không tốn tiền, kể bằng câu chuyện manga dễ xem.",
+    "emotional_tone": [
+      "tò mò nhẹ",
+      "mong muốn cải thiện",
+      "đồng cảm hưu trí"
+    ],
+    "content_pillars": [
+      "manga story ngôi thứ nhất",
+      "list N選 (5選/7選)",
+      "du lịch nội địa Nhật",
+      "trẻ khoẻ/lối sống"
+    ]
+  },
+  "channel_baseline": {
+    "method": "median_all_16_longform",
+    "sample_size": 16,
+    "median_views": 34611.5,
+    "median_duration_seconds": 1407,
+    "trend": 4.16,
+    "hit_rate": 0.0,
+    "view_to_sub_ratio": 6.58
+  },
+  "topic_analysis": {
+    "winning_topics": [
+      "trẻ khoẻ: 老けない50代男性7選 (153.773v)",
+      "du lịch tâm linh: 神社5選 (121.738v)",
+      "trải nghiệm: 豪華夜行バス65歳 (79.457v)",
+      "du lịch: 温泉地5選 (59.696v)",
+      "lối sống: 心地よい生き方5選 (53.601v)",
+      "sức khoẻ: 疲労回復法7選 (47.229v)",
+      "thú vui rẻ: 暇つぶし5選 1円もかからない (42.316v)"
+    ],
+    "losing_topics": [
+      "tài chính trừu tượng: 年金受給年齢 (986v)",
+      "triết lý chung: 人生で本当に大事なこと (2.535v)",
+      "khái niệm: 育ちが出る瞬間 (3.086v)",
+      "so sánh mơ hồ: 40年働いたのに老後貧乏 (12.825v)",
+      "hối tiếc: 60歳で退職して後悔 (11.577v)"
+    ],
+    "winning_topic_patterns": [
+      "list CỤ THỂ: N選 + hành động/địa điểm/thú vui cụ thể + lợi ích rõ (trẻ khoẻ/vui/rẻ)",
+      "manga story ngôi thứ nhất: nhân vật có tên/tuổi/nghề + câu chuyện đối thoại"
+    ],
+    "losing_topic_patterns": [
+      "KHÁI NIỆM TRỪU TƯỢNG / câu hỏi tranh cãi (đúng bài học Lane E: khán giả 60+ click theo nỗi sợ/hành động cụ thể, không click theo chủ đề khô)"
+    ]
+  },
+  "title_analysis": {
+    "common_patterns": [
+      "100% mở đầu 【漫画】",
+      "đa số có N選 (5選/7選)",
+      "câu chuyện 1 người + hậu quả"
+    ],
+    "title_formulas": [
+      "【漫画】{đối tượng/trạng thái}…{N}選…{lợi ích/hậu quả}",
+      "【漫画】{chủ đề}5選…{địa điểm/cách}",
+      "【漫画】{độ tuổi}で{quyết định}…{hậu quả}"
+    ]
+  },
+  "thumbnail_analysis": {
+    "common_patterns": [
+      "manga anime, nhân vật nam trung niên, text lớn",
+      "xác nhận frame thật: manga thuần"
+    ]
+  },
+  "hook_analysis": {
+    "hook_formulas": [
+      "kịch bản tái ngộ/bất ngờ ('bạn cũ trẻ lạ' → hỏi bí quyết) — 153k",
+      "vấn đề thực tế sau nghỉ hưu ('nhàn rỗi → tốn tiền') + lời khuyên từ tiền bối — 42k",
+      "tranh luận mở ('nhận lương hưu năm nào?') — video YẾU nhất 986v"
+    ],
+    "average_hook_length_seconds": 75,
+    "common_open_loop_patterns": [
+      "'có N điều đơn giản ai cũng làm được' → trì hoãn lộ đáp án"
+    ]
+  },
+  "script_analysis": {
+    "typical_structure": [
+      "HOOK: cảnh manga bất ngờ/tò mò (tái ngộ bạn cũ trẻ lạ / lời khuyên tiền bối)",
+      "NHÂN VẬT: tên + tuổi + nghề + bối cảnh (中村/石川県55歳, 山田和夫66歳…)",
+      "PROMISE: 'có N điều, ai cũng làm được'",
+      "BODY: từng item đếm (1つ目…Nつ目) + câu chuyện + lý do",
+      "MINI CHỐT: sau mỗi item nhấn 1 câu",
+      "PAYOFF: tóm tắt + bài học ('nhàn rỗi chính là xa xỉ')",
+      "KẾT: quay lại cảnh đầu, khép open loop"
+    ]
+  },
+  "logic_analysis": {
+    "common_logic_flow": [
+      "PROBLEM (lão hoá/nhàn rỗi/tốn tiền) → HOI NGỜ (nhân vật làm gì khác?) → LIST N điều cụ thể → CHỨNG MINH từng điều → PAYOFF bài học → KẾT cảm xúc"
+    ]
+  },
+  "retention_analysis": {
+    "observed_devices": [
+      {
+        "device": "open_loop hook",
+        "location": "0–75s",
+        "purpose": "tò mò bí quyết",
+        "confidence": "high"
+      },
+      {
+        "device": "list countdown",
+        "location": "toàn video",
+        "purpose": "1つ目…Nつ目",
+        "confidence": "high"
+      },
+      {
+        "device": "manga đối thoại",
+        "location": "toàn video",
+        "purpose": "dễ xem, giữ chân",
+        "confidence": "high"
+      },
+      {
+        "device": "mini chốt sau mỗi item",
+        "location": "giữa body",
+        "purpose": "cảm giác tiến bộ",
+        "confidence": "medium"
+      },
+      {
+        "device": "khép open loop cuối",
+        "location": "payoff",
+        "purpose": "trọn vẹn",
+        "confidence": "medium"
+      }
+    ],
+    "notes": "Observed retention mechanisms only; not measured audience retention."
+  },
+  "emotional_analysis": {
+    "typical_emotional_arc": [
+      "tò mò (hook) → mong muốn (promise) → đồng cảm (story) → yên tâm/phấn chấn (payoff) → hài lòng (kết)"
+    ]
+  },
+  "writing_style": {
+    "sentence_style": "giọng nam trung niên kể chuyện, câu ngắn, tự nhiên, có thoại 2 nhân vật",
+    "vocabulary_level": "dễ hiểu — kể chuyện đời thường, không thuật ngữ",
+    "direct_address_usage": "thấp — kể chuyện gián tiếp (không gọi trực tiếp khán giả)"
+  },
+  "cta_analysis": {
+    "cta_style": "không thấy CTA bán hàng; kết bằng bài học + khích lệ (like/comment tự nhiên)"
+  },
+  "videos": [
+    {
+      "video_id": "bgUqNHYZbq0",
+      "title": "【漫画】なぜか老けない50代男性が「毎日やっていること」7選…同年代と差がつく意外な共通点",
+      "views": 153773,
+      "likes": 723,
+      "comments": 41,
+      "duration_seconds": 1235,
+      "publish_date": "2026-08-18",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 4.44,
+        "classification": "strong"
+      }
+    },
+    {
+      "video_id": "BeIZhu1I4Tw",
+      "title": "【漫画】一生に一度は参拝したい…定年後に行くべき格式の高い神社5選",
+      "views": 121738,
+      "likes": 844,
+      "comments": 36,
+      "duration_seconds": 1543,
+      "publish_date": "2026-08-20",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 3.52,
+        "classification": "strong"
+      }
+    },
+    {
+      "video_id": "ASBVa_H_leI",
+      "title": "【漫画】夜行バスに2万円！？新幹線より高い豪華夜行バスに65歳で乗ってみた結果…",
+      "views": 79457,
+      "likes": 256,
+      "comments": 14,
+      "duration_seconds": 1143,
+      "publish_date": "2026-09-03",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 2.3,
+        "classification": "strong"
+      }
+    },
+    {
+      "video_id": "_G9s-Ig6-E8",
+      "title": "【漫画】定年後は一人旅が最高、60代から一度は行きた有名の温泉地5選",
+      "views": 59696,
+      "likes": 384,
+      "comments": 25,
+      "duration_seconds": 1346,
+      "publish_date": "2026-08-24",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 1.72,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "_EhPtM6cRFk",
+      "title": "【漫画】６０代から人生が驚くほど心地よくなる定年後に見つけたちょうどいい生き方５選",
+      "views": 53601,
+      "likes": 196,
+      "comments": 3,
+      "duration_seconds": 1108,
+      "publish_date": "2026-09-09",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 1.55,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "DfIBG3fJW6o",
+      "title": "【漫画】６０代から疲れが取れない人へ…最高の休養を作る疲労回復法７選",
+      "views": 47229,
+      "likes": 153,
+      "comments": 2,
+      "duration_seconds": 1563,
+      "publish_date": "2026-08-27",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 1.36,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "AOe-E69mLzA",
+      "title": "【漫画】定年後、最強の暇つぶし5選…実は1円もかからない楽しみ方がありました",
+      "views": 42316,
+      "likes": 241,
+      "comments": 12,
+      "duration_seconds": 1365,
+      "publish_date": "2026-09-11",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 1.22,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "0DinnkWTJmg",
+      "title": "【漫画】生涯独身で定年退職した男…孤独だと思っていたら、実は贅沢なほど自由な老後生活",
+      "views": 39991,
+      "likes": 181,
+      "comments": 11,
+      "duration_seconds": 1682,
+      "publish_date": "2026-08-18",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 1.16,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "LGoeSmUj4-0",
+      "title": "【漫画】定年後の一人旅におすすめ…６０代・７０代でも行きやすい日本の人気観光地５選",
+      "views": 29232,
+      "likes": 115,
+      "comments": 4,
+      "duration_seconds": 1449,
+      "publish_date": "2026-08-31",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.84,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "zHtHiHEcXV0",
+      "title": "【漫画】金持ち老後と貧乏老後…老後生活を分ける思考の違い",
+      "views": 15991,
+      "likes": 109,
+      "comments": 3,
+      "duration_seconds": 1526,
+      "publish_date": "2026-07-14",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.46,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "Or6odB2b70M",
+      "title": "【漫画】40年働いたのに老後貧乏…63歳で気づいた人生最大の勘違いで老後破綻！？",
+      "views": 12825,
+      "likes": 108,
+      "comments": 18,
+      "duration_seconds": 1302,
+      "publish_date": "2026-08-07",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.37,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "61lcBV32roE",
+      "title": "【漫画】60歳で定年退職して後悔…「あと2年は働けばよかった」と気づいた理由",
+      "views": 11577,
+      "likes": 32,
+      "comments": 0,
+      "duration_seconds": 1520,
+      "publish_date": "2026-08-28",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.33,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "4wz6UVFyMDw",
+      "title": "【漫画】本当は教えたくない、都会を離れて分かった、定年後田舎暮らしのリアルな幸福度",
+      "views": 6402,
+      "likes": 21,
+      "comments": 0,
+      "duration_seconds": 1968,
+      "publish_date": "2026-09-07",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.18,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "V6t9kEFmg0M",
+      "title": "【漫画】60代で「育ち」が出る瞬間…品がある人が絶対に持たないもの",
+      "views": 3086,
+      "likes": 26,
+      "comments": 0,
+      "duration_seconds": 1311,
+      "publish_date": "2026-07-30",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.09,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "xpg0QU7V6IY",
+      "title": "【漫画】「もっと早く知りたかった…」人生で本当に大事なこと",
+      "views": 2535,
+      "likes": 30,
+      "comments": 1,
+      "duration_seconds": 1291,
+      "publish_date": "2026-07-23",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.07,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "YKjWwJZrKXY",
+      "title": "【漫画】年金は何歳から受け取るべき？60歳、65歳、70歳、75歳、知らないと後悔する受給年齢の落とし穴",
+      "views": 986,
+      "likes": 16,
+      "comments": 0,
+      "duration_seconds": 1589,
+      "publish_date": "2026-08-12",
+      "performance": {
+        "baseline_views": 34611.5,
+        "performance_ratio": 0.03,
+        "classification": "weak"
+      }
+    }
+  ],
+  "channel_dna": {
+    "core_identity": "Manga story ngôi thứ nhất về CUỘC SỐNG SAU NGHỈ HƯU: list N選 cụ thể (trẻ khoẻ/du lịch/thú vui rẻ) kể qua nhân vật có tên tuổi nghề, kết bài học.",
+    "audience": "Nam 55–70 Nhật, mới nghỉ hưu, muốn trẻ khoẻ + vui + không tốn tiền",
+    "core_promise": "Sau nghỉ hưu có N cách cụ thể để sống vui/trẻ/không chán — kể bằng manga dễ xem",
+    "content_engine": "2–3 video/tuần, 18–28 phút, manga AI + narration nam trung niên",
+    "topic_formula": "['【漫画】' + list N選 + hành động/địa điểm CỤ THỂ + lợi ích rõ] → HIT; [khái niệm trừu tượng/tranh cãi] → MISS",
+    "title_formula": "【漫画】{trạng thái/đối tượng}…{N}選…{lợi ích}",
+    "hook_formula": "cảnh manga bất ngờ (tái ngộ/vấn đề thực tế) + promise N điều",
+    "script_formula": "hook → nhân vật → promise → N item → mini chốt → payoff → khép loop",
+    "retention_formula": "open loop + list countdown + manga đối thoại",
+    "emotional_formula": "tò mò → mong muốn → đồng cảm → yên tâm"
+  },
+  "winning_formula": [
+    {
+      "formula": "MANGA LIST N選: hook cảnh bất ngờ → nhân vật có tên tuổi → N item cụ thể (1つ目…) → payoff bài học",
+      "description": "7 video hit đều theo pattern: chủ đề CỤ THỂ (trẻ khoẻ/du lịch/thú vui rẻ) + list đếm + story. Video yếu là khái niệm trừu tượng/tranh cãi.",
+      "evidence_count": 7,
+      "confidence": "high",
+      "supporting_video_ids": [
+        "bgUqNHYZbq0",
+        "BeIZhu1I4Tw",
+        "_G9s-Ig6-E8",
+        "DfIBG3fJW6o",
+        "ASBVa_H_leI",
+        "_EhPtM6cRFk",
+        "AOe-E69mLzA"
+      ]
+    },
+    {
+      "formula": "KỂ CHUYỆN NHÂN VẬT THẬT (tên/tuổi/nghề) — đồng cảm thay vì dạy đời",
+      "description": "Không lên lớp — kể chuyện 1 người (中村 55 tuổi, 山田和夫 66 tuổi) tự khám phá, khán giả tự rút bài học. Đúng pattern Lane F đã chứng minh.",
+      "evidence_count": 8,
+      "confidence": "high"
+    }
+  ],
+  "anti_patterns": [
+    {
+      "pattern": "chủ đề tài chính/khái niệm trừu tượng (年金受給年齢, 人生で大事なこと, 育ち)",
+      "description": "986v / 2.5k / 3.1k — khán giả 60+ không click theo câu hỏi khô hay triết lý chung; click theo hành động/lợi ích cụ thể.",
+      "confidence": "high"
+    },
+    {
+      "pattern": "like-rate thấp 0.3–1.6%",
+      "description": "View cao nhưng tương tác yếu — có thể view từ đề xuất thuật toán (browse) không gắn kết sâu; theo dõi kỹ, khác Lane E 4.8%.",
+      "confidence": "medium"
+    }
+  ],
+  "extensions": {
+    "revival_note": "Kênh TẠO 2022-12-15 (1.368 ngày) nhưng video cũ nhất 61 ngày — XOÁ video cũ / hồi sinh. Bài học: luôn phân trang 100% uploads tìm video cũ nhất, đừng tin channel_age_days (đúng reference deep-dive-2lanes).",
+    "like_rate_note": "trung bình ~0.5% — thấp hơn nhiều Lane E (4.8%); view/sub 6.6× cao bù lại."
+  },
+  "claude_handoff": {
+    "recommended_content_directions": [
+      "Nhân bản pattern list N選 CỤ THỂ: 'trẻ khoẻ 7選', 'thú vui rẻ 5選', 'đi chơi 5選' — đã có 7 video hit kiểm chứng",
+      "Mở rộng: '60代から始める〇〇5選' (thú chơi, sở thích, địa điểm) — giữ list + story + lợi ích rõ"
+    ],
+    "winning_topic_patterns": [
+      "【漫画】{trạng thái}…{N}選…{lợi ích cụ thể} — trẻ khoẻ/du lịch/thú vui rẻ"
+    ],
+    "recommended_hook_patterns": [
+      "cảnh manga bất ngờ (bạn cũ trẻ lạ hỏi bí quyết / tiền bối chỉ lối)"
+    ],
+    "recommended_script_structure": [
+      "hook bất ngờ → nhân vật tên/tuổi/nghề → promise N điều → từng item 1つ目… → mini chốt → payoff bài học → khép lại cảnh đầu"
+    ],
+    "recommended_retention_devices": [
+      "open loop",
+      "list countdown",
+      "manga đối thoại"
+    ],
+    "recommended_title_formulas": [
+      "【漫画】{đối tượng}…{N}選…{lợi ích}"
+    ],
+    "recommended_thumbnail_patterns": [
+      "manga anime, nhân vật nam trung niên, text lớn"
+    ],
+    "patterns_to_avoid": [
+      "chủ đề tài chính/khái niệm trừu tượng",
+      "câu hỏi tranh cãi"
+    ],
+    "uncertainties": [
+      "like-rate thấp — chưa rõ độ gắn kết khán giả dài hạn",
+      "kênh hồi sinh 61 ngày — công thức mới chưa chứng minh bền",
+      "cạnh tranh: trùng format Lane F (manga hưu trí) — cần khác biệt (nghiêng list N選 vui/rẻ hơn là kịch tính tiền bạc)"
+    ],
+    "suggested_next_action": "bàn giao Lane G — viết script theo formula list N選; khác biệt Lane F bằng hướng LỐI SỐNG VUI/RẺ (không kịch tính tiền mất)"
+  }
+}

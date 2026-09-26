@@ -1,0 +1,391 @@
+{
+  "schema_version": "1.0",
+  "analysis_type": "youtube_channel_analysis",
+  "channel": {
+    "channel_name": "老後の暮らし研究所",
+    "channel_url": "https://www.youtube.com/channel/UCRkP44Mcw-K8IktdTqxC9dg",
+    "channel_id": "UCRkP44Mcw-K8IktdTqxC9dg",
+    "language": "ja",
+    "country": "JP",
+    "subscriber_count": 15200,
+    "total_videos": 12,
+    "channel_age_days": 90,
+    "upload_frequency_per_week": 1.2,
+    "typical_video_duration_seconds": 1421,
+    "channel_age_source": "SÀN DƯỚI: file không có ngày tạo kênh, tính từ video cũ nhất đã crawl 2026-06-25 → 2026-09-23 — kênh có thể già hơn",
+    "upload_frequency_basis": "13 video trong 76 ngày (2026-06-25 → 2026-09-09) = 13/(76/7)",
+    "videos_span_days": 76,
+    "channel_age_days_previous_unverified": 2732
+  },
+  "data_quality": {
+    "videos_discovered": 13,
+    "videos_used_for_baseline": 13,
+    "videos_deep_analyzed": 3,
+    "transcripts_available": 3,
+    "thumbnails_available": 6,
+    "limitations": [
+      "chỉ 3 video lấy được transcript",
+      [
+        "Điểm yếu nhỏ: vài video đăng gần đây chưa tích view (10d 1.013v) — đừng kết luận tụt",
+        "Đăng cách quãng (2-9 ngày), không phải nhịp đều như ikiki"
+      ]
+    ],
+    "overall_confidence": "medium",
+    "confidence_basis": "deep-analyze 3/13 video (23%); quy ước <70% không được là high"
+  },
+  "verdict": "ĐÁNG LÀM — dự phòng số 1 cho Lane E. Kể chuyện manga ngôi thứ nhất về hưu trí/tài chính, trend 6.82, 5 video breakout 66k–295k.",
+  "positioning": {
+    "primary_niche": "老後の暮らし研究所",
+    "target_audience": "Người Nhật 55–67 tuổi đang cân nhắc/quyết định nghỉ hưu, lo về tiền (lương hưu, tiết kiệm), cô đơn hậu nghỉ hưu, so sánh với đồng nghiệp.",
+    "audience_age": "55–67",
+    "audience_problems": [
+      "lo tiền lương hưu/tiết kiệm",
+      "cô đơn hậu nghỉ hưu"
+    ],
+    "audience_desires": [
+      "yên tâm tài chính tuổi già"
+    ],
+    "channel_promise": "Nghỉ hưu KHÔNG phải 2 lựa chọn (làm/nghỉ) — bài toán thật là 'sau nghỉ hưu, ngày thường làm gì'. Số liệu cụ thể (tiền thật, tuổi thật) để tự đối chiếu.",
+    "emotional_tone": [
+      "lo âu",
+      "đồng cảm"
+    ],
+    "content_pillars": [
+      "manga hưu trí"
+    ]
+  },
+  "channel_baseline": {
+    "method": "median_recent_longform_views",
+    "sample_size": 13,
+    "median_views": 10635,
+    "median_duration_seconds": 1421,
+    "trend": 6.82,
+    "hit_rate": 0.385
+  },
+  "topic_analysis": {
+    "winning_topics": [
+      "nghỉ 60 vs 65 (294k)",
+      "tiền mất bí ẩn 67万円 (165k)",
+      "50代 chi tiêu phá sản 6 kiểu (136k)",
+      "62 tuổi nhận lương hưu (91k)",
+      "nghỉ 65 độc thân 2 tháng tuyệt vọng (66k)"
+    ],
+    "losing_topics": [
+      "居民税 không thuế 10d 1.013v (mới — chưa đủ tuổi)",
+      "67 tuổi 216万円 mất 7 thói quen (2.5k)"
+    ],
+    "winning_topic_patterns": [
+      "nhân vật + tuổi + số tiền + cảm xúc"
+    ]
+  },
+  "title_analysis": {
+    "common_patterns": [
+      "【漫画】 + nhân vật/tuổi + biến cố tiền + cảm xúc"
+    ],
+    "title_formulas": [
+      "【漫画】{tuổi}で{quyết định}した{nhân vật}…{hậu quả}+{cảm xúc}"
+    ]
+  },
+  "thumbnail_analysis": {
+    "common_patterns": [
+      "ảnh người gần thật (photorealistic kịch tính), mắt mở to, nền tối, chữ vàng/đỏ/trắng lớn"
+    ]
+  },
+  "hook_analysis": {
+    "hook_formulas": [
+      "Mở bằng câu hỏi so sánh số phận ('60 tuổi nghỉ vs 65 tuổi làm tiếp, ai hạnh phúc hơn?') hoặc phát hiện bí ẩn ('1 năm mất 67万円 mà không biết vì sao') — open loop mạnh, kể ngay ở ngôi thứ nhất."
+    ],
+    "average_hook_length_seconds": 60,
+    "common_open_loop_patterns": [
+      "so sánh số phận / phát hiện bí ẩn tiền"
+    ]
+  },
+  "script_analysis": {
+    "typical_structure": [
+      "HOOK (so sánh/mystery)",
+      "BỐI CẢNH nhân vật (tên/tuổi/nghề/tình cảnh)",
+      "BODY: cuộc sống + số liệu tiền thật + so sánh với nhân vật thứ 2 (đồng nghiệp) + cảm xúc cô đơn",
+      "NGOẶT (~70%): nhân vật thứ 2 cũng có vấn đề",
+      "PAYOFF: 'không có đáp án đúng, nhưng bài học là X'",
+      "KẾT: câu chốt triết lý."
+    ]
+  },
+  "logic_analysis": {
+    "common_logic_flow": [
+      "PROBLEM → SO SÁNH → NGOẶT → BÀI HỌC"
+    ]
+  },
+  "retention_analysis": {
+    "observed_devices": [
+      {
+        "device": "open_loop (so sánh/mystery ở hook)",
+        "confidence": "medium"
+      },
+      {
+        "device": "dựng nhân vật đối lập (tôi vs đồng nghiệp)",
+        "confidence": "medium"
+      },
+      {
+        "device": "số liệu thật tăng dần (tiền mất từng tháng)",
+        "confidence": "medium"
+      },
+      {
+        "device": "emotional shift (hối hận → chấp nhận)",
+        "confidence": "medium"
+      },
+      {
+        "device": "payoff triết lý ở cuối",
+        "confidence": "medium"
+      },
+      {
+        "device": "recap-câu-chốt lặp lại",
+        "confidence": "medium"
+      }
+    ],
+    "notes": "Observed retention mechanisms only; not measured."
+  },
+  "emotional_analysis": {
+    "typical_emotional_arc": [
+      "đồng cảm với nỗi lo hưu trí",
+      "lo lắng (tiền tụt)",
+      "cô đơn (so sánh)",
+      "chấp nhận",
+      "an tâm bằng bài học thực dụng"
+    ]
+  },
+  "writing_style": {
+    "sentence_style": "giọng nam trung niên kể chuyện đời thường, tự nhiên, câu ngắn mang tính hồi ức; dùng số liệu rất cụ thể (853万円→67万円, 月15.2万円); không giật gân thái quá mà 'đau' kiểu thực tế"
+  },
+  "cta_analysis": {
+    "cta_style": "không thấy CTA bán hàng; kết bằng triết lý + khích lệ suy ngẫm (tương tác comment tự nhiên vì khán giả đồng cảm)"
+  },
+  "videos": [
+    {
+      "video_id": "XbwqD2SktC0",
+      "title": "【漫画】60歳で定年退職した男…5年後、65歳まで働いた同僚との差に絶望しました",
+      "views": 294900,
+      "likes": 460,
+      "comments": 85,
+      "duration_seconds": 1453,
+      "publish_date": "2026-08-03",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 27.73,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "O84L0zOtrxo",
+      "title": "【漫画】65歳で定年退職した男…2年後、貯金が67万円消えた本当の理由を知りました",
+      "views": 165066,
+      "likes": 509,
+      "comments": 44,
+      "duration_seconds": 1421,
+      "publish_date": "2026-08-10",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 15.52,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "K8tTrxijqEo",
+      "title": "【漫画】50代後半から要注意…老後破産する人がやっている貧乏になるお金の使い方6選",
+      "views": 136317,
+      "likes": 271,
+      "comments": 20,
+      "duration_seconds": 1485,
+      "publish_date": "2026-08-26",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 12.82,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "_VXUim2J9QM",
+      "title": "【漫画】60歳で辞めるな！62歳で年金受給が最強な理由",
+      "views": 91245,
+      "likes": 655,
+      "comments": 118,
+      "duration_seconds": 1361,
+      "publish_date": "2026-07-11",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 8.58,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "EANADckKWT4",
+      "title": "【漫画】65歳で退職した独身男…たった2か月で絶望しました",
+      "views": 66778,
+      "likes": 315,
+      "comments": 42,
+      "duration_seconds": 1449,
+      "publish_date": "2026-07-05",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 6.28,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "dY3HfjtmvXI",
+      "title": "【漫画】65歳、独身、年金生活…その先に待っていた衝撃の現実",
+      "views": 32682,
+      "likes": 169,
+      "comments": 26,
+      "duration_seconds": 1199,
+      "publish_date": "2026-06-25",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 3.07,
+        "classification": "strong"
+      }
+    },
+    {
+      "video_id": "e_Zo7Ht5OH8",
+      "title": "【漫画】60歳で会社を辞めた元部長…退職金1700万円でも絶望しました",
+      "views": 10635,
+      "likes": 125,
+      "comments": 41,
+      "duration_seconds": 1184,
+      "publish_date": "2026-07-19",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 1.0,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "WblFD81yjOI",
+      "title": "【漫画】70歳まで年金を繰り下げた独身男…老後に待っていた残酷な現実",
+      "views": 10382,
+      "likes": 102,
+      "comments": 46,
+      "duration_seconds": 1471,
+      "publish_date": "2026-07-16",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 0.98,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "_fJim8rkhhM",
+      "title": "【漫画】60歳を過ぎたら絶対に行ってはいけない場所5選…退職金2000万円を失った67歳男性の末路",
+      "views": 8803,
+      "likes": 49,
+      "comments": 6,
+      "duration_seconds": 1688,
+      "publish_date": "2026-09-09",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 0.83,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "cjqH1URIwvc",
+      "title": "【漫画】退職金1800万円でも足りなかった…60代の最強バイト7選",
+      "views": 6548,
+      "likes": 60,
+      "comments": 11,
+      "duration_seconds": 1419,
+      "publish_date": "2026-07-27",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 0.62,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "O0k7prbS9PE",
+      "title": "【漫画】60歳で定年退職した男…退職金1800万円が2年で消えました",
+      "views": 6273,
+      "likes": 49,
+      "comments": 17,
+      "duration_seconds": 1471,
+      "publish_date": "2026-08-17",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 0.59,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "PZnSNphOIrE",
+      "title": "【漫画】67歳で貯金216万円を失いました…老後のお金が消える「7つの習慣」",
+      "views": 2563,
+      "likes": 29,
+      "comments": 1,
+      "duration_seconds": 1017,
+      "publish_date": "2026-06-30",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 0.24,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "DNfb2rVUN0I",
+      "title": "【漫画】年金が増えたのに手取り激減！？「住民税非課税世帯」に戻る意外な方法とは",
+      "views": 1013,
+      "likes": 13,
+      "comments": 4,
+      "duration_seconds": 1014,
+      "publish_date": "2026-09-02",
+      "performance": {
+        "baseline_views": 10635,
+        "performance_ratio": 0.1,
+        "classification": "weak"
+      }
+    }
+  ],
+  "channel_dna": {
+    "core_identity": "Kể chuyện manga (ngôi thứ nhất) về đời sống hưu trí Nhật: 1 nhân vật 60–67 tuổi có tên/tuổi/nghề đối mặt biến cố tài chính, kết bài học. Không bán gì, không list — thuần kể chuyện cảm xúc + con số thật.",
+    "audience": "Người Nhật 55–67 tuổi đang cân nhắc/quyết định nghỉ hưu, lo về tiền (lương hưu, tiết kiệm), cô đơn hậu nghỉ hưu, so sánh với đồng nghiệp.",
+    "core_promise": "Nghỉ hưu KHÔNG phải 2 lựa chọn (làm/nghỉ) — bài toán thật là 'sau nghỉ hưu, ngày thường làm gì'. Số liệu cụ thể (tiền thật, tuổi thật) để tự đối chiếu.",
+    "hook_formula": [
+      "Mở bằng câu hỏi so sánh số phận ('60 tuổi nghỉ vs 65 tuổi làm tiếp, ai hạnh phúc hơn?') hoặc phát hiện bí ẩn ('1 năm mất 67万円 mà không biết vì sao') — open loop mạnh, kể ngay ở ngôi thứ nhất."
+    ],
+    "script_formula": "HOOK (so sánh/mystery) → BỐI CẢNH nhân vật (tên/tuổi/nghề/tình cảnh) → BODY: cuộc sống + số liệu tiền thật + so sánh với nhân vật thứ 2 (đồng nghiệp) + cảm xúc cô đơn → NGOẶT (~70%): nhân vật thứ 2 cũng có vấn đề → PAYOFF: 'không có đáp án đúng, nhưng bài học là X' → KẾT: câu chốt triết lý.",
+    "retention_formula": "open_loop (so sánh/mystery ở hook) + dựng nhân vật đối lập (tôi vs đồng nghiệp) + số liệu thật tăng dần (tiền mất từng tháng) + emotional shift (hối hận → chấp nhận) + payoff triết lý ở cuối",
+    "emotional_formula": "đồng cảm với nỗi lo hưu trí → lo lắng (tiền tụt) → cô đơn (so sánh) → chấp nhận → an tâm bằng bài học thực dụng"
+  },
+  "winning_formula": [
+    {
+      "formula": "MANGA STORY ngôi thứ nhất: nhân vật + tiền thật + so sánh + bài học",
+      "evidence_count": 5,
+      "confidence": "high"
+    }
+  ],
+  "anti_patterns": [
+    {
+      "pattern": "Điểm yếu nhỏ: vài video đăng gần đây chưa tích view (10d 1.013v) — đừng kết luận tụt",
+      "confidence": "high"
+    },
+    {
+      "pattern": "Đăng cách quãng (2-9 ngày), không phải nhịp đều như ikiki",
+      "confidence": "high"
+    }
+  ],
+  "claude_handoff": {
+    "recommended_content_directions": [
+      "ĐÁNG LÀM — dự phòng số 1 cho Lane E. Kể chuyện manga ngôi thứ nhất về hưu trí/tài chính, trend 6.82, 5 video breakout 66k–295k."
+    ],
+    "winning_topic_patterns": [
+      "nghỉ 60 vs 65 (294k)",
+      "tiền mất bí ẩn 67万円 (165k)",
+      "50代 chi tiêu phá sản 6 kiểu (136k)",
+      "62 tuổi nhận lương hưu (91k)",
+      "nghỉ 65 độc thân 2 tháng tuyệt vọng (66k)"
+    ],
+    "uncertainties": [
+      "chỉ 3 transcript",
+      "kênh mới hồi sinh 74 ngày"
+    ],
+    "suggested_next_action": "bàn giao Lane F — viết script theo formula"
+  }
+}

@@ -1,0 +1,734 @@
+{
+  "schema_version": "1.0",
+  "analysis_type": "youtube_channel_analysis",
+  "channel": {
+    "channel_name": "シニアいきいき健康",
+    "channel_url": "https://www.youtube.com/channel/UCBODlDy5sXo_49pC7KPr7vQ",
+    "channel_id": "UCBODlDy5sXo_49pC7KPr7vQ",
+    "language": "ja",
+    "country": "JP",
+    "subscriber_count": 1800,
+    "total_videos": 17,
+    "channel_age_days": 26,
+    "upload_frequency_per_week": 7.44,
+    "typical_video_duration_seconds": 1385,
+    "channel_age_source": "SÀN DƯỚI: file không có ngày tạo kênh, tính từ video cũ nhất đã crawl 2026-08-28 → 2026-09-23 — kênh có thể già hơn",
+    "upload_frequency_basis": "17 video trong 16 ngày (2026-08-28 → 2026-09-13) = 17/(16/7)",
+    "videos_span_days": 16,
+    "channel_age_days_previous_unverified": 30
+  },
+  "data_quality": {
+    "videos_discovered": 17,
+    "videos_used_for_baseline": 17,
+    "videos_deep_analyzed": 0,
+    "transcripts_available": 0,
+    "thumbnails_available": 17,
+    "missing_fields": [
+      "transcript (IP bị YouTube block 2026-09-13, đang retry)",
+      "hook/script/logic/retention — cần transcript"
+    ],
+    "limitations": [
+      "kênh 30 ngày, 17 video — chưa chứng minh độ bền format",
+      "subs 1.800 nhưng view/sub 10.78 — tăng trưởng rất nhanh, rủi ro phong độ"
+    ],
+    "overall_confidence": "medium",
+    "confidence_basis": "deep-analyze 0/17 video (0%); quy ước <70% không được là high"
+  },
+  "positioning": {
+    "primary_niche": "JP senior health — thực phẩm/dinh dưỡng cho 60–80 tuổi",
+    "secondary_niches": [
+      "longevity",
+      "muscle-loss prevention",
+      "urinary health"
+    ],
+    "target_audience": [
+      "người Nhật 70–85 tuổi",
+      "quan tâm ăn uống sống khoẻ"
+    ],
+    "audience_age": "70–85",
+    "audience_problems": [
+      "mất cơ do tuổi",
+      "tiểu đêm/tiểu nhiều",
+      "suy giảm trí nhớ",
+      "lo sức khoẻ sau 70",
+      "ăn gì cho đúng"
+    ],
+    "audience_desires": [
+      "sống độc lập không ốm đau",
+      "biết ăn gì để khoẻ",
+      "yên tâm tuổi già"
+    ],
+    "channel_promise": "Ăn uống đúng cách để giữ cơ bắp và sức khoẻ sau 70",
+    "authority_style": [
+      "dùng chữ 医師 (bác sĩ) trong title",
+      "giọng đọc trang trọng"
+    ],
+    "emotional_tone": [
+      "lo lắng nhẹ",
+      "hy vọng",
+      "an tâm"
+    ],
+    "content_pillars": [
+      "X loại thực phẩm tốt/xấu cho người già",
+      "cảnh báo thói quen âm thầm hại cơ",
+      "bí quyết sống thọ của người 70–90"
+    ]
+  },
+  "channel_baseline": {
+    "method": "median_recent_longform_views",
+    "sample_size": 17,
+    "median_views": 5045,
+    "median_duration_seconds": 1385
+  },
+  "topic_analysis": {
+    "topic_clusters": [
+      "thực phẩm tốt (天然食品/食品)",
+      "thực phẩm nguy hiểm (落とし穴)",
+      "thói quen sống (食習慣)",
+      "sức khoẻ cụ thể (頻尿/筋肉/記憶力/腎臓)"
+    ],
+    "winning_topics": [
+      "9つの食習慣 65.7k",
+      "夜間頻尿 40.4k",
+      "5つの食品 giữ cơ 38k+24k",
+      "3つの食習慣 hại cơ 35k"
+    ],
+    "losing_topics": [
+      "粉ゼラチン 25v",
+      "慢性炎症 150v",
+      "記憶力 306v",
+      "足を壊す 491v"
+    ],
+    "recurring_angles": [
+      "【X歳以上の方へ】 gọi thẳng độ tuổi",
+      "ご注意ください/要注意 — cảnh báo",
+      "ほとんど方がご存知ない — bí mật"
+    ],
+    "winning_topic_patterns": [
+      "con số cụ thể + mục tiêu tuổi + hậu quả/lợi ích"
+    ]
+  },
+  "title_analysis": {
+    "common_patterns": [
+      "mở đầu: 70歳以上の方へ / 高齢者の方へ / ご注意ください / 医師が警告",
+      "giữa: XつのYがZを(防いでいた/傷つけています/奪っていく)",
+      "hậu tố: ほとんどの方がご存知ない / 必見 / 落とし穴"
+    ],
+    "winning_patterns": [
+      "mục tiêu tuổi + số đếm + lợi/hại + ご存知ない"
+    ],
+    "weak_patterns": [
+      "thiếu mục tiêu tuổi rõ (5つの兆候, 粉ゼラチン)"
+    ],
+    "title_formulas": [
+      "【70歳以上の方へ】Xつの{食品/食習慣}が{筋肉/健康}を{守っていた/削っている}——ほとんどの方がご存知ない",
+      "ご注意ください：Xつの一見{無害/良さそう}な{食品/習慣}が密かに{筋肉/体}を{傷つけています}——{60代以上/シニア}の方は必見"
+    ]
+  },
+  "thumbnail_analysis": {
+    "common_patterns": [
+      "nền đen",
+      "chữ lớn đỏ/vàng/trắng chiếm 60–70%",
+      "ảnh thật đồ ăn (trứng, cá, rau) hoặc hình minh hoạ"
+    ],
+    "winning_patterns": [
+      "claim sốc + đồ ăn thật hấp dẫn liên quan trực tiếp"
+    ],
+    "weak_patterns": [
+      "chủ đề trừu tượng (đau bụng, gelatin) ít liên kết đồ ăn"
+    ],
+    "title_thumbnail_relationship_patterns": [
+      "thumbnail lặp ý title — đóng khung cảnh báo đỏ"
+    ]
+  },
+  "hook_analysis": {
+    "dominant_hook_types": [
+      "audience_callout (gọi thẳng tuổi/đối tượng)",
+      "pain_point/question (đặc tả nỗi đau rồi hỏi)",
+      "promise_of_later_value (hứa N điều sẽ nói)",
+      "authority_signal (trung tâm nghiên cứu, bác sĩ)"
+    ],
+    "winning_hook_types": [
+      "khen ngợi người xem trước → 'nhưng có 1 điều phải nói' (open loop) — video 65k",
+      "đặc tả nỗi đau thật (thức đêm 2-3 lần) + số liệu (65 tuổi 70%...) — video 40k",
+      "câu hỏi nghịch lý: 'ăn đủ protein mà cơ vẫn mất' — tạo curiosity gap"
+    ],
+    "hook_formulas": [
+      "AUDIENCE CALLOUT (70歳以上の方へ) + đặc tả nỗi đau cụ thể + SỐ LIỆU gây lo + 'nhưng nguyên nhân không như bạn nghĩ' + promise 'hôm nay sẽ nói X điều'",
+      "Khen ngợi (tôn trọng nỗ lực của bạn) + 'chỉ 1 điều cần nói' + hoá ra là điều không ai ngờ (không phải supplement, là đồ ăn thường) + authority nghiên cứu"
+    ],
+    "average_hook_length_seconds": 120,
+    "common_open_loop_patterns": [
+      "'thực ra sự thật là...' — trì hoãn lộ đáp án",
+      "'điều quan trọng nhất nằm ở cuối'"
+    ],
+    "audience_callout_patterns": [
+      "70歳以上の方へ / 高齢者の方へ / 75歳以上の方へ — mở title LẪN hook",
+      "'〜で悩む方へ' gọi đúng bệnh/lo lắng"
+    ],
+    "authority_patterns": [
+      "'国立○○研究センターが調査' (mơ hồ — khó kiểm chứng)",
+      "'医師が解説' trong title",
+      "số liệu: '7割以上', '29%低く'"
+    ]
+  },
+  "script_analysis": {
+    "typical_structure": [
+      "HOOK 0–2ph: khen/đồng cảm + đặc tả nỗi đau + số liệu + mở open loop",
+      "PROMISE 2–4ph: 'hôm nay có N điều/tôi sẽ nói về...' — liệt kê mục lục",
+      "BODY: từng mục — cơ chế khoa học + câu chuyện người thật (68 tuổi bà A, 75 tuổi bà B) + nghiên cứu (năm/tổ chức/%) + 'làm thế nào' cụ thể từng bước",
+      "MID-ROLL CTA: hỏi comment ('bạn đã thử chưa? comment cho tôi biết')",
+      "PAYOFF 80–90%: tóm tắt toàn bộ + khích lệ ('không phải lỗi của bạn, không ai dạy bạn')",
+      "ENDING: 4 bước cụ thể bắt đầu 'tối nay' + lặp lại lời hứa"
+    ],
+    "opening_pattern": "khen ngợi → đặc tả vấn đề người xem đang gặp → 'hôm nay tôi sẽ nói rõ'",
+    "body_pattern": "thông tin khoa học + ví dụ người thật có tên/tuổi/nghề + số liệu nghiên cứu",
+    "payoff_pattern": "tóm tắt tất cả món/điều đã nói → động viên ('bạn không có lỗi') → 4 bước tối nay",
+    "ending_pattern": "kêu gọi hành động nhỏ (bắt đầu ngay tối nay, 1 việc duy nhất)",
+    "transition_patterns": [
+      "'さて、では次の...' (giờ đến món/điều tiếp theo)",
+      "'これだけは覚えてください' (nhấn trọng tâm)",
+      "'ここで1つ実際にあった例を...' (chuyển sang story)"
+    ],
+    "pacing_patterns": [
+      "mỗi món/điều ~3–4 phút, lặp lại nhịp 'cơ chế → câu chuyện → kết luận'",
+      "video 36 phút nhưng cắt thành 9 khối đếm ngược — retention bằng list progression"
+    ]
+  },
+  "logic_analysis": {
+    "common_logic_flow": [
+      "PROBLEM (bạn đang gặp X) → WHY IT MATTERS (hậu quả nếu không xử lý) → CAUSE ẩn (không phải do tuổi, do Y) → EVIDENCE (nghiên cứu %) → SOLUTION (ăn/làm Z) → STORY (người thật đã cải thiện) → ACTION (bước cụ thể)"
+    ],
+    "strengths": [
+      "mỗi claim đều kèm nghiên cứu (%) — cảm giác có căn cứ",
+      "giải thích 'vì sao' ở mức dễ hiểu (ví von: bắp chân = trái tim thứ 2, protein = chìa khoá vào két sắt)",
+      "luôn kết bằng hành động nhỏ làm được ngay"
+    ],
+    "weaknesses": [
+      "tên tổ chức nghiên cứu MƠ HỒ ('国立○○センター') — khó kiểm chứng, điểm yếu nếu khán giả soi",
+      "một số số liệu nghe phóng đại ('7割以上', '29%', '28%') không kèm nguồn gốc rõ",
+      "transcript/ASR lỗi nhiều ('15歳' thay vì '75歳') — chính khán giả phàn nàn"
+    ],
+    "evidence_usage_patterns": [
+      "dùng % + tên viện nghiên cứu (cảm giác khoa học, thực chất thiếu nguồn rõ)"
+    ],
+    "solution_presentation_patterns": [
+      "chia thành step nhỏ theo thời gian (bắt đầu tối nay, tuần này, tăng dần 2→5→7 phần)"
+    ]
+  },
+  "retention_analysis": {
+    "observed_devices": [
+      {
+        "device": "list_progression",
+        "location": "toàn video",
+        "purpose": "đếm ngược 第9位→第1位 / 3 điều → giữ người xem chờ item cuối",
+        "evidence": "transcript: '第○位は...' lặp lại 9 lần ở video 65k",
+        "confidence": "high"
+      },
+      {
+        "device": "open_loop",
+        "location": "hook 0–2ph",
+        "purpose": "'có 1 điều phải nói' — treo câu hỏi trước khi vào nội dung",
+        "evidence": "hook video 65k",
+        "confidence": "high"
+      },
+      {
+        "device": "story/example",
+        "location": "mỗi mục trong body",
+        "purpose": "người thật có tên/tuổi/nghề nghiệp làm mục tiêu-fish",
+        "evidence": "68 tuổi nhân viên siêu thị, 75 tuổi giáo viên, 106 tuổi cô Matsumoto",
+        "confidence": "high"
+      },
+      {
+        "device": "delayed_reveal",
+        "location": "giữa body",
+        "purpose": "'đây mới là phần quan trọng nhất, nhiều người kể cả bác sĩ không biết'",
+        "evidence": "video 5.6k: '医者も含めて多くの方が見...'",
+        "confidence": "medium"
+      },
+      {
+        "device": "mini_payoff",
+        "location": "cuối mỗi mục",
+        "purpose": "chốt 1 câu kết quả trước khi chuyển mục — cảm giác tiến bộ",
+        "evidence": "'つまり...ということです' lặp lại",
+        "confidence": "medium"
+      },
+      {
+        "device": "pattern_interrupt",
+        "location": "giữa video",
+        "purpose": "hỏi comment trực tiếp — phá nhịp đọc, kéo tương tác",
+        "evidence": "'玄米試したことありますか? コメント欄で教えてください'",
+        "confidence": "high"
+      }
+    ],
+    "dominant_devices": [
+      "list_progression",
+      "story/example",
+      "open_loop",
+      "mini_payoff"
+    ],
+    "open_loop_patterns": [
+      "treo ở hook, đóng ở payoff — mỗi video 1 loop lớn + loop nhỏ mỗi mục"
+    ],
+    "delayed_reveal_patterns": [
+      "'phần quan trọng nhất còn ở phía sau'"
+    ],
+    "escalation_patterns": [
+      "mỗi món được giới thiệu tăng dần theo mức 'ngạc nhiên' (hứa ở đầu rằng món cuối quan trọng nhất)"
+    ],
+    "mini_payoff_patterns": [
+      "chốt 1 câu sau mỗi mục + chuyển tiếp"
+    ],
+    "pattern_interrupt_patterns": [
+      "hỏi comment giữa video — vừa là CTA vừa là nghỉ"
+    ],
+    "notes": "Observed retention mechanisms only; not measured audience retention unless analytics are available."
+  },
+  "emotional_analysis": {
+    "dominant_emotions": [
+      "lo lắng nhẹ (sợ mất cơ/tiểu đêm/già yếu)",
+      "hy vọng (ăn đúng là cứu được)",
+      "an tâm (chỉ cần đồ ăn thường ngày, không cần tốn kém)"
+    ],
+    "typical_emotional_arc": [
+      "đồng cảm nỗi đau → lo lắng vì hậu quả → yên tâm vì có giải pháp → phấn chấn vì 'không phải lỗi của bạn' → quyết tâm làm ngay"
+    ],
+    "fear_usage": [
+      "đặc tả hậu quả cụ thể: 'về sau đứng dậy cũng khó', 'nguy cơ gãy xương nhập viện'"
+    ],
+    "curiosity_usage": [
+      "'thực ra nguyên nhân không phải như bạn nghĩ'",
+      "'9割が知らない'"
+    ],
+    "hope_usage": [
+      "'những người 100 tuổi ăn đồ bình thường' — ai cũng làm được"
+    ],
+    "reassurance_usage": [
+      "'không phải lỗi của bạn', 'không ai dạy bạn những điều này', 'chỉ cần bắt đầu từ 1 việc nhỏ tối nay'"
+    ]
+  },
+  "writing_style": {
+    "sentence_style": "câu dài, trang trọng, lịch sự (〜でしょう, いらっしゃいますか, ございませんか)",
+    "vocabulary_level": "trung bình — giải thích thuật ngữ bằng ví von đời thường (két sắt, dàn nhạc)",
+    "conversational_level": "thấp — giọng như bác sĩ/phát thanh viên đọc script, không chatter ngẫu hứng",
+    "direct_address_usage": "cao — liên tục gọi 'bạn' dạng kính ngữ (召し上がる, いらっしゃる)",
+    "rhetorical_question_usage": "cao — mở đầu hầu hết video bằng câu hỏi",
+    "repetition_usage": "cao — lặp 'つまり/実は/この食品は' + lặp tóm tắt cuối",
+    "storytelling_usage": "cao — 1 câu chuyện người thật mỗi mục",
+    "example_usage": "cao — tên/tuổi/nghề/câu nói cụ thể",
+    "authority_reference_usage": "cao — '医師が', '国立研究センター', '2020年の研究'",
+    "research_reference_usage": "trung bình — có năm/tổ chức/% nhưng không nguồn cụ thể",
+    "simplification_style": "mạnh — khái niệm khó đều có 1 câu ví von",
+    "transition_style": "công thức — 'さて、では次の...', 'ここで1つ実例を...'",
+    "wpm_note": "giọng đọc chậm, nhấn nhá — phù hợp khán giả 70+"
+  },
+  "cta_analysis": {
+    "common_cta_types": [
+      "comment prompt (giữa video): 'bạn đã thử chưa? comment cho tôi biết'",
+      "action prompt (cuối video): 'bắt đầu từ tối nay với 1 việc'",
+      "subscribe (lời mời nhẹ cuối video)"
+    ],
+    "common_cta_locations": [
+      "giữa video ~50–60% (comment)",
+      "2–3 phút cuối (action 4 bước)",
+      "cuối cùng (subscribe)"
+    ],
+    "comment_prompts": [
+      "'玄米を試したことはありますか？コメント欄で教えてください'",
+      "'皆さんの工夫を教えてください'"
+    ],
+    "cta_style": "nhẹ nhàng, không ép — xen kẽ giữa video như câu chuyện"
+  },
+  "videos": [
+    {
+      "video_id": "kN6wHIqYA0Q",
+      "title": "70歳以上の方へ：長寿者が密かに続けていた9つの食習慣——ほとんどの方がご存知ない",
+      "views": 65771,
+      "likes": 3532,
+      "comments": 76,
+      "duration_seconds": 2214,
+      "publish_date": "2026-09-02",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 13.04,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "JCyxahsO0ew",
+      "title": "夜間頻尿・尿漏れで悩む方へ。ふくらはぎケアと食事改善で夜中のトイレ回数をゼロに近づける方法を医師が解説",
+      "views": 40479,
+      "likes": 2273,
+      "comments": 8,
+      "duration_seconds": 991,
+      "publish_date": "2026-08-28",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 8.02,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "66ADns1W2mA",
+      "title": "高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた",
+      "views": 38060,
+      "likes": 2748,
+      "comments": 12,
+      "duration_seconds": 1133,
+      "publish_date": "2026-09-05",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 7.54,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "4Q0fF3Ud57Q",
+      "title": "ご注意ください：3つの一見体に良さそうな食習慣が、密かに筋肉を削り続けています——60代以上の方は必見",
+      "views": 35252,
+      "likes": 1311,
+      "comments": 16,
+      "duration_seconds": 2098,
+      "publish_date": "2026-09-03",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 6.99,
+        "classification": "breakout"
+      }
+    },
+    {
+      "video_id": "966fNPIqSi4",
+      "title": "高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた",
+      "views": 24876,
+      "likes": 1408,
+      "comments": 9,
+      "duration_seconds": 1233,
+      "publish_date": "2026-09-06",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 4.93,
+        "classification": "strong"
+      }
+    },
+    {
+      "video_id": "YZNmQJxGuRc",
+      "title": "ご注意ください：4つの一見無害な節約食品が密かに筋肉を傷つけています—シニアの方は必見",
+      "views": 13791,
+      "likes": 567,
+      "comments": 3,
+      "duration_seconds": 1406,
+      "publish_date": "2026-09-01",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 2.73,
+        "classification": "strong"
+      }
+    },
+    {
+      "video_id": "Og9pQzoKllo",
+      "title": "87歳の壁が男性だけを襲う——ほとんどの方がご存知ない生存率の真実",
+      "views": 6516,
+      "likes": 165,
+      "comments": 3,
+      "duration_seconds": 1391,
+      "publish_date": "2026-09-08",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 1.29,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "aWXuORPaoH0",
+      "title": "75歳以上の方へ：5つの天然食品が筋肉の消失を止める可能性——ほとんどの方がご存知ない",
+      "views": 5670,
+      "likes": 287,
+      "comments": 6,
+      "duration_seconds": 1222,
+      "publish_date": "2026-08-29",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 1.12,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "jzVHUk-E9S8",
+      "title": "医師が警告：60歳以降に毎日食べ続けると、体の力を静かに奪っていく5つの食べ物の落とし穴",
+      "views": 5045,
+      "likes": 114,
+      "comments": 0,
+      "duration_seconds": 1060,
+      "publish_date": "2026-09-04",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 1.0,
+        "classification": "normal"
+      }
+    },
+    {
+      "video_id": "Uaj9mNJgm6g",
+      "title": "【要注意】60歳以上が知らずに選ぶ6つのタンパク質が腎臓に負担をかけている",
+      "views": 1739,
+      "likes": 119,
+      "comments": 1,
+      "duration_seconds": 1406,
+      "publish_date": "2026-09-12",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.34,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "c2EG9MLCHck",
+      "title": "5つの兆候が70代以降のあなたの未来をひそかに傷つけている",
+      "views": 680,
+      "likes": 18,
+      "comments": 0,
+      "duration_seconds": 1401,
+      "publish_date": "2026-09-07",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.13,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "zsmkBbNWE6I",
+      "title": "ご注意ください：4つの一見無害な節約食品が密かに筋肉を傷つけています—シニアの方は必見",
+      "views": 593,
+      "likes": 92,
+      "comments": 0,
+      "duration_seconds": 1086,
+      "publish_date": "2026-08-31",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.12,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "l0N9WnXkMbA",
+      "title": "【放置厳禁】65歳以上の足をひそかに壊す3つの食品と守る3つの食品",
+      "views": 491,
+      "likes": 99,
+      "comments": 4,
+      "duration_seconds": 1882,
+      "publish_date": "2026-09-11",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.1,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "HYd5dTEJyVI",
+      "title": "75歳以上の方へ：5つの天然食品が筋肉の消失を止める可能性——ほとんどの方がご存知ない",
+      "views": 457,
+      "likes": 11,
+      "comments": 0,
+      "duration_seconds": 1230,
+      "publish_date": "2026-08-30",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.09,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "p4Rp10Rw19M",
+      "title": "ご注意：5つの見落としが60歳以降の記憶力をひそかに衰えさせている",
+      "views": 306,
+      "likes": 6,
+      "comments": 0,
+      "duration_seconds": 1767,
+      "publish_date": "2026-09-10",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.06,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "Z1W_jiYi3cs",
+      "title": "5つのだるさが実は慢性炎症のサイン——ほとんどの方がご存知ない",
+      "views": 150,
+      "likes": 92,
+      "comments": 0,
+      "duration_seconds": 1385,
+      "publish_date": "2026-09-09",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.03,
+        "classification": "weak"
+      }
+    },
+    {
+      "video_id": "FFxfW-kPutY",
+      "title": "実は、粉ゼラチンを毎日足すだけで筋肉・睡眠・目の潤いが変わる【9割が知らない食事の裏技】",
+      "views": 25,
+      "likes": 115,
+      "comments": 0,
+      "duration_seconds": 1043,
+      "publish_date": "2026-09-13",
+      "performance": {
+        "baseline_views": 5045,
+        "performance_ratio": 0.0,
+        "classification": "weak"
+      }
+    }
+  ],
+  "channel_dna": {
+    "core_identity": "Người bạn đồng hành sức khoẻ tuổi già: lấy BIẾN ĐỔI SINH LÝ của người 70–85 tuổi làm đề tài, dịch thuật ngữ y khoa thành đồ ăn + thói quen hằng ngày",
+    "audience": "Người Nhật 70–85 (nhiều phụ nữ), lo mất cơ/tiểu đêm/yếu chân/suy giảm trí nhớ, thích nghe giọng trầm ấm + câu chuyện người thật, tương tác bằng like/thank (like-rate 4.8%)",
+    "core_promise": "'Bạn không cần thứ gì đặc biệt — đồ ăn thường ngày của người Nhật sống thọ 100 tuổi chính là chìa khoá; tôi sẽ chỉ bạn ăn gì, làm gì từ TỐI NAY'",
+    "content_engine": "1 video/ngày, 16–36 phút, nền tranh vẽ tay ấm áp + narration AI giọng trầm. Mỗi video = 1 list (5–9 món/điều) + story người thật + nghiên cứu % + action cuối",
+    "topic_formula": "['X歳以上の方へ' + số đếm + thực phẩm CỤ THỂ + hậu quả/lợi ích tiềm ẩn] → HIT; [khái niệm trừu tượng như 兆候/炎症/記憶力] → MISS",
+    "title_formula": [
+      "【X歳以上の方へ】: Nつの{食品/食習慣}が{筋肉/健康}を{守っていた/削っている}——ほとんどの方がご存知ない",
+      "ご注意ください：Nつの一見{無害/良さそう}な{食品/習慣}が密かに{筋肉/体}を{傷つけています}——{60代以上/シニア}の方は必見"
+    ],
+    "thumbnail_formula": "nền đen + chữ lớn đỏ/vàng/trắng (60–70% diện tích) + 1 tấm ảnh thật đồ ăn liên quan trực tiếp (trứng/cá/rau củ)",
+    "hook_formula": "câu hỏi đặc tả nỗi đau + số liệu lo lắng + 'nguyên nhân không như bạn nghĩ' + promise N điều",
+    "script_formula": "hook → promise mục lục → N khối (cơ chế → story người thật → nghiên cứu % → mini chốt) → mid-roll comment CTA → payoff tóm tắt + động viên → 4 bước tối nay",
+    "logic_formula": "PROBLEM → WHY → CAUSE ẩn → EVIDENCE → SOLUTION → STORY → ACTION",
+    "retention_formula": "list đếm ngược + open loop treo ở hook + story mỗi mục + mini payoff sau mỗi mục",
+    "emotional_formula": "đồng cảm → lo (hậu quả) → yên tâm (giải pháp đơn giản) → phấn chấn (không phải lỗi bạn) → hành động",
+    "writing_formula": "kính ngữ, câu dài, thuật ngữ → ví von đời thường, lặp 'つまり/実は', giọng phát thanh viên trầm",
+    "cta_formula": "hỏi comment giữa video + 4 bước tối nay cuối video + subscribe nhẹ"
+  },
+  "winning_formula": [
+    {
+      "formula": "AUDIENCE CALLOUT + PAIN DETAIL + STAT WORRY + HIDDEN CAUSE + COUNTDOWN LIST + REAL-PERSON STORY + % EVIDENCE + TONIGHT ACTION",
+      "description": "Mở bằng gọi đúng tuổi + đặc tả nỗi đau ban đêm/ăn uống, đưa số liệu gây lo ('7割以上'), lật ngược 'không phải do tuổi', rồi đi qua list đếm ngược mỗi mục gắn câu chuyện người thật + % nghiên cứu, kết bằng 4 bước làm tối nay.",
+      "evidence_count": 5,
+      "confidence": "high",
+      "supporting_video_ids": [
+        "kN6wHIqYA0Q",
+        "JCyxahsO0ew",
+        "66ADns1W2mA",
+        "4Q0fF3Ud57Q",
+        "YZNmQJxGuRc"
+      ]
+    },
+    {
+      "formula": "RE-UP SAME TITLE NEXT DAY (A/B test)",
+      "description": "Đăng lại video cùng title hôm sau — YouTube đẩy bản nào thì bản đó hit (5.670→13.791→38.060v), bản kia chết (457→593v). Chi phí thấp, dễ nhân bản.",
+      "evidence_count": 3,
+      "confidence": "medium",
+      "supporting_video_ids": [
+        "aWXuORPaoH0",
+        "YZNmQJxGuRc",
+        "66ADns1W2mA"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    {
+      "pattern": "chủ đề trừu tượng (兆候/dấu hiệu, 炎症/viêm, 記憶力/trí nhớ, 粉ゼラチn)",
+      "description": "3 video 150–680 view — khán giả 70+ click theo nỗi sợ CỤ THỂ (ăn gì/không ăn gì), không theo khái niệm sức khoẻ chung chung",
+      "relationship": "associated_with_weaker_relative_performance",
+      "confidence": "high"
+    },
+    {
+      "pattern": "AI narration/ASR lỗi ('文字変換がメチャクチャ', '信憑性に疑問')",
+      "description": "Comment phàn nàn text converter loạn + nghi ngờ độ tin cậy — QC giọng đọc/từ ngữ là bắt buộc trước khi tăng sản lượng",
+      "associated_video_ids": [
+        "kN6wHIqYA0Q"
+      ],
+      "relationship": "associated_with_weaker_relative_performance",
+      "confidence": "high"
+    },
+    {
+      "pattern": "title sai độ tuổi do ASR ('15歳' thay vì '75歳')",
+      "description": "transcript tự động lỗi chữ số — nếu kênh dùng auto-caption làm phụ đề sẽ mất uy tín",
+      "relationship": "associated_with_weaker_relative_performance",
+      "confidence": "medium"
+    }
+  ],
+  "extensions": {
+    "audience_evidence_comments": [
+      "người xem kể thói quen thật: 白湯 uống bên giường, ăn サバ/納豆/豆腐/玄米",
+      "cảm xúc: ありがとう/感動/参考 — tin tưởng nội dung",
+      "QC cảnh báo: '文字変換がメチャクチャ' + '信憑性に疑問' — AI narration/teencode bị chê"
+    ],
+    "verified_format": "tranh vẽ tay illustration + narration (đã tải video thật soi frame 2026-09-13)",
+    "reupload_strategy": "phát hiện kênh ĐĂNG LẠI cùng title (15d+14d, 13d+12d, 8d+7d) — xoá/đăng lại video khi view thấp",
+    "like_rate_avg_pct": 4.8,
+    "like_rate_note": "4.8% trung bình — cao gấp ~2 lần chuẩn faceless (2-3%) ⇒ khán giả già Nhật tương tác mạnh, tin nội dung",
+    "reupload_detail": "3 cap video cùng title đăng cách 1 ngày (08-29/30, 08-31/09-01, 09-05/06): bản được YouTube đẩy 5.670→13.791→38.060v, bản kia chết 457→593v — kênh đang A/B test nội dung bằng cách đăng 2 lần",
+    "hit_topics": [
+      "夜間頻尿・尿漏れで悩む方へ。ふくらはぎケアと食事改善で夜中のトイレ回",
+      "70歳以上の方へ：長寿者が密かに続けていた9つの食習慣——ほとんどの",
+      "ご注意ください：3つの一見体に良さそうな食習慣が、密かに筋肉を削り続",
+      "高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防い",
+      "高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防い"
+    ],
+    "miss_topics": [
+      "75歳以上の方へ：5つの天然食品が筋肉の消失を止める可能性——ほとん",
+      "ご注意ください：4つの一見無害な節約食品が密かに筋肉を傷つけています",
+      "5つの兆候が70代以降のあなたの未来をひそかに傷つけている",
+      "5つのだるさが実は慢性炎症のサイン——ほとんどの方がご存知ない",
+      "ご注意：5つの見落としが60歳以降の記憶力をひそかに衰えさせている",
+      "【放置厳禁】65歳以上の足をひそかに壊す3つの食品と守る3つの食品",
+      "【要注意】60歳以上が知らずに選ぶ6つのタンパク質が腎臓に負担をかけ",
+      "実は、粉ゼラチンを毎日足すだけで筋肉・睡眠・目の潤いが変わる【9割が"
+    ],
+    "hit_miss_insight": "HIT = thực phẩm CỤ THỂ + số đếm + cảnh báo (65k/40k/38k/35k); MISS = khái niệm TRỪU TƯỢNG (兆候/dấu hiệu, 炎症/viêm, 記憶力/trí nhớ, 粉ゼラチン) — khán giả 70-85 tuổi click theo nỗi sợ CỤ THỂ"
+  },
+  "claude_handoff": {
+    "recommended_content_directions": [
+      "Nhân bản pattern 'N thực phẩm/thói quen + hậu quả tiềm ẩn + 70歳以上の方へ' — 5 chủ đề HIT đã kiểm chứng",
+      "Mở rộng: thay 'thực phẩm' bằng 'thói quen buổi sáng/tối', 'tư thế ngủ', 'đồ uống' — giữ công thức list + story + %"
+    ],
+    "winning_topic_patterns": [
+      "['X歳以上の方へ'] + Nつの{食品/食習慣/飲み物} + {守る/壊す/防ぐ/削る} + ほとんどの方がご存知ない",
+      "bệnh cụ thể có nỗi sợ rõ (tiểu đêm, mất cơ, gãy xương) → chi tiết + số liệu + giải pháp đồ ăn"
+    ],
+    "recommended_hook_patterns": [
+      "câu hỏi đặc tả nỗi đau + số liệu (7割以上...) + 'nguyên nhân không phải như bạn nghĩ' + promise",
+      "khen ngợi khán giả → 'có 1 điều phải nói' → lật ngược → authority nghiên cứu"
+    ],
+    "recommended_script_structure": [
+      "hook (2ph) → promise mục lục → N khối đều nhau (cơ chế → story người thật → % nghiên cứu → mini chốt 'つまり') → mid-roll comment CTA → payoff (tóm tắt + 'không phải lỗi bạn') → 4 bước bắt đầu tối nay"
+    ],
+    "recommended_logic_flow": [
+      "PROBLEM → WHY → CAUSE ẩn → EVIDENCE % → SOLUTION → STORY → ACTION tối nay"
+    ],
+    "recommended_retention_devices": [
+      "list đếm ngược",
+      "open loop ở hook",
+      "story người thật mỗi mục",
+      "mini payoff 'つまり'",
+      "hỏi comment giữa video"
+    ],
+    "recommended_emotional_arc": [
+      "đồng cảm → lo → yên tâm → phấn chấn → hành động"
+    ],
+    "recommended_title_formulas": [
+      "【70歳以上の方へ】Xつの{食品/食習慣}が{筋肉/健康}を{守っていた/削っている}——ほとんどの方がご存知ない",
+      "ご注意ください：Xつの一見{無害/良さそう}な{食品/習慣}が密かに{筋肉/体}を{傷つけています}——{60代以上/シニア}の方は必見"
+    ],
+    "recommended_thumbnail_patterns": [
+      "nền đen, chữ lớn 60–70% (đỏ/vàng/trắng), 1 ảnh đồ ăn thật liên quan trực tiếp claim"
+    ],
+    "patterns_to_avoid": [
+      "chủ đề trừu tượng (兆候/炎症/記憶力)",
+      "mơ hồ độ tuổi trong title",
+      "ASR/narration lỗi chữ số — check QC trước khi đăng"
+    ],
+    "important_evidence": [
+      "like-rate 4.8% (gấp ~2× chuẩn faceless) — khán giả tin nội dung",
+      "5 video ≥20k view đều dùng 'thực phẩm cụ thể + số + tuổi'",
+      "chiến thuật đăng lại cùng title hôm sau cho hit 5.6k→13.8k→38k",
+      "transcript tạo bởi AI narration — giọng trầm, kính ngữ, có lỗi ASR"
+    ],
+    "uncertainties": [
+      "tên viện nghiên cứu mơ hồ — chưa kiểm chứng độ thật của số liệu (rủi ro y khoa)",
+      "kênh 30 ngày tuổi — chưa biết format có bền sau 90 ngày không",
+      "chỉ 3/17 video có transcript thành công (IP block) — phần còn lại suy từ pattern chung"
+    ],
+    "suggested_next_action": "bàn giao h2dev: viết script video đầu theo formula trên; QC giọng đọc + số liệu trước khi đăng"
+  }
+}

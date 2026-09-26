@@ -71,6 +71,9 @@ JOB_FILES = ["script.txt", "script.lock.json", "characters.json", "img_prompts.t
              "HOOK_TAP.md", "promise.txt",
              # 2026-09-26 (máy 2 báo thiếu ở gốc tập, CLAUDE.md quy tắc 0000): ID video gốc đi kèm job.
              "video_goc.json",
+             # 2026-09-26 (máy 2 báo ep01 Lane M): marker chặng máy 3 — thiếu là cổng review_may3.cong() ở máy 2 coi
+             # tập "chưa soát" và DỪNG trước B4 (lại còn tự share sang thư mục lồng ngoài Syncthing).
+             "review_may3.json",
              # 2026-09-24 Lane K (đa giọng): vai.txt = câu nào ai đọc (máy 1 gắn, máy 2 lồng tiếng + vẽ bóng thoại theo đó)
              "vai.txt", "yomi.txt",
              # 2026-09-24 Lane L: chỗ đặt hiệu ứng âm thanh thân video (máy 1 chọn theo nội dung, máy 2 B8 trộn)

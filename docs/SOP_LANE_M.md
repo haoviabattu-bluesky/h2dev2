@@ -186,6 +186,8 @@ py -3.13 -X utf8 pipeline\hook_tap_md.py --slug E:\CLAUDE\YOUTUBE\h2dev\assets\M
 :: G. GIAO MÁY 2 (tự ghi D = Done, H = cần ảnh) — đọc lại _BANGIAO.txt
 py -3.13 -X utf8 pipeline\dong_goi_may2.py --job teinengo-anaba epNN-<slug>
 ```
+⚠️ Máy 2 chạy từ cây bundle `FlowHandoff_local\shared\buoc2_3_tool\` (Syncthing), KHÔNG từ git: đổi profile/code dùng ở máy 2 thì chạy lại
+`py -3.13 -X utf8 pipeline\dong_goi_may2.py --bundle --profile-list teinengo-anaba` (ep01 máy 2 báo CHẶN vì thiếu bước này, 26/09).
 Kiểm cuối: `Get-CimInstance Win32_Process -Filter "Name='chrome.exe'" | ? CommandLine -match 'GPMLogin'` = 0.
 Lớp 3 (đọc bản khoá) kiểm thêm riêng lane: mục đầu trước phút 4 · mỗi mục đủ 5 phần · số lương/chế độ khớp [Dn] đúng điều kiện ·
 nửa đầu có thật sự ức chế · 春江 không bị quát · không có 高瀬/恵子/盲点だった · kết đủ cảm ơn + 高評価 + チャンネル登録.

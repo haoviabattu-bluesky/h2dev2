@@ -21,6 +21,19 @@ def run(cmd, env=ENV, timeout=900):
     return (r.stdout or "") + (r.stderr or "")
 
 
+def lech_anh(img, clip):
+    """Khung đầu clip so với ảnh gốc (xám 64x36, lệch trung bình 0–255). Đo thật 25/09: clip đúng <3, clip Grok
+    tự chế cảnh (ảnh không được gắn → text→video) 54–68. Ngưỡng 15."""
+    import io
+    import imageio_ffmpeg
+    from PIL import Image, ImageChops, ImageStat
+    b = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-v", "error", "-ss", "0.1", "-i", str(clip), "-frames:v", "1",
+                        "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True).stdout
+    x = Image.open(img).convert("L").resize((64, 36))
+    y = Image.open(io.BytesIO(b)).convert("L").resize((64, 36))
+    return ImageStat.Stat(ImageChops.difference(x, y)).mean[0]
+
+
 def thieu():
     ids = [f"clip_{s['n']:02d}" for s in json.loads((HOOK / "hook_timeline.json").read_text(encoding="utf-8"))["shots"]]
     return [i for i in ids if not ((HOOK / "clip" / f"{i}.mp4").exists() and (HOOK / "clip" / f"{i}.mp4").stat().st_size > 10240)]
@@ -43,6 +56,16 @@ for _ in range(LAN):
         o = run(PY + [str(GV / "grok_batch.py"), "--jobs", str(HOOK / "grok_jobs.csv"), "--out", str(HOOK / "clip"),
                       "--no-audio", "--gap", "5", "--retry", "0", "--only", t[0]], env=dict(ENV, GROK_CDP=f"http://127.0.0.1:{port}"))
         print("  " + "\n  ".join(l for l in o.splitlines() if re.search(r"OK |QUOTA|REJECT|FAIL|TỤT|XONG", l))[-800:], flush=True)
+        c = HOOK / "clip" / f"{t[0]}.mp4"
+        if c.exists():
+            n = int(t[0].split("_")[1])
+            d = lech_anh(HOOK / "img" / f"{n:03d}.png", c)
+            if d > 15:
+                (HOOK / "clip" / "_sai").mkdir(exist_ok=True)
+                c.replace(HOOK / "clip" / "_sai" / f"{t[0]}_dong{row}.mp4")
+                print(f"  ✗ {t[0]} SAI CẢNH (lệch ảnh gốc {d:.0f} > 15 — Grok không gắn ảnh) → bỏ, chạy tài khoản khác", flush=True)
+            else:
+                print(f"  ✓ {t[0]} khớp ảnh gốc (lệch {d:.1f})", flush=True)
     finally:
         print("  " + run(PY + [str(GV / "gpm_grok_mo.py"), "--close", pid, row], timeout=120).strip().splitlines()[-1], flush=True)
 print("còn thiếu:", thieu())

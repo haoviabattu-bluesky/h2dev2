@@ -652,6 +652,11 @@ class Job:
         if level == "WARN" and lean:
             raise SystemExit(f"✗ {buoc}: lane flow=lean nhưng {msg} → chạy B3 (lean) trước.")
         print(f"[{buoc}] lock: {msg}")
+        # 2026-09-26 (anh chốt): chặng MÁY 3 soát kịch bản chen giữa B3 và pha asset — lane bật
+        # `script.review_may3` (mặc định BẬT, 4 lane cũ khai false) mà chưa nhận bản máy 3 → DỪNG,
+        # kể cả `--from B4`. Xem pipeline/review_may3.py.
+        import review_may3
+        review_may3.cong(self.p, self.dir, buoc)
         # 2026-09-23 (Task 10): hook 20-30s là artifact THƯỢNG NGUỒN — hook lệch tiêu đề/thumbnail/
         # lời hứa (HOOK_STALE) thì mọi ảnh/giọng/ghép dựng tiếp theo đều dựng trên nền sai, cấm đi tiếp.
         # Tập cũ (trước tính năng hook) chưa có hook_lock.json thì chỉ NHẮC, không chặn — không hồi tố.
@@ -2574,6 +2579,13 @@ def main():
                 job.b3r_final_review(force=args.force_qc)
             if not again and not args.skip_qc:
                 job.b3g_regate(force=args.force_qc)
+        if not again and not (job.only and job.only != "B3"):
+            # 2026-09-26 (anh chốt, mọi lane mới): B3 xong → gửi máy 3 soát kịch bản rồi DỪNG (ghi cột D =
+            # "Cần check kịch bản"); nhận lại bằng review_may3.py --nhan. Đặt TRƯỚC B4 và ngoài nhánh
+            # `--den`, để `--den B3G` vẫn gửi và `--from B4` không đi cửa sau. Lane khai review_may3=false
+            # (satori/E/A/D) → hàm này không làm gì.
+            import review_may3
+            review_may3.sau_b3(job.p, job.dir, dry=args.dry_run)
         if not again and not args.dry_run:
             job.b4_voice()
             if not args.skip_qc:

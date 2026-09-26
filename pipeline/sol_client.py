@@ -126,43 +126,22 @@ def _chat_backup2(text, image_path, max_tokens, timeout):
     return data["choices"][0]["message"]["content"], data.get("usage", {})
 
 
-# 9router = proxy chạy TRÊN MÁY 1 (anh chốt 2026-09-26: máy 1 viết kịch bản thì cứ dùng; máy 2 chỉ
-# vẽ ảnh + dựng video, ở đó KHÔNG có 9router). Cùng một file code chạy ở cả hai máy nên không thể
-# bật/tắt bằng hằng số — phải TỰ NHẬN RA mình đang ở máy nào.
+# 9router LÀ ĐƯỜNG ĐẦU TIÊN Ở CẢ HAI MÁY (anh chốt 2026-09-26).
 #
-# Cách nhận: gõ cửa cổng 20128 bằng một kết nối TCP hạn 0,4 giây, nhớ kết quả cho cả tiến trình.
-#   · Máy 1: gõ thấy → 9router lên đầu hàng như cũ.
-#   · Máy 2: không ai mở cửa → bỏ qua NGAY trong 0,4 giây, không phải chờ hết timeout HTTP rồi mới
-#     rơi xuống ns24. Đây chính là chỗ tốn oan nếu cứ để nguyên: mỗi tập QC hàng trăm lượt ảnh.
-# Ép tay khi cần: `SOL_DUNG_9ROUTER=1` (luôn dùng) hoặc `=0` (không bao giờ dùng).
-_9ROUTER_EP = None
-
-
+# ⚠️ ĐỌC TRƯỚC KHI ĐỊNH "TỐI ƯU" CHỖ NÀY: sáng 26/09 đã có một bản thêm phép TỰ DÒ (gõ cổng 20128,
+# không thấy thì bỏ qua 9router) với lý do "máy 2 không có 9router". Lý do đó SAI — máy 2 vẫn dùng
+# 9router từ trước tới nay. Phép tự dò đó chỉ chực tắt nhầm đường chính ở máy 2 mà không ai hay,
+# nên đã gỡ bỏ. Muốn tắt thì đặt tay `SOL_DUNG_9ROUTER=0`, không để máy tự đoán hộ.
 def _co_9router():
-    """9router có đang mở ở máy này không (đo 1 lần rồi nhớ)."""
-    global _9ROUTER_EP
-    if _9ROUTER_EP is None:
-        ep = str(keys.get("sol_dung_9router", env="SOL_DUNG_9ROUTER", default="")).strip().lower()
-        if ep in ("1", "true", "yes"):
-            _9ROUTER_EP = True
-        elif ep in ("0", "false", "no"):
-            _9ROUTER_EP = False
-        else:
-            import socket
-            from urllib.parse import urlparse
-            u = urlparse(BASE_URL)
-            try:
-                with socket.create_connection((u.hostname or "localhost", u.port or 80), timeout=0.4):
-                    _9ROUTER_EP = True
-            except OSError:
-                _9ROUTER_EP = False
-    return _9ROUTER_EP
+    """Có đưa 9router vào hàng không. Mặc định CÓ; chỉ `SOL_DUNG_9ROUTER=0` mới bỏ."""
+    ep = str(keys.get("sol_dung_9router", env="SOL_DUNG_9ROUTER", default="")).strip().lower()
+    return ep not in ("0", "false", "no")
 
 
 def chat(text, image_path=None, max_tokens=2000, timeout=180):
     """Gửi 1 lượt chat (kèm ảnh nếu có) tới GPT-5.6-sol.
 
-    Thứ tự: 9router (chỉ khi máy này thật sự có nó — xem `_co_9router`) → ns24 → hhtechapi.
+    Thứ tự: 9router → ns24 → hhtechapi (bỏ 9router bằng `SOL_DUNG_9ROUTER=0`).
     LỖI GÌ CŨNG chuyển đường (connection refused/timeout/HTTP khác 200) — người gọi không cần biết
     đang đi đường nào. Chỉ ném lỗi khi MỌI đường đều hỏng."""
     duong = ([("9router", _chat_primary)] if _co_9router() else []) + \
@@ -189,7 +168,7 @@ def selftest():
          [("ns24", _chat_backup, BACKUP_BASE_URL, BACKUP_MODEL),
           ("hhtechapi", _chat_backup2, BACKUP2_BASE_URL, BACKUP2_MODEL)]
     if not _co_9router():
-        print(f"(máy này KHÔNG mở 9router ở {BASE_URL} — bỏ qua; ép bật bằng SOL_DUNG_9ROUTER=1)")
+        print(f"(9router bị tắt tay bằng SOL_DUNG_9ROUTER=0 — bỏ qua {BASE_URL})")
     song = 0
     for ten, ham, base, model in bo:
         try:

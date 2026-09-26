@@ -220,7 +220,8 @@ def _ghi_cot_d_done(s, tab, dong):
     if cu.lower() == "done":
         print(f"  ô {tab}!{COT_D}{dong} đã 'Done'")
         return
-    if cu:
+    # 2026-09-26: chặng máy 3 — "Đã sửa kịch bản" là trạng thái đúng ngay trước khi giao máy 2 → được đè thành Done.
+    if cu and cu != "Đã sửa kịch bản":
         print(f"  ⚠️ ô {tab}!{COT_D}{dong} đang là '{cu}' → KHÔNG đè thành Done, người xem quyết")
         return
     svc(doc_thoi=False).values().update(spreadsheetId=SHEET_ID, range=f"{tab}!{COT_D}{dong}",
@@ -327,6 +328,10 @@ def cmd_job(profile_id, slug, no_title=False):
     job_dir = ROOT / prof["slug_dir"] / slug
     if not job_dir.is_dir():
         raise SystemExit(f"✗ không thấy {job_dir}")
+    # 2026-09-26 (anh chốt): lane bật soát máy 3 (`script.review_may3`, mặc định BẬT) mà tập chưa nhận bản
+    # máy 3 → KHÔNG được giao máy 2 (giọng/ảnh dựng trên kịch bản chưa soát). Xem pipeline/review_may3.py.
+    import review_may3
+    review_may3.cong(prof, job_dir, "dong_goi_may2 --job")
     # ⭐ anh chốt 2026-09-25: jobs/ PHẢI chia theo TÊN TAB TRANG TÍNH (publish.sheet_tab), không để
     # phẳng theo slug — slug trùng giữa 2 lane khác nhau (vd 2 lane cùng đặt "ep01-...") từng có nguy
     # cơ đè job của nhau vì jobs/<slug>/ không phân biệt lane. Một nguồn chân lý DUY NHẤT: sheet_tab.py.

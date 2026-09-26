@@ -188,7 +188,9 @@
       "visual_kind": "video_sinh",
       "sfx": true,
       "_hook_note": "HOOK_LIBRARY (TRENDING-RESEARCH nạp 5 video gốc 2026-09-24): H41 (9uJ in medias res), H22 (YFj thoại nghịch lý), H26 ×2 (HjP, rSH phủ định niềm tin), H13 (Cnc cảnh giao dịch). closer K23 = khẩu hiệu nghi thức dẫn vào thân bài ngay sau câu hỏi — đúng câu 「その答えは…物語の中にあった」 (7/11 video)."
-    }
+    },
+    "review_may3": true,
+    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c."
   },
   "script_qc": {
     "lens": "plain",
@@ -205,7 +207,7 @@
   "image": {
     "skill": "skills/youtube-image-prompts/SKILL.md",
     "character_sheet": "Each episode defines its OWN cast in characters.json (id, age, gender, look, ref). Sakura (id 'sakura') is the channel's recurring guide and ALWAYS uses the lane master portrait (image.fixed_refs) — only her outfit changes with her role in the episode. Every other character with a speaking line or appearing in 2+ images has its own locked master (_ref_<id>/001.png). A single image may show AT MOST 3 locked faces (Flow Tool limit). All characters are fictional Japanese adults; never resemble a real public figure.",
-    "style_suffix": "clean modern Japanese anime illustration, semi-realistic proportions, crisp line art, soft cel shading, bright natural light, realistic Japanese adults in everyday Japanese settings, gentle clear colors; leave some open uncluttered space beside the speaking person for a vertical speech balloon added later; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no numbers, no charts, no speech bubbles, no watermark",
+    "style_suffix": "clean modern Japanese anime illustration, semi-realistic proportions, crisp line art, soft cel shading, bright natural light, realistic Japanese adults in everyday Japanese settings, gentle clear colors; keep a calm, low-detail area beside the speaking person where a vertical speech balloon is added later - at most 15% of the frame width, still part of the room (a wall, a window, soft background), NEVER a flat empty panel and NEVER a hard vertical dividing line; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no numbers, no charts, no speech bubbles, no watermark",
     "_style_suffix_note": "Viết theo khung hình THẬT 5 video gốc (assets/shakai_no_naze/_research/kenh_mau/sheet_*.jpg, mat_*.jpg): anime bán thực, văn phòng/nhà Nhật sáng. Chữ/bóng thoại do MÁY vẽ sau nên ảnh cấm chữ. Cấm chart/số trên hình: kênh gốc có slide số liệu nhưng anh chốt BỎ (AI vẽ số không chuẩn).",
     "seconds_per_image": 7.5,
     "_seconds_note": "ĐO THẬT 2026-09-24: 272/250 lần đổi cảnh ở 2 video (trung vị 4,6–4,7s) nhưng 1 ảnh thường dùng lại 1–3 lần với bóng thoại khác → ~162–168 ảnh khác nhau/20–22' ≈ 7,5 s/ảnh.",
@@ -254,6 +256,8 @@
       "_note_co_chu": "2026-09-25 anh chốt MỨC C từ tập 2: lời kể 72px / thoại 56px (tập 1 đã giao ở mức B 64/48). Mẫu so sánh: assets/shakai_no_naze/ep01-shusse-shitakunai/_mau_chu/SO_SANH_MUC_C.png. Thoại dài >30 chữ tách nhiều bóng (thoai_split_chars)."
     },
     "zoom_dir": "alt",
+    "hook_tu_ghep": true,
+    "_note_hook_tu_ghep": "2026-09-25: B8 tự ghép hook THAY HÌNH ngay sau khi trộn SFX (máy 2 khỏi chạy tay). hook_timeline.json máy 1 ghi mốc theo SỐ CÂU (shots[].cau=[a,b], sfx[].cau+lech) — ghep_hook_noi_truoc.neo_lai_theo_cau tính lại giây từ voice_roles.json của giọng thân máy 2 lồng (ai33 không tất định).",
     "_note_chuyen_canh": "Anh chốt 2026-09-24 sau khi xem ep01 (NGOẠI LỆ Lane L với luật cấm zoom 21/09, giống Lane K): chuyển cảnh mờ chồng 0,3s + mỗi cảnh zoom nhẹ 2,5% luân phiên vào/ra (zoom_dir alt), dựng bằng warpAffine dưới-pixel (assemble._warp_clip, đo 0,016 px/khung — không rung).",
     "sfx": {
       "enabled": true,
@@ -298,10 +302,13 @@
     "movie poster"
   ],
   "publish": {
-    "upload_channel": "shakai_no_naze",
+    "upload_channel": "L-shakai-no-naze",
     "sheet_tab": "L-shakai-no-naze",
     "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
     "review_vi": true,
+    "review_vi_cao": 720,
+    "ten_review": "final-vietsub.mp4",
+    "_note_giao": "Anh chốt 2026-09-25: máy 2 giao ĐÚNG 2 video — final.mp4 (ĐÃ có hook; 100% video giao phải có hook nên bỏ tên final_with_hook) + final-vietsub.mp4 (cùng video, cháy phụ đề Việt 720p cho anh đọc). Hook ghép tự động trong B8 (assemble.hook_tu_ghep).",
     "hashtags": "#社会問題 #雑学 #心理学 #漫画 #なぜ",
     "tags_seed": [
       "社会問題",
@@ -315,7 +322,8 @@
     ],
     "listing_external": true,
     "title_auto": true,
-    "_title_auto_note": "2026-09-25 anh BẬT (tập 1 đã chạy TITLE tay xong 24/09: tiêu đề+tags+thumbnail trên sheet dòng 2). Từ tập 2 dong_goi_may2.py --job tự gọi goi_title.py. Mô tả theo khuôn kênh mẫu: 2–3 câu chào cố định + 1–3 số liệu thật + câu hỏi なぜ + hé nguyên nhân + hashtag."
+    "_title_auto_note": "2026-09-25 anh BẬT (tập 1 đã chạy TITLE tay xong 24/09: tiêu đề+tags+thumbnail trên sheet dòng 2). Từ tập 2 dong_goi_may2.py --job tự gọi goi_title.py. Mô tả theo khuôn kênh mẫu: 2–3 câu chào cố định + 1–3 số liệu thật + câu hỏi なぜ + hé nguyên nhân + hashtag.",
+    "_upload_channel_note": "2026-09-25 anh chốt: đổi CHANEL sang tên TAB (L-shakai-no-naze), áp cho toàn bộ lane cùng lúc."
   },
   "goi_dang": {
     "enabled": true,

@@ -1,0 +1,160 @@
+# 06 PASS / FAIL EXAMPLES — G-teinengo-tanoshimi
+
+> Lane `teinengo-tanoshimi`. File do tool YT-TITLE-RESEARCH TỰ XUẤT từ repo (E:\CLAUDE\YOUTUBE\YT-TITLE-RESEARCH). Luật ở đây CHỈ áp cho kênh này, không dùng cho kênh khác.
+
+## B. PASS — video THẮNG của kênh mẫu 老後のお金ストーリー (xếp theo lượt xem thật)
+
+- **【漫画】なぜか老けない50代男性が「毎日やっていること」7選…同年代と差がつく意外な共通点** — 203,730 view (hạng: thắng)
+  - chữ thumbnail: 老けない人の(vàng, băng đen trên) / 共通点(đỏ, băng đen trên) / 孤独な生活(chữ đen trên bong bóng TRẮNG oval dọc (panel trái)) / 肉を食う(chữ đen trên bong bóng TRẮNG oval dọc (panel phải)) / 第3位(nhãn VÀNG chữ đen (panel trái)) / 第2位(nhãn VÀNG chữ đen (panel phải))
+  - công thức: 【漫画】なぜか{điều mong muốn: 老けない/太らない/お金が残る}{年代+性別}が「{毎日/いつも}やっていること」{N}選…{同年代}と差がつく意外な共通点
+  - vì sao: 「【漫画】」= nhãn định dạng (10/10 video kênh): Báo 'truyện tranh dễ xem, có nhân vật' — người 60+ ngại video giảng bài; biết trước là truyện nên bấm nhẹ tay hơn. · 「なぜか老けない」= nghịch lý + chữ bí ẩn 「なぜか」: Người xem đang sợ già (đúng stake 16,9s). 'なぜか' nói có một lý do chưa ai nói → khoảng trống tò mò; 'không già' là lợi ích tự thân, không cần giải thích. · 「50代男性が」= đối tượng tuổi + giới (một người cụ thể): 50 thấp hơn tuổi khán giả chính (60+) một chút: người 60 xem để so 'mình có kịp không', người 50 xem vì đúng tuổi. 'Nam giới' khớp khán giả nam của kênh (người kể xưng 俺). · 「「毎日やっていること」」= lời hứa hành động được (thói quen), đặt trong 「」 như lời trích: Ngoặc kép biến nó thành lời của một người thật → cảm giác 'bí quyết được kể lại', không phải lời khuyên chung. 'Mỗi ngày' = làm được, không tốn tiền. · 「7選」= con số N (list): Cho biết độ dài lời hứa, hứa 'đếm được' → giữ tới mục cuối. Kênh: 9 video N選 trung vị 85k vs 7,5k. · 「…同年代と差がつく」= so với người cùng tuổi (H08 bản ganh tị): Người già so mình với bạn cùng lứa liên tục; 'tạo khoảng cách' biến lợi ích thành cạnh tranh — sợ bị bỏ lại mạnh hơn muốn trẻ. · 「意外な共通点」= vế phần thưởng / lật (hứa có mục ngược thường thức): '意外' hứa ít nhất một mục không đoán được → không thể lướt qua vì 'chắc mình biết rồi'.
+  - tiêu đề ↔ thumbnail: Thumbnail GHÉP 2 cụm của tiêu đề (老けない + 共通点, 共通点 tô ĐỎ) và thay vế số bằng 2 mục giữa danh sách có nhãn hạng; đó là 2 mục 'ngược thường thức' (孤独, 肉) — thumbnail bán vế 「意外な」 mà tiêu đề chỉ hứa suông. Bổ trợ, không lặp nguyên văn. 第3/第2位 khớp nếu đếm ngược từ 7つ目; video không nói chữ 第N位.
+- **【漫画】一生に一度は参拝したい…定年後に行くべき格式の高い神社5選** — 174,228 view (hạng: thắng)
+  - chữ thumbnail: 定年後(vàng, băng đen trên) / に(trắng, băng đen trên) / 参拝したい(đỏ, băng đen trên) / 一人旅(chữ đen trên bong bóng TRẮNG oval dọc (panel trái)) / 自由(chữ đen trên bong bóng TRẮNG oval dọc (panel phải)) / 有名神社5選(ĐỎ viền trắng, dòng lớn dưới)
+  - công thức: 【漫画】一生に一度は{動詞}したい…定年後に行くべき{格式の高い/格調ある}{場所}{N}選
+  - vì sao: 「【漫画】」= nhãn định dạng: Như mọi video kênh. · 「一生に一度は参拝したい」= bucket list + đồng hồ thời gian còn lại (cảm xúc): Với người 60+, 'một lần trong đời' ngầm nói 'còn bao nhiêu lần nữa' — cấp bách mà không doạ. Vế đứng TRƯỚC 定年後, tức mở tiêu đề bằng cảm xúc chứ không bằng đối tượng. · 「…定年後に行くべき」= đối tượng + mệnh lệnh nhẹ (べき): 'Nên đi' biến danh sách thành lời khuyên của người đi trước — người mới hưu chưa có kế hoạch bấm để nhận 'việc nên làm'. · 「格式の高い」= tính từ uy tín (cực cấp kiểu kênh): Không phải 'đền đẹp/nổi tiếng' mà 'đền có đẳng cấp' — hợp thế hệ coi trọng lễ nghi; cũng hứa 'không phải đền du lịch bình thường'. · 「神社5選」= từ khoá tra cứu + N: Đề tài tra cứu có đáp án tên riêng → người xem muốn so 'mình đã đi mấy chỗ', 'hạng 1 có phải 伊勢 không'. Comment 43 (cao nhất nhóm) — đúng kiểu 'mình đã đi rồi'.
+  - tiêu đề ↔ thumbnail: Thumbnail tách tiêu đề: băng trên 「定年後に参拝したい」 (ghép 2 nửa, 参拝したい tô ĐỎ) + dòng dưới 「有名神社5選」 (đổi 格式の高い → 有名 dễ đọc hơn). Bong bóng 「一人旅」「自由」 thêm chiều cảm xúc tiêu đề không có (1人旅 ~88s, ~213s). Tranh hiện hạng 3 và 2, giấu hạng 1 — đúng nguyên tắc 7.
+- **【漫画】定年後、最強の暇つぶし5選…実は1円もかからない楽しみ方がありました** — 166,621 view (hạng: thắng)
+  - chữ thumbnail: 定年後、(vàng) / 最強の(ĐỎ) / 暇つぶし(trắng) / 5位(đen trên nhãn vàng) / 4位(đen trên nhãn vàng) / 3位(đen trên nhãn vàng) / 2位(đen trên nhãn vàng) / ※1円もかからない(ĐỎ viền trắng, cỡ lớn)
+  - công thức: 【漫画】定年後、{cực cấp}の{nỗi đau đời hưu}N選…実は{phần thưởng phủ định chi phí/nỗi sợ}がありました
+  - vì sao: phrase: 【漫画】定年後、; role: nhãn + đối tượng; mechanism: Như khuôn kênh.; paid: 0,2s 「定年から時間だけは…」. · phrase: 最強の暇つぶし; role: cực cấp + nỗi đau số 1 của người mới hưu (暇); mechanism: 暇 là nỗi xấu hổ thầm kín của người vừa mất công việc; 最強 hứa có đáp án "tốt nhất" → bấm để so với cách mình đang giết thời gian.; paid: 暇 ở 0,2–11s; 最強 KHÔNG có trong script (grep=0); 暇つぶし ×18 từ 351s. · phrase: 5選; role: con số; mechanism: Danh sách hữu hạn.; paid: 351s → 1015s. · phrase: …実は1円もかからない楽しみ方がありました; role: vế phần thưởng + lật (実は) + giọng phát hiện (ありました); mechanism: Người sống bằng lương hưu sợ tiêu tiền; "0 yên" gỡ đúng nỗi sợ đó và biến danh sách giải trí thành danh sách tiết kiệm → hai nhu cầu trong 1 bấm.; paid: 23,3s 「一円も使わない」 (lõi tiêu đề trong 23s); 1円 ×4 trong thân.
+  - tiêu đề ↔ thumbnail: Tách tiêu đề làm 2: băng trên = vế đầu 定年後、最強の暇つぶし (có cụm ĐỎ 最強の), dòng đỏ đáy = vế sau 1円もかからない (thêm ※ như chú thích sốc). Tranh = 4 nhãn hạng 5→2, giấu 1位 bằng cách bỏ trống — đúng nguyên tắc 7.
+- **【漫画】６０代から人生が驚くほど心地よくなる定年後に見つけたちょうどいい生き方５選** — 115,219 view (hạng: thắng)
+  - chữ thumbnail: 定年後、(vàng) / 最高の(ĐỎ) / 生き方(trắng) / お金や健康ではない(ĐỎ viền trắng, cỡ lớn)
+  - công thức: 【漫画】{tuổi}から人生が{phó từ phóng đại}{tính từ lợi ích}なる{bối cảnh}に見つけた{danh từ dịu}N選
+  - vì sao: phrase: 【漫画】６０代から; role: nhãn + đối tượng tuổi (chữ số toàn góc); mechanism: 60代 rộng hơn 定年後 — cả người chưa nghỉ.; paid: Người kể 66 tuổi (0s). · phrase: 人生が驚くほど心地よくなる; role: lời hứa lợi ích cảm xúc + phó từ phóng đại; mechanism: Hứa trạng thái (dễ chịu) chứ không hứa tiền — hợp người đã đủ tiền nhưng buồn chán.; paid: 驚くほど ~204s và ~1019s 「驚くほど心地よくなった」; 心地 ×10. · phrase: 定年後に見つけた; role: giọng trải nghiệm thật ngôi 1; mechanism: "Tôi tìm ra" = đã kiểm chứng, không phải lý thuyết.; paid: 1095s 「俺が見つけた定年後の最高の生き方」. · phrase: ちょうどいい生き方; role: danh từ trừu tượng dịu; mechanism: "Vừa đủ" gỡ áp lực phải sống sôi nổi; nhưng trừu tượng — nhóm tiêu đề trừu tượng của kênh thường thua; ở đây được cứu nhờ thumbnail phủ định cụ thể.; paid: ちょうどいい ×5 (211, 351, 547, 711, 1079s). · phrase: ５選; role: con số; mechanism: Danh sách.; paid: 212s → 812s.
+  - tiêu đề ↔ thumbnail: Bổ trợ bằng PHỦ ĐỊNH: băng trên tóm tiêu đề thành 定年後、最高の生き方 (đổi ちょうどいい→最高, có cụm đỏ); dòng đỏ đáy 「お金や健康ではない」 không có trong tiêu đề — lấy từ hook 3–18s, biến tiêu đề mềm thành câu đố "vậy là gì?" (công thức W2 phủ định nỗi sợ quen).
+- **【漫画】夜行バスに2万円！？新幹線より高い豪華夜行バスに65歳で乗ってみた結果…** — 108,242 view (hạng: thắng)
+  - chữ thumbnail: 60代で(vàng) / 高級夜行バス旅(trắng) / 片道2万(đen trên bong bóng trắng dọc (khung trái)) / 極上シート(đen trên nhãn vàng (khung trái)) / 11席だけ(đen trên bong bóng trắng dọc (khung phải)) / 完全個室(đen trên nhãn vàng (khung phải))
+  - công thức: 【漫画】{thứ quen rẻ}に{giá sốc}！？{chuẩn quen}より高い{bản xa xỉ}に{tuổi}で{thử}てみた結果…
+  - vì sao: phrase: 【漫画】; role: nhãn; mechanism: Như khuôn kênh.; paid: — · phrase: 夜行バスに2万円！？; role: con số giá gây sốc + dấu ！？; mechanism: Người 60+ nhớ bus đêm = rẻ, chật; 2万 phá định kiến giá → phản xạ "vô lý, xem thử".; paid: 0,0s nguyên văn; 2万 ×13. · phrase: 新幹線より高い; role: nghịch lý so sánh với chuẩn quen; mechanism: Cho người xem thước đo tức thì (新幹線 ai cũng biết giá) → nghịch lý rõ.; paid: 7,0s; 239s; 308s. · phrase: 豪華夜行バス; role: danh từ cụ thể + tính từ xa xỉ; mechanism: Hứa xem "đồ sang" không cần mua — du lịch qua màn hình.; paid: 4,9s 「完全個室の豪華夜行バスだ」. · phrase: に65歳で乗ってみた結果…; role: tuổi cụ thể + thể nghiệm + kết quả treo; mechanism: "65 tuổi" = người như mình có chịu nổi không; 結果… treo phán quyết → phải xem tới cuối.; paid: 65歳 39,7s; phán quyết 970–1039s (結果 không có nguyên văn).
+  - tiêu đề ↔ thumbnail: Tách: băng trên đổi thành 60代で高級夜行バス旅 (tuổi + danh từ); con số 2万 chuyển xuống bong bóng 片道2万; thumbnail thêm 2 chi tiết tiêu đề không có (11席だけ, 完全個室, 極上シート) làm bằng chứng cho vế 豪華. Bỏ mất vế nghịch lý 新幹線より高い. Hai biểu cảm (mãn nguyện / sửng sốt) = trước–sau.
+- **【漫画】定年後、一流だけがやっている休日の過ごし方5選【世間の非常識】** — 95,648 view (hạng: mới)
+  - chữ thumbnail: 定年後、(vàng) / 休日の過ごし方(trắng) / ダラダラする(đen trên bong bóng trắng dọc (khung trái)) / 予定ゼロ(đen trên bong bóng trắng dọc (khung phải)) / 一流はこれをやる(ĐỎ viền trắng, cỡ lớn nhất)
+  - công thức: 【漫画】定年後、{nhóm người được ngưỡng mộ}だけがやっている{hoạt động đời thường}N選【{nhãn nghịch lý}】
+  - vì sao: phrase: 【漫画】; role: nhãn định dạng (10/10 video kênh); mechanism: Báo trước "truyện tranh, dễ xem, không phải bài giảng" — người 60+ ngại video giảng giải.; paid: Toàn video là manga thoại. · phrase: 定年後、; role: đối tượng tuổi + từ khoá tìm kiếm; mechanism: Người mới hưu gõ/nhận đề xuất theo cụm 定年後; dấu phẩy tách chủ thể để đọc nhanh.; paid: 0,1s 「定年すれば毎日が休日になる」. · phrase: 一流だけがやっている; role: địa vị / "người giỏi làm khác" (tò mò + muốn thuộc nhóm trên); mechanism: Người 60+ vừa rời chức danh công ty, sợ bị coi là "ông già vô dụng" → hứa một cách sống khiến mình thành "hạng nhất". Là lời khen cho chính việc lười (ダラダラ) → người xem được phép.; paid: KHÔNG được nói trong video (grep 一流 = 0). Chỉ gián tiếp: 藤原 "4年かけてようやく楽な過ごし方が分かってきた" (~346s). Vế tiêu đề không có trong script — vi phạm nguyên tắc 8 nhưng không bị phản tác dụng vì phần thưởng (5 cách) có đủ. · phrase: 休日の過ごし方; role: danh từ cụ thể + từ khoá tìm kiếm; mechanism: Cụm tra cứu thường ngày; nghịch lý ngầm: người hưu thì ngày nào cũng là ngày nghỉ, sao còn "cách nghỉ"?; paid: 237s 「会社員の休日の過ごし方」, 364s 「定年後の休日の過ごし方を1つずつ」. · phrase: 5選; role: con số / lời hứa danh sách; mechanism: Hứa số lượng hữu hạn, có điểm kết → dễ quyết định xem 20 phút.; paid: 373s 第5位 → 999s 第1位. · phrase: 【世間の非常識】; role: nghịch lý / đảo niềm tin; mechanism: Báo trước các mục sẽ NGƯỢC điều xã hội dạy (phải sống có ích) → tò mò "ngược thế nào" + cảm giác được phép bỏ áp lực.; paid: Hook 26s liệt kê ダラダラ/予定を入れない/外に出ない; 360s 「現役時代ならむしろダメだと言われそうなことばかり」; cả 5 mục đều là "không làm gì".
+  - tiêu đề ↔ thumbnail: Tách + bổ trợ: băng trên lấy nguyên cụm 定年後、+休日の過ごし方 của tiêu đề; dòng đỏ 「一流はこれをやる」 lặp vế 一流だけがやっている dưới dạng đại từ これ; 2 bong bóng cho XEM 2 mục cuối (5,4) để chứng minh "非常識" bằng hình (ông lười trên sofa) mà không lộ 1–2. Thiếu cụm đỏ trong băng trên.
+- **【漫画】定年後は一人旅が最高、60代から一度は行きた有名の温泉地5選** — 86,820 view (hạng: thắng)
+  - chữ thumbnail: 60代(vàng, băng đen trên) / は一人旅が(trắng, băng đen trên) / 最高(đỏ, băng đen trên) / 気楽に行ける！(chữ đen trên bong bóng TRẮNG oval dọc (panel trái)) / これぞ贅沢！(chữ đen trên bong bóng TRẮNG oval dọc (panel phải)) / 日本の名湯5選(ĐỎ viền trắng, dòng lớn dưới)
+  - công thức: 【漫画】定年後は{行動}が最高、{年代}から一度は行きたい{有名な}{場所}{N}選
+  - vì sao: 「【漫画】」= nhãn định dạng: Như mọi video kênh. · 「定年後は一人旅が最高」= khẳng định cảm xúc + chủ thể 定年後 (phủ định nỗi sợ quen): Đảo nỗi sợ 'đi một mình = cô đơn' thành 'tuyệt nhất' — người mới hưu độc thân/vợ không đi cùng được CHO PHÉP làm điều họ ngại. 'Tuyệt nhất' đã là phần thưởng, không cần giải thích. · 「60代から一度は行きた(い)」= đối tượng tuổi + bucket list: 'Một lần trong đời' gắn thời gian còn lại → cấp bách nhẹ. Lỗi chính tả 「行きた」 (thiếu い) vẫn không cản 87k view — đề tài kéo. · 「有名の温泉地5選」= từ khoá tìm kiếm + N (list tra cứu): 温泉 là đề tài tra cứu/nhớ tên — người xem muốn biết 'hạng 1 có trùng chỗ mình nghĩ không'. 「有名の」 sai ngữ pháp (phải 有名な).
+  - tiêu đề ↔ thumbnail: Thumbnail tách tiêu đề làm 2 dòng: băng trên 「60代は一人旅が最高」 (đổi 定年後 → 60代, 最高 tô ĐỎ) + dòng dưới 「日本の名湯5選」 (đổi 有名の温泉地 → 名湯, sửa luôn lỗi ngữ pháp). Bong bóng 「気楽に行ける！」「これぞ贅沢！」 là kết luận CỦA VIDEO (気楽 ~113/188s, 贅沢 ~232/1116s) — thumbnail bán kết quả cảm xúc, tiêu đề bán danh sách.
+- **【漫画】６０代から疲れが取れない人へ…最高の休養を作る疲労回復法７選** — 52,106 view (hạng: giữa)
+  - chữ thumbnail: 60代最強の(vàng, băng đen trên) / 休み方(trắng, băng đen trên) / 昼寝(chữ đen trên bong bóng TRẮNG oval dọc (panel trái)) / 散歩(chữ đen trên bong bóng TRẮNG oval dọc (panel phải)) / 科学的な回復法7選(ĐỎ viền trắng, dòng lớn dưới)
+  - công thức: 【漫画】{年代}から{悩み}人へ…最高の{結果}を作る{方法}{N}選
+  - vì sao: 「【漫画】」= nhãn định dạng: Như mọi video kênh — báo truyện tranh. · 「６０代から」= đối tượng tuổi: Gọi tên nhóm khán giả; 'から' ngụ ý mốc cơ thể bắt đầu đổi. · 「疲れが取れない人へ」= gọi thẳng nỗi đau (〜人へ = thư gửi riêng): Người đang mệt nhận ra mình ngay; nhưng 'gửi người mệt' là LỌC khán giả — ai không thấy mình mệt sẽ bỏ qua, và không có khoảng trống tò mò (khác 「なぜか老けない」 của bgUq). · 「最高の休養を作る」= lời hứa kết quả (tính từ cực cấp): 'Tốt nhất' là lời hứa chung, không có chi tiết để hình dung; chữ 休養 không xuất hiện (video dùng 休み方). · 「疲労回復法７選」= từ khoá tìm kiếm + con số N: Cụm tra cứu sức khoẻ phổ biến, N=7 cho độ dài lời hứa.
+  - tiêu đề ↔ thumbnail: Thumbnail ĐỔI chữ so với tiêu đề: 最高の休養 → 「60代最強の休み方」, 疲労回復法 → 「科学的な回復法7選」. Chữ 休み方 khớp hook (18–29s) tốt hơn chữ của tiêu đề; nhưng 「科学的な」 và 「最強」 không có trong transcript (0 lần) — video giải thích bằng 体内時計/自律神経/第2の心臓/水圧 nên 'khoa học' là cách đóng gói, không phải lời nói. Tranh lộ luôn 2 mục (昼寝, 散歩) người xem đoán được, không giấu gì.
+- **【漫画】生涯独身で定年退職した男…孤独だと思っていたら、実は贅沢なほど自由な老後生活** — 42,215 view (hạng: giữa)
+  - chữ thumbnail: 孤独な男(vàng, băng đen trên) / ほど(trắng, băng đen trên) / 勝ち組(đỏ, băng đen trên) / 付き合いは浪費(nhãn VÀNG chữ đen (panel trái)) / 一人が贅沢(nhãn VÀNG chữ đen (panel phải))
+  - công thức: 【漫画】{属性}で定年退職した男…{恐れ}だと思っていたら、実は{逆の褒め言葉}なほど{良い状態}な老後生活
+  - vì sao: 「【漫画】」= nhãn định dạng: Như mọi video kênh. · 「生涯独身で定年退職した男…」= người + nhãn đời (độc thân trọn đời) + mốc (hưu): Nhãn 'độc thân trọn đời' là nỗi sợ thầm của một nhóm (và tò mò của nhóm có gia đình). Nhưng nó THU HẸP khán giả: người có vợ con thấy 'không phải chuyện mình'. · 「孤独だと思っていたら、」= nỗi sợ quen (sẽ bị phủ định): Nêu đúng điều người xem đoán ('độc thân về già thì cô đơn') để lật. · 「実は贅沢なほど自由な老後生活」= lật + lời hứa cảm xúc: 'Thật ra còn xa xỉ' — phủ định nỗi sợ (kiểu W2 simbot2) nhưng đích đến là TRẤN AN chung chung, không có con số, không có 'N điều' hay việc làm được ngay → không có lý do bắt buộc phải xem (so thua 'trấn an' ở simbot2: 345–1.062/ngày).
+  - tiêu đề ↔ thumbnail: Thumbnail KHÔNG dùng chữ nào của tiêu đề ngoài 孤独: đổi thành khẩu hiệu gây tranh cãi 「孤独な男ほど勝ち組」 (勝ち組 đỏ) + 2 nhãn 「付き合いは浪費」「一人が贅沢」 — sắc hơn tiêu đề, nhưng 勝ち組 và 浪費 đều 0 lần trong transcript (video dùng 付き合い/交際費/自由). Bố cục trước/sau khớp truyện (nhậu mệt → cà phê một mình).
+- **【漫画】定年後の一人旅におすすめ…６０代・７０代でも行きやすい日本の人気観光地５選** — 36,340 view (hạng: giữa)
+  - chữ thumbnail: 定年後の(vàng) / 一人旅はここ(trắng) / 自由(đen trên bong bóng trắng dọc (khung trái)) / 別格(đen trên bong bóng trắng dọc (khung phải)) / 定番の絶景5選(ĐỎ viền trắng, cỡ lớn)
+  - công thức: 【漫画】{bối cảnh}の{hoạt động}におすすめ…{tuổi}でも{điều kiện dễ}{danh từ quen}N選
+  - vì sao: phrase: 【漫画】定年後の一人旅におすすめ…; role: đối tượng + chủ đề + lời khuyên; mechanism: Cụm tìm kiếm thẳng; おすすめ là từ nhạt, không có cực cấp/nghịch lý.; paid: 1人旅 278s, 303s (một人旅 0 lần — transcript ghi 1人旅). · phrase: ６０代・７０代でも行きやすい; role: đối tượng tuổi mở rộng + điều kiện dễ; mechanism: でも hạ rào tuổi — nhưng đọc như "dành cho người yếu".; paid: 18s 「60代から楽しめる」; 70代 1281s; 行きやすい 805s. · phrase: 日本の人気観光地; role: danh từ chung, quen; mechanism: "Nơi nổi tiếng" = người xem đã biết tên → ít tò mò; không có chi tiết lạ.; paid: Cả danh sách là nơi ai cũng biết (松島, 京都…). · phrase: ５選; role: con số; mechanism: Danh sách.; paid: 206s → 1081s.
+  - tiêu đề ↔ thumbnail: Lặp: băng trên 定年後の一人旅はここ = vế đầu tiêu đề; dòng đỏ 「定番の絶景5選」 đổi 人気観光地 → 定番の絶景 (vẫn là "quen thuộc"); bong bóng 自由/別格 là tính từ chung, không cho sự thật lạ nào (khác 上陸禁止/片道2万).
+
+## C. FAIL tương đối — video YẾU NHẤT cùng kênh mẫu (cùng ngách, ít view hơn hẳn)
+
+- **【漫画】こんな神社が残っていた…一生に一度は巡りたい「最古級の神社」5選** — 7,091 view (hạng: mới)
+  - chữ thumbnail: 定年後(vàng) / に参拝したい(trắng) / 上陸禁止(đen trên bong bóng trắng dọc (khung trái)) / 建国と同い年(đen trên bong bóng trắng dọc (khung phải)) / 最古級の神社5選(ĐỎ viền trắng, cỡ lớn)
+  - công thức: 【漫画】こんな{danh từ}が残っていた…一生に一度は{động từ}たい「{cực cấp}の{danh từ}」N選
+  - vì sao: phrase: 【漫画】; role: nhãn định dạng; mechanism: Như khuôn kênh.; paid: — · phrase: こんな神社が残っていた…; role: cảm thán phát hiện (tò mò); mechanism: "Hoá ra vẫn còn loại đền thế này" — hứa điều lạ, nhưng không nói lạ ở đâu.; paid: Hook 12,9s 「さらに途方もない歴史を持つ神社があることを」; 残って xuất hiện 237/258s. · phrase: 一生に一度は巡りたい; role: danh sách việc-phải-làm trước khi chết (bucket list) — chép gần nguyên của BeIZhu1I4Tw 「一生に一度は参拝したい」; mechanism: Đánh vào cảm giác thời gian còn lại của người 60+.; paid: Không có nguyên văn (grep 一生に一度 = 0). · phrase: 「最古級の神社」; role: danh từ cụ thể có ngoặc + rào đón; mechanism: 最古 là cực cấp mạnh, nhưng kênh tự rào thành 最古級 (mô tả có miễn trừ) → mất lực "nhất"; ngoặc 「」 làm cụm như thuật ngữ.; paid: 276–281s giải thích 最古じゃなくて最古級; 6 lần. · phrase: 5選; role: con số; mechanism: Danh sách.; paid: 306s → 1018s.
+  - tiêu đề ↔ thumbnail: Bổ trợ: thumbnail thêm 定年後 (tiêu đề thiếu chủ thể tuổi — video duy nhất trong phần này không có 定年後/60代 trên tiêu đề), dòng đỏ lặp 最古級の神社5選; 2 bong bóng 上陸禁止 / 建国と同い年 là 2 sự thật lạ nhất của mục 5 và 4 — cụ thể hơn tiêu đề nhiều.
+- **【漫画】６０代だから話せる、人生最大の失敗。それでも人生は終わらなかった** — 4,511 view (hạng: mới)
+  - chữ thumbnail: 定年後だから話せる(vàng) / 何とかなった(đen trên bong bóng trắng dọc) / 人生最大の失敗(ĐỎ viền trắng, cỡ lớn)
+  - công thức: 【漫画】{tuổi}だから話せる、{danh từ cảm xúc cực cấp}。それでも{kết cục trấn an}
+  - vì sao: phrase: 【漫画】; role: nhãn định dạng; mechanism: Như mọi video kênh.; paid: — · phrase: ６０代だから話せる; role: đối tượng tuổi + "được phép thú nhận"; mechanism: Gợi cảm giác lời thật của người đã đủ tuổi không còn giữ thể diện — người xem 60+ tò mò bí mật của người cùng lứa.; paid: LỆCH: người kể 70 tuổi (26,3s 「70歳になった」, mô tả 「70歳の主人公」), 4 người kia 69–72; "60代" không có trong script (grep=0). Thumbnail lại ghi 定年後だから話せる. · phrase: 人生最大の失敗; role: cảm xúc mạnh / danh từ gây tò mò; mechanism: "Thất bại lớn nhất đời" của người khác = tò mò + tự so (mình có tệ hơn không).; paid: 62,2s, rồi mỗi câu chuyện 613/847/988s; 9 lần trong script. · phrase: それでも人生は終わらなかった; role: trấn an / hé kết cục; mechanism: An ủi người đang ôm hối tiếc; nhưng nói trước kết cục → bớt lý do xem hết. Trấn an đứng riêng là nhóm thua ở simbot2.; paid: 23–27s và 1100–1330s (「なんとかなった」); cụm 終わらなかった không có nguyên văn.
+  - tiêu đề ↔ thumbnail: Tách: băng trên đổi 60代→定年後 (không khớp chữ tiêu đề), dòng đỏ = nguyên cụm 人生最大の失敗, bong bóng 「何とかなった」 = vế trấn an. Không có cụm đỏ trong băng trên, 1 khung 1 mặt (không có 2 khung tương phản). Cả tiêu đề lẫn thumbnail đều lộ kết cục.
+- **【漫画】60代で「育ち」が出る瞬間…品がある人が絶対に持たないもの** — 4,471 view (hạng: thua)
+  - chữ thumbnail: これ持ち歩く人は(vàng, băng đen trên) / ？(vàng trên đĩa tròn ĐEN (vật ông cầm)) / ※本当に品があります(ĐỎ gradient viền trắng, dòng lớn dưới)
+  - công thức: 【漫画】{年代}で「{資質}」が出る瞬間…{理想の人}が絶対に{持たない/しない}もの
+  - vì sao: 「【漫画】」= nhãn định dạng: Như mọi video kênh. · 「60代で「育ち」が出る瞬間…」= phán xét giai cấp/xuất thân (sợ bị đánh giá): Chạm nỗi sợ 'người khác nhìn ra gốc gác mình' — nhưng là chữ phán xét trừu tượng, không có cảnh, không có người; người xem không biết 'khoảnh khắc' đó là gì. 「育ち」 trong ngoặc như trích dẫn nhưng không ai nói. · 「品がある人が」= hình mẫu lý tưởng (người trong cuộc): 'Người có phẩm cách' là đích người già muốn — nhưng không có tuổi/nghề/người cụ thể. · 「絶対に持たないもの」= cấm kỵ (điều KHÔNG được làm) + giấu tên vật: Đúng cơ chế W1 simbot2 ('không được làm' kéo hơn 'nên làm') và giấu tên vật → tò mò. Nhưng thiếu con số N và thiếu mất mát cụ thể.
+  - tiêu đề ↔ thumbnail: Thumbnail ĐẢO chiều lời hứa: tiêu đề nói thứ người có phẩm cách 'tuyệt đối KHÔNG mang', thumbnail nói 「これ持ち歩く人は ※本当に品があります」 (thứ NÊN mang = khăn tay/万年筆 ở mục 3 ~750–764). Hai chỗ hứa hai đáp án khác nhau; thumbnail bỏ luôn 60代 và 育ち. Bố cục 1 panel + vật bị che ？ — lệch khuôn 2 panel + băng đỏ/vàng mà các video thắng dùng.
+- **【漫画】「もっと早く知りたかった…」人生で本当に大事なこと** — 2,734 view (hạng: thua)
+  - chữ thumbnail: 58歳(vàng, băng đen trên) / で気づいた(trắng, băng đen trên) / 残酷な現実(đỏ, băng đen trên) / 遅すぎた(chữ đen trên bong bóng TRẮNG oval dọc)
+  - công thức: 【漫画】「{後悔の独白}…」{抽象名詞: 人生で本当に大事なこと}
+  - vì sao: 「【漫画】」= nhãn định dạng: Như mọi video kênh. · 「「もっと早く知りたかった…」」= lời hối tiếc trích dẫn (cảm xúc): Hối tiếc của người khác kích hoạt 'mình có đang muộn không' — nhưng không nói biết CÁI GÌ, không có người/tuổi/số trong tiêu đề → không có gì để tò mò cụ thể. Không có nguyên văn trong video. · 「人生で本当に大事なこと」= lời hứa triết lý trừu tượng: Ai cũng nghĩ mình biết 'điều quan trọng trong đời' → không có khoảng trống thông tin; không có 定年後/60代 nên thuật toán và người xem không biết video dành cho ai; không N選.
+  - tiêu đề ↔ thumbnail: Thumbnail cụ thể hơn hẳn tiêu đề: thêm tuổi 58 (vàng) + 残酷な現実 (đỏ) + bong bóng 遅すぎた. 58 và 'muộn' có trong hook (28–32s), nhưng 残酷/現実 0 lần; không có chữ 早期退職 — đề tài thật của video không xuất hiện ở tiêu đề lẫn thumbnail (chỉ có ở mô tả #早期退職).
+- **【漫画】年金は何歳から受け取るべき？60歳、65歳、70歳、75歳、知らないと後悔する受給年齢の落とし穴** — 1,168 view (hạng: thua)
+  - chữ thumbnail: 年金(vàng, băng đen trên) / 何歳が正解？(trắng, băng đen trên) / 知らなかった…(chữ đen trên bong bóng TRẮNG oval dọc) / 間違うと(trắng viền đen, dòng lớn dưới) / 老後貧乏(ĐỎ viền trắng, dòng lớn dưới)
+  - công thức: 【漫画】{制度}は何歳から{行為}べき？{選択肢1}、{選択肢2}…、知らないと後悔する{テーマ}の落とし穴
+  - vì sao: 「【漫画】」= nhãn định dạng: Như mọi video kênh. · 「年金は何歳から受け取るべき？」= câu hỏi tra cứu (từ khoá tìm kiếm): Câu người xem thật sự gõ vào Google — nhưng người đó muốn ĐÁP ÁN SỐ; kênh 'truyện vui/rẻ sau hưu' không phải nơi họ tìm. Chữ 年金 thuộc nhóm 6/6 tiêu đề ≤16k của kênh. · 「60歳、65歳、70歳、75歳、」= liệt kê lựa chọn (con số): Cho thấy video 'so đủ' — nhưng 4 con số liền nhau làm tiêu đề dài 52 ký tự (dài nhất kênh), phần đọc được trên màn hình điện thoại dừng ở giữa dãy số. · 「知らないと後悔する」= doạ mất mát (sợ): 'Không biết thì hối hận' — kiểu 'trách/doạ người xem' mà simbot2 đo là thua; không có cảnh, không có người. · 「受給年齢の落とし穴」= lời hứa thông tin cụ thể (bẫy): Hứa MỘT cái bẫy cụ thể; video trả bằng thông điệp 'hãy tự quyết theo điều kiện của mình' — thông tin cứng duy nhất là +42% và 'tiền ngoài lương hưu, thuế' (~794–865).
+  - tiêu đề ↔ thumbnail: Thumbnail rút gọn câu hỏi 「年金 何歳が正解？」 (年金 vàng) + thêm lời doạ MỚI 「間違うと老後貧乏」 (老後貧乏 đỏ) và bong bóng 「知らなかった…」 — ngược với kết luận video ('không có tuổi nào sai, chỉ có quyết định không suy nghĩ'); 老後貧乏/貧乏 0 lần trong transcript.
+
+## D. FAIL — lỗi ĐÃ ĐO ở tập của CHÍNH MÌNH (đừng lặp)
+
+- ep01: **【漫画】60代から始める「朝の習慣」5選…1年後、体と気持ちが驚くほど軽くなる理由**
+  - lỗi: Mục 1 ở 465s thật — muộn hơn mọi video kênh (226–356s); tiểu sử 60–347s (vợ mất, xe đạp đạp峠, gọi video với con gái, siêu thị) trước khi 大場 nói 「五つある」 ở 347s.
+  - lỗi: Tiêu đề có 2 vế không có trong script: 「気持ちが」 (0 lần), 「驚くほど」 (chỉ dùng tả tóc). Phân tích cũ ghi ep01 'không lời hứa gãy' — sai.
+  - lỗi: Hook đúng khuôn bgUq (bạn cùng tuổi trông trẻ 15–18s, người khác nói 28,6–40s, K03 biến thể 「だが当時の俺は、その意味をまだ理解していなかった」 54,2s) — là tập hook tốt nhất lane.
+  - lỗi: Không có gói đăng nào: thiếu thumbnail + mô tả dù đây là tập duy nhất đã render.
+  - sửa/đề xuất: title_ja: 【漫画】同い年なのに10歳若く見える男が「毎朝やっていること」5選…誰でもできて金もかからない; formula: F3 (bgUqNHYZbq0); checked_in_script: 同い年 15s ✓ · 十歳は若く見えた 17–18s ✓ (script viết Hán tự 十歳 — tiêu đề số 10) · 「朝にな、小さいことを、いくつかやってるだけだ」 29s ≈ 毎朝やっていること (không nguyên văn) · 誰でもできる 37,7s ✓ · 金もかからん 39s ✓ · 五つ 347s ✓
+  - sửa/đề xuất: title_ja: 【漫画】定年後、朝の習慣を5つ変えただけ…実は金もかからず1年で体が5キロ軽くなった; formula: F1 (AOe-E69mLzA); checked_in_script: 「朝の習慣を、五つ変えた」 ~423s ✓ (lời 大場) · 金もかからん 39s ✓ · 「そして一年。体は五キロ軽く」 21:44 ✓ · 定年退職 ✓
+- ep02: **【漫画】定年後、月1000円以下で夢中になれる趣味5選…暇な毎日が待ち遠しくなった**
+  - lỗi: Tự giới thiệu 7,8s ngay sau câu mở → 8–143s tiểu sử + tiêu tiền do chính nhân vật kể; giọng người khác đầu tiên là vợ (~105s).
+  - lỗi: Câu 'sát thủ' 「暇つぶしに、金を払うのか」 (三枝, 193,7s) = đúng vai trò câu 佐藤さん AOe đặt ở 14,6s; điều kiện 「担当は自分一人…予算枠は月に1000円まで」 264s (AOe 20–23s).
+  - lỗi: K03 「この時の俺はまだ知らなかった。空欄は、埋めなくていいということを」 143s (kênh 30–49s).
+  - lỗi: Tiêu đề: 「趣味」「夢中」 0 lần trong script.
+  - lỗi: Trùng tập khác: 第2位 図書館 (827s) = đề ep09; 第1位 ラジオ体操+散歩 (997s) = ep01 mục 3/4.
+  - sửa/đề xuất: title_ja: 【漫画】定年後、月1000円もかからない過ごし方5選…暇つぶしにお金を払うのをやめたら毎日が待ち遠しくなった; formula: F1 (AOe-E69mLzA); checked_in_script: 「金のかからない過ごし方が、五つある」 254,7s ✓ · 「どれも月に1000円もかからない」 1.314s ✓ · 「暇つぶしに、金を払うのか」 193,7s ✓ · 「待ち遠しい」 1.288s ✓
+  - sửa/đề xuất: title_ja: 【漫画】「暇つぶしに金を払うのか」元上司の一言で変わった…定年後、月1000円以下の過ごし方5選; formula: F1 biến thể thoại người dẫn đường (AOe câu 佐藤さん); checked_in_script: câu thoại 193,7s ✓ (tiêu đề bỏ dấu phẩy) · 三枝 = 課長 khi nhân vật là 係長 ✓ (chữ 元上司 không nguyên văn) · 予算枠は月に1000円まで 264s ✓
+- ep03: **【漫画】定年後の一人旅は平日が最高…60代が歩くべき「静かな城下町」5選**
+  - lỗi: Câu mở 0–13s gần như chép nguyên câu BeIZhu1I4Tw ~32s (「いつでも行けると思うから今日じゃなくていい」) — cơ chế đúng nhưng trùng chữ.
+  - lỗi: Câu đồng nghiệp 松ヶ根 「俺は膝をやった…あの石段はもう無理だ」 ~92s — trùng gần nguyên văn ep06 (大久保 「俺は膝をやってな、もう長い坂は歩けん」 ~92s).
+  - lỗi: K03 142s; câu mạnh nhất về lời hứa 「笹岡さんは城を見たんじゃなくて、城の前を通過したんですね」 244s.
+  - lỗi: Câu trả của mục 1 「一生に一度、行きたい所。みんなそう言います。でも、その一度は…」 (1.076s) lặp ý payoff BeIZ và lặp chính ep06 (999s).
+  - lỗi: Tiêu đề 「最高」「歩くべき」 0 lần.
+  - sửa/đề xuất: title_ja: 【漫画】平日に行けるのは定年後の特権…一生に一度は歩きたい「静かな城下町」5選; formula: F2 (BeIZhu1I4Tw); checked_in_script: 特権 363s/793s/1.235s ✓ · 「一生に一度、行きたい所」 1.076s ✓ (đổi 行きたい→歩きたい) · 「平日に静かに歩ける城下町。五つあります」 271–273s ✓
+  - sửa/đề xuất: title_ja: 【漫画】いつでも行けるから、行かなかった…定年後、平日に静かに歩ける城下町5選; formula: F2 + nghịch lý hook (BeIZ 32s); checked_in_script: 「今は、いつでも行ける。だから今日は、行かなくていい」 13s ✓ · 「定年後の人が、平日に静かに歩ける城下町。五つあります」 271s ✓ (nguyên văn)
+- ep04: **【漫画】60代から夜ぐっすり眠れるようになった「夕方の習慣」5選…薬に頼らず朝が変わる**
+  - lỗi: Câu 0s là giọng người khác (H17) nhưng người nói 柴崎 chỉ lộ ở 170–203s; 9–119s tiểu sử + triệu chứng.
+  - lỗi: K03 「この夕方の居眠りが、夜中の3時につながる大きな原因の一つだったことを」 119s — đây là lời giải hé (loại E) nhưng muộn.
+  - lỗi: Tiêu đề 60代 (nhân vật 65 tuổi — hợp lệ) nhưng 「夕方の習慣」 không nguyên văn; mục 5 「早く寝ようとしない」 là mục lật ngược tốt nhất — không được lên thumbnail.
+  - sửa/đề xuất: title_ja: 【漫画】夜中の3時に目が覚めるのは年のせいじゃなかった…65歳から夜ぐっすり眠れる夕方の5つの習慣; formula: F4 phủ định nỗi sợ quen (_EhPtM6cRFk) + W2 simbot2; checked_in_script: 「年のせいじゃない。夕方のせいだ」 0s ✓ · 3時 ×10 từ 53s ✓ · 65歳 9s ✓ · ぐっすり 1.200s ✓ · 五つの習慣 796s ✓
+  - sửa/đề xuất: title_ja: 【漫画】胃薬が手放せなかった元同僚が別人に…60代から夜ぐっすり眠れる「夕方」の習慣5選; formula: F3 (bgUqNHYZbq0 — người quen trông khác hẳn); checked_in_script: 「いつも顔色が悪く、胃薬を手放さなかった。その男が今は、背筋を伸ばし」 180–183s ✓ · 柴崎 66歳 = một tuổi hơn (không ghi 同い年) ✓ · ぐっすり ✓
+- ep05: **【漫画】定年後の夫婦が「ちょうどいい距離」を保つ暮らし方5選…毎日が静かに楽しくなる**
+  - lỗi: Câu mở 0–5s là đúng nghịch lý _EhPtM6cRFk nhưng _EhP có K03 ~31s, mình 97s; 10–97s tiểu sử + vợ 62 tuổi.
+  - lỗi: Không có giọng người khác trong 90s; 宮田 「あんた、会社を辞めてから、奥さんとの距離を、はかり間違えてる顔だな」 194,8s và 「定年で変わるのは、金でも体でもない。人との距離だ」 223,6s — hai câu mạnh nhất nằm sau 3 phút.
+  - lỗi: Tên 柴崎 dùng cho nhân vật chính ep05 nhưng là người dẫn đường ep04, ep06.
+  - lỗi: Vế tiêu đề 「毎日が静かに楽しくなる」 không có trong script.
+  - sửa/đề xuất: title_ja: 【漫画】定年後の夫婦に足りないのはお金でも健康でもなかった…ちょうどいい距離を作る5つのこと; formula: F4 (_EhPtM6cRFk) — phủ định nỗi sợ quen; checked_in_script: 「何が足りないのか。金でも、健康でもない」 95s ✓ · 「足りないのは『距離』」 101s ✓ · ちょうどいい距離 (kết) ✓ · 「やり方は、五つある」 243s ✓
+  - sửa/đề xuất: title_ja: 【漫画】「奥さんとの距離をはかり間違えてる」と言われた63歳…定年後の夫婦の距離を作り直す5つのやり方; formula: F1 biến thể thoại người dẫn đường; checked_in_script: câu 宮田 194,8s ✓ (rút gọn) · 63歳 9,9s ✓ · 「今ある関係の距離を作り直せ。やり方は、五つある」 243s ✓
+- ep06: **【漫画】60代から一度は歩きたい「無料の絶景散歩道」5選…1円も使わず体が若返る**
+  - lỗi: Lời hứa gãy nặng nhất lane: 3/4 vế tiêu đề (1円も使わず, 絶景, 散歩道) không có hoặc bị phủ nhận; 若返る bị phủ nhận rồi vớt lại bằng định nghĩa hẹp.
+  - lỗi: Câu đồng nghiệp 大久保 「行けるうちに行っとけ。体は待ってくれんぞ」 98s (BeIZ ~54s); K03 128s.
+  - lỗi: Câu dẫn mạnh nhất 「深谷さんは、行った場所の数は多い。でも歩いた道は、まだ一本もない」 ~222s.
+  - lỗi: Trùng ep03: bạn bị đau gối gọi điện (膝をやって), payoff 「一生に一度は…その一度は」 (999s).
+  - sửa/đề xuất: title_ja: 【漫画】一生に一度は歩きたい…定年後に歩くべき「道そのものは0円」の古い道5選; formula: F2 (BeIZhu1I4Tw); checked_in_script: 「『一生に一度は歩きたい』と言った道です」 999s ✓ (nói về mục 1) · 「定年した人間が歩くべき道が、五つ」 253–254s ✓ · 「道そのものは1円も取らない」 335s / 通行料0円 248s ✓ · 古い道: 旧中山道/宿場 ✓
+  - sửa/đề xuất: title_ja: 【漫画】行けるうちに行っとけ…64歳で親父の絵はがきの道へ、定年後に歩くべき通行料0円の道5選; formula: F2 + nỗi sợ thời gian còn lại (BeIZ 54–73s); checked_in_script: 「行けるうちに行っとけ」 98s ✓ · 64歳 6,5s ✓ · 絵はがき 36s ✓ · 通行料は0円 248s ✓ · 歩くべき道が、五つ 254s ✓
+- ep07: **【漫画】定年後の食費が楽しみに変わる「台所の習慣」5選…節約なのに毎日が待ち遠しい**
+  - lỗi: Câu mở 0s mạnh (loại C) nhưng 9–99s tiểu sử + ngày trống do chính nhân vật kể; người dẫn đường 諸星 189s.
+  - lỗi: Câu lật 「あんた、飯を『出てくる物』だと思ってるだろう」 214,8s và 「足りないのは、金でも暇でもない」 226,6s — cùng vai trò câu 佐藤さん AOe 14,6s nhưng muộn 3,5 phút.
+  - lỗi: K03 99s dạng 'sẽ gặp người' (「夕方の公園で、前掛け姿の男に会うことになるとは」) — không nói điều gì sẽ đổi.
+  - lỗi: Vế 「節約なのに」 bị script nói nước đôi; 「楽しみに変わる」 0 lần.
+  - sửa/đề xuất: title_ja: 【漫画】定年して一番増えた出費は昼飯だった…夕方の買い物が待ち遠しくなる「台所の習慣」5選; formula: F1 (AOe — nghịch lý tiền rò ở giây 0); checked_in_script: câu 0–5s ✓ (nguyên văn) · 「夕方の買い物が待ち遠しい」 1.173s ✓ · 「台所の習慣が、五つ」 238s ✓
+  - sửa/đề xuất: title_ja: 【漫画】足りないのはお金でも暇でもなかった…元八百屋に教わった定年後の「台所の習慣」5選; formula: F4 (_EhPtM6cRFk) phủ định; checked_in_script: 「足りないのは、金でも暇でもない」 226,6s ✓ · 「駅裏の商店街で長く八百屋をやり」 189s ✓ · 台所の習慣 238s ✓
+- ep08: **【漫画】60代の体が軽くなる「歩き方」5つのコツ…毎日の散歩が一番の薬になった**
+  - lỗi: MÂU THUẪN TUỔI trong script: 13,8s 「同い年のはずなのに」 nhưng 201,6s 「三宅は俺の同期で、66歳だ」 trong khi nhân vật 「65歳だ」 (43,7s).
+  - lỗi: Khung 0–44s đúng bgUqNHYZbq0 (bạn cùng khoá trẻ hơn, 「秘訣なんてない」 ≈ 「特別なことはしていないよ」, tự giới thiệu 43,7s ≈ 52,7s); lệch: bgUq nói 「7つのこと」 36s, mình 「5つある」 232s.
+  - lỗi: K03 「諦めた場所のすぐ先に、一番安い薬が、転がっていたことを」 152s (bgUq 42,6s).
+  - lỗi: Vế 「毎日の散歩が一番の薬になった」: 散歩 trong script mang nghĩa ngược (đi bộ kiểu 'làm cho xong').
+  - sửa/đề xuất: title_ja: 【漫画】同期の誰よりも若く見える男が「毎朝やっていること」…60代の体を軽くする歩き方5つのコツ; formula: F3 (bgUqNHYZbq0); checked_in_script: 「同期の誰よりも、若く見えた」 18,7–20s ✓ · 「毎朝、歩いてるだけだ」 0s ✓ · 「体を軽くする歩き方」 461s ✓ · 「1つ目のコツ」…「5つ目」 282–969s ✓ (tránh chữ 同い年 cho đến khi sửa mâu thuẫn tuổi)
+  - sửa/đề xuất: title_ja: 【漫画】「秘訣なんてない。毎朝歩いてるだけだ」…金はほとんどかからない、一番安い薬になる歩き方5つのコツ; formula: F1 biến thể (thoại người dẫn đường + phủ định chi phí); checked_in_script: câu 0s ✓ · 「金は、ほとんどかからなかった」 (kết) ✓ · 「一番安い薬」 157s ✓ · 5つある 232s ✓
+- ep09: **【漫画】定年後に人生が変わった「図書館の使い方」5選…実は0円で一番贅沢な場所**
+  - lỗi: Khung 0–41s đúng AOe (nghịch lý tiền rò 0s → 「暇は敵じゃない」 29,9s → 「当時の俺にはわからなかった」 34s → tự giới thiệu 41s) — hook tốt thứ 2 lane.
+  - lỗi: Nhưng lõi tiêu đề vắng trong 90s: 図書館 194,8s; điều kiện 3 vế 「ひとりでできること。誰にも迷惑をかけないこと。金がかからないこと」 256,6s — gần nguyên văn điều kiện AOe (20–23s).
+  - lỗi: Thumbnail không dùng chữ tiêu đề (kênh 17/20 dùng; 3 video không dùng đều thua/0,64×), không có 図書館/0円, bong bóng ngang che mắt (kênh: oval dọc cạnh mặt), chỉ hiện 第5位 = mục yếu nhất.
+  - lỗi: Tiêu đề: 「人生が変わった」「一番」 0 lần.
+  - lỗi: Không có mô tả.
+  - sửa/đề xuất: title_ja: 【漫画】定年後、暇つぶしにお金を払っていた…実は0円で贅沢な場所「図書館」の使い方5選; formula: F1 (AOe-E69mLzA); checked_in_script: 「暇をつぶすために、俺は金を払っていた」 ~8s ✓ · 0円 ✓ · 贅沢 1.026s ✓ · 「使い方は5つある」 270s ✓ · 図書館 ✓
+  - sửa/đề xuất: title_ja: 【漫画】暇は敵じゃなかった…定年後、ひとりで0円で通える図書館の使い方5選; formula: F4 phủ định nỗi sợ quen (暇 = kẻ thù); checked_in_script: 「暇は敵じゃない」 29,9s ✓ · 「どれもひとりでできて、誰にも迷惑をかけず、0円で」 (kết) ✓ · 使い方は5つ 270s ✓
+- ep10: **【漫画】60代の一人旅で行くべき「日帰り温泉のある小さな町」5選…平日ならほぼ独り占め**
+  - lỗi: Chép gần NGUYÊN VĂN _G9s-Ig6-E8 (cùng đề tài 温泉5選 xếp hạng): câu đố bà chủ trọ 「お一人さんは、帰りの荷物が増えますよ」 56s ≈ 「1人で来ても1人で帰るとは限りませんから」; trả 「一人で来た者は、手ぶらでは帰らない」 1.246s ≈ 「1人で来たけど何も持たずに帰るわけじゃない」; kết 「次の一人旅は、どこへ行こうか」 ≈ 「さて、次はどこの温泉にするかな」 — vi phạm nguyên tắc 6 (chép câu), rủi ro comment 'パクリ' vì cùng khán giả.
+  - lỗi: Mở 0s trong hiện tại (đang ngâm suối) = trailer NEW-tano-A đúng khuôn; K03 biến thể 68s (「あの言葉の意味を、俺はまだ、まるで分かっていなかった」) hơi muộn; 「平日ならほぼ独り占め」 (vế tiêu đề) chỉ 1 lần ở 134s.
+  - lỗi: Tiêu đề 「行くべき」 0 lần.
+  - sửa/đề xuất: title_ja: 【漫画】平日ならほぼ独り占め…定年後の一人旅で行きたい「外湯のある小さな温泉町」5選; formula: F2 (_G9s-Ig6-E8 / BeIZhu1I4Tw); checked_in_script: 「平日なら、ほぼ独り占めだよ」 134s ✓ · 「日帰りの外湯で、十分です。5つ、教えましょう」 289–291s ✓ · 小さな温泉/小さな町 615–650s ✓ · 一人旅 ✓
+  - sửa/đề xuất: title_ja: 【漫画】平日に行けるのは定年退職した者の特権…65歳の一人旅で見つけた日帰り温泉の町5選; formula: F2 + phần thưởng đặc quyền; checked_in_script: 「それは定年退職した者だけの、小さな特権だ」 188s ✓ · 65歳 71s ✓ · 日帰り 289s ✓ · 5つ 291s ✓
+
+<!-- export 7cb37cf2df7e · 2026-09-26 -->

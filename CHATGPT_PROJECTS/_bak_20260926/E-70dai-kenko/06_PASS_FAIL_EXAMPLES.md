@@ -1,0 +1,164 @@
+# 06 PASS / FAIL EXAMPLES — E-70dai-kenko · kenko-chiebukuro
+
+> Lane `kenko-chiebukuro`. File do tool YT-TITLE-RESEARCH TỰ XUẤT từ repo (E:\CLAUDE\YOUTUBE\YT-TITLE-RESEARCH). Luật ở đây CHỈ áp cho kênh này, không dùng cho kênh khác.
+
+## B. PASS — video THẮNG của kênh mẫu シニアいきいき健康 (xếp theo lượt xem thật)
+
+- **夜間頻尿・尿漏れで悩む方へ。ふくらはぎケアと食事改善で夜中のトイレ回数をゼロに近づける方法を医師が解説** — 81,445 view (hạng: thắng)
+  - chữ thumbnail: 夜間頻尿(cam) / ふくらはぎを(trắng) / 〇〇するだけ(đỏ) / 朝までぐっすり!!(xanh lá)
+  - công thức: {triệu chứng}で悩む方へ。{cơ quan bất ngờ}ケアと{thứ 2}で{số đo triệu chứng}を{mục tiêu}に近づける方法を{chuyên gia}が解説
+  - vì sao: 「夜間頻尿・尿漏れで悩む方へ。」= đối tượng theo TRIỆU CHỨNG + từ khoá tìm: người đang khổ tự nhận; bắt search 夜間頻尿 · 「ふくらはぎケアと食事改善で」= cơ chế bất ngờ ngay trong tiêu đề: 'sao lại bắp chân?' — tò mò cơ chế · 「夜中のトイレ回数をゼロに近づける」= kết quả đo được: số lần → 0 là mục tiêu người bệnh đếm mỗi đêm; rào nhẹ 'gần' · 「方法を医師が解説」= cách làm + người trong nghề: uy tín; video không tự xưng bác sĩ
+  - tiêu đề ↔ thumbnail: Lặp + giấu: thumbnail lặp 夜間頻尿 + ふくらはぎ, giấu hành động bằng 〇〇, đổi 'gần 0 lần' thành cảm giác 'ngủ say tới sáng'. Tranh minh hoạ đúng cảnh 0s.
+- **70歳以上の方へ：長寿者が密かに続けていた9つの食習慣——ほとんどの方がご存知ない** — 71,973 view (hạng: thắng)
+  - chữ thumbnail: 100歳まで元気な人(cam) / 毎日食べていた(trắng) / この食品(đỏ) / 医師も驚いた(xanh lá)
+  - công thức: {tuổi}以上の方へ：{người thắng}が密かに続けていた{N}つの{thói quen/món}——ほとんどの方がご存知ない
+  - vì sao: 「70歳以上の方へ：」= đối tượng: gọi đích danh 70+ · 「長寿者が」= người đã 'thắng' làm hình mẫu: chiều khao khát (sống tới 100) thay vì doạ; người xem muốn chép · 「密かに続けていた」= bí mật + thói quen lâu dài: 'họ biết điều mình không biết' · 「9つの食習慣」= N lớn: nhiều giá trị, đếm ngược dài; lệch nhẹ: video là 9 THỰC PHẨM · 「——ほとんどの方がご存知ない」= khoảng trống tri thức: đuôi chuẩn
+  - tiêu đề ↔ thumbnail: Bổ trợ: tiêu đề nói 'người thọ' + 9; thumbnail cụ thể hoá thành '100 tuổi vẫn khoẻ' + thu về 1 món giữa danh sách (ごぼう = 第8位) giấu bằng 「この食品」 + uy tín 「医師も驚いた」 (lời: bác sĩ phụ trách ngạc nhiên ở các ca ~385s).
+- **高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた** — 45,345 view (hạng: thắng)
+  - chữ thumbnail: 70歳以降(vàng) / 見逃される食品(vàng) / 筋肉が死んでいく(trắng) / 今すぐ食べてください(đỏ)
+  - công thức: {đối tượng}の方へ：{tuổi}から積極的に摂りたい{N}つの{食品}が{cơ quan}の{suy giảm}を防いでいた
+  - vì sao: 「高齢者の方へ：」= đối tượng: gọi đích danh · 「70代から」= tuổi cụ thể: thu hẹp · 「積極的に摂りたい」= hành động tích cực: chiều 'được' — dễ hành động; thumbnail tự đảo sang nỗi sợ · 「5つの食品が」= N + danh sách: hứa đếm ngược có điểm cuối · 「筋肉の衰えを防いでいた」= kết quả + phát hiện: cơ = còn tự đi được; 'đã ngăn' = có người làm rồi
+  - tiêu đề ↔ thumbnail: Bổ trợ: tiêu đề hứa CẢ danh sách 'nên ăn'; thumbnail thu về 1 món (trứng), giấu tên chữ bằng 「見逃される食品」, đảo sang nỗi sợ 「筋肉が死んでいく」 + mệnh lệnh 「今すぐ食べてください」. Món trên ảnh là 第5位 (mục được nói ĐẦU TIÊN, ~329s).
+- **ご注意ください：3つの一見体に良さそうな食習慣が、密かに筋肉を削り続けています——60代以上の方は必見** — 36,175 view (hạng: thắng)
+  - chữ thumbnail: 特に60歳からは(cam) / 豆腐・卵より(trắng) / 「これ」が(đỏ) / 10年分老化を防ぐ！(xanh lá)
+  - công thức: ご注意ください：{N}つの一見{tốt}な{thói quen}が、密かに{cơ quan}を{phá}続けています——{tuổi}以上の方は必見
+  - vì sao: 「ご注意ください：」= nhãn cảnh báo lịch sự: thông báo khẩn kiểu です/ます hợp 60+ · 「3つの」= N nhỏ: dễ nhớ, hứa ngắn · 「一見体に良さそうな食習慣が」= nghịch lý 'tưởng tốt hoá hại': đánh đúng niềm tin người xem đang tự hào (ăn protein) → sợ mình đang tự hại · 「密かに筋肉を削り続けています」= bộ phận cụ thể + 'âm thầm liên tục': mất mát đang diễn ra, đo được (đùi teo) · 「——60代以上の方は必見」= đối tượng ở đuôi + 'phải xem': lọc người xem + mệnh lệnh
+  - tiêu đề ↔ thumbnail: Bổ trợ vấn đề→lời giải: tiêu đề = 'thói quen tưởng tốt HẠI cơ', thumbnail = 'món thay thế tốt HƠN 豆腐・卵' giấu tên 「これ」 (かつお節 = món 3/3). '豆腐・卵より' nối với tiêu đề vì trứng là thói quen bị cảnh báo. '10年分老化を防ぐ' là khẳng định không có trong lời.
+- **高齢者の方へ：70代から積極的に摂りたい5つの食品が筋肉の衰えを防いでいた** — 27,465 view (hạng: thắng)
+  - chữ thumbnail: 70歳過ぎたら(vàng) / この食品不足で(vàng) / 筋肉が崩壊します(trắng) / 必ず見てください(đỏ)
+  - công thức: {đối tượng}の方へ：{tuổi}から積極的に摂りたい{N}つの{食品}が{cơ quan}の{suy giảm}を防いでいた
+  - vì sao: 「高齢者の方へ：」= đối tượng: gọi đích danh — người già tự nhận 'nói với mình' · 「70代から」= tuổi cụ thể: thu hẹp → 70+ thấy chính xác mình · 「積極的に摂りたい」= hành động tích cực: chiều 'được' (nên ăn) — không doạ; dễ hành động · 「5つの食品が」= N nhỏ, danh sách đếm được: hứa đủ và có điểm dừng · 「筋肉の衰えを防いでいた」= kết quả + thì quá khứ 'hoá ra đã ngăn': giọng phát hiện ('người ta đã làm vậy') + bộ phận cụ thể (cơ = đi lại được)
+  - tiêu đề ↔ thumbnail: Đảo chiều + lộ món: tiêu đề nói 'nên ăn 5 món', thumbnail nói 'THIẾU món này → cơ SỤP ĐỔ' + mệnh lệnh đỏ 'phải xem'; giấu bằng この食品 nhưng ảnh lộ 3 món (cá hồi, gà, trứng) — gà không có trong video.
+- **ご注意ください：4つの一見無害な節約食品が密かに筋肉を傷つけています—シニアの方は必見** — 16,207 view (hạng: thắng)
+  - chữ thumbnail: 卵の11倍(cam) / タンパク質が多い(trắng) / 3ヶ月で(đỏ) / 筋肉が変化！(xanh lá)
+  - công thức: ご注意ください：{N}つの一見{vô hại}な{loại thực phẩm}が密かに{cơ quan}を傷つけています—{đối tượng}の方は必見
+  - vì sao: 「ご注意ください：」= nhãn cảnh báo: khẩn · 「4つの」= N: — · 「一見無害な節約食品が」= nghịch lý 'rẻ + vô hại mà hại': đánh vào thói tiết kiệm của người già · 「密かに筋肉を傷つけています」= bộ phận + 'âm thầm': mất mát đang diễn ra · 「—シニアの方は必見」= đối tượng ở đuôi: lọc + mệnh lệnh
+  - tiêu đề ↔ thumbnail: Tách/đảo: tiêu đề = 4 món HẠI rẻ; thumbnail = 1 món TỐT (きなこ, giấu tên, 'gấp 11 lần trứng') + lợi ích '3 tháng cơ thay đổi'. Không chung từ nào ngoài '筋肉'. '卵の11倍' ngược đáp án (第1位 là CHÍNH trứng) và '3ヶ月' không có trong lời.
+- **87歳の壁が男性だけを襲う——ほとんどの方がご存知ない生存率の真実** — 9,619 view (hạng: thắng)
+  - chữ thumbnail: 男性の90%の人は(cam) / 87歳を(trắng) / 超えられない(đỏ) / 衝撃的な3つの理由(xanh lá)
+  - công thức: {số tuổi lạ}歳の壁が{nhóm người}だけを襲う——ほとんどの方がご存知ない{sinh tử}の真実
+  - vì sao: 「87歳の壁」= con số tuổi lạ + ẩn dụ bức tường: 87 không tròn → nghe như số liệu thật; người 65–80 tự tính khoảng cách tới 87; '壁' = có thể vượt hoặc không · 「が男性だけを襲う」= đối tượng giới + nghịch lý bất công: nam tự nhận; nữ bấm vì chồng; 'だけ' đòi lời giải thích · 「——ほとんどの方がご存知ない」= khoảng trống tri thức: đuôi chuẩn kênh · 「生存率の真実」= từ sinh tử + lời hứa số liệu: 'tỉ lệ sống' là chữ sợ CỤ THỂ (đo được), khác chữ sợ trừu tượng · 「(không có) N món / thực phẩm」= —: khác khuôn 'N つの食品' của kênh — tiêu đề nghịch lý + số, và là video thắng duy nhất sau 9/6
+  - tiêu đề ↔ thumbnail: Bổ trợ: tiêu đề đặt bí ẩn (壁, 男性だけ, 真実), thumbnail đưa luôn con số đáp án '90% không vượt được' + hứa '3 lý do gây sốc'; chung 87歳 + 男性. Ảnh leo bậc thở dốc = mục 1 checklist.
+- **【要注意】60歳以上が知らずに選ぶ6つのタンパク質が腎臓に負担をかけている** — 9,462 view (hạng: thắng)
+  - chữ thumbnail: 【要注意】(vàng→cam gradient viền đen) / 腎臓に負担をかける(xanh cyan nhạt viền) / 6つのタンパク質(đỏ→hồng gradient viền trắng) / あなたは何個食べてる？(xanh dương→tím viền trắng)
+  - công thức: 【要注意】{年齢}以上が知らずに選ぶ{N}つの{いま頑張って摂っている栄養}が{臓器}に負担をかけている
+  - vì sao: part: 【要注意】; role: nhãn cảnh báo; mechanism: Sợ mất.; paid_at: — · part: 60歳以上が; role: đối tượng tuổi; mechanism: Nhóm có creatinine tăng theo tuổi.; paid_at: 126s 60代後半 · part: 知らずに選ぶ; role: hành vi CHỌN của chính người xem (trách nhẹ); mechanism: Người xem tự hỏi 'mình có đang chọn sai?' — khác '見落とし' trừu tượng, đây là hành động mua/ăn cụ thể.; paid_at: 66s 「知らないうちに」 · part: 6つのタンパク質が; role: con số + từ khoá của CỤM THẮNG (タンパク質); mechanism: Các video 筋肉 trước của kênh dạy khán giả ăn nhiều đạm; video này lật ngược lời khuyên đó → xung đột với thói quen người xem đang làm THEO KÊNH, đúng tệp được gợi ý.; paid_at: 62s (タンパ質), 309s (6つ) · part: 腎臓に負担をかけている; role: cơ quan + hiện tại tiếp diễn; mechanism: Thận không đau → sợ phát hiện muộn; có con số tự kiểm (creatinine).; paid_at: 44s
+  - tiêu đề ↔ thumbnail: LẶP + THÊM CÂU HỎI TỰ ĐẾM: thumbnail giữ 腎臓 / 6つのタンパク質, thêm 'あなたは何個食べてる？' (H33 dời lên thumbnail); ảnh đậu đen = mục 2 (giữa danh sách, đúng quy tắc 'không lộ số 1').
+- **75歳以上の方へ：5つの天然食品が筋肉の消失を止める可能性——ほとんどの方がご存知ない** — 6,303 view (hạng: thắng)
+  - chữ thumbnail: 卵の1万倍の効果!(cam) / 筋肉を守る「これ」(trắng) / 一晩で驚きの変化!(đỏ) / 高齢者は必見!(xanh lá)
+  - công thức: {tuổi}歳以上の方へ：{N}つの{thiên nhiên}食品が{cơ quan}の{mất}を止める可能性——ほとんどの方がご存知ない
+  - vì sao: 「75歳以上の方へ：」= đối tượng hẹp: 75+ tự nhận; ít người · 「5つの天然食品が」= N + 'thiên nhiên': không phải thuốc/TPCN → an toàn, rẻ · 「筋肉の消失を止める」= bộ phận + mất hẳn: đúng nỗi ấm ức 'ăn rồi mà vẫn mất' · 「可能性」= RÀO: làm yếu lời hứa · 「——ほとんどの方がご存知ない」= khoảng trống: đuôi chuẩn
+  - tiêu đề ↔ thumbnail: Bổ trợ: thumbnail thu về 1 món (kỷ tử) giấu 「これ」 + lợi ích PHÓNG ĐẠI '卵の1万倍' '一晩で驚きの変化' (không có trong lời; lời chỉ nói 'sắt nhiều hơn trứng' ở món 1 và kết quả sau 6–12 tuần).
+- **医師が警告：60歳以降に毎日食べ続けると、体の力を静かに奪っていく5つの食べ物の落とし穴** — 5,241 view (hạng: thắng)
+  - chữ thumbnail: 医師がすすめる(cam) / 長寿食材5選(trắng) / 4位はヨーグルト(đỏ) / 1位は“毎日食べたい”〇〇(xanh lá)
+  - công thức: {người trong nghề}が警告：{tuổi}以降に毎日{hành vi}続けると、{thứ}を静かに奪っていく{N}つの{món}の落とし穴
+  - vì sao: 「医師が警告：」= người trong nghề + nhãn cảnh báo: uy tín + khẩn cấp ngay đầu tiêu đề · 「60歳以降に」= tuổi rộng: phủ nhiều người hơn 70/75 · 「毎日食べ続けると、」= giả định hành vi hằng ngày của người xem: 'mình có đang ăn món đó không?' · 「体の力を静かに奪っていく」= hậu quả mơ hồ + 'âm thầm': khớp cảm giác mất sức buổi chiều · 「5つの食べ物の落とし穴」= N + 'bẫy': người đọc hiểu '5 món HẠI'; video là 5 món TỐT, mỗi món có 'bẫy cách ăn' → tiêu đề đọc được 2 nghĩa, nghĩa phổ biến là sai
+  - tiêu đề ↔ thumbnail: Đảo nghĩa: tiêu đề 'cảnh báo 5 món hại', thumbnail 'bác sĩ KHUYÊN 5 món sống thọ', lộ tên 第4位 bằng chữ và 第1位 bằng ẢNH (chuối) trong khi chữ giấu 〇〇. Chỉ chung '医師' và '5'.
+
+## C. FAIL tương đối — video YẾU NHẤT cùng kênh mẫu (cùng ngách, ít view hơn hẳn)
+
+- **血液型で分かる60歳からの病気リスク O型A型B型AB型それぞれの弱点** — 133 view (hạng: mới)
+  - chữ thumbnail: O型A型B型AB型(cam) / それぞれ違う(trắng) / 病気リスク(đỏ) / 知らないと危険(xanh lá)
+  - công thức: {誰もが持つ属性}で分かる{年齢}からの{リスク} {属性の全種類}それぞれの弱点
+  - vì sao: part: 血液型で分かる; role: đề tài người Nhật mê (血液型占い) nâng thành y học; mechanism: Ai cũng biết nhóm máu mình → tự áp ngay; tò mò 'hoá ra không chỉ tính cách'.; paid_at: 45–50s · part: 60歳からの病気リスク; role: tuổi + sợ bệnh; mechanism: Khung 'từ 60' làm thành câu hỏi về chính tương lai người xem.; paid_at: 7–16s · part: O型A型B型AB型; role: liệt kê đủ 4 = từ khoá tìm kiếm + ô cho mọi người; mechanism: Không ai bị loại; người xem thấy chữ nhóm mình.; paid_at: 70–74s; 358–854s · part: それぞれの弱点; role: hứa 'điểm yếu' (sợ mất) cụ thể theo nhóm; mechanism: Điểm yếu riêng = thông tin cá nhân hoá.; paid_at: 358–854s
+  - tiêu đề ↔ thumbnail: LẶP: thumbnail nhắc 4 nhóm + 病気リスク, thêm '知らないと危険'; ảnh 4 túi máu có nhãn = minh hoạ trực tiếp.
+- **ご注意：60歳以降に多い9つの薬が抗コリン作用で記憶をひそかに傷つけている** — 78 view (hạng: mới)
+  - chữ thumbnail: 要注意(cam) / 9つの薬(trắng) / 記憶を奪う(đỏ) / 今すぐ確認(xanh lá)
+  - công thức: ご注意：{年齢}以降に多い{N}つの{毎日使うモノ}が{専門用語}で{最も恐れるもの}をひそかに傷つけている
+  - vì sao: part: ご注意：; role: nhãn cảnh báo; mechanism: Sợ mất.; paid_at: — · part: 60歳以降に多い; role: tuổi + phổ biến; mechanism: 'Nhiều người' → khả năng mình cũng đang uống.; paid_at: 25s · part: 9つの薬が; role: con số + vật người xem đang uống thật; mechanism: Nghịch lý: thứ bác sĩ kê để chữa lại hại → cú sốc mạnh nhất trong 14 tiêu đề.; paid_at: 57s; 348–1796s · part: 抗コリン作用で; role: thuật ngữ chuyên môn; mechanism: Tín hiệu uy tín nhưng người 60+ không hiểu, làm tiêu đề dài 41 chữ.; paid_at: 45s (ASR '航空薬'); 387s · part: 記憶をひそかに傷つけている; role: nỗi sợ số 1 tuổi già (認知症) + 'âm thầm'; mechanism: Sợ mất trí > sợ bệnh cơ thể.; paid_at: 33–41s
+  - tiêu đề ↔ thumbnail: LẶP RÚT GỌN: thumbnail bỏ thuật ngữ, còn '9つの薬 記憶を奪う 今すぐ確認' + ảnh hộp thuốc cụ thể (thuốc ngủ/dị ứng không kê đơn = mục đầu).
+- **60代以上の方へ：シミが消えない本当の理由と台所にある5つの解決策** — 72 view (hạng: mới)
+  - chữ thumbnail: キッチンにある(cam) / この食べ物で(trắng) / シミが消える!?(đỏ) / 驚きの美肌習慣(xanh lá)
+  - công thức: {年齢}以上の方へ：{悩み}が{消えない}本当の理由と台所にある{N}つの解決策
+  - vì sao: part: 60代以上の方へ：; role: đối tượng tuổi; mechanism: Gọi đúng nhóm có vết nám tuổi già.; paid_at: 129s 「ある60代後半の方々」 · part: シミが消えない; role: nỗi bực đã quen (triệu chứng nhìn thấy trong gương); mechanism: Người đã thử kem đắt không ăn thua tự nhận.; paid_at: 11–23s 鏡の前…ため息 · part: 本当の理由; role: lật nguyên nhân (định kiến 'do nắng/sẹo' → 'sản xuất đang diễn ra'); mechanism: Người xem bấm để biết mình hiểu sai chỗ nào.; paid_at: 41–49s enzyme; 167–176s 'không phải sẹo' · part: と台所にある5つの解決策; role: con số + đồ rẻ sẵn trong nhà (đối lập mỹ phẩm đắt); mechanism: Rẻ + có sẵn = không phải mua gì; con số hứa danh sách.; paid_at: 60s; 352–1350s
+  - tiêu đề ↔ thumbnail: BỔ TRỢ: tiêu đề 'không mất' + 'lý do thật'; thumbnail đảo sang lời hứa tích cực 'シミが消える!?' + 'thói quen đẹp da bất ngờ' và thu 5 món về 1 món (この食べ物) với ảnh nha đam = mục 1.
+- **要注意、70歳を過ぎたら知っておきたい足先の冷えと血管内皮の真実** — 65 view (hạng: mới)
+  - chữ thumbnail: 寝る前の油で(cam) / 血管が若返る(trắng) / 3つのオイル(đỏ) / 今夜から試す(xanh lá đậm viền trắng)
+  - công thức: {警告ラベル}、{年齢}を過ぎたら知っておきたい{症状}と{専門用語}の真実
+  - vì sao: part: 要注意、; role: nhãn cảnh báo (cảm xúc sợ); mechanism: Người 60+ bấm vì sợ đang làm sai điều gì đó; nhưng nhãn không gắn với hành vi cụ thể nào.; paid_at: Không có câu cảnh báo tương ứng trong hook; phần 'sai lầm' ở 1097s. · part: 70歳を過ぎたら; role: đối tượng tuổi; mechanism: Lọc đúng khán giả 70+, tạo cảm giác 'nói với mình'.; paid_at: Hook không nói 70; chỉ 「70代」 ở 1266s. · part: 知っておきたい; role: lời hứa kiến thức mềm; mechanism: Không có mất mát/đe doạ → yếu hơn 'ひそかに傷つけている' của các tiêu đề khác.; paid_at: — · part: 足先の冷え; role: triệu chứng + từ khoá tìm kiếm; mechanism: Triệu chứng người xem cảm được mỗi tối (lạnh đầu ngón chân) → tự nhận.; paid_at: 18s 「橋先が氷のように冷たい」 · part: と血管内皮; role: thuật ngữ chuyên môn (tín hiệu 'khoa học'); mechanism: Người 70+ không tự tra từ này; chỉ làm tiêu đề trông nghiêm túc.; paid_at: 195s, giải thích ở 344s · part: の真実; role: chữ trừu tượng; mechanism: Không hứa điều gì cụ thể — đúng loại 'chữ trừu tượng đứng một mình' mà bài simbot2 xếp vào nhóm thua.; paid_at: —
+  - tiêu đề ↔ thumbnail: TÁCH: tiêu đề chỉ nói triệu chứng + thuật ngữ; lời hứa thật của video (dầu trước khi ngủ, 3 loại, thử từ tối nay) chỉ nằm trên thumbnail. Người chỉ đọc tiêu đề không biết video là 'uống dầu'.
+- **血圧と動脈硬化が気になる方へ：5つの種が薬に頼らず血管を守る理由** — 31 view (hạng: mới)
+  - chữ thumbnail: この5つの種で(cam) / 血管スッキリ!?(trắng) / 70歳からでも(đỏ) / 血流が変わる!(xanh lá)
+  - công thức: {病名A}と{病名B}が気になる方へ：{N}つの{安い食材}が薬に頼らず{臓器}を守る理由
+  - vì sao: part: 血圧と動脈硬化が気になる方へ：; role: đối tượng theo MỐI LO (không theo tuổi) + từ khoá tìm kiếm; mechanism: Người có chỉ số cao ở lần khám gần nhất tự nhận ra mình; 2 từ khoá bệnh phổ biến.; paid_at: 21–45s plaque; 1080s huyết áp giảm · part: 5つの種が; role: con số + vật rẻ, lạ; mechanism: 'Hạt' là thứ nhỏ nhặt → nghịch lý 'hạt mà chống xơ vữa?'; con số hứa danh sách có đích.; paid_at: 88s hứa; 324–1246s trả · part: 薬に頼らず; role: lời hứa né thuốc; mechanism: Chạm nỗi ngại uống thuốc suốt đời của người 60+.; paid_at: 72s 「手術でも薬でもありません」; 1104s so với thuốc hạ áp · part: 血管を守る理由; role: lời hứa cơ chế; mechanism: Hứa 'lý do' chứ không hứa kết quả đo được → mềm.; paid_at: 240–321s cơ chế
+  - tiêu đề ↔ thumbnail: BỔ TRỢ: tiêu đề nói bệnh + 'không thuốc'; thumbnail đổi sang cảm giác (血管スッキリ!?), thêm tuổi '70歳からでも' mà tiêu đề không có, và dùng HÌNH hạt lanh = mục 1 (đáp án lộ bằng ảnh).
+
+## D. FAIL — lỗi ĐÃ ĐO ở tập của CHÍNH MÌNH (đừng lặp)
+
+- epep01: **Chưa chốt. script.txt mới đã bỏ dòng タイトル. Đề xuất cũ ở series_ctx.txt dòng 6: 「70歳以上の方へ：5つの安い食品が、転倒・骨折のリスクを静かに下げていた——ほとんどの方がご存知ない」. Tiêu đề đang bị TTS đọc trong final.mp4 (dòng 1 _truoc_sua_2026-09-23\script.txt): 「転倒や骨折のリスクに関わるかもしれない、五つの食事の工夫のお話」.**
+  - lỗi: Lời hứa N tới ~252,9s mới có (「今日は、その材料を一日三度の食卓から届ける五つの工夫をお話しします」) — video thắng của kênh hứa N ở trung vị 65s (kN6wHIqYA0Q 51,7s thật, 66ADns1W2mA ~53s). 0–250s là cảnh + cơ chế không có đích đếm.
+  - lỗi: ~252,9–310s: khoảng 55 giây dặn dò liền mạch (「アレルギーや腎臓のご病気、飲み込みの状態、お薬…室内の段差をなくすこと、明るさや手すり…たばこを控え、お酒を減らす」) ngay trước mục đầu 313,6s.
+  - lỗi: Câu lật nguyên nhân tới ~81,5s 「体を作る材料が、朝、昼、晩の三回の食事から十分に届いていない」 — 66ADns1W2mA đặt ý này ~39s, 966fNPIqSi4 39,5s (thật).
+  - lỗi: ~898s 「この順位は番組の構成によるもので、他の食品より優れていると証明されたわけではございません」 ngay sau khi công bố 第一位 納豆 — tự tháo lực đếm ngược.
+  - lỗi: Đề xuất tiêu đề ở series_ctx 「…転倒・骨折のリスクを静かに下げていた」 khẳng định mạnh hơn script: script nói 「小魚を丸ごと食べる習慣と、転倒や骨折との関わりを直接調べた研究は、まだ十分ではございません」 (~819s).
+  - lỗi: final.mp4 hiện có vẫn là bản cũ: 0,3s TTS đọc 「タイトル：転倒や骨折の…」, 7,5s lời tôn vinh trước triệu chứng, 58 giây khối 119 trong 2 phút đầu, 114,5–150s đọc trước cả 5 mục (voice.srt 09-19). Đăng bản này là đăng đúng những lỗi đã sửa trong script.
+  - lỗi: Nhân vật 68 tuổi lặp giữa các tập: 六十八歳/68歳 có ở 6/8 tập (ep01 người mở, ep02 元スーパー店員, ep03 洋裁店, ep04 スーパーのレジ係, ep05 元スーパー店員, ep06 元役所勤め; ep06 còn 67歳 スーパーの店員). Kênh mẫu đổi tên-tuổi-nghề ở mỗi mục (66ADns1W2mA: 坂本74, 内田71, 松本76, 大野73).
+  - sửa/đề xuất: title_ja: ご注意ください：70代の「パンとお茶だけ」の食事が、骨と筋肉を細らせています——転ぶ前に見直したい5つの食品; formula: F2 (lật thói quen đang làm — khung 4Q0fF3Ud57Q); checked_in_script: パンとお茶 1 (~110s 「朝はパンとお茶だけ」) · 七十歳 3 (53s, 148s, 625s; '70代' không có nguyên văn) · 骨 28 · 筋肉 9 · 細く 7 (~185s 「壁と足場は同時に細くなります」) · 転ぶ前 1 (~24s) · 五つ 3 (252,9s 「五つの工夫」 — script gọi là 工夫, mục 5 là 'món có protein' chứ không phải 1 thực phẩm). Không dùng 防ぐ/下げる.; len: 54
+  - sửa/đề xuất: title_ja: 70歳以上の方へ：転ぶ前に食卓に足したい5つの食品——骨と筋肉の材料は近所のお店にありました; formula: F1 (chiều 'được' — khung 66ADns1W2mA/kN6wHIqYA0Q); checked_in_script: 転ぶ前 1 · 食卓 4 (252,9s) · 五つ 3 · 骨 28 · 筋肉 9 · 材料 12 (~80s) · 近所のお店 1 (~255s 「どれも近所のお店で手に入るものばかりです」) · 七十歳 3.; len: 46
+- epep02: **「気づかないうちに進む「筋肉の減少」5つのサイン」 (dòng 1 script.txt). series_ctx.txt dòng 6 đề xuất: 「70歳以上の方へ：気づかないうちに進む「筋肉の減少」5つのサイン——ほとんどの方がご存知ない」.**
+  - lỗi: 0,3–6,2s TTS đọc to 「タイトル：…」.
+  - lỗi: 74,2s 「この順位は医学的な危険度ではなく、日々の暮らしで気づきやすい順に、並べた目安としてお聞きください」 — tự tháo đếm ngược.
+  - lỗi: 84,2–112s đọc trước cả 5 dấu hiệu, lộ 第一位 「指輪っかテスト」 ở 108,4s — đúng bài tự kiểm tra hấp dẫn nhất (loại checklist của 4Q0fF3Ud57Q) bị bán trước.
+  - lỗi: 112–150s ~38 giây dặn tư thế nghe/không tự làm động tác trước mục đầu 152s.
+  - lỗi: Câu chốt 30–37s chỉ gọi tên bệnh 「サルコペニアと呼ばれる、筋肉の衰えが考えられます」 — không có hậu quả/không có con số (66ADns1W2mA ~24–40s: người nằm liệt đã mất cơ nhiều năm trước).
+  - lỗi: Tiêu đề 23 chữ, không đối tượng/nhãn (7/8 tiêu đề thắng mở bằng đối tượng hoặc nhãn cảnh báo).
+  - sửa/đề xuất: title_ja: ご注意ください：「よっこいしょ」と瓶の蓋——筋肉が静かに減っている5つのサイン、シニアの方は必見; formula: F2 (nhãn + dấu hiệu người xem đang có; lộ 2 mục GIỮA, giấu 第一位); checked_in_script: よっこいしょ 1 (~278s, 第四位) · 瓶の蓋 4 (104,8s; ~643s 第二位) · 筋肉 10 · 五つ 3 · 'シニア' 0 lần (nhãn đối tượng, không phải khẳng định; script dùng 高齢 3 lần).; len: 48
+  - sửa/đề xuất: title_ja: 椅子から立つとき手をつく方へ：筋肉が静かに減っている5つのサイン——第1位は指だけで確かめられます; formula: F3 (đối tượng theo triệu chứng, khung JCyxahsO0ew) + H34 nhử 第一位 bằng đặc điểm; checked_in_script: 手をつ 4 (~278s) · 筋肉 10 · 五つ 3 · 指 15 (指輪っか 108,4s/748s; 親指・人差し指 ~803s). Chỉ dùng được nếu bỏ đoạn đọc trước 84–112s.; len: 49
+- epep03: **「良かれと思って実は筋肉・腎臓に負担をかける食習慣5つ」 (dòng 1 script.txt).**
+  - lỗi: 0,3–7,4s TTS đọc 「タイトル:良かれと思って…」.
+  - lỗi: 7,5–24,9s chào + cảm ơn + tôn vinh (17s) trước khi nói gì về người xem — kênh mẫu 0/27 mở bằng chào.
+  - lỗi: 24,9–72s = 47 giây khối 119 (đột quỵ, TIA, đau ngực, sưng chân) ngay trong hook.
+  - lỗi: Câu chốt 72,4s 「健康のために信じてきた食習慣の中に、栄養不足を招く要素が、静かに紛れ込んでいる」 — cùng khái niệm 4Q0fF3Ud57Q nói ở 0s (「その茹で卵をお口に入れる前に」).
+  - lỗi: 153–194s đọc trước cả 5 mục (「本日の動画でお届けする、五つの内容をご案内いたします。第五位は…そして第一位は、腎臓を心配するあまり、お肉やお魚を極端に断ってしまう習慣です」).
+  - lỗi: Nhân vật 六十八歳 (洋裁店, ~253s) lặp với ep01/02/04/05.
+  - lỗi: Tiêu đề 26 chữ, không đối tượng/nhãn; đuôi 「食習慣5つ」 kiểu từ khoá.
+  - sửa/đề xuất: title_ja: ご注意ください：良かれと思って続ける5つの食習慣が、密かに筋肉と腎臓に負担をかけています——シニアの方は必見; formula: F2 (khung 4Q0fF3Ud57Q 1.762/ngày + Uaj9mNJgm6g 820 — đúng cụm thắng); checked_in_script: 良かれ 3 (126,8s; ~1.137s) · 五つ 3 · 筋肉 5 (thân bài lần đầu 180s; 'hại cơ' chỉ có ~1.100s 「たんぱく質の不足が長く続けば、筋肉や体力の低下」 → hook phải có 1 câu nối 筋肉 trước 45s) · 腎臓 19 · 負担 5 (~508s) · シニア 1 (~765s).; len: 54
+  - sửa/đề xuất: title_ja: 【要注意】野菜ジュースとプロテイン——60代以上が良かれと思って選ぶ5つの習慣が、腎臓と筋肉に負担をかけている; formula: F2 biến thể Uaj9mNJgm6g (gọi tên 2 mục GIỮA: 第四位 + 第二位, giấu 第一位); checked_in_script: 野菜ジュース 6 · プロテイン 7 · 良かれ 3 · 腎臓 19 · 負担 5 · '60代以上' 0 lần như cụm đối tượng (script chỉ có 六十八歳 1, 高齢 5) → thêm 1 câu 「六十代、七十代の方に…」 vào hook hoặc đổi thành 「シニア」.; len: 55
+- epep04: **「血管・糖尿病の異変が足に出る5つのサイン」 (dòng 1 script.txt).**
+  - lỗi: 0,3–5,8s TTS đọc 「タイトル:」.
+  - lỗi: 5,9s lời cảm ơn đứng trước câu hỏi tốt nhất của tập (11,9s 「皆さんがご自分の足先を、最後に見つめたのはいつ頃でしょうか」).
+  - lỗi: 29,8–77,8s = 48 giây khối 119 (tắc mạch cấp, sưng, đau ngực, vết thương đổi màu).
+  - lỗi: Câu chốt/số liệu 83,9s 「末梢動脈疾患を抱える患者さんは、国内にも数百万人」; câu lật 100,9s 「足そのものが発する危険信号」 — cả hai ngoài 45s.
+  - lỗi: 125–136s đọc trước 5 dấu hiệu (「五つ目は爪と皮膚の変化、四つ目は…一つ目は足の色そのものの変化」).
+  - lỗi: Đề tài trần thấp ở kênh mẫu: ELaeDwNFs0Y (13 dấu hiệu tiểu đường ở chân, hook 11/12) 39/ngày ở 8,5 ngày; l0N9WnXkMbA (thực phẩm phá chân) 61/ngày. Chân chỉ thắng khi là CÁCH GIẢI cho triệu chứng phổ quát (JCyxahsO0ew).
+  - lỗi: Tiêu đề 20 chữ — ngắn nhất 8 tập, không đối tượng.
+  - sửa/đề xuất: title_ja: 放置厳禁：足先に出る5つのサイン——血管と糖尿病の異変は、今夜靴下を脱げば確かめられます; formula: khuôn ELaeDwNFs0Y (nhãn 4 chữ + bộ phận + N サイン) + H33 tự kiểm tối nay — khuôn này ở kênh mẫu CHƯA thắng, dùng vì đề tài; checked_in_script: 足先 4 (11,9s) · 五つ 5 · 血管 9 · 糖尿病 7 · 異変 1 thân bài (~915s) · 今夜 8 · 靴下 4 (~169s) · 確かめ 8 (~282s) · 放置 1. '靴下を脱げば確かめられる' là hành động suy ra từ 「ご自分の足先を…見つめた」 + 靴下 — thêm 1 câu nguyên văn vào hook.; len: 44
+  - sửa/đề xuất: title_ja: 少し歩くとふくらはぎが痛む方へ：血管と糖尿病の異変を知らせる、足の5つのサイン; formula: F3 (đối tượng theo triệu chứng — khung JCyxahsO0ew); checked_in_script: ふくらはぎが痛 1 (23,2s 「少し歩くだけでふくらはぎが痛み」) · 血管 9 · 糖尿病 7 · 異変 1 · 五つ 5 · サイン 5.; len: 39
+- epep05: **「脚のむくみが関係する夜間頻尿で検討したい5つの工夫」 (dòng 1 script.txt).**
+  - lỗi: 0,5–12s chào + cảm ơn + 'hãy tưởng tượng' (11,5s) trước cảnh; cảnh 12–31s gần như chép cảnh 0–11s của JCyxahsO0ew nhưng chậm 12s.
+  - lỗi: Câu chốt 72,8s 「夜中に何度も目が覚める原因は、多くの場合、膀胱そのものではありません」 → 91,5s 「そう、ふくらはぎです」 — JCyxahsO0ew nói cùng ý ở 37,0s (thật). 43–66s chèn guideline trước câu chốt.
+  - lỗi: 123,1–175s 「今夜のお品書き」 đọc trước 5 mục, lộ 第一位 166,4s 「そして第一位は、夕方の足上げです」.
+  - lỗi: Tiêu đề rào 「検討したい」 (giọng bác sĩ, không phải của người xem), 25 chữ, không tuổi, bỏ mất chữ ふくらはぎ — đáp án bất ngờ của chính hook.
+  - lỗi: Điểm cộng: tập DUY NHẤT không có khối 119 trong 120s (chỉ 1 câu 'hỏi bác sĩ' ~112s) — gần khuôn kênh mẫu nhất.
+  - lỗi: Nhân vật 六十八歳の元スーパー店員 (~427s) lặp với ep02/ep04.
+  - sửa/đề xuất: title_ja: 夜間頻尿で悩む方へ：原因は膀胱ではなく「ふくらはぎ」——夜中のトイレを減らす5つの習慣; formula: F3 (khung JCyxahsO0ew 3.069/ngày — video nhiều view nhất kênh; khác chữ, giữ bí mật hành động); checked_in_script: 夜間頻尿 6 · 膀胱 2 (72,8s; 93,2s) · ふくらはぎ 12 (91,5s) · 夜中のトイレ 2 (~175s, ~219s) · 減らす 3 (~102s 「夜間頻尿を減らすための、大切な五つの習慣」) · 五つ 3 · 習慣 7.; len: 43
+  - sửa/đề xuất: title_ja: ご注意ください：寝る直前のお風呂が、夜中のトイレを増やしています——ふくらはぎを整える5つの習慣; formula: F2 (lật thói quen đang làm; gọi tên mục 第五位 — mục đầu, không phải 第一位); checked_in_script: 寝る直前 5 (~131s; 第五位 197s) · 夜中のトイレを増やしてしまう 1 (~219s 「夜中のトイレを増やしてしまう、静かな落とし穴」) · ふくらはぎ 12 · 五つ 3 · 習慣 7.; len: 48
+- epep06: **「60歳以上の方へ：5つの抗炎症食品が腸と脳を静かに守っていた——ほとんどの方がご存知ない」 (title.txt).**
+  - lỗi: 0,3–8s chào + cảm ơn.
+  - lỗi: 35,6s thuật ngữ 「インフラメイジング」 và 65,8s 「パキスタン・イスラマバードで成人140人を対象に行われた調査」 — bằng chứng xa lạ với người 70 tuổi Nhật; kênh mẫu 0/8 tiêu đề thắng có thuật ngữ.
+  - lỗi: 79,4–98s khối 119 (17s) — ngắn hơn ep01/03/04, vẫn nằm trong hook.
+  - lỗi: 106–115s đọc tên cả 5 nhóm trước 第5位 (133s), lộ 第1位.
+  - lỗi: Tiêu đề: 「60歳以上」「抗炎症」「ほとんどの方がご存知ない」 0 lần trong script.txt (vi phạm nguyên tắc 8); khuôn chép aWXuORPaoH0 (247/ngày — video 'giữa', không phải video thắng).
+  - lỗi: Nhân vật 67歳 スーパーの店員 (~167s) + 68歳 (~398s) — lặp persona với ep02/ep04/ep05.
+  - sửa/đề xuất: title_ja: しっかり食べているのに力が出ない方へ：年齢とともに進む「弱い炎症」から腸と脳を守る5つの食品; formula: F3 (đối tượng theo triệu chứng; triệu chứng lấy nguyên văn 12,6s); checked_in_script: しっかり食べているのに力が出ない 1 (12,6s) · 年齢とともに 1 (35,6s) · 弱い炎症 1 (40,4s 「痛みも熱も伴わない弱い炎症」) · 腸と脳 4 · 守る 4 (100,5s 「腸と脳を炎症から守る食べ物を五つ」) · 食品 8 · 五つ 5.; len: 46
+  - sửa/đề xuất: title_ja: 60歳以上の方へ：5つの身近な食品が、腸と脳を静かな炎症から守っていた——ほとんどの方がご存知ない; formula: F1 (giữ khung title.txt nhưng sửa cho khớp); checked_in_script: PHẢI THÊM vào script trước khi dùng: 60歳 0 lần, 身近 0, ご存知 0. Đã có: 腸と脳 4 · 静かな炎症 1 (~1.092s) · 守る 4 · 五つ 5. Nếu không sửa script thì dùng đề xuất thứ nhất.; len: 49
+- epep07: **「認知機能の低下で見られることがある5つの変化」 (dòng 1 script.txt).**
+  - lỗi: 0–21s chào + khen (~21s ước tính) trước cảnh quên tốt nhất tập (~27s 「冷蔵庫の前で目的を忘れ」).
+  - lỗi: ~62–113s khối 119 (~50s ước tính: đột quỵ, sảng, uống quá liều thuốc).
+  - lỗi: Hứa N ~142s; ~171–210s đọc trước 5 mục, lộ 第一位 「しまい忘れた財布を、誰かに盗られたと疑ってしまうサイン」 ~203s.
+  - lỗi: Hai câu rào ~147,6s + ~155s ('thứ tự chỉ vì tiện kể', 'không phải độ nặng').
+  - lỗi: Đề tài trí nhớ thua 2/2 ở kênh mẫu (p4Rp10Rw19M 34/ngày, uWNCuUnM3xE 12/ngày dù hook 11/12).
+  - lỗi: Tiêu đề 22 chữ, rào 「見られることがある」, thuật ngữ 「認知機能」, không đối tượng.
+  - sửa/đề xuất: title_ja: 70代の方へ：「さっきも話したよ」と言われたら——年のせいでは済まない、もの忘れの5つのサイン; formula: F3 (đối tượng + câu người xem thật sự nghe từ gia đình — dấu hiệu 第五位, không phải 第一位); checked_in_script: さっきも話した 1 (~221s 「さっきも話したよと家族に言われた」) · 七十 5 (nhân vật 70–78) · 年のせい 1 · もの忘れ 2 (~310s) · 五つ 3 · サイン 8.; len: 47
+  - sửa/đề xuất: title_ja: 冷蔵庫の前で目的を忘れる方へ：年のせいか、認知症の始まりか——見逃されやすい5つの合図; formula: F3 + K01 hai lựa chọn; checked_in_script: 冷蔵庫の前 1 (~27s) · 年のせい 1 · 認知症 2 (~412s) · 見逃されやすい 1 (~142s 「見逃されやすい五つの合図」) · 合図 12. 'Có phải bệnh không' đã có ~36s 「もしかしてあの病気の始まりかと」.; len: 43
+- epep08: **「自立して暮らす百寿者の食事で見られた五つの傾向」 (dòng 1 script.txt).**
+  - lỗi: 0–23s hai câu tôn vinh liền nhau trước khi nói gì về người xem.
+  - lỗi: ~42–61s khuyên đi bác sĩ, ~137–167s rào điều tra, ~167–239s khối 119 (~72s, có cả hướng dẫn ép tim) — ~2 phút rào/cảnh báo trước lời hứa.
+  - lỗi: Câu chốt ~115,8s 「百歳を超えて元気な方々の食卓には、高価な食品や輸入食材ではなく、日本人におなじみの普通の食品が並んでいました」 — kN6wHIqYA0Q (cùng đề tài, 3.342/ngày) nói gần nguyên ý ở 21,8s (thật). Chậm ~5 lần.
+  - lỗi: Số liệu mạnh nhất tập (キューサイ 2019, 百人, 九百食 ~89s; 'khoảng 6 phần 10 ăn cơm mỗi ngày' ~300s — lật định kiến 'kiêng tinh bột') bị chôn sau 1,5–5 phút.
+  - lỗi: ~239–303s đọc trước 5 xu hướng + câu rào thứ tự.
+  - lỗi: Tiêu đề 23 chữ, 「百寿者」 (từ ít dùng), 「見られた…傾向」 (rào + trừu tượng).
+  - sửa/đề xuất: title_ja: 100歳まで自分の足で歩く人の6割は、毎日ご飯を食べていた——100人・900食の献立で分かった5つの食習慣; formula: F4/W5 (con số lật định kiến 'kiêng cơm' — mục 二つ目, mục GIỮA) + nguồn đếm được; checked_in_script: 自力で歩 1 (~92s 「自力で歩き食事を楽しむ百歳の方、百人」) · 六割 1 (~300s) · お米 3 / ご飯 5 · 百人 4 · 九百食 3 (~89s) · 五つ 5 · 食習慣 1 (~864s).; len: 54
+  - sửa/đề xuất: title_ja: 70歳以上の方へ：100歳まで元気な人が続けていた5つの食習慣——ほとんどの方がご存知ない; formula: F1 (khung kN6wHIqYA0Q — video #1 kênh mẫu); checked_in_script: 百歳 5 · 元気 2 (~117s 「百歳を超えて元気な方々」) · 食習慣 1 / 習慣 4 · 五つ 5 · '70歳以上' 0 lần như đối tượng (nhân vật 七十二/七十三) và 'ご存知ない' 0 → thêm 1 câu vào hook.; len: 45
+
+<!-- export 12d2ba70a351 · 2026-09-26 -->

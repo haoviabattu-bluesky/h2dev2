@@ -197,13 +197,16 @@ def mech_images(imgdir, n_expected=0, min_kb=120):
     if n_expected and len(imgs) != n_expected:
         out["problems"].append(f"có {len(imgs)} ảnh, cần {n_expected} → thiếu {n_expected-len(imgs)}")
     hashes = {}
+    kich_thuoc = {}
     for f in imgs:
         try:
             if f.stat().st_size < min_kb * 1024:
                 out["flagged"].append((f.name, f"file quá nhỏ {f.stat().st_size//1024}KB"))
             im = Image.open(f)
             im.verify()
-            im = Image.open(f).convert("L")
+            im = Image.open(f)
+            kich_thuoc[f.name] = im.size
+            im = im.convert("L")
             st = ImageStat.Stat(im)
             if st.mean[0] < 18:
                 out["flagged"].append((f.name, f"gần như ĐEN (mean {st.mean[0]:.0f})"))
@@ -212,6 +215,19 @@ def mech_images(imgdir, n_expected=0, min_kb=120):
             hashes[f.name] = _dhash(f)
         except Exception as e:
             out["flagged"].append((f.name, f"ảnh HỎNG: {type(e).__name__}"))
+    # KÍCH THƯỚC LỆCH ĐÀN (thêm 2026-09-26). Trước đây bộ đo máy kiểm dung lượng, độ đen, độ phẳng,
+    # trùng ảnh — nhưng KHÔNG kiểm số điểm ảnh. Đo thật ở ep03 lane L: giữa loạt 2560×1440 có một
+    # tấm **1376×768**, lọt sạch mọi phép kiểm rồi bị phóng to lúc ghép video → nhoè, mà không ai
+    # báo gì. Model nhìn ảnh cũng không bắt được vì nó xem ảnh đã co về cùng cỡ.
+    # Lấy kích thước PHỔ BIẾN NHẤT của chính loạt đó làm chuẩn, thay vì ghim một con số cứng —
+    # mỗi lane một khổ khác nhau, ghim cứng là báo sai cho lane khác.
+    if len(kich_thuoc) >= 3:
+        from collections import Counter
+        chuan, _ = Counter(kich_thuoc.values()).most_common(1)[0]
+        for ten, kt in kich_thuoc.items():
+            if kt != chuan:
+                out["flagged"].append((ten, f"kích thước {kt[0]}×{kt[1]} lệch đàn "
+                                            f"(cả loạt là {chuan[0]}×{chuan[1]}) → ghép vào sẽ bị phóng to, nhoè"))
     names = list(hashes)
     dup = []
     for i, a in enumerate(names):
@@ -231,6 +247,84 @@ def mech_images(imgdir, n_expected=0, min_kb=120):
 IMG_SCHEMA = ('{"matches_prompt":<bool>,"era_ok":<bool>,"people_count":<int>,'
               '"readable_text":<bool>,"artifacts":<bool>,"single_scene":<bool>,"note":"<= 15 words"}')
 
+# Model đi HỎI LẠI khi lượt chấm đầu kêu ảnh có lỗi. Phải là model KHÁC HẲN model vừa chấm, và
+# phải là model đã đo được là chấm ĐÚNG trên ảnh sạch — xem `THANH_DU_PHONG` ở qc_character.py.
+_MODEL_HOI_LAI = [("ns24", "deepseek-v4.1-flash"), ("hhtech", "glm-5.3-flash"),
+                  ("ramclouds", "gemini-3.8-flash")]
+
+
+def _ask_img(pr, world):
+    """Câu hỏi chấm 1 tấm ảnh. Tách riêng để lượt chấm đầu và lượt HỎI LẠI dùng ĐÚNG một câu —
+    hỏi lại bằng câu khác thì hai lượt không so được với nhau."""
+    pr_sach = re.sub(r"^@\w+[:\w,]* ", "", pr or "")[:400]
+    return ("You are a strict QC for AI-generated story images. Judge this image.\n"
+            f"It was generated from this prompt: {pr_sach}\n"
+            f"WORLD it must fit: {world[:300] or 'unspecified'}\n"
+            "matches_prompt = the image really shows what the prompt asks. "
+            "era_ok = nothing anachronistic vs the world. readable_text = any legible words/signs "
+            "visible. artifacts = deformed hands/faces/objects. "
+            "single_scene = this is ONE continuous illustrated scene (false if it looks like a "
+            "comic/manga PAGE with multiple panels, a grid of smaller images, a character "
+            "reference sheet with several poses, or any visible panel borders/gutters).\n"
+            f"Reply ONLY compact JSON: {IMG_SCHEMA}")
+
+
+def _hoi_lai_nhieu(prompt, img_path, so_model=2):
+    """Hỏi lại bằng `so_model` model KHÁC NHAU. Trả danh sách kết quả đọc được (có thể rỗng).
+
+    ⚠️ VÌ SAO PHẢI HỎI HAI, KHÔNG PHẢI MỘT (sai lầm đã mắc và đã sửa trong cùng ngày 2026-09-26):
+    bản đầu chỉ hỏi MỘT model và lấy luôn làm trọng tài. Model đứng đầu danh sách khi đó là
+    `ns24:deepseek-v4.1-flash` — nhanh và chấm đúng trên ảnh sạch, nhưng **mù với lỗi mảng trống**:
+    tấm `155.png` của ep03 có hẳn NỬA KHUNG là mảng xám phẳng mà nó vẫn nói sạch. Kết quả là cổng
+    QC thả lọt đúng tấm hỏng nặng nhất — đổi một kiểu sai (chê oan) lấy một kiểu sai tệ hơn (bỏ
+    sót). Hỏi hai model rồi chỉ tha khi CẢ HAI cùng nói sạch thì mới cân được hai phía.
+    """
+    import base64
+    import qc_character as qcc
+    b64 = base64.b64encode(Path(img_path).read_bytes()).decode()
+    ra = []
+    for nha, mod in _MODEL_HOI_LAI:
+        if len(ra) >= so_model:
+            break
+        try:
+            ra.append(qcc._parse_json(qcc._chat_proxy(nha, mod, prompt, b64)))
+        except Exception:
+            continue
+    return ra
+
+
+def _hoi_lai(prompt, img_path, tru_model=""):
+    """Hỏi lại tấm ảnh bị chê, bằng model KHÁC. Trả dict kết quả, hoặc None nếu không hỏi được.
+
+    VÌ SAO CÓ BƯỚC NÀY (đo thật 2026-09-26, ảnh 001/018 của `shakai_no_naze/ep01`, hai tấm đã soi
+    mắt thường là sạch hoàn toàn — 5 lượt/ô, ô "sạch" là chấm đúng):
+
+        ns24:gpt-5.6-sol        4/5 và 5/5   (1 lần kêu "méo mó" oan)
+        9router:cx/gpt-5.6-sol  2/5 và 5/5   (3 lần kêu "méo mó" oan)
+        ramclouds:gemini        5/5 và 5/5
+        ns24:deepseek-v4.1      5/5 và 5/5
+        hhtech:glm-5.3-flash    5/5 và 5/5
+
+    Tức là lời chê OAN đến từ **model `gpt-5.6-sol`**, không đến từ đường ns24: cùng model đó chạy
+    qua 9router còn sai NHIỀU HƠN. Mỗi lượt nó chê một tấm khác nhau vì lý do khác nhau, nên nhìn
+    từ ngoài cứ tưởng "cổng QC bốc bừa ảnh để chê" — thật ra danh sách ảnh mẫu là CỐ ĐỊNH (chỉ số
+    tính bằng công thức, không hề ngẫu nhiên), chỉ có phán quyết là đổi.
+
+    Hậu quả nếu không vá: vẽ lại theo lời chê oan → lượt sau nó chê tấm khác → vẽ lại nữa → vòng
+    lặp không có điểm dừng, đốt tiền ảnh. Nên từ nay MỘT model kêu lỗi là CHƯA ĐỦ.
+    """
+    import base64
+    import qc_character as qcc
+    b64 = base64.b64encode(Path(img_path).read_bytes()).decode()
+    for nha, mod in _MODEL_HOI_LAI:
+        if mod == tru_model:
+            continue
+        try:
+            return qcc._parse_json(qcc._chat_proxy(nha, mod, prompt, b64))
+        except Exception:
+            continue
+    return None
+
 
 def qc_images(imgdir, prompts, world="", sample=12, workers=4):
     """Máy đo TOÀN BỘ + vision soi MẪU (đủ để bắt lỗi hệ thống mà không tốn 126 lượt gọi)."""
@@ -244,41 +338,52 @@ def qc_images(imgdir, prompts, world="", sample=12, workers=4):
 
     def one(t):
         i, f, pr = t
-        pr_sach = re.sub(r"^@\w+ ", "", pr)[:400]
-        ask = ("You are a strict QC for AI-generated story images. Judge this image.\n"
-               f"It was generated from this prompt: {pr_sach}\n"
-               f"WORLD it must fit: {world[:300] or 'unspecified'}\n"
-               "matches_prompt = the image really shows what the prompt asks. "
-               "era_ok = nothing anachronistic vs the world. readable_text = any legible words/signs "
-               "visible. artifacts = deformed hands/faces/objects. "
-               "single_scene = this is ONE continuous illustrated scene (false if it looks like a "
-               "comic/manga PAGE with multiple panels, a grid of smaller images, a character "
-               "reference sheet with several poses, or any visible panel borders/gutters).\n"
-               f"Reply ONLY compact JSON: {IMG_SCHEMA}")
         try:
-            return i, f.name, _vision(ask, f)
+            return i, f.name, _vision(_ask_img(pr, world), f)
         except QcError as e:
             return i, f.name, {"_err": str(e)}
 
+    def ly_do(d):
+        why = []
+        if d.get("matches_prompt") is False:
+            why.append("không khớp prompt")
+        if d.get("era_ok") is False:
+            why.append("LẠC THỜI ĐẠI")
+        if d.get("artifacts") is True:
+            why.append("méo mó/dị dạng")
+        if d.get("readable_text") is True:
+            why.append("có chữ đọc được")
+        if d.get("single_scene") is False:
+            why.append("NHIỀU Ô/collage (không phải 1 cảnh liền)")
+        return why
+
     bad = []
+    bo_qua = []
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        for i, name, d in ex.map(one, tasks):
-            if "_err" in d:
-                res["infra"].append(f"{name}: {d['_err']}")
-                continue
-            why = []
-            if d.get("matches_prompt") is False:
-                why.append("không khớp prompt")
-            if d.get("era_ok") is False:
-                why.append("LẠC THỜI ĐẠI")
-            if d.get("artifacts") is True:
-                why.append("méo mó/dị dạng")
-            if d.get("readable_text") is True:
-                why.append("có chữ đọc được")
-            if d.get("single_scene") is False:
-                why.append("NHIỀU Ô/collage (không phải 1 cảnh liền)")
-            if why:
-                bad.append((name, ", ".join(why), (d.get("note") or "")[:60]))
+        ket = list(ex.map(one, tasks))
+    for (i, f, pr), (_i, name, d) in zip(tasks, ket):
+        if "_err" in d:
+            res["infra"].append(f"{name}: {d['_err']}")
+            continue
+        why = ly_do(d)
+        if not why:
+            continue
+        # HỎI LẠI bằng model khác trước khi kết tội (xem `_hoi_lai`): chỉ giữ lý do mà CẢ HAI
+        # cùng thấy. Một model kêu lỗi mà model kia bảo sạch thì coi như sạch — thà bỏ sót một
+        # ảnh xấu còn hơn đẩy cả loạt vào vòng vẽ lại không có điểm dừng.
+        ds = _hoi_lai_nhieu(_ask_img(pr, world), f, so_model=2)
+        if not ds:
+            bad.append((name, ", ".join(why) + " (KHÔNG hỏi lại được)", (d.get("note") or "")[:60]))
+            continue
+        # Giữ lý do mà ÍT NHẤT MỘT model được hỏi lại cũng thấy; tha khi MỌI model đều nói sạch.
+        chung = [w for w in why if any(w in ly_do(x) for x in ds)]
+        if chung:
+            bad.append((name, ", ".join(chung), (d.get("note") or "")[:60]))
+        else:
+            bo_qua.append(f"{name}: lượt đầu kêu '{', '.join(why)}' nhưng {len(ds)} model khác "
+                          f"đều bảo sạch")
+    if bo_qua:
+        res["bo_qua_vi_khong_dong_y"] = bo_qua
     res["vision_checked"] = len(tasks)
     res["vision_bad"] = bad
     if bad:

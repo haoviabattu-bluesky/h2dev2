@@ -209,7 +209,9 @@
       "visual_kind": "video_sinh",
       "sfx": true,
       "_hook_note": "HOOK_LIBRARY (TRENDING-RESEARCH nạp 4 video gốc 2026-09-24): H22 ×2, H14, H02; closer K19 ×2 (「これは〜までの話です」 ở video 3, 4). Kênh mẫu là ngôi 3 → câu khung là「これは、この男が〜までの話だ」."
-    }
+    },
+    "review_may3": true,
+    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c."
   },
   "script_qc": {
     "lens": "plain",
@@ -227,7 +229,7 @@
   "image": {
     "skill": "skills/youtube-image-prompts/SKILL.md",
     "character_sheet": "Each episode defines its OWN cast in characters.json (id, age, gender, look, ref). Every character with a speaking line or appearing in 2+ images has its own locked master portrait (_ref_<id>/001.png). A single image may show AT MOST 3 locked faces (Flow Tool limit). Characters are fictional pharmacy staff/patients; never resemble a real public figure; faces do not carry over between episodes.",
-    "style_suffix": "clean modern Japanese anime illustration, crisp confident line art, soft cel shading, natural human proportions (not chibi), bright soft daylight, realistic Japanese adults, gentle colors, calm everyday atmosphere; leave some open uncluttered space beside the speaking person for a speech balloon added later; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no speech bubbles, no watermark",
+    "style_suffix": "clean modern Japanese anime illustration, crisp confident line art, soft cel shading, natural human proportions (not chibi), bright soft daylight, realistic Japanese adults, gentle colors, calm everyday atmosphere; keep a calm, low-detail area beside the speaking person where a speech balloon is added later - at most 15% of the frame width, still part of the room (a wall, a shelf, soft background), NEVER a flat empty panel and NEVER a hard vertical dividing line; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no speech bubbles, no watermark",
     "_style_suffix_note": "Viết theo khung hình THẬT video gốc JmhcsfXGmfU (docs/channel_dna/yakkyoku-sukatto/_raw/video/khung/sheet_v1.png): anime nét sạch tỉ lệ người thật, ánh sáng ban ngày dịu, nhà thuốc gỗ sáng; chữ/bóng thoại do MÁY vẽ sau (tate_text --bubble) nên ảnh cấm chữ. · 2026-09-24 GỠ cụm bối cảnh 'warm light-wood pharmacy interior (...)' khỏi style: style nối vào MỌI prompt nên kéo cả cảnh ga tàu/sân bóng/phòng họp về quầy thuốc (QC hook ep01 trượt 2/7 ảnh vì lỗi này). Bối cảnh tả trong từng prompt.",
     "seconds_per_image": 8,
     "_seconds_note": "ĐO THẬT 2026-09-24: dò đổi khung 2 video gốc (fps 2) → 129–140 lần đổi / 17,5–18' · trung bình 7,7–8,1s, trung vị 6,5s.",
@@ -273,7 +275,8 @@
     "bgm": "assets/yakkyoku-sukatto/_bgm/bgm_lane_k.mp3",
     "bgm_volume": 0.075,
     "bgm_keep_voice": true,
-    "_note_chuyen_canh_nhac": "Anh chốt 2026-09-24 (NGOẠI LỆ riêng Lane K với luật cấm zoom 21/09): giống kênh mẫu đo máy 2 video — mờ chồng 0,3s (9 khung) + mỗi cảnh phóng vào chậm ×1,02–1,03 (88/91 cảnh) → zoom 1.025 zoom_dir=in, dựng bằng warpAffine dưới-pixel (không rung). Nhạc nền: kênh mẫu có 1 bài acoustic guitar đời thường lặp suốt video, nền khoảng lặng thấp hơn giọng ~17,7 dB, KHÔNG SFX (Gemini nghe 3 đoạn + đo mức). bgm_lane_k.mp3 = Suno qua ai33 (bgm_cand1, Gemini chấm 9/10), nối vòng acrossfade 5s thành 20:41; volume 0.075 đo cho chênh ~17,8 dB."
+    "_note_chuyen_canh_nhac": "Anh chốt 2026-09-24 (NGOẠI LỆ riêng Lane K với luật cấm zoom 21/09): giống kênh mẫu đo máy 2 video — mờ chồng 0,3s (9 khung) + mỗi cảnh phóng vào chậm ×1,02–1,03 (88/91 cảnh) → zoom 1.025 zoom_dir=in, dựng bằng warpAffine dưới-pixel (không rung). Nhạc nền: kênh mẫu có 1 bài acoustic guitar đời thường lặp suốt video, nền khoảng lặng thấp hơn giọng ~17,7 dB, KHÔNG SFX (Gemini nghe 3 đoạn + đo mức). bgm_lane_k.mp3 = Suno qua ai33 (bgm_cand1, Gemini chấm 9/10), nối vòng acrossfade 5s thành 20:41; volume 0.075 đo cho chênh ~17,8 dB.",
+    "hook_tu_ghep": true
   },
   "blocklist": [
     "child",
@@ -292,7 +295,7 @@
     "pill close-up with brand name"
   ],
   "publish": {
-    "upload_channel": "yakkyoku-sukatto",
+    "upload_channel": "K-yakkyoku-sukatto",
     "sheet_tab": "K-yakkyoku-sukatto",
     "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
     "review_vi": true,
@@ -308,8 +311,12 @@
       "会社員 漫画"
     ],
     "listing_external": true,
-    "title_auto": false,
-    "_title_auto_note": "Kênh mới: TẮT theo luật (docs/QUY_TRINH_GIAO_VIEC_MAY2.md §7) — anh setup TITLE tập đầu bằng tay rồi mới `goi_title.py --bat yakkyoku-sukatto`. Mô tả PHẢI có khối ▼素材 lấy từ credits_giong.txt của tập (điều khoản VOICEVOX)."
+    "title_auto": true,
+    "_title_auto_note": "2026-09-25 anh BẬT (tập 1 xong video). Từ tập 2 dong_goi_may2.py --job tự gọi goi_title.py → YT-TITLE-RESEARCH (thumb layout dialogue_split). Mô tả PHẢI có khối ▼素材 từ credits_giong.txt của tập.",
+    "review_vi_cao": 720,
+    "ten_review": "final-vietsub.mp4",
+    "_note_giao": "Anh chốt 2026-09-25: máy 2 giao ĐÚNG 2 video — final.mp4 (ĐÃ có hook; 100% video giao phải có hook nên bỏ tên final_with_hook) + final-vietsub.mp4 (cùng video, cháy phụ đề Việt cho anh đọc). Hook ghép tự động trong B8 (assemble.hook_tu_ghep).",
+    "_upload_channel_note": "2026-09-25 anh chốt: đổi CHANEL sang tên TAB (K-yakkyoku-sukatto), áp cho toàn bộ lane cùng lúc."
   },
   "goi_dang": {
     "enabled": true,

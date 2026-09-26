@@ -1,257 +1,260 @@
 {
- "id": "teinengo-tanoshimi",
- "market": "JP",
- "language": "ja",
- "niche": "定年後の楽しみ方 — hưu trí Nhật, MANGA STORY ngôi 1 + list N選 (5/7 mục) lối sống VUI/RẺ sau nghỉ hưu (trẻ khoẻ · du lịch/温泉/神社 · thú vui 0円 · phục hồi mệt · sống vừa đủ)",
- "competitor": "https://www.youtube.com/channel/UCI2cPqBmCPMxxKI4u2Gqs_Q",
- "slug_dir": "assets/teinengo-tanoshimi",
- "folder_pattern": "ep{nn:02d}-*",
- "channel_dossier": "FlowHandoff_local/results/laneG_from_research/LANE_G_HANDOFF.md",
- "channel_dna_dir": "docs/channel_dna/rougo-money-story",
- "narrator": {
-  "gender": "male",
-  "age_band": "60-67",
-  "persona": "定年退職して半年〜2年の元サラリーマン。40年勤めた会社を辞め、朝起きても何をすればいいかわからない。真面目で少し頑固、効率を気にする癖が抜けない。自分の失敗や戸惑いを正直に語り、案内役（旧友・元上司・公園で会った老人など）との会話を通して気づいていく。",
-  "point_of_view": "一人称「俺」の回想体。心の声（地の文）と登場人物2人の会話「」を交互に進める漫画ストーリー。",
-  "register": "だ・である調の独白＋会話は自然な口語。短い文、落ち着いた中年男性の語り。サラリーマン用語（現役時代・定年退職・再雇用・出費）を自然に使う。",
-  "_note_vi": "Đo từ CHANNEL_DNA.md (8 video top): nhân vật 55–67 tuổi (video 1: 55歳 石川県; video 3: 66歳; video 4: 65歳; video 8: 生涯独身65歳), xưng 俺, 40–42 năm đi làm. Giọng đọc NAM trung niên — anh chốt CLONE RIÊNG từ kênh mẫu (không dùng chung voice Lane F)."
- },
- "voice": {
-  "id": "clone_2658912",
-  "name": "CLONE riêng từ kênh mẫu 老後のお金ストーリー (mẫu bgUqNHYZbq0 0:52–1:20, remove_background) — anh duyệt 2026-09-20 sau nghe A/B",
-  "speed": 1.0,
-  "fx": "none",
-  "calib_style": "story",
-  "char_rate": 321.5,
-  "pace": false,
-  "_note": "K4 2026-09-20: 4 video kênh mẫu CÙNG 1 giọng nam F0 105–118Hz (cosine ≥0,94) → clone 1 lần dùng chung. F0 output test 116,8Hz KHỚP nguồn (xác minh theo skill openspeaker_voice_clone §6b). Anh chốt: video gốc nào giọng NỮ thì tính sau (chưa có). Kênh mẫu đo thô 312–362 chữ/phút (tính cả nhạc) — chỉ tham khảo; char_rate lấy từ calibrate.py.",
-  "char_rate_measured_at": "2026-09-21",
-  "char_rate_speed": 1.0,
-  "char_rate_from": "video thật ep01-asa-shukan"
- },
- "script": {
-  "skill": "skills/youtube-script/SKILL.md",
-  "target_minutes": 20.0,
-  "_target_note": "Kênh mẫu 18,5–28 phút (8 video top: median ~22'). Handoff §12 khuyên 18–25'. Chọn 20' cho tập đầu, tăng dần theo phản hồi.",
-  "two_pass": true,
-  "flow": "lean",
-  "budget": {
-   "mo_dau": 0.22,
-   "ket": 0.08,
-   "tol": 0.08
+  "id": "teinengo-tanoshimi",
+  "market": "JP",
+  "language": "ja",
+  "niche": "定年後の楽しみ方 — hưu trí Nhật, MANGA STORY ngôi 1 + list N選 (5/7 mục) lối sống VUI/RẺ sau nghỉ hưu (trẻ khoẻ · du lịch/温泉/神社 · thú vui 0円 · phục hồi mệt · sống vừa đủ)",
+  "competitor": "https://www.youtube.com/channel/UCI2cPqBmCPMxxKI4u2Gqs_Q",
+  "slug_dir": "assets/teinengo-tanoshimi",
+  "folder_pattern": "ep{nn:02d}-*",
+  "channel_dossier": "FlowHandoff_local/results/laneG_from_research/LANE_G_HANDOFF.md",
+  "channel_dna_dir": "docs/channel_dna/rougo-money-story",
+  "narrator": {
+    "gender": "male",
+    "age_band": "60-67",
+    "persona": "定年退職して半年〜2年の元サラリーマン。40年勤めた会社を辞め、朝起きても何をすればいいかわからない。真面目で少し頑固、効率を気にする癖が抜けない。自分の失敗や戸惑いを正直に語り、案内役（旧友・元上司・公園で会った老人など）との会話を通して気づいていく。",
+    "point_of_view": "一人称「俺」の回想体。心の声（地の文）と登場人物2人の会話「」を交互に進める漫画ストーリー。",
+    "register": "だ・である調の独白＋会話は自然な口語。短い文、落ち着いた中年男性の語り。サラリーマン用語（現役時代・定年退職・再雇用・出費）を自然に使う。",
+    "_note_vi": "Đo từ CHANNEL_DNA.md (8 video top): nhân vật 55–67 tuổi (video 1: 55歳 石川県; video 3: 66歳; video 4: 65歳; video 8: 生涯独身65歳), xưng 俺, 40–42 năm đi làm. Giọng đọc NAM trung niên — anh chốt CLONE RIÊNG từ kênh mẫu (không dùng chung voice Lane F)."
   },
-  "_flow_note": "Anh duyệt 2026-09-20: luồng gọn lean_script.py (docs/QUY_TRINH_KICH_BAN_GON.md v2) — Fable viết đúng ngân sách → máy đo (S3: gate số + FACT kanji/arabic ↔ SỐ ĐƯỢC PHÉP/series_ctx + marker/outro/CTA/trùng) → Sol lens plain (lời cuối) → patch ≤2 (mỗi patch: máy + Sol lại) → PASS khoá sha256 script.lock.json | ESCALATE | BLOCK. B3Q/B3F/B3S/B3R/B3G không chạy (state skipped=lean_flow). budget: tỉ lệ mở đầu/kết đo từ 8 transcript kênh mẫu (19–29%/~8%). two_pass/engine/sol_qc giữ để lỡ tắt flow thì luồng cũ vẫn chạy như trước.",
-  "structure": "manga_list",
-  "_structure_note": "Nhánh MỚI trong pipeline/ai_steps.py::_cau_truc_block (2026-09-20) — 5 hồi manga story + list N選, KHÁC hẳn list_countdown của Lane E (bác sĩ ngôi 2, mỗi mục 1 người ẩn danh, disclaimer y khoa). Đọc field gate.list_item_count + gate.list_order + script.outro_line.",
-  "mode": "story",
-  "_mode_note": "KHÔNG phải documentary (nhân vật/tình tiết hư cấu, được đổi tên/nghề/vùng theo _chong_trung_block) NHƯNG hard rule handoff §3.3: địa điểm/giá/thông tin thực tế Nhật PHẢI có nguồn → toàn bộ dữ kiện thật nằm trong series_ctx.txt, prompt cấm tự bịa (xem ctx_label + khối cấu trúc).",
-  "ctx_label": "TƯ LIỆU THỰC TẾ — tên địa điểm/giá vé/chi phí/thông tin Nhật Bản CHỈ được lấy từ đây, cấm tự bịa; nhân vật và tình tiết đời thường thì tự sáng tác",
-  "engine": "claude_p",
-  "_engine_note": "Giống Lane E (anh chốt 2026-09-17 mô hình 'Claude viết, Gemini chấm'): PASS 0 + PASS 1 qua claude -p (claude_p_bridge.py); nén/hội thoại/phẩy + QC B3Q/B3F vẫn Gemini.",
-  "brain_model": "claude-fable-5-1",
-  "patch_model": "claude-opus-5",
-  "_patch_model_note": "Anh chốt 2026-09-22: S4 (patch tại chỗ theo Sol/máy, lean_script.patch) dùng Opus 5 CỐ ĐỊNH — Fable chỉ VIẾT (S2). Căn cứ: A/B replay 9 lượt patch thật Lane F/G (harness pipeline/bench_patch_model.py): Sol PASS 7/9 với Opus, 2 FIX ở ep10 mà bản Fable ĐÃ PASS chấm lại cũng FIX (Sol không tất định); số câu đổi ngoài phạm vi Sol trích Opus ≈ Fable. Khi quota Fable về: đổi brain_model/final_review_model lại claude-fable-5-1, GIỮ patch_model=claude-opus-5.",
-  "final_review_model": "claude-opus-5",
-  "_brain_model_note": "2026-09-21 anh chốt: Fable HẾT QUOTA → mọi lượt claude -p (viết/patch kịch bản lean, prompt_doan B5W) dùng Opus 5 (`claude-opus-5`, verify `claude -p --model claude-opus-5` trả 'OK Opus 5'). Lịch sử: Anh chốt 2026-09-20: ưu tiên Fable 5.1 (có trong gói) viết kịch bản (PASS 0 + PASS 1 + sửa FIX của B3S) VÀ nghiệm thu cuối (bước B3R mới, sau B3S). A/B thật cùng prompt Hồi 1+2: Fable 70s/1.380 chữ/neo 6,5 ✓ vs Opus 5 68s/1.279 chữ/neo 4,7 ✗ — cả 2 qua gate nhịp; Fable giàu chi tiết neo hơn, câu ngắn kịch hơn. BẮT BUỘC claude CLI ≥2.1.251 — claude_p_bridge.find_claude() tự chọn binary mới nhất (bản npm 2.1.145 trên PATH không có Fable và alias opus của nó = Opus 4.7). B3S (GPT-5.6-sol) VẪN GIỮ làm lớp khác hãng; B3R cùng họ với model viết nên chỉ là lớp cuối, không thay B3S. 2026-09-23 ĐỔI LẠI brain_model=claude-fable-5-1 (chốt của việc nối kho hook — xem báo cáo task-kho-hook); patch_model GIỮ NGUYÊN claude-opus-5.",
-  "outro_line": "ご視聴いただきありがとうございました。いいねとコメントもお待ちしています。",
-  "_outro_note": "Xuất hiện nguyên văn ở cuối 8/8 video kênh mẫu (CHANNEL_DNA §CTA patterns). Dùng y nguyên — đây là câu chào chung, không phải câu biểu tượng riêng.",
-  "sol_qc": true,
-  "_sol_qc_note": "Bật B3S (GPT-5.6-sol độc lập) như Lane E — lane mới, chưa có tập nào để tin B3Q một mình. Tắt sau khi ≥5 tập PASS ổn định nếu thấy dư.",
-  "gate": {
-   "comma_per_sentence": [
-    0.5,
-    2.5
-   ],
-   "chars_per_breath": [
-    7.0,
-    18.0
-   ],
-   "dialogue_ratio_max": 0.4,
-   "require_next_ep_teaser": false,
-   "list_item_count": 5,
-   "list_order": "auto",
-   "hook_marker": [
-    "1つ目",
-    "一つ目",
-    "第5位",
-    "第7位"
-   ],
-   "hook_chars": [
-    1200,
-    2300
-   ],
-   "hook_anchor_per_1000": 6.0,
-   "title_len": [
-    33,
-    50
-   ],
-   "cta_mid": [
-    0.35,
-    0.7
-   ],
-   "_cta_mid_note": "Luật lane (handoff §3.6): 1 câu mời コメント ở 35–70% bài (ngoài outro). S3 coi thiếu = VIỆC patch; Sol được báo luật này trong extra_note. Lane không có luật → không khai.",
-   "_gate_note": "ĐO 2026-09-20 trên 8 transcript thật kênh mẫu (docs/channel_dna/rougo-money-story/_raw/transcripts.json, 40k–176k view) + 3 bản có timestamp (laneG_from_research/data/transcripts_okane.json). ĐO THẬT đáng tin: title_len 33–45 ký tự trên 7 HIT (video MISS 986v dài 52) → [33,50]; hook_chars = số chữ TRƯỚC marker mục 1 (1つ目/第5位) = 1365–2092 ở 6/8 video (1 outlier 4105, 2 video không có marker) → [1200,2300], tức Hồi 1+2 chiếm 19–29% kịch bản; hook_anchor: video TOP 176k chỉ 7,6 neo/1000 (manga story không dày số liệu) → ngưỡng 6,0, KHÔNG dùng 18 của toshi; chữ/câu 17–22 (ASR có 。 đáng tin). HIỆU CHỈNH (ASR gần như không có 、: đo thô 0,04–0,18 phẩy/câu, không tin được): comma_per_sentence [0.5,2.5] + chars_per_breath [7,18] suy từ câu ngắn 17–22 chữ có 0–2 phẩy; dialogue_ratio_max 0.40 ước từ 20–36% câu mang đuôi hội thoại ở 3 transcript (ASR không có 「」 nên không đo thẳng). list_item_count 5 (4/7 HIT là 5選, 3/7 là 7選 — đổi 7 theo tập nếu cần); list_order auto: kênh mẫu dùng 1つ目 cho THÓI QUEN (7選 老けない/疲労回復/生き方) và 第5位→第1位 cho XẾP HẠNG địa điểm (神社/温泉地/暇つぶし). CẦN ĐO LẠI comma/breath/dialogue bằng B3Q sau kịch bản đầu tiên."
+  "voice": {
+    "id": "clone_2658912",
+    "name": "CLONE riêng từ kênh mẫu 老後のお金ストーリー (mẫu bgUqNHYZbq0 0:52–1:20, remove_background) — anh duyệt 2026-09-20 sau nghe A/B",
+    "speed": 1.0,
+    "fx": "none",
+    "calib_style": "story",
+    "char_rate": 321.5,
+    "pace": false,
+    "_note": "K4 2026-09-20: 4 video kênh mẫu CÙNG 1 giọng nam F0 105–118Hz (cosine ≥0,94) → clone 1 lần dùng chung. F0 output test 116,8Hz KHỚP nguồn (xác minh theo skill openspeaker_voice_clone §6b). Anh chốt: video gốc nào giọng NỮ thì tính sau (chưa có). Kênh mẫu đo thô 312–362 chữ/phút (tính cả nhạc) — chỉ tham khảo; char_rate lấy từ calibrate.py.",
+    "char_rate_measured_at": "2026-09-21",
+    "char_rate_speed": 1.0,
+    "char_rate_from": "video thật ep01-asa-shukan"
   },
-  "hook": {
-   "enabled": true,
-   "patterns": [
-    "H30",
-    "H34"
-   ],
-   "closer": "K03",
-   "visual": "manga_ai_ref",
-   "_visual_note": "Manga AI, REF-LOCK nhân vật chính trong tập, cùng bộ nhân vật với thân video. CHƯA CHẠY THẬT.",
-   "_enabled_note": "Bật 2026-09-24. Luật 'hook 20–30s bắt buộc mọi tập' anh chốt 2026-09-23 nhưng công tắc mặc định TẮT (hook_stage.MAC_DINH) nên lane này chưa ai bật — đo thật 24/09: chỉ 3/6 lane đang bật. Hook chỉ áp cho tập VIẾT MỚI (lean_script.se_viet_moi), tập đã khoá script không bị đụng; tập đã dựng muốn thêm hook thì dùng `hook_stage.py --mode repair`.",
-   "sfx": true,
-   "_sfx_note": "Anh chốt 2026-09-24: hiệu ứng âm thanh trong hook là BẮT BUỘC (trước đây coi là phụ hoạ). Sinh bằng ai33 `POST /v1/task/sound-effect`, để `duration_seconds` AUTO — xem memory sfx-ai33-mac-dinh-auto (cách gọi không đổi, chỉ nâng mức bắt buộc).",
-   "visual_kind": "video_sinh"
+  "script": {
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 20.0,
+    "_target_note": "Kênh mẫu 18,5–28 phút (8 video top: median ~22'). Handoff §12 khuyên 18–25'. Chọn 20' cho tập đầu, tăng dần theo phản hồi.",
+    "two_pass": true,
+    "flow": "lean",
+    "budget": {
+      "mo_dau": 0.22,
+      "ket": 0.08,
+      "tol": 0.08
+    },
+    "_flow_note": "Anh duyệt 2026-09-20: luồng gọn lean_script.py (docs/QUY_TRINH_KICH_BAN_GON.md v2) — Fable viết đúng ngân sách → máy đo (S3: gate số + FACT kanji/arabic ↔ SỐ ĐƯỢC PHÉP/series_ctx + marker/outro/CTA/trùng) → Sol lens plain (lời cuối) → patch ≤2 (mỗi patch: máy + Sol lại) → PASS khoá sha256 script.lock.json | ESCALATE | BLOCK. B3Q/B3F/B3S/B3R/B3G không chạy (state skipped=lean_flow). budget: tỉ lệ mở đầu/kết đo từ 8 transcript kênh mẫu (19–29%/~8%). two_pass/engine/sol_qc giữ để lỡ tắt flow thì luồng cũ vẫn chạy như trước.",
+    "structure": "manga_list",
+    "_structure_note": "Nhánh MỚI trong pipeline/ai_steps.py::_cau_truc_block (2026-09-20) — 5 hồi manga story + list N選, KHÁC hẳn list_countdown của Lane E (bác sĩ ngôi 2, mỗi mục 1 người ẩn danh, disclaimer y khoa). Đọc field gate.list_item_count + gate.list_order + script.outro_line.",
+    "mode": "story",
+    "_mode_note": "KHÔNG phải documentary (nhân vật/tình tiết hư cấu, được đổi tên/nghề/vùng theo _chong_trung_block) NHƯNG hard rule handoff §3.3: địa điểm/giá/thông tin thực tế Nhật PHẢI có nguồn → toàn bộ dữ kiện thật nằm trong series_ctx.txt, prompt cấm tự bịa (xem ctx_label + khối cấu trúc).",
+    "ctx_label": "TƯ LIỆU THỰC TẾ — tên địa điểm/giá vé/chi phí/thông tin Nhật Bản CHỈ được lấy từ đây, cấm tự bịa; nhân vật và tình tiết đời thường thì tự sáng tác",
+    "engine": "claude_p",
+    "_engine_note": "Giống Lane E (anh chốt 2026-09-17 mô hình 'Claude viết, Gemini chấm'): PASS 0 + PASS 1 qua claude -p (claude_p_bridge.py); nén/hội thoại/phẩy + QC B3Q/B3F vẫn Gemini.",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
+    "_patch_model_note": "Anh chốt 2026-09-22: S4 (patch tại chỗ theo Sol/máy, lean_script.patch) dùng Opus 5 CỐ ĐỊNH — Fable chỉ VIẾT (S2). Căn cứ: A/B replay 9 lượt patch thật Lane F/G (harness pipeline/bench_patch_model.py): Sol PASS 7/9 với Opus, 2 FIX ở ep10 mà bản Fable ĐÃ PASS chấm lại cũng FIX (Sol không tất định); số câu đổi ngoài phạm vi Sol trích Opus ≈ Fable. Khi quota Fable về: đổi brain_model/final_review_model lại claude-fable-5-1, GIỮ patch_model=claude-opus-5.",
+    "final_review_model": "claude-opus-5",
+    "_brain_model_note": "2026-09-21 anh chốt: Fable HẾT QUOTA → mọi lượt claude -p (viết/patch kịch bản lean, prompt_doan B5W) dùng Opus 5 (`claude-opus-5`, verify `claude -p --model claude-opus-5` trả 'OK Opus 5'). Lịch sử: Anh chốt 2026-09-20: ưu tiên Fable 5.1 (có trong gói) viết kịch bản (PASS 0 + PASS 1 + sửa FIX của B3S) VÀ nghiệm thu cuối (bước B3R mới, sau B3S). A/B thật cùng prompt Hồi 1+2: Fable 70s/1.380 chữ/neo 6,5 ✓ vs Opus 5 68s/1.279 chữ/neo 4,7 ✗ — cả 2 qua gate nhịp; Fable giàu chi tiết neo hơn, câu ngắn kịch hơn. BẮT BUỘC claude CLI ≥2.1.251 — claude_p_bridge.find_claude() tự chọn binary mới nhất (bản npm 2.1.145 trên PATH không có Fable và alias opus của nó = Opus 4.7). B3S (GPT-5.6-sol) VẪN GIỮ làm lớp khác hãng; B3R cùng họ với model viết nên chỉ là lớp cuối, không thay B3S. 2026-09-23 ĐỔI LẠI brain_model=claude-fable-5-1 (chốt của việc nối kho hook — xem báo cáo task-kho-hook); patch_model GIỮ NGUYÊN claude-opus-5.",
+    "outro_line": "ご視聴いただきありがとうございました。いいねとコメントもお待ちしています。",
+    "_outro_note": "Xuất hiện nguyên văn ở cuối 8/8 video kênh mẫu (CHANNEL_DNA §CTA patterns). Dùng y nguyên — đây là câu chào chung, không phải câu biểu tượng riêng.",
+    "sol_qc": true,
+    "_sol_qc_note": "Bật B3S (GPT-5.6-sol độc lập) như Lane E — lane mới, chưa có tập nào để tin B3Q một mình. Tắt sau khi ≥5 tập PASS ổn định nếu thấy dư.",
+    "gate": {
+      "comma_per_sentence": [
+        0.5,
+        2.5
+      ],
+      "chars_per_breath": [
+        7.0,
+        18.0
+      ],
+      "dialogue_ratio_max": 0.4,
+      "require_next_ep_teaser": false,
+      "list_item_count": 5,
+      "list_order": "auto",
+      "hook_marker": [
+        "1つ目",
+        "一つ目",
+        "第5位",
+        "第7位"
+      ],
+      "hook_chars": [
+        1200,
+        2300
+      ],
+      "hook_anchor_per_1000": 6.0,
+      "title_len": [
+        33,
+        50
+      ],
+      "cta_mid": [
+        0.35,
+        0.7
+      ],
+      "_cta_mid_note": "Luật lane (handoff §3.6): 1 câu mời コメント ở 35–70% bài (ngoài outro). S3 coi thiếu = VIỆC patch; Sol được báo luật này trong extra_note. Lane không có luật → không khai.",
+      "_gate_note": "ĐO 2026-09-20 trên 8 transcript thật kênh mẫu (docs/channel_dna/rougo-money-story/_raw/transcripts.json, 40k–176k view) + 3 bản có timestamp (laneG_from_research/data/transcripts_okane.json). ĐO THẬT đáng tin: title_len 33–45 ký tự trên 7 HIT (video MISS 986v dài 52) → [33,50]; hook_chars = số chữ TRƯỚC marker mục 1 (1つ目/第5位) = 1365–2092 ở 6/8 video (1 outlier 4105, 2 video không có marker) → [1200,2300], tức Hồi 1+2 chiếm 19–29% kịch bản; hook_anchor: video TOP 176k chỉ 7,6 neo/1000 (manga story không dày số liệu) → ngưỡng 6,0, KHÔNG dùng 18 của toshi; chữ/câu 17–22 (ASR có 。 đáng tin). HIỆU CHỈNH (ASR gần như không có 、: đo thô 0,04–0,18 phẩy/câu, không tin được): comma_per_sentence [0.5,2.5] + chars_per_breath [7,18] suy từ câu ngắn 17–22 chữ có 0–2 phẩy; dialogue_ratio_max 0.40 ước từ 20–36% câu mang đuôi hội thoại ở 3 transcript (ASR không có 「」 nên không đo thẳng). list_item_count 5 (4/7 HIT là 5選, 3/7 là 7選 — đổi 7 theo tập nếu cần); list_order auto: kênh mẫu dùng 1つ目 cho THÓI QUEN (7選 老けない/疲労回復/生き方) và 第5位→第1位 cho XẾP HẠNG địa điểm (神社/温泉地/暇つぶし). CẦN ĐO LẠI comma/breath/dialogue bằng B3Q sau kịch bản đầu tiên."
+    },
+    "hook": {
+      "enabled": true,
+      "patterns": [
+        "H30",
+        "H34"
+      ],
+      "closer": "K03",
+      "visual": "manga_ai_ref",
+      "_visual_note": "Manga AI, REF-LOCK nhân vật chính trong tập, cùng bộ nhân vật với thân video. CHƯA CHẠY THẬT.",
+      "_enabled_note": "Bật 2026-09-24. Luật 'hook 20–30s bắt buộc mọi tập' anh chốt 2026-09-23 nhưng công tắc mặc định TẮT (hook_stage.MAC_DINH) nên lane này chưa ai bật — đo thật 24/09: chỉ 3/6 lane đang bật. Hook chỉ áp cho tập VIẾT MỚI (lean_script.se_viet_moi), tập đã khoá script không bị đụng; tập đã dựng muốn thêm hook thì dùng `hook_stage.py --mode repair`.",
+      "sfx": true,
+      "_sfx_note": "Anh chốt 2026-09-24: hiệu ứng âm thanh trong hook là BẮT BUỘC (trước đây coi là phụ hoạ). Sinh bằng ai33 `POST /v1/task/sound-effect`, để `duration_seconds` AUTO — xem memory sfx-ai33-mac-dinh-auto (cách gọi không đổi, chỉ nâng mức bắt buộc).",
+      "visual_kind": "video_sinh"
+    },
+    "review_may3": true,
+    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c."
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "",
+    "_character_sheet_note": "ĐỂ TRỐNG có chủ đích: nhân vật chính (nam 60–67) + mentor ĐỔI THEO TẬP (kênh mẫu rời rạc — mỗi video 1 người kể khác: 中村/鈴木/田村…). Mỗi tập bước 1 sinh characters.json riêng + master REF-LOCK cho NHÂN VẬT CHÍNH của tập đó (và mentor nếu xuất hiện ≥5 cảnh). KHÔNG xuyên tập.",
+    "style_suffix": "Japanese manga illustration, clean bold line art with soft cel shading, bright warm color palette (cream, sky blue, warm orange), expressive middle-aged Japanese man with grey-streaked hair, everyday Japanese settings (small apartment, park bench, shrine path, local train, onsen town), cheerful uplifting mood, 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders, no multiple views), no text, no speech bubbles, no watermark",
+    "seconds_per_image": 14,
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 8,
+    "qc_sample": 10,
+    "_ref_lock_note": "ref_lock=true vì 1 nhân vật chính xưng 俺 xuyên suốt TẬP (khác Lane E không REF-LOCK). Marker @REF = nhân vật chính, @REF2 = mentor. Không REF-LOCK xuyên tập. Ảnh manga tươi sáng khác Lane F (kịch tính tiền mất, tối hơn).",
+    "b5p_qc": true,
+    "prompts_by": "fable_doan",
+    "characters_from_bible": true,
+    "_prompts_by_note": "Anh duyệt 2026-09-20 (docs/PHUONG_AN_LANE_G_BUOC2_3.md C1/C2): B5W = Fable viết prompt THEO ĐOẠN + img_doan.txt (pipeline/prompt_doan.py) — không cần voice.srt nên giọng làm CUỐI; master REF-LOCK lấy từ characters.json của TẬP (俺 = @REF, mentor = @REF2, cảnh 2 người = @REF12). Lớp 1 phải viết characters.json trước khi chạy B5W.",
+    "_style_suffix_note": "2026-09-21 thêm 'ONE single full-frame scene… no panels' sau ep01: 'Japanese manga illustration' làm gpti2 vẽ TRANG manga nhiều ô (6/14 ảnh mẫu), B5Q báo 'không khớp prompt' 3 lượt liền."
+  },
+  "body": {
+    "mode": "ai_images"
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "palette": [
+      "YELLOW",
+      "WHITE",
+      "RED"
+    ],
+    "dedicated_bg": true,
+    "require_face": true,
+    "wrap": true,
+    "max_font": 150,
+    "side_width": 0.55,
+    "art_style": "Japanese manga illustration of the episode's main character (Japanese man 60-67, grey-streaked hair) with a clear strong facial expression (surprised or content smile), bust shot placed on the RIGHT ~45% of frame, bright flat color background, clean bold lines, no text, no speech bubbles",
+    "template": {
+      "bo_cuc": "chữ to neo mép TRÁI ~55% khung; nhân vật manga bust shot bên PHẢI ~45%, biểu cảm rõ; nền màu tươi phẳng",
+      "tiers": [
+        {
+          "color": "YELLOW",
+          "role": "trạng thái/đối tượng (60代から / 定年後) — CỰC NGẮN",
+          "max_chars": 6
+        },
+        {
+          "color": "WHITE",
+          "role": "chủ đề + N選 (朝の習慣5選) — CỰC NGẮN",
+          "max_chars": 7
+        },
+        {
+          "color": "RED",
+          "role": "lợi ích/cú móc (0円 / 体が軽くなる) — CỰC NGẮN",
+          "max_chars": 6
+        }
+      ],
+      "_note": "Handoff §3.8 + §11.7: manga anime + nhân vật nam trung niên + chữ LỚN. CHANNEL_DNA §Thumbnail chỉ SUY LUẬN (không có ảnh thật) → template này là GIẢ THUYẾT KHỞI ĐIỂM, phải soi thumbnail thật kênh mẫu (yt-dlp --write-thumbnail) và hiệu chỉnh ở SOP §thumbnail trước tập 1. Chưa FREEZE."
+    },
+    "flat_bg": true
+  },
+  "thumbnail_qc": {
+    "claim_focus": "Ngách LỐI SỐNG hưu trí — rủi ro chính là hứa hẹn quá tay về sức khoẻ/tiền: kiểm '若返る/老けない' có biến thành claim y khoa tuyệt đối không; '0円/1円もかからない' có đúng với nội dung (thật sự miễn phí) không; số N選 trên thumbnail khớp số mục trong video.",
+    "image_prompt_constraints": "1. 16:9. 2. Manga illustration (không photorealistic), 1 nhân vật nam Nhật 60–67 tuổi tóc điểm bạc, bust shot, biểu cảm RÕ (ngạc nhiên/mãn nguyện), đặt bên PHẢI ~45% khung. 3. VÙNG TRÁI ~55% là nền màu phẳng tươi sáng, KHÔNG vật thể — chỗ chữ overlay. 4. Không chữ/số/bong bóng thoại trong ảnh. 5. Sáng, vui, không tối/moody."
+  },
+  "assemble": {
+    "zoom": 1.0,
+    "_zoom_note": "Khán giả 60+, tắt Ken Burns như Lane E (anh chốt 2026-09-20 cho Lane E — áp cùng lý do). Không tăng lại.",
+    "transition": "xfade",
+    "xfade": 0.5,
+    "sub_font": "Yu Gothic",
+    "sub_size": 32,
+    "sub_margin": 7,
+    "sub_outline": 3,
+    "burn_subs": true,
+    "qc_sample": 10,
+    "sync": "anchors",
+    "_sync_note": "C3: B8 chạy sinh_neo.py (img_doan.txt + voice.srt → anchors.txt) rồi assemble --anchors — ảnh hiện đúng câu (satori). Không sinh được neo = DỪNG, không âm thầm chia đều.",
+    "_burn_subs_note": "Anh chốt 2026-09-21: video Lane G PHẢI cháy phụ đề tiếng Nhật vào hình (khác mặc định dự án). B8 assemble --srt --burn-sub --font Yu Gothic; phude.srt vẫn giao kèm."
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse",
+    "real politician",
+    "real celebrity face",
+    "onsen nudity",
+    "bathing scene"
+  ],
+  "publish": {
+    "upload_channel": "G-teinengo-tanoshimi",
+    "_upload_channel_note": "2026-09-25 anh chốt: đổi thư mục CHANEL từ tên kênh trần sang tên TAB (ghép lane) — LỆCH quy ước chung của các lane khác (A/E/F/L vẫn giữ tên kênh trần, xem YT-TITLE-RESEARCH/src/tab_kenh.py). Chỉ áp cho lane này.",
+    "sheet_tab": "G-teinengo-tanoshimi",
+    "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+    "review_vi": true,
+    "channel_id": "UClETn8eAXgRRKM4PkYEKzvA",
+    "handle": "@teinengo-tanoshimi",
+    "hashtags": "#定年後 #60代 #シニアライフ #老後 #暇つぶし",
+    "tags_base": [
+      "定年後",
+      "60代",
+      "シニア",
+      "老後",
+      "暇つぶし",
+      "一人旅",
+      "健康",
+      "長寿",
+      "退職後",
+      "温泉"
+    ],
+    "listing_external": true,
+    "_listing_external_note": "C4: tiêu đề/mô tả/thumbnail do DỰ ÁN KHÁC lo (anh chốt 2026-09-20) → make_video bỏ B7/B9; B10 không kiểm ảnh bìa/gói đăng; B11 giao final.mp4 + phude.srt + review-vi.mp4.",
+    "title_auto": true,
+    "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat teinengo-tanoshimi"
+  },
+  "_note": "Lane G — mở 2026-09-20. Nghiên cứu: TRENDING-RESEARCH (FlowHandoff_local/results/laneG_from_research/, anh duyệt 2026-09-13) + Channel Analyzer K1+K2 8 video (docs/channel_dna/rougo-money-story/, QC DNA 11/11). KHÔNG khai `research` (không nhận hàng SPACE_RESEARCH). Kênh thật 定年後の楽しみ方 @teinengo-tanoshimi (mail GMAIL dòng 8, cobbytheona159@gmail.com), branding assets/teinengo-tanoshimi/branding/KENH.json. LUẬT CỨNG (handoff §3): chủ đề CỤ THỂ N選 + hành động/địa điểm + lợi ích, CẤM trừu tượng (年金受給/人生/育ち chết 986v–3k); GIỮ HƯỚNG VUI/RẺ (kịch tính tiền mất = Lane F); CTA comment giữa video; địa điểm/giá có nguồn. Cửa vào: docs/BAT_DAU_LANE/teinengo-tanoshimi.md · SOP: docs/SOP_LANE_G.md.",
+  "script_qc": {
+    "lens": "plain",
+    "domain_focus": "Video manga kể chuyện ngôi thứ nhất「俺」(nam Nhật 60–67 tuổi mới nghỉ hưu) gặp một người bạn/người quen chỉ cho N cách sống vui và rẻ sau nghỉ hưu; thoại 2 nhân vật là bình thường. Đây KHÔNG phải video y khoa.",
+    "_note": "Anh chốt 2026-09-20: sol chỉ hỏi thẳng 'kịch bản đã hợp lý chưa, chỗ nào không hợp lý thì liệt kê để sửa' — dùng lens 'plain' (tab Lane F thêm cùng ngày). Trước đó ep01 chạy lens medical mặc định → đòi 119/triệu chứng, sai cổng. domain_focus chỉ là 1 câu bối cảnh, KHÔNG phải danh sách rủi ro.",
+    "lane_rules": [
+      "Tiêu đề kiểu「0円」「1円も使わず」「無料」là QUY ƯỚC TIÊU ĐỀ của kênh mẫu (vd 暇つぶし5選…実は1円もかからない): chỉ nói VIỆC CHÍNH (đi bộ trên đường/ vào công viên/ dùng thư viện) miễn phí, KHÔNG tính tiền đi lại/ăn/ngủ. Nếu kịch bản đã có 1 câu nói rõ điều đó (vd 電車代はかかる、道は0円) thì KHÔNG coi là mâu thuẫn với tiêu đề.",
+      "Nhân vật 60–64 tuổi tự áp mục tiêu 6,000歩 của 65歳以上 là hợp lý (chuẩn bị trước tuổi), không phải lỗi.",
+      "Tuổi/tên nhân vật khác nhau giữa các tập là bình thường — mỗi tập một người kể."
+    ],
+    "_lane_rules_note": "2026-09-20 thêm sau ep06: Sol plain 3 vòng liên tiếp chê「1円も使わず」vs tiền tàu — đúng logic thuần, sai quy ước tiêu đề kênh; lane_rules được ghép vào extra_note của Sol (lean_script.sol_qc)."
+  },
+  "goi_dang": {
+    "enabled": true,
+    "contradiction_max_s": 12,
+    "title_core_max_s": 36,
+    "promise_window_s": 40,
+    "promise_giu_duoc_max_s": 90,
+    "ritual": [
+      "この時の俺はまだ知らなかった"
+    ],
+    "ritual_max_s": 48,
+    "title_core_len": [
+      33,
+      50
+    ],
+    "list_mode": true,
+    "list_preview_ban_s": 120,
+    "list_order": "auto",
+    "_nguon": "老後のお金ストーリー: 0–12s nghịch lý đời hưu (7/7) · 12–38s NGƯỜI KHÁC nói câu tiền đề · 29–48s 「この時の俺はまだ知らなかった」 (K03, 5/7) · tự giới thiệu trung vị 42s · lõi tiêu đề nói ra ≤36s ở 6/7 · mục 1 ở 226–356s · tiêu đề 33–45 ký tự ở 7 video tốt. Tập của mình: 8/10 đặt K03 ở 97–152s, 7/10 tự giới thiệu ≤22s (ngược thứ tự).",
+    "_list_order_note": "'auto' = kênh dùng CẢ hai kiểu (1つ目 đếm xuôi cho video thói quen, 第N位 đếm ngược cho video xếp hạng) — cổng cố ý BỎ QUA phép kiểm thứ tự mục 1 ở lane này. Tập nào chốt hẳn một kiểu thì khai 'countdown'/'ascending' trong chính tập đó khi cần siết."
   }
- },
- "image": {
-  "skill": "skills/youtube-image-prompts/SKILL.md",
-  "character_sheet": "",
-  "_character_sheet_note": "ĐỂ TRỐNG có chủ đích: nhân vật chính (nam 60–67) + mentor ĐỔI THEO TẬP (kênh mẫu rời rạc — mỗi video 1 người kể khác: 中村/鈴木/田村…). Mỗi tập bước 1 sinh characters.json riêng + master REF-LOCK cho NHÂN VẬT CHÍNH của tập đó (và mentor nếu xuất hiện ≥5 cảnh). KHÔNG xuyên tập.",
-  "style_suffix": "Japanese manga illustration, clean bold line art with soft cel shading, bright warm color palette (cream, sky blue, warm orange), expressive middle-aged Japanese man with grey-streaked hair, everyday Japanese settings (small apartment, park bench, shrine path, local train, onsen town), cheerful uplifting mood, 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders, no multiple views), no text, no speech bubbles, no watermark",
-  "seconds_per_image": 14,
-  "ref_lock": true,
-  "ref_quality": "low",
-  "workers": 8,
-  "qc_sample": 10,
-  "_ref_lock_note": "ref_lock=true vì 1 nhân vật chính xưng 俺 xuyên suốt TẬP (khác Lane E không REF-LOCK). Marker @REF = nhân vật chính, @REF2 = mentor. Không REF-LOCK xuyên tập. Ảnh manga tươi sáng khác Lane F (kịch tính tiền mất, tối hơn).",
-  "b5p_qc": true,
-  "prompts_by": "fable_doan",
-  "characters_from_bible": true,
-  "_prompts_by_note": "Anh duyệt 2026-09-20 (docs/PHUONG_AN_LANE_G_BUOC2_3.md C1/C2): B5W = Fable viết prompt THEO ĐOẠN + img_doan.txt (pipeline/prompt_doan.py) — không cần voice.srt nên giọng làm CUỐI; master REF-LOCK lấy từ characters.json của TẬP (俺 = @REF, mentor = @REF2, cảnh 2 người = @REF12). Lớp 1 phải viết characters.json trước khi chạy B5W.",
-  "_style_suffix_note": "2026-09-21 thêm 'ONE single full-frame scene… no panels' sau ep01: 'Japanese manga illustration' làm gpti2 vẽ TRANG manga nhiều ô (6/14 ảnh mẫu), B5Q báo 'không khớp prompt' 3 lượt liền."
- },
- "body": {
-  "mode": "ai_images"
- },
- "thumbnail": {
-  "skill": "skills/youtube-thumbnail/SKILL.md",
-  "palette": [
-   "YELLOW",
-   "WHITE",
-   "RED"
-  ],
-  "dedicated_bg": true,
-  "require_face": true,
-  "wrap": true,
-  "max_font": 150,
-  "side_width": 0.55,
-  "art_style": "Japanese manga illustration of the episode's main character (Japanese man 60-67, grey-streaked hair) with a clear strong facial expression (surprised or content smile), bust shot placed on the RIGHT ~45% of frame, bright flat color background, clean bold lines, no text, no speech bubbles",
-  "template": {
-   "bo_cuc": "chữ to neo mép TRÁI ~55% khung; nhân vật manga bust shot bên PHẢI ~45%, biểu cảm rõ; nền màu tươi phẳng",
-   "tiers": [
-    {
-     "color": "YELLOW",
-     "role": "trạng thái/đối tượng (60代から / 定年後) — CỰC NGẮN",
-     "max_chars": 6
-    },
-    {
-     "color": "WHITE",
-     "role": "chủ đề + N選 (朝の習慣5選) — CỰC NGẮN",
-     "max_chars": 7
-    },
-    {
-     "color": "RED",
-     "role": "lợi ích/cú móc (0円 / 体が軽くなる) — CỰC NGẮN",
-     "max_chars": 6
-    }
-   ],
-   "_note": "Handoff §3.8 + §11.7: manga anime + nhân vật nam trung niên + chữ LỚN. CHANNEL_DNA §Thumbnail chỉ SUY LUẬN (không có ảnh thật) → template này là GIẢ THUYẾT KHỞI ĐIỂM, phải soi thumbnail thật kênh mẫu (yt-dlp --write-thumbnail) và hiệu chỉnh ở SOP §thumbnail trước tập 1. Chưa FREEZE."
-  },
-  "flat_bg": true
- },
- "thumbnail_qc": {
-  "claim_focus": "Ngách LỐI SỐNG hưu trí — rủi ro chính là hứa hẹn quá tay về sức khoẻ/tiền: kiểm '若返る/老けない' có biến thành claim y khoa tuyệt đối không; '0円/1円もかからない' có đúng với nội dung (thật sự miễn phí) không; số N選 trên thumbnail khớp số mục trong video.",
-  "image_prompt_constraints": "1. 16:9. 2. Manga illustration (không photorealistic), 1 nhân vật nam Nhật 60–67 tuổi tóc điểm bạc, bust shot, biểu cảm RÕ (ngạc nhiên/mãn nguyện), đặt bên PHẢI ~45% khung. 3. VÙNG TRÁI ~55% là nền màu phẳng tươi sáng, KHÔNG vật thể — chỗ chữ overlay. 4. Không chữ/số/bong bóng thoại trong ảnh. 5. Sáng, vui, không tối/moody."
- },
- "assemble": {
-  "zoom": 1.0,
-  "_zoom_note": "Khán giả 60+, tắt Ken Burns như Lane E (anh chốt 2026-09-20 cho Lane E — áp cùng lý do). Không tăng lại.",
-  "transition": "xfade",
-  "xfade": 0.5,
-  "sub_font": "Yu Gothic",
-  "sub_size": 32,
-  "sub_margin": 7,
-  "sub_outline": 3,
-  "burn_subs": true,
-  "qc_sample": 10,
-  "sync": "anchors",
-  "_sync_note": "C3: B8 chạy sinh_neo.py (img_doan.txt + voice.srt → anchors.txt) rồi assemble --anchors — ảnh hiện đúng câu (satori). Không sinh được neo = DỪNG, không âm thầm chia đều.",
-  "_burn_subs_note": "Anh chốt 2026-09-21: video Lane G PHẢI cháy phụ đề tiếng Nhật vào hình (khác mặc định dự án). B8 assemble --srt --burn-sub --font Yu Gothic; phude.srt vẫn giao kèm."
- },
- "blocklist": [
-  "child",
-  "children",
-  "baby",
-  "infant",
-  "naked",
-  "nude",
-  "blood",
-  "gore",
-  "corpse",
-  "real politician",
-  "real celebrity face",
-  "onsen nudity",
-  "bathing scene"
- ],
- "publish": {
-  "upload_channel": "teinengo-tanoshimi",
-  "sheet_tab": "G-teinengo-tanoshimi",
-  "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
-  "review_vi": true,
-  "channel_id": "UClETn8eAXgRRKM4PkYEKzvA",
-  "handle": "@teinengo-tanoshimi",
-  "hashtags": "#定年後 #60代 #シニアライフ #老後 #暇つぶし",
-  "tags_base": [
-   "定年後",
-   "60代",
-   "シニア",
-   "老後",
-   "暇つぶし",
-   "一人旅",
-   "健康",
-   "長寿",
-   "退職後",
-   "温泉"
-  ],
-  "listing_external": true,
-  "_listing_external_note": "C4: tiêu đề/mô tả/thumbnail do DỰ ÁN KHÁC lo (anh chốt 2026-09-20) → make_video bỏ B7/B9; B10 không kiểm ảnh bìa/gói đăng; B11 giao final.mp4 + phude.srt + review-vi.mp4.",
-  "title_auto": true,
-  "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat teinengo-tanoshimi"
- },
- "_note": "Lane G — mở 2026-09-20. Nghiên cứu: TRENDING-RESEARCH (FlowHandoff_local/results/laneG_from_research/, anh duyệt 2026-09-13) + Channel Analyzer K1+K2 8 video (docs/channel_dna/rougo-money-story/, QC DNA 11/11). KHÔNG khai `research` (không nhận hàng SPACE_RESEARCH). Kênh thật 定年後の楽しみ方 @teinengo-tanoshimi (mail GMAIL dòng 8, cobbytheona159@gmail.com), branding assets/teinengo-tanoshimi/branding/KENH.json. LUẬT CỨNG (handoff §3): chủ đề CỤ THỂ N選 + hành động/địa điểm + lợi ích, CẤM trừu tượng (年金受給/人生/育ち chết 986v–3k); GIỮ HƯỚNG VUI/RẺ (kịch tính tiền mất = Lane F); CTA comment giữa video; địa điểm/giá có nguồn. Cửa vào: docs/BAT_DAU_LANE/teinengo-tanoshimi.md · SOP: docs/SOP_LANE_G.md.",
- "script_qc": {
-  "lens": "plain",
-  "domain_focus": "Video manga kể chuyện ngôi thứ nhất「俺」(nam Nhật 60–67 tuổi mới nghỉ hưu) gặp một người bạn/người quen chỉ cho N cách sống vui và rẻ sau nghỉ hưu; thoại 2 nhân vật là bình thường. Đây KHÔNG phải video y khoa.",
-  "_note": "Anh chốt 2026-09-20: sol chỉ hỏi thẳng 'kịch bản đã hợp lý chưa, chỗ nào không hợp lý thì liệt kê để sửa' — dùng lens 'plain' (tab Lane F thêm cùng ngày). Trước đó ep01 chạy lens medical mặc định → đòi 119/triệu chứng, sai cổng. domain_focus chỉ là 1 câu bối cảnh, KHÔNG phải danh sách rủi ro.",
-  "lane_rules": [
-   "Tiêu đề kiểu「0円」「1円も使わず」「無料」là QUY ƯỚC TIÊU ĐỀ của kênh mẫu (vd 暇つぶし5選…実は1円もかからない): chỉ nói VIỆC CHÍNH (đi bộ trên đường/ vào công viên/ dùng thư viện) miễn phí, KHÔNG tính tiền đi lại/ăn/ngủ. Nếu kịch bản đã có 1 câu nói rõ điều đó (vd 電車代はかかる、道は0円) thì KHÔNG coi là mâu thuẫn với tiêu đề.",
-   "Nhân vật 60–64 tuổi tự áp mục tiêu 6,000歩 của 65歳以上 là hợp lý (chuẩn bị trước tuổi), không phải lỗi.",
-   "Tuổi/tên nhân vật khác nhau giữa các tập là bình thường — mỗi tập một người kể."
-  ],
-  "_lane_rules_note": "2026-09-20 thêm sau ep06: Sol plain 3 vòng liên tiếp chê「1円も使わず」vs tiền tàu — đúng logic thuần, sai quy ước tiêu đề kênh; lane_rules được ghép vào extra_note của Sol (lean_script.sol_qc)."
- },
- "goi_dang": {
-  "enabled": true,
-  "contradiction_max_s": 12,
-  "title_core_max_s": 36,
-  "promise_window_s": 40,
-  "promise_giu_duoc_max_s": 90,
-  "ritual": [
-   "この時の俺はまだ知らなかった"
-  ],
-  "ritual_max_s": 48,
-  "title_core_len": [
-   33,
-   50
-  ],
-  "list_mode": true,
-  "list_preview_ban_s": 120,
-  "list_order": "auto",
-  "_nguon": "老後のお金ストーリー: 0–12s nghịch lý đời hưu (7/7) · 12–38s NGƯỜI KHÁC nói câu tiền đề · 29–48s 「この時の俺はまだ知らなかった」 (K03, 5/7) · tự giới thiệu trung vị 42s · lõi tiêu đề nói ra ≤36s ở 6/7 · mục 1 ở 226–356s · tiêu đề 33–45 ký tự ở 7 video tốt. Tập của mình: 8/10 đặt K03 ở 97–152s, 7/10 tự giới thiệu ≤22s (ngược thứ tự).",
-  "_list_order_note": "'auto' = kênh dùng CẢ hai kiểu (1つ目 đếm xuôi cho video thói quen, 第N位 đếm ngược cho video xếp hạng) — cổng cố ý BỎ QUA phép kiểm thứ tự mục 1 ở lane này. Tập nào chốt hẳn một kiểu thì khai 'countdown'/'ascending' trong chính tập đó khi cần siết."
- }
 }

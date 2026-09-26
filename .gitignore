@@ -5,6 +5,30 @@
 !**/keys.sample.json
 **/*credential*
 **/*service-account*
+**/sao_luu_*/
+# Generated video/audio
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.wav
+
+# Python/runtime
+__pycache__/
+*.pyc
+# Backup folders
+**/_sao_luu_*/
+**/sao_luu_*/
+
+# Backup files
+*.bak
+*.bak.*
+
+# Render/output video
+*.mp4
+*.mov
+*.mkv
+*.avi
 
 # === Chrome/browser profile — không bao giờ share giữa máy (App-Bound Encryption) ===
 chrome_profile/

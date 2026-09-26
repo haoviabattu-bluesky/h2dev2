@@ -103,7 +103,7 @@ nhánh ai33 đọc `vai.txt`; `gan_vai.py` ở máy 1 gắn vai từng câu; `sc
 - `cung_cam_xuc` / `cam_on_cuoi` / `review_may3` **cố ý VẮNG = BẬT**. Hook `video_sinh` + `sfx:true`, `goi_dang.enabled:true` (cổng S1L qua).
 - `publish.listing_external=true` (TITLE-RESEARCH làm tiêu đề/mô tả/thumbnail), `title_auto=false` (kênh mới — anh `--bat` mới chạy).
 - Ảnh tĩnh tuyệt đối (`assemble.zoom=1.0`). Nhạc nền không "ngớ ngẩn" (K11).
-- `image.seconds_per_image=8.6` — **ĐO THẬT 2026-09-26** (skill `video-chuyen-canh`, video 92k `wG4fI9voims`): 218 cảnh/31,4' · trung bình 8,6 s (trung vị 9,3) · 95% cắt thẳng, 5% blur-in/xfade · Ken Burns ~1,01 (gần như đứng yên). Khung thật = manga bán thực + **bóng thoại chữ dọc không đuôi** (như Lane L); `黒田` là bà tóc bạc. Bóng thoại CHƯA bật ở lane — anh quyết.
+- `image.seconds_per_image=8.6` — **ĐO THẬT 2026-09-26** (skill `video-chuyen-canh`, video 92k `wG4fI9voims`): 218 cảnh/31,4' · trung bình 8,6 s (trung vị 9,3) · 95% cắt thẳng, 5% blur-in/xfade · Ken Burns ~1,01 (gần như đứng yên). Khung thật = manga bán thực + **bóng thoại chữ dọc không đuôi** (như Lane L); `黒田` là bà tóc bạc. **Bóng thoại BẬT (anh chốt 2026-09-26, bắt buộc):** `assemble.bubble` chép bộ số mức C của Lane L (không đuôi, chữ dọc, kể 72px / thoại 56px), `burn_subs=false` (mọi câu đã hiện trong bóng). Máy 2 vẽ ở B8 từ `voice_roles.json` + `img_faces.json` — máy 1 không làm gì thêm, ảnh vẫn cấm chữ/bóng.
 - `source_lang="ja,en"` bắt buộc — thiếu thì B2 kéo phụ đề Hàn (ep01 lần đầu dính). competitor.txt ep01 dùng bản YouTube ASR `_raw` (tốt hơn whisper).
 
 ## 1b. 10 TẬP ĐẦU + CỘT SHEET TAB `M-teinengo-anaba`
@@ -137,6 +137,21 @@ Nguyên tắc: chỉ việc làm (K4) · góc LỢI ÍCH (thắng góc cảnh b�
 | 5 | **PASS** | Sol FIX→PASS→PASS · 7.527 chữ · 第七位 ở ~3,3' · D2 = `Cần check kịch bản` · ghi chú lớp 3 cho máy 3: `FlowHandoff_local\jobs\M-teinengo-anaba\ep01-suwatte-anaba\review\GHI_CHU_LOP3_MAY1.md` |
 
 Bài học lane: (1) `lane_rules` là lệnh cho Sol — viết cứng quá là tự tạo vòng lặp; (2) hồ sơ tập cấm số nào thì lane_rules phải nói rõ cấm, kẻo Sol đòi và Opus bịa.
+
+## 1e. SOÁT KỊCH BẢN BẰNG CHATGPT WEB THAY MÁY 3 (anh chốt 2026-09-26, TEST riêng Lane M)
+Lane M KHÔNG chờ máy 3: sau LOCK, tab lane tự đưa kịch bản vào **đúng hội thoại anh chỉ định** trong Project ChatGPT
+`M-teinengo-anaba` (Chrome `E:\CLAUDE\YOUTUBE\CHATGPT_PROFILE`, cổng 9335, model `gpt-5-6`):
+https://chatgpt.com/g/g-p-6ab7b6307fcc81918a542065f7c6cd85-m-teinengo-anaba/c/6ab7b795-063c-83ec-b11b-3c7f8cc99d7e
+
+1. Lượt 1: bối cảnh kênh + RÀNG BUỘC CỨNG (số chỉ từ series_ctx, 7 mục, thoại tách câu, không quát vợ, ±5% độ dài) + kịch bản → GPT chấm + danh sách sửa (trích nguyên văn → câu thay).
+2. Tab lane đọc từng mục: hợp lý → nhận; chưa hợp lý → phản biện có lý do; 1 lượt cuối để GPT chốt.
+3. Tổng hợp thành `viec_tay.txt` (thay thế NGUYÊN VĂN) → `make_video --den B3G` (Opus vá → S3 → Sol ×2 → LOCK). Không sửa tay.
+4. Ghi `BAO_CAO_SUA.md` vào `jobs\M-teinengo-anaba\<slug>\review\` → cột D = `Đã sửa kịch bản` → `review_may3.py --nhan`.
+Công cụ gửi vào hội thoại có sẵn (không tạo chat mới, dùng khoá + selector của `gpt_web_client`): `E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep01-suwatte-anaba\soat_gptweb\gpt_hoi.py <tin.txt> <tra_loi.md>`; nguyên văn 2 lượt hỏi/đáp ep01 cùng thư mục.
+
+**Ep01 (2026-09-26):** GPT chấm 8,6/10 (hook 9,2). Nhận 9 sửa: rút câu giới thiệu nhưng GIỮ 4 lời hứa tiêu đề · đưa tên hạng 4 lên trước chuyện 柳瀬 · cắt mạnh đoạn 在職老齢年金 · thay gag găng tay (giống kết video gốc) bằng callback tờ lịch · 湿布 callback ở hạng 7 · 「また、都合のいい数字だけ見ていた」 ở hạng 5 · đóng khung giờ làm là "tin tuyển dụng này" · bỏ khái quát 保護者 · bỏ 「ずっと椅子だ」. Phản biện thắng 2: giữ 「倉庫に騙された」 (nấc trước trưởng thành) và giữ lời hứa tiêu đề. Sol bắt thêm: lời hứa 初期費用0円 vs 年会費, giới hạn 月10日 chỉ của シルバー, hạng 1 thiếu ai hợp/không hợp, tiêu chí xếp hạng, xác nhận có ghế ở hạng 1/3. Bản khoá cuối **7.684 chữ**, sha a42dfcb1aa…, 第七位 ở ~3,4'.
+
+**Bẫy đã trả giá (lượt 8):** bài vượt TRẦN ngân sách 32 chữ → S3 ra việc `NÉN: rút 595–743` (tính về ĐÍCH chứ không về trần) → Opus nén cả bài, **xoá luôn dữ kiện [D7] 二十時間以上** và mọi câu "có ghế" → Sol quay ra bắt "hạng 1 không xác nhận ngồi". Xử: khôi phục bản trước patch (`script.pre_patch1.txt`), nâng `target_minutes` 22→23 (vẫn trong 18–24'), chạy lại chỉ với việc thay thế nguyên văn. **Luật: bản soát bổ sung nội dung thì kiểm độ dài dự kiến < trần TRƯỚC khi chạy; đừng để S3 tự nén.**
 
 ## 2. LỆNH CHẠY (Giai đoạn 3 — 1 tập anh chỉ định)
 

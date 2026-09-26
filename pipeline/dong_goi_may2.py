@@ -424,6 +424,9 @@ def cmd_job(profile_id, slug, no_title=False):
     # \u0111\u01b0\u1eddng TH\u1eacT giao_hang.py ghi, KH\u00d4NG ph\u1ea3i results/<sheet_tab>/ m\u00e0 b\u1ea3n c\u0169 c\u1ee7a kh\u1ed1i "TR\u1ea2 H\u00c0NG" b\u00ean
     # d\u01b0\u1edbi t\u1eebng ghi nh\u1ea7m) v\u1eabn generate "M\u1ed8T L\u1ec6NH DUY NH\u1ea4T" b\u1ea3o m\u00e1y 2 ch\u1ea1y `--from B4` \u2014 t\u1ee9c B\u1eaeT V\u1ebc
     # L\u1ea0I TO\u00c0N B\u1ed8 gi\u1ecdng+\u1ea3nh+video \u0111\u00e3 xong, \u0111\u1ed1t ti\u1ec1n oan l\u1ea7n 2. Ch\u1ec9 \u0111\u00fang khi \u0110ANG \u0111\u00f3ng g\u00f3i job M\u1edaI.
+    # Lane M (2026-09-26): slug_dir = tên tab (assets/M-teinengo-anaba) ≠ id → đường xcopy trong cây bundle phải theo slug_dir,
+    # không theo id (make_video máy 2 tìm tập ở ROOT/slug_dir/<slug>).
+    adir = (prof.get("slug_dir") or f"assets/{profile_id}").replace("/", "\\")
     da_xong = (ROOT / "FlowHandoff_local" / "results" / "video_render" / kenh / slug / "final.mp4").exists()
     if da_xong:
         khoi_lenh = (
@@ -437,7 +440,7 @@ def cmd_job(profile_id, slug, no_title=False):
             khoi_lenh = (
                 "## CHẶNG 1 — LỒNG TIẾNG (DỪNG TRƯỚC khi vẽ ảnh)\n"
                 "cd shared\\buoc2_3_tool\\pipeline\n"
-                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\assets\\{profile_id}\\{slug}\n"
+                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\{adir}\\{slug}\n"
                 f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice --den B4Q\n\n"
                 "Lệnh này CHỈ lồng tiếng → nắn phụ đề theo kịch bản rồi DỪNG "
                 "(KHÔNG vẽ ảnh, KHÔNG dựng video).\n"
@@ -463,9 +466,9 @@ def cmd_job(profile_id, slug, no_title=False):
                    "mỗi lô ≤ 5 nhân vật xuất hiện trong lô đó — vượt là "
                    "don_flow_tool.py tự dừng và in danh sách id, tách --dong nhỏ hơn là xong.\n"
                    if cast_lane else "")
-                + (f"py -3.13 don_flow_tool.py --job ..\\assets\\{profile_id}\\{slug} --dong <lô> --ten {slug}-lo<k> [--kiem]\n"
+                + (f"py -3.13 don_flow_tool.py --job ..\\{adir}\\{slug} --dong <lô> --ten {slug}-lo<k> [--kiem]\n"
                    "py -3.14 chay_flow_tool.py --bo3 \"<thư mục bộ 3 của lô>\" --port <cổng lấy từ sổ cổng>\n"
-                   f"py -3.13 nghiemthu_flow_tool.py <zip> --bo3 \"<bộ 3>\" --giao \"..\\assets\\{profile_id}\\{slug}\\img\"\n"
+                   f"py -3.13 nghiemthu_flow_tool.py <zip> --bo3 \"<bộ 3>\" --giao \"..\\{adir}\\{slug}\\img\"\n"
                    f"→ lặp lại cho từng lô, đếm đủ {n} ảnh NNN trong img\\ mới sang CHẶNG 3\n\n")
                 + f"gpti2 chỉ là dự phòng khi Flow Tool hỏng (≈ {cost:,}đ). Báo lại cách đã dùng + "
                   "số tiền THẬT đã tiêu nếu phải sa về gpti2.\n\n"
@@ -478,7 +481,7 @@ def cmd_job(profile_id, slug, no_title=False):
             khoi_lenh = (
                 "## MỘT LỆNH DUY NHẤT (lane này không dùng Flow Tool — xem image.flow_tool trong profile)\n"
                 "cd shared\\buoc2_3_tool\\pipeline\n"
-                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\assets\\{profile_id}\\{slug}\n"
+                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\{adir}\\{slug}\n"
                 f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice\n\n"
                 "Lệnh này tự làm: lồng tiếng → nắn phụ đề theo kịch bản"
                 + (f" → vẽ {n} ảnh" if n > 0 else "") + " → dựng final.mp4.\n"

@@ -80,8 +80,8 @@
   },
   "script": {
     "skill": "skills/youtube-script/SKILL.md",
-    "target_minutes": 22.0,
-    "_target_note": "Kênh mẫu 27,7–40,4' (6 video; hit 92k = 31,4') nhưng khán giả chê 'mục ra quá muộn' và verdict hồ sơ giao việc §4 = 18–24'. Chọn 22' + ép mục đầu trước phút 4 (K8).",
+    "target_minutes": 23.0,
+    "_target_note": "Kênh mẫu 27,7–40,4' (6 video; hit 92k = 31,4') nhưng khán giả chê 'mục ra quá muộn' và verdict hồ sơ giao việc §4 = 18–24'. Chọn 22' + ép mục đầu trước phút 4 (K8). 2026-09-26: nâng 23' (vẫn trong 18–24') sau vòng soát ChatGPT web ep01 — các chỗ bổ sung hợp lệ (tiêu chí xếp hạng, ai hợp/không hợp hạng 1, xác nhận chỗ ngồi) đẩy bài lên ~7.650 chữ > trần 22' (7.610), và S3 khi vượt trần đòi nén về ĐÍCH (−600 chữ) → Opus xoá cả dữ kiện [D7] 20時間.",
     "flow": "lean",
     "two_pass": true,
     "budget": {
@@ -246,10 +246,27 @@
     "sub_size": 32,
     "sub_margin": 7,
     "sub_outline": 3,
-    "burn_subs": true,
+    "burn_subs": false,
     "qc_sample": 10,
     "sync": "anchors",
-    "_bgm_note": "K11: kênh mẫu bị chê 「BGMがマヌケやな」(12 like) → nhạc nền nhẹ, trầm, không ngớ ngẩn/hài lố."
+    "_bgm_note": "K11: kênh mẫu bị chê 「BGMがマヌケやな」(12 like) → nhạc nền nhẹ, trầm, không ngớ ngẩn/hài lố.",
+    "bubble": {
+      "enabled": true,
+      "tail": false,
+      "font": "Yu Gothic",
+      "font_size": 40,
+      "max_chars_per_col": 10,
+      "max_cols": 3,
+      "title_card_s": 0,
+      "_note": "Anh chốt 2026-09-26: Lane M BẮT BUỘC bóng thoại. Kênh mẫu wG4fI9voims (đo khung thật 26/09): chữ dọc, bóng KHÔNG đuôi — cùng kiểu Lane L nên chép nguyên bộ số mức C của Lane L (lời kể 72px / thoại 56px). Mọi câu hiện trên hình → tắt phụ đề đáy (burn_subs=false) kẻo chữ lặp 2 lần.",
+      "font_size_ke": 72,
+      "font_size_thoai": 56,
+      "max_chars_per_col_ke": 8,
+      "ke_split_chars": 24,
+      "thoai_split_chars": 30
+    },
+    "hook_tu_ghep": true,
+    "_note_hook_tu_ghep": "2026-09-26 (như Lane L): B8 tự ghép hook THAY HÌNH. hook_timeline.json máy 1 ghi mốc THEO SỐ CÂU (shots[].cau, sfx[].cau+lech) — ghep_hook_noi_truoc.neo_lai_theo_cau tính lại giây từ voice_roles.json giọng thân máy 2 lồng (ai33 không tất định). Máy 1 KHÔNG lồng giọng hook."
   },
   "blocklist": [
     "child",

@@ -24,6 +24,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
+import age_lock_guard   # noqa: E402
 import claude_p_bridge  # noqa: E402
 import gate_common      # noqa: E402
 import profiles         # noqa: E402
@@ -41,14 +42,14 @@ MAX_HOI_LAI = 1
 
 def _n_anh(prof, script_text):
     chars = len("".join(script_text.split()))
-    secs = chars / profiles.char_rate(prof) * 60
+    secs = chars / profiles.char_rate_at(prof) * 60   # 2026-10-01: theo tốc độ đọc thật (voice.speed)
     spi = float((prof.get("image", {}) or {}).get("seconds_per_image", 14) or 14)
     return max(20, int(round(secs / spi))), secs
 
 
 def _tran_anh_moi_doan(doan, prof):
     """Số ảnh tối đa mỗi đoạn để mỗi ảnh còn ≥ GIAY_TOI_THIEU_MOI_ANH giây lời."""
-    cr = profiles.char_rate(prof) / 60.0          # chữ / giây
+    cr = profiles.char_rate_at(prof) / 60.0       # chữ / giây (theo voice.speed)
     return [max(1, int(len("".join(d.split())) / (cr * GIAY_TOI_THIEU_MOI_ANH))) for d in doan]
 
 
@@ -63,6 +64,7 @@ def _doc_characters(d: Path):
         raise SystemExit(f"✗ B5W(fable_doan): thiếu {f} — lớp 1 phải viết hồ sơ nhân vật trước (name/age/gender/look/ref_marker)")
     data = json.loads(f.read_text(encoding="utf-8"))
     chars = data.get("characters") or []
+    age_lock_guard.chan(chars, str(f))
     if _la_cast(chars):
         return None, None, chars
     main = next((c for c in chars if c.get("ref_marker") == "@REF"), None)
@@ -113,7 +115,10 @@ def _prompt(prof, doan, n, main, mentor, tran, others=()):
         "Prefer NONE for wide establishing shots and objects (cheaper), use MAIN/MENTOR/BOTH for emotional beats and dialogue. "
         f"Keep faces to at most 40% of all lines. Do NOT put any text, letters, numbers, signs or speech bubbles in the image. "
         f"Never depict: {block}.{tate}\n"
-        f"Every prompt must END with this exact style suffix: '{style}'.\n\n"
+        # 2026-10-10 (Lane F ep13, 142 ảnh): bắt model chép style_suffix ~800 chữ vào MỖI dòng → câu trả lời vượt trần
+        # output, `claude -p` tự "continue" và --output-format text chỉ in KHÚC CUỐI (raw bắt đầu giữa đoạn 17/27 →
+        # 6/66 dòng, BLOCK 3 lần liền). _ghi/_ghi_cast đã tự nối style_suffix → model KHÔNG viết nữa.
+        "Do NOT write any art-style suffix at the end of the lines — the style is appended automatically.\n\n"
         f"SCRIPT PARAGRAPHS:\n{ds}")
 
 
@@ -133,8 +138,12 @@ def _prompt_cast(prof, doan, n, chars, tran):
         f"The script below is split into {len(doan)} numbered paragraphs. Each paragraph shows in parentheses the MAXIMUM "
         f"number of images it may receive (hard cap).\n"
         f"Write EXACTLY {n} lines total, in paragraph order (paragraph numbers must never decrease), covering the story "
-        f"from the first paragraph to the last; every paragraph with real action or dialogue should get at least one image.\n\n"
-        "LINE FORMAT (strict, no numbering, no markdown, no blank lines):\n"
+        f"from the first paragraph to the last; every paragraph with real action or dialogue should get at least one image.\n"
+        # 08/10 Lane L ep12: kịch bản anh sửa xuống dòng trống gần như mỗi câu → 264 đoạn cho 123 ảnh; model viết 1 ảnh/đoạn (dư dòng) 2 lần liền.
+        + (f"IMPORTANT: there are MORE paragraphs ({len(doan)}) than images ({n}), so about {len(doan) - n} short paragraphs "
+           f"get NO image at all — the previous image simply stays on screen. Skip paragraph numbers freely. Before answering, "
+           f"count your lines: exactly {n}, not one more, not one less.\n" if len(doan) > n else "")
+        + "\nLINE FORMAT (strict, no numbering, no markdown, no blank lines):\n"
         "<paragraph number>|<CAST>|<English prompt 25-45 words starting with WIDE/MEDIUM/CLOSE-UP/DETAIL>\n"
         f"CAST = comma-separated ids of the locked characters whose FACE is clearly visible (1 to {toi_da} ids, e.g. "
         "shu,tencho), or NONE (no recognisable locked face: building exterior, objects, hands, people from behind), or CHILD "
@@ -143,20 +152,32 @@ def _prompt_cast(prof, doan, n, chars, tran):
         "Rules: describe every listed person with the SAME wording as above (age, hair, glasses, uniform) each time. "
         "When a paragraph contains a spoken line, show the SPEAKER's face (and the listener if it fits) — the viewer must "
         f"see who talks. Never more than {toi_da} locked faces in one image; extra people must be from behind or far away. "
-        "Leave some open space beside the speaker's head (a speech balloon is added later). "
+        "If CAST is NOT NONE (a locked face is visible), leave some open space beside that speaker's head "
+        "(a speech balloon is added later). If CAST is NONE (scenery/object/no-recognisable-face shot), "
+        "instead leave a calm, low-detail area on one side of the frame for a caption box added later — "
+        "do NOT mention a person, speaker or head in that case. "
         "Do NOT put any text, letters, numbers, signs or speech bubbles in the image. "
         f"Never depict: {block}.\n"
-        f"Every prompt must END with this exact style suffix: '{style}'.\n\n"
+        "Do NOT write any art-style suffix at the end of the lines — the style is appended automatically "
+        "(xem ghi chú 10/10 ở _prompt).\n\n"
         f"SCRIPT PARAGRAPHS:\n{ds}")
+
+
+def _dong_du_lieu(text):
+    """Các dòng DỮ LIỆU của câu trả lời: bỏ dòng rào ``` và dòng lời dẫn không có dấu | (model hay bọc kết quả
+    trong khối code + 1 câu tóm tắt đầu — đo thật ep04 Lane M 30/09: đủ 152 dòng đúng mà vẫn BLOCK vì 3 dòng bọc).
+    Dòng có | mà sai khuôn vẫn bị bắt như cũ."""
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s or s.startswith("```") or "|" not in s:
+            continue
+        yield s
 
 
 def _parse_cast(text, n_doan, chars, toi_da):
     ids_ok = {c["id"] for c in chars if c.get("ref")}
     rows, loi = [], []
-    for ln in text.splitlines():
-        s = ln.strip()
-        if not s:
-            continue
+    for s in _dong_du_lieu(text):
         m = re.match(r"^\s*\[?(\d+)\]?\s*\|\s*([A-Za-z0-9_,\-\s]+)\s*\|\s*(.+)$", s)
         if not m:
             loi.append(f"dòng không đúng khuôn: {s[:80]}")
@@ -198,6 +219,34 @@ def _kiem_cast(rows, n, tran, face_max):
     return loi
 
 
+def _cat_du_none(rows, n, loi, tran, face_max, toi_da_du=0.03):
+    """Lưới cuối cho lỗi DUY NHẤT "cần ĐÚNG n dòng" khi model trả DƯ ≤3% (đo 05/10 Lane L ep10: 4 lượt liên tiếp
+    144/147/144/147 trên 143, mọi kiểm khác đạt; ep09 L và ep04 M cũng trượt lượt đầu cùng kiểu). Chỉ CẮT bớt dòng
+    NONE (không mặt khoá) của các đoạn đang có nhiều ảnh nhất — không viết thêm, không đổi thứ tự, không đụng trần đoạn.
+    Thiếu dòng hoặc dư quá 3% hoặc còn lỗi khác → giữ nguyên lỗi để BLOCK như cũ."""
+    du = len(rows) - n
+    if not (loi and all(x.startswith("cần ĐÚNG") for x in loi)) or du <= 0 or du > max(1, round(n * toi_da_du)):
+        return rows, loi
+    bo = set()
+    while len(bo) < du:
+        dem = {}
+        for i, (dn, t, _) in enumerate(rows):
+            if i not in bo:
+                dem[dn] = dem.get(dn, 0) + 1
+        ung = [i for i, (dn, t, _) in enumerate(rows) if i not in bo and t == "NONE"]
+        if not ung:
+            return rows, loi
+        i = max(ung, key=lambda k: (dem[rows[k][0]], k))
+        bo.add(i)
+    moi = [r for i, r in enumerate(rows) if i not in bo]
+    loi2 = _kiem_cast(moi, n, tran, face_max)
+    if loi2:
+        return rows, loi
+    print(f"   ⚠ B5W: model dư {du} dòng sau {MAX_HOI_LAI+1} lượt → cắt {du} dòng NONE ở đoạn nhiều ảnh nhất "
+          f"(dòng {sorted(i+1 for i in bo)}), còn đúng {n}")
+    return moi, []
+
+
 def _ghi_cast(d: Path, rows, prof):
     style = (prof.get("image", {}) or {}).get("style_suffix", "")
     prompts, doan_lines = [], []
@@ -227,7 +276,7 @@ def viet_cast(prof, d, doan, chars, n, tran):
     print(f"[B5W] fable_doan CAST: {len(doan)} đoạn · {n} ảnh · khoá mặt {sum(1 for c in chars if c.get('ref'))} "
           f"nhân vật · ≤{toi_da} mặt/ảnh")
     prompt = _prompt_cast(prof, doan, n, chars, tran)
-    model = claude_p_bridge.brain_model_of(prof)
+    model = claude_p_bridge.prompt_model_of(prof)   # 2026-09-26: B5W = Opus (image.prompt_model), không Fable
     rows, loi = [], []
     (d / "logs").mkdir(exist_ok=True)
     for luot in range(MAX_HOI_LAI + 1):
@@ -240,11 +289,13 @@ def viet_cast(prof, d, doan, chars, n, tran):
         (d / "logs" / f"B5W_raw_attempt{luot + 1}.txt").write_text(r.text, encoding="utf-8")
         rows, loi = _parse_cast(r.text, len(doan), chars, toi_da)
         loi += _kiem_cast(rows, n, tran, face_max)
-        print(f"   lượt {luot+1}: {len(rows)} dòng · {r.elapsed:.0f}s" + (f" · {len(loi)} lỗi" if loi else " · hợp lệ"))
+        print(f"   lượt {luot+1}: {len(rows)} dòng · {r.model} · {r.elapsed:.0f}s" + (f" · {len(loi)} lỗi" if loi else " · hợp lệ"))
         if not loi:
             break
         for x in loi[:6]:
             print("     -", x)
+    if loi:
+        rows, loi = _cat_du_none(rows, n, loi, tran, face_max)
     if loi:
         raise SystemExit(f"✗ B5W(fable_doan): sau {MAX_HOI_LAI+1} lượt vẫn {len(loi)} lỗi khuôn → BLOCK (không tự vá tay).")
     prompts = _ghi_cast(d, rows, prof)
@@ -256,10 +307,7 @@ def viet_cast(prof, d, doan, chars, n, tran):
 
 def _parse(text, n_doan):
     rows, loi = [], []
-    for ln in text.splitlines():
-        s = ln.strip()
-        if not s:
-            continue
+    for s in _dong_du_lieu(text):
         m = re.match(r"^\s*\[?(\d+)\]?\s*\|\s*([A-Z]+)\s*\|\s*(.+)$", s)
         if not m:
             loi.append(f"dòng không đúng khuôn: {s[:80]}")
@@ -337,7 +385,7 @@ def viet(prof, slug_dir):
           + (f" + {mentor.get('name')}" if mentor else " (không mentor)"))
     others = [c for c in chars if c.get("ref_marker") not in ("@REF", "@REF2")]
     prompt = _prompt(prof, doan, n, main, mentor, tran, others)
-    model = claude_p_bridge.brain_model_of(prof)
+    model = claude_p_bridge.prompt_model_of(prof)   # 2026-09-26: B5W = Opus (image.prompt_model), không Fable
     rows, loi = [], []
     for luot in range(MAX_HOI_LAI + 1):
         q = prompt if not loi else (prompt + "\n\nYOUR PREVIOUS ANSWER WAS REJECTED — fix ALL of these and return the "
@@ -354,7 +402,7 @@ def viet(prof, slug_dir):
         (logdir / f"B5W_raw_attempt{luot + 1}.txt").write_text(r.text, encoding="utf-8")
         rows, loi = _parse(r.text, len(doan))
         loi += _kiem(rows, n, tran, mentor)
-        print(f"   lượt {luot+1}: {len(rows)} dòng · {r.elapsed:.0f}s" + (f" · {len(loi)} lỗi" if loi else " · hợp lệ"))
+        print(f"   lượt {luot+1}: {len(rows)} dòng · {r.model} · {r.elapsed:.0f}s" + (f" · {len(loi)} lỗi" if loi else " · hợp lệ"))
         if not loi:
             break
         for x in loi[:6]:

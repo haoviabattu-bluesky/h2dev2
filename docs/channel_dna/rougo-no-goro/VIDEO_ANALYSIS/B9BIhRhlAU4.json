@@ -1,0 +1,31 @@
+{
+ "topics": [
+  "(chưa gán nhóm)"
+ ],
+ "hook_type": "Mở bằng CẢNH (không thuyết minh) · Có nhân vật ĐỐI CHỨNG · ⚠️ Chủ ngữ chung chung ×1",
+ "structure": "✅ 0–7s CẢNH mâu thuẫn | ✅ 7–25s nhân vật ĐỐI CHỨNG | ✅ 17–45s câu khoá (6/6 video có) | 🟡 26–50s thẻ định danh | ✅ 50–120s câu vợ bị hiểu sai | ✅ ~−90s lặp câu khoá + câu hỏi",
+ "emotional_beats": [
+  "Khởi đầu màu hồng (hưu trí là thiên đường)",
+  "Cú tát hiện thực (phong bì / con số / chóng mặt)",
+  "Vùng vẫy + sĩ diện (tiết kiệm sai, xin việc bị từ chối)",
+  "Gặp người dẫn đường / bạn đồng niên TƯƠNG PHẢN",
+  "Thức tỉnh — thoả hiệp thực tế (không phép màu)",
+  "Chiêm nghiệm + câu hỏi mở cho khán giả"
+ ],
+ "title_formula": "【漫画】+ [đối tượng 2 người / xx歳] + [lựa chọn A] と/VS [lựa chọn B] + 。[N năm/ngày sau] + [〜とは？/〜のか？] — 38–46 ký tự",
+ "notes": "ƯU TIÊN #8 để dựng. VPD=776.2 (rel_VPD=5.06× median tuổi video) · rel_ENG=0.87 · cmt/1k=0.29 · 216 ngày tuổi. 4 tiêu chí: CẢNH=✅ ĐỐI_CHỨNG=✅ NGÔI_3=✅ không CHUNG_CHUNG=⚠️ 1",
+ "video_id": "B9BIhRhlAU4",
+ "title": "【漫画】５０代・６０代の転職と再就職。失敗しない仕事選びとシニア向け「楽なバイト」",
+ "view_count": 167655,
+ "duration_min": 22.2,
+ "uu_tien": 8,
+ "days": 216,
+ "vpd": 776.2,
+ "rel_vpd": 5.06,
+ "rel_eng": 0.87,
+ "like_rate": 0.55,
+ "cmt_1k": 0.29,
+ "hook_45s": "シニア世代でも働けると言われる楽なバイト。代表的なものは[音楽]いくつかあります。経作業、警備員、データ入力、スーパーの品出し。しかし実際に経験した人たちからは[音楽]度々こんな言葉を聞きます。全然楽じゃなかった。実際のところどうなのか私と一緒[音楽]に覗いてみましょう。あ。もう昼になるじゃないか。今日も特にやることがないな。町田小次郎は62歳。低年退職し2年が経った。年金暮らしの独身で子供もいない。台所でお湯を沸かし、インスタントコーヒーを",
+ "hook_4_cau_dau": "シニア世代でも働けると言われる楽なバイト。代表的なものは[音楽]いくつかあります。経作業、警備員、データ入力、スーパーの品出し。しかし実際に経験した人たちからは[音楽]度々こんな言葉を聞きます。",
+ "_title_formula_full": "【漫画】{đối tượng 2 người / xx歳}{lựa chọn A} と {lựa chọn B}。{N年後}、{kết cục ngược}。{〜とは？}"
+}

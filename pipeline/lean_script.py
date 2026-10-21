@@ -28,6 +28,7 @@ import gate_common
 import hook_stage  # H1-H4 hook thuong nguon (anh chot 2026-09-23)
 import profiles
 import qc_facts
+import qc_loi_hua  # kiểm nhẹ lời hứa tiêu đề thay S5 Sol khi sol_qc=false (anh chốt 2026-09-29)
 import qc_goi_dang  # S1L luật hook + gói đăng, chặn trước khi viết (anh chốt 2026-09-24)
 import qc_numbers
 import qc_script
@@ -35,6 +36,7 @@ import qc_script_sol
 from llm_client import LLMError
 
 MAX_PATCH = 2
+ROOT = Path(__file__).resolve().parent.parent
 KANJI_NUM = "一二三四五六七八九十"
 
 
@@ -59,6 +61,11 @@ def s1q_ho_so(d: Path, prof, competitor: str, ctx: str):
             loi.append("series_ctx.txt không có dòng tư liệu dạng [Dn] … hoặc 〔出典: …〕")
         if "http" not in ctx:
             loi.append("series_ctx.txt không có URL nguồn nào")
+        # `script.ctx_phai_co` = khối luật lane bắt buộc dán vào series_ctx (model S2/hook đọc series_ctx,
+        # không đọc file quy tắc). Thêm 2026-10-14 cho Lane F khung 10 chặng; lane không khai → không đổi gì.
+        for m in (prof.get("script", {}) or {}).get("ctx_phai_co") or []:
+            if m not in ctx:
+                loi.append(f"series_ctx.txt thiếu khối bắt buộc「{m}」(profile script.ctx_phai_co / _ctx_phai_co_note)")
     return loi
 
 
@@ -110,9 +117,89 @@ def budget_block(ns):
             f"Viết ĐỦ MẠCH, giàu chi tiết đời thường và cảm xúc trong đúng ngân sách đó.")
 
 
-def viet(prof, competitor: str, ctx: str, minutes: float, ns, log: list, hook: str = "", luat: str = ""):
+CUNG_CAM_XUC = """=== CUNG CẢM XÚC BẮT BUỘC — người xem phải NHỚ, không được nhẹ nhàng khô khan ===
+Bằng chứng: ở kênh mẫu, video làm người xem ỨC CHẾ/GIẬN nổ gấp 10–100 lần video giải thích nhẹ nhàng; bình luận top toàn
+là giận nhân vật, rồi cuối video chuyển sang thương cảm và tự soi mình. Kịch bản phải đi đúng 3 nhịp:
+  · NHỊP 1 — KÍCH (hook tới khoảng 40% bài): làm người xem hưng phấn/giận/ức chế THẬT. Nhân vật gây chuyện hành xử đáng ghét
+    bằng HÀNH VI + LỜI NÓI cụ thể (không tả chung chung "anh ta ích kỷ"); người tử tế chịu thiệt có tên, có chi tiết cái giá
+    phải trả; bất công leo thang ít nhất 3 nấc, nấc sau nặng hơn nấc trước; ai có quyền đứng sai phe hoặc làm ngơ. KHÔNG giải
+    toả sớm, KHÔNG để người kể giảng hoà, biện hộ hay giải thích cho kẻ gây chuyện ở nhịp này.
+  · NHỊP 2 — GIẢI TOẢ (khoảng 40–85%): đảo chiều bằng sự thật và hệ quả tự nhiên (quy định, cơ chế, thời gian, lựa chọn của
+    chính nhân vật) — khán giả thấy hả dạ, NHƯNG không nhân vật tốt nào trả thù, mắng nhiếc hay hả hê.
+  · NHỊP 3 — VỊ THA (khoảng 10% cuối): đổi góc nhìn — một chi tiết cho thấy kẻ gây chuyện cũng là người đáng thương (cô đơn,
+    sợ bị thay thế, từng bị đối xử như vậy), hoặc người bị hại chọn bao dung/giúp đỡ. Chốt bằng MỘT câu đạo lý ngắn, sắc,
+    dễ nhớ, người xem muốn chép lại vào bình luận. Không thuyết giáo dài.
+Cường độ ở nhịp 1 là do CHI TIẾT gây ức chế, không phải do chửi bới, bạo lực hay từ ngữ thô tục. Luật cấu trúc của lane ở
+trên vẫn giữ nguyên — cung cảm xúc này phủ lên đúng các chặng đó.
+KẾT BẮT BUỘC (anh chốt 2026-09-26): đoạn cuối cùng của bài, SAU câu đạo lý, người kể CẢM ƠN người xem đã quan tâm xem hết
+video (vd 「最後までご覧いただき、本当にありがとうございました。」) rồi xin MỘT lượt thích và đăng ký kênh
+(vd 「この動画が少しでも役に立ったら、高評価とチャンネル登録をお願いします。」). Viết tự nhiên theo giọng người kể, 1–3 câu,
+không kéo dài. Lane có câu outro cố định thì câu outro vẫn là câu CUỐI CÙNG — lời cảm ơn đứng ngay trước nó.
+CTA CHỈ MỘT LẦN (anh chốt 2026-10-01): lời cảm ơn + xin 高評価/チャンネル登録 xuất hiện ĐÚNG MỘT LẦN trong cả bài, ở cuối —
+cấm CTA giữa bài, cấm viết hai đoạn CTA nối nhau. Lane có câu outro cố định mà outro ĐÃ xin 高評価/チャンネル登録 thì KHÔNG tự
+viết câu xin thích/đăng ký nào (máy tự ghép outro làm câu cuối); outro chưa có lời cảm ơn thì chỉ thêm 1 câu cảm ơn ngay trước nó."""
+
+# Máy kiểm phần KẾT (đi cùng CUNG_CAM_XUC): 15% cuối bài phải có đủ 3 ý cảm ơn · thích · đăng ký.
+KET_CAM_ON = {"cảm ơn đã xem hết": r"(ありがとう|感謝)", "xin thích (高評価/いいね)": r"(高評価|いいね|グッドボタン)",
+              "xin đăng ký kênh": r"(チャンネル登録)"}
+
+
+def _ket_thieu(text):
+    """Trả danh sách ý còn thiếu ở 15% cuối bài (tính cả outro_line nếu đã ghép)."""
+    duoi = text.replace(chr(10), "")
+    duoi = duoi[int(len(duoi) * 0.85):]
+    return [ten for ten, pat in KET_CAM_ON.items() if not re.search(pat, duoi)]
+
+
+def _khoi_insight_kenh(prof):
+    """Khối '## ĐƯA VÀO PROMPT' trong <channel_dna_dir>/COMMENT_INSIGHT.md (bước 1 viết tay từ bình luận thật)."""
+    dna = (prof.get("channel_dna_dir") or "").strip()
+    if not dna:
+        return ""
+    f = ROOT / dna / "COMMENT_INSIGHT.md"
+    if not f.exists():
+        return ""
+    m = re.search(r"^##\s*ĐƯA VÀO PROMPT\s*$(.*?)(?=^##\s|\Z)", f.read_text(encoding="utf-8"), re.M | re.S)
+    body = (m.group(1).strip() if m else "")
+    return ("=== KHÁN GIẢ THẬT CỦA KÊNH MẪU NÓI GÌ (chắt từ bình luận thật — viết để HỌ nhớ và muốn bình luận) ===\n" + body) if body else ""
+
+
+KHOI_THE_VIET_S2 = """=== THẺ VIẾT (luật anh + số liệu thị trường, field script.the_viet) ===
+THỨ TỰ ƯU TIÊN khi mâu thuẫn: QUY ƯỚC của tập/series và CUNG CẢM XÚC ở trên > thẻ PHẦN 1 > thẻ PHẦN 2.
+Thẻ PHẦN 2 là số liệu thị trường: lấy chuẩn/nhịp, KHÔNG chép câu ví dụ. Hook đã khoá thì giữ nguyên, thẻ áp cho THÂN bài.
+"""
+
+
+def khoi_them(prof, d=None):
+    """Khối thêm cho prompt S2 (anh chốt 2026-09-26): cung cảm xúc (field `script.cung_cam_xuc`, VẮNG = BẬT; satori/E/A/D
+    khai false) + insight bình luận kênh mẫu (COMMENT_INSIGHT.md). Trả chuỗi rỗng khi không có gì → prompt y hệt trước."""
+    sc = prof.get("script") or {}
+    out = []
+    if sc.get("cung_cam_xuc", True):
+        out.append(CUNG_CAM_XUC)
+    ins = _khoi_insight_kenh(prof)
+    if ins:
+        out.append(ins)
+    the = ai_steps.doc_the_viet(prof)
+    if the:
+        out.append(KHOI_THE_VIET_S2 + the)
+    return "\n\n".join(out)
+
+
+def _insight_tap(d):
+    """comment_insight.json của tập (B2b đọc bình luận video gốc) — trước 2026-09-26 luồng lean BỎ QUÊN file này."""
+    f = Path(d) / "comment_insight.json" if d else None
+    if not f or not f.exists():
+        return None
+    try:
+        return json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def viet(prof, competitor: str, ctx: str, minutes: float, ns, log: list, hook: str = "", luat: str = "", d=None):
     """S2a khung (giấu bản gốc) + S2b viết đúng ngân sách. Trả text đã normalize.
-    hook: đoạn mở đầu 20-30s đã khoá ở H1-H4 (hook_stage.py) — S2 viết THÂN nối tiếp từ đây, không viết lại mở đầu.
+    hook: đoạn mở đầu đã khoá ở H1-H4 (hook_stage.py, bám sườn hook video gốc) — S2 viết THÂN nối tiếp từ đây, không viết lại mở đầu.
     luat: khối luật gói đăng G1-G4 của lane (qc_goi_dang.khoi_luat_cho_prompt) — đưa vào ĐẦU VÀO để model
     viết đúng ngay lần đầu, thay vì để cổng bắt ở đầu ra rồi phải trả thêm lượt Sol + lượt patch."""
     skill = ai_steps._skill_text(prof, "script")
@@ -124,8 +211,14 @@ def viet(prof, competitor: str, ctx: str, minutes: float, ns, log: list, hook: s
     ctx_prompt = ctx
     if sdp:
         ctx_prompt = (f"⚠️ CHỈ những con số sau được xuất hiện trong kịch bản (số khác → diễn đạt định tính): {sdp}\n\n" + ctx)
+    them = khoi_them(prof, d)
+    ins_tap = _insight_tap(d)
+    if them or ins_tap:
+        log.append(f"S2 khối thêm: cung_cam_xuc={'có' if CUNG_CAM_XUC in them else 'không'} · "
+                   f"insight kênh={'có' if 'KHÁN GIẢ THẬT' in them else 'không'} · insight tập={'có' if ins_tap else 'không'} · "
+                   f"thẻ viết={'có' if KHOI_THE_VIET_S2 in them else 'không'}")
     prompt = ai_steps._pass1_prompt(prof, source, minutes, ctx_prompt, budget_block=budget_block(ns),
-                                    hook_locked=hook, luat_goi_dang=luat)
+                                    hook_locked=hook, luat_goi_dang=luat, comment_insight=ins_tap, khoi_them=them)
     r = ai_steps._writer_chat(prof, prompt, system=skill, task="script",
                               min_chars=int(ns["target"] * 0.6), max_chars=int(ns["target"] * 1.45),
                               require_sentence_end=True)
@@ -335,6 +428,44 @@ def _outro_fix(text, outro):
     return t + "\n\n" + outro, True
 
 
+# CTA = xin thích/đăng ký + câu cảm ơn đã xem. Không gồm câu mời bình luận (Lane M/G có cta_mid giữa bài — luật riêng).
+CTA_XIN = r"(高評価|チャンネル登録|グッドボタン|いいねボタン|いいねと|いいねを)"
+CTA_CAM_ON = r"(最後までご覧|ご視聴いただき|ご視聴ありがとう|ご覧いただき)"
+
+
+def _cta_mot_lan(text, outro):
+    """CTA chỉ MỘT lần, ở cuối (anh chốt 2026-10-01). Lane J ep03: Opus viết đoạn 「最後までご覧…高評価とチャンネル登録…」
+    rồi _outro_fix ghép thêm outro (cũng xin 高評価/チャンネル登録) → 2 CTA; _go_cau_trung còn xoá mất câu cảm ơn ĐẦU của outro
+    vì trùng nguyên văn câu Opus đã viết. Tất định: có outro → xoá mọi câu CTA nằm ngoài outro (giữ 1 câu cảm ơn cuối nếu outro
+    không tự cảm ơn); không outro → chỉ giữ câu xin + câu cảm ơn CUỐI CÙNG. Trả (text, số câu đã xoá)."""
+    t = text.rstrip()
+    duoi = ""
+    if outro and t.endswith(outro):
+        t, duoi = t[:-len(outro)], outro
+    cau = [(i, s) for i, p in enumerate(t.split("\n")) for s in re.split(r"(?<=[。！？])", p) if s.strip()]
+    xin = [k for k, (_, s) in enumerate(cau) if re.search(CTA_XIN, s)]
+    cam = [k for k, (_, s) in enumerate(cau) if re.search(CTA_CAM_ON, s) and k not in xin]
+    if duoi:
+        bo = set(xin) if re.search(CTA_XIN, duoi) else set(xin[:-1])
+        bo |= set(cam) if re.search(r"(ありがとう|感謝)", duoi) else set(cam[:-1])
+    else:
+        bo = set(xin[:-1]) | set(cam[:-1])
+    if not bo:
+        return text, 0
+    dong = t.split("\n")
+    giu = {i: [] for i in range(len(dong))}
+    for k, (i, s) in enumerate(cau):
+        if k not in bo:
+            giu[i].append(s)
+    bi_xoa = {i for k, (i, _) in enumerate(cau) if k in bo}
+    moi = [("".join(giu[i]) if i in bi_xoa else d) for i, d in enumerate(dong)]
+    moi = [d for i, d in enumerate(moi) if not (i in bi_xoa and not d.strip())]   # dòng chỉ có CTA → bỏ hẳn
+    out = re.sub(r"\n{3,}", "\n\n", "\n".join(moi)).rstrip()
+    if duoi:
+        out = out + "\n\n" + duoi
+    return out, len(bo)
+
+
 def _bam_goc(text, competitor, nguong=0.72):
     """WARN: đoạn (≥60 chữ) có ≥nguong bigram nằm trong bản gốc. Chỉ cảnh báo, Sol đọc kèm."""
     comp = qc_script._bigrams(competitor)
@@ -393,6 +524,9 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook="", title=""):
     text, doi = _outro_fix(text, sc.get("outro_line") or "")
     if doi:
         tu_sua.append("outro thay nguyên văn")
+    text, n_cta = _cta_mot_lan(text, sc.get("outro_line") or "")
+    if n_cta:
+        tu_sua.append(f"xoá {n_cta} câu CTA thừa (CTA chỉ 1 lần ở cuối)")
     text, n_trung = _go_cau_trung(text, cho_phep=tuple(g.get("repeat_ok") or ()))
     if n_trung:
         tu_sua.append(f"xoá {n_trung} câu lặp nguyên văn")
@@ -406,6 +540,10 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook="", title=""):
         elif b.startswith("NGẮN"):
             under = target - m["chars"]
             viec_len.append(f"NỚI: viết thêm {under:,}–{int(under*1.2):,} chữ vào phần THÂN (các mục/chặng giữa, không thêm vào mở đầu), giữ mọi dữ kiện")
+        elif b.startswith("HỘI THOẠI ÍT"):
+            viec_len.append(f"THOẠI {m['dialogue_ratio']:.0%} < {g['dialogue_ratio_min']:.0%}: đổi các đoạn người kể TÓM TẮT "
+                            f"cuộc nói chuyện/hành động giữa người với người thành đối đáp 「」 ngắn (mỗi 「…」 1 câu riêng, "
+                            f"trước lượt mới có câu người kể nêu ai nói); giữ nguyên hook, số liệu và độ dài")
         elif b.startswith("HỘI THOẠI"):
             viec_len.append(f"THOẠI {m['dialogue_ratio']:.0%} > {g['dialogue_ratio_max']:.0%}: đổi các câu thoại GIẢI THÍCH dài sang địa văn (心の声/状況), giữ đối đáp ngắn")
         elif b.startswith(("NHỊP", "HƠI")):
@@ -437,6 +575,13 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook="", title=""):
         if manh:
             viec_len.append(f"THOẠI DÍNH LỜI DẪN: {len(manh)} chỗ, vd「{manh[0][:30]}」— tách mỗi câu「…」thành câu riêng, "
                             f"lời dẫn (ai nói) viết thành câu người kể riêng trước/sau, kết bằng 。")
+    if sc.get("cam_on_cuoi", sc.get("cung_cam_xuc", True)):
+        kt = _ket_thieu(text)
+        if kt:
+            viec_len.append("KẾT THIẾU: 15% cuối bài chưa có " + " · ".join(kt) + " — thêm 1–3 câu người kể SAU câu đạo lý: "
+                            "cảm ơn đã xem hết video (「最後までご覧いただき、ありがとうございました。」) + xin 高評価 và "
+                            "チャンネル登録 — CHỈ bổ sung đúng ý còn thiếu, CTA chỉ 1 lần trong cả bài; lane có outro cố định thì "
+                            "đặt ngay TRƯỚC câu outro và không lặp ý outro đã có")
     thieu, n = _markers_thieu(text, g)
     if thieu:
         viec_len.append(f"THIẾU MỤC: không thấy marker mục {thieu}/{n} (1つ目…/第N位…) — mỗi mục phải mở bằng marker")
@@ -491,8 +636,12 @@ def do_tat_dinh(prof, text, ctx, competitor, minutes, hook="", title=""):
     warn += _bam_goc(text, competitor)
     if hook:
         if not hook_stage.bat_dau_bang_hook(text_goc, hook):
-            viec_len.append("HOOK: script không bắt đầu bằng đoạn mở đầu đã khoá — chép lại NGUYÊN VĂN hook làm đoạn đầu, "
-                            "xoá mọi đoạn đứng trước nó")
+            # 2026-09-26 (Lane M ep01): kèm NGUYÊN VĂN hook vào việc — patch_model chạy claude -p KHÔNG có quyền đọc file,
+            # trước đây chỉ được bảo "chép lại hook" mà không được đưa hook → 2 patch liền tự bịa một đoạn "gần giống",
+            # S3 vẫn báo lệch → ESCALATE oan (đo thật: patch2 đổi 0% đoạn).
+            viec_len.append("HOOK: script không bắt đầu bằng đoạn mở đầu đã khoá — thay đoạn đầu bằng NGUYÊN VĂN đoạn dưới "
+                            "(không đổi 1 chữ, không thêm câu vào giữa), xoá mọi đoạn đứng trước nó; đoạn thứ hai nối tiếp, "
+                            "không kể lại hook:\n" + hook.strip())
         kl = hook_stage.ke_lai_hook(text_goc, hook)
         if kl > 0.5:
             warn.append(f"thân kể lại hook ({kl:.0%} bigram hook xuất hiện lại ngay sau hook) — nối tiếp, đừng nhắc lại")
@@ -568,6 +717,12 @@ def sol_qc(prof, text, title, out, ns, m, hook=""):
     note = (f"(Máy đã kiểm và ĐẠT: tổng {m['chars']:,} chữ trong {ns['lo']:,}–{ns['hi']:,} · {muc_txt} · nhịp/phẩy/thoại · "
             f"mọi số liệu/địa danh khớp tư liệu · outro/CTA có. Đừng lặp lại các mục đó — tập trung vào tính hợp lý của "
             f"câu chuyện, nhân quả, dòng thời gian, động cơ nhân vật, câu tiếng Nhật không tự nhiên, lời hứa tiêu đề có được trả. ")
+    if (prof.get("script") or {}).get("cung_cam_xuc", True):
+        # 2026-09-26: không có dòng này Sol sẽ coi nhân vật "quá đáng ghét" là thiếu cân bằng và đề nghị làm dịu → vòng
+        # patch xoá đúng thứ anh muốn giữ. Sol vẫn bắt khi hành vi PHI LÝ/mâu thuẫn, chỉ không được bắt vì "quá gắt".
+        note += ("LUẬT LANE: nửa đầu bài CỐ Ý làm người xem ức chế/giận (nhân vật gây chuyện đáng ghét, bất công leo thang, "
+                 "chưa giải toả) rồi mới giải toả và kết bằng vị tha — đừng đề nghị làm dịu, cân bằng hay giải thích sớm cho "
+                 "nhân vật đó; chỉ nêu khi hành vi phi lý, không nhất quán hoặc người bị hại cư xử vô lý. ")
     if profiles.gate(prof).get("cta_mid"):
         note += "LUẬT LANE: câu mời bình luận GIỮA video là bắt buộc — không đề nghị dời nó xuống cuối; nếu câu hỏi chưa hợp lúc đó thì đề nghị ĐỔI CÂU HỎI. "
     # luật riêng khác của lane (profile script_qc.lane_rules: list câu) → Sol biết, không "sửa" nhầm thành lỗi
@@ -666,7 +821,7 @@ def run(job, force=False):
     else:
         print(f"[S2] Fable viết đúng ngân sách …")
         text = viet(prof, competitor, ctx, minutes, ns, log, hook=hook,
-                    luat=qc_goi_dang.khoi_luat_cho_prompt(d, prof))
+                    luat=qc_goi_dang.khoi_luat_cho_prompt(d, prof), d=d)
         bench["fable_calls"] += 2 if not (prof.get("script", {}) or {}).get("use_raw_source") else 1
         (d / "script_pass1_raw.txt").write_text(text, encoding="utf-8")
         sf.write_text(text, encoding="utf-8")
@@ -683,13 +838,20 @@ def run(job, force=False):
         for x in warn: print("   (warn)", x)
         return text, m, vf, vl, warn
 
-    def thu_patch(text, viec, kieu):
+    def thu_patch(text, viec, kieu, mien_tran=False):
         n = bench["patch_count"] + 1
-        if n > MAX_PATCH:
+        if n > MAX_PATCH and not mien_tran:
             return None
         (d / f"script.pre_patch{n}.txt").write_text(text, encoding="utf-8")
         try:
-            new = patch(prof, text, viec, kieu, ns, log, n)
+            try:
+                new = patch(prof, text, viec, kieu, ns, log, n)
+            except LLMError as e1:
+                # 05/10: nhiều lane chạy lô song song → claude -p có thể nghẽn/quá tải thoáng qua. Thử lại 1 lần
+                # sau 90s để lỗi tạm KHÔNG ăn mất 1 trong MAX_PATCH lượt vá (mất lượt = khoá bản chưa sửa).
+                print(f"   ! patch{n} lỗi ({str(e1)[:80]}) → thử lại sau 90s")
+                time.sleep(90)
+                new = patch(prof, text, viec, kieu, ns, log, n)
         except LLMError as e:
             print(f"   ✗ {e}")
             log.append(f"patch{n} {kieu} TỪ CHỐI: {str(e)[:100]}")
@@ -732,6 +894,68 @@ def run(job, force=False):
         sf.write_text(text, encoding="utf-8")
 
     # ---- S5 Sol (lời cuối) + vòng patch Sol
+    # Anh chốt 2026-09-29: bỏ kênh sức khoẻ (Lane E) — lớp Sol khác hãng vốn BẮT BUỘC cho kênh y khoa
+    # (rủi ro an toàn thật) không còn lý do bắt buộc cho lane manga/lifestyle còn lại. `script.sol_qc=false`
+    # (mặc định true = giữ nguyên hành vi cũ) → khoá PASS thẳng sau S3, không gọi Sol, không tốn patch/token
+    # ở bước này. Bật lại cho lane nào cần thì xoá field hoặc đặt true.
+    if (prof.get("script") or {}).get("sol_qc", True) is False:
+        # Kiểm NHẸ lời hứa tiêu đề (anh chốt 2026-09-29, thay Sol): 1 lượt chấm → nếu có việc thì patch_model (Opus 5) vá
+        # ĐÚNG 1 lần (không tính vào trần MAX_PATCH) → S3 lại → khoá. KHÔNG lặp, KHÔNG ESCALATE; patch làm S3 trượt thì
+        # giữ bản trước. Lỗi hạ tầng → khoá không có bước này, log ghi "chưa kiểm". Mỗi bản (sha) chỉ kiểm 1 lần.
+        if (prof.get("script") or {}).get("kiem_loi_hua", True):
+            sha_f = d / "loi_hua_da_kiem.json"
+            sha_now = gate_common.sha256_file(sf)
+            da = json.loads(sha_f.read_text(encoding="utf-8")).get("sha") if sha_f.exists() else None
+            if da == sha_now:
+                print("[S5L] bản này đã kiểm lời hứa tiêu đề rồi — bỏ qua")
+            else:
+                print("[S5L] kiểm lời hứa tiêu đề (1 lượt, chỉ cảnh báo) …")
+                try:
+                    st, viec_h, mod_h = qc_loi_hua.kiem(text, title, d)
+                except Exception as e:
+                    st, viec_h, mod_h = "LOI", [], ""
+                    print(f"   ⚠️ chưa kiểm được lời hứa tiêu đề ({str(e)[:100]}) — khoá KHÔNG có bước này")
+                    log.append("loi_hua CHUA_KIEM")
+                if st == "VIEC":
+                    (d / "loi_hua_tieu_de.txt").write_text(f"[{mod_h}]\n" + "\n".join(f"- {v}" for v in viec_h) + "\n", encoding="utf-8")
+                    print(f"   [{mod_h}] {len(viec_h)} việc → patch_model vá 1 lần:")
+                    for v in viec_h:
+                        print("   -", v[:160])
+                    text_truoc = text
+                    new = thu_patch(text, ["LỜI HỨA TIÊU ĐỀ: sửa đúng câu nêu, mọi thứ khác giữ nguyên. Tiêu đề: " + title] + viec_h,
+                                    "sua", mien_tran=True)
+                    ok = False
+                    if new and new != text_truoc:
+                        n2, m2, vf2, vl2, _w = do_va_ghi(new)
+                        if vf2 or vl2:
+                            print("   ⚠️ bản vá làm S3 trượt → giữ bản trước, việc còn ghi ở loi_hua_tieu_de.txt")
+                            log.append("loi_hua VA_TRUOT_S3 giu ban truoc")
+                        else:
+                            text, m, ok = n2, m2, True
+                            sf.write_text(text, encoding="utf-8")
+                            log.append(f"loi_hua {mod_h} VIEC={len(viec_h)} da va")
+                    else:
+                        print("   ⚠️ patch bị từ chối → giữ bản trước, việc còn ghi ở loi_hua_tieu_de.txt")
+                        log.append("loi_hua VA_TU_CHOI giu ban truoc")
+                    if not ok:
+                        sf.write_text(text_truoc, encoding="utf-8")
+                        text, m, _a, _b, _c = do_va_ghi(text_truoc)
+                elif st == "OK":
+                    print(f"   [{mod_h}] ✓ lời hứa tiêu đề được giữ")
+                    log.append(f"loi_hua {mod_h} OK")
+                if st != "LOI":
+                    sha_f.write_text(json.dumps({"sha": gate_common.sha256_file(sf), "status": st}), encoding="utf-8")
+        meta = ket("PASS", sol_report="skipped_sol_qc_false", sol_rounds=0, chars=m["chars"], minutes=m["minutes"],
+                   final_char_deviation=round((m["chars"] - ns["target"]) / ns["target"] * 100, 1))
+        job.state["B3"] = {"at": time.strftime("%Y-%m-%d %H:%M"), "flow": "lean", "chars": m["chars"], "minutes": m["minutes"],
+                           "passes": log, "gate": [], "patches": bench["patch_count"], "sol_rounds": 0}
+        job.state["B3S"] = {"at": job.state["B3"]["at"], "verdict": "SKIPPED", "flow": "lean", "reason": "profile.script.sol_qc=false"}
+        for s in ("B3Q", "B3F", "B3R", "B3G"):
+            job.state[s] = {"at": job.state["B3"]["at"], "skipped": "lean_flow"}
+        job.state_f.write_text(json.dumps(job.state, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"[LOCK] ✓ S3 PASS (Sol TẮT theo profile) · {m['chars']:,} chữ · sha {meta['script_sha256'][:10]}… · "
+              f"{bench['patch_count']} patch · {bench['total_time_s']//60}'{bench['total_time_s']%60:02d} · KHÔNG AI SỬA script.txt NỮA")
+        return "PASS"
     # Sol KHÔNG tất định: 2026-09-22 chấm lại bản ep10 Lane G đã LOCK PASS → 2/2 lần ra FIX với 1 lỗi [NẶNG] timeline
     # thật. Khoá chỉ khi PASS `sol_pass_need` lần LIÊN TIẾP trên cùng bản (mặc định 2; profile script.sol_pass_need=1 tắt).
     need = int((prof.get("script") or {}).get("sol_pass_need") or 2)

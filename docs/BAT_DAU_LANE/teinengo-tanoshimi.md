@@ -4,6 +4,17 @@
 > báo cáo bằng `@lane:teinengo-tanoshimi`, rồi làm ĐÚNG THỨ TỰ mục 4. Không tìm hiểu lại từ đầu, không đoán.
 > File này là "cửa vào"; chi tiết vận hành nằm ở SOP (mục 4, giai đoạn 2 sẽ viết). Cập nhật mục 2 khi trạng thái đổi.
 
+## ⚡ ĐỌC NHANH — "làm tập tiếp theo" (lane đã setup xong, mục 2 TRẠNG THÁI đã ✅ hạ tầng)
+> ⭐ **2026-09-30 anh chốt — THẮNG mọi chỉ dẫn soát ChatGPT web bên dưới:** hook = Fable 5.1 viết 2 phương án theo luật hook 21/10 (bám sát cấu trúc hook video gốc: `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`);
+> `make_video --den B3G` khoá xong là DỪNG, tự giao máy 3/anh soát (D=`Chờ kiểm tra kịch bản`). Anh sửa xong (D=`Đã sửa kịch bản`) →
+> đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\NHAN_KICH_BAN_MAY3.md` để nhận + làm hook/ảnh/giao máy 2.
+
+CHỈ cần đọc: mục 4 **Giai đoạn 3** (lệnh chạy đúng thứ tự) + đúng file mục 4 tự trỏ tới (thường chỉ
+`COMMENT_INSIGHT.md`). KHÔNG cần mở lại toàn bộ mục 3 TÀI LIỆU, SOP đầy đủ, `CHANNEL_DNA.md`,
+`profile.json` — các file đó là cho **Giai đoạn 2 (setup 1 LẦN)** hoặc được chính `pipeline\*.py` tự
+đọc khi chạy lệnh, không phải để Claude nạp vào context mỗi tập. Chỉ mở thêm khi lệnh báo lỗi cần
+quyết định thủ công (thiếu context, xung đột dữ liệu...).
+
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
@@ -43,7 +54,7 @@
    cấu trúc list đếm (`script.structure="list_countdown"` đã có nhánh code trong `pipeline/ai_steps.py`).
 7. Luật toàn dự án: `CLAUDE.md` (router + ⛔ Claude chỉ làm BƯỚC 1) · `docs\QUY_TRINH_SETUP_KENH.md`.
 
-⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+⚠️ Hook bắt buộc khoá trước S2 — Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn), dài ≈ hook gốc — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
 
 ## 4. QUY TRÌNH — làm bước nào trước
 ### Giai đoạn 2 — dựng hạ tầng lane (1 LẦN, đúng thứ tự)

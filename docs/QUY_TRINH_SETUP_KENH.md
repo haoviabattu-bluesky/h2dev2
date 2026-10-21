@@ -22,7 +22,7 @@ sản xuất nội dung thật, xem quy trình đầy đủ ngay dưới đây.
 
 ## ⭐ QUY TRÌNH SETUP KÊNH ĐẦY ĐỦ (user chốt 2026-09-10 — BẮT BUỘC trước khi làm việc khác)
 Khi triển khai 1 kênh THẬT (kênh sẽ đăng nội dung, khác mail nuôi hàng loạt ở trên), phải hoàn tất
-**TOÀN BỘ** các bước A+B dưới đây rồi mới được chuyển sang việc khác (viết kịch bản, sản xuất
+**TOÀN BỘ** các bước A+B+D dưới đây (D = xác minh phone + Channel history, thêm 08/10) rồi mới được chuyển sang việc khác (viết kịch bản, sản xuất
 video...). Dừng ở avatar/tên/mô tả cơ bản là THIẾU quy trình, không tính là xong.
 
 **A. Branding (Studio → Customization → Profile — trang `/editing/profile`, gom cả A+B mục 8-10):**
@@ -52,6 +52,25 @@ video...). Dừng ở avatar/tên/mô tả cơ bản là THIẾU quy trình, kh�
     `py -3.13 E:\CLAUDE\YOUTUBE\h2dev\pipeline\goi_title.py --bat <lane>` (kèm `publish.listing_external: true`).
     Chi tiết: `docs/QUY_TRINH_GIAO_VIEC_MAY2.md` §7.
 
+**D. Xác minh kênh — Settings → Channel → Feature eligibility (anh chốt 2026-10-08, BẮT BUỘC ngay sau A+B):**
+12. `2. Intermediate features` → **Verify phone number** → tab mới `youtube.com/verify` → số **TinOTP
+    "Google, Gmail, Youtube - United States (virtual) 1"** (`https://tinotp.site/Rental?category=1004`, service_id 1119,
+    ~1.951đ) → điền mã 6 số → SUBMIT → thấy "Phone number verified" → **đóng tab điền phone**.
+13. `3. Advanced features` → **Access features** → chọn **"Build history as you grow"** (= Channel history) → Next → Done.
+    Xong nhãn cấp 3 VẪN là "Eligible" (YouTube tích lịch sử ~2 tháng) — đúng, không phải lỗi.
+```
+py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\h2dev\tools\xac_minh_kenh.py --mail <mail>              # làm 12+13, tự đóng profile
+py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\h2dev\tools\xac_minh_kenh.py --mail <mail> --chi-xem    # chỉ đọc trạng thái 3 cấp
+```
+Tool tự bỏ qua bước đã Enabled; Google từ chối số / 5 phút không có OTP → huỷ số (hoàn tiền) rồi thử số khác (tối đa 3).
+Mỗi lần thuê ghi `E:\CLAUDE\YOUTUBE\h2dev\docs\_log_xac_minh_kenh.jsonl`. Bẫy TinOTP: key phải gửi header `X-Api-Key`
+(query `api_key` đã bị tắt), `/services/rent` là POST. Kênh đã qua 08/10: G `@teinengo_shigotocho` · J `@jukunen_honne` ·
+N `@senior_dainimaku` · O `@kaigo_sukatto`. Bẫy UI đo thật: quốc gia nằm trong value ô readonly (inner_text không có);
+kênh mới tinh có hộp "Welcome to YouTube Studio" chặn click → bấm Continue; kênh đã chọn Channel history từ trước thì
+mục 3 chỉ còn "AND · Channel history", không có nút Access features (tool coi là xong).
+Kênh mới tinh: bấm Build history → Next → hộp "Your channel history is being established" → Done là HẾT việc;
+khung Requirements VẪN hiện đủ 3 lựa chọn + nút Access features (đo 08/10, reload vẫn vậy) — không có trạng thái lưu, đừng bấm lại.
+
 **⚠️ Trước khi sửa bất kỳ mục nào ở B, RELOAD trang thật để kiểm tra trạng thái hiện tại** — nhiều
 mục (Links, Contact email, đôi khi cả Handle) có thể **ĐÃ ĐÚNG SẴN** do Google tự điền mặc định;
 đừng suy diễn từ form đang mở dở, và đừng ghi đè nếu đã đúng.
@@ -68,8 +87,13 @@ Một file `KENH.json` cạnh ảnh = 1 nguồn chân lý (mẫu: `assets/teinen
 overlay tên PIL. Mỗi mục reload đọc trước, đúng rồi thì bỏ qua; không thấy phần tử → chụp `_s_*.png`
 vào thư mục branding rồi báo. Bản cũ `channel_branding_laneD.py`/`_laneE.py` giữ để tham khảo, KHÔNG dùng.
 
-**SAU KHI SETUP XONG (anh chốt 2026-09-20), 3 việc bắt buộc:** (1) tool tự tạo tab sheet tên = `lane_id` với
-header A→K giống `70dai-kenko`; (2) viết `docs/BAT_DAU_LANE/<lane_id>.md` theo khuôn `teinengo-real.md` (định danh,
+**SAU KHI SETUP XONG (anh chốt 2026-09-20), 3 việc bắt buộc:** (1) tool tự tạo tab sheet tên = `{Lane}-{tên kênh}`
+(vd `M-teinengo-anaba`) với **header dòng 1 A→S (anh chốt 2026-09-26, khuôn tab `L-shakai-no-naze`)**:
+A STT · B `NỘI DUNG - LANE <X>` + xuống dòng + ngách · C FOLDER · D KỊCH BẢN · E TITLE-DESCREPTION · F TAGS ·
+G THUMBNAIL · H STATUS-IMG · I VIDEO · J LIST · K GHI CHÚ · L ID KÊNH · M LINK KÊNH · N SỐ NGÀY LIST · O VIEW ·
+P CTR TỔNG · Q CTR 24H · R VIEW CŨ · S CTR 24H CŨ (`channel_branding.LANE_TAB_HEADER`; tab đã có header thì không đụng);
+**thư mục làm việc của lane cũng đặt đúng tên tab** — `assets\<Lane>-<tên kênh>\` (vd `assets\M-teinengo-anaba\`, anh chốt
+2026-09-26 từ Lane M; lane cũ giữ nguyên thư mục đang chạy); (2) viết `docs/BAT_DAU_LANE/<lane_id>.md` theo khuôn `teinengo-real.md` (định danh,
 trạng thái, tài liệu ở đâu, quy trình bước nào trước, cột sheet); (3) 1 dòng bảng lane `CLAUDE.md` + 1 dòng
 `docs/DANH_BA_LANE.md`. Câu "thực hiện lane <mã>" của anh trỏ thẳng vào file (2).
 
@@ -95,3 +119,32 @@ trạng thái, tài liệu ở đâu, quy trình bước nào trước, cột sh
   available: @xxx" ngay dưới ô, Publish VẪN bấm được và mọi thứ khác lưu bình thường, riêng handle giữ cũ (đo thật
   Lane H: `@kokoro-kazoku` bị chiếm) → tool đọc khối cha ô handle, báo lỗi kèm gợi ý, trả handle cũ; verify reload
   sau Publish là lớp chặn cuối. Đổi handle khác trong KENH.json rồi chạy lại `--steps profile`.
+
+## TRANG TÍNH VẬN HÀNH (Google Sheet mail nuôi — dọn từ CLAUDE.md 2026-09-29)
+- URL: `https://docs.google.com/spreadsheets/d/1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU/edit?gid=0#gid=0`
+- Spreadsheet ID: `1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU`
+- Tab làm việc mặc định: **`GMAIL`** (tên tab thật trong sheet là GMAIL — anh hay gõ "GAMIL", cùng 1 tab).
+- Thứ tự cột A→L (**đọc lại header dòng 1 ngay trước khi ghi** — đã 2 lần ghi nhầm cột vì tin bảng này,
+  16/09 và 20/09; `tools/channel_setup.py::col(svc, "TÊN KÊNH")` tra cột theo TÊN, cấm hardcode chữ cái):
+  | Cột | Tên | Ghi chú thực tế (kiểm tra lại 2026-09-20) |
+  |---|---|---|
+  | A | STT | trạng thái tay: "Da login" / "Đã có kênh" / "kháng"... |
+  | B | MAIL | địa chỉ Gmail |
+  | C | FULLMAIL | format `mail\|pass\|app-password 8 nhóm 4 ký tự` |
+  | D | MAIL\|PASS ACC | format `mail\|app-password 4 nhóm 4 ký tự` |
+  | E | NGÀY REG | lẫn 2 kiểu: `7/2024` (tháng/năm) và `dd/mm/yyyy` |
+  | F | PHONEVER | số điện thoại verify + link OTP — KHÔNG phải tên kênh |
+  | G | TÊN KÊNH | **handle `@...`** (anh chốt: chỉ ghi handle) — điền khi setup kênh |
+  | H | NGÀY TẠO KÊNH | `dd/mm/yyyy` |
+  | I | NGÁCH | vd "Người già/Hưu trí Nhật (manga story)" |
+  | J | THỊ TRƯỜNG | vd "NHẬT BẢN" |
+  | K | KÊNH_CLONE | URL kênh mẫu |
+  | L | GHI CHÚ | |
+- Tab **NOTE** (danh sách kênh mẫu đã nghiên cứu, 1 dòng = 1 lane): A STT · B KÊNH (URL mẫu) · C NGÁCH ·
+  D ĐIỂM · E FORMAT · F TÌNH TRẠNG · G NHẬN KÊNH · H MAIL · I HANDLE · J LANE · K PHÂN TÍCH KÊNH ·
+  **L KÊNH (= @handle kênh mình, ghi khi setup xong để biết dòng đó đã làm)**.
+- Trạng thái lúc kiểm tra (2026-09-20): header dòng 1, dòng 2 trống, data từ dòng 3 → 16 (14 mail: mix mail
+  cổ 2024–2025 và mail mới 2026, đúng chiến lược mail cổ+mới của khoá). Cột C/D chứa app password —
+  KHÔNG log/paste ra nơi công khai.
+- Thao tác sheet qua MCP `gsheets` (skill `mpc_google.md`). Quy tắc cứng toàn cục:
+  **TUYỆT ĐỐI KHÔNG xoá dòng/cột/dữ liệu trong Google Sheet** — chỉ đọc/ghi thêm/cập nhật ô.

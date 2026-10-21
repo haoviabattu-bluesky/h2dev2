@@ -157,6 +157,9 @@ def check(prof, text, minutes=None, tol=0.12):
             bad.append(f"HƠI: {m['chars_per_breath']} chữ/nhịp thở, cần {lo}–{hi}")
     if m["dialogue_ratio"] > g["dialogue_ratio_max"]:
         bad.append(f"HỘI THOẠI: {m['dialogue_ratio']:.0%} > tối đa {g['dialogue_ratio_max']:.0%}")
+    # 2026-10-11 (anh duyệt Lane L: thoại 30–40%): sàn thoại — field tuỳ chọn, lane không khai = không kiểm.
+    if g.get("dialogue_ratio_min") and m["dialogue_ratio"] < g["dialogue_ratio_min"]:
+        bad.append(f"HỘI THOẠI ÍT: {m['dialogue_ratio']:.0%} < tối thiểu {g['dialogue_ratio_min']:.0%}")
     if prof.get("language", "ja") == "ja":
         k = dem_cat_cum(text)
         if k:
@@ -294,6 +297,25 @@ def _skill_text(prof, key="script"):
     return _ap_ngach(f.read_text(encoding="utf-8"), prof)
 
 
+THE_VIET_MAX = 16000
+
+
+def doc_the_viet(prof) -> str:
+    """Thẻ viết VIRAL_LAB (2026-10-05, anh duyệt PA A): field `script.the_viet` = đường dẫn thẻ (~/.claude/skills/
+    youtube-kich-ban/market/THE_VIET_*.md, VIRAL_LAB ghi đè mỗi ngày — h2dev KHÔNG sửa). Vắng field → "" (prompt
+    không đổi một byte); file thiếu → cảnh báo 1 dòng, trả "" (cùng triết lý doc_kho_hook, không làm gãy dây chuyền)."""
+    p = ((prof.get("script") or {}).get("the_viet") or "").strip()
+    if not p:
+        return ""
+    f = Path(p).expanduser()
+    if not f.exists():
+        print(f"  ! thẻ viết không có: {f} → viết KHÔNG kèm thẻ")
+        return ""
+    txt = f.read_text(encoding="utf-8").strip()[:THE_VIET_MAX]
+    print(f"  thẻ viết: {len(txt)} ký tự ({f.name})")
+    return txt
+
+
 def _comment_insight_block(insight):
     """Chèn tín hiệu từ bình luận thật vào prompt viết kịch bản — user chốt 2026-09-10.
 
@@ -315,7 +337,7 @@ def _comment_insight_block(insight):
 
 
 def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_insight=None, budget_block=None,
-                  hook_locked="", luat_goi_dang=""):
+                  hook_locked="", luat_goi_dang="", khoi_them=""):
     """luat_goi_dang (2026-09-24): khối luật G1–G4 của lane, do `qc_goi_dang.khoi_luat_cho_prompt()`
     sinh từ `promise.txt` + `profile.goi_dang`. Rỗng = lane chưa bật → prompt y hệt trước, không đổi
     hành vi lane cũ. Vì sao đưa luật vào ĐẦU VÀO chứ không chỉ chấm ở đầu ra: cổng `qc_goi_dang.kiem()`
@@ -370,6 +392,10 @@ def _pass1_prompt(prof, competitor, minutes, series_ctx, ask_chars=0, comment_in
         _chong_trung_block(prof),
     ]
     parts += _comment_insight_block(comment_insight)
+    # khoi_them (2026-09-26, lean_script.khoi_them): cung cảm xúc + insight bình luận kênh mẫu — đặt ngay sau
+    # khối cấu trúc để model đọc "cấu trúc" xong thấy luôn "nhịp cảm xúc + khán giả thật muốn gì".
+    if khoi_them.strip():
+        parts += ["", khoi_them.strip()]
     if series_ctx:
         nhan = ((prof.get("script", {}) or {}).get("ctx_label")
                 or "MẠCH SERIES (phải nhắc lại tập trước + hé tập sau)")
@@ -539,6 +565,13 @@ def _chong_trung_block(prof):
             "   Giữ nguyên: khung cảm xúc, kiểu nhân vật, bài học cuối. Đổi hết phần bề mặt.")
 
 
+# 2026-10-04 anh duyệt: MỖI CÂU MỘT DÒNG (xuống dòng đơn), DÒNG TRỐNG chỉ khi đổi cảnh — đúng cách anh tự sửa
+# ở cả 5 lane F/L/J/N/O (bản máy 40–185 chữ/dòng → bản anh 9–20). Xuống dòng đơn KHÔNG thêm nghỉ: pace_audio
+# chỉ nghỉ đoạn ở dòng trống, tts_voicevox nghỉ đoạn theo `khoi` (khối dòng trống) của cau_vai.
+KHOI_DONG = ("・1行に1文。文が終わるたびに改行する（場面の切れ目以外に空行は入れない）。文の途中で改行しない。\n"
+             "・空行は場面・時間・場所が変わるときだけ入れる（1場面の目安は4〜12行）。")
+
+
 def _pacing_block(prof):
     """Khối luật nhịp/hội thoại bằng ngôn ngữ đích, dùng chung cho PASS 1."""
     g = profiles.gate(prof)
@@ -550,7 +583,11 @@ def _pacing_block(prof):
     if lang == "ja":
         # Lane có thoại 2 nhân vật (manga, dialogue_ratio_max ≥ 25%) thì KHÔNG được dặn "đừng dựa vào
         # hội thoại" — câu đó viết cho satori/toshi (thoại ≤15%). Rẽ theo ngưỡng, không theo lane.
-        if g["dialogue_ratio_max"] >= 0.25:
+        if g.get("dialogue_ratio_min"):
+            dmin = int(g["dialogue_ratio_min"] * 100)
+            kaiwa = (f"・「」の会話は全体の{dmin}〜{dmax}%（厳守、機械で測る）。出来事は語り手が要約せず、"
+                     f"登場人物の掛け合いで見せる。1つの発話は短く、地の文（心の声・状況描写）で前後をつなぐ。\n")
+        elif g["dialogue_ratio_max"] >= 0.25:
             kaiwa = (f"・「」の会話は全体の{dmax}%以下。会話は登場人物の掛け合いとして活かすが、"
                      f"1つの発話は短く、地の文（心の声・状況描写）で前後をつなぐ。\n")
         else:
@@ -559,7 +596,7 @@ def _pacing_block(prof):
              f"・語り手（{persona}）の息づかいに合わせ、読点「、」で{int(blo)}〜{int(bhi)}字ごとに区切る。"
              f"1文あたり読点{int(lo)}〜{int(hi)}個、一文は短く。\n"
              + kaiwa +
-             f"・段落は意味のまとまりごと（1段落＝3〜6文）。1文ごとに改行しない。文の途中で改行しない。")
+             KHOI_DONG)
         if g.get("require_next_ep_teaser"):
             s += "\n・最後に、視聴者へコメントを促す問いかけと、次回作を予告する一文を必ず入れる。"
         # Nhịp RIÊNG của ngách kể tài liệu — đo thật trên 4 video top của kênh mẫu. Ba con số này
@@ -644,7 +681,7 @@ def _chunk_prompt(prof, part, i, n_parts, budget, prev_tail, keep_length=False):
                     f"・語り手（{persona}）の息づかい：読点で{int(blo)}〜{int(bhi)}字ごとに区切り、"
                     f"1文あたり読点{int(lo)}〜{int(hi)}個。一文は短く。\n"
                     + kaiwa_nen +
-                    f"・段落は意味のまとまりごと。文の途中で改行しない。\n"
+                    KHOI_DONG + "\n" +
                     f"{giu}{ctx}\n"
                     f"【第{i}部の原稿】\n{part}")
         return (f"以下はナレーション原稿の第{i}部（全{n_parts}部）です。筋・人物・重要な台詞は変えずに、"
@@ -654,7 +691,7 @@ def _chunk_prompt(prof, part, i, n_parts, budget, prev_tail, keep_length=False):
                 + kaiwa_nen +
                 f"・語り手（{persona}）の息づかい：読点で{int(blo)}〜{int(bhi)}字ごとに区切り、"
                 f"1文あたり読点{int(lo)}〜{int(hi)}個。\n"
-                f"・段落は意味のまとまりごと。文の途中で改行しない。\n"
+                + KHOI_DONG + "\n" +
                 f"{giu}{ctx}\n"
                 f"【第{i}部の原稿】\n{part}")
     if prev_tail:

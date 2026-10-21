@@ -4,6 +4,18 @@ import pytest
 import fetch_script as FS
 
 
+@pytest.fixture(autouse=True)
+def _chan_llm_that_khi_tach_suon(monkeypatch):
+    """2026-10-17: phan_tich_nguon/ensure_locked nay gọi phan_tich_cau_truc (claude -p → Gemini). Test KHÔNG được gọi model
+    thật — mặc định cả 2 đường ném lỗi (phan_tich_cau_truc trả None); test nào cần thì tự monkeypatch đè lên."""
+    import claude_p_bridge, llm_client
+
+    def _cam(*a, **k):
+        raise RuntimeError("test: cấm gọi model thật")
+    monkeypatch.setattr(claude_p_bridge, "ask", _cam)
+    monkeypatch.setattr(llm_client, "chat", _cam)
+
+
 class _FakeYDL:
     def __init__(self, opts): self.opts = opts
     def __enter__(self): return self
@@ -178,8 +190,15 @@ PROF = {"id": "x", "language": "ja", "voice": {"char_rate": 300.0}, "script": {}
 
 def test_so_chu_muc_tieu_va_cau_hinh():
     assert HS.so_chu_muc_tieu(PROF) == 150
-    p2 = {**PROF, "script": {"hook": {"ratio_30s": 0.4, "banned_openers": ["X"]}}}
+    p2 = {**PROF, "script": {"hook": {"giay_mac_dinh": 24, "giay": [15, 90], "banned_openers": ["X"]}}}
     assert HS.so_chu_muc_tieu(p2) == 120 and HS.cau_hinh(p2)["banned_openers"] == ["X"]
+    # 2026-10-21: độ dài = đúng giây kết hook của video gốc (không kẹp theo script.hook.giay), chỉ sàn 6s / trần 150s
+    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": "60-64"}}) == 320
+    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 120}}) == 600
+    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 300}}) == 750
+    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 3}}) == 30
+    # không có hook gốc → giay_mac_dinh kẹp trong script.hook.giay
+    assert HS.so_chu_muc_tieu({**PROF, "script": {"hook": {"giay_mac_dinh": 5, "giay": [15, 90]}}}) == 75
 
 
 def test_cat_0_30s():
@@ -195,10 +214,11 @@ def test_tach_candidates():
 def test_check_bat_loi():
     ngan = "短い。"
     assert any("độ dài" in v for v in HS.check(ngan, PROF))
-    chao = "こんにちは。" + "あ" * 150
-    assert any("chào hỏi" in v for v in HS.check(chao, PROF))
-    khong_neo = "そのとき私は何も知らなかった。" * 8
-    assert any("neo" in v for v in HS.check(khong_neo[:160], PROF))
+    cta = "チャンネル登録お願いします。" + "あ" * 140
+    assert any("đăng ký" in v for v in HS.check(cta, PROF))
+    # 2026-10-17: bỏ luật cấm chào hỏi/đòi neo cụ thể — mở kiểu nào là theo hook video gốc
+    assert HS.check("皆さんは、何歳で結婚しましたか。" + "あ" * 135, PROF) == []
+    assert any("độ dài" in v for v in HS.check("あ" * 150, PROF, muc=400))
 
 
 def test_check_dat():
@@ -260,22 +280,109 @@ def test_chua_co_lock(tmp_path):
 
 
 def test_phan_tich_nguon(monkeypatch, tmp_path):
+    """2026-10-21: H1–H3 = lời 0–150s + khung hình + CẤU TRÚC hook gốc (phan_tich_cau_truc) ghi vào hook/source.json."""
     d = tmp_path
     (d / "competitor.segments.json").write_text(json.dumps({
         "video_id": "vid1", "title": "T", "description": "D", "thumbnail_url": "http://x/t.jpg",
-        "segments": [{"start": 0, "duration": 5, "text": "「三年前に引っ越しました」"}, {"start": 31, "duration": 5, "text": "後半"}]}),
+        "segments": [{"start": 0, "duration": 5, "text": "「三年前に引っ越しました」"}, {"start": 31, "duration": 5, "text": "後半"},
+                     {"start": 120, "duration": 5, "text": "百二十秒"}, {"start": 160, "duration": 5, "text": "ngoài cửa sổ"}]}),
         encoding="utf-8")
-    import llm_client, qc_visual
-    monkeypatch.setattr(llm_client, "chat", lambda prompt, **k: type("R", (), {"text": json.dumps({
-        "hook_4_nhip": {"event": "隣人が告げる", "contradiction": "50年の友", "stake": None, "open_loop": "理由は?"},
-        "hook_kind": "B", "score_0_12": 9,
-        "promise_match": {"title": "PASS", "thumb": "NA", "description": "PASS", "verdict": "PASS", "ly_do": "ok"}})})())
+    import claude_p_bridge
+    goi = {}
+
+    def fake_ask(prompt, **k):
+        goi["prompt"] = prompt
+        return type("R", (), {"text": json.dumps({
+            "mo_dau": "câu thoại", "giay_ket_hook": 64,
+            "nhip": [{"tu": 0, "den": 5, "vai_tro": "câu sốc", "cach_lam": "thoại", "cau_goc": "三年前", "dich": "3 năm trước"}],
+            "giu_chan_bang": "câu hỏi"})})()
+    monkeypatch.setattr(claude_p_bridge, "ask", fake_ask)
     monkeypatch.setattr(HS, "khung_hinh_0_30s", lambda vid, out, n=6, proxy=None: None)
     monkeypatch.setattr(FS, "tai_anh", lambda url, p, proxy=None: False)
     src = HS.phan_tich_nguon(d, PROF)
     assert src["transcript_0_30s"] == "「三年前に引っ越しました」"
-    assert src["hook_kind"] == "B" and src["video_hook_verdict"] == "khong_soi_duoc"
-    assert json.loads((d / "hook/source.json").read_text(encoding="utf-8"))["score_0_12"] == 9
+    assert "百二十秒" in src["transcript_hook"] and "ngoài cửa sổ" not in src["transcript_hook"]
+    assert "百二十秒" in goi["prompt"]
+    luu = json.loads((d / "hook/source.json").read_text(encoding="utf-8"))
+    assert luu["cau_truc_hook"]["mo_dau"] == "câu thoại" and src["video_hook_verdict"] == "khong_soi_duoc"
+    # 2026-10-21: prompt tách cấu trúc KHÔNG còn phân loại động cơ / khuôn lane
+    assert "CAO_TRAO" not in goi["prompt"] and "khuon_lane" not in goi["prompt"]
+    assert HS.so_chu_muc_tieu(PROF, luu) == 320   # 300 chữ/phút × 64s
+    assert "CẤU TRÚC HOOK VIDEO GỐC" in HS.khoi_suon(d, luu) and "câu sốc" in HS.khoi_suon(d, luu)
+    assert "động cơ" not in HS.khoi_suon(d, luu)
+
+
+@pytest.mark.cong_hook_goc
+def test_phan_tich_cau_truc_json_hong_tra_none(tmp_path, monkeypatch):
+    import claude_p_bridge
+    monkeypatch.setattr(claude_p_bridge, "ask", lambda prompt, **k: type("R", (), {"text": "không phải json"})())
+    assert HS.phan_tich_cau_truc(tmp_path, PROF, {"transcript_hook": "[0]あ"}) is None
+    with pytest.raises(SystemExit):          # 21/10: nhánh viết hook tự do đã bỏ
+        HS.khoi_suon(tmp_path, {})
+
+
+# 2026-10-21 (Lane L ep23 佐野稔): không có hook gốc → cấm viết/khoá hook; họ nhân vật tập trước bị chặn.
+@pytest.mark.cong_hook_goc
+def test_ensure_locked_khong_hook_goc_thi_chan(monkeypatch, tmp_path):
+    d = _tap(tmp_path)
+    monkeypatch.setattr(HS, "phan_tich_nguon", lambda *a, **k: {"video_id": "kKzleVgzGso", "transcript_0_30s": "", "title": ""})
+    def _cam(*a, **k):
+        raise AssertionError("không được viết hook khi thiếu hook gốc")
+    monkeypatch.setattr(ai_steps, "_writer_chat", _cam)
+    with pytest.raises(SystemExit) as e:
+        HS.ensure_locked(d, PROF)
+    assert "KHÔNG CÓ CẤU TRÚC HOOK GỐC" in str(e.value)
+    assert json.loads((d / "hook/hook_qc.json").read_text(encoding="utf-8"))["state"] == "NO_HOOK_GOC"
+    assert not (d / "hook/hook_lock.json").exists()
+
+
+@pytest.mark.cong_hook_goc
+def test_khoa_tay_khong_co_cau_truc_bi_chan(tmp_path):
+    d = _tap(tmp_path)
+    with pytest.raises(SystemExit):
+        HS.khoa(d, "hook文。", extra={"source": "may1_tay"})
+    (d / "hook").mkdir(exist_ok=True)
+    (d / "hook/source.json").write_text(json.dumps({"cau_truc_hook": {"nhip": [{"tu": 0}, {"tu": 5}]}}), encoding="utf-8")
+    assert HS.khoa(d, "hook文。")["so_nhip_goc"] == 2
+
+
+def test_check_chan_ho_tap_truoc(tmp_path):
+    import kiem_hook_goc as K
+    sd = tmp_path / "lane"
+    for ep, ten in (("ep04-a", "佐野 健二"), ("ep05-b", "さくら"), ("ep06-c", "さくら"), ("ep07-d", "さくら")):
+        (sd / ep).mkdir(parents=True)
+        (sd / ep / "characters.json").write_text(json.dumps({"characters": [{"name": ten}]}, ensure_ascii=False),
+                                                 encoding="utf-8")
+    (sd / "ep23-x").mkdir()
+    cam = K.ho_da_dung(sd / "ep23-x")
+    assert cam == {"佐野": ["ep04"]}          # さくら toàn kana + vai cố định → không cấm
+    v = HS.check("佐野稔、五十一歳。", PROF, muc=len("佐野稔五十一歳"), cam_ho=cam)
+    assert any("佐野" in x for x in v)
+    assert not any("họ" in x for x in HS.check("川西稔、五十一歳。", PROF, muc=len("川西稔五十一歳"), cam_ho=cam))
+
+
+def test_danh_gia_loi_goc():
+    import kiem_hook_goc as K
+    assert not K.danh_gia([])[0]
+    assert not K.danh_gia([{"start": 40, "duration": 3, "text": "あ"}] * 6)[0]          # bắt đầu muộn
+    assert K.danh_gia([{"start": i * 6.0, "duration": 5, "text": "あ"} for i in range(8)])[0]
+    assert K.id_video(None, "xem https://www.youtube.com/watch?v=kKzleVgzGso nhé") == "kKzleVgzGso"
+
+
+def test_cau_truc_cu_17_10_van_doc_duoc(tmp_path):
+    """source.json tách theo luật 17/10 (còn dong_co_chinh/khuon_lane) vẫn dùng được; khối cấu trúc bỏ 2 trường đó."""
+    ct = {"dong_co_chinh": "CAO_TRAO", "khuon_lane": "O-B", "mo_dau": "thoai", "giay_ket_hook": 20,
+          "nhip": [{"tu": 0, "den": 5, "vai_tro": "mở", "cach_lam": "thoại"}]}
+    k = HS.khoi_suon(tmp_path, {"cau_truc_hook": ct})
+    assert "CAO_TRAO" not in k and "O-B" not in k and "mở" in k
+    assert HS.phan_tich_cau_truc(tmp_path, PROF, {"cau_truc_hook": ct}) is ct
+
+
+def test_prompt_viet_khong_con_luat_hook_cu():
+    assert "LUẬT DUY NHẤT (anh chốt 2026-10-21)" in HS.PROMPT_VIET
+    for cu in ("ĐỘNG CƠ CHÍNH", "HƯỚNG DẪN CẤU TRÚC HOOK CỦA LANE", "{huong_dan}", "KHÔNG được thêm/bớt/đảo nhịp"):
+        assert cu not in HS.PROMPT_VIET
+    assert not hasattr(HS, "doc_huong_dan") and "huong_dan_cau_truc" not in HS.MAC_DINH
 
 
 def test_phan_tich_nguon_khong_co_nguon(tmp_path):
@@ -636,7 +743,7 @@ def test_ensure_locked_fix_roi_pass(monkeypatch, tmp_path):
     monkeypatch.setattr(ai_steps, "_writer_chat", lambda prof, prompt, **k: type("R", (), {"text": cands, "model": "m", "provider": "p", "elapsed": 1})())
     import qc_script_sol as Q
     calls = {"n": 0}
-    def fake_run_hook(c, title, thumb, promise, profile_id=None, out=None):
+    def fake_run_hook(c, title, thumb, promise, profile_id=None, out=None, **kw):
         calls["n"] += 1
         return ("FIX" if calls["n"] == 1 else "PASS"), 2, f"KẾT QUẢ: {'FIX' if calls['n']==1 else 'PASS'}\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"
     monkeypatch.setattr(Q, "run_hook", fake_run_hook)
@@ -699,7 +806,7 @@ def test_ensure_locked_fix_x3_coi_nhu_pass(monkeypatch, tmp_path):
     d = _tap(tmp_path, title="【漫画】63歳で年金を繰り上げた男…本当の後悔")
     good = _cands_fix_x3(d, monkeypatch)
     import qc_script_sol as Q
-    monkeypatch.setattr(Q, "run_hook", lambda c, title, thumb, promise, profile_id=None, out=None:
+    monkeypatch.setattr(Q, "run_hook", lambda c, title, thumb, promise, profile_id=None, out=None, **kw:
                         ("FIX", 2, "KẾT QUẢ: FIX\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"))
     monkeypatch.setattr(HS, "patch_hook", lambda prof, text, viec: text)  # vá không đổi gì, vẫn hợp lệ
     hook = HS.ensure_locked(d, PROF, ctx="", title="T")
@@ -716,7 +823,7 @@ def test_ensure_locked_ban_va_truot_giu_ban_truoc(monkeypatch, tmp_path):
     good = _cands_fix_x3(d, monkeypatch)
     import qc_script_sol as Q
     calls = {"n": 0}
-    def fake_run_hook(c, title, thumb, promise, profile_id=None, out=None):
+    def fake_run_hook(c, title, thumb, promise, profile_id=None, out=None, **kw):
         calls["n"] += 1
         return ("FIX" if calls["n"] == 1 else "PASS"), 2, "KẾT QUẢ: FIX\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"
     monkeypatch.setattr(Q, "run_hook", fake_run_hook)
@@ -734,7 +841,7 @@ def test_ensure_locked_patch_hook_nem_khong_lam_sap(monkeypatch, tmp_path):
     d = _tap(tmp_path, title="【漫画】63歳で年金を繰り上げた男…本当の後悔")
     good = _cands_fix_x3(d, monkeypatch)
     import qc_script_sol as Q
-    monkeypatch.setattr(Q, "run_hook", lambda c, title, thumb, promise, profile_id=None, out=None:
+    monkeypatch.setattr(Q, "run_hook", lambda c, title, thumb, promise, profile_id=None, out=None, **kw:
                         ("FIX", 2, "KẾT QUẢ: FIX\nCHỌN: 2\nVIỆC PHẢI SỬA:\n1. x"))
     def _no(prof, text, viec):
         raise RuntimeError("claude -p quá thời gian (600s)")
@@ -778,13 +885,13 @@ def test_cli_only_source_khong_goi_ensure_locked(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(HS, "ensure_locked", _khong_duoc_goi)
 
     fake_src = {"video_id": "abc123XYZ00", "hook_kind": "curiosity_gap", "score_0_12": 10,
-                "video_hook_verdict": "PASS", "promise_match": True, "trash": "khong duoc in ra"}
+                "video_hook_verdict": "PASS", "cau_truc_hook": {"dong_co_chinh": "TO_MO"}, "trash": "khong duoc in ra"}
     monkeypatch.setattr(HS, "phan_tich_nguon", lambda d, prof, proxy=None, force=False: fake_src)
 
     HS.main(["--profile", "x", "--slug", "ep", "--mode", "upstream", "--only", "source"])
     out = json.loads(capsys.readouterr().out)
     assert out == {"video_id": "abc123XYZ00", "hook_kind": "curiosity_gap", "score_0_12": 10,
-                   "video_hook_verdict": "PASS", "promise_match": True}
+                   "video_hook_verdict": "PASS", "cau_truc_hook": {"dong_co_chinh": "TO_MO"}}
 
 
 def test_cli_thu_muc_tap_khong_ton_tai(tmp_path, monkeypatch):
@@ -911,116 +1018,13 @@ def test_viet_candidates_khong_khai_model_khong_truyen(monkeypatch, tmp_path):
     assert "model" not in goi2
 
 
-# ---------------------------------------------------------------------------
-# Việc 1+2 (2026-09-23) — nối KHO KIỂU HOOK (dự án khác) vào PROMPT_VIET.
-# doc_kho_hook() KHÔNG ĐƯỢC đọc kho thật (HOOK_LIBRARY_PATH) trong test — luôn monkeypatch
-# HS.HOOK_LIBRARY_PATH sang 1 file JSON giả dựng trong tmp_path.
-# ---------------------------------------------------------------------------
 
-def _kho_gia(thu_muc):
-    kho = {
-        "patterns": [
-            {"id": "H22", "name": "Câu thoại nghịch lý ở giây 0", "kind": "C",
-             "mechanism": "mechanism_H22", "template": "template_H22", "avoid": "avoid_H22"},
-            {"id": "H23", "name": "Tự thú hành động trái lẽ", "kind": "A",
-             "mechanism": "mechanism_H23", "template": "template_H23", "avoid": "avoid_H23"},
-        ],
-        "closers": [
-            {"id": "K12", "name": "Công thức simbot2", "mechanism": "mechanism_K12", "template": "template_K12"},
-        ],
-    }
-    p = thu_muc / "patterns.json"
-    p.write_text(json.dumps(kho, ensure_ascii=False), encoding="utf-8")
-    return p
-
-
-def test_doc_kho_hook_du_2_kieu_va_closer(tmp_path, monkeypatch):
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
-    out = HS.doc_kho_hook(["H22", "H23"], closer_id="K12")
-    for tag in ("H22", "mechanism_H22", "template_H22", "avoid_H22",
-                "H23", "mechanism_H23", "template_H23", "avoid_H23",
-                "K12", "mechanism_K12", "template_K12"):
-        assert tag in out, tag
-
-
-def test_doc_kho_hook_id_khong_ton_tai_bo_qua_van_co_phan_con_lai(tmp_path, monkeypatch, capsys):
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
-    out = HS.doc_kho_hook(["H22", "H99"])
-    assert "H22" in out and "mechanism_H22" in out
-    assert "H99" not in out
-    assert "H99" in capsys.readouterr().out
-
-
-def test_doc_kho_hook_closer_khong_ton_tai_bo_qua(tmp_path, monkeypatch, capsys):
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
-    out = HS.doc_kho_hook(["H22"], closer_id="K99")
-    assert "H22" in out and "K99" not in out
-    assert "K99" in capsys.readouterr().out
-
-
-def test_doc_kho_hook_file_khong_ton_tai_tra_rong_khong_nem(tmp_path, monkeypatch):
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", tmp_path / "khong_ton_tai.json")
-    assert HS.doc_kho_hook(["H22"]) == ""
-
-
-def test_doc_kho_hook_json_hong_tra_rong_khong_nem(tmp_path, monkeypatch):
-    p = tmp_path / "patterns.json"
-    p.write_text("{broken", encoding="utf-8")
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", p)
-    assert HS.doc_kho_hook(["H22"]) == ""
-
-
-def test_doc_kho_hook_moi_id_deu_sai_thi_dung_han(tmp_path, monkeypatch):
-    """Gõ sai HẾT id (vd "H2" thay "H22") = lỗi khai profile, phải DỪNG chứ không im lặng
-    trả rỗng — im lặng thì hook vẫn viết ra và cả lane chạy như thể chưa bật kho bao giờ."""
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
-    with pytest.raises(SystemExit) as e:
-        HS.doc_kho_hook(["H2", "H98"])
-    assert "H2" in str(e.value) and "script.hook.patterns" in str(e.value)
-
-
-def test_doc_kho_hook_thieu_kho_van_im_lang_du_id_sai(tmp_path, monkeypatch):
-    """Nhưng kho KHÔNG ĐỌC ĐƯỢC thì vẫn trả rỗng, không ném: kho nằm ở dự án khác,
-    sự cố bên đó không được làm gãy dây chuyền bên này."""
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", tmp_path / "khong_ton_tai.json")
-    assert HS.doc_kho_hook(["H2"]) == ""
-
-
-def test_doc_kho_hook_rong_khi_khong_co_id():
-    assert HS.doc_kho_hook([]) == ""
-
-
-def test_viet_candidates_co_patterns_prompt_chua_khoi_kho(monkeypatch, tmp_path):
-    d = _tap(tmp_path)
-    monkeypatch.setattr(HS, "HOOK_LIBRARY_PATH", _kho_gia(tmp_path))
-    prof = {**PROF, "script": {"hook": {"patterns": ["H22", "H23"], "closer": "K12"}}}
-    goi = {}
-
-    def fake(prof, prompt, **k):
-        goi["prompt"] = prompt
-        return type("R", (), {"text": "x", "model": "m", "provider": "p", "elapsed": 1})()
-    monkeypatch.setattr(HS.ai_steps, "_writer_chat", fake)
-    HS.viet_candidates(d, prof, {}, "T", "")
-    p = goi["prompt"]
-    assert "H22" in p and "mechanism_H22" in p and "template_H22" in p and "avoid_H22" in p
-    assert "K12" in p and "mechanism_K12" in p
-    # khối kho phải đứng NGAY TRƯỚC "LUẬT VIẾT (SOP hook):"
-    assert p.index("mechanism_H22") < p.index("LUẬT VIẾT (SOP hook):")
-
-
-def test_viet_candidates_khong_patterns_prompt_giu_nguyen_van(monkeypatch, tmp_path):
-    """Không khai script.hook.patterns (hoặc khai rỗng) → prompt gửi model PHẢI giống hệt nhau,
-    không có dòng trống thừa/không có khối kho — đúng yêu cầu 'giữ NGUYÊN VĂN như hiện nay'."""
-    d = _tap(tmp_path)
-    captured = {}
-
-    def fake(prof, prompt, **k):
-        captured[prof["_tag"]] = prompt
-        return type("R", (), {"text": "x"})()
-    monkeypatch.setattr(HS.ai_steps, "_writer_chat", fake)
-    prof_khong_khai = {**PROF, "_tag": "a", "script": {}}
-    prof_hook_rong = {**PROF, "_tag": "b", "script": {"hook": {"patterns": [], "closer": ""}}}
-    HS.viet_candidates(d, prof_khong_khai, {}, "T", "")
-    HS.viet_candidates(d, prof_hook_rong, {}, "T", "")
-    assert captured["a"] == captured["b"]
-    assert "KHO KIỂU HOOK" not in captured["a"]
+def test_hook_goc_json_trending_dung_thang(tmp_path):
+    import kiem_hook_goc as K
+    ct = {"mo_dau": "thoại", "giay_ket_hook": 20,
+          "nhip": [{"tu": 0, "den": 5, "vai_tro": "mở", "cau_goc": "あ"}, {"tu": 5, "den": 20, "vai_tro": "bối cảnh", "cau_goc": "い"}]}
+    (tmp_path / "hook_goc.json").write_text(json.dumps({"video_id": "kKzleVgzGso", **ct}, ensure_ascii=False), encoding="utf-8")
+    assert K.doc_hook_goc_json(tmp_path, "kKzleVgzGso")["giay_ket_hook"] == 20
+    assert K.doc_hook_goc_json(tmp_path, "khacMaVideo") is None
+    assert K.kiem_nguon(tmp_path, tai_mang=False)["ok"]
+    assert HS.phan_tich_cau_truc(tmp_path, PROF, {"video_id": "kKzleVgzGso"})["nhip"][1]["cau_goc"] == "い"

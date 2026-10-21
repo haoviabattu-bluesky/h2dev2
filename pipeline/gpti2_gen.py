@@ -25,11 +25,10 @@ import keys
 
 BASE_URL = "https://gpti2.store"
 
-# 3 key (từ d:/CLAUDE/TIKTOKSHOP/CARD_RENDER_IMA2/gpti2_client.py) — RPM riêng từng key, luân phiên.
+# Còn 1 key sống (10/10: 2 key cũ cạn tiền) — thêm key thì thêm dòng, tự luân phiên.
 # Đổi key ở máy khác: sửa `gpti2` trong keys.json CẠNH exe (nhận cả danh sách), KHÔNG build lại.
 _DEFAULT_KEYS = [
-    "sk--GUch2kmDgSCGJ2uvFFCb652ULRqyvzTOMT1iP8GlZQ",
-    "sk-2ypgRERBvYZTlka9elCCiJ4dBfLDaHhKzZAy7dYfjQg",
+    "sk--GUch2kmDgSCGJ2uvFFCb652ULRqyvzTOMT1iP8GlZQ",  # nap lai 100.000d 15/10
     "sk-YGVr-OzozR6zawnFNDG5DCn_PDiAbNZkj9LVOHaOFcA",
 ]
 API_KEYS = keys.get_list("gpti2", env="GPTI2_API_KEYS", default=_DEFAULT_KEYS)
@@ -42,7 +41,7 @@ QUALITY_DEFAULT = "low"        # "low"=Tiêu chuẩn (rẻ) · "medium"=Tốt ·
 
 SUBMIT_TIMEOUT = 120
 POLL_INTERVAL = 7
-POLL_TIMEOUT = 420
+POLL_TIMEOUT = int(__import__("os").environ.get("GPTI2_POLL_TIMEOUT", "420"))  # gpti2 nghẽn (30/09: low 414s) → nới qua env
 MAX_ATTEMPTS = 5
 _UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
        "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")

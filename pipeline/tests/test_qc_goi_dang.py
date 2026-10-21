@@ -113,11 +113,12 @@ def test_g2_ve_loi_xuat_hien_qua_muon_thi_chan(tmp_path):
 
 # ───────────────────────────────────────────── G3 thứ tự
 def test_g3_chan_cau_mo_dau_chao_hoi(tmp_path):
+    # 2026-10-17: luật hook duy nhất = bám sườn hook gốc → chỉ còn cấm xin đăng ký/cảm ơn xem ở câu mở.
     p = prof()
     sc = "こんにちは、皆さん。今日もご視聴ありがとうございます。" + "しかし実は違った。" * 10
     d = tap(tmp_path, script=sc)
     chan, _ = G.g3_thu_tu(d, G.cau_hinh(p), moc(d, p, sc), p, "", sc)
-    assert any("こんにちは" in x for x in chan)
+    assert any("ご視聴" in x for x in chan) and not any("こんにちは" in x for x in chan)
 
 
 def test_g3_chan_doc_to_chu_tieu_de(tmp_path):
@@ -133,17 +134,18 @@ def test_g3_chan_cau_mau_thuan_qua_tre(tmp_path):
     p = prof(contradiction_max_s=25)
     sc = "あ" * 600 + "しかし、それは違った。"      # 600 chữ ≈ giây 120
     d = tap(tmp_path, script=sc)
-    chan, _ = G.g3_thu_tu(d, G.cau_hinh(p), moc(d, p, sc), p, "", sc)
-    assert any("câu mâu thuẫn" in x and "> 25" in x for x in chan)
+    # 2026-10-17: hook bám sườn hook gốc → mâu thuẫn muộn chỉ CẢNH BÁO, không chặn
+    chan, canh = G.g3_thu_tu(d, G.cau_hinh(p), moc(d, p, sc), p, "", sc)
+    assert any("câu mâu thuẫn" in x and "> 25" in x for x in canh) and not any("mâu thuẫn" in x for x in chan)
 
 
-def test_g3_thieu_cau_nghi_thuc_thi_chan(tmp_path):
+def test_g3_thieu_cau_nghi_thuc_chi_canh_bao(tmp_path):
     """Nguyên tắc 5 — iro 0/11 tập có 「この写真をカラー化してみる」."""
     p = prof(ritual=["この写真をカラー化してみる"])
     sc = "しかし、この一枚は違う。" + "あ" * 100
     d = tap(tmp_path, script=sc)
-    chan, _ = G.g3_thu_tu(d, G.cau_hinh(p), moc(d, p, sc), p, "", sc)
-    assert any("nghi thức" in x for x in chan)
+    chan, canh = G.g3_thu_tu(d, G.cau_hinh(p), moc(d, p, sc), p, "", sc)
+    assert any("nghi thức" in x for x in canh) and not any("nghi thức" in x for x in chan)
 
 
 # ───────────────────────────────────────────── G4 danh sách
@@ -420,8 +422,17 @@ def _prof_day(hook=None, **kw):
     """Profile đủ điều kiện: hook bật + goi_dang bật + visual_kind video sinh + sfx."""
     p = prof(**kw)
     p["script"]["hook"] = {"enabled": True, "visual": "video_grok",
-                           "visual_kind": "video_sinh", "sfx": True, **(hook or {})}
+                           "visual_kind": "video_sinh", "sfx": False, "nhac_nen": True, **(hook or {})}
+    p["script"]["the_viet"] = "~/.claude/skills/youtube-kich-ban/market/THE_VIET_STORY.md"
     return p
+
+
+def test_cong_chan_khi_chua_khai_the_viet(tmp_path):
+    """05/10/2026 anh chốt thẻ viết bật mọi lane, cả lane tạo sau — quên khai thì S1L chặn."""
+    p = _prof_day()
+    del p["script"]["the_viet"]
+    d = tap(tmp_path, script="あ" * 100, promise="một câu")
+    assert any("script.the_viet" in x for x in G.cong_truoc_khi_viet(d, p))
 
 
 def test_cong_chan_khi_lane_chua_bat_hook(tmp_path):
@@ -475,16 +486,16 @@ def test_khoi_luat_mang_loi_hua_va_moc_giay(tmp_path):
     d = tap(tmp_path, script="あ", promise="図書館は定年後で一番贅沢な場所だ")
     t = G.khoi_luat_cho_prompt(d, p)
     assert "図書館は定年後で一番贅沢な場所だ" in t
-    assert "45 GIÂY ĐẦU" in t and "12 giây đầu" in t and "36 giây đầu" in t
+    assert "45 GIÂY ĐẦU" in t and "HOOK ĐÃ KHOÁ" in t and "12 giây đầu" not in t
     assert "タイトル" in t                        # cấm đọc to chữ tiêu đề
     assert "PHỦ ĐỊNH" in t                       # G2 nói trước cho model
 
 
-def test_khoi_luat_co_cau_nghi_thuc_khi_lane_khai(tmp_path):
+def test_khoi_luat_khong_ep_cau_nghi_thuc(tmp_path):
     p = _prof_day(ritual=["この写真をカラー化してみる"], ritual_max_s=160)
     d = tap(tmp_path, script="あ", promise="x")
     t = G.khoi_luat_cho_prompt(d, p)
-    assert "この写真をカラー化してみる" in t and "160 giây" in t
+    assert "この写真をカラー化してみる" not in t   # 17/10: câu nghi thức không còn ép vào mở đầu
 
 
 def test_khoi_luat_them_phan_danh_sach_chi_khi_list_mode(tmp_path):
@@ -520,10 +531,11 @@ def test_cong_cho_qua_anh_tinh_khi_co_visual_exception(tmp_path):
     assert G.cong_truoc_khi_viet(d, p) == []
 
 
-def test_cong_chan_khi_chua_khai_sfx(tmp_path):
+def test_cong_chan_khi_chua_khai_nhac_nen_hoac_con_sfx_vat_the(tmp_path):
+    """01/10/2026: cấm SFX đồ vật; hook phải khai nhac_nen."""
     d = tap(tmp_path, script="あ" * 100, promise="một câu")
-    loi = G.cong_truoc_khi_viet(d, _prof_day(hook={"sfx": False}))
-    assert any("sfx" in x for x in loi)
+    assert any("nhac_nen" in x for x in G.cong_truoc_khi_viet(d, _prof_day(hook={"nhac_nen": False})))
+    assert any("CẤM hiệu ứng âm thanh đồ vật" in x for x in G.cong_truoc_khi_viet(d, _prof_day(hook={"sfx": True})))
 
 
 def test_khoi_luat_dan_dung_hinh_chi_cho_lane_video_sinh(tmp_path):
@@ -535,18 +547,19 @@ def test_khoi_luat_dan_dung_hinh_chi_cho_lane_video_sinh(tmp_path):
     assert "VIDEO SINH" not in G.khoi_luat_cho_prompt(d, p_anh)
 
 
-def test_khoi_luat_dan_chua_cho_cho_SFX(tmp_path):
+def test_khoi_luat_dan_chi_nhac_nen_khong_tieng_vat_the(tmp_path):
     d = tap(tmp_path, script="あ", promise="x")
-    assert "HIỆU ỨNG ÂM THANH" in G.khoi_luat_cho_prompt(d, _prof_day())
-    assert "HIỆU ỨNG ÂM THANH" not in G.khoi_luat_cho_prompt(d, _prof_day(hook={"sfx": False}))
+    kl = G.khoi_luat_cho_prompt(d, _prof_day())
+    assert "NHẠC NỀN" in kl and "KHÔNG có tiếng đồ vật" in kl and "HIỆU ỨNG ÂM THANH" not in kl
 
 
 def test_moi_lane_that_deu_qua_cong(tmp_path):
     """Nghiệm thu trên profile THẬT: cả 6 lane phải qua được cổng (chỉ thiếu promise.txt là bình
     thường vì đó là file của TỪNG TẬP). Test này bắt được lúc ai đó thêm lane mới mà quên khai field."""
     import profiles as P
-    for pid in ("satori-jp-obaa", "toshi-densetsu-jp", "irogatatarukioku",
-                "kenko-chiebukuro", "teinengo-real", "teinengo-tanoshimi"):
+    # 05/10/2026: lane A/D/E đã bỏ 29/09; 17/10 bỏ Satori → danh sách = 8 lane đang chạy (router CLAUDE.md)
+    for pid in ("teinengo-real", "teinengo-tanoshimi", "teinengo-fuufu", "yakkyoku-sukatto",
+                "shakai_no_naze", "teinengo-anaba", "senior_korekara", "kaigo-sukatto"):
         d = tap(tmp_path, script="あ", promise="x", ten=f"ep-{pid}")
         loi = G.cong_truoc_khi_viet(d, P.load(pid))
         assert loi == [], f"{pid}: {loi}"

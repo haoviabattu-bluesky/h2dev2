@@ -38,7 +38,7 @@ import brain_channel as bc           # noqa: E402
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--idx", type=int, required=True, help="vi tri video trong bang quet kenh = STT dong sheet")
-    ap.add_argument("--profile", default="satori-jp-obaa")
+    ap.add_argument("--profile", required=True)   # 17/10/2026: lane Satori (satori-jp-obaa) đã BỎ — không còn profile mặc định, phải khai --profile.
     ap.add_argument("--channel", default="https://www.youtube.com/@simbot2")
     ap.add_argument("--handle", default="simbot2")
     ap.add_argument("--limit", type=int, default=30)

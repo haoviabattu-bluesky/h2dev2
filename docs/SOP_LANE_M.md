@@ -134,9 +134,11 @@ Nguyên tắc: chỉ việc làm (K4) · góc LỢI ÍCH (thắng góc cảnh b�
 | 2 | ESCALATE | Opus (claude -p, không đọc được file) được bảo "chép lại hook" mà không được đưa hook → bịa đoạn gần giống. **Vá code** `lean_script.do_tat_dinh`: việc HOOK kèm NGUYÊN VĂN hook. 6 việc lớp 3 (bám gốc ×4, lớn tiếng với vợ, CTA trùng) Opus làm đủ. |
 | 3 | ESCALATE | Sol đòi "mỗi mục có lương giờ" (do lane_rules em viết) → Opus bịa 千二百円 → S3 bắt. Sửa lane_rules: lương từng việc CỐ Ý không nêu. |
 | 4 | ESCALATE | lane_rules vẫn quá cứng (đòi giờ bắt đầu–kết thúc mọi mục) → patch Sol dài quá trần. Nới: ≥1 con số HOẶC điều kiện có nguồn. |
-| 5 | **PASS** | Sol FIX→PASS→PASS · 7.527 chữ · 第七位 ở ~3,3' · D2 = `Cần check kịch bản` · ghi chú lớp 3 cho máy 3: `FlowHandoff_local\jobs\M-teinengo-anaba\ep01-suwatte-anaba\review\GHI_CHU_LOP3_MAY1.md` |
+| 5 | **PASS** | Sol FIX→PASS→PASS · 7.527 chữ · 第七位 ở ~3,3' · D2 = `Chờ kiểm tra kịch bản` · ghi chú lớp 3 cho máy 3: `FlowHandoff_local\jobs\M-teinengo-anaba\ep01-suwatte-anaba\review\GHI_CHU_LOP3_MAY1.md` |
 
 Bài học lane: (1) `lane_rules` là lệnh cho Sol — viết cứng quá là tự tạo vòng lặp; (2) hồ sơ tập cấm số nào thì lane_rules phải nói rõ cấm, kẻo Sol đòi và Opus bịa.
+
+> ⭐ **2026-09-27 — Lane M chuyển sang CÁCH CHẠY CHUNG** (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4b): bỏ vòng `review_may3.share` → BAO_CAO giả → D=Đã sửa → `--nhan`; thay bằng `soat_kb_gptweb.py --xong`. Tin lượt 1 lấy bối cảnh/cấu trúc/luật từ `script.soat_gptweb` trong profile (nội dung y như bản cũ). Lệnh ở mục C bên dưới thay tương ứng.
 
 ## 1e. SOÁT KỊCH BẢN BẰNG CHATGPT WEB THAY MÁY 3 (anh chốt 2026-09-26, TEST riêng Lane M)
 Lane M KHÔNG chờ máy 3: sau LOCK, tab lane tự đưa kịch bản vào **đúng hội thoại anh chỉ định** trong Project ChatGPT
@@ -153,6 +155,14 @@ Công cụ (không tạo chat mới, dùng khoá + selector của `gpt_web_clien
 
 **Bẫy đã trả giá (lượt 8):** bài vượt TRẦN ngân sách 32 chữ → S3 ra việc `NÉN: rút 595–743` (tính về ĐÍCH chứ không về trần) → Opus nén cả bài, **xoá luôn dữ kiện [D7] 二十時間以上** và mọi câu "có ghế" → Sol quay ra bắt "hạng 1 không xác nhận ngồi". Xử: khôi phục bản trước patch (`script.pre_patch1.txt`), nâng `target_minutes` 22→23 (vẫn trong 18–24'), chạy lại chỉ với việc thay thế nguyên văn. **Luật: bản soát bổ sung nội dung thì kiểm độ dài dự kiến < trần TRƯỚC khi chạy; đừng để S3 tự nén.**
 
+**Bẫy chờ GPT treo (vá 2026-09-30, ep04):** hội thoại soát của lane là 1 hội thoại CỐ ĐỊNH dùng cho mọi tập → rất dài → ChatGPT chỉ
+render vài tin cuối, nên `gpt_web_client._wait_answer` (đếm số khối trả lời trên DOM) không bao giờ thấy "tin mới" và treo tới 2 giờ dù GPT
+đã trả lời. Đã thay bằng `pipeline\gptweb_pool.py::_cho_tra_loi` (đọc backend `/backend-api/conversation` tìm trả lời cho ĐÚNG tin mình gửi
++ fallback DOM đổi chữ; đo thật nhận ra sau 22 giây). Nếu vẫn treo: `soat_kb_gptweb.py --doc` chỉ đọc, KHÔNG gửi lại.
+
+**Ep04 `ep04-asa-2jikan` (2026-09-30):** GPT 8,7/10 (hook 9,2) · nhận 10/12 + phản biện thắng 2 (không đổi tiêu đề ở chặng KB — đề xuất
+「朝2〜3時間」 ghi trong `soat_gptweb\BAO_CAO_SUA.md` cho khâu tiêu đề; giữ cảnh kho hàng vì cắt là rơi dưới sàn độ dài) · khoá 6.833 chữ sha 89b90a2374.
+
 **Ep02 `ep02-shuu3-gozen` (2026-09-26, giao máy 2 23:25):** 7.863 chữ, sha 2c30c7fdce · GPT 8,8/10 (hook 9,3), nhận cả 9 góp ý, không cần phản biện ·
 8 vai CAST (+ 大村館長, 榊係長, 佐伯, 送迎運転手, 西野; 柳瀬 dùng lại master ep01) · 171 prompt · hook 4 cảnh gộp theo câu, 4 clip Grok PASS.
 Bẫy mới: (1) Sol bắt mãi 1 lỗi cấp TIÊU ĐỀ (「体もラクだった」 thì quá khứ) sau khi mọi lỗi nội dung đã sửa → khoá tay theo luật lean "FIX nhiều vòng, không REMAKE"
@@ -161,13 +171,15 @@ Bẫy mới: (1) Sol bắt mãi 1 lỗi cấp TIÊU ĐỀ (「体もラクだっ
 (3) Mỗi cảnh hook phải khớp RANH GIỚI CÂU (hook_timeline theo số câu): storyboard cắt giữa câu → gộp lại thành 4–5 cảnh.
 
 ## 2. LỆNH CHẠY — "chạy tập X" = làm HẾT máy 1 rồi giao máy 2 (anh chốt 2026-09-26)
-Không dừng chờ máy 3: kịch bản khoá xong thì tab lane tự soát bằng ChatGPT web (§1e) và đi tiếp tới đóng gói.
+⭐ **30/09 anh chốt — THAY dòng gạch dưới:** khoá xong là DỪNG, giao máy 3/anh soát (bỏ bước C); nhận + làm tiếp theo
+`E:\CLAUDE\YOUTUBE\h2dev\docs\NHAN_KICH_BAN_MAY3.md` rồi từ bước D.
+~~Không dừng chờ máy 3: kịch bản khoá xong thì tab lane tự soát bằng ChatGPT web (§1e) và đi tiếp tới đóng gói.~~
 ```bat
 cd E:\CLAUDE\YOUTUBE\h2dev
 :: A. HỒ SƠ (tay, tab lane) — thư mục assets\M-teinengo-anaba\epNN-<slug>\, ghi cột C sheet ngay
 ::    competitor.txt (transcript video gốc cột K) · series_ctx.txt (SỐ ĐƯỢC PHÉP + [Dn] có URL chính thức + QUY ƯỚC:
 ::    7 việc BẮT BUỘC có tên, KHÁC danh sách các tập trước; tình tiết mới, không lặp tập trước) · title.txt = cột B · promise.txt
-:: B. VIẾT + KHOÁ (Fable viết hook+thân, Opus vá, Sol ×2) — tự dừng, ghi D = "Cần check kịch bản"
+:: B. VIẾT + KHOÁ (Fable viết hook+thân, Opus vá, Sol ×2) — tự dừng, ghi D = "Chờ kiểm tra kịch bản"
 py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug epNN-<slug> --den B3G
 :: C. SOÁT CHATGPT WEB (thay máy 3, §1e): lượt 1 → tab lane thẩm định → (phản biện 1 lượt) → viec_tay.txt
 py -3.13 -X utf8 pipeline\soat_kb_gptweb.py --profile teinengo-anaba --slug epNN-<slug> --lan1
@@ -182,15 +194,20 @@ py -3.13 -X utf8 pipeline\gan_vai.py --profile teinengo-anaba --slug assets\M-te
 :: E. PROMPT ẢNH — dùng --only (--from B5W KHÔNG bỏ B4 = lồng tiếng ở máy 1, SAI ranh giới)
 py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug epNN-<slug> --only B5W
 py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug epNN-<slug> --only B5P
+:: ⛔ DỪNG HẲN Ở ĐÂY trước khi sang F — B4 (lồng giọng) và B5/B5Q (vẽ ảnh THÂN VIDEO hàng loạt) là VIỆC
+::    CỦA MÁY 2, KHÔNG được tự gõ `--den B5Q`/`--den B8`/`--from B4` ở đây dù chỉ để "thử". Sự cố thật
+::    2026-09-27 (ep03): máy 1 lỡ chạy cả B4+B5, tốn ~14.000đ ảnh + credit giọng thật không hoàn được.
+::    `pipeline/make_video.py::_chan_buoc2_o_may1` nay CHẶN CỨNG B4/B5 trên máy 1 cho lane này
+::    (`profile.body.chan_buoc2_may1: true`) — lệnh trên vẫn chạy được vì --only B5W/B5P không chạm B4/B5.
 :: F. HOOK (máy 1 làm trọn hình): storyboard (Fable) → sửa cảnh không thấy mặt → img_prompts_hook.txt (@CAST) + grok_jobs.csv (id clip_NN, 6s)
 py -3.13 -X utf8 pipeline\hook_storyboard.py --profile teinengo-anaba --slug epNN-<slug>
-::    master vai phụ: make_video.Job(...).masters_from_bible() · ảnh hook: gen_images.py --cast-root <tập> --quality low
+::    master vai phụ: make_video.Job(...).masters_from_bible() · ảnh hook: anh_hook.py <tập>\hook (Google Flow Ultra → 9router → gpti2)
 ::    QC ảnh: qc_hook_clip.py --hook <tập>\hook --anh N  ·  hook_timeline.json THEO SỐ CÂU (shots[].cau, sfx[].cau+lech)
 set GROK_SHEET_ID=1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU
-py -3.13 -X utf8 tools\hook_lane_g\grok_1tk.py <tập>\hook 14     :: tự --close profile GPM trong vòng lặp
+py -3.13 -X utf8 tools\hook_lane_g\grok_da_luong.py <tập TUYỆT ĐỐI>\hook   :: đa luồng 5–10, tự --close từng profile GPM
 ::    QC clip: qc_hook_clip.py --clip N (FAIL → chỉnh prompt clip, chạy lại đúng clip đó) · SFX: tools\hook_lane_g\sfx.py
 py -3.13 -X utf8 pipeline\hook_tap_md.py --slug E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\epNN-<slug> --profile teinengo-anaba   :: viết hết <<CẦN NGƯỜI>> rồi --kiem
-:: G. GIAO MÁY 2 (tự ghi D = Done, H = cần ảnh) — đọc lại _BANGIAO.txt
+:: G. GIAO MÁY 2 (tự ghi D = Đã giao máy 2 + K = lệnh máy 2, H = cần ảnh) — đọc lại _BANGIAO.txt
 py -3.13 -X utf8 pipeline\dong_goi_may2.py --job teinengo-anaba epNN-<slug>
 ```
 ⚠️ Máy 2 chạy từ cây bundle `FlowHandoff_local\shared\buoc2_3_tool\` (Syncthing), KHÔNG từ git: đổi profile/code dùng ở máy 2 thì chạy lại
@@ -246,20 +263,23 @@ khoá mặt XUYÊN TẬP bằng 1 ảnh gốc lane (như Sakura Lane L). Vợ c�
 Cấm dùng 高瀬健一 / 恵子 / câu chốt 「盲点だった。」 / tên kênh mẫu. Nét chibi dễ thương, soát lỗi ảnh AI (tóc, tay).
 **K11 — Giọng:** không dùng chung voice_id với lane nào; clone giọng người thật → HỎI ANH trước khi giữ voice_id; mọi tên riêng
 phải nghe thử qua TTS (kênh mẫu bị chê đọc sai 「シンリコさん」); nhạc nền không được "ngớ ngẩn" (bị chê 12 like).
-**K12 — Luật dự án chung vẫn áp:** Claude chỉ làm BƯỚC 1 (không render); hook 20–30s là video sinh + SFX (cổng S1L); máy 3 soát kịch bản
-sau LOCK; xong tập ghi D=`Done` + H=`cần ảnh`; mọi chữ Nhật trong báo cáo kèm dịch tiếng Việt; báo cáo ghi đường dẫn tuyệt đối.
+**K12 — Luật dự án chung vẫn áp:** Claude chỉ làm BƯỚC 1 (không render); hook (dài ≈ hook video gốc, luật 17/10) là video sinh + SFX (cổng S1L); máy 3 soát kịch bản
+sau LOCK; xong tập ghi D=`Đã giao máy 2` + K=lệnh máy 2 + H=`cần ảnh`; mọi chữ Nhật trong báo cáo kèm dịch tiếng Việt; báo cáo ghi đường dẫn tuyệt đối.
 
 
-## 6. HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+## 6. HOOK — LUẬT VIẾT + CÁCH DỰNG CỦA LANE NÀY
+
+> ⛔ Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
+
+> ⛔ 14/10/2026 THẮNG bảng dưới: **KHUÔN WIN** ep05/ep06 (phần hook đã xoá 17/10) — thân bài có nút 38–40% / A/B/C 42–47% / cao trào 55–60% / 第1位 76–80% trả lời nhá. Chi tiết: `E:\CLAUDE\YOUTUBE\h2dev\docs\CONG_THUC_WIN_LANE_M.md`.
+> ⛔ **2026-10-16 anh chốt: kịch bản BUỘC theo CÔNG THỨC WIN** `E:\CLAUDE\YOUTUBE\h2dev\docs\CONG_THUC_WIN_LANE_M.md` — sau B3G, trước khi giao máy 3 chạy `py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\h2dev\pipeline\kiem_cong_thuc_win.py --profile teinengo-anaba --slug <slug>` + chấm phần kiểm bằng mắt; mục ❌ → vá qua viec_tay rồi kiểm lại tới ĐẠT. Thân bài: cấm bịa cảnh bị coi thường; 第7位 (hạng 7) trước phút 4.
 
 | | |
 |---|---|
-| Kiểu mở (`script.hook.patterns`) | H02 (người ngoài nói thẳng 1 câu hạ bệ — kiểu hit 92k) · H01 (cảnh đau có giờ + cơ thể) · H21 (câu thoại vợ lật kỳ vọng) |
-| Câu khoá (`script.hook.closer`) | K09 — hứa 7 mục ngay trong câu chuyện (để vào 第7位 trước phút 4) |
 | Cách dựng hình | `manga_chibi_fixed_ref_grok`: ảnh chibi khoá mặt makoto/harue (+ vai phụ của tập) → clip Grok 6s + SFX |
 | Công tắc | BẬT (`enabled:true`, `visual_kind:video_sinh`, `sfx:true`) |
 
-Runbook dựng: `docs\QUY_TAC_VIDEO_HOOK.md`. Nguyên tắc nội dung: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+Runbook dựng: `docs\QUY_TAC_VIDEO_HOOK.md`.
 
 ## 7. CÒN TREO (nói thẳng)
 - Giọng đã chốt (đa giọng, §0c) nhưng CHƯA calibrate → `make_video` bị hàng rào #1 CHẶN cho tới khi đo.

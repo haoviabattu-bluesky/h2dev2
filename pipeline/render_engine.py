@@ -106,7 +106,7 @@ def run_multi(cmds, dry):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug", required=True, help="đường dẫn thư mục slug (bất kỳ ngách nào)")
-    ap.add_argument("--profile", default="satori-jp-obaa", help="id profile giọng (profiles/<id>.json)")
+    ap.add_argument("--profile", required=True, help="id profile giọng (profiles/<id>.json) — 17/10/2026: lane Satori (satori-jp-obaa) đã BỎ — không còn profile mặc định, phải khai --profile.")
     # Giọng RIÊNG cho video này (override giọng mặc định của profile) — do detect_voice.py phân tích
     # transcript nguồn chọn ra. Trống = dùng giọng trong profile.
     ap.add_argument("--voice-id", default="", help="ép voice_id cho video này (vd elevenlabs_...)")

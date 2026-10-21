@@ -35,7 +35,7 @@ GPM_BANNER = "GPMLogin Global API"
 SHEET_ID = "1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU"
 TAB = "GMAIL"
 CREDS = r"D:\CLAUDE\credentials\google-sheets-key.json"
-GPTI2_KEY = "sk--GUch2kmDgSCGJ2uvFFCb652ULRqyvzTOMT1iP8GlZQ"
+GPTI2_KEY = "sk-YGVr-OzozR6zawnFNDG5DCn_PDiAbNZkj9LVOHaOFcA"
 GPTI2 = "https://gpti2.store"
 AVATAR_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "avatars")
 

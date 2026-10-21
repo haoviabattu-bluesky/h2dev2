@@ -58,7 +58,7 @@ def find_claude():
 def creative_prompt(slug_dir, profile_id, minutes, competitor_name="competitor.txt", phase="all"):
     """Đề bài cho Claude — bám docs/SOP_SATORI_JP.md, dừng TRƯỚC khi tiêu tiền ảnh/giọng loạt lớn.
 
-    phase: "all" (như cũ — brain_toshi.py + CLI cũ) · "script" (chỉ B3 + 70/30 + cổng số + B3Q) ·
+    phase: "all" (như cũ — CLI cũ; brain_toshi.py đã xoá 2026-09-29 cùng Lane A) · "script" (chỉ B3 + 70/30 + cổng số + B3Q) ·
     "assets" (chỉ characters/img_prompts/img_doan/thumb/TIEU_DE_MO_TA trên script ĐÃ CHỐT, cấm sửa script)."""
     S = Path(slug_dir)
     voice_note = ""
@@ -303,6 +303,8 @@ def creative_prompt(slug_dir, profile_id, minutes, competitor_name="competitor.t
         "     {\"video\": \"<slug>\", \"world\": \"<bối cảnh chung>\",\n"
         "      \"characters\": [ {\"name\":\"Chiyo\", \"age\":73, \"gender\":\"F\",\n"
         "                        \"master\":\"_ref/001.png\", \"look\":\"<mô tả ngoại hình tiếng Anh>\"},\n"
+        "     ⛔ AGE LOCK: `look` mở đầu bằng ĐÚNG tuổi script (\"Japanese woman, 73 years old, …\") + dấu hiệu tuổi (% tóc bạc, nếp nhăn). "
+        "CẤM \"73 but looks 55\", \"looks early 50s\", \"youthful\", \"younger-looking\" — pipeline sẽ DỪNG (pipeline/age_lock_guard.py).\n"
         "                       {\"name\":\"Fusako\",\"age\":73,\"gender\":\"F\",\n"
         "                        \"master\":\"_ref_fusako/001.png\",\"look\":\"…\"} ],\n"
         "      \"supporting\": […], \"relationships\": […], \"notes\": \"toán tuổi…\" }\n"
@@ -398,7 +400,7 @@ NEED_BY_PHASE = {
 }
 
 
-def run_creative(slug_dir, profile_id="satori-jp-obaa", minutes=30, on_line=None,
+def run_creative(slug_dir, profile_id=None, minutes=30, on_line=None,
                  permission_mode="acceptEdits", budget_usd=0.0, timeout=2400,
                  competitor_name="competitor.txt", extra_prompt="", phase="all"):
     """Gọi `claude -p` headless viết phần sáng tạo cho slug. Trả (ok, dòng_cuối).
@@ -507,7 +509,7 @@ def _readable(raw):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug", required=True)
-    ap.add_argument("--profile", default="satori-jp-obaa")
+    ap.add_argument("--profile", required=True)   # 17/10/2026: lane Satori (satori-jp-obaa) đã BỎ — không còn profile mặc định, phải khai --profile.
     ap.add_argument("--minutes", type=float, default=30)
     ap.add_argument("--permission-mode", default="acceptEdits")
     ap.add_argument("--budget", type=float, default=0.0)

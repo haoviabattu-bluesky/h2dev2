@@ -22,8 +22,9 @@ def test_validate_ok():
 
 
 def test_validate_bat_loi():
-    assert any("4–7" in e for e in SB.validate(_sb(3), HOOK, 300.0))
-    assert any("20–30" in e for e in SB.validate(_sb(5, 45.0), HOOK, 300.0))
+    # 2026-10-17: khung chung 3–22 shot / 12–120s (độ dài hook theo hook video gốc)
+    assert any("3–22" in e for e in SB.validate(_sb(2), HOOK, 300.0))
+    assert any("12–120" in e for e in SB.validate(_sb(5, 130.0), HOOK, 300.0))
     bad = _sb(); bad["shots"][0]["voice"] = "文なし"
     assert any("voice" in e for e in SB.validate(bad, HOOK, 300.0))
     bad = _sb(); bad["shots"][2]["t0"] = 99

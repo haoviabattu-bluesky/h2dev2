@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "deny": [
+      "Artifact",
+      "Workflow",
+      "ScheduleWakeup",
+      "ReportFindings",
+      "PowerShell"
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": false
+  }
+}

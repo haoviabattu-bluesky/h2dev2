@@ -89,32 +89,37 @@
     "workers": 8,
     "pace": false,
     "fx": "none",
-    "char_rate": 307.8,
+    "char_rate": 309.4,
     "_competitor_rate_note": "Kênh mẫu 268–313 chữ/phút (phụ đề tự động 11 video, đã gồm nghỉ + nhạc). char_rate của mình PHẢI đo bằng tts_voicevox.py nhánh ai33 (mẫu đa giọng) — xem char_rate_from.",
     "char_rate_speed": 1.0,
-    "char_rate_measured_at": "2026-09-24",
-    "char_rate_from": "video thật ep01-shusse-shitakunai"
+    "char_rate_measured_at": "2026-09-26",
+    "char_rate_from": "video thật ep06-fukugyou-kyuuzou"
   },
   "script": {
+    "the_viet": "~/.claude/skills/youtube-kich-ban/market/THE_VIET_INFO.md",
     "skill": "skills/youtube-script/SKILL.md",
     "target_minutes": 18.0,
     "_target_minutes_note": "11 video kênh mẫu: 13,8–22,6', trung vị 18,0' (video 431k view = 22,6').",
     "structure": "shakai_naze6",
-    "structure_block": "video 漫画 GIẢI THÍCH HIỆN TƯỢNG XÃ HỘI qua MỘT câu chuyện hư cấu liền mạch (công ty/gia đình/cửa hàng…), người kể NGÔI 3, có nhân vật xuyên suốt さくら (Sakura, nữ ~25 tuổi) giữ vai NGƯỜI HỎI thay khán giả — vai trong truyện đổi theo tập (nhân viên nhân sự, đồng nghiệp trẻ, cháu gái, khách hàng, hộ lý…). KHÔNG có tiêu đề chương/số thứ tự trong bản đọc. 6 chặng:\n   · HOOK + CÂU HỎI LỚN (≈7%): mở NGAY vào một cảnh/thoại nghịch lý hoặc một con số lật định kiến (không chào, không giới thiệu kênh). Nêu hiện tượng xã hội thật (1–2 số liệu có nguồn trong tư liệu), rồi câu hỏi 「なぜ〜のか。」. Kết hook bằng câu nối 「その答えは、ある〜の物語の中にあった。」 (có thể thêm 「時は少し遡る。」).\n   · MỞ TRUYỆN (≈15%): bối cảnh cụ thể (loại công ty/gia đình, bao nhiêu người), nhân vật trung tâm của tập (người gây ra/chịu hiện tượng) + さくら trong vai của tập. Chi tiết đời thường có hài nhẹ (món ăn, thói quen) để người xem thấy gần gũi.\n   · XUNG ĐỘT LEO THANG (≈33%): cứ mỗi 60–90 giây lời đọc (~300–450 chữ) phải có MỘT sự việc mới làm tình hình nặng hơn. さくら hỏi dồn bằng câu ngắn 「えっ、どういうことですか？」「それって〜じゃないですか？」 để người hiểu chuyện (sếp, người lớn tuổi, chuyên gia…) giải thích.\n   · GIẢI THÍCH BẰNG DỮ LIỆU (≈20%, có thể xen vào giữa xung đột): khi xung đột lên đỉnh, người kể hoặc nhân vật hiểu chuyện đưa 2–3 SỐ LIỆU THẬT (chỉ lấy đúng từ tư liệu, nói rõ ai khảo sát/ước tính và năm) + gọi tên hiện tượng bằng THUẬT NGỮ xã hội/tâm lý học có thật (vd 感情労働, 35歳転職限界説) — để khán giả thấy 'đây là chuyện thật ngoài xã hội, không phải phim'.\n   · HẬU QUẢ / ĐẢO CHIỀU (≈15%): nhân quả rõ ràng — cách làm dựa dẫm/ích kỷ nhận kết cục tự nhiên (thị trường, cơ chế, thời gian), người kiên trì/tự chủ được nhìn nhận. KHÔNG có cảnh trả thù, mắng nhiếc hả hê.\n   · KẾT (≈10%): người kể tổng kết câu trả lời cho câu hỏi なぜ; lời tri ân những người đang lặng lẽ gánh vác xã hội; 1 câu hỏi mở mời khán giả bình luận ý kiến; câu cuối là outro của kênh.\n   LUẬT VIẾT BẮT BUỘC (máy đếm câu để gắn giọng từng vai + vẽ bóng thoại): mỗi câu thoại là MỘT câu riêng chỉ gồm「…」, KHÔNG dính lời dẫn trong cùng câu (cấm「…」と彼は言った). NGƯỜI NÓI PHẢI RÕ: trước mỗi lượt thoại mới (đổi người nói) có câu người kể nêu ai lên tiếng hoặc ai đang ở đó. Câu nội tâm của さくら (một mình nghĩ) viết riêng 1 câu, không ngoặc. MỌI con số về xã hội (%, 倍, 万人, năm khảo sát) chỉ được lấy đúng từ tư liệu; ngoài tư liệu thì nói định tính.",
+    "structure_block": "video 漫画 GIẢI THÍCH HIỆN TƯỢNG XÃ HỘI qua MỘT câu chuyện hư cấu liền mạch (công ty/gia đình/cửa hàng…), người kể NGÔI 3, có nhân vật xuyên suốt さくら (Sakura, nữ ~25 tuổi) giữ vai NGƯỜI HỎI thay khán giả — vai trong truyện đổi theo tập (nhân viên nhân sự, đồng nghiệp trẻ, cháu gái, khách hàng, hộ lý…). KHÔNG có tiêu đề chương/số thứ tự trong bản đọc. 6 chặng:\n   · HOOK: đã KHOÁ TRƯỚC — bám sườn + động cơ chính của hook video gốc (docs/HOOK_CAU_TRUC/L_shakai_no_naze.md). Thân bài nối tiếp hook đã khoá, KHÔNG viết lại/lặp hook.\n   · MỞ TRUYỆN (≈15%): bối cảnh cụ thể (loại công ty/gia đình, bao nhiêu người), nhân vật trung tâm của tập (người gây ra/chịu hiện tượng) + さくら trong vai của tập. Chi tiết đời thường có hài nhẹ (món ăn, thói quen) để người xem thấy gần gũi.\n   · XUNG ĐỘT LEO THANG (≈33%): cứ mỗi 60–90 giây lời đọc (~300–450 chữ) phải có MỘT sự việc mới làm tình hình nặng hơn. さくら hỏi dồn bằng câu ngắn 「えっ、どういうことですか？」「それって〜じゃないですか？」 để người hiểu chuyện (sếp, người lớn tuổi, chuyên gia…) giải thích.\n   · GIẢI THÍCH BẰNG DỮ LIỆU (≈20%, có thể xen vào giữa xung đột): khi xung đột lên đỉnh, người kể hoặc nhân vật hiểu chuyện đưa 2–3 SỐ LIỆU THẬT (chỉ lấy đúng từ tư liệu, nói rõ ai khảo sát/ước tính và năm) + gọi tên hiện tượng bằng THUẬT NGỮ xã hội/tâm lý học có thật (vd 感情労働, 35歳転職限界説) — để khán giả thấy 'đây là chuyện thật ngoài xã hội, không phải phim'.\n   · HẬU QUẢ / ĐẢO CHIỀU (≈15%): nhân quả rõ ràng — cách làm dựa dẫm/ích kỷ nhận kết cục tự nhiên (thị trường, cơ chế, thời gian), người kiên trì/tự chủ được nhìn nhận. KHÔNG có cảnh trả thù, mắng nhiếc hả hê.\n   · KẾT (≈10%): người kể tổng kết câu trả lời cho câu hỏi なぜ; lời tri ân những người đang lặng lẽ gánh vác xã hội; 1 câu hỏi mở mời khán giả bình luận ý kiến; câu cuối là outro của kênh.\n   LUẬT VIẾT BẮT BUỘC (máy đếm câu để gắn giọng từng vai + vẽ bóng thoại): mỗi câu thoại là MỘT câu riêng chỉ gồm「…」, KHÔNG dính lời dẫn trong cùng câu (cấm「…」と彼は言った). NGƯỜI NÓI PHẢI RÕ: trước mỗi lượt thoại mới (đổi người nói) có câu người kể nêu ai lên tiếng hoặc ai đang ở đó. Câu nội tâm của さくら (một mình nghĩ) viết riêng 1 câu, không ngoặc. MỌI con số về xã hội (%, 倍, 万人, năm khảo sát) chỉ được lấy đúng từ tư liệu; ngoài tư liệu thì nói định tính.",
     "mode": "fiction_facts",
     "_mode_note": "Nhân vật + công ty hư cấu; SỐ LIỆU/THUẬT NGỮ xã hội phải có trong series_ctx.txt kèm URL nguồn (tab lane L tự tra ở S1 — anh chốt 2026-09-24). Lane rủi ro bịa số cao nhất.",
     "ctx_label": "TƯ LIỆU SỐ LIỆU XÃ HỘI NHẬT (thống kê/khảo sát/thuật ngữ PHẢI lấy đúng từ đây, kèm nguồn; nhân vật và công ty là hư cấu)",
     "engine": "claude_p",
     "brain_model": "claude-fable-5-1",
+    "_brain_model_note": "2026-10-05 anh chot: S2 + hook viet = Fable 5.1 moi lane (B3R van Opus 5.5, va = Opus 5). Cu 2026-09-29: S2 viet + B3R nghiem thu deu dung Opus 5.5 co dinh (thay Fable 5.1, khong doi qua lai theo quota nua).",
     "patch_model": "claude-opus-5",
-    "final_review_model": "claude-opus-5",
+    "_patch_model_note": "S4 LUON Opus 5 (khac Opus 5.5 o brain_model) - da A/B that 2026-09-22, giu nguyen.",
+    "final_review_model": "claude-opus-5-5",
     "outro_line": "これからも、社会のなぜを物語で解き明かしていきます。チャンネル登録と高評価で、応援していただけると嬉しいです。",
     "_outro_note": "Kênh mẫu lặp 1 câu CTA ở 10/11 video (「これからも社会の「なんで？」を解説する物語を発信していきますので、チャンネル登録と高評価、ぜひよろしくお願いします。」) — mình giữ CƠ CHẾ, đổi câu chữ theo tên kênh 社会のなぜ研究室, không chép nguyên văn. · 2026-09-24 ep01: bỏ ngoặc 「なぜ？」 trong outro — ngoặc giữa câu người kể bị cổng dialogue_own_sentence bắt là 'thoại dính lời dẫn' (ESCALATE S3).",
-    "sol_qc": true,
+    "sol_qc": false,
+    "_sol_qc_note": "2026-09-29 anh chot TAT cho toan bo (khong con lane suc khoe Lane E bat buoc giu lop nay nua). S5 Sol trong lean_script.py se bo qua, khoa PASS thang sau S3.",
     "flow": "lean",
     "sol_pass_need": 2,
     "budget": {
-      "tol": 0.08,
+      "tol": 0.12,
+      "_tol_note": "0,08→0,12 anh chốt 2026-09-27: cho phép tập dài hơn tí khi kịch bản dư chữ, tránh vòng lặp NÉN xoá mất số liệu (ep10).",
       "sections": [
         {
           "label": "フック＋大きな問い（なぜ〜のか）＋「その答えは…物語の中にあった」",
@@ -160,7 +165,9 @@
         7.0,
         14.0
       ],
-      "dialogue_ratio_max": 0.65,
+      "dialogue_ratio_max": 0.4,
+      "dialogue_ratio_min": 0.3,
+      "_dialogue_note": "2026-10-11 anh duyệt: thoại 30–40% (đa giọng). Trước đây trần 0,65 không sàn → ep14–17 ra 13–19%.",
       "require_next_ep_teaser": false,
       "title_len": [
         21,
@@ -175,22 +182,62 @@
       "_gate_note": "ĐO 2026-09-24: title_len 21–49 ký tự kể cả【漫画】, trung vị 27, 10/11 ≤35. Câu trung bình 19–24 chữ (11 transcript) → comma 0,6–2 · 7–14 chữ/nhịp. dialogue_ratio_max 0,65: máy chia cao độ giọng 9uJ → đoạn người kể 74 / Sakura 21 / nam 68 (không phải người kể ≈55%). hook_chars: phần trước câu nối 「答えは」 dài 56–136s × ~290 chữ/phút ≈ 270–650 chữ."
     },
     "hook": {
+      "the_ten": {
+        "bat": true,
+        "kieu": "ho_so",
+        "mau": "#1d3557",
+        "mau_phu": "#c1121f",
+        "vi_tri": "tren_trai",
+        "dur_s": 6.0,
+        "toi_da": 4,
+        "_note": "10/10 anh chốt: nhân vật chính trong hook giới thiệu bằng THẺ TÊN ĐỘNG (tên·tuổi·nghề); 14/10 anh sửa: lời hook ĐƯỢC đọc tên-tuổi song song thẻ — docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md, pipeline/the_ten_hook.py",
+        "zoom": 0.9,
+        "_zoom_note": "18/10 lan 4 (anh chot): (1) BO NEN CA THE - chi nen tung khoi TEXT roi viet text len; (2) the TO GAP DOI so voi 310x144 -> 675x322 goc x 0.9 = ~608x290; (3) van sat mep + khong che mat (nho bo nen nen hop text nho lai, khong con mang giay 727x343)"
+      },
+      "model": "claude-fable-5-1",
       "enabled": true,
-      "patterns": [
-        "H41",
-        "H22",
-        "H26",
-        "H13"
-      ],
-      "closer": "K23",
       "visual": "manga_ai_ref_grok",
       "_visual_note": "Ảnh anime AI khoá mặt bằng master CỦA TẬP (_ref_<id>, Sakura = ảnh gốc của lane qua image.fixed_refs) → clip Grok 6s. Cấm tư liệu thật, cấm clip stock, cấm slide số liệu/chữ trên hình. Mỗi cảnh thấy MẶT + cảm xúc.",
       "visual_kind": "video_sinh",
-      "sfx": true,
-      "_hook_note": "HOOK_LIBRARY (TRENDING-RESEARCH nạp 5 video gốc 2026-09-24): H41 (9uJ in medias res), H22 (YFj thoại nghịch lý), H26 ×2 (HjP, rSH phủ định niềm tin), H13 (Cnc cảnh giao dịch). closer K23 = khẩu hiệu nghi thức dẫn vào thân bài ngay sau câu hỏi — đúng câu 「その答えは…物語の中にあった」 (7/11 video)."
+      "sfx": false,
+      "nhac_nen": true,
+      "giay": [
+        20,
+        105
+      ],
+      "giay_mac_dinh": 80,
+      "_luat_hook_note": "21/10/2026 anh chốt: luật hook DUY NHẤT = bám sát CẤU TRÚC hook của video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn; đổi tên họ/nghề/câu thoại theo tập) — docs/HOOK_CAU_TRUC/00_CHUNG.md. Mọi luật hook khác (động cơ chính, khuôn lane huong_dan_cau_truc, mở bằng thoại, cao trào/kịch tính, câu để ngỏ…) đã BỎ."
     },
     "review_may3": true,
-    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c."
+    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c.",
+    "cung_cam_xuc": true,
+    "_cung_cam_xuc_note": "Anh chốt 2026-09-26: prompt S2 thêm cung cảm xúc 3 nhịp KÍCH (ức chế/giận) → GIẢI TOẢ (hệ quả tự nhiên, không hả hê) → VỊ THA (thương cảm + 1 câu đạo lý ngắn). Bằng chứng: kênh mẫu K/L video gây giận nổ 10–100 lần video nhẹ. Text ở lean_script.CUNG_CAM_XUC. Vắng field = BẬT (lane mới).",
+    "soat": "may3",
+    "_soat_note": "Anh chốt 2026-09-27: soát kịch bản sau B3 MẶC ĐỊNH bằng ChatGPT web (pipeline/soat_kb_gptweb.py, 2 tài khoản qua gptweb_pool.py — mở cổng khi rảnh, nhận xong trả lời ĐÓNG cổng ngay), KHÔNG chép sang máy 3, KHÔNG ghi sheet giữa chừng (D = Done do dong_goi_may2). Muốn dùng máy 3 thì đổi thành \"may3\" khi anh nói.",
+    "soat_gptweb": {
+      "enabled": true,
+      "urls": {
+        "acc1": "https://chatgpt.com/g/g-p-6ab884dfb4ac8191a73268af5a92ac88/c/6ab885d5-77d8-83ec-8b87-f89953897cdb",
+        "acc2": "https://chatgpt.com/g/g-p-6ab73e301bc88191928d889f2105a289/c/6ab8864c-11fc-83ec-a94f-0ebabf24b165"
+      },
+      "_urls_note": "urls.acc1/acc2 = link HỘI THOẠI soát kịch bản trong Project ChatGPT RIÊNG của lane (đã giao vai nhà văn, GPT trả \"Hiểu.\"). projects.<acc> = id + tên Project (tên = publish.sheet_tab, hoặc sheet_tab + \"-script\" khi tài khoản đó đã có Project trùng tên dùng cho tiêu đề/thumbnail của YT-TITLE-RESEARCH). soat_kb_gptweb.py CHẶN link không nằm trong đúng Project / Project gán trùng lane khác; gptweb_pool CHẶN nếu trang nhảy khỏi Project. Gán 2026-09-27: acc1 F/G/K/L = Project \"-script\" em tạo (INSTRUCTIONS + 11 file từ CHATGPT_PROJECTS\\<lane>\\), L acc2 = hội thoại mới (thay \"Nâng cấp trả lời pro\").",
+      "boi_canh": "Khán giả: người Nhật đi làm và người lớn tuổi quan tâm chuyện xã hội. Video anime giải thích MỘT hiện tượng xã hội (なぜ〜のか) qua một câu chuyện hư cấu liền mạch + số liệu thật, người kể ngôi thứ ba, có さくら (Sakura) là người hỏi thay khán giả, đọc bằng NHIỀU GIỌNG, chữ hiện bằng bóng thoại.",
+      "rang_buoc": [
+        "Sakura là người hỏi (「えっ、どういうことですか？」 — ơ, thế nghĩa là sao?), không thành nhân vật chính có cốt truyện riêng.",
+        "Câu hỏi なぜ (vì sao) của tiêu đề phải được trả lời rõ ở phần dữ liệu và phần kết.",
+        "Trước mỗi lượt thoại mới phải có câu người kể nêu rõ ai nói."
+      ],
+      "projects": {
+        "acc1": {
+          "id": "g-p-6ab884dfb4ac8191a73268af5a92ac88",
+          "ten": "L-shakai-no-naze-script"
+        },
+        "acc2": {
+          "id": "g-p-6ab73e301bc88191928d889f2105a289",
+          "ten": "L-shakai-no-naze"
+        }
+      }
+    }
   },
   "script_qc": {
     "lens": "plain",
@@ -207,8 +254,8 @@
   "image": {
     "skill": "skills/youtube-image-prompts/SKILL.md",
     "character_sheet": "Each episode defines its OWN cast in characters.json (id, age, gender, look, ref). Sakura (id 'sakura') is the channel's recurring guide and ALWAYS uses the lane master portrait (image.fixed_refs) — only her outfit changes with her role in the episode. Every other character with a speaking line or appearing in 2+ images has its own locked master (_ref_<id>/001.png). A single image may show AT MOST 3 locked faces (Flow Tool limit). All characters are fictional Japanese adults; never resemble a real public figure.",
-    "style_suffix": "clean modern Japanese anime illustration, semi-realistic proportions, crisp line art, soft cel shading, bright natural light, realistic Japanese adults in everyday Japanese settings, gentle clear colors; keep a calm, low-detail area beside the speaking person where a vertical speech balloon is added later - at most 15% of the frame width, still part of the room (a wall, a window, soft background), NEVER a flat empty panel and NEVER a hard vertical dividing line; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no numbers, no charts, no speech bubbles, no watermark",
-    "_style_suffix_note": "Viết theo khung hình THẬT 5 video gốc (assets/shakai_no_naze/_research/kenh_mau/sheet_*.jpg, mat_*.jpg): anime bán thực, văn phòng/nhà Nhật sáng. Chữ/bóng thoại do MÁY vẽ sau nên ảnh cấm chữ. Cấm chart/số trên hình: kênh gốc có slide số liệu nhưng anh chốt BỎ (AI vẽ số không chuẩn).",
+    "style_suffix": "clean modern Japanese anime illustration in the polished style of a top manga-explainer YouTube channel, semi-realistic adult proportions, SHARP HANDSOME FACIAL STRUCTURE (defined angular jawline, straight nose, narrow expressive eyes, strong eyebrows, healthy warm skin), crisp confident line art, layered soft cel shading with clear rim highlights, VIVID SATURATED COLOR PALETTE with RICH FULL-RANGE CONTRAST: deep clear darks and bright clean highlights in the same frame, glossy specular highlights on wood, glass and metal, strong directional key light; BRIGHT LUMINOUS LIGHTING: warm golden glowing interiors, clean blue-hour exteriors that are still clearly lit, no muddy shadows, no grey haze, no flat washed-out exposure; realistic Japanese adults in fresh, tidy, well-kept Japanese settings, rich clean color grading; keep a calm, low-detail area beside the speaking person where a vertical speech balloon is added later - at most 15% of the frame width, still part of the room (a wall, a window, soft background), NEVER a flat empty panel and NEVER a hard vertical dividing line; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no numbers, no charts, no speech bubbles, no watermark; FACE SKIN TONE IS ALWAYS WARM AND ROSY on every character regardless of the ambient light: cool blue-hour or night lighting must NEVER tint a face grey, pale, sallow or bluish — faces keep a natural healthy pink flush on the cheeks and warm skin, lit by a soft warm key on the face; NO gaunt hollow cheeks, NO sunken dark eye sockets, NO sickly grey complexion, NO corpse-like pallor on anyone",
+    "_style_suffix_note": "SỬA 18/10/2026 (anh nhận xét tập 22 tối/xấu, nhân vật mềm, quán cũ): thêm SHARP HANDSOME FACIAL STRUCTURE + VIVID SATURATED + BRIGHT LUMINOUS, cấm muddy shadows/grey haze. Đo lại: video gốc 1z1jBVSRYNA val=144 sat=115; ep22 cũ val=99 sat=79 → quá tối. Bản cũ lưu ở assets/shakai_no_naze/ep22-izakaya-hitode/_style_suffix_CU_20261018.txt. Vẫn giữ: chữ/bóng thoại do máy vẽ sau, cấm chart/số trên hình.",
     "seconds_per_image": 7.5,
     "_seconds_note": "ĐO THẬT 2026-09-24: 272/250 lần đổi cảnh ở 2 video (trung vị 4,6–4,7s) nhưng 1 ảnh thường dùng lại 1–3 lần với bóng thoại khác → ~162–168 ảnh khác nhau/20–22' ≈ 7,5 s/ảnh.",
     "ref_lock": true,
@@ -260,7 +307,8 @@
     "_note_hook_tu_ghep": "2026-09-25: B8 tự ghép hook THAY HÌNH ngay sau khi trộn SFX (máy 2 khỏi chạy tay). hook_timeline.json máy 1 ghi mốc theo SỐ CÂU (shots[].cau=[a,b], sfx[].cau+lech) — ghep_hook_noi_truoc.neo_lai_theo_cau tính lại giây từ voice_roles.json của giọng thân máy 2 lồng (ai33 không tất định).",
     "_note_chuyen_canh": "Anh chốt 2026-09-24 sau khi xem ep01 (NGOẠI LỆ Lane L với luật cấm zoom 21/09, giống Lane K): chuyển cảnh mờ chồng 0,3s + mỗi cảnh zoom nhẹ 2,5% luân phiên vào/ra (zoom_dir alt), dựng bằng warpAffine dưới-pixel (assemble._warp_clip, đo 0,016 px/khung — không rung).",
     "sfx": {
-      "enabled": true,
+      "enabled": false,
+      "_note_tat_01_10": "01/10/2026 anh CẤM hiệu ứng âm thanh đồ vật mọi lane (chỉ giữ nhạc) → tắt SFX thân video.",
       "vol": 0.35,
       "lech_s": 0.15,
       "min_gap_s": 18,
@@ -283,7 +331,24 @@
         "warm_chime": "a warm gentle positive chime, hopeful, short",
         "office_murmur": "quiet office background murmur of people talking softly, short"
       }
-    }
+    },
+    "subscribe": {
+      "enabled": true,
+      "start_times": [
+        180,
+        -120
+      ],
+      "moc_cua_so": 60,
+      "sub_click_style": "1_click_that",
+      "bell_style": "1_ting",
+      "avatar_path": "assets/avatars/shakai_no_naze.png",
+      "language": "ja",
+      "thanks_text": null,
+      "position": "bottom_center",
+      "enable_sound": true,
+      "has_subtitles": false
+    },
+    "_subscribe_note": "Anh chốt 2026-09-30: phủ nút đăng ký (chỉ lớp phủ, không đổi thời gian) 2 lần/tập, mốc 180s và cuối−120s, chọn lại ±60s theo khoảng nghỉ/chuyển ảnh (pipeline/nut_dang_ky.py, B8n). Chuông 1_ting = bản anh duyệt trên ep01. has_subtitles false: chữ lane L là khung dọc/bóng thoại phía trên, dải giữa đáy trống (soi ep01 giây 181/184/1105/1108)."
   },
   "blocklist": [
     "child",
@@ -321,7 +386,7 @@
       "氷河期世代"
     ],
     "listing_external": true,
-    "title_auto": true,
+    "title_auto": false,
     "_title_auto_note": "2026-09-25 anh BẬT (tập 1 đã chạy TITLE tay xong 24/09: tiêu đề+tags+thumbnail trên sheet dòng 2). Từ tập 2 dong_goi_may2.py --job tự gọi goi_title.py. Mô tả theo khuôn kênh mẫu: 2–3 câu chào cố định + 1–3 số liệu thật + câu hỏi なぜ + hé nguyên nhân + hashtag.",
     "_upload_channel_note": "2026-09-25 anh chốt: đổi CHANEL sang tên TAB (L-shakai-no-naze), áp cho toàn bộ lane cùng lúc."
   },
@@ -344,5 +409,9 @@
     "list_mode": false,
     "_nguon": "11 video 社会のウラガワ UCFWFKb3Yr_1SrAT0kcvwFdw (transcript TRENDING-RESEARCH/data/shakai_no_uragawa): câu nghịch lý/số liệu lật định kiến ở giây 0–15 · câu hỏi なぜ/一体 đầu tiên giây 17–84 (1 video 191) · 「その答えは」 7/11 video ở giây 56–136 · tiêu đề bỏ【漫画】 17–45 ký tự, trung vị 23, 10/11 ≤31."
   },
-  "_note": "Lane L — 社会のなぜ研究室 @shakai-no-naze (UCjy5fWoigvtCfduJDJ3jTbg), mail GMAIL dòng 13, NOTE dòng 9. Clone 社会のウラガワ UCFWFKb3Yr_1SrAT0kcvwFdw. Khuôn kỹ thuật = Lane K (đa giọng + N vai/tập + bóng thoại máy vẽ) nhưng: giọng ai33 (không VOICEVOX), Sakura khoá mặt XUYÊN TẬP (image.fixed_refs), bóng thoại không đuôi, không slide số liệu. Cửa vào: docs/BAT_DAU_LANE/shakai_no_naze.md · SOP: docs/SOP_LANE_L.md · số đo: docs/channel_dna/shakai-no-naze/DO_THUC_TE_2026-09-24.md."
+  "_note": "Lane L — 社会のなぜ研究室 @shakai-no-naze (UCjy5fWoigvtCfduJDJ3jTbg), mail GMAIL dòng 13, NOTE dòng 9. Clone 社会のウラガワ UCFWFKb3Yr_1SrAT0kcvwFdw. Khuôn kỹ thuật = Lane K (đa giọng + N vai/tập + bóng thoại máy vẽ) nhưng: giọng ai33 (không VOICEVOX), Sakura khoá mặt XUYÊN TẬP (image.fixed_refs), bóng thoại không đuôi, không slide số liệu. Cửa vào: docs/BAT_DAU_LANE/shakai_no_naze.md · SOP: docs/SOP_LANE_L.md · số đo: docs/channel_dna/shakai-no-naze/DO_THUC_TE_2026-09-24.md.",
+  "mg": {
+    "_doc": "2026-10-06 anh chốt: số liệu động TRÊN ảnh (skill motion_graphics). 2026-10-07: máy 2 tự sinh + duyệt so_lieu_dong.json (pipeline/so_lieu_dong.py ở bundle) rồi dựng theo shared/motion_graphics/HUONG_DAN_MAY2.md; máy 1 không chạy, dong_goi_may2 không chặn, chỉ ghi mục SỐ LIỆU ĐỘNG vào _BANGIAO.txt",
+    "so_lieu_dong": true
+  }
 }

@@ -1,0 +1,26 @@
+{
+ "file": "subscribe_1080p_ja_59c98bb68a89.webm",
+ "format": "webm",
+ "canvas": [
+  858,
+  330
+ ],
+ "card_box": [
+  35,
+  44,
+  730,
+  146
+ ],
+ "fps": "30",
+ "duration": 6.0,
+ "frames": 180,
+ "font": "C:\\Windows\\Fonts\\YuGothB.ttc",
+ "texts": [
+  "チャンネル登録",
+  "登録済み",
+  "ありがとうございます"
+ ],
+ "key": "59c98bb68a8995ae83b667cab01a44cfd6e118d9f0a09e3ab38b4949893eb6eb",
+ "render_seconds": 15.7,
+ "border_alpha_max": 0
+}

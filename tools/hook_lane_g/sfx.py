@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Sinh hiệu ứng âm thanh hook qua ai33 (duration AUTO — memory sfx-ai33-mac-dinh-auto).
 
-    py -3.13 sfx.py <thư mục hook> <file.mp3>|<mô tả tiếng Anh>|<loop 0/1> [...]
+    py -3.13 sfx.py <thư mục hook> <file.mp3>|<mô tả tiếng Anh>|<loop 0/1>[|<giây>] [...]
+01/10/2026: NHẠC NỀN phải ghi <giây> (vd 22) — AUTO trả nhạc chỉ 1,54s (đo thật ep07 Lane L + ep02 Lane J), lặp nghe giật.
 """
 import sys, time, requests
 from pathlib import Path
@@ -11,11 +12,11 @@ BASE = "https://api.openspeaker.ai"
 OUT = Path(sys.argv[1]) / "sfx"; OUT.mkdir(parents=True, exist_ok=True)
 H = {"xi-api-key": KEY}
 for arg in sys.argv[2:]:
-    fn, txt, loop = arg.split("|")
+    fn, txt, loop, *dur = arg.split("|")
     if (OUT / fn).exists():
         continue
     r = requests.post(f"{BASE}/v1/task/sound-effect", headers=H,
-                      json={"text": txt, "prompt_influence": 0.3, "loop": loop == "1"}, timeout=60).json()
+                      json={"text": txt, "prompt_influence": 0.3, "loop": loop == "1", **({"duration_seconds": float(dur[0])} if dur else {})}, timeout=60).json()
     tid = r.get("task_id"); assert tid, r
     for _ in range(60):
         time.sleep(3)

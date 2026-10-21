@@ -215,7 +215,7 @@ ep03–ep10 chạy trong ~2h (2–3 tập song song). Bảng benchmark + 7 vá t
 chạy lại `--den B3G`; khi bản viết đầu lệch hẳn tiêu đề thì sửa `series_ctx.txt` (đổi "gợi ý" → "BẮT BUỘC") + đổi tên file cũ `_lan1_*`
 + xoá `B3` trong state.json → viết lại từ đầu (ep05, ep06). Phạm vi vẫn CHỈ kịch bản — B4 giọng/B5W prompt ảnh chưa chạy tập nào.
 
-⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+⚠️ Hook bắt buộc khoá trước S2 (dài ≈ hook video gốc). Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
 
 ## 2. LỆNH CHẠY (Giai đoạn 3 — 1 tập anh chỉ định)
 
@@ -228,6 +228,12 @@ py -3.13 -X utf8 retrieve_videos.py --dna-dir ..\docs\channel_dna\rougo-money-st
 ::    → series_ctx.txt = TƯ LIỆU THẬT có nguồn (địa điểm/giá/thông tin Nhật) — tự tra WebSearch, ghi URL
 :: 2) chạy tới HẾT bước 1 rồi DỪNG
 py -3.13 -X utf8 make_video.py --profile teinengo-tanoshimi --slug ep01-asa-shukan --den B3G
+```
+> ⛔ **2026-09-27 — SOÁT BẰNG CHATGPT WEB (mặc định, thay máy 3):** lệnh trên tự DỪNG sau khi khoá và in 3 lệnh `soat_kb_gptweb.py --lan1` → thẩm định/phản biện (cổng giữ mở) → `--chot` → viec_tay → `--xong` (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4b). Đoạn máy 3 dưới đây TẠM ẨN.
+> (cũ, tạm ẩn) ⛔ **2026-09-26 — lệnh trên giờ TỰ DỪNG sau khi khoá kịch bản** và gửi máy 3 soát (`FlowHandoff_local\jobs\G-teinengo-tanoshimi\<slug>\review\`,
+> cột D = `Chờ kiểm tra kịch bản`). Chờ anh báo D = `Đã sửa kịch bản` → `py -3.13 -X utf8 pipeline\review_may3.py --nhan --profile teinengo-tanoshimi --slug <slug>`
+> rồi mới đi tiếp B5W/hook/`dong_goi_may2`. Chi tiết: `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §4c.
+```
 ::    (--den B3G = PHẠM VI HIỆN TẠI §1c: dừng sau nghiệm thu cuối + đo lại gate số; bỏ --den khi anh mở rộng sang giọng/prompt ảnh)
 ```
 Bước 1 phải để lại trong thư mục tập: `script.txt` (+gate) · `characters.json` · `img_prompts.txt` ·
@@ -281,19 +287,18 @@ QC lớp 2 bằng `qc_thumbnail_sol.py` (form `profile.thumbnail_qc` đã khai).
   nhánh đó trước, nó viết cho số chế độ 年金, không phải giá vé/địa danh.
 - 8 video còn lại của kênh mẫu (<40k, gồm 5 MISS) chưa qua K2 — chỉ cần nếu muốn học pattern THUA.
 
-## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+## HOOK — LUẬT VIẾT + CÁCH DỰNG CỦA LANE NÀY
 
-> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+> Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
+> (Kiểu mở `script.hook.patterns` / câu khoá `script.hook.closer` / độ dài 20–30 giây cũ không còn là luật viết.)
 
 | | |
 |---|---|
-| Kiểu mở (`script.hook.patterns`) | H30 H34 |
-| Câu khoá (`script.hook.closer`) | K03 |
 | Cách dựng hình (`script.hook.visual`) | `manga_ai_ref` |
 | Nguồn hình | manga AI, REF-LOCK cùng bộ nhân vật với thân video |
 | Công tắc (`script.hook.enabled`) | đang TẮT |
 
 Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
-cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+cách dựng của mọi lane ở §5b.
 
 Viết hook: `py -3.13 pipeline\hook_stage.py --profile teinengo-tanoshimi --slug <tập> --mode repair`

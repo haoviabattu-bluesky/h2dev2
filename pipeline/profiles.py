@@ -183,7 +183,9 @@ def char_rate_at(prof, speed=None):
     r = char_rate(prof)
     # `ep_speed` do make_video gắn vào BẢN SAO hồ sơ của tập; nhờ vậy mọi chỗ gọi target_chars()
     # tự lấy đúng tốc độ của tập mà không phải sửa từng lời gọi.
-    speed = speed or (prof.get("voice", {}) or {}).get("ep_speed")
+    # 2026-10-01: lane đổi voice.speed (vd kênh người già 0.95→0.90) mà giữ char_rate đo ở tốc độ cũ → cũng quy đổi.
+    v = prof.get("voice", {}) or {}
+    speed = speed or v.get("ep_speed") or v.get("speed")
     if not speed:
         return r
     goc = char_rate_speed(prof)

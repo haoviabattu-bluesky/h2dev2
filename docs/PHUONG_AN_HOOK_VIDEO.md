@@ -1,5 +1,9 @@
 # PHƯƠNG ÁN HOOK 20–30 GIÂY ĐẦU — ÁP DỤNG MỌI TẬP, MỌI LANE
 
+> ⛔ **17/10/2026 — phần LUẬT VIẾT hook trong file này (4 nhịp, 20–30 giây, patterns/closer HOOK_LIBRARY…) đã XOÁ.**
+> Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`.
+> File này chỉ còn giá trị lịch sử thiết kế (artifact, cổng khoá, giao bước 3).
+
 > Trạng thái: **ĐÃ DUYỆT, ĐÃ TRIỂN KHAI** (2026-09-23) — xem plan `docs/superpowers/plans/2026-09-23-hook-video.md`
 > (code + cổng QC + CLI + spec bước 3 + tài liệu §2b/router/SOP đã xong).
 > Nguồn: `E:\CLAUDE\YOUTUBE\h2dev\HOOK_VIDEO_20_30S_GOOGLE_FLOW_SOP.md` (SOP anh đưa) + 3 quyết định anh chốt

@@ -30,6 +30,7 @@
     "char_rate_from": "video thật ep01-asa-shukan"
   },
   "script": {
+    "the_viet": "~/.claude/skills/youtube-kich-ban/market/THE_VIET_LIST.md",
     "skill": "skills/youtube-script/SKILL.md",
     "target_minutes": 20.0,
     "_target_note": "Kênh mẫu 18,5–28 phút (8 video top: median ~22'). Handoff §12 khuyên 18–25'. Chọn 20' cho tập đầu, tăng dần theo phản hồi.",
@@ -50,12 +51,12 @@
     "_engine_note": "Giống Lane E (anh chốt 2026-09-17 mô hình 'Claude viết, Gemini chấm'): PASS 0 + PASS 1 qua claude -p (claude_p_bridge.py); nén/hội thoại/phẩy + QC B3Q/B3F vẫn Gemini.",
     "brain_model": "claude-fable-5-1",
     "patch_model": "claude-opus-5",
-    "_patch_model_note": "Anh chốt 2026-09-22: S4 (patch tại chỗ theo Sol/máy, lean_script.patch) dùng Opus 5 CỐ ĐỊNH — Fable chỉ VIẾT (S2). Căn cứ: A/B replay 9 lượt patch thật Lane F/G (harness pipeline/bench_patch_model.py): Sol PASS 7/9 với Opus, 2 FIX ở ep10 mà bản Fable ĐÃ PASS chấm lại cũng FIX (Sol không tất định); số câu đổi ngoài phạm vi Sol trích Opus ≈ Fable. Khi quota Fable về: đổi brain_model/final_review_model lại claude-fable-5-1, GIỮ patch_model=claude-opus-5.",
-    "final_review_model": "claude-opus-5",
-    "_brain_model_note": "2026-09-21 anh chốt: Fable HẾT QUOTA → mọi lượt claude -p (viết/patch kịch bản lean, prompt_doan B5W) dùng Opus 5 (`claude-opus-5`, verify `claude -p --model claude-opus-5` trả 'OK Opus 5'). Lịch sử: Anh chốt 2026-09-20: ưu tiên Fable 5.1 (có trong gói) viết kịch bản (PASS 0 + PASS 1 + sửa FIX của B3S) VÀ nghiệm thu cuối (bước B3R mới, sau B3S). A/B thật cùng prompt Hồi 1+2: Fable 70s/1.380 chữ/neo 6,5 ✓ vs Opus 5 68s/1.279 chữ/neo 4,7 ✗ — cả 2 qua gate nhịp; Fable giàu chi tiết neo hơn, câu ngắn kịch hơn. BẮT BUỘC claude CLI ≥2.1.251 — claude_p_bridge.find_claude() tự chọn binary mới nhất (bản npm 2.1.145 trên PATH không có Fable và alias opus của nó = Opus 4.7). B3S (GPT-5.6-sol) VẪN GIỮ làm lớp khác hãng; B3R cùng họ với model viết nên chỉ là lớp cuối, không thay B3S. 2026-09-23 ĐỔI LẠI brain_model=claude-fable-5-1 (chốt của việc nối kho hook — xem báo cáo task-kho-hook); patch_model GIỮ NGUYÊN claude-opus-5.",
+    "_patch_model_note": "S4 (patch tại chỗ theo Sol/máy, lean_script.patch) dùng Opus 5 CỐ ĐỊNH (khác Opus 5.5 ở brain_model) — đã A/B thật 2026-09-22 (9 lượt patch replay, Sol PASS 7/9, 2 FIX do Sol không tất định), giữ nguyên.",
+    "final_review_model": "claude-opus-5-5",
+    "_brain_model_note": "2026-10-05 anh chốt: S2 + hook viết = Fable 5.1 mọi lane (B3R vẫn Opus 5.5, vá = Opus 5). Cũ 2026-09-29: S2 viết + B3R nghiệm thu đều dùng Opus 5.5 cố định (thay Fable 5.1, không đổi qua lại theo quota nữa).\n⚠️ LỊCH SỬ ĐÁNG LƯU Ý (chưa test lại với Opus 5.5 — model MỚI KHÁC Opus 5 cũ): A/B thật 2026-09-20 cùng prompt Hồi 1+2 cho thấy Opus 5 (bản CŨ) THUA Fable ở mật độ neo/số liệu (Fable 70s/1.380 chữ/neo 6,5 ✓ vs Opus 5 68s/1.279 chữ/neo 4,7 ✗ — cả 2 qua gate nhịp nhưng Opus 5 ít chi tiết neo hơn). Chưa rõ Opus 5.5 có khắc phục nhược điểm này không — theo dõi neo/1000 chữ của vài tập đầu sau khi đổi, nếu tụt dưới ngưỡng thì báo lại để xét quay lại Fable cho riêng lane này.",
     "outro_line": "ご視聴いただきありがとうございました。いいねとコメントもお待ちしています。",
     "_outro_note": "Xuất hiện nguyên văn ở cuối 8/8 video kênh mẫu (CHANNEL_DNA §CTA patterns). Dùng y nguyên — đây là câu chào chung, không phải câu biểu tượng riêng.",
-    "sol_qc": true,
+    "sol_qc": false,
     "_sol_qc_note": "Bật B3S (GPT-5.6-sol độc lập) như Lane E — lane mới, chưa có tập nào để tin B3Q một mình. Tắt sau khi ≥5 tập PASS ổn định nếu thấy dư.",
     "gate": {
       "comma_per_sentence": [
@@ -93,21 +94,56 @@
       "_gate_note": "ĐO 2026-09-20 trên 8 transcript thật kênh mẫu (docs/channel_dna/rougo-money-story/_raw/transcripts.json, 40k–176k view) + 3 bản có timestamp (laneG_from_research/data/transcripts_okane.json). ĐO THẬT đáng tin: title_len 33–45 ký tự trên 7 HIT (video MISS 986v dài 52) → [33,50]; hook_chars = số chữ TRƯỚC marker mục 1 (1つ目/第5位) = 1365–2092 ở 6/8 video (1 outlier 4105, 2 video không có marker) → [1200,2300], tức Hồi 1+2 chiếm 19–29% kịch bản; hook_anchor: video TOP 176k chỉ 7,6 neo/1000 (manga story không dày số liệu) → ngưỡng 6,0, KHÔNG dùng 18 của toshi; chữ/câu 17–22 (ASR có 。 đáng tin). HIỆU CHỈNH (ASR gần như không có 、: đo thô 0,04–0,18 phẩy/câu, không tin được): comma_per_sentence [0.5,2.5] + chars_per_breath [7,18] suy từ câu ngắn 17–22 chữ có 0–2 phẩy; dialogue_ratio_max 0.40 ước từ 20–36% câu mang đuôi hội thoại ở 3 transcript (ASR không có 「」 nên không đo thẳng). list_item_count 5 (4/7 HIT là 5選, 3/7 là 7選 — đổi 7 theo tập nếu cần); list_order auto: kênh mẫu dùng 1つ目 cho THÓI QUEN (7選 老けない/疲労回復/生き方) và 第5位→第1位 cho XẾP HẠNG địa điểm (神社/温泉地/暇つぶし). CẦN ĐO LẠI comma/breath/dialogue bằng B3Q sau kịch bản đầu tiên."
     },
     "hook": {
+      "the_ten": {
+        "bat": true,
+        "kieu": "giay_note",
+        "mau": "#ffe680",
+        "mau_phu": "#d6336c",
+        "vi_tri": "tren_trai",
+        "dur_s": 6.0,
+        "toi_da": 4,
+        "_note": "10/10 anh chốt: nhân vật chính trong hook giới thiệu bằng THẺ TÊN ĐỘNG (tên·tuổi·nghề); 14/10 anh sửa: lời hook ĐƯỢC đọc tên-tuổi song song thẻ — docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md, pipeline/the_ten_hook.py"
+      },
+      "model": "claude-fable-5-1",
       "enabled": true,
-      "patterns": [
-        "H30",
-        "H34"
-      ],
-      "closer": "K03",
       "visual": "manga_ai_ref",
       "_visual_note": "Manga AI, REF-LOCK nhân vật chính trong tập, cùng bộ nhân vật với thân video. CHƯA CHẠY THẬT.",
       "_enabled_note": "Bật 2026-09-24. Luật 'hook 20–30s bắt buộc mọi tập' anh chốt 2026-09-23 nhưng công tắc mặc định TẮT (hook_stage.MAC_DINH) nên lane này chưa ai bật — đo thật 24/09: chỉ 3/6 lane đang bật. Hook chỉ áp cho tập VIẾT MỚI (lean_script.se_viet_moi), tập đã khoá script không bị đụng; tập đã dựng muốn thêm hook thì dùng `hook_stage.py --mode repair`.",
-      "sfx": true,
+      "sfx": false,
+      "nhac_nen": true,
       "_sfx_note": "Anh chốt 2026-09-24: hiệu ứng âm thanh trong hook là BẮT BUỘC (trước đây coi là phụ hoạ). Sinh bằng ai33 `POST /v1/task/sound-effect`, để `duration_seconds` AUTO — xem memory sfx-ai33-mac-dinh-auto (cách gọi không đổi, chỉ nâng mức bắt buộc).",
-      "visual_kind": "video_sinh"
+      "visual_kind": "video_sinh",
+      "_luat_hook_note": "21/10/2026 anh chốt: luật hook DUY NHẤT = bám sát CẤU TRÚC hook của video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn; đổi tên họ/nghề/câu thoại theo tập) — docs/HOOK_CAU_TRUC/00_CHUNG.md. Mọi luật hook khác (động cơ chính, khuôn lane huong_dan_cau_truc, mở bằng thoại, cao trào/kịch tính, câu để ngỏ…) đã BỎ."
     },
     "review_may3": true,
-    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c."
+    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c.",
+    "cung_cam_xuc": true,
+    "_cung_cam_xuc_note": "Anh chốt 2026-09-26: prompt S2 thêm cung cảm xúc 3 nhịp KÍCH (ức chế/giận) → GIẢI TOẢ (hệ quả tự nhiên, không hả hê) → VỊ THA (thương cảm + 1 câu đạo lý ngắn). Bằng chứng: kênh mẫu K/L video gây giận nổ 10–100 lần video nhẹ. Text ở lean_script.CUNG_CAM_XUC. Vắng field = BẬT (lane mới).",
+    "soat": "may3",
+    "_soat_note": "Anh chốt 2026-09-27: soát kịch bản sau B3 MẶC ĐỊNH bằng ChatGPT web (pipeline/soat_kb_gptweb.py, 2 tài khoản qua gptweb_pool.py — mở cổng khi rảnh, nhận xong trả lời ĐÓNG cổng ngay), KHÔNG chép sang máy 3, KHÔNG ghi sheet giữa chừng (D = Done do dong_goi_may2). Muốn dùng máy 3 thì đổi thành \"may3\" khi anh nói.",
+    "soat_gptweb": {
+      "enabled": true,
+      "urls": {
+        "acc1": "https://chatgpt.com/g/g-p-6ab884b485188191aab2f68b38e916b8/c/6ab8856e-234c-83ec-a1b0-2c777af0e795",
+        "acc2": "https://chatgpt.com/g/g-p-6ab73f052f00819187aff62cc65dd72a/c/6ab87fe3-c540-83ec-8675-66fc0ad1ccfe"
+      },
+      "_urls_note": "urls.acc1/acc2 = link HỘI THOẠI soát kịch bản trong Project ChatGPT RIÊNG của lane (đã giao vai nhà văn, GPT trả \"Hiểu.\"). projects.<acc> = id + tên Project (tên = publish.sheet_tab, hoặc sheet_tab + \"-script\" khi tài khoản đó đã có Project trùng tên dùng cho tiêu đề/thumbnail của YT-TITLE-RESEARCH). soat_kb_gptweb.py CHẶN link không nằm trong đúng Project / Project gán trùng lane khác; gptweb_pool CHẶN nếu trang nhảy khỏi Project. Gán 2026-09-27: acc1 F/G/K/L = Project \"-script\" em tạo (INSTRUCTIONS + 11 file từ CHATGPT_PROJECTS\\<lane>\\), L acc2 = hội thoại mới (thay \"Nâng cấp trả lời pro\").",
+      "boi_canh": "Khán giả: người Nhật 60+ đã nghỉ hưu, muốn sống vui mà ít tốn tiền, xem trên điện thoại. Video manga kể chuyện ngôi thứ nhất「俺」, có người dẫn đường, dạng danh sách N mục (N選), mục cuối là cú lật tư duy hướng nội.",
+      "rang_buoc": [
+        "Giữ đủ số mục và thứ tự đếm như bản đang có; mỗi mục là một cảnh nhân vật tự thử, có đối thoại.",
+        "Tên địa điểm/giá vé/chi phí chỉ lấy từ tư liệu; các tiêu đề kiểu 「0円」 (0 yên) là quy ước của kênh."
+      ],
+      "projects": {
+        "acc1": {
+          "id": "g-p-6ab884b485188191aab2f68b38e916b8",
+          "ten": "G-teinengo-tanoshimi-script"
+        },
+        "acc2": {
+          "id": "g-p-6ab73f052f00819187aff62cc65dd72a",
+          "ten": "G-teinengo-tanoshimi"
+        }
+      }
+    }
   },
   "image": {
     "skill": "skills/youtube-image-prompts/SKILL.md",
@@ -182,7 +218,25 @@
     "qc_sample": 10,
     "sync": "anchors",
     "_sync_note": "C3: B8 chạy sinh_neo.py (img_doan.txt + voice.srt → anchors.txt) rồi assemble --anchors — ảnh hiện đúng câu (satori). Không sinh được neo = DỪNG, không âm thầm chia đều.",
-    "_burn_subs_note": "Anh chốt 2026-09-21: video Lane G PHẢI cháy phụ đề tiếng Nhật vào hình (khác mặc định dự án). B8 assemble --srt --burn-sub --font Yu Gothic; phude.srt vẫn giao kèm."
+    "_burn_subs_note": "Anh chốt 2026-09-21: video Lane G PHẢI cháy phụ đề tiếng Nhật vào hình (khác mặc định dự án). B8 assemble --srt --burn-sub --font Yu Gothic; phude.srt vẫn giao kèm.",
+    "subscribe": {
+      "enabled": true,
+      "start_times": [
+        180,
+        -120
+      ],
+      "moc_cua_so": 60,
+      "sub_click_style": "1_click_that",
+      "bell_style": "3_hai_not",
+      "avatar_path": "assets/avatars/teinengo-tanoshimi.png",
+      "language": "ja",
+      "thanks_text": null,
+      "position": "bottom_center",
+      "enable_sound": true,
+      "has_subtitles": false,
+      "bottom_margin_ratio": 0.012
+    },
+    "_subscribe_note": "Anh chốt 2026-09-30: phủ nút đăng ký (chỉ lớp phủ, không đổi thời gian) 2 lần/tập, mốc 180s và cuối−120s, chọn lại ±60s theo khoảng nghỉ/chuyển ảnh/tránh bóng thoại (pipeline/nut_dang_ky.py, B8n). Mỗi lane 1 tiếng chuông riêng (so_bells.py). Chuông 3_hai_not (ding-dong vui). Soi ep01: phụ đề ngang cháy ngay TRÊN thẻ → hạ thẻ sát đáy (bottom_margin_ratio 0.012) thay vì has_subtitles (đẩy lên sẽ che mặt nhân vật)."
   },
   "blocklist": [
     "child",
@@ -222,7 +276,7 @@
     ],
     "listing_external": true,
     "_listing_external_note": "C4: tiêu đề/mô tả/thumbnail do DỰ ÁN KHÁC lo (anh chốt 2026-09-20) → make_video bỏ B7/B9; B10 không kiểm ảnh bìa/gói đăng; B11 giao final.mp4 + phude.srt + review-vi.mp4.",
-    "title_auto": true,
+    "title_auto": false,
     "_title_auto_note": "2026-09-24: bat tu dong goi YT-TITLE-RESEARCH sau khi giao may 2 (goi_title.py --bat). Tat: --tat teinengo-tanoshimi"
   },
   "_note": "Lane G — mở 2026-09-20. Nghiên cứu: TRENDING-RESEARCH (FlowHandoff_local/results/laneG_from_research/, anh duyệt 2026-09-13) + Channel Analyzer K1+K2 8 video (docs/channel_dna/rougo-money-story/, QC DNA 11/11). KHÔNG khai `research` (không nhận hàng SPACE_RESEARCH). Kênh thật 定年後の楽しみ方 @teinengo-tanoshimi (mail GMAIL dòng 8, cobbytheona159@gmail.com), branding assets/teinengo-tanoshimi/branding/KENH.json. LUẬT CỨNG (handoff §3): chủ đề CỤ THỂ N選 + hành động/địa điểm + lợi ích, CẤM trừu tượng (年金受給/人生/育ち chết 986v–3k); GIỮ HƯỚNG VUI/RẺ (kịch tính tiền mất = Lane F); CTA comment giữa video; địa điểm/giá có nguồn. Cửa vào: docs/BAT_DAU_LANE/teinengo-tanoshimi.md · SOP: docs/SOP_LANE_G.md.",

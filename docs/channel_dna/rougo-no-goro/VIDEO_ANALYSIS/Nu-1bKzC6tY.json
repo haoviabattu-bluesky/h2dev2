@@ -1,0 +1,131 @@
+{
+ "video_id": "Nu-1bKzC6tY",
+ "title": "【漫画】熟年離婚で自由を手にした65歳、5年後に直面した年金と孤独の現実とは？",
+ "view_count": 177794,
+ "duration_min": 23.3,
+ "days": 93,
+ "vpd": 1911.8,
+ "topics": [
+  "熟年離婚",
+  "年金分割",
+  "定年後の孤独",
+  "居場所",
+  "市民農園",
+  "自立"
+ ],
+ "hook_type": "Mở bằng CẢNH + THOẠI (cold open): nam chính ký đơn ly hôn, đối đáp ngắn lạnh lùng với vợ; ngay sau đó tự giới thiệu ngôi 1 「俺は鈴木孝志」(tôi là Suzuki Takashi) + nhảy vọt 5 năm sau đặt câu hỏi 'tự do đổi lấy gì'. Ngôi kể: 俺 (tôi, nam).",
+ "hook_45s": "離婚届けの夫のに自分の名前を書いた。たった3文字で40年続いた結婚が終わった。これでいいのね。ああ、お互いこれからは好きに行きよう。あなたは昔からそう自分で決めて自分で先に行く。なんだそれは?いいえ、なんでもない。お元気で。俺は鈴木孝志。あの時65歳。長く務めた銀行を丁年で去り、その半年後に自分から妻と別れた。やっと自由[音楽]になれる。そう本気で思っていた。あれから[音楽]5年、同じ団地に住む昔の同僚夫婦を見るたび、俺は考える。あの日手にした自由と引き換えに俺が本当に失っていたもの[音楽]は何",
+ "hook_4_cau_dau": [
+  "離婚届けの夫のに自分の名前を書いた。(Tôi viết tên mình vào ô người chồng trên đơn ly hôn.)",
+  "たった3文字で40年続いた結婚が終わった。(Chỉ 3 chữ mà cuộc hôn nhân 40 năm chấm dứt.)",
+  "これでいいのね。(Vậy là được rồi nhỉ.) — thoại vợ",
+  "ああ、お互いこれからは好きに行きよう。(Ừ, từ giờ mỗi người cứ sống theo ý mình.) — thoại chồng"
+ ],
+ "structure": "Cold open ký đơn ly hôn + tự giới thiệu + câu hỏi 5 năm sau (0–4%) -> Hồi tưởng lý do ly hôn: về hưu, vợ chồng hết chuyện để nói, anh chọn trốn chạy (4–10%) -> Tự do hả hê ngắn (10–11%) -> Cú sốc tiền: thông báo lương hưu 19万→13万, ra văn phòng lương hưu nghe giải thích 年金分割 (chia lương hưu khi ly hôn) (11–22%) -> Cô đơn năm 1: siêu thị, đồng nghiệp từ chối, con trai gọi, bỏ về trước cửa trung tâm văn hoá (22–31%) -> Đối chứng: vợ chồng đồng nghiệp Takeda dìu nhau đi viện → ghen tị, rồi thấy Takeda cãi vợ → 'vợ chồng chưa chắc hạnh phúc' (31–44%) -> Gặp 五郎さん (ông Gorō) ở vườn rau thị dân, ẩn dụ 'cây trong chậu vs cây hạ thổ' (44–55%) -> Tự vỡ lẽ: không phải vì ly hôn mà vì không tự bén rễ (55–59%) -> Hành động: thuê ô đất, thu hoạch cà chua, kết nối cộng đồng, tư vấn tiền bạc tình nguyện 2 lần/tháng (59–73%) -> Vợ cũ gọi điện: 'giọng anh đổi rồi', nói chuyện hoà nhã (73–79%) -> Cảm ơn Gorō, 'một mình nhưng không cô đơn' (79–84%) -> Vợ chồng Takeda ghé vườn, tổng kết 3 lối sống; gửi cà chua cho con, hẹn cháu tới (84–96%) -> Người dẫn ngôi 3 tổng kết + câu hỏi khán giả + CTA đăng ký (96–100%)",
+ "emotional_beats": [
+  "Lạnh — cắt đứt 40 năm bằng 3 chữ, không nước mắt",
+  "Hả hê giả — tự quyết kênh TV, giờ ăn",
+  "Sốc tiền — lương hưu tụt ~6万/tháng, 'bản đồ tuổi già vẽ trên giấy mỏng'",
+  "Cô đơn trần trụi — cả ngày chỉ nói 1 câu với thu ngân, đồng nghiệp không gọi lại",
+  "Ghen tị / hối hận — thấy vợ chồng Takeda dìu nhau, 'thứ mình vứt bỏ đều ở đó'",
+  "Lật nhận thức — Takeda cũng cãi vợ, vấn đề không nằm ở ly hôn",
+  "Giác ngộ nhờ ẩn dụ chậu cây của Gorō → hành động, vui như trẻ con khi thu hoạch",
+  "Hoà giải ấm — vợ cũ khen giọng đổi, con trai cảm ơn, 'một mình ≠ cô đơn'"
+ ],
+ "title_formula": "【漫画】{quyết định tuổi già gây tranh cãi}で{thứ tưởng được}を手にした{tuổi}歳、{N}年後に直面した{nỗi sợ tiền}と{nỗi sợ cảm xúc}の現実とは？ (【Manga】 [tuổi] đạt được [X] nhờ [quyết định], N năm sau đối mặt thực tế [tiền] và [cô đơn] là gì?)",
+ "story_skeleton": {
+  "nhan_vat": [
+   {
+    "ten": "鈴木孝志 (Suzuki Takashi)",
+    "tuoi": "65 lúc ly hôn → 70 ở hiện tại",
+    "nghe_cu": "nhân viên ngân hàng 38 năm, lên tới 支店長 (trưởng chi nhánh)",
+    "vai": "nhân vật chính, người kể ngôi 1 俺"
+   },
+   {
+    "ten": "vợ cũ — tên nghe không rõ do phụ đề (「かエ」「風」「かえ」「数え」, có thể là Kae)",
+    "tuoi": "không nêu (kết hôn 40 năm)",
+    "nghe_cu": "nội trợ toàn thời gian lâu năm",
+    "vai": "bị bỏ lại nhưng sau ly hôn sống vui (hát hợp xướng), cuối gọi điện hoà giải"
+   },
+   {
+    "ten": "優太 (Yūta)",
+    "tuoi": "38",
+    "nghe_cu": "không nêu (đang phân vân — phụ đề 「電気の話」 nghi là 転職の話 (chuyện chuyển việc))",
+    "vai": "con trai, cầu nối hai bên"
+   },
+   {
+    "ten": "武田 (Takeda) + vợ はる子 (Haruko)",
+    "tuoi": "không nêu (đồng nghiệp cũ, cùng lứa)",
+    "nghe_cu": "đồng nghiệp ngân hàng cũ / không nêu",
+    "vai": "cặp đối chứng 'không ly hôn'"
+   },
+   {
+    "ten": "五郎さん (ông Gorō)",
+    "tuoi": "không nêu (ông lão)",
+    "nghe_cu": "không nêu; làm vườn ở 市民農園 (vườn rau thị dân)",
+    "vai": "người dẫn đường nói ẩn dụ — nhân vật cố định của kênh"
+   }
+  ],
+  "quyet_dinh_lon": "Tự mình đề nghị ly hôn nửa năm sau khi về hưu (熟年離婚 — ly hôn tuổi xế chiều) để 'được tự do'.",
+  "doi_chung": "Vợ chồng Takeda (không ly hôn) — xuất hiện ~31% (ghen tị), ~38% (họ cũng cãi nhau), quay lại ~84–91% (tổng kết). Thêm đối chứng thứ ba là chính vợ cũ: ly hôn mà vẫn vui (~26% qua lời con, ~73% qua điện thoại).",
+  "hau_qua": "Lương hưu giảm từ ~19万 còn ~13万/tháng do chia lương hưu; đứt quan hệ xã hội, không nơi để về/đi, cô độc trong căn hộ khu tập thể.",
+  "buoc_ngoat": "Gặp Gorō ở vườn rau ven sông; chuyện 'cây trong chậu (鉢 — phụ đề ghi nhầm 蜂) chỉ sống nhờ người tưới, hạ thổ thì tự tìm nước bén rễ' → nhận ra ngân hàng và vợ đều là 'chậu' của mình.",
+  "ket": "Thuê ô đất, trồng cà chua, tư vấn tài chính tình nguyện ở nhà văn hoá khu, nói chuyện hoà nhã với vợ cũ, gửi cà chua cho con, con hẹn đưa cháu tới — một mình nhưng không cô đơn.",
+  "bai_hoc": "「幸せを分けていたのは自分の足で立てたかどうか。ただそれだけだったのだ。」(Thứ phân định hạnh phúc là có tự đứng được trên đôi chân mình hay không. Chỉ vậy thôi.) + 「1人でいることと孤独なことは違う。」(Ở một mình và cô độc là hai chuyện khác nhau.)"
+ },
+ "so_lieu": [
+  {
+   "nguyen_van": "年金の見込み額…13万…月に19万ほどのはずだった",
+   "y_nghia": "lương hưu dự kiến tụt từ ~19万 xuống ~13万 yên/tháng sau ly hôn",
+   "loai": "số cá nhân hư cấu (mức giảm ~6万 cần đối chiếu cách tính 報酬比例部分 (phần tỉ lệ thu nhập) ÷ 2 xem có hợp lý không)"
+  },
+  {
+   "nguyen_van": "年金分割は婚姻期間中に納めた構成(厚生)年金の記録をご夫婦で分け合う制度です。割合の上限は1/2と決められてます",
+   "y_nghia": "chế độ chia hồ sơ lương hưu phúc lợi thời kỳ hôn nhân, tối đa 1/2",
+   "loai": "chế độ/giá thật cần kiểm nguồn (日本年金機構 — 離婚時の年金分割)"
+  },
+  {
+   "nguyen_van": "国民年金の基礎年金は分割の対象ではございません",
+   "y_nghia": "lương hưu cơ bản quốc dân không bị chia",
+   "loai": "chế độ/giá thật cần kiểm nguồn"
+  },
+  {
+   "nguyen_van": "年金だって2人合わせれば月に22から23万にはなるだろう",
+   "y_nghia": "ước đoán tổng lương hưu vợ chồng Takeda",
+   "loai": "số cá nhân hư cấu"
+  },
+  {
+   "nguyen_van": "40年続いた結婚 / 38年俺の居場所は銀行だった",
+   "y_nghia": "mốc thời gian hôn nhân và sự nghiệp",
+   "loai": "số cá nhân hư cấu"
+  },
+  {
+   "nguyen_van": "月に2回お金の相談に乗るようになった",
+   "y_nghia": "tần suất tư vấn tình nguyện",
+   "loai": "số cá nhân hư cấu"
+  }
+ ],
+ "doan_tu_su_ngoi": "Ước lượng ~55% lời kể nội tâm / ~45% thoại (transcript không có ngoặc 「」, ước theo lượt đổi người nói). Ngôi 1 「俺」 xuyên suốt; riêng ~4% cuối chuyển sang người dẫn ngôi 3 kính ngữ (「鈴木孝志さんは…」) để rút đạo lý và hỏi khán giả.",
+ "cta": "Chỉ ở cuối (~98–100%): câu hỏi 「あなたには今自分の根を貼(張)れる場所がありますか？」(Bạn hiện có nơi để bén rễ không?) → 「もし心当たりがあれば是非コメントで教えてください」(nếu có thì kể trong bình luận) → 'câu chuyện của bạn có thể giúp người cùng băn khoăn' → mời đăng ký kênh. Không có CTA giữa bài, không LINE.",
+ "diem_manh": [
+  "Chủ đề 熟年離婚 + tiền lương hưu = hai nỗi sợ lớn của khán giả 60+, tiêu đề hứa đúng hai thứ đó",
+  "Cold open bằng cảnh ký đơn ly hôn + câu hỏi '5 năm sau' → vòng tò mò mở ngay 30 giây đầu",
+  "Có 'bài học chế độ' thật (年金分割, 基礎年金 không bị chia) giao qua cảnh ở văn phòng lương hưu → vừa kể chuyện vừa hữu ích",
+  "Cấu trúc 3 đối chứng (mình ly hôn khổ / vợ cũ ly hôn vui / Takeda không ly hôn vẫn cãi) phá thế nhị phân, dẫn tới kết luận 'tự đứng trên chân mình' — không phán xét ai",
+  "Ẩn dụ chậu cây của Gorō cụ thể, vẽ được, quay lại ở kết (cà chua, 'đứng trên đất của mình')"
+ ],
+ "diem_yeu_hoac_rui_ro": [
+  "Tương tác thấp bất thường: 440 like / 32 bình luận trên 177k view (~0,25%) — kém hẳn Hgo2qFDF0bM (1.235 like / 161 bình luận); có thể khán giả khó đồng cảm với người chồng chủ động bỏ vợ",
+  "Phi lý: cựu trưởng chi nhánh ngân hàng 'đã tư vấn hàng nghìn ca lương hưu' mà không biết 年金分割 cắt tới mức nào — kịch bản tự thừa nhận nhưng khán giả có thể chê",
+  "Gorō xuất hiện muộn (~44%); nửa đầu thiên về than thở, dễ rớt người xem giữa bài",
+  "Phụ đề nhiều lỗi đồng âm (鉢→蜂, 定年→丁年, 支店長→四店長, 厚生→構成, tên vợ cũ không rõ) — số 19万/13万 nghe rõ nhưng tỉ lệ giảm cần kiểm khi viết lại"
+ ],
+ "bai_hoc_cho_lane_J": [
+  "Mở bằng khoảnh khắc 'đứt gãy' của CẶP VỢ CHỒNG (ký đơn, 1 dòng thoại lạnh) rồi mới tự giới thiệu ngôi 1 + nhảy N năm sau đặt câu hỏi — hook cảnh+thoại, không thuyết minh khô",
+  "Luôn có cặp vợ chồng đối chứng (như Takeda) và lật nó giữa bài: cặp tưởng hạnh phúc cũng cãi nhau → tránh thông điệp nhị phân 'ly hôn xấu / ở với nhau tốt'",
+  "Chèn đúng 1 cảnh 'chế độ thật' (vd 年金分割, 遺族年金 (lương hưu người còn sống), 加給年金 (lương hưu bổ sung vợ/chồng)) do nhân viên quầy giải thích — phải kiểm nguồn trước khi viết số",
+  "Người dẫn đường nói bằng 1 ẩn dụ vật thể cụ thể (chậu cây) và vật đó quay lại ở cảnh kết; Lane J cần 1 ẩn dụ riêng kiểu 'hai người — một mảnh vườn/một món đồ'",
+  "Kết bằng hoà giải mềm (cuộc gọi của vợ/chồng hoặc con cháu) + câu hỏi mở cho khán giả; nhân vật chính nên bớt 'đáng ghét' hơn Suzuki để giữ đồng cảm (bài học từ tỉ lệ like thấp)"
+ ],
+ "notes": "Tên vợ cũ không xác định được từ phụ đề tự động (dạng 「かエ」「風」「かは」「かえ」「数え」). 「蜂」 trong transcript = 鉢 (chậu cây). % chặng tính theo vị trí ký tự trong transcript (6.869 ký tự). vpd cao hơn Hgo2qFDF0bM (1.911,8 vs 1.188,6) nhưng tương tác thấp hơn nhiều. Phân tích bởi Claude từ transcript 2026-09-30."
+}

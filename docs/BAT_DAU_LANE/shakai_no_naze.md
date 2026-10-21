@@ -4,6 +4,23 @@
 > bằng `@lane:shakai_no_naze`, rồi làm ĐÚNG THỨ TỰ mục 4. Không tìm hiểu lại từ đầu, không đoán. File này là
 > "cửa vào"; chi tiết vận hành nằm ở SOP (mục 4 giai đoạn 2 sẽ viết). Cập nhật mục 2 mỗi khi trạng thái đổi.
 
+## ⚡ ĐỌC NHANH — "làm tập tiếp theo" (lane đã setup xong, mục 2 TRẠNG THÁI đã ✅ hạ tầng)
+> ⭐ **2026-09-30 anh chốt — THẮNG mọi chỉ dẫn soát ChatGPT web bên dưới:** hook = Fable 5.1 viết 2 phương án theo luật hook 21/10 (bám sát cấu trúc hook video gốc: `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`);
+> `make_video --den B3G` khoá xong là DỪNG, tự giao máy 3/anh soát (D=`Chờ kiểm tra kịch bản`). Anh sửa xong (D=`Đã sửa kịch bản`) →
+> đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\NHAN_KICH_BAN_MAY3.md` để nhận + làm hook/ảnh/giao máy 2.
+
+> ⭐ **21/10: lô tập 23–26 (sheet dòng 24–27) đã có hồ sơ + HƯỚNG DẪN RIÊNG từng tập** — anh dán "Lane L tập X đọc <thư mục tập>\HUONG_DAN_TAP.md và thực hiện" (= cột K); mục lục `E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\HUONG_DAN_TAP23-26.md`. Tập 23 = tập mẫu luật hook 21/10.
+
+> ⭐ **14/10: lô tập 18–21 (sheet dòng 19–22) đã có hồ sơ + kế hoạch** — anh nói "làm tập X" (18…21) → đọc `E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\KE_HOACH_TAP18-21.md` mục 2 + `<thư mục tập>\KE_HOACH_TAP.md`, không đọc lại research.
+
+> ✅ **01/10: tập 8 `ep08-nengajou-jimai` đã giao máy 2** (D9=Done, 122 ảnh). Tập kế = STT 9 (転勤 — chuyển công tác), đọc `assets\shakai_no_naze\HUONG_DAN_TAP_TIEP_THEO.md`.
+
+CHỈ cần đọc: mục 4 **Giai đoạn 3** (lệnh chạy đúng thứ tự) + đúng file mục 4 tự trỏ tới (thường chỉ
+`COMMENT_INSIGHT.md`). KHÔNG cần mở lại toàn bộ mục 3 TÀI LIỆU, SOP đầy đủ, `CHANNEL_DNA.md`,
+`profile.json` — các file đó là cho **Giai đoạn 2 (setup 1 LẦN)** hoặc được chính `pipeline\*.py` tự
+đọc khi chạy lệnh, không phải để Claude nạp vào context mỗi tập. Chỉ mở thêm khi lệnh báo lỗi cần
+quyết định thủ công (thiếu context, xung đột dữ liệu...).
+
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
@@ -60,6 +77,12 @@
   `FlowHandoff_local\results\video_render\shakai_no_naze\ep01-shusse-shitakunai\`; sheet dòng 2 D=Done. Bundle máy 2 đã
   làm mới (`--profile-list shakai_no_naze`). Chờ dự án TITLE làm tiêu đề/mô tả/tags/thumbnail. Từ tập 2 theo luồng thường
   (máy 1 bước 1 → máy 2). Bài học tập 1: SOP §9–§10.
+- ⚠️ 2026-09-30 **Thư mục `ep07-taishoku-daikou` · `ep08-nenshu-no-kabe` · `ep09-reskilling-boom` · `ep10-ohitorisama-kyuzou` KHÔNG khớp sheet** (sheet STT 7–10 = 車離れ/年賀状/転勤/燃え尽き; 退職代行 còn vi phạm §5 luật 5). Tập N = dòng STT N của sheet. Tập 7 = `ep07-kuruma-banare` (viết 30/09, hook cao trào — `script.hook.cao_trao` bật cho L từ ngày này), đã gửi máy 3, D8 = `Chờ kiểm tra kịch bản`.
+- ✅ 2026-10-01 **TẬP 7 `ep07-kuruma-banare` GIAO MÁY 2**: `E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\jobs\L-shakai-no-naze\ep07-kuruma-banare` (145 ảnh ≈ 14.750đ, D8=Done, H8=cần ảnh). Bản anh sửa 5.593 chữ ≈ 18,1'.
+  Hook DÀI tới hết cao trào = 13 dòng/16 câu ≈ 55s (`_khoa_hook13.py`, profile `script.hook.den_cao_trao: true`), 14 clip Grok, CHỈ nhạc nền `hook\sfx\99_nhac_cang.mp3` (22s lặp).
+  REF 7 vai khoá tuổi theo `docs\QUY_TAC_REF_NHAN_VAT_TUOI_CAM_XUC.md` (prompt tự viết `_ve_ref.py` — code mặc định ép "Neutral calm expression" trái luật cảm xúc; biên bản `REF_AGE_QC.md`).
+  Bẫy mới: (1) gan_vai bắt mọi 「」 là thoại → biển hiệu/chữ trích bị gán nhân vật, sửa tay về `ke` (bản gốc `vai.gan_vai_goc.txt`); (2) gpti2 hay ra ảnh gần như ảnh thật cho nam vest → STYLE phải nhấn "flat 2D TV-anime"; (3) Sol chấm hook FAIL oan "họp sáng phải ở phòng họp" khi kịch bản là 朝礼 trong showroom; (4) nhạc nền ai33 AUTO chỉ 1,54s → `sfx.py ...|1|22`; (5) grok_1tk thiếu `GROK_SHEET_ID` → đã vá setdefault.
+- ✅ 2026-10-01 **TẬP 8 `ep08-nengajou-jimai` GIAO MÁY 2**: `E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\jobs\L-shakai-no-naze\ep08-nengajou-jimai` (122 ảnh ≈ 12.280đ, D9=Done). Bản anh sửa 4.710 chữ ≈ 15,2' (dưới ngân sách, chỉ cảnh báo). Hook 17 câu ≈ 64s (`_khoa_hook.py`), 14 clip Grok, nhạc Suno `_bgm\HOOK_PIANO_LANE_L.mp3`. 7 REF khoá tuổi (`REF_AGE_QC.md`). Bài học: `assets\shakai_no_naze\HUONG_DAN_TAP_TIEP_THEO.md`.
 - (lịch sử, đã xong ở GĐ2) CHƯA: đọc kỹ `CHANNEL_DNA.md` chuẩn đã có sẵn (mục 3) · profile JSON · giọng (nghi vấn mục 1) · char-rate ·
   SOP · danh sách tập · bất kỳ kịch bản nào. Anh mới duyệt SETUP KÊNH, chưa ra lệnh giai đoạn 2 — tab mở phiên
   mới phải HỎI trước khi bắt đầu mục 4.
@@ -91,8 +114,8 @@
    `docs\QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` (luồng lean, hook bắt buộc, cổng S1L) — lane L nên khai
    `flow="lean"` ngay từ đầu như mọi lane mới sau 20/09.
 
-⚠️ Hook 20–30s bắt buộc trước S2 (video sinh Grok/Veo) — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b +
-`docs/QUY_TAC_VIDEO_HOOK.md`. Cổng S1L (hook+gói đăng+promise.txt) chặn CỨNG trước khi viết.
+⚠️ Hook bắt buộc khoá trước S2 (video sinh) — Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn), dài ≈ hook gốc —
+`E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá. Cổng S1L (hook+gói đăng+promise.txt) chặn CỨNG trước khi viết.
 
 ## 4. QUY TRÌNH — làm bước nào trước
 ### Giai đoạn 2 — dựng hạ tầng lane (1 LẦN, đúng thứ tự, xong mới sang giai đoạn 3)
@@ -129,7 +152,7 @@
    — đây là lane RỦI RO BỊA SỐ LIỆU CAO NHẤT, viết hồ sơ đề tài kín trước khi viết, đừng để model tự điền).
 3. `py -3.13 -X utf8 pipeline\make_video.py --profile shakai_no_naze --slug ep<NN>-<slug>` — luồng lean, chạy
    tới mốc anh cho phép (mặc định theo lane khác: kịch bản + QC, chưa ảnh/video).
-4. Xong tập (phần máy 1) = **GHI SHEET NGAY**: tab `L-shakai-no-naze` cột D = `Done`, cột H = `cần ảnh (N ảnh,
+4. Xong tập (phần máy 1) = **GHI SHEET NGAY**: tab `L-shakai-no-naze` cột D = `Đã giao máy 2` (+ K lệnh máy 2), cột H = `cần ảnh (N ảnh,
    ~Xđ)` khi tới lượt giao máy 2 — `pipeline\dong_goi_may2.py --job` tự ghi, KHÔNG hỏi "anh bấm giao".
 5. Bước 3 = máy 2 nhận qua `FlowHandoff_local\results\video_render\shakai_no_naze\<slug>\`. Claude Code KHÔNG
    render (trừ hook theo quy tắc 24/09).
@@ -148,6 +171,6 @@
   chính có cốt truyện riêng.
 
 ## 6. CỘT SHEET TAB `L-shakai-no-naze` (A→K, giống mọi lane khác)
-A STT (= số ep) · B NỘI DUNG · C FOLDER · D KỊCH BẢN (`Done` khi xong máy 1) · E TITLE-DESCRIPTION · F TAGS
+A STT (= số ep) · B NỘI DUNG · C FOLDER · D KỊCH BẢN (tool tự ghi theo docsTRANG_THAI_COT_D_K.md; xong máy 1 = `Đã giao máy 2`) · E TITLE-DESCRIPTION · F TAGS
 (không làm marker) · G THUMBNAIL · H STATUS-IMG (`cần ảnh (N ảnh, ~Xđ)` khi tới lượt giao máy 2) · I VIDEO ·
 J LIST · K GHI CHÚ.

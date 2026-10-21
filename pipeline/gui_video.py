@@ -676,7 +676,7 @@ def gui_main():
             Không đặt gì thì Qt lấy phần tử ĐẦU BẢNG CHỮ CÁI (`samurai-history-jp`) — sai ngách,
             chạy nguyên vậy là ra kịch bản samurai cho kênh chuyện người già và mất tiền ảnh oan.
             """
-            for want in (self.st.get("profile"), "satori-jp-obaa"):
+            for want in (self.st.get("profile"),):   # 17/10: bỏ mặc định satori (lane đã bỏ)
                 if not want:
                     continue
                 i = cb.findText(want)

@@ -50,6 +50,11 @@ CREDS = r"D:\CLAUDE\credentials\google-sheets-key.json"
 COT = "G"                 # CỐ ĐỊNH — không tham số hoá, xem docstring
 TIEU_DE_COT = "VIDEO"     # dòng 1 của cột G phải là chữ này
 CAN_CO = ("final.mp4", "thumbnail.png", "listting.txt")
+CAN_CO_LISTING_EXTERNAL = ("final.mp4",)   # `thumbnail.png`/`listting.txt` do YT-TITLE-RESEARCH viết
+# SAU khi B11 xong (publish.listing_external=true, vd Lane M) — đòi đủ 3 file như lane thường thì
+# script này DỪNG mãi mãi ở "chưa giao xong" dù final.mp4 đã có thật (máy 2 báo 2026-09-27, đang
+# phải ghi thẳng bằng sheet_lane bỏ qua cổng này). CHỈ hạ chuẩn khi field này BẬT — lane không khai
+# vẫn đòi đủ 3 file như cũ.
 
 
 def svc(doc_thoi=True):
@@ -126,7 +131,8 @@ def main():
     if not giao.is_dir():
         raise SystemExit(f"✗ chưa có thư mục giao hàng: {giao}\n"
                          f"  → chạy B11 (make_video.py --from B8) cho xong rồi hãy ghi.")
-    thieu = [t for t in CAN_CO if not (giao / t).exists()]
+    can_co = CAN_CO_LISTING_EXTERNAL if pub.get("listing_external") else CAN_CO
+    thieu = [t for t in can_co if not (giao / t).exists()]
     if thieu:
         raise SystemExit(f"✗ thư mục giao hàng thiếu {len(thieu)} file: {', '.join(thieu)}\n"
                          f"  {giao}\n  → chưa giao xong, KHÔNG ghi cột {COT}.")

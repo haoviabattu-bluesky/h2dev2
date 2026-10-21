@@ -26,6 +26,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+sys.path.insert(0, str(HERE))
+import sheet_tab  # noqa: E402  (mã lane/tên cũ → tên tab thật, cho bước backfill --scan)
 
 
 def _lane_file(slug_dir):
@@ -34,11 +36,14 @@ def _lane_file(slug_dir):
 
 def ghi_video_goc(ep_dir, video_id, title, channel="", channel_id=None,
                    cach_xac_dinh="", do_chac="chac_chan", view_count=None, duration_s=None,
-                   slug_dir=None, lane_id=None):
+                   slug_dir=None, lane_id=None, ghi_sheet=True):
     """Ghi video_goc.json TRONG thư mục tập + cập nhật VIDEO_GOC.json CẤP LANE.
 
     ep_dir: Path thư mục tập (vd assets/teinengo-real/ep04-xxx).
     slug_dir/lane_id: nếu không truyền, tự suy từ ep_dir (thư mục cha + tên thư mục cha của assets/).
+    ghi_sheet: (anh chốt 2026-10-19) ghi LUÔN link video gốc vào CỘT T (VIDEO GỐC) của tab lane —
+    "tập nào chạy kịch bản thì cột T phải có link video gốc". BỔ TRỢ: lỗi/thiếu quyền Sheets chỉ in
+    cảnh báo, không chặn tập. Đặt False khi chỉ muốn ghi file.
     Không tự động thêm dòng vào HOOK_TAP.md — gọi hook_tap_ghi_video_goc() riêng nếu cần (một số
     lane sinh HOOK_TAP.md SAU B2, gọi ở đây có thể ghi vào file chưa tồn tại)."""
     ep_dir = Path(ep_dir)
@@ -84,6 +89,17 @@ def ghi_video_goc(ep_dir, video_id, title, channel="", channel_id=None,
     doc["cap_nhat"] = datetime.datetime.now().astimezone().isoformat(timespec="seconds")
     lane_f.parent.mkdir(parents=True, exist_ok=True)
     lane_f.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # 3) CỘT T (VIDEO GỐC) của tab lane — anh chốt 2026-10-19: tập nào chạy kịch bản là phải có link
+    #    video gốc trên trang tính. BỔ TRỢ TUYỆT ĐỐI: Sheets lỗi/thiếu quyền/thiếu thư viện KHÔNG
+    #    được làm hỏng B2 (nơi gọi bọc try/except, ở đây nuốt lỗi và chỉ in cảnh báo).
+    if ghi_sheet:
+        try:
+            import ghi_cot_video_goc
+            r = ghi_cot_video_goc.ghi_tu_ep(ep_dir)
+            print(f"  [cột {ghi_cot_video_goc.COT}] {r['ly_do']}")
+        except Exception as e:
+            print(f"  (cột T: bỏ qua — {type(e).__name__} {e})")
     return entry
 
 
@@ -193,6 +209,13 @@ def main():
         out = ROOT / slug_dir / "VIDEO_GOC.json"
         out.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"→ {out} ({sum(1 for t in tap if t.get('video_goc'))}/{len(tap)} tập có ID)")
+        # Cột T (VIDEO GỐC) cho những tập vừa dò được — anh chốt 2026-10-19. BỔ TRỢ, không chặn.
+        import ghi_cot_video_goc
+        for t in tap:
+            if not t.get("video_goc"):
+                continue
+            r = ghi_cot_video_goc.ghi_tu_ep(ROOT / t["thu_muc"], tab=sheet_tab.tab_that(a.profile))
+            print(f"  [{t['ep']}] {r['ly_do']}")
 
 
 if __name__ == "__main__":

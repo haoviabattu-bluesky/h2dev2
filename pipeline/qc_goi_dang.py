@@ -100,6 +100,31 @@ def cau_hinh(prof):
     return c
 
 
+# 2026-10-17 (anh duyệt luật hook duy nhất "bám sườn hook video gốc"): hook dài bằng hook gốc (Lane N ~20s … Lane L
+# ~105s) → mọi cửa sổ giây đo trên MỞ ĐẦU tính tới ÍT NHẤT hết hook đã khoá, không ép lời hứa/mâu thuẫn vào 15–45s đầu.
+CUA_SO_THEO_HOOK = ("promise_window_s", "contradiction_max_s", "title_core_max_s", "promise_giu_duoc_max_s", "ritual_max_s")
+
+
+def giay_het_hook(d, prof):
+    """Giây kết hook đã khoá = số chữ hook_lock × 60 / char_rate. Chưa khoá → None."""
+    try:
+        import hook_stage
+        m = hook_stage.doc_lock(d) or {}
+        n = float(m.get("chars") or 0)
+        return n * 60.0 / profiles.char_rate(prof) if n else None
+    except Exception:
+        return None
+
+
+def cau_hinh_tap(d, prof):
+    c = cau_hinh(prof)
+    g = giay_het_hook(d, prof)
+    if g:
+        for k in CUA_SO_THEO_HOOK:
+            c[k] = max(float(c[k]), g)
+    return c
+
+
 def is_enabled(prof):
     """NGÃ RẼ DUY NHẤT giữa lane đã bật / chưa bật cổng này. Mọi nơi gọi phải đi qua hàm này."""
     return bool(cau_hinh(prof).get("enabled"))
@@ -426,12 +451,12 @@ def g3_thu_tu(d, c, moc, prof, title, loi_doc):
         g, i = moc.tim(mk)
         if i >= 0 and (gm is None or g < gm):
             gm = g
+    # 2026-10-21: hook chỉ bám cấu trúc hook gốc (không luật hook nào khác) → mục này chỉ cảnh báo, không ép vào hook.
     if gm is None:
-        chan.append(f"G3: không tìm thấy câu mâu thuẫn nào (dấu hiệu: "
-                    f"{'・'.join(c['contradiction_marker'][:4])}…) — hook đang kể suông")
+        canh.append(f"G3: không tìm thấy câu mâu thuẫn nào (dấu hiệu: "
+                    f"{'・'.join(c['contradiction_marker'][:4])}…) — chỉ cảnh báo, hook không bị ép theo mục này")
     elif gm > c["contradiction_max_s"]:
-        chan.append(f"G3: câu mâu thuẫn đầu tiên ở giây {gm:.0f} > {c['contradiction_max_s']}s "
-                    f"(nguyên tắc 2)")
+        canh.append(f"G3: câu mâu thuẫn đầu tiên ở giây {gm:.0f} > {c['contradiction_max_s']:.0f}s (sau khi hết hook)")
     # lõi tiêu đề ≤ title_core_max_s
     ve = tach_ve_tieu_de(title, c["title_suffix_ignore"])
     if ve:
@@ -444,7 +469,7 @@ def g3_thu_tu(d, c, moc, prof, title, loi_doc):
     for r in c["ritual"]:
         g, i = moc.tim(r)
         if i < 0:
-            chan.append(f"G3: THIẾU câu nghi thức của kênh 「{r}」 (nguyên tắc 5)")
+            canh.append(f"G3: không có câu nghi thức của kênh 「{r}」 (chỉ cảnh báo — hook không bị ép theo mục này)")
         elif g > c["ritual_max_s"]:
             canh.append(f"G3: câu nghi thức 「{r}」 ở giây {g:.0f} > {c['ritual_max_s']}s")
     return chan, canh
@@ -608,7 +633,7 @@ def cong_truoc_khi_viet(d, prof):
       3. `promise.txt` — MỘT lời hứa, 1 câu. Đây là thứ model VIẾT cần để viết đúng ngay lần đầu
          (xem `khoi_luat_cho_prompt`); thiếu nó thì chỉ còn cách chấm-rồi-sửa, tốn lượt Sol.
       4. `script.hook.visual_kind == "video_sinh"` (Flow/Grok) — hoặc khai `visual_exception` ghi lý do.
-      5. `script.hook.sfx` — hiệu ứng âm thanh BẮT BUỘC.
+      5. `script.hook.nhac_nen` — hook CÓ NHẠC NỀN; `script.hook.sfx` (âm thanh đồ vật) phải KHÔNG bật (anh chốt 01/10/2026).
     Điều 4–5 anh chốt 2026-09-24: hook ghép từ ảnh tĩnh nhìn ra ngay là video AI rẻ ở đúng 20 giây
     quyết định người xem ở lại hay thoát; lane satori đã chạy thật clip Grok nên không còn là giả
     thiết. Ngoại lệ chính danh hiện có: `toshi-densetsu-jp` và `irogatatarukioku` bán SỰ THẬT CÓ HỒ SƠ
@@ -631,10 +656,18 @@ def cong_truoc_khi_viet(d, prof):
                    f"satori-jp-obaa đã chạy thật ở ep3-sougi), KHÔNG còn là video ghép từ ảnh render. "
                    f"Muốn dùng ảnh tĩnh/clip stock thì khai `script.hook.visual_exception` ghi RÕ LÝ "
                    f"DO. Đọc docs/QUY_TAC_VIDEO_HOOK.md §5b")
-    if not h.get("sfx", False):
-        loi.append("profile chưa khai `script.hook.sfx: true` — hiệu ứng âm thanh trong hook là BẮT "
-                   "BUỘC (anh chốt 2026-09-24). Sinh bằng ai33 `POST /v1/task/sound-effect`, để "
-                   "`duration_seconds` AUTO (memory sfx-ai33-mac-dinh-auto)")
+    if h.get("sfx", False):
+        loi.append("profile đang khai `script.hook.sfx: true` — 01/10/2026 anh CẤM hiệu ứng âm thanh đồ vật "
+                   "(chuông cửa, máy khâu, bước chân…) ở MỌI lane; đổi thành `sfx: false`. Hook chỉ có nhạc nền "
+                   "(docs/QUY_TAC_HOOK_DAI_VA_NHAC_NEN.md)")
+    if not h.get("nhac_nen", False):
+        loi.append("profile chưa khai `script.hook.nhac_nen: true` — hook chỉ có NHẠC NỀN hợp cảm xúc cảnh "
+                   "(anh chốt 01/10/2026), không có tiếng đồ vật. docs/QUY_TAC_HOOK_DAI_VA_NHAC_NEN.md")
+    if "the_viet" not in (prof.get("script", {}) or {}):
+        loi.append("profile chưa khai `script.the_viet` — thẻ viết VIRAL_LAB (luật anh sửa tay + số liệu thị trường) "
+                   "bật MỌI LANE (anh chốt 05/10/2026). Lane truyện: ~/.claude/skills/youtube-kich-ban/market/THE_VIET_STORY.md "
+                   "· lane giải thích: THE_VIET_INFO.md · lane danh sách: THE_VIET_LIST.md. "
+                   "Đọc docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §1.2")
     promise, _ = doc_promise(d)
     if not promise:
         loi.append(f"thiếu {Path(d) / 'promise.txt'} — chốt MỘT lời hứa (1 câu) TRƯỚC khi viết; tiêu đề, "
@@ -655,29 +688,23 @@ def khoi_luat_cho_prompt(d, prof):
     """
     if not is_enabled(prof):
         return ""
-    c = dict(cau_hinh(prof))
+    c = dict(cau_hinh_tap(d, prof))
     # `sfx` sống ở `script.hook` (cùng chỗ với enabled/visual), không phải trong `goi_dang` — đọc từ
     # đúng nguồn rồi mới đưa vào c, để chỗ khai và chỗ dùng không lệch nhau.
     _h = (prof.get("script", {}) or {}).get("hook") or {}
-    c["hook_sfx"] = bool(_h.get("sfx", False))
+    c["hook_sfx"] = False   # 01/10/2026: cấm SFX đồ vật; chỉ nhạc nền
     c["hook_kind"] = str(_h.get("visual_kind") or "")
     promise, _ = doc_promise(d)
     dong = [
         "LỜI HỨA CỦA TẬP NÀY (luật G1 — bắt buộc):",
         f"   「{promise}」" if promise else "   (chưa chốt)",
-        "   Lời hứa này phải được nói lại trong "
-        f"{c['promise_window_s']:.0f} GIÂY ĐẦU của bản đọc. Tiêu đề, chữ thumbnail và câu đầu mô tả "
-        "cũng nói đúng lời hứa đó — nên đừng viết một câu chuyện đi chỗ khác.",
+        "   Lời hứa này phải được nói lại trong khoảng "
+        f"{c['promise_window_s']:.0f} GIÂY ĐẦU của bản đọc (tới hết hook đã khoá). Tiêu đề, chữ thumbnail và câu đầu "
+        "mô tả cũng nói đúng lời hứa đó — nên đừng viết một câu chuyện đi chỗ khác.",
         "",
-        "THỨ TỰ BẮT BUỘC CỦA MỞ ĐẦU (luật G3, đo từ kênh mẫu của chính kênh này):",
-        f"   · Câu MÂU THUẪN/nghịch lý chính phải nằm trong {c['contradiction_max_s']:.0f} giây đầu.",
-        f"   · Câu hỏi/lời hứa của TIÊU ĐỀ phải nói ra trong {c['title_core_max_s']:.0f} giây đầu.",
-        "   · CẤM mở bằng chào hỏi, cảm ơn, tự giới thiệu tên-tuổi, tiểu sử, năm sinh, hay đọc to "
-        "chữ 「タイトル」. Tên-tuổi đến SAU câu mâu thuẫn, đúng 1 câu.",
+        "MỞ ĐẦU (21/10/2026): là HOOK ĐÃ KHOÁ — bám sát cấu trúc hook video gốc. Thân bài nối tiếp,",
+        "   không viết lại, không lặp hook; không đọc to chữ 「タイトル」, không xin đăng ký trước phần kết.",
     ]
-    if c["ritual"]:
-        dong.append("   · Câu NGHI THỨC của kênh phải có mặt (trong "
-                    f"{c['ritual_max_s']:.0f} giây đầu): " + " · ".join(f"「{r}」" for r in c["ritual"]))
     dong += [
     ]
     # anh chốt 2026-09-24: hook là VIDEO SINH → 20–30s đầu bị ràng buộc bởi thứ dựng được thành clip.
@@ -687,16 +714,15 @@ def khoi_luat_cho_prompt(d, prof):
     if c.get("hook_kind") == VISUAL_KIND_VIDEO:
         dong += [
             "",
-            "20–30 GIÂY ĐẦU SẼ ĐƯỢC DỰNG THÀNH VIDEO SINH (Flow/Grok), không phải ảnh tĩnh:",
+            "PHẦN HOOK SẼ ĐƯỢC DỰNG THÀNH VIDEO SINH (Flow/Vids/Grok), không phải ảnh tĩnh:",
             "   · Mỗi 5–6 giây là MỘT cảnh dựng được: một chủ thể, một chuyển động tả được bằng lời "
             "(cúi xuống, mở phong bì, quay đầu lại). CẤM cảnh cần ≥3 nhân vật cùng hành động, cấm đổi "
             "bối cảnh giữa một cảnh, cấm chữ/biểu đồ trên hình.",
             "   · Viết sao cho mỗi câu mở neo vào MỘT hình cụ thể — câu bình luận trừu tượng không "
             "dựng được thành clip, để dành cho thân bài.",
         ]
-    if c.get("hook_sfx", True):
-        dong.append("   · Hook sẽ có HIỆU ỨNG ÂM THANH (bắt buộc) — viết chừa chỗ cho tiếng thật của "
-                    "cảnh (tiếng cửa, tiếng mưa, tiếng bước chân), đừng lấp kín 30 giây bằng lời đọc.")
+    dong.append("   · Hook chỉ có NHẠC NỀN buồn/ấm theo cảnh, KHÔNG có tiếng đồ vật (cửa, máy khâu, bước chân…) — "
+                "đừng viết câu dựa vào một tiếng động để có nghĩa.")
     dong += [
         "",
         "LỜI HỨA PHẢI GIỮ ĐƯỢC (luật G2):",
@@ -728,7 +754,7 @@ def khoi_luat_cho_prompt(d, prof):
 def kiem(slug_dir, profile_id):
     d = Path(slug_dir)
     prof = profiles.load(profile_id)
-    c = cau_hinh(prof)
+    c = cau_hinh_tap(d, prof)
     loi_doc, _hook = doc_loi_doc(d)
     if not loi_doc.strip():
         return gate_common.ket_qua(GATE, "SKIPPED", warnings=[f"{d} chưa có script.txt"])

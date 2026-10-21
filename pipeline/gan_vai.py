@@ -22,6 +22,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
+import age_lock_guard     # noqa: E402
 import cau_vai            # noqa: E402
 import claude_p_bridge    # noqa: E402
 import gate_common        # noqa: E402
@@ -66,13 +67,18 @@ def _parse(text, cau, ids_ok):
     thieu = [c["i"] for c in cau if c["i"] not in got]
     if thieu:
         loi.append(f"thiếu {len(thieu)} câu: {thieu[:10]}")
-    for c in cau:
+    for k, c in enumerate(cau):
         v = got.get(c["i"])
         if v is None:
             continue
+        # 「」 kẹp giữa câu người kể cùng dòng (特別養護老人ホーム「けやきの里」。/ 自分の「ミスほぼゼロ」は) = tên/trích dẫn, không phải thoại
+        truoc = cau[k - 1] if k else None
+        giua_cau = bool(truoc and truoc["para"] == c["para"] and not truoc["text"].endswith(tuple(cau_vai._END + "」』")))
+        # 「」 đứng riêng nhưng chỉ là CHỮ IN (biển/tin tuyển 「年齢不問」): ngắn, không hiragana = không phải lời nói (Lane M ep15)
+        chu_in = bool(re.fullmatch(r"「[^぀-ゟ。！？!?]{1,12}」", cau_vai._chuan(c["text"])))
         if v not in ids_ok:
             loi.append(f"câu {c['i']}: id lạ {v!r}")
-        elif cau_vai.la_thoai(c["text"]) and v == cau_vai.KE:
+        elif cau_vai.la_thoai(c["text"]) and v == cau_vai.KE and not giua_cau and not chu_in:
             loi.append(f"câu {c['i']} là thoại「」nhưng gán ke: {c['text'][:30]}")
     return [got.get(c["i"]) for c in cau], loi
 
@@ -86,6 +92,7 @@ def chay(prof, slug):
     if not cf.exists():
         raise SystemExit(f"✗ thiếu {cf} — lớp 1 viết characters.json (id, name, vai, age, gender, look, ref, voice) trước")
     chars = json.loads(cf.read_text(encoding="utf-8")).get("characters") or []
+    age_lock_guard.chan(chars, str(cf))
     cau = cau_vai.tach_cau((d / "script.txt").read_text(encoding="utf-8"))
     ids_ok = {cau_vai.KE} | {c["id"] for c in chars}
     title = (d / "title.txt").read_text(encoding="utf-8").strip() if (d / "title.txt").exists() else ""

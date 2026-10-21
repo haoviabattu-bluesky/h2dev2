@@ -8,6 +8,13 @@ Dùng:
   py -3.13 gen_images.py --prompts thumb.txt   --out ../assets/ww2/<slug>/thumb --quality medium --limit 1
 
 Ảnh nền video: --quality low (rẻ ~50đ/ảnh). Thumbnail: --quality medium (nét hơn).
+
+--provider ckey (2026-09-30): gen qua ckey.vn (ckey_gen.py) — 52đ/ảnh cố định kể cả có ref, ref gửi
+qua `images` KHÔNG giới hạn 8 ảnh/nhân vật. Mặc định lấy từ biến môi trường IMG_PROVIDER hoặc khoá
+`img_provider` trong keys.json (để máy 2 / hybrid_chuan_bi đổi provider mà không sửa lệnh gọi).
+Tự chuyển (2026-09-30): provider gpti2 mà 1 ảnh lỗi (kể cả hết tiền) → gen lại ảnh đó qua ckey;
+hết tiền gpti2 thì mọi ảnh sau đi thẳng ckey. Tắt: --fallback none / IMG_FALLBACK=none / "img_fallback": "none".
+Dòng @GROK vẫn đi Grok như cũ.
 """
 import argparse
 import concurrent.futures as cf
@@ -18,9 +25,11 @@ import threading
 import time
 from pathlib import Path
 
+import ckey_gen
 import gpti2_gen
 import gpti2_edit
 import grok_gen
+import keys
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -75,8 +84,14 @@ def main():
     ap.add_argument("--out", required=True, help="thư mục lưu ảnh")
     ap.add_argument("--orient", default="landscape", choices=["landscape", "portrait"])
     ap.add_argument("--quality", default="low", choices=["low", "medium", "high"])
-    ap.add_argument("--workers", type=int, default=24,
-                help="3 key gpti2 xoay round-robin, 24 luong = 8 luong/key (da verify khong 429)")
+    ap.add_argument("--provider", choices=["gpti2", "ckey"],
+                    default=keys.get("img_provider", env="IMG_PROVIDER", default="gpti2").lower(),
+                    help="gpti2 (mặc định) | ckey = ckey.vn 52đ/ảnh, ref không giới hạn 8")
+    ap.add_argument("--fallback", choices=["ckey", "none"],
+                    default=keys.get("img_fallback", env="IMG_FALLBACK", default="ckey").lower(),
+                    help="gpti2 lỗi/hết tiền → tự gen lại ảnh đó qua ckey (mặc định) | none = tắt")
+    ap.add_argument("--workers", type=int, default=8,
+                help="1 key gpti2 (10/10), 8 luong/key (da verify khong 429); them key thi tang 8/key")
     ap.add_argument("--limit", type=int, default=0, help="chỉ gen N ảnh đầu (test)")
     ap.add_argument("--start", type=int, default=1, help="bắt đầu từ prompt số mấy (1-based)")
     ap.add_argument("--ref", action="append", default=[],
@@ -98,11 +113,14 @@ def main():
                 skip_lines.add(int(cols[0].strip()))
         log(f"skip-stock-plan: bỏ {len(skip_lines)} dòng STOCK, không gen AI cho các dòng đó.")
 
-    if len(args.ref) > gpti2_edit.MAX_REFERENCE_IMAGES or len(args.ref2) > gpti2_edit.MAX_REFERENCE_IMAGES:
-        log(f"gpti2 chỉ nhận tối đa {gpti2_edit.MAX_REFERENCE_IMAGES} ảnh tham chiếu / nhân vật."); return
+    ckey = args.provider == "ckey"
+    if not ckey and (len(args.ref) > gpti2_edit.MAX_REFERENCE_IMAGES
+                     or len(args.ref2) > gpti2_edit.MAX_REFERENCE_IMAGES):
+        log(f"gpti2 chỉ nhận tối đa {gpti2_edit.MAX_REFERENCE_IMAGES} ảnh tham chiếu / nhân vật "
+            f"(--provider ckey thì không giới hạn)."); return
     refs = [(Path(r).read_bytes(), Path(r).name) for r in args.ref]
     refs2 = [(Path(r).read_bytes(), Path(r).name) for r in args.ref2]
-    if (refs or refs2) and args.quality != "low":
+    if (refs or refs2) and args.quality != "low" and not ckey:
         log(f"⚠ REF-LOCK: --quality low đã đủ giữ khuôn mặt (đo thật 2026-09-07). "
             f"Đang dùng '{args.quality}' = đắt hơn ~4-28 lần mà không giữ mặt tốt hơn.")
 
@@ -146,9 +164,10 @@ def main():
         tasks.append((i, name, p, route))
 
     n = {r: sum(1 for *_, x in tasks if x == r) for r in ("grok", "ref", "ref2", "ref12", "plain")}
-    mode = f"gpti2 text-only {n['plain']}"
+    mode = f"{args.provider} text-only {n['plain']}"
     if n["ref"]:
-        mode += f" + REF {n['ref']} (~{gpti2_edit.estimate_price_vnd(args.orient, args.quality, len(refs))}đ)"
+        gia = ckey_gen.PRICE_VND if ckey else gpti2_edit.estimate_price_vnd(args.orient, args.quality, len(refs))
+        mode += f" + REF {n['ref']} (~{gia}đ)"
     if n["ref2"]:
         mode += f" + REF2 {n['ref2']}"
     if n["ref12"]:
@@ -158,6 +177,8 @@ def main():
         mode += f" + CAST {n_cast} (khoá mặt theo id)"
     if n["grok"]:
         mode += f" + GROK {n['grok']} (trẻ em)"
+    if not ckey and args.fallback == "ckey":
+        mode += " | gpti2 lỗi → ckey"
     log(f"Tổng prompt: {len(prompts)} | cần gen: {len(tasks)} | đã có: {len(prompts)-len(tasks)}"
         f" | mode={mode} quality={args.quality} orient={args.orient} workers={args.workers}")
     if not tasks:
@@ -167,26 +188,44 @@ def main():
     ok = [0]
     fail = []
 
+    gpti2_het = [False]   # gpti2 hết tiền 1 lần → các ảnh sau đi thẳng ckey, khỏi gọi gpti2 vô ích
+
+    def gen(name, prompt, imgs=None):
+        """imgs=None → text-only. gpti2 lỗi/hết tiền và --fallback ckey → gen lại ảnh đó qua ckey."""
+        if ckey or gpti2_het[0]:
+            return ckey_gen.generate(prompt, orientation=args.orient, refs=imgs)
+        try:
+            if imgs:
+                return gpti2_edit.edit(prompt, imgs, orientation=args.orient, quality=args.quality)
+            return gpti2_gen.generate(prompt, orientation=args.orient, quality=args.quality)
+        except Exception as e:
+            if args.fallback != "ckey":
+                raise
+            if isinstance(e, gpti2_gen.QuotaExhaustedError) and not gpti2_het[0]:
+                gpti2_het[0] = True
+                log(f"  ⚠ gpti2 HẾT TIỀN — các ảnh còn lại chuyển hẳn sang ckey ({ckey_gen.PRICE_VND}đ/ảnh).")
+            log(f"  ↪ {name} gpti2 lỗi ({str(e)[:120]}) → gen lại qua ckey")
+            return ckey_gen.generate(prompt, orientation=args.orient, refs=imgs)
+
     def work(task):
         i, name, prompt, route = task
         try:
             if route == "grok":
                 img = grok_gen.generate(prompt, orientation=args.orient)          # cảnh trẻ em → Grok
             elif route == "ref":
-                img = gpti2_edit.edit(prompt, refs, orientation=args.orient, quality=args.quality)
+                img = gen(name, prompt, refs)
             elif route == "ref2":
-                img = gpti2_edit.edit(prompt, refs2, orientation=args.orient, quality=args.quality)
+                img = gen(name, prompt, refs2)
             elif route.startswith("cast:"):
                 ms = [Path(args.cast_root) / f"_ref_{x}" / "001.png" for x in route[5:].split(",")]
                 thieu = [str(m) for m in ms if not m.exists()]
                 if thieu:
                     raise RuntimeError(f"thiếu master khoá mặt: {thieu}")
-                img = gpti2_edit.edit(prompt, [(m.read_bytes(), m.name) for m in ms],
-                                      orientation=args.orient, quality=args.quality)
+                img = gen(name, prompt, [(m.read_bytes(), m.name) for m in ms])
             elif route == "ref12":
-                img = gpti2_edit.edit(prompt, refs + refs2, orientation=args.orient, quality=args.quality)
+                img = gen(name, prompt, refs + refs2)
             else:
-                img = gpti2_gen.generate(prompt, orientation=args.orient, quality=args.quality)
+                img = gen(name, prompt)
             (outdir / name).write_bytes(img)
             with _print_lock:
                 done[name] = {"idx": i, "prompt": prompt}

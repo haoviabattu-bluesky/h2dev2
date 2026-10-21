@@ -170,14 +170,24 @@ def anchor_durations(anchor_map, imgs, audio_len, srt_cues):
             if idx == -1:
                 raise SystemExit(f"Không tìm thấy neo của {img.name} trong SRT: {neo[:40]!r}… "
                                  f"— SRT có khớp đúng script đã dùng để viết neo không?")
-        # đổi ký tự -> cue -> thời điểm bắt đầu cue đó
-        cue_i = 0
+        # đổi ký tự -> cue -> thời điểm. NEO GIỮA CÂU (2026-09-27): neo có thể là CHUỖI CON bắt
+        # đầu ở giữa cue (sinh_neo dùng khi một đoạn có nhiều ảnh hơn số câu) — khi đó nội suy
+        # tuyến tính theo vị trí ký tự trong cue thay vì trả thẳng mốc đầu cue.
+        # Neo là NGUYÊN câu (mọi tập cũ) => idx == start_ch => ra ĐÚNG srt_cues[cue_i][0] như trước.
+        cue_i, cue_ch = 0, 0
         for start_ch, ci in spans:
             if start_ch <= idx:
-                cue_i = ci
+                cue_i, cue_ch = ci, start_ch
             else:
                 break
-        starts.append(srt_cues[cue_i][0])
+        t_cue = srt_cues[cue_i][0]
+        lech = idx - cue_ch
+        if lech > 0:
+            do_dai = len(srt_cues[cue_i][1])
+            t_het = srt_cues[cue_i + 1][0] if cue_i + 1 < len(srt_cues) else audio_len
+            if do_dai > 0 and t_het > t_cue:
+                t_cue += (t_het - t_cue) * min(lech / do_dai, 1.0)
+        starts.append(t_cue)
         tim_tu = idx + len(neo)
     starts.append(audio_len)
     durs = [starts[i + 1] - starts[i] for i in range(len(imgs))]

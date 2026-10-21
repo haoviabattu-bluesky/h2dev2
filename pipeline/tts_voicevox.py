@@ -25,6 +25,7 @@ Dùng:
 import argparse
 import io
 import json
+import re
 import subprocess
 import sys
 import wave
@@ -93,6 +94,27 @@ def _tong_hop(text, style_id, speed, pre, post):
 AI33_SR = 44100
 
 
+def ap_fx(pcm, fx, sr=AI33_SR):
+    """Áp chuỗi bộ lọc ffmpeg (characters.json voice.fx, vd giọng QUÁT NẠT) lên 1 câu PCM int16 mono. Không fx → trả nguyên."""
+    if not fx:
+        return pcm
+    import imageio_ffmpeg
+    r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-v", "error", "-f", "s16le", "-ar", str(sr), "-ac", "1", "-i", "pipe:0",
+                        "-af", fx, "-f", "s16le", "-ar", str(sr), "-ac", "1", "pipe:1"], input=pcm.tobytes(), capture_output=True)
+    if r.returncode or not r.stdout:
+        raise SystemExit(f"✗ voice.fx lỗi: {r.stderr.decode('utf-8', 'ignore')[:200]}")
+    return np.frombuffer(r.stdout, dtype=np.int16)
+
+
+def _doi_sr(pcm, sr_vao, sr_ra):
+    """Đổi tần số mẫu 1 câu PCM int16 mono (ghép câu ai33 44,1 kHz vào bài VOICEVOX 24 kHz)."""
+    import imageio_ffmpeg
+    r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-v", "error", "-f", "s16le", "-ar", str(sr_vao), "-ac", "1",
+                        "-i", "pipe:0", "-f", "s16le", "-ar", str(sr_ra), "-ac", "1", "pipe:1"],
+                       input=pcm.tobytes(), capture_output=True, check=True)
+    return np.frombuffer(r.stdout, dtype=np.int16)
+
+
 def _tong_hop_ai33(text, voice_id, speed, n_thu=3):
     """1 câu → PCM int16 mono 44,1 kHz qua ai33 (OpenSpeaker). Lane L (2026-09-24): kênh mẫu đọc đa giọng bằng TTS
     thương mại (đo: KHÔNG phải VOICEVOX), gần nhất họ giọng MiniMax. Cắt lặng đầu/cuối server tự chèn (dài ngắn
@@ -150,7 +172,11 @@ def chay(script, out, prof, vai_path=None, chars_path=None, workers=3):
     text = script.read_text(encoding="utf-8")
     yomi = _tim_file(script.parent, "yomi.txt")
     cau = cau_vai.tach_cau(text)
+    theo_khoi = len({c["khoi"] for c in cau}) > 1
     ids = cau_vai.khop_vai(cau, cau_vai.doc_vai(vai_path))
+    doan_them = cau_vai.doan_hook(script.parent, cau)
+    nghi_the = cau_vai.nghi_the_ten(script.parent, cau)   # 11/10: thẻ tên thân bài → nghỉ thêm cho kịp đọc
+    lang = cau_vai.lang_hook(script.parent, cau)   # 12/10: shot hook LẶNG (lang_s) / giữ hình (nghi_sau_s) → chèn lặng
     ban = giong_cua_vai(prof, chars_path)
     thieu = sorted({i for i in ids if i not in ban})
     if thieu:
@@ -165,6 +191,12 @@ def chay(script, out, prof, vai_path=None, chars_path=None, workers=3):
         smap = _style_map()
 
         def _sid(g):
+            # 2026-10-05 Lane O ep04: lane VOICEVOX cho phép VAI LẺ đọc bằng ai33 (characters.json voice.voice_id),
+            # vd giám đốc hách dịch = Masafumi + fx punch (VOICEVOX không có giọng quát đủ uy) → trả voice_id (str).
+            if g.get("voice_id"):
+                if not v.get("ai33_cho_vai"):
+                    raise SystemExit(f"✗ lane VOICEVOX chưa bật voice.ai33_cho_vai mà vai khai voice_id ai33: {g.get('voice_id')}")
+                return g["voice_id"]
             k = (g["speaker"], g.get("style") or "ノーマル")
             if k not in smap:
                 raise SystemExit(f"✗ engine không có giọng {k} — kiểm tên speaker/style")
@@ -177,7 +209,7 @@ def chay(script, out, prof, vai_path=None, chars_path=None, workers=3):
         if yomi:
             import tts as _tts
             doc, _ = _tts.ap_yomi(doc, yomi)
-        viec.append((doc, _sid(g), float(g.get("speed", speed))))
+        viec.append((doc, _sid(g), float(g.get("speed", speed)), g.get("fx")))
     tag = "ai33" if ai33 else "voicevox"
     print(f"[{tag}] {len(cau)} câu · {len(set(ids))} vai · {len({x[1] for x in viec})} giọng · speed {speed}")
 
@@ -187,22 +219,47 @@ def chay(script, out, prof, vai_path=None, chars_path=None, workers=3):
         _tts.kiem_credit(_osp, "".join(x[0] for x in viec))      # thiếu credit → DỪNG trước khi gửi câu nào
         workers = max(workers, int((prof.get("voice") or {}).get("workers", 8)))
         with ThreadPoolExecutor(max_workers=workers) as ex:
-            kq = list(ex.map(lambda x: _tong_hop_ai33(x[0], x[1], x[2]), viec))
+            kq = list(ex.map(lambda x: (ap_fx(_tong_hop_ai33(x[0], x[1], x[2])[0], x[3]), AI33_SR), viec))
     else:
+        lai = [x for x in viec if isinstance(x[1], str)]          # câu của vai lẻ ai33 (voice_id)
+        if lai:
+            import openspeaker_tts as _osp
+            import tts as _tts
+            _tts.kiem_credit(_osp, "".join(x[0] for x in lai))
+
+        def _mot(x):
+            if isinstance(x[1], str):
+                return ap_fx(_tong_hop_ai33(x[0], x[1], x[2])[0], x[3]), AI33_SR
+            return _tong_hop(x[0], x[1], x[2], pre, post)
         with ThreadPoolExecutor(max_workers=workers) as ex:
-            kq = list(ex.map(lambda x: _tong_hop(x[0], x[1], x[2], pre, post), viec))
+            kq = list(ex.map(_mot, viec))
+        sr_vv = next((s for (_, s), x in zip(kq, viec) if not isinstance(x[1], str)), AI33_SR)
+        kq = [(_doi_sr(p, s, sr_vv), sr_vv) if s != sr_vv else (p, s) for p, s in kq]
     sr = kq[0][1]
     khuc, cues, t = [], [], 0.0
+    if lang.get(0):   # shot hook lặng mở đầu (vd motion gõ ngày/địa điểm, không lời) → lặng trước câu 1
+        khuc.append(np.zeros(int(lang[0] * sr), dtype=np.int16))
+        t += lang[0]
     for k, ((pcm, _), c, vid) in enumerate(zip(kq, cau, ids)):
         dur = len(pcm) / sr
-        if dur < 0.3:
+        # 2026-10-03 Lane O ep02: câu 1–2 chữ (vd 「は、」 tách sau ngoặc) đọc đúng chỉ ~0,28s → sàn 0,15s + phải có tiếng thật
+        so_chu = len(re.sub(r"[\s、。，．,.!?！？・…ー「」『』（）()]", "", viec[k][0]))
+        san = 0.15 if so_chu <= 2 else 0.3
+        if dur < san or (so_chu <= 2 and int(np.abs(pcm).max(initial=0)) < 1000):
             raise SystemExit(f"✗ câu {c['i']} chỉ ra {dur:.2f}s tiếng — engine đọc hỏng: {c['text'][:30]}")
         cues.append({"i": c["i"], "start": round(t, 3), "end": round(t + dur, 3), "vai": vid,
                      "para": c["para"], "text": c["text"]})
         khuc.append(pcm)
         t += dur
         if k < len(cau) - 1:
-            gap = nghi_doan if cau[k + 1]["para"] != c["para"] else nghi_cau
+            # nghỉ đoạn theo KHỐI dòng trống (cảnh), không theo từng dòng: kịch bản viết mỗi câu một dòng (04/10)
+            # nên theo dòng thì câu nào cũng nghỉ đoạn → video dài thêm vài phút.
+            # Script cũ không có dòng trống nào (cả bài 1 khối, vd N ep03 bản anh) → giữ cách cũ theo dòng.
+            # Mảnh câu (xuống dòng giữa câu, 「…」 còn tiếp cùng dòng) → khe ngắn; sàn câu/đoạn + nghỉ đoạn trong hook
+            # (hook_timeline `nghi_doan_sau`) — 1 luật chung với clip hook xem thử: cau_vai.khe_nghi (06/10).
+            gap = cau_vai.khe_nghi(c, cau[k + 1], nghi_cau, nghi_doan, "khoi" if theo_khoi else "para", doan_them)
+            gap = max(gap, nghi_the.get(c["i"], 0.0))
+            gap += lang.get(c["i"], 0.0)
             khuc.append(np.zeros(int(gap * sr), dtype=np.int16))
             t += gap
     wav_path = out.with_suffix(".wav")
@@ -229,8 +286,9 @@ def chay(script, out, prof, vai_path=None, chars_path=None, workers=3):
     if ai33:       # ai33 không có điều khoản ghi công như VOICEVOX → không sinh credits_giong.txt
         dung = sorted({ban[i]["voice_id"] for i in ids})
     else:
-        dung = sorted({(ban[i]["speaker"]) for i in ids})
-        (out.parent / "credits_giong.txt").write_text("▼ 素材\n音声：" + "／".join(f"VOICEVOX:{s}" for s in dung) + "\n",
+        dung = sorted({(ban[i].get("voice_id") or ban[i]["speaker"]) for i in ids})
+        vv = sorted({ban[i]["speaker"] for i in ids if not ban[i].get("voice_id")})   # vai ai33 không ghi công VOICEVOX
+        (out.parent / "credits_giong.txt").write_text("▼ 素材\n音声：" + "／".join(f"VOICEVOX:{s}" for s in vv) + "\n",
                                                        encoding="utf-8")
     print(f"[{tag}] ✓ {out.name} {t/60:.2f}' · {len(cues)} cue · giọng: {', '.join(dung)}")
     return t

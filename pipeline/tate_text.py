@@ -45,6 +45,8 @@ _FONT_DIRS = [Path(r"C:\Windows\Fonts")]
 _CANDIDATES = {
     "yu mincho":  [("yumin.ttf", 0), ("YuMincho.ttf", 0), ("YuMincho.ttc", 0), ("yumin.ttc", 0)],
     "yu gothic":  [("YuGothM.ttc", 0), ("yugothm.ttc", 0), ("YuGothR.ttc", 0)],
+    # Lane N 2026-09-30: anh chê chữ Lane M (Yu Gothic Medium) nhạt → bản Bold, thiếu thì rơi về Medium.
+    "yu gothic bold": [("YuGothB.ttc", 0), ("yugothb.ttc", 0), ("YuGothM.ttc", 0)],
     "ms gothic":  [("msgothic.ttc", 0)],
     "ms mincho":  [("msmincho.ttc", 0)],
     "meiryo":     [("meiryo.ttc", 0), ("Meiryo.ttc", 0)],

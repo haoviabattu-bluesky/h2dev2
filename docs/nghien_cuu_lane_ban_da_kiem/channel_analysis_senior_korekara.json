@@ -1,0 +1,1288 @@
+{
+ "schema_version": "1.0",
+ "analysis_type": "kênh đối thủ — Lane N (シニアの人生これから)",
+ "channel": {
+  "channel_name": "シニアの人生これから",
+  "channel_url": "https://www.youtube.com/@senior_korekara",
+  "channel_id": "UCL8PFGotC_jY_UbzfRTnnng",
+  "language": "ja",
+  "country": "JP",
+  "subscriber_count": 3410,
+  "total_videos": 64,
+  "channel_age_days": 73,
+  "upload_frequency_per_week": 6.1,
+  "typical_video_duration_seconds": 983
+ },
+ "data_quality": {
+  "videos_discovered": 64,
+  "videos_used_for_baseline": 64,
+  "videos_deep_analyzed": 15,
+  "transcripts_available": 0,
+  "thumbnails_available": 64,
+  "limitations": [
+   "Transcript: ĐÃ lấy đủ 15/15 video qua hook_fetch.transcript() (đường api+proxy1) — 4.611 segment, phủ ~100% độ dài. Không còn là điểm mù.",
+   "Bù lại: description 100% video có ĐẦY ĐỦ cốt truyện + timestamp chương có tên ⇒ đọc được cấu trúc mà không cần transcript.",
+   "commentCount của API gộp cả reply; commentThreads chỉ trả top-level ⇒ 779 < 1129 là ĐÚNG, không phải sót.",
+   "Đo định dạng ảnh bằng 13 + 16 khung hình THẬT (ffmpeg), không đoán từ thumbnail.",
+   "Nhân vật lặp lại: mới xác nhận ở video #3; các video khác mỗi tập một nhân vật mới."
+  ],
+  "overall_confidence": "HIGH",
+  "confidence_basis": "64/64 video khớp videoCount · 15 video phân tích sâu · 779 bình luận top-level (hết trang) · 29 khung hình thật · audio jitter/F0 đo bằng numpy"
+ },
+ "verdict": "KÊNH ĐANG TĂNG CỰC MẠNH, ĐÁNG CLONE: 73 ngày tuổi, 64 video, trend_vpd=14.61× (video mới chạy tốt hơn hẳn video cũ). Top1 đạt 443.785 view với VPD 49.309 (290,7× median VPD kênh = 64,1× median view). ch_mult=3.84 ⇒ Top1 chiếm 26,1% và Top3 chiếm 61,0% tổng view, tức kênh CÓ phụ thuộc video nổ. Mô hình: manga ảnh AI 100% + slideshow tĩnh + narration NGƯỜI THẬT (jitter 17,56%, F0 122Hz) + 6 chương CÓ TÊN. Khác biệt then chốt so Lane J: khán giả KHEN hình vẽ (27 khen vs 6 chê = 4,5:1) — Lane J ngược lại, bị 6/20 top comment chê hình già. Kết thúc NGHIỆM TÙNG (2,8%) chứ không quả báo cay đắng (0,4%, tỉ lệ 7:1).",
+ "positioning": {
+  "primary_niche": "Đời sống người Nhật 60–70 tuổi SAU KHI NGHỈ VIỆC — bao trùm việc làm, hôn nhân, chuyển đi, viện dưỡng lão, tiền, cô đơn",
+  "target_audience": "Người Nhật 60–75 đã nghỉ hưu hoặc sắp nghỉ, và con cái họ (40–55 tuổi)",
+  "audience_age": "60-75",
+  "audience_problems": [
+   "Lương hưu thấp không đủ sống, phải đi làm thêm tuổi già",
+   "Sợ cô đơn, mất kết nối xã hội sau nghỉ việc",
+   "Không biết chi phí THẬT của viện dưỡng lão/ngoại ô",
+   "Áp lực hôn nhân tuổi già (bị đối xử như \"công cụ\")",
+   "Lo bệnh tật/già đi nhanh hơn dự tính"
+  ],
+  "audience_desires": [
+   "Biết trước cạm bẫy để không mắc sai lầm tốn kém",
+   "Thấy mình không đơn độc — người khác cùng hoàn cảnh",
+   "Một kết thúc ấm áp, không thuyết giáo"
+  ],
+  "channel_promise": "Cho bạn thấy ĐÚNG SỰ THẬT về tuổi già trước khi bạn tự trải nghiệm — bằng câu chuyện của người khác",
+  "emotional_tone": "Nghiệm tùng, đồng cảm, đôi khi phũ phàng — KHÔNG cay đắng, KHÔNG quả báo",
+  "content_pillars": [
+   "Việc làm sau nghỉ hưu (シルバー人材センター, 警備, 清掃)",
+   "Hôn nhân/hẹn hò tuổi già (婚活)",
+   "Chuyển đi/nơi ở (移住, 軽井沢, 田舎)",
+   "Viện dưỡng lão & chi phí (老人ホーム, 高級施設)",
+   "Lương hưu & mức sống thật (年金格差)",
+   "Cô đơn & kết nối (同窓会, 独り身)"
+  ]
+ },
+ "channel_baseline": {
+  "method": "toàn bộ upload (64/64), VPD = view/ngày kể từ đăng",
+  "sample_size": 64,
+  "median_views": 6928,
+  "median_duration_seconds": 983,
+  "trend": 14.61,
+  "hit_rate": 0.234,
+  "ch_mult": 3.84,
+  "mean_views": 26615,
+  "mean_over_median": 3.84,
+  "top1_share_pct": 26.1,
+  "top3_share_pct": 48.7,
+  "vpd_median_all": 169.7,
+  "vpd_median_30d": 1426.1,
+  "trend_vpd_90d": null,
+  "trend_vpd_30d": 14.61,
+  "ghi_chu_trend": "trend_vpd_90d = None vi kenh chi 73 ngay tuoi, KHONG co video nao >90 ngay"
+ },
+ "topic_analysis": {
+  "winning_topics": [
+   {
+    "topic": "Việc làm sau nghỉ hưu dạng LIST N選",
+    "vpd_median": 13486,
+    "vi_du": "キツくないのに稼げる！？老後におすすめの仕事ランキング7選"
+   },
+   {
+    "topic": "Chuyển đi/nơi ở — tình huống KẸT không quay lại được",
+    "vpd_median": 5802,
+    "vi_du": "軽井沢移住して1年後「もう帰りたい」東京の家は売却済み"
+   },
+   {
+    "topic": "Hôn nhân tuổi già + bị đối xử như công cụ",
+    "vpd_median": 3864,
+    "vi_du": "婚活パーティーで年金目当ての男が大量発生。66歳独身女性の末路"
+   },
+   {
+    "topic": "Cô đơn/kết nối qua sự kiện xã hội",
+    "vpd_median": 2371,
+    "vi_du": "老後の同窓会で笑い者に。独り身のシニア男が同窓会に参加した末路"
+   },
+   {
+    "topic": "Viện dưỡng lão — trải nghiệm thật + chi phí thật",
+    "vpd_median": 8623,
+    "vi_du": "72歳で老人ホームの体験入居へ。3泊4日で初めて知った施設のリアル"
+   },
+   {
+    "topic": "Tiền/lương hưu so sánh nhiều mức",
+    "vpd_median": 1538,
+    "vi_du": "老後の年金別の生活レベル!年金6万円と25万円の格差"
+   }
+  ],
+  "losing_topics": [
+   {
+    "topic": "Nêu KẾT QUẢ đã đạt được (khoe thành tích)",
+    "vpd_median": 51,
+    "vi_du": "一年で貯金が300万増えた。無一文だった男が62歳で始めた仕事"
+   },
+   {
+    "topic": "Bi kịch CHUNG CHUNG không có tình huống cụ thể",
+    "vpd_median": 6,
+    "vi_du": "老後の認知症で家庭が崩壊。家計の管理を夫に任せきりにしたシニアの末路"
+   }
+  ],
+  "winning_topic_patterns": [
+   "NÊU TÌNH HUỐNG KẸT (không lối thoát) thay vì kể kết quả",
+   "Có ĐỐI CHỨNG — nhân vật chính bị so với người thành công hơn",
+   "Số tiền CỤ THỂ ở cả tiêu đề lẫn tên chương"
+  ]
+ },
+ "title_analysis": {
+  "common_patterns": [
+   "【漫画】ở đầu 100% (64/64)",
+   "Có dấu ？ câu hỏi treo: 34,4% nhóm nổ vs 12,5% nhóm tụt",
+   "Ngoặc 「」trích lời nhân vật: 50% vs 31,2%",
+   "Độ dài >40 ký tự: 68,8% vs 37,5% (dài = nhiều thông tin)",
+   "Định danh nhân vật bằng TUỔI + NGHỀ + SỐ TIỀN trong 2 câu đầu"
+  ],
+  "title_formulas": [
+   "【漫画】<TÌNH HUỐNG CỤ THỂ>。<TUỔI><NGHỀ>が<TỔN THẤT>した結果。",
+   "【漫画】<ĐỐI TƯỢNG>が<HÀNH ĐỘNG>するとどうなる？<TUỔI>から<N>のリアル"
+  ],
+  "tu_khoa_an_view": {
+   "リアル": "nhóm nổ 15,6% vs nhóm tụt 0%",
+   "末路": "ĐẶC BIỆT CẨN THẬN — 59,4% nhóm TỤT, chỉ 18,8% nhóm nổ",
+   "？": "+21,9 điểm nhóm nổ",
+   "「」": "+18,8 điểm nhóm nổ",
+   ">40 ký tự": "+31,2 điểm nhóm nổ",
+   "N選/TOP/ランキング": "10,9% nhóm nổ — dùng được nhưng không phải yếu tố quyết định",
+   "【漫画】": "64/64 bắt buộc"
+  },
+  "canh_bao": "TRÁI VỚI TRỰC GIÁC: chữ「末路」(kết cục thảm) KHÔNG ăn view. Nó chiếm 59,4% ở nhóm TỤT nhưng chỉ 18,8% ở nhóm NỔ. Đừng mặc định dùng 末路."
+ },
+ "thumbnail_analysis": {
+  "common_patterns": [
+   "Ảnh AI manga anime, phong cách hoài cổ ấm",
+   "Nhân vật người già ở trung tâm, biểu cảm rõ",
+   "Có chữ Nhật lớn đè lên ảnh",
+   "Nền là bối cảnh cụ thể (nhà, công viên, ga, phòng khách)",
+   "Bố cục dọc/ngang dạng khung truyện tranh"
+  ],
+  "canh_bao": "LUẬT CỨNG: không suy định dạng video từ thumbnail. Đã xác minh bằng 29 khung hình thật — thumbnail khớp với nội dung video (AI), nhưng phải xác minh chứ không đoán."
+ },
+ "hook_analysis": {
+  "hook_formulas": [
+   "[CÂU NGẮN NÊU TÌNH HUỐNG + SỐ CỤ THỂ] → [SỰ KIỆN KÍCH HOẠT] → [ĐỐI CHỨNG] → [CÚ SỐC] → [CÂU HỎI TREO]",
+   "Ví dụ #1: \"貯金240万円・年金11万円。3年前に自転車店を畳んだ68歳に、同窓会の案内が届く\""
+  ],
+  "average_hook_length_seconds": 200,
+  "common_open_loop_patterns": [
+   "Nêu nghịch lý ở chương 1, giải đáp ở chương cuối",
+   "Đối chứng người thành công hơn xuất hiện sớm rồi biến mất",
+   "Số tiền cụ thể ở đầu, tiết lộ tình hình thật ở giữa"
+  ],
+  "root_cause_4": [
+   {
+    "nguyen_nhan": "NÊU TÌNH HUỐNG KẸT, không nêu kết quả",
+    "bang_chung": "末路 xuất hiện 59,4% nhóm TỤT, 18,8% nhóm NỔ (−40,6 điểm)",
+    "do_manh": 40.6
+   },
+   {
+    "nguyen_nhan": "Tiêu đề DÀI, nhiều thông tin cụ thể",
+    "bang_chung": "68,8% vs 37,5% nhóm TỤT (+31,2 điểm)",
+    "do_manh": 31.2
+   },
+   {
+    "nguyen_nhan": "Có DẤU ？ câu hỏi treo",
+    "bang_chung": "34,4% vs 12,5% (+21,9 điểm)",
+    "do_manh": 21.9
+   },
+   {
+    "nguyen_nhan": "Ngoặc 「」trích lời trực tiếp nhân vật",
+    "bang_chung": "50,0% vs 31,2% (+18,8 điểm)",
+    "do_manh": 18.8
+   }
+  ],
+  "yeu_to_da_loai": {
+   "xếp hạng theo VIEW thô": "loại — video 3 ngày có 8.117 view nhìn thấp nhưng VPD 2.706; video 67 ngày 401 view = VPD 6",
+   "chữ 末路": "loại — TƯƠNG QUAN ÂM với VPD",
+   "số tiền trong tiêu đề": "trung tính (−6,2 điểm) — không tự động ăn view",
+   "số tuổi trong tiêu đề": "trung tính (−6,2 điểm)",
+   "chủ đề gia đình/con cái": "âm (−6,2 điểm)",
+   "chủ đề chuyển đi": "âm khi dùng chung chung (−15,6 điểm) — chỉ ăn khi có tình huống KẸT"
+  }
+ },
+ "script_analysis": {
+  "typical_structure": [
+   "0:00 MỞ — quyết định/tình huống số cụ thể",
+   "~15% VẤN ĐỀ 1 (thất vọng đầu tiên)",
+   "~35% VẤN ĐỀ 2 (chi phí/tình huống thật, số tiền cụ thể)",
+   "~50% ĐIỂM KHÔNG QUAY LẠI (mất mát không thể đảo ngược)",
+   "~70% TIA HY VỌNG (1 nhân vật tử tế xuất hiện)",
+   "~95% NGHIỆM TÙNG — nhân vật tự nhận ra, KHÔNG bị giảng đạo"
+  ]
+ },
+ "logic_analysis": {
+  "common_logic_flow": "Nhân vật có kỳ vọng (dựa trên giả định SAI) → dấn thân bằng hành động cụ thể, tốn tiền thật → va vào thực tế phũ phàng từng bước → mất thứ không lấy lại được → một người tử tế xuất hiện → nhân vật hiểu ra điều mình thực sự cần. Không có hình phạt, không có phán xét."
+ },
+ "retention_analysis": {
+  "observed_devices": [
+   "Chương có TÊN CỤ THỂ chứa số liệu (灯油は月4万5000円) — câu hỏi \"liệu có chịu được?\"",
+   "Nhịp đều ~185s/chương, mỗi chương một BƯỚC LÙI",
+   "Đối chứng: nhân vật thành công xuất hiện để tạo tương phản đau",
+   "Câu hỏi treo ở đầu chương, trả lời ở cuối chương"
+  ],
+  "notes": "Không dùng cliffhanger rẻ tiền. Giữ chân bằng ĐỘ CỤ THỂ của chi tiết (số tiền, nhiệt độ, thời gian chờ) — khán giả lớn tuổi xem vì muốn biết chi tiết THẬT."
+ },
+ "emotional_analysis": {
+  "typical_emotional_arc": [
+   "Tò mò (tình huống số cụ thể)",
+   "Đồng cảm (kỳ vọng hợp lý của nhân vật)",
+   "Sốc/phũ (chi phí hoặc thực tế tệ hơn tưởng)",
+   "Nghiệm tùng + ấm (nhận ra điều thật sự quan trọng)"
+  ],
+  "loi_chat_luong_da_do": "Tỉ lệ NGHIỆM TÙNG : QUẢ BÁO = 22 : 3 cmt = 7,3:1. Kênh KHÔNG cay đắng."
+ },
+ "writing_style": {
+  "sentence_style": "Câu rất ngắn, nhiều đoạn xuống dòng. Chương mở bằng cụm danh từ + số liệu, không mở bằng động từ. Nhân vật gọi bằng tên + さん (増田さん, 絹代さん) ⇒ khán giả gọi tên nhân vật khi bình luận."
+ },
+ "cta_analysis": {
+  "cta_style": "CTA rất nhẹ — gần như không có lời kêu gọi trực tiếp. Khán giả tự đăng ký (chỉ 8/779 cmt nhắc 登録/チャンネル nhưng like TB 27,9 — cao nhất mọi nhóm). Kết bằng cảm xúc để tự nhiên sinh đăng ký."
+ },
+ "videos": [
+  {
+   "rank": 1,
+   "video_id": "G5kIPGFNKeY",
+   "title": "【漫画】シルバー人材センターは結局どうなのか？辞めとけって本当？",
+   "views": 443785,
+   "days": 9,
+   "vpd": 49309.4,
+   "likes": 1287,
+   "comments_api": 190,
+   "duration_s": 1138,
+   "n_chapters": 6,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "定年の次の日"
+    },
+    {
+     "t": "2:27",
+     "label": "バイトか業務委託か"
+    },
+    {
+     "t": "6:35",
+     "label": "バイトで5年耐えるか"
+    },
+    {
+     "t": "9:46",
+     "label": "初仕事は除草"
+    },
+    {
+     "t": "13:02",
+     "label": "38年いた会社の草を刈る"
+    },
+    {
+     "t": "14:54",
+     "label": "障子は角が命だ"
+    }
+   ],
+   "comments_collected": 126,
+   "comment_like_mean": 11.1,
+   "comment_like_max": 120,
+   "top_comments": [
+    {
+     "like": 120,
+     "text": "66歳春にシルバー人材説明会では草刈り(草刈機)や木の伐採も沢山あるとの事で会員登録　9月も終わると言うのに1回も仕事の依頼無しです。会費の無駄でした😂退会します。"
+    },
+    {
+     "like": 90,
+     "text": "最低賃金の保証もない、これって老人を馬鹿にしてる制度だな。最低賃金は労働者の保護、権利を守る最低の保証だろう。\n国家としてこんな奴隷労働を認める国家として闇があるんだ。"
+    },
+    {
+     "like": 82,
+     "text": "登録したけど\n半年で一度も使ってない\n意味ないと\n辞退した"
+    },
+    {
+     "like": 78,
+     "text": "技能実習生と同じで日本人の給料水準を低いままにしている制度なんだよね"
+    },
+    {
+     "like": 59,
+     "text": "シルバー人材センターは\n絶対やめて❌\n自分たち（センター）の\n利益優先だから\n皆さんやめて"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=G5kIPGFNKeY"
+  },
+  {
+   "rank": 2,
+   "video_id": "mbRCAib7xQM",
+   "title": "【漫画】婚活パーティーで年金目当ての男が大量発生。シニア婚活に希望を抱いた66歳独身女性の末路",
+   "views": 142953,
+   "days": 37,
+   "vpd": 3863.6,
+   "likes": 971,
+   "comments_api": 148,
+   "duration_s": 927,
+   "n_chapters": 5,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "66歳、独身。「一人が気楽」と割り切っていた日々"
+    },
+    {
+     "t": "3:21",
+     "label": "婚活パーティーで13人に聞かれたのは「作れますか」だけだった"
+    },
+    {
+     "t": "6:49",
+     "label": "「家付き・年金付き・介護経験あり。上物だよ」——喫茶店で聞いた本音"
+    },
+    {
+     "t": "9:49",
+     "label": "公民館の繕い物の会。「直し方を教えてください」と言う人"
+    },
+    {
+     "t": "13:00",
+     "label": "籍は入れない。それでも二人は、次の旅行を計画している"
+    }
+   ],
+   "comments_collected": 102,
+   "comment_like_mean": 18.8,
+   "comment_like_max": 175,
+   "top_comments": [
+    {
+     "like": 175,
+     "text": "理想です　いい年して籍なんて入れたらろくな事ない"
+    },
+    {
+     "like": 158,
+     "text": "何を今さら自分で手枷足枷つけなくても……自由が一番1人がエエよ🎉"
+    },
+    {
+     "like": 127,
+     "text": "1人が気楽だよ🎉"
+    },
+    {
+     "like": 109,
+     "text": "入籍しないのが大正解ですね❣️お互いが自立して協力し合える💓最高のカップル👫"
+    },
+    {
+     "like": 95,
+     "text": "これだけ、人を便利屋の様な扱いされたら人を信じられなくなる気持ちよくわかる。老後の理想的な生活。"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=mbRCAib7xQM"
+  },
+  {
+   "rank": 3,
+   "video_id": "BdLooNSganA",
+   "title": "【漫画】キツくないのに稼げる！？老後におすすめの仕事ランキング7選！定年後でも働きやすい仕事はコレ",
+   "views": 242757,
+   "days": 18,
+   "vpd": 13486.5,
+   "likes": 398,
+   "comments_api": 24,
+   "duration_s": 972,
+   "n_chapters": 6,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "月3万円足りない"
+    },
+    {
+     "t": "2:48",
+     "label": "交通誘導警備"
+    },
+    {
+     "t": "5:57",
+     "label": "ビル清掃"
+    },
+    {
+     "t": "9:05",
+     "label": "デイサービスの送迎"
+    },
+    {
+     "t": "11:24",
+     "label": "マンション管理員"
+    },
+    {
+     "t": "14:35",
+     "label": "妻と温泉へ"
+    }
+   ],
+   "comments_collected": 15,
+   "comment_like_mean": 4.4,
+   "comment_like_max": 10,
+   "top_comments": [
+    {
+     "like": 10,
+     "text": "私、今管理人してます。年金は二人で30万3日間67歳から17時から5時間ほど、巡回ないしスマホ見てるだけたまに電球切れてますの電話だけ80まで出来るわ😂8万あるしええ小遣いですわ😊"
+    },
+    {
+     "like": 9,
+     "text": "苦情を受けた時の対応は掲示と管理会社への連絡とのことだが、個人的には、しつこい苦情には耐えがたいかも。"
+    },
+    {
+     "like": 9,
+     "text": "ウチのマンションは共用部で騒いでた子供をしかったら親が怒鳴り込んだり、昼メシを管理人室で食べてたら見苦しいと苦情あり、昼は自宅にとか、麦わら帽子で屋外作業するのに管理組合総会で判断するとか、アホが多いよ。よくやってるな〜と思います。"
+    },
+    {
+     "like": 6,
+     "text": "マンション管理人は住人ガチャに依る。一概には言えないがタワマンだと上から目線で理不尽なクレームも多数あるみたいだし、安いマンションはそれなりの住人達でコレも多数のクレームある様だね。"
+    },
+    {
+     "like": 6,
+     "text": "設備管理の仕事は歩ければ出来るからラクチン。資格と経験があれば優遇される。\nそれも国家資格と特殊な経験があれば高給取り。・・・芸は身を助くですね。"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=BdLooNSganA"
+  },
+  {
+   "rank": 4,
+   "video_id": "yTH_8ls9Jgg",
+   "title": "【漫画】老後に軽井沢移住して1年後「もう帰りたい」東京の家は売却済みで帰る場所もなく…",
+   "views": 87031,
+   "days": 15,
+   "vpd": 5802.1,
+   "likes": 992,
+   "comments_api": 187,
+   "duration_s": 1158,
+   "n_chapters": 6,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "東京の家を売って、憧れの軽井沢へ"
+    },
+    {
+     "t": "3:35",
+     "label": "カビと1時間半の渋滞。"
+    },
+    {
+     "t": "6:13",
+     "label": "朝はマイナス10度。灯油は月4万5000円"
+    },
+    {
+     "t": "9:26",
+     "label": "東京の家にはもう他人が住んでいる"
+    },
+    {
+     "t": "12:06",
+     "label": "商店街で言われた「おかえり」"
+    },
+    {
+     "t": "16:31",
+     "label": "旅行で行く軽井沢は、最高だった。"
+    }
+   ],
+   "comments_collected": 149,
+   "comment_like_mean": 17.9,
+   "comment_like_max": 183,
+   "top_comments": [
+    {
+     "like": 183,
+     "text": "雪が降る所　寒い所は\n高齢者には　ムリです‼️"
+    },
+    {
+     "like": 169,
+     "text": "いきなり家を買わずに賃貸で1年くらい住んでみて決めればよかったのになぁと思います。"
+    },
+    {
+     "like": 167,
+     "text": "田舎暮らしは、様々能力が高くないと難しいのですよ。"
+    },
+    {
+     "like": 157,
+     "text": "別荘はいらない。特に雪が降るところは。\n1週間ほど旅行で行くのがちょうどいい。"
+    },
+    {
+     "like": 110,
+     "text": "クマが出没する事もお忘れなく"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=yTH_8ls9Jgg"
+  },
+  {
+   "rank": 5,
+   "video_id": "uUmbugIRmiY",
+   "title": "【漫画】老後の同窓会で笑い者に。独り身のシニア男が同窓会に参加した末路",
+   "views": 109064,
+   "days": 46,
+   "vpd": 2371.0,
+   "likes": 696,
+   "comments_api": 88,
+   "duration_s": 914,
+   "n_chapters": 8,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "貯金240万円・年金11万円。3年前に自転車店を畳んだ68歳に、同窓会の案内が届く"
+    },
+    {
+     "t": "2:47",
+     "label": "50年ぶりの再会。増田さんは、同級生全員の自転車を覚えていた"
+    },
+    {
+     "t": "4:11",
+     "label": "タワマン38階、ベンツ3台目、年収2000万。出世頭の同級生が現れる"
+    },
+    {
+     "t": "5:22",
+     "label": "「年金11万? わしの飲み代じゃないか」——68歳の夜の、公開処刑"
+    },
+    {
+     "t": "7:23",
+     "label": "「あの自転車で、俺は3年通って卒業したんだ」。潮目が変わる"
+    },
+    {
+     "t": "8:48",
+     "label": "「あなたの話には、人がひとりも出てこないのよ」。クラスのマドンナが立ち上がる"
+    },
+    {
+     "t": "11:13",
+     "label": "帰りのバス停。50年、歩いて15分の距離に住んでいた"
+    },
+    {
+     "t": "14:02",
+     "label": "春の商店街。貯金は増えていない。それでも増えたもの"
+    }
+   ],
+   "comments_collected": 60,
+   "comment_like_mean": 7.8,
+   "comment_like_max": 114,
+   "top_comments": [
+    {
+     "like": 114,
+     "text": "同窓会で人の貯金額を訊いて、その額を馬鹿にするやつなんていないって。"
+    },
+    {
+     "like": 42,
+     "text": "行ったとて、それぞれが自慢話でマウントを取ることが容易に想像できます。懐かしむような話はきっとでませんので、行くことはありません。"
+    },
+    {
+     "like": 30,
+     "text": "同窓会なんて行くもんじゃないよ。昔のこと振り返ってなんになる！"
+    },
+    {
+     "like": 21,
+     "text": "最後にマドンナと友達になれるなんて話がうま過ぎだろ！ｗ"
+    },
+    {
+     "like": 21,
+     "text": "いじめられっ子でした。\nクラスのヤンキーに虐められ、\n女子は、其れを見て笑っていました。\nこんな感じでしたから、行って誰と\n何を話すんですか？\nとても出席なんてできませんよｗ"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=uUmbugIRmiY"
+  },
+  {
+   "rank": 6,
+   "video_id": "SOIklzU69fg",
+   "title": "【漫画】72歳で老人ホームの体験入居へ。3泊4日で初めて知った施設のリアル",
+   "views": 68984,
+   "days": 8,
+   "vpd": 8623.0,
+   "likes": 349,
+   "comments_api": 27,
+   "duration_s": 912,
+   "n_chapters": 5,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "庭で30分立てなかった"
+    },
+    {
+     "t": "3:48",
+     "label": "一時金360万、月費用は実質20万"
+    },
+    {
+     "t": "6:57",
+     "label": "消灯9時、遠くで鳴るコール"
+    },
+    {
+     "t": "10:22",
+     "label": "1日早く帰らせてください"
+    },
+    {
+     "t": "13:20",
+     "label": "家に、ボタンをつけた"
+    }
+   ],
+   "comments_collected": 23,
+   "comment_like_mean": 16.4,
+   "comment_like_max": 64,
+   "top_comments": [
+    {
+     "like": 64,
+     "text": "元気なうちは家で1人暮らしたいですね😉"
+    },
+    {
+     "like": 42,
+     "text": "まだまだクリアな人が入るとこじゃないよ"
+    },
+    {
+     "like": 31,
+     "text": "車の運転とか自分で動き回れるうちは長野で\nそれができなくなったら都会の便利なところ\n生活に不安が出てきたらホームなのかな\nそれまで蓄財に励みます"
+    },
+    {
+     "like": 28,
+     "text": "入居施設で70代はヤング扱いです😅\nデイとかの方が良いのでは。"
+    },
+    {
+     "like": 28,
+     "text": "世の中には要介護認定を受けて入居の順番待ちの方が大勢おられます。まだ自分で動ける内は頑張って足腰を鍛えましょう😊"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=SOIklzU69fg"
+  },
+  {
+   "rank": 7,
+   "video_id": "KY8NLrQguo0",
+   "title": "【漫画】入居金1億円の高級老人ホームに入った結果。最高級の暮らしでも手に入らなかったもの",
+   "views": 58557,
+   "days": 41,
+   "vpd": 1428.2,
+   "likes": 495,
+   "comments_api": 55,
+   "duration_s": 1042,
+   "n_chapters": 6,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "入居金1億円の高級老人ホームに入った、76歳の元社長"
+    },
+    {
+     "t": "1:20",
+     "label": "施設ツアーと料金の仕組み。同じ部屋が76歳で1億円、90歳なら3400万円"
+    },
+    {
+     "t": "4:56",
+     "label": "バラ色の日々。家事ゼロ・24時間看護師・実際の支出は月40万円"
+    },
+    {
+     "t": "8:53",
+     "label": "どん底。「1億円払って、俺は、こんなに静かな場所に来てしまった」"
+    },
+    {
+     "t": "10:11",
+     "label": "転機。坂の下の公園で、年金月11万円の常連たちにボロ負けする"
+    },
+    {
+     "t": "14:11",
+     "label": "貼り紙の将棋会。タワーと公園、居場所は二つになった"
+    }
+   ],
+   "comments_collected": 45,
+   "comment_like_mean": 9.7,
+   "comment_like_max": 46,
+   "top_comments": [
+    {
+     "like": 46,
+     "text": "感慨深い、人生を見つめ直す良いヒントになりました。やはり、人間と言うのは一人で生きるより、誰か呼応してくれる存在が必要なのですねぇ。"
+    },
+    {
+     "like": 45,
+     "text": "この手の高級シニアマンション系の動画は胸糞悪くなる内容ばかりなのに、この動画のように嫌な人や不愉快になる出来事が全然ないのは珍しい。\n最後まで気持ちよく見られた。"
+    },
+    {
+     "like": 31,
+     "text": "地についた家がいいなぁ〜庭が見えて、季節を感じる持ち家。"
+    },
+    {
+     "like": 31,
+     "text": "出来れば、老人ホームには入りたくない。\nそのために鍛えなきゃ！"
+    },
+    {
+     "like": 29,
+     "text": "金持ちと庶民の交流がこんなにうまくいくとは思えないけどね"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=KY8NLrQguo0"
+  },
+  {
+   "rank": 8,
+   "video_id": "qvUvnZwYR2w",
+   "title": "【漫画】老後の年金別の生活レベル!年金6万円と25万円の格差",
+   "views": 76880,
+   "days": 50,
+   "vpd": 1537.6,
+   "likes": 338,
+   "comments_api": 35,
+   "duration_s": 963,
+   "n_chapters": 6,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "年金6万円の元大工。家賃3万2000円、1日の食費は530円。夜のおかずはもやし炒め"
+    },
+    {
+     "t": "2:07",
+     "label": "年金13万円の団地。夫婦で19万5000円・家賃4万8000円。1日750円の食卓に笑い声がある"
+    },
+    {
+     "t": "4:43",
+     "label": "年金18万円の元教師。家賃7万5000円は年金の4割。「給付金は、もらってる?」"
+    },
+    {
+     "t": "7:13",
+     "label": "年金25万円は、中学の同級生だった。鰻重を半分残す、6人掛けの食卓"
+    },
+    {
+     "t": "10:14",
+     "label": "誰も来ない病室。「うまいものを一人で食っても、二口目から味がしないんだ」"
+    },
+    {
+     "t": "12:35",
+     "label": "家賃14万円の借家を引き払う。直した学習机と、10年ぶりの返事「元気なのか。」"
+    }
+   ],
+   "comments_collected": 25,
+   "comment_like_mean": 6.3,
+   "comment_like_max": 25,
+   "top_comments": [
+    {
+     "like": 25,
+     "text": "25万でも鰻は食えないよ。"
+    },
+    {
+     "like": 18,
+     "text": "いい話でした。勉強になりました。"
+    },
+    {
+     "like": 15,
+     "text": "そんな貧相な食事で筋肉は付かない"
+    },
+    {
+     "like": 14,
+     "text": "最初のおうちの昼食最高ｗｗｗどんな豪華な食事より俺はこれがいい！！！"
+    },
+    {
+     "like": 14,
+     "text": "良いですね。"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=qvUvnZwYR2w"
+  },
+  {
+   "rank": 9,
+   "video_id": "GybgFdSpgQ4",
+   "title": "【漫画】「低年金は大変だな笑」同級生に笑われながら定年後も働き続けた結果。",
+   "views": 36530,
+   "days": 31,
+   "vpd": 1178.4,
+   "likes": 195,
+   "comments_api": 38,
+   "duration_s": 748,
+   "n_chapters": 4,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "年金8万円、72歳の警備員。「お前、まだ働いてるのか」"
+    },
+    {
+     "t": "3:34",
+     "label": "妻の前でも笑われた夜。それでも、また交差点に立った"
+    },
+    {
+     "t": "6:17",
+     "label": "3年後。歩数は1日1万2000歩と、1日300歩"
+    },
+    {
+     "t": "8:59",
+     "label": "病室での再会。「そんなこと、気にしちゃいねえよ」"
+    }
+   ],
+   "comments_collected": 27,
+   "comment_like_mean": 6,
+   "comment_like_max": 14,
+   "top_comments": [
+    {
+     "like": 14,
+     "text": "俺はどんな仕事でも働く人を馬鹿にするほど下衆じゃないが、夢の老後はどこに行ったと思うよ日本さんよ。"
+    },
+    {
+     "like": 12,
+     "text": "働くというのは、傍を楽にするという。単に自分だけでなく周りも助け、他を喜ばせることが出来るかけがえのないお宝。守って守られている。だから今日も働き続ける。"
+    },
+    {
+     "like": 11,
+     "text": "素敵な動画ありがとうございました。\n私も生涯、働き続けたい気持ちが沸いてきました。"
+    },
+    {
+     "like": 11,
+     "text": "大手ゼネコンの部長か、普通に生活してればやって行けるけど自慢するほどでは無いよ。\nむしろ金持ってる奴は人には言わないからね。"
+    },
+    {
+     "like": 10,
+     "text": "全く恥ずかしくない。立派な方です。"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=GybgFdSpgQ4"
+  },
+  {
+   "rank": 10,
+   "video_id": "uHAwTDsOQ-M",
+   "title": "【漫画】生活保護で老後を乗り切ろうとした男「ヤバくなったら頼ればいいじゃん」と思っていたが…",
+   "views": 28106,
+   "days": 14,
+   "vpd": 2007.6,
+   "likes": 319,
+   "comments_api": 106,
+   "duration_s": 1183,
+   "n_chapters": 6,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "「最後は生活保護があるさ」を20年信じた66歳。手取り13万円、貯金20万円"
+    },
+    {
+     "t": "4:06",
+     "label": "窓口で知った現実。「ひと月で11万円ほど」——思っていた額は15万円"
+    },
+    {
+     "t": "8:33",
+     "label": "申請。車も、葬式代の保険200万円も、18年住んだ部屋も手放す"
+    },
+    {
+     "t": "12:27",
+     "label": "「私たちの税金よねぇ」。底の底と、大家の「生きてりゃ、いいのよ」"
+    },
+    {
+     "t": "14:32",
+     "label": "68歳で保護廃止「おめでとうございます」。通帳に月2万円"
+    },
+    {
+     "t": "17:02",
+     "label": "20年逃げた弟に届いた、便箋4枚"
+    }
+   ],
+   "comments_collected": 35,
+   "comment_like_mean": 8.2,
+   "comment_like_max": 45,
+   "top_comments": [
+    {
+     "like": 45,
+     "text": "何かあっても最後はナマポがある！っていい加減な生き方は本当に迷惑だからやめてほしい。"
+    },
+    {
+     "like": 27,
+     "text": "すべての医療費全額タダはいくらなんでも過保護すぎやろ。税金やぞ？"
+    },
+    {
+     "like": 26,
+     "text": "生活保護の人に対して、今までの生き方が悪い、自己責任など言う人は多いが真面目に生きてきた人でも家族、本人が怪我、病気で突然仕事ができなくなり、家庭を持った子供も自分の生活で一杯で援助してもらえずに医療費が重なり貯金は数年でなくなり生活保護になる可能性は一部の資産家を除いて誰でもあるから、バカにしない方がいいと思う。自分が住んでいる近所の農家の夫婦、旦那が車で物損事故を起こしたが、相手が反社の輩で、財産をほとんどとられて生活保護になった。人生なにがおきるかわからない。"
+    },
+    {
+     "like": 20,
+     "text": "…日本人の日本人による日本人の為の生活保護　なのに、何故害人に生活保護受給が出るのか？\n\n(※日本の法律では\"日本人のみ支給\"とあります。)"
+    },
+    {
+     "like": 20,
+     "text": "生活保護制度のある日本誇りに思います。"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=uHAwTDsOQ-M"
+  },
+  {
+   "rank": 11,
+   "video_id": "cu_DTPtgYHg",
+   "title": "【漫画】シニア婚活バスツアーで地獄の沈黙。熟年結婚のリアルな現実",
+   "views": 44651,
+   "days": 63,
+   "vpd": 708.7,
+   "likes": 324,
+   "comments_api": 62,
+   "duration_s": 899,
+   "n_chapters": 11,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "80万円使って、恋人ゼロ"
+    },
+    {
+     "t": "0:15",
+     "label": "独り身の67歳と、同僚の訃報"
+    },
+    {
+     "t": "1:42",
+     "label": "自治体の婚活パーティーで3連敗"
+    },
+    {
+     "t": "3:34",
+     "label": "床屋の大将の「清潔感と聞く力」"
+    },
+    {
+     "t": "4:49",
+     "label": "覚悟の結婚相談所——費用と現実"
+    },
+    {
+     "t": "7:17",
+     "label": "婚活バスツアーで出会った女性"
+    },
+    {
+     "t": "8:28",
+     "label": "50万円のマットレス"
+    },
+    {
+     "t": "9:47",
+     "label": "音信不通と、戻らないお金"
+    },
+    {
+     "t": "11:18",
+     "label": "婚活をやめた日——事実婚という選択肢"
+    },
+    {
+     "t": "12:15",
+     "label": "男の料理教室と、静かな出会い"
+    },
+    {
+     "t": "14:30",
+     "label": "2人分の湯気"
+    }
+   ],
+   "comments_collected": 42,
+   "comment_like_mean": 9.8,
+   "comment_like_max": 48,
+   "top_comments": [
+    {
+     "like": 48,
+     "text": "入籍する結婚ではなく、週末婚程度の恋人を探すのが無難だと思います。同じような考えの女性はそれなりにいるはずです。\nでも、やはりロマンス詐欺は警戒しましょう。"
+    },
+    {
+     "like": 38,
+     "text": "婚活に限らず、人とお金が絡む話になったらアウトです。"
+    },
+    {
+     "like": 30,
+     "text": "茶飲み友達程度が平和"
+    },
+    {
+     "like": 23,
+     "text": "寂しいから婚活はやばいで"
+    },
+    {
+     "like": 23,
+     "text": "ベッドだまし取られた件は相手の住所もわかっているようだし結婚相談所の紹介ならなんとかなるのでは？"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=cu_DTPtgYHg"
+  },
+  {
+   "rank": 12,
+   "video_id": "1xev7CfVyoU",
+   "title": "【漫画】老後年金13万円の超リアルな生活水準。「冷蔵庫が壊れるとやばい」綱渡りのギリギリの毎日",
+   "views": 28340,
+   "days": 12,
+   "vpd": 2361.7,
+   "likes": 211,
+   "comments_api": 37,
+   "duration_s": 1021,
+   "n_chapters": 5,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "年金13万円、手取り11万9000円"
+    },
+    {
+     "t": "4:42",
+     "label": "甥の結婚式。相場は5万円"
+    },
+    {
+     "t": "7:37",
+     "label": "奥歯が取れた。3割負担6000円"
+    },
+    {
+     "t": "10:34",
+     "label": "冷蔵庫が壊れた。中古1万5500円"
+    },
+    {
+     "t": "13:35",
+     "label": "8年ぶりの礼服。ご祝儀3万円"
+    }
+   ],
+   "comments_collected": 29,
+   "comment_like_mean": 4.4,
+   "comment_like_max": 12,
+   "top_comments": [
+    {
+     "like": 12,
+     "text": "家賃を払う年金生活は、大変だな。家賃がなければ。介護保険料がなければ、兄貴も、ボヤイていた。😂😢😅"
+    },
+    {
+     "like": 11,
+     "text": "年金生活の人は極力外食は辞めた方が良いよ今は物価高騰で一回の外食費が軽く１０００円飛ぶよ"
+    },
+    {
+     "like": 10,
+     "text": "ひと月13万円では多い方ですよ。10万円以下が60%いるからね。"
+    },
+    {
+     "like": 9,
+     "text": "贅沢はしなくてもしっかりと生活していく話でよかった。見習わないと。"
+    },
+    {
+     "like": 8,
+     "text": "体動くうちは節約するよりは働いて稼ぐ方が良いかと思います。"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=1xev7CfVyoU"
+  },
+  {
+   "rank": 13,
+   "video_id": "vfe1rz99eP0",
+   "title": "【漫画】退職金980万円でキャンピングカーを買った64歳の末路…「夫婦で日本一周」の夢が地獄に変わるまで",
+   "views": 37398,
+   "days": 69,
+   "vpd": 542.0,
+   "likes": 372,
+   "comments_api": 74,
+   "duration_s": 792,
+   "n_chapters": 6,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "42年の夢、そして退職金"
+    },
+    {
+     "t": "1:24",
+     "label": "憧れのキャンピングカーを衝動買い"
+    },
+    {
+     "t": "3:01",
+     "label": "夢の綻び…かさむ維持費と妻のため息"
+    },
+    {
+     "t": "6:05",
+     "label": "どん底——査定320万円と、一枚の置き手紙"
+    },
+    {
+     "t": "8:13",
+     "label": "救いの出会い「夢はサイズじゃない」"
+    },
+    {
+     "t": "10:31",
+     "label": "本当の宝物、再びの旅立ち"
+    }
+   ],
+   "comments_collected": 58,
+   "comment_like_mean": 3.6,
+   "comment_like_max": 24,
+   "top_comments": [
+    {
+     "like": 24,
+     "text": "何で奥さんに相談しないで勝ってに決めるの男😖"
+    },
+    {
+     "like": 19,
+     "text": "若い時は軽トラックでキャンプをしたしテントを張るのも楽しかった。\n老いたらセダンで名所めぐりをして旅館に泊まるもの。\n\n温泉に入り、美味いものを食い、エアコンの部屋でくつろぐ。\n８００万円のキャンピングカーの金と経費があれば十二分楽しめるよ。"
+    },
+    {
+     "like": 16,
+     "text": "キャンピングカーも別荘も金が有り余ってる人が買うもの。GW 、お盆、年末年始を避け、公共交通機関かマイカーで旅行すればよい。"
+    },
+    {
+     "like": 11,
+     "text": "キャンピングカーって維持費が高そうですね。"
+    },
+    {
+     "like": 10,
+     "text": "98000円でも勝手に使ったら烈火の如く怒られる"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=vfe1rz99eP0"
+  },
+  {
+   "rank": 14,
+   "video_id": "wgb-v1b6iUY",
+   "title": "【漫画】熟年同棲がわずか1年で破綻。一人は寂しいから…シニア婚活を始めた女性が見落としていたこと",
+   "views": 23805,
+   "days": 16,
+   "vpd": 1487.8,
+   "likes": 181,
+   "comments_api": 21,
+   "duration_s": 1304,
+   "n_chapters": 8,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "正月に話した相手は宅配の人だけ。"
+    },
+    {
+     "t": "3:37",
+     "label": "68歳の元理科教師"
+    },
+    {
+     "t": "6:40",
+     "label": "台所に「おいしいね」があった冬。"
+    },
+    {
+     "t": "10:46",
+     "label": "「父の年金で暮らせて、いいですね」。"
+    },
+    {
+     "t": "12:05",
+     "label": "脱衣所で倒れた朝。"
+    },
+    {
+     "t": "14:54",
+     "label": "通帳も家も娘のもとへ。"
+    },
+    {
+     "t": "16:09",
+     "label": "もう付いていた手すり"
+    },
+    {
+     "t": "20:03",
+     "label": "婚姻届の証人欄"
+    }
+   ],
+   "comments_collected": 17,
+   "comment_like_mean": 9.9,
+   "comment_like_max": 26,
+   "top_comments": [
+    {
+     "like": 26,
+     "text": "介護要員だね。"
+    },
+    {
+     "like": 20,
+     "text": "お金のことは立て替えた分をしっかり伝えて請求しないと、小さな立て替えが溜まるにつれ、心が重たくなるのは当たり前。\nいずれにしても高齢になってからの再婚や同居はリスクだらけですね。\n自分の家は引き払い、お金も立て替えて…挙げ句に…泣きっ面に蜂でしたね。\n安易な婚活、マチアプ、安易な同居の決断など、優しい人だからこそ、気軽に踏み切ってしまったのでしょうね。\n\n最後は介護要員として同棲から再婚、辛いこともあっても幸せな形に収まって良かったですね。\nただ、こんなハッピーエンドは滅多にないと思います。"
+    },
+    {
+     "like": 20,
+     "text": "そうそう。これがあるから安易な同居は怖いんよ。家追い出されたら、高齢になると家も借りにくいし実家ももうないし。籍入れたら入れたで相続に両方の子どもたちが絡んでくるから大変やと思うのだが。"
+    },
+    {
+     "like": 16,
+     "text": "結局シニアの婚活なんて無理なんだよ🤢🧓他人同士の高齢者が🏡一緒に住んでもうまくいくわけ無いだろその前に居た👨‍👨‍👦家族が居るのだから他人同士の高齢者が簡単に住めるわけ無いよ又資金を出す場合きちんと書面を残さないと後から損害賠償請求何て無理だからねだから私も４年前に妻は他界したが今更再婚やシニア婚活なんてしないよ無駄だからね芸能人はお金が有るから何回も再婚するが一般人それも一般庶民で年金生活者なんて再婚は無理だね無駄だからな😂"
+    },
+    {
+     "like": 15,
+     "text": "この動画ではハッピーエンドだったけど、シニアの婚活はなかなか難しいと思いますよ。としえさんの息子夫婦も薄情だし、相続の時だけしゃしゃり出てきそう。\nそしてお金の事はきっちりしなきゃね。今回はたまたま上手くいった例だからね。"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=wgb-v1b6iUY"
+  },
+  {
+   "rank": 15,
+   "video_id": "o4Dr1wbtikM",
+   "title": "【漫画】年金13万円独身男の老後リアル「1500万あれば大丈夫」と再雇用を断った男の末路",
+   "views": 28669,
+   "days": 64,
+   "vpd": 448.0,
+   "likes": 194,
+   "comments_api": 37,
+   "duration_s": 819,
+   "n_chapters": 9,
+   "chapters": [
+    {
+     "t": "0:00",
+     "label": "同じ40年勤続、2人の食卓"
+    },
+    {
+     "t": "0:27",
+     "label": "「1500万あれば大丈夫」と再雇用を断る"
+    },
+    {
+     "t": "1:47",
+     "label": "軽キャンで釣り旅、150万"
+    },
+    {
+     "t": "2:36",
+     "label": "ねんきん定期便の「月13万円」"
+    },
+    {
+     "t": "4:42",
+     "label": "同期と計算した「75歳でゼロ」と施設の壁"
+    },
+    {
+     "t": "8:12",
+     "label": "少しずつ「当たり前」を手放していく日常"
+    },
+    {
+     "t": "9:35",
+     "label": "エアコンを我慢した夏"
+    },
+    {
+     "t": "11:15",
+     "label": "立て直し——削る場所を間違えない"
+    },
+    {
+     "t": "13:20",
+     "label": "1人前300円の鍋の夜"
+    }
+   ],
+   "comments_collected": 26,
+   "comment_like_mean": 4.8,
+   "comment_like_max": 15,
+   "top_comments": [
+    {
+     "like": 15,
+     "text": "家に来た郵便物開けないって、もうそれだけでおかしいだろ☹"
+    },
+    {
+     "like": 12,
+     "text": "甘いんだよ、頭悪すぎ、60歳で仕事辞める身分じゃねんだよ。俺は64歳でも働いてるぞー！"
+    },
+    {
+     "like": 9,
+     "text": "自分へのご褒美という語が出ると、もう後は落伍街道まっしぐらですね、"
+    },
+    {
+     "like": 9,
+     "text": "建設業の割には人生の｢積算・見積り｣があまかった、ってか。"
+    },
+    {
+     "like": 8,
+     "text": "1500万程度で遊んでられる訳ね～だろ　　持ち家もないなら現役時代だらしない生き方してたな"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=o4Dr1wbtikM"
+  }
+ ],
+ "channel_dna": {
+  "core_identity": "Nhật ký đời sống tuổi 60–70 hậu nghỉ việc, kể bằng manga AI + giọng người thật, mỗi tập một nhân vật mới",
+  "audience": "Người Nhật 60–75 đã/sắp nghỉ hưu + con cái 40–55 tuổi",
+  "core_promise": "Thấy TRƯỚC cái bẫy tuổi già qua câu chuyện người khác — để không tự mắc",
+  "hook_formula": "[TÌNH HUỐNG + SỐ CỤ THỂ] → [SỰ KIỆN KÍCH HOẠT] → [ĐỐI CHỨNG] → [CÚ SỐC] → [CÂU HỎI TREO]",
+  "script_formula": "6 chương có tên chứa số liệu → mỗi chương một bước lùi → điểm không quay lại → tia hy vọng → nghiệm tùng",
+  "retention_formula": "Giữ chân bằng ĐỘ CỤ THỂ của chi tiết (tiền, nhiệt độ, thời gian), không bằng cliffhanger",
+  "emotional_formula": "Kỳ vọng hợp lý → phũ phàng dần → mất mát → nhận ra, kết ấm. KHÔNG quả báo."
+ },
+ "winning_formula": [
+  "【漫画】+ TÌNH HUỐNG KẸT cụ thể + ĐỐI CHỨNG + số tiền thật, tiêu đề dài >40 ký tự, có ？ và 「」",
+  "Manga AI + narration NGƯỜI THẬT (không TTS) + 6 chương có tên + kết nghiệm tùng"
+ ],
+ "anti_patterns": [
+  "Tiêu đề chỉ có 末路/地獄 mà không nêu tình huống cụ thể (59,4% nhóm tụt)",
+  "Khoe KẾT QUẢ đã đạt (貯金が300万増えた) thay vì nêu vấn đề",
+  "Bi kịch chung chung không có chi tiết",
+  "Vẽ nhân vật GIÀ HƠN tuổi thật — bị bắt ngay (Lane J đã mắc lỗi này)",
+  "Kết cốt truyện quá đẹp, thiếu người xấu (\"登場人物がみんな良い人すぎる\")",
+  "Để lỗi hình sơ đẳng lọt ra (mặt thò qua kính chắn gió)",
+  "Narration sai cảm xúc / giọng phẳng",
+  "Đưa nội dung chính trị/trợ cấp xã hội vào (gây tranh cãi ngoài tầm kiểm soát)",
+  "Dùng lại 1 nhân vật cố định cho mọi tập (kênh này mỗi tập một nhân vật mới)"
+ ],
+ "claude_handoff": {
+  "recommended_content_directions": [
+   "Đi theo mảng VIỆC LÀM sau nghỉ hưu dạng LIST — video nổ nhất kênh (VPD 13.486, 289× median)",
+   "Mảng CHUYỂN ĐI/NƠI Ở với tình huống KẸT (đã bán nhà, không về được) — VPD 5.802",
+   "Mảng HÔN NHÂN TUỔI GIÀ + bị đối xử như công cụ — VPD 3.864, bình luận tranh luận mạnh nhất",
+   "Mảng VIỆN DƯỠNG LÃO với trải nghiệm thật + chi phí thật — VPD 8.623"
+  ],
+  "winning_topic_patterns": [
+   "Tình huống KẸT không lối thoát > kể kết quả",
+   "Số tiền cụ thể ở tiêu đề và tên chương",
+   "Đối chứng người thành công hơn để tạo tương phản"
+  ],
+  "uncertainties": [
+   "Transcript: ĐÃ lấy đủ 15/15 video qua hook_fetch.transcript() (đường api+proxy1) — 4.611 segment, phủ ~100% độ dài. Không còn là điểm mù.",
+   "Chưa xác định TTS hay người thật cho TẤT CẢ video — mới đo audio video #1 (người thật, jitter 17,56%)",
+   "Nhân vật lặp lại mới xác nhận ở video #3 — chưa rõ có phải quy tắc hay không",
+   "Kênh chỉ 73 ngày tuổi ⇒ trend có thể đổi; cần đo lại sau 30 ngày"
+  ],
+  "suggested_next_action": "Bắt đầu bằng mảng VIỆC LÀM sau nghỉ hưu dạng LIST 7選 (video nổ nhất). Làm 3 tập thử, đo VPD sau 7 ngày, so với median kênh 170 view/ngày.",
+  "file_tham_chieu": {
+   "dataset_64_video": "scratch_korekara/scored64.json",
+   "binh_luan_779": "scratch_korekara/comments15.json",
+   "phan_tich_binh_luan": "scratch_korekara/PHAN_TICH_BINH_LUAN_15VIDEO.md",
+   "channel_dna": "scratch_korekara/CHANNEL_DNA_KOREKARA.md",
+   "order_15": "scratch_korekara/ORDER_15_VIDEO_UU_TIEN.md",
+   "khung_hinh_that": "scratch_korekara/GRID_oZatkpZ0HEc.jpg + GRID2_Scnn76gZ8E8.jpg",
+   "video_analysis_dir": "docs/channel_dna/senior_korekara/VIDEO_ANALYSIS",
+   "transcripts_15_that": "data/senior_korekara/transcripts/",
+   "hook_records_15": "data/senior_korekara/hook_records.json",
+   "tag_stats": "docs/channel_dna/senior_korekara/TAG_STATS.json"
+  },
+  "video_analysis_dir": "docs/channel_dna/senior_korekara/VIDEO_ANALYSIS"
+ }
+}

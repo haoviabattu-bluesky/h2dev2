@@ -38,14 +38,66 @@ class OpenSpeakerError(Exception):
     pass
 
 
-def _headers():
-    return {"xi-api-key": API_KEY}
+# ================= HAI KHOÁ CHẠY ĐAN XEN (anh chốt 2026-09-27) =================
+# VÌ SAO: ai33 chặn theo TÀI KHOẢN — "You have too many tasks in queue (10/10)"
+# (bạn đang có quá nhiều tác vụ trong hàng đợi). Đo thật 2026-09-27: ép khoá 1 đầy hàng đợi rồi
+# bắn khoá 2 TỪ CHÍNH MÁY NÀY, cùng lúc, cùng mạng → khoá 1 bị chặn 199 lần trong khi khoá 2 qua
+# 5/5. Tức là mỗi tài khoản có 10 chỗ RIÊNG, không dính nhau. Thêm khoá của CÙNG tài khoản thì vô
+# ích (trần tính theo tài khoản, không theo khoá).
+#
+# Giọng clone DÙNG CHUNG ĐƯỢC giữa hai tài khoản: đo thật cùng ngày — khoá 2 (0 giọng clone trong
+# danh sách của nó) vẫn đọc được `clone_2658912` của khoá 1, task `done`, ra mp3 0,84 giây nghe
+# được. Lý do: clone nằm ở tầng MiniMax (`metadata.v3.provider = minimax`), ai33 chỉ chuyển tiếp id.
+# ⚠️ Đây là điều QUAN SÁT ĐƯỢC ở ngày đó, không phải cam kết của nhà cung cấp — nếu sau này họ khoá
+# clone theo tài khoản thì khoá 2 sẽ hỏng ở đúng chỗ này, và lỗi sẽ hiện ra lúc poll chứ không phải
+# lúc gửi (lúc gửi vẫn HTTP 200).
+API_KEYS = [k for k in [
+    API_KEY,
+    keys.get("openspeaker2", env="AI33_API_KEY_2",
+             default="sk_v4zaxfe0tb5vew0d9ff4e8uxqevnyy6e3zlozlpcrejrckbt"),
+] if k]
+
+_luot = 0                 # con trỏ xoay vòng, để hai khoá đi ĐAN XEN chứ không dồn vào khoá đầu
+_khoa_cua_task = {}       # task_id → khoá đã gửi nó (poll PHẢI hỏi đúng khoá đó)
+_khoa_chet = set()        # khoá hết tiền / sai key — bỏ ra khỏi vòng xoay trong phiên này
 
 
-def get_credits():
-    r = requests.get(f"{BASE}/v1/credits", headers=_headers(), timeout=30)
-    r.raise_for_status()
-    return r.json()
+def _headers(key=None):
+    return {"xi-api-key": key or API_KEY}
+
+
+def _khoa_kha_dung():
+    ds = [k for k in API_KEYS if k not in _khoa_chet]
+    return ds or list(API_KEYS)      # chết hết thì vẫn thử lại, còn hơn đứng im
+
+
+def _khoa_tiep():
+    """Khoá kế tiếp theo vòng xoay (đan xen đều hai tài khoản)."""
+    global _luot
+    ds = _khoa_kha_dung()
+    k = ds[_luot % len(ds)]
+    _luot += 1
+    return k
+
+
+def get_credits(key=None):
+    """Số dư. Không truyền `key` = TỔNG của cả pool (đúng nghĩa 'còn tiêu được bao nhiêu'),
+    kèm `per_key` để nhìn từng tài khoản. Truyền `key` = số dư đúng tài khoản đó."""
+    if key:
+        r = requests.get(f"{BASE}/v1/credits", headers=_headers(key), timeout=30)
+        r.raise_for_status()
+        return r.json()
+    tong, chi_tiet = 0, []
+    for k in API_KEYS:
+        try:
+            c = int(requests.get(f"{BASE}/v1/credits", headers=_headers(k),
+                                 timeout=30).json().get("credits", 0))
+        except Exception:
+            c = -1
+        chi_tiet.append(c)
+        if c > 0:
+            tong += c
+    return {"success": True, "credits": tong, "per_key": chi_tiet, "n_keys": len(API_KEYS)}
 
 
 def submit(text, voice_id, speed=0.95, with_transcript=True, file_name="satori"):
@@ -57,17 +109,37 @@ def submit(text, voice_id, speed=0.95, with_transcript=True, file_name="satori")
         "with_transcript": (None, "true" if with_transcript else "false"),
         "file_name": (None, file_name),
     }
-    r = requests.post(f"{BASE}/v3/text-to-speech", headers=_headers(), files=files, timeout=120)
-    if r.status_code == 429:
-        wait = int(r.headers.get("Retry-After", "10"))
-        time.sleep(wait)
-        return submit(text, voice_id, speed, with_transcript, file_name)
-    r.raise_for_status()
-    j = r.json()
-    tid = j.get("task_id") or (j.get("data") or {}).get("task_id")
-    if not j.get("success", True) or not tid:
-        raise OpenSpeakerError(f"submit lỗi: {str(j)[:300]}")
-    return tid
+    # Bị chặn ở khoá này thì ĐỔI NGAY sang khoá kia, KHÔNG nằm chờ — đó là toàn bộ lợi ích của
+    # việc có 2 tài khoản. Chỉ khi MỌI khoá đều đang bị chặn mới ngủ một nhịp rồi vòng lại.
+    # (Bản cũ gọi đệ quy chính nó không giới hạn số lần + ngủ cứng 10 giây; hàng đợi đầy lâu là
+    # đệ quy chồng hàng trăm tầng, chờ hàng giờ rồi mới gãy. Nay là vòng lặp có trần.)
+    so_khoa = len(_khoa_kha_dung())
+    cho = 0
+    for lan in range(so_khoa * 40):
+        khoa = _khoa_tiep()
+        r = requests.post(f"{BASE}/v3/text-to-speech", headers=_headers(khoa),
+                          files=files, timeout=120)
+        if r.status_code == 429:
+            cho += 1
+            if cho >= so_khoa:          # đã thử hết lượt các khoá mà khoá nào cũng chặn
+                time.sleep(int(r.headers.get("Retry-After", "5")))
+                cho = 0
+            continue
+        if r.status_code in (401, 402, 403):
+            _khoa_chet.add(khoa)
+            print(f"  ! khoá ai33 ...{khoa[-6:]} bị từ chối (HTTP {r.status_code}) → bỏ khỏi vòng xoay",
+                  flush=True)
+            if not [k for k in API_KEYS if k not in _khoa_chet]:
+                raise OpenSpeakerError(f"MỌI khoá ai33 đều bị từ chối: {r.text[:200]}")
+            continue
+        r.raise_for_status()
+        j = r.json()
+        tid = j.get("task_id") or (j.get("data") or {}).get("task_id")
+        if not j.get("success", True) or not tid:
+            raise OpenSpeakerError(f"submit lỗi: {str(j)[:300]}")
+        _khoa_cua_task[tid] = khoa      # poll PHẢI hỏi đúng khoá đã gửi, task thuộc tài khoản đó
+        return tid
+    raise OpenSpeakerError(f"gửi TTS thất bại: {so_khoa} khoá đều kẹt hàng đợi quá lâu")
 
 
 def poll(task_id, need_transcript=True):
@@ -75,7 +147,8 @@ def poll(task_id, need_transcript=True):
     deadline = time.monotonic() + POLL_TIMEOUT
     while time.monotonic() < deadline:
         time.sleep(POLL_INTERVAL)
-        r = requests.get(f"{BASE}/v1/task/{task_id}", headers=_headers(), timeout=60)
+        r = requests.get(f"{BASE}/v1/task/{task_id}",
+                         headers=_headers(_khoa_cua_task.get(task_id)), timeout=60)
         if r.status_code >= 500:
             continue
         r.raise_for_status()

@@ -62,3 +62,13 @@ __pycache__/
 
 # === File tạm/backup có tiền tố _bak trong pipeline ===
 pipeline/_bak_*.py
+
+# === 21/10: máy đánh dấu + rác chạy lô (không đẩy lên GitHub public) ===
+MAY.local
+logs/
+qc_tmp/
+research/grok_vs_gpti2_*/
+*.bak-*
+/_verify_no_password.png
+/_test_yahara_fixed.png
+/bridge_test.txt

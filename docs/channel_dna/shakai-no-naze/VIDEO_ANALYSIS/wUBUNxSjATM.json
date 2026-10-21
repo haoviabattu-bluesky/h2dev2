@@ -1,0 +1,12 @@
+{
+ "topics": ["婚活", "女余り", "高望み", "普通の人でいい", "年収600万", "結婚相談所", "生涯未婚率", "家事力", "独身を選ぶ男性"],
+ "hook_type": "Câu thoại nghịch lý ở giây 0: nữ khách 'tôi chỉ cần người bình thường' rồi kể chuỗi điều kiện cao (đại học, 600 vạn yên, 170cm…) → người kể chốt '30 năm tỉ lệ nữ cả đời không kết hôn tăng 4 lần' + hứa kể 'kết cục'.",
+ "structure": "Thoại nghịch lý 'người bình thường' (0–20s) → số liệu sốc + câu hỏi なぜ + 末路 → văn phòng mai mối, Sakura là tư vấn viên: khách 1 lọc 3/vạn hội viên rồi chê cả 3 → sếp giải thích 'phép nhân của cái bình thường' (2^10 → 1/1000) + số liệu 600万 (40% muốn vs 3,5% đạt) + đòi việc nhà 57,7%→70,2% → khách 2 (37 tuổi, đòi 1000 vạn, 30 tuổi) leo thang → tuổi kết hôn phổ biến nữ 30/nam 34 → tuần sau sếp 'phán' từ chối thẳng (cao trào hả giận) → chuyển sang góc nam: ý định kết hôn nam 81,4%→75,1%, 1/4 nam sống độc thân cả đời → kết 'độc thân là lựa chọn khôn ngoan' + CTA.",
+ "emotional_beats": ["Bực vì 'bình thường' giả", "Cười ngán ngẩm", "Phẫn nộ leo thang (khách 2)", "Hả giận khi bị từ chối thẳng", "Đồng cảm với nam giới độc thân"],
+ "title_formula": "[Thị trường/ nơi chốn]から[nhóm người]が消えた⁉[hệ quả gây tranh cãi]が止まらない理由【漫画】",
+ "notes": "Tương tác cao nhất kênh (318 bình luận/52k view) vì GÂY TRANH CÃI giới tính — nội dung chê bai nữ ('売れ残り女子', 'モンスター'), hả hê → trái LUẬT §5.4 lane L (không trả thù/ hả hê) và rủi ro chính sách. Chỉ lấy CẤU TRÚC (phép nhân điều kiện, số liệu kỳ vọng vs thực tế, góc vì sao nam rút khỏi hôn nhân); viết lại theo hướng cơ chế thị trường, cảm thông cả hai phía. Số liệu cần tự tra: 出生動向基本調査 2021 (ý định kết hôn nam 75,1%, việc nhà 70,2%), 生涯未婚率 nam ~28%/nữ ~18% (国勢調査 2020). Luật §5.5: không dùng lại nhân vật 森/西野/黒田所長.",
+ "video_id": "wUBUNxSjATM",
+ "title": "婚活市場から男が消えた⁉女余りが止まらない理由【漫画】",
+ "view_count": 52279,
+ "duration_min": 18.5
+}

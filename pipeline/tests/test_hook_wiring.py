@@ -9,6 +9,17 @@ import ai_steps
 PROF = {"id": "x", "language": "ja", "voice": {"char_rate": 300.0}, "script": {}, "narrator": {}}
 
 
+@pytest.fixture(autouse=True)
+def _chan_llm_that_khi_tach_suon(monkeypatch):
+    """2026-10-17: ensure_locked nay gọi phan_tich_cau_truc (claude -p → Gemini) — test không được gọi model thật."""
+    import claude_p_bridge, llm_client
+
+    def _cam(*a, **k):
+        raise RuntimeError("test: cấm gọi model thật")
+    monkeypatch.setattr(claude_p_bridge, "ask", _cam)
+    monkeypatch.setattr(llm_client, "chat", _cam)
+
+
 def test_pass1_prompt_co_khoi_hook():
     p = ai_steps._pass1_prompt(PROF, "KHUNG", 20, "", budget_block="2) ...", hook_locked="HOOK文。")
     assert "PHẦN MỞ ĐẦU ĐÃ KHOÁ" in p and "HOOK文。" in p
@@ -936,7 +947,7 @@ def test_qc_final_kiem_hook_upstream_khong_can_listing_shifted_s(tmp_path, monke
 def test_viet_candidates_canh_bao_model_khong_claude_p(monkeypatch, tmp_path, capsys):
     import hook_stage as HS, ai_steps
     monkeypatch.setattr(HS, "cau_hinh", lambda prof: {"model": "some-model", "tol": 0.1})
-    monkeypatch.setattr(HS, "so_chu_muc_tieu", lambda prof: 100)
+    monkeypatch.setattr(HS, "so_chu_muc_tieu", lambda prof, src=None: 100)
     monkeypatch.setattr(ai_steps, "_skill_text", lambda prof, kind: "")
     monkeypatch.setattr(ai_steps, "_writer_chat", lambda prof, prompt, **k: type("R", (), {"text": "hook text"})())
     prof = {"id": "x", "language": "ja", "narrator": {}, "script": {}}   # KHÔNG khai engine="claude_p"
@@ -950,7 +961,7 @@ def test_viet_candidates_khong_canh_bao_khi_claude_p(monkeypatch, tmp_path, caps
     """Đối chứng: kênh khai engine="claude_p" thì KHÔNG in cảnh báo (model có tác dụng thật)."""
     import hook_stage as HS, ai_steps
     monkeypatch.setattr(HS, "cau_hinh", lambda prof: {"model": "some-model", "tol": 0.1})
-    monkeypatch.setattr(HS, "so_chu_muc_tieu", lambda prof: 100)
+    monkeypatch.setattr(HS, "so_chu_muc_tieu", lambda prof, src=None: 100)
     monkeypatch.setattr(ai_steps, "_skill_text", lambda prof, kind: "")
     monkeypatch.setattr(ai_steps, "_writer_chat", lambda prof, prompt, **k: type("R", (), {"text": "hook text"})())
     prof = {"id": "x", "language": "ja", "narrator": {}, "script": {"engine": "claude_p"}}

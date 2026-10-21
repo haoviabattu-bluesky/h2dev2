@@ -38,6 +38,37 @@ import qc_visual
 from paths import OUT_ROOT, res
 HERE = Path(__file__).resolve().parent
 ROOT = OUT_ROOT
+
+
+def _chan_buoc2_o_may1(prof, buoc):
+    """Chặn CÓ CHỌN LỌC (opt-in, KHÔNG áp toàn dự án): lane khai `profile.body.chan_buoc2_may1: true`
+    thì B4 (lồng giọng) + B5 (vẽ ảnh thân video) bị CHẶN khi chạy trên máy 1, vì lane đó xác nhận có
+    máy 2 riêng nhận việc qua đường dẫn nhận diện được (vd bundle `buoc2_3_tool`).
+
+    Vá 2026-09-27 sau sự cố Lane M ep03: máy 1 lỡ tự chạy B4+B5 (tốn ~14.000đ ảnh + credit giọng
+    thật, không hoàn được) vì SOP viết "chạy B5W/B5P rồi giao máy 2" nhưng không có gì CHẶN CỨNG.
+    CỐ Ý làm opt-in thay vì chặn mặc định mọi lane: nhiều lane khác máy 2 nhận code qua `git pull`
+    thẳng vào CÙNG thư mục `pipeline/` (không qua bundle `buoc2_3_tool`) — máy 1 KHÔNG có cách nào
+    phân biệt tin cậy 2 phiên chạy cùng 1 đường dẫn code, nên KHÔNG được suy rộng chặn toàn dự án,
+    kẻo chặn nhầm chính máy 2 hợp lệ của lane khác mà mình không nắm rõ hạ tầng. Chỉ lane nào đã xác
+    nhận đúng cơ chế bundle (Lane M/K, xem SOP riêng) mới bật field này.
+    Muốn cố ý vượt 1 lần (hiếm, có xác nhận của anh) → set biến môi trường
+    `H2DEV_MAY1_CHO_PHEP_BUOC2=1` trước khi chạy, KHÔNG có cờ CLI (cờ CLI dễ gõ nhầm/copy lệnh cũ)."""
+    import os
+    if not ((prof.get("body", {}) or {}).get("chan_buoc2_may1")):
+        return  # lane không khai field này → không chặn (giữ nguyên hành vi cũ cho mọi lane khác)
+    import may_hien_tai
+    if may_hien_tai.la_may2():
+        return  # máy 2 (bundle cũ hoặc checkout git có MAY.local=2 — 21/10 máy 2 làm A→Z) — không chặn
+    if os.environ.get("H2DEV_MAY1_CHO_PHEP_BUOC2") == "1":
+        print(f"[{buoc}] ⚠️ H2DEV_MAY1_CHO_PHEP_BUOC2=1 — chạy Bước 2 trên máy 1 THEO YÊU CẦU RÕ RÀNG, tốn tiền thật.")
+        return
+    raise SystemExit(
+        f"✗ {buoc}: đây là việc BƯỚC 2 (máy 2), không phải việc của máy 1 (CLAUDE.md 'Claude chỉ làm "
+        f"Bước 1'). Dừng TRƯỚC KHI tốn tiền ảnh/giọng thật.\n"
+        f"   Đúng quy trình: dừng ở B5P, chạy `dong_goi_may2.py --job {prof['id']} <tập>` để giao máy 2.\n"
+        f"   Nếu ĐÃ hỏi và anh xác nhận cho máy 1 tự làm (hiếm) → set biến môi trường "
+        f"H2DEV_MAY1_CHO_PHEP_BUOC2=1 rồi chạy lại lệnh y hệt.")
 # Khi đóng .exe, `sys.executable` LÀ chính exe chứ không phải python.exe, và máy đích có thể
 # KHÔNG cài Python. Nên exe tự đóng vai trình chạy: `exe --child <script.py> ...` (xem gui_video).
 _FROZEN = getattr(sys, "frozen", False)
@@ -94,6 +125,8 @@ class Job:
         # gpti2 chỉ có 3 key nên >24 lượt gọi cùng lúc là dính 429, còn ffmpeg thì tranh CPU.
         self.img_workers = int(img_workers or 0)
         self.asm_jobs = int(asm_jobs or 0)
+        self.force_from = force_from  # `--from <step>` (bug máy 2 báo 2026-09-27): B3/B3 lean phải TỰ
+        # BIẾT nếu lượt này bắt đầu SAU B3 để không quay lại viết/khoá lại kịch bản+hook dù có force nào.
         self.rate_fixed = False    # B4 vừa hiệu chỉnh char_rate đáng kể?
         self.minutes = minutes or profiles.target_minutes(prof)
         self.minutes_auto = minutes_auto and not minutes
@@ -346,6 +379,8 @@ class Job:
         out = self.f("script.txt")
         if self.skip("B3", out):
             return
+        if self.force_from and STEPS.index(self.force_from) > STEPS.index("B3"):
+            return  # `--from B4` trở đi: KHÔNG được quay lại viết/khoá lại script+hook, bất kể force nào
         # Hàng rào ĐA KÊNH: ngưỡng nhịp văn phải là của CHÍNH kênh này. Mượn DEFAULT_GATE
         # (nhịp tâm tình của cụ bà satori) cho một kênh kể tài liệu giọng nam = gate gật đầu
         # cho đúng thứ văn mình không muốn, mà không báo gì.
@@ -631,6 +666,8 @@ class Job:
             return
         if self.den and STEPS.index("B3") > STEPS.index(self.den):
             return
+        if self.force_from and STEPS.index(self.force_from) > STEPS.index("B3"):
+            return  # `--from B4` trở đi: KHÔNG được quay lại viết/khoá lại script+hook, bất kể force nào
         ok, msg, level = gate_common.kiem_lock(self.dir)
         if level == "PASS" and not force:
             print(f"[B3] bỏ qua — {msg}")
@@ -669,6 +706,12 @@ class Job:
                 raise SystemExit(f"✗ {buoc}: HOOK_STALE — " + " · ".join(ly_do))
             if ly_do:   # ["chưa có hook lock"]
                 print(f"[{buoc}] ⚠️ {ly_do[0]} — tập cũ: chạy hook_stage.py --mode repair trước khi giao")
+            # 2026-10-21 (anh chốt, Lane L ep23): hook khoá từ 21/10 mà không bám cấu trúc hook gốc (so_nhip_goc trống —
+            # hook viết tự do / khoá tay) → CẤM dựng. Lock cũ hơn không hồi tố.
+            m = hook_stage.doc_lock(self.dir) or {}
+            if m and str(m.get("at", "")) >= "2026-10-21" and not m.get("so_nhip_goc"):
+                raise SystemExit(f"✗ {buoc}: hook đã khoá KHÔNG có cấu trúc hook gốc (hook viết tự do) → cấm dựng. "
+                                 f"Kiểm: py -3.13 -X utf8 {Path(__file__).resolve().parent / 'kiem_hook_goc.py'} --tap {self.dir}")
 
     def b3s_sol(self, force=False):
         """B3S — QC ĐỘC LẬP bằng GPT-5.6-sol (khác hãng hẳn với Gemini/Claude đang viết+B3Q/B3F),
@@ -916,6 +959,7 @@ class Job:
         out = self.f("voice.mp3")
         if self.skip("B4", out):
             return
+        _chan_buoc2_o_may1(self.p, "B4")
         self.kiem_lock("B4")    # đọc giọng cho đúng bản script đã khoá (máy 2 chạy B4 sau máy 1 nhiều ngày)
         # Lane ĐA GIỌNG (voice.provider="voicevox", Lane K 2026-09-24): mỗi câu đọc bằng giọng của vai trong
         # vai.txt; SRT ghi thẳng từ độ dài thật từng câu (chữ = script) nên KHÔNG qua B4a nắn phụ đề.
@@ -977,9 +1021,11 @@ class Job:
         # hay 1.00 (người trẻ); ghi thẳng số đo vào hồ sơ là để tốc độ của MỘT tập kéo lệch số
         # đo chung của cả kênh, các tập sau ước lượng sai độ dài theo.
         goc = profiles.char_rate_speed(self.p)
-        if self.ep_speed and goc and abs(self.ep_speed - goc) > 1e-6:
-            quy_doi = real * goc / self.ep_speed
-            print(f"  [char_rate] tập này đọc {self.ep_speed} (hồ sơ chuẩn {goc}) → "
+        # 2026-10-01: không chọn giọng theo tập (ep_speed rỗng) thì tốc độ thật = voice.speed của hồ sơ.
+        sp = self.ep_speed or float((self.p.get("voice", {}) or {}).get("speed") or 0)
+        if sp and goc and abs(sp - goc) > 1e-6:
+            quy_doi = real * goc / sp
+            print(f"  [char_rate] tập này đọc {sp} (hồ sơ chuẩn {goc}) → "
                   f"quy đổi {real:.1f} về {quy_doi:.1f}")
             real = quy_doi
         cur = profiles.char_rate(self.p)
@@ -1921,6 +1967,7 @@ class Job:
         imgdir = self.f("img")
         if self.skip("B5", None if self.dry else imgdir / "001.png"):
             return
+        _chan_buoc2_o_may1(self.p, "B5")
         dur = (self.state.get("B4", {}) or {}).get("seconds") or self.minutes * 60
         img = self.p.get("image", {}) or {}
         if not pf.exists():
@@ -2333,6 +2380,12 @@ class Job:
         print(f"[B7] nền: {bg.name}")
         self.done("B7", bg=bg.name, qc_problems=nbad)
 
+    def _nut_dang_ky(self):
+        # B8n (2026-09-30, anh chốt): phủ NÚT ĐĂNG KÝ lên video giao — chỉ lớp phủ, không đổi thời gian.
+        # Bật bằng profile assemble.subscribe; chạy SAU ghép hook (mốc tính trên dòng thời gian người xem).
+        import nut_dang_ky
+        nut_dang_ky.chen(self.dir, self.p)
+
     def b8_assemble(self):
         out = self.f("final.mp4")
         if self.skip("B8", out) or self.dry:
@@ -2364,6 +2417,7 @@ class Job:
             if a.get("bgm") and (ROOT / a["bgm"]).exists():
                 cmd += ["--bgm", ROOT / a["bgm"], "--bgm-volume", a.get("bgm_volume", 0.09)]
             run(cmd, "B8 ghép clip stock")
+            self._nut_dang_ky()
             self.done("B8", mp4=out.name, mode="stock_clips")
             return
         cmd = pycmd("assemble.py", "--img", self.f("img"), "--audio", self.voice_audio(),
@@ -2441,6 +2495,7 @@ class Job:
             run(pycmd("ghep_hook_noi_truoc.py", "--tap", self.dir, "--profile", self.p["id"]), "B8h ghép hook")
             if not self.f("final_with_hook.mp4").exists():
                 raise SystemExit("✗ B8h: ghép hook không ra final_with_hook.mp4")
+        self._nut_dang_ky()
         self.done("B8", mp4=out.name)
 
 
@@ -2463,6 +2518,11 @@ def main():
     ap.add_argument("--skip-qc", action="store_true", help="bỏ hẳn bước QC nội dung B3Q")
     ap.add_argument("--no-fix", action="store_true", help="QC xong KHÔNG tự sửa, chỉ báo lỗi")
     ap.add_argument("--force-qc", action="store_true", help="vẫn chạy tiếp dù QC kết luận HỎNG")
+    ap.add_argument("--viet-lai-kich-ban", action="store_true",
+                    help="ép viết lại kịch bản/hook DÙ ĐÃ KHOÁ PASS — TÁCH RIÊNG khỏi --force-qc "
+                         "(bug máy 2 báo 2026-09-27: --force-qc từng bị truyền thẳng vào b3_lean/b3_script, "
+                         "khiến '--from B5Q --force-qc' vô tình viết lại cả script.txt và hook đã khoá). "
+                         "Cờ này CHỈ nên dùng khi thật sự muốn viết lại từ đầu.")
     ap.add_argument("--tries", type=int, default=2,
                     help="số lượt viết lại kịch bản khi QC kết luận HỎNG")
     ap.add_argument("--dry-run", action="store_true", help="chỉ làm phần CHỮ + báo tiền, KHÔNG gen ảnh/video")
@@ -2519,6 +2579,10 @@ def main():
     print(f"    mục tiêu {job.minutes}' = {profiles.target_chars(prof, job.minutes):,} chữ "
           f"(char_rate {profiles.char_rate(prof)}) · thư mục {job.dir}")
     t0 = time.time()
+    if not args.from_step and job.only in (None, "B0", "B1", "B2", "B3"):
+        # 2026-10-03 (anh chốt, mọi lane): bắt đầu chặng 1 → cột D = "Đang chạy kịch bản bước 1" (tập chưa gửi máy 3)
+        import review_may3
+        review_may3.bat_dau_b1(job.p, job.dir, dry=args.dry_run)
     job.b2_competitor(args.competitor)
     job.b2b_comments(args.competitor)       # bổ trợ, không chặn — xem docstring b2b_comments
     # PHẢI đứng giữa B2 và B3: cần transcript để nhận người kể, và phải xong TRƯỚC khi viết
@@ -2551,10 +2615,10 @@ def main():
             # flow=lean (docs/QUY_TRINH_KICH_BAN_GON.md v2): Fable viết đúng ngân sách → máy đo → Sol lời cuối
             # → khoá SHA256. B3Q/B3F/B3S/B3R/B3G KHÔNG chạy (state ghi skipped=lean_flow). Không có vòng
             # viết-lại --tries: trượt = ESCALATE/BLOCK (SystemExit), người quyết.
-            job.b3_lean(force=args.force_qc)
+            job.b3_lean(force=args.viet_lai_kich_ban)
         else:
             try:
-                job.b3_script(force=args.force_qc)
+                job.b3_script(force=args.viet_lai_kich_ban)
             except SystemExit:
                 if attempt >= args.tries:
                     raise

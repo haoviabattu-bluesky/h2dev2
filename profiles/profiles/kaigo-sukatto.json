@@ -1,0 +1,429 @@
+{
+  "id": "kaigo-sukatto",
+  "market": "JP",
+  "language": "ja",
+  "niche": "職場漫画・介護施設 — 口ぐせの悪い介護職員が、組織の仕組みによって静かに因果応報を受ける話（三人称ナレーション＋主人公の心の声、VOICEVOX多声）",
+  "competitor": "https://www.youtube.com/channel/UCEBA1RFfkXQtqgiDVLh4bcw",
+  "slug_dir": "assets/O-kaigo-sukatto",
+  "folder_pattern": "ep{nn:02d}-*",
+  "channel_dossier": "docs/channel_dna/yakkyoku-sukatto/KENH_GOC_10/PHAN_TICH_10_VIDEO_VA_AP_DUNG_KAIGO.md",
+  "channel_dna_dir": "docs/channel_dna/kaigo-sukatto",
+  "narrator": {
+    "gender": "male",
+    "age_band": "40-50",
+    "persona": "落ち着いた男性ナレーター（三人称）。介護施設の日常を淡々と、感情を煽らずに語る。主人公を「彼」「その男」（女性なら「彼女」）と呼び、責めも擁護もしない。主人公の心の声（「俺は〜」「私は〜」）は括弧なしの独立した一文で挟まる（ナレーターではなく主人公の声で読まれる）。",
+    "point_of_view": "三人称「彼」＋主人公の心の声「俺」（括弧なしの独立文）。台詞は必ず「」だけの独立した一文",
+    "register": "ナレーションは だ・である体、短い文。台詞は口語（主人公は「〜っすね」「〜なんで」系のくだけた口調、施設長・主任・入居者家族は丁寧語、入居者は穏やかな年配の話し方）",
+    "_note": "ĐO THẬT 2026-09-24 (docs/channel_dna/yakkyoku-sukatto/GIONG_VAI.md): người kể = giọng nam 玄野武宏 ở 4/4 video; câu nội tâm「俺…」do giọng NHÂN VẬT CHÍNH đọc, không phải người kể."
+  },
+  "voice": {
+    "provider": "voicevox",
+    "ai33_cho_vai": true,
+    "_ai33_cho_vai_note": "05/10 anh: Lane O được dùng giọng ai33 cho từng VAI (characters.json voice = {voice_id, speed, fx}) — tts_voicevox + xem_thu_hook_giong đọc vai đó qua OpenSpeaker, vai còn lại VOICEVOX. Bắt buộc cho vai phản diện hách dịch (giám đốc/sếp/khách quát): VOICEVOX không đủ uy. Kho tham khảo: cast_bank_ai33.",
+    "_provider_note": "Ngã rẽ DUY NHẤT sang tts_voicevox.py (make_video.b4_voice + tts.py). Engine local :50021 — E:\\CLAUDE\\YOUTUBE\\VOICEVOX_ENGINE\\0.25.2\\run.exe. Máy 2 phải cài y hệt (0đ).",
+    "narrator": {
+      "speaker": "玄野武宏",
+      "style": "ノーマル"
+    },
+    "fixed_cast": {
+      "shu": {
+        "speaker": "黒沢冴白",
+        "style": "ノーマル",
+        "vai": "主人公（口ぐせの介護士）— thoại + tâm thoại「俺」"
+      },
+      "jimu": {
+        "speaker": "波音リツ",
+        "style": "ノーマル",
+        "vai": "事務員・相談員（受付/家族対応）"
+      }
+    },
+    "cast_bank": {
+      "施設長・男性上司": [
+        {
+          "speaker": "雀松朱司",
+          "style": "ノーマル"
+        }
+      ],
+      "面接官・結果を告げる人": [
+        {
+          "speaker": "四国めたん",
+          "style": "ノーマル"
+        },
+        {
+          "speaker": "No.7",
+          "style": "ノーマル",
+          "_note": "17/10: 離途 là giọng NAM, lane đã lỡ gán cho 6 vai nữ (ep01-03,05,07,08,13) → đổi No.7"
+        },
+        {
+          "speaker": "東北イタコ",
+          "style": "ノーマル"
+        }
+      ],
+      "若い女性介護職・新人": [
+        {
+          "speaker": "春日部つむぎ",
+          "style": "ノーマル"
+        }
+      ],
+      "先輩女性介護職・パート・主任(女)": [
+        {
+          "speaker": "冥鳴ひまり",
+          "style": "ノーマル"
+        }
+      ],
+      "後輩男性・中途介護福祉士": [
+        {
+          "speaker": "白上虎太郎",
+          "style": "ふつう"
+        }
+      ],
+      "入居者(男性高齢者)": [
+        {
+          "speaker": "ちび式じい",
+          "style": "ノーマル"
+        },
+        {
+          "speaker": "麒ヶ島宗麟",
+          "style": "ノーマル"
+        }
+      ],
+      "入居者家族・中年男性": [
+        {
+          "speaker": "夜語トバリ",
+          "style": "ノーマル"
+        }
+      ],
+      "女性面接官・看護師(30〜40代)": [
+        {
+          "speaker": "九州そら",
+          "style": "ノーマル"
+        }
+      ]
+    },
+    "_cast_note": "Lane O dùng lại NGUYÊN bộ giọng VOICEVOX của Lane K (cùng kênh mẫu 千種テンカ). Nữ cao tuổi (入居者 bà cụ) chưa có giọng riêng trong kho kênh mẫu → tập nào cần thì chọn giọng VOICEVOX nữ trầm, ghi vào characters.json + báo trong báo cáo.",
+    "speed": 1.0,
+    "pause_sentence_ms": 500,
+    "pause_para_ms": 900,
+    "pre_s": 0.05,
+    "post_s": 0.05,
+    "pace": false,
+    "fx": "none",
+    "char_rate": 316.7,
+    "_competitor_rate_note": "Kênh mẫu 294–323 chữ/phút (whisper 4 video: 5.295/17,5' · 5.655/19,1' · 5.318/18,1' · 5.214/16,2'), đã gồm nghỉ + nhạc. char_rate của mình PHẢI đo bằng chính tts_voicevox.py (calibrate), ghi char_rate_measured_at.",
+    "char_rate_speed": 1.0,
+    "char_rate_measured_at": "2026-09-24",
+    "char_rate_from": "MƯỢN từ Lane K (video thật ep01-tantou-janai, 2026-09-24) — hợp lệ vì CÙNG engine VOICEVOX 0.25.2, cùng bộ giọng, cùng speed/pause. Đo lại từ video thật ep01 Lane O rồi ghi đè.",
+    "cast_bank_ai33": {
+      "_note": "Giọng ai33 đã dùng ở lane khác cho vai hách dịch — chọn qua trang nghe so giọng (mẫu assets\\O-kaigo-sukatto\\ep04-kawari-ikurademo\\_nghe_giong_shimura\\_tao_mau.py). fx 'punch' = chuỗi tts.VOICE_FX['punch'].",
+      "sep_quat_van_phong": [
+        {
+          "voice_id": "elevenlabs_nkmkwBCNHgzLGGnbmMTD",
+          "ten": "Masafumi",
+          "speed": 1.05,
+          "fx": "punch",
+          "nguon": "Lane L ep09 権藤"
+        }
+      ],
+      "ong_gia_hach_dich": [
+        {
+          "voice_id": "elevenlabs_YkUoVuNq2782tso28g8Q",
+          "ten": "PiropiroRX",
+          "speed": 0.85,
+          "fx": "",
+          "nguon": "Lane N ep04 黒川 (kiêu ngạo mỉa mai)"
+        },
+        {
+          "voice_id": "elevenlabs_YkUoVuNq2782tso28g8Q",
+          "ten": "PiropiroRX",
+          "speed": 1.0,
+          "fx": "punch",
+          "nguon": "Lane N ep05 工藤 (nói to)"
+        }
+      ],
+      "khach_quat": [
+        {
+          "voice_id": "clone_2664997",
+          "ten": "clone Lane M",
+          "speed": 1.05,
+          "fx": "punch",
+          "nguon": "Lane M"
+        }
+      ]
+    }
+  },
+  "script": {
+    "the_viet": "~/.claude/skills/youtube-kich-ban/market/THE_VIET_STORY.md",
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 17.5,
+    "_target_minutes_note": "10 video kênh mẫu 16,1'–22,3'; video 416k = 17,5'; nhóm S/A (416k/75k/48k) 17,5'–19,1'. Đo 2026-09-30: docs/channel_dna/yakkyoku-sukatto/KENH_GOC_10/.",
+    "structure": "shokuba_kuchiguse7",
+    "structure_block": "video kể chuyện manga NƠI LÀM VIỆC (cơ sở chăm sóc người cao tuổi — 特別養護老人ホーム / 介護付き有料老人ホーム / グループホーム / デイサービス, chọn MỘT loại và giữ nhất quán), người kể NGÔI 3 gọi nhân vật chính là「彼」/「その男」(nữ:「彼女」), xen CÂU NỘI TÂM ngôi 1「俺…/私…」của nhân vật chính (câu độc lập, KHÔNG ngoặc). KHÔNG có tiêu đề chương/số thứ tự trong bản đọc. 7 chặng:\n   · HOOK: đã KHOÁ TRƯỚC — bám sườn + động cơ chính của hook video gốc (docs/HOOK_CAU_TRUC/O_kaigo-sukatto.md). Thân bài nối tiếp hook đã khoá, KHÔNG viết lại/lặp hook.\n   · CON NGƯỜI ĐÓ (≈13%): cơ sở cụ thể (loại cơ sở, bao nhiêu tầng/unit, 施設長・主任・介護職員・パート・看護師・相談員/事務・調理), nhân vật chính làm ở đây bao lâu, THÓI QUEN XẤU thể hiện bằng HÀNH VI đời thường + câu nội tâm tự biện minh「俺は〜」. Cài 1 mâu thuẫn có SỐ (vd sáng nào cũng trễ 7 phút nhưng đòi về đúng giờ). Người kể KHÔNG phán xét.\n   · LẦN 1 + LẦN 2 (≈37%): câu cửa miệng dùng 2 lần trong 2 việc NGHIỆP VỤ khác nhau, lần sau nặng hơn (trực Chủ nhật/lễ, 夜勤 ca đêm, 入浴介助 hỗ trợ tắm, 申し送り bàn giao ca, 新人教育 kèm người mới, 委員会 uỷ ban an toàn/phòng ngừa, 行事 sự kiện của cơ sở, 家族対応 tiếp người nhà). Mỗi lần: có người nhờ → nói câu cửa miệng → được nhượng bộ → NGƯỜI TỐT CỤ THỂ lặng lẽ gánh thay; cho thấy cái giá bằng chi tiết đời thường (主任 ca đêm 2 đêm liền, về trễ đón con, ăn trưa đứng, mẹ ở nhà cũng cần chăm) mà nhân vật chính không thấy.\n   · NGƯỜI THẾ CHỖ (≈16%): vì thiếu người, cơ sở tuyển 1 người có kinh nghiệm (中途の介護福祉士 / điều chuyển nội bộ pháp nhân / 夜勤専従), ít nói, nhận hết việc hắn từ chối. Các cụ gọi tên người này; người nhà gửi lời cảm ơn đích danh. Hắn coi thường trong nội tâm.\n   · LẦN 3 + HẬU QUẢ (≈17%): câu cửa miệng dùng lần cuối trong chuyện đời hắn (xét chọn 主任/リーダー, gia hạn hợp đồng, phỏng vấn) — lần này cấp trên đáp NGẮN, bình thản, bằng cơ chế tổ chức (「分かりました。退職届を出しておいてください」「次の契約は更新しません」). KHÔNG ai mắng, KHÔNG trả thù, KHÔNG hả hê. Hậu quả đến từ hệ thống/quy định có thật.\n   · SAU ĐÓ CỦA ANH TA (≈6%): cơ sở mới / buổi phỏng vấn mới — câu cửa miệng không còn tác dụng (nói nửa chừng rồi không nói tiếp được). Anh ta vẫn nghĩ mình không sai.\n   · SAU ĐÓ CỦA CƠ SỞ (≈8%): cơ sở cũ ấm lại bằng chi tiết đời thường của người tốt và các cụ. CÂU CUỐI lặp đúng câu cửa miệng trong ngữ cảnh 'ở đó không còn ai nói câu ấy nữa'. KHÔNG kết bằng lời cảm ơn đã xem.\n   LUẬT VIẾT BẮT BUỘC (máy đếm câu để gắn giọng từng vai): mỗi câu thoại là MỘT câu riêng chỉ gồm「…」, KHÔNG dính lời dẫn trong cùng câu (cấm「…」と彼は言った / 彼は「…」と言った). Câu nội tâm viết riêng 1 câu, không ngoặc. NGƯỜI NÓI PHẢI RÕ: trước mỗi lượt thoại mới có câu người kể nêu ai lên tiếng. Nghiệp vụ 介護 (人員配置基準, 夜勤, 申し送り, 介護記録, ナースコール, ヒヤリハット報告, 事故報告書, ケアマネ, 介護福祉士, 処遇改善…) phải đúng như tư liệu; nhân vật/cơ sở hư cấu. CỤ GIÀ không bao giờ bị hại nặng (tối đa ヒヤリハット — suýt xảy ra sự cố); không cảnh ngược đãi, trói, thương tích.",
+    "mode": "fiction_facts",
+    "_mode_note": "Nhân vật + cơ sở hư cấu; QUY ĐỊNH/nghiệp vụ 介護 (人員配置, 夜勤, 退職の申出, 契約更新, 事故報告…) phải có trong series_ctx.txt kèm nguồn.",
+    "ctx_label": "TƯ LIỆU NGHIỆP VỤ CƠ SỞ CHĂM SÓC NGƯỜI CAO TUỔI NHẬT (quy định/chế độ/quy trình PHẢI lấy đúng từ đây, kèm nguồn; nhân vật và cơ sở là hư cấu)",
+    "engine": "claude_p",
+    "brain_model": "claude-fable-5-1",
+    "_brain_model_note": "2026-10-05 anh chốt: S2 + hook viết = Fable 5.1 mọi lane (B3R vẫn Opus 5.5, vá = Opus 5). Cũ 2026-09-29: S2 viết + B3R nghiệm thu đều dùng Opus 5.5 cố định (thay Fable 5.1, không đổi qua lại theo quota nữa).",
+    "patch_model": "claude-opus-5",
+    "_patch_model_note": "S4 LUÔN Opus 5 (khác Opus 5.5 ở brain_model) — đã A/B thật 2026-09-22, giữ nguyên.",
+    "final_review_model": "claude-opus-5-5",
+    "sol_qc": false,
+    "_sol_qc_note": "2026-09-29 anh chot TAT cho toan bo (khong con lane suc khoe Lane E bat buoc giu lop nay nua). S5 Sol trong lean_script.py se bo qua, khoa PASS thang sau S3.",
+    "flow": "lean",
+    "sol_pass_need": 2,
+    "budget": {
+      "tol": 0.12,
+      "_tol_note": "0.08→0.10→0.12 ngày 2026-09-27: ep06 2 lần NÉN đều bị máy TỪ CHỐI vì làm mất số liệu duy nhất (ví dụ 三人) khi cố cắt ~500 chữ; ep07 sau nhiều vòng FIX hợp lệ (thêm chi tiết Sol yêu cầu: điều kiện nhân sự, sửa mâu thuẫn nghiệp vụ) lại vượt trần ở 0.10. Nới tiếp lên 0.12 = đúng mức Lane L (shakai_no_naze) đang dùng, thay vì ép cắt nội dung vừa được Sol yêu cầu thêm vào.",
+      "sections": [
+        {
+          "label": "フック（感情の頂点＋口ぐせ＋これは〜までの話だ）",
+          "ratio": 0.03
+        },
+        {
+          "label": "口ぐせの男（施設と習慣と心の声）",
+          "ratio": 0.13
+        },
+        {
+          "label": "一回目・二回目（周りが静かに背負う）",
+          "ratio": 0.37
+        },
+        {
+          "label": "代わりに来た人（黙って引き受ける人）",
+          "ratio": 0.16
+        },
+        {
+          "label": "三回目の口ぐせと、仕組みによる結末",
+          "ratio": 0.17
+        },
+        {
+          "label": "その後の彼",
+          "ratio": 0.06
+        },
+        {
+          "label": "その後の施設（口ぐせの反復で締め）",
+          "ratio": 0.08
+        }
+      ],
+      "_note": "Khung 7 chặng đo từ もくじ 4 video đầu kênh mẫu (Lane K) — video 416k: mở 1% · con người 20% · lần 1+2 33% · người thế chỗ 12% · lần 3+hậu quả 13% · sau đó 13%. Giữ nguyên tỉ lệ Lane K."
+    },
+    "fact_exempt_units": [
+      "万円",
+      "円",
+      "年",
+      "歳",
+      "回",
+      "人",
+      "分"
+    ],
+    "_fact_exempt_note": "Số CÁ NHÂN trong truyện hư cấu (8年いる, 3回目, 閉店2分前, 20年, 65歳, 6社目) không phải dữ kiện chế độ. Quy định (%/giờ/điều luật) vẫn đối chiếu tư liệu.",
+    "gate": {
+      "comma_per_sentence": [
+        0.6,
+        2.0
+      ],
+      "chars_per_breath": [
+        7.0,
+        14.0
+      ],
+      "dialogue_ratio_max": 0.45,
+      "require_next_ep_teaser": false,
+      "title_len": [
+        31,
+        46
+      ],
+      "hook_chars": [
+        60,
+        220
+      ],
+      "list_item_count": 0,
+      "dialogue_own_sentence": true,
+      "_gate_note": "ĐO 2026-09-24: title_len 31–46 ký tự kể cả【漫画】(4 tiêu đề gốc 31/39/42/46). Câu ngắn: trung vị 18–20 chữ/câu (whisper 4 video; hộp chữ trên hình 1 câu 15–30 chữ, 1–2 dấu 、) → comma 0,6–2 · 7–14 chữ/nhịp. dialogue_ratio_max 0,45: đo bằng máy gán giọng — đoạn KHÔNG phải người kể chiếm 33–44% (3/4 video; video 3 cao hơn) — gồm cả nội tâm, nên thoại「」thuần thấp hơn. hook_chars: câu cửa miệng + khung 「これは…までの話」ở kênh mẫu dài 10–30s. dialogue_own_sentence: lane_rule mới (S3) — mỗi câu「」đứng riêng để gắn giọng.",
+      "_repeat_ok_note": "Câu cửa miệng CỦA TẬP (cụm「…」đầu tiên trong title.txt) được phép lặp nguyên văn — luật kênh: 3 lần + câu kết. lean_script.do_tat_dinh tự rút theo tập; có thể khai thêm gate.repeat_ok cố định. Không có field này máy tự xoá lần lặp (đo thật ep01: mất payoff + câu kết, Sol FIX 2 vòng).",
+      "repeat_title_quote": true
+    },
+    "hook": {
+      "the_ten": {
+        "bat": true,
+        "kieu": "vach_cheo",
+        "mau": "#14806f",
+        "mau_phu": "#e9c46a",
+        "vi_tri": "tren_trai",
+        "dur_s": 6.0,
+        "toi_da": 4,
+        "_note": "10/10 anh chốt: nhân vật chính trong hook giới thiệu bằng THẺ TÊN ĐỘNG (tên·tuổi·nghề); 14/10 anh sửa: lời hook ĐƯỢC đọc tên-tuổi song song thẻ — docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md, pipeline/the_ten_hook.py"
+      },
+      "model": "claude-fable-5-1",
+      "enabled": true,
+      "visual": "manga_ai_ref_grok",
+      "_visual_note": "Ảnh manga AI khoá mặt bằng master CỦA CHÍNH TẬP (_ref_<id>) → clip Grok 6s. Cấm tư liệu thật, cấm clip stock. Mỗi cảnh thấy MẶT + cảm xúc. Cụ già không bị thương/ngã trên hình.",
+      "visual_kind": "video_sinh",
+      "sfx": false,
+      "nhac_nen": true,
+      "giay": [
+        12,
+        65
+      ],
+      "giay_mac_dinh": 30,
+      "_luat_hook_note": "21/10/2026 anh chốt: luật hook DUY NHẤT = bám sát CẤU TRÚC hook của video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn; đổi tên họ/nghề/câu thoại theo tập) — docs/HOOK_CAU_TRUC/00_CHUNG.md. Mọi luật hook khác (động cơ chính, khuôn lane huong_dan_cau_truc, mở bằng thoại, cao trào/kịch tính, câu để ngỏ…) đã BỎ."
+    },
+    "cung_cam_xuc": true,
+    "_cung_cam_xuc_note": "Anh chốt 2026-09-26: prompt S2 thêm cung cảm xúc 3 nhịp KÍCH (ức chế/giận) → GIẢI TOẢ (hệ quả tự nhiên, không hả hê) → VỊ THA (thương cảm + 1 câu đạo lý ngắn). Bằng chứng: kênh mẫu K/L video gây giận nổ 10–100 lần video nhẹ. Text ở lean_script.CUNG_CAM_XUC. Vắng field = BẬT (lane mới).",
+    "soat": "may3",
+    "_soat_note": "Anh chốt 30/09: LOCK xong DỪNG, giao máy 3/anh soát (D=`Chờ kiểm tra kịch bản`); nhận lại theo docs/NHAN_KICH_BAN_MAY3.md. ChatGPT web TẮT.",
+    "soat_gptweb": {
+      "enabled": false,
+      "_note": "Lane O chưa có Project ChatGPT — không dùng (soát = máy 3)."
+    }
+  },
+  "script_qc": {
+    "lens": "plain",
+    "domain_focus": "Manga kể chuyện hư cấu nơi làm việc ở một cơ sở chăm sóc người cao tuổi Nhật (介護施設), người kể ngôi 3 + câu nội tâm của nhân vật chính. Không phải video y khoa/tư vấn chăm sóc. Chỉ soi tính HỢP LÝ: nhân quả, thời gian, nghiệp vụ 介護 có đúng thực tế không, nhân vật nhất quán.",
+    "lane_rules": [
+      "Hậu quả phải đến từ HỆ THỐNG/quy định (không gia hạn hợp đồng, trượt xét chọn/phỏng vấn, quyết định nhân sự) — KHÔNG có cảnh trả thù, mắng nhiếc, hả hê.",
+      "Câu cuối cùng lặp lại ĐÚNG câu cửa miệng trong ngữ cảnh 'không còn ai nói' — luật kênh, không phải lặp thừa. Câu cửa miệng xuất hiện đúng 3 lần có mức cược tăng dần.",
+      "Mỗi câu thoại đứng riêng thành 1 câu「…」; câu nội tâm không ngoặc là chủ ý (đọc bằng giọng nhân vật chính).",
+      "Người kể không phán xét nhân vật chính; khán giả tự thấy qua chi tiết. Không thêm câu bình luận đạo đức ngoài 1 câu đạo lý ngắn ở kết.",
+      "Cụ già/người nhà KHÔNG được vô lý (nếu không khán giả quay sang bênh nhân vật xấu). Cụ không bị hại nặng — tối đa ヒヤリハット; cấm ngã gãy xương, tử vong, ngược đãi, trói.",
+      "Ngành thiếu người: việc cấp trên chấp nhận cho hắn nghỉ phải hợp lý — đã có người thế chỗ có kinh nghiệm được cài từ trước.",
+      "Được dùng lại CÂU CỬA MIỆNG phổ biến của kênh mẫu (vd「じゃあ、辞めます」) nhưng CẤM chép tình tiết/tên/câu thoại đặc trưng của video gốc (日曜当番の薬局, 在宅の神田さん, trận bóng của con 店長…) — tình tiết phải là nghiệp vụ 介護."
+    ]
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "Each episode defines its OWN cast in characters.json (id, age, gender, look, ref). Every character with a speaking line or appearing in 2+ images has its own locked master portrait (_ref_<id>/001.png). A single image may show AT MOST 3 locked faces (Flow Tool limit). Characters are fictional care-facility staff, elderly residents and their families; care workers wear plain polo shirts or care uniforms (no nurse caps, no white lab coats unless nurse); elderly residents look dignified and clean; never resemble a real public figure; faces do not carry over between episodes.",
+    "style_suffix": "clean modern Japanese anime illustration, crisp confident line art, soft cel shading, natural human proportions (not chibi), realistic Japanese adults, gentle colors; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no speech bubbles, no watermark",
+    "_style_suffix_note": "Viết theo khung hình THẬT video gốc JmhcsfXGmfU (docs/channel_dna/yakkyoku-sukatto/_raw/video/khung/sheet_v1.png): anime nét sạch tỉ lệ người thật, nhà thuốc gỗ sáng; chữ/bóng thoại do MÁY vẽ sau (tate_text --bubble) nên ảnh cấm chữ. · 2026-09-24 GỠ cụm bối cảnh 'warm light-wood pharmacy interior (...)' khỏi style: style nối vào MỌI prompt nên kéo cả cảnh ga tàu/sân bóng/phòng họp về quầy thuốc (QC hook ep01 trượt 2/7 ảnh vì lỗi này). Bối cảnh tả trong từng prompt. · 2026-09-27 GỠ TIẾP 'bright soft daylight'/'calm everyday atmosphere'/'beside the speaking person...' (ep05): style nối CƯỠNG BỨC vào MỌI prompt qua code (`prompt_doan._ghi_cast`), không phải chỉ gợi ý cho model — nên mọi cảnh tối/tối (본部 tới sau giờ đóng cửa, hook ban đêm) đều bị ép câu 'ánh sáng ban ngày' + 'không khí bình yên' mâu thuẫn ngay trong 1 prompt (B5P bắt được 3 ảnh, nhưng lỗi này nằm ở 136/136 dòng vì suffix là hằng số). Câu 'chừa chỗ bóng thoại' giờ do model tự viết theo CAST/NONE (xem `prompt_doan.py::_prompt_cast` — chỉ áp cho có mặt khoá, PLAIN thì nói 'ô chú thích' không nhắc người) thay vì ép cứng trong suffix.",
+    "seconds_per_image": 8,
+    "_seconds_note": "ĐO THẬT 2026-09-24: dò đổi khung 2 video gốc (fps 2) → 129–140 lần đổi / 17,5–18' · trung bình 7,7–8,1s, trung vị 6,5s.",
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 8,
+    "qc_sample": 10,
+    "b5p_qc": true,
+    "prompts_by": "fable_doan",
+    "characters_from_bible": true,
+    "cast_max_per_image": 3,
+    "sample_gate": 5
+  },
+  "body": {
+    "mode": "ai_images",
+    "chan_buoc2_may1": true,
+    "_chan_note": "Máy 1 CẤM chạy B4/B5 (tốn tiền thật) — chuẩn mọi lane mới (QUY_TRINH_TAO_KICH_BAN_MOI_LANE §00)."
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "_note": "Tiêu đề/mô tả/thumbnail do YT-TITLE-RESEARCH (listing_external). Mô-típ đo 10 video kênh mẫu (KENH_GOC_10 §2④): phải = mặt kiêu ngạo + bóng ĐỎ câu cửa miệng · trái = người PHÁN QUYẾT bình thản + bóng XANH câu phán quyết 3–6 chữ · giữa = băng VÀNG chữ dọc 「X」が口ぐせの介護士が + kết cục."
+  },
+  "assemble": {
+    "zoom": 1.025,
+    "transition": "xfade",
+    "xfade": 0.3,
+    "burn_subs": false,
+    "sync": "anchors",
+    "qc_sample": 10,
+    "bubble": {
+      "enabled": true,
+      "font": "Yu Gothic",
+      "font_size": 40,
+      "max_chars_per_col": 11,
+      "max_cols": 3,
+      "title_card_s": 3.0,
+      "_note": "Kênh mẫu: MỌI câu hiện trên hình — lời kể trong hộp chữ nhật trắng chữ dọc, thoại + nội tâm trong bóng tròn trắng có đuôi chỉ về người nói (khung gốc 0:17, 0:25, 1:00, 5:00). Giây ~11 có thẻ tiêu đề (ảnh mờ + tên tập chữ ngang). Không phụ đề đáy.",
+      "font_size_ke": 64,
+      "font_size_thoai": 48,
+      "max_chars_per_col_ke": 8,
+      "ke_split_chars": 24,
+      "_note_co_chu": "Anh chốt 2026-09-24 sau khi xem ep01 + ảnh so 3 mức (assets/.../ep01-tantou-janai/_mau_chu/): lời kể 64px cột ≤8 chữ (hộp vuông), dài >24 chữ tách nhiều hộp nối tiếp chia thời gian theo số chữ; thoại 48px. Hộp lời kể SÁT MÉP phải, mép phải có người thì mép trái."
+    },
+    "zoom_dir": "in",
+    "bgm": "assets/yakkyoku-sukatto/_bgm/bgm_lane_k.mp3",
+    "bgm_volume": 0.075,
+    "bgm_keep_voice": true,
+    "_note_chuyen_canh_nhac": "Anh chốt 2026-09-24 (NGOẠI LỆ riêng Lane K với luật cấm zoom 21/09): giống kênh mẫu đo máy 2 video — mờ chồng 0,3s (9 khung) + mỗi cảnh phóng vào chậm ×1,02–1,03 (88/91 cảnh) → zoom 1.025 zoom_dir=in, dựng bằng warpAffine dưới-pixel (không rung). Nhạc nền: kênh mẫu có 1 bài acoustic guitar đời thường lặp suốt video, nền khoảng lặng thấp hơn giọng ~17,7 dB, KHÔNG SFX (Gemini nghe 3 đoạn + đo mức). bgm_lane_k.mp3 = Suno qua ai33 (bgm_cand1, Gemini chấm 9/10), nối vòng acrossfade 5s thành 20:41; volume 0.075 đo cho chênh ~17,8 dB.",
+    "hook_tu_ghep": true,
+    "subscribe": {
+      "enabled": false,
+      "start_times": [
+        180,
+        -120
+      ],
+      "moc_cua_so": 60,
+      "sub_click_style": "1_click_that",
+      "bell_style": "4_chuong_gio",
+      "avatar_path": "assets/avatars/kaigo-sukatto.png",
+      "language": "ja",
+      "thanks_text": null,
+      "position": "bottom_center",
+      "enable_sound": true,
+      "has_subtitles": false
+    },
+    "_subscribe_note": "TẮT tới khi có kênh + avatar (chưa có kênh 30/09). Có kênh thì bật lại, đặt avatar đúng đường dẫn, chọn chuông riêng khác Lane K.",
+    "_bgm_note_o": "Tạm dùng nhạc nền Lane K (cùng khuôn kênh mẫu: 1 bài acoustic guitar lặp). Có kênh rồi làm bài riêng nếu muốn."
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse",
+    "suicide",
+    "real politician",
+    "real celebrity face",
+    "brand logo",
+    "pill close-up with brand name",
+    "elder abuse",
+    "restraint",
+    "tied to bed",
+    "injury",
+    "bruise",
+    "fall down",
+    "bedsore",
+    "diaper close-up",
+    "naked bathing"
+  ],
+  "publish": {
+    "upload_channel": "Lane-O",
+    "sheet_tab": "Lane-O",
+    "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+    "review_vi": true,
+    "hashtags": "#介護 #介護士 #漫画 #スカッと #因果応報",
+    "tags_seed": [
+      "介護",
+      "介護士",
+      "介護施設",
+      "老人ホーム",
+      "漫画",
+      "スカッと",
+      "因果応報",
+      "職場 あるある"
+    ],
+    "listing_external": true,
+    "title_auto": false,
+    "_title_auto_note": "Kênh chưa có (30/09) → TẮT. Có kênh + tập 1 xong thì bật như Lane K.",
+    "review_vi_cao": 720,
+    "ten_review": "final-vietsub.mp4",
+    "_note_giao": "Anh chốt 2026-09-25: máy 2 giao ĐÚNG 2 video — final.mp4 (ĐÃ có hook; 100% video giao phải có hook nên bỏ tên final_with_hook) + final-vietsub.mp4 (cùng video, cháy phụ đề Việt cho anh đọc). Hook ghép tự động trong B8 (assemble.hook_tu_ghep)."
+  },
+  "goi_dang": {
+    "enabled": true,
+    "promise_window_s": 30,
+    "contradiction_max_s": 15,
+    "title_core_max_s": 10,
+    "promise_giu_duoc_max_s": 60,
+    "ritual": [],
+    "title_core_len": [
+      27,
+      42
+    ],
+    "title_suffix_ignore": [
+      "【漫画】"
+    ],
+    "list_mode": false,
+    "_nguon": "Cùng kênh mẫu 千種テンカ với Lane K — 4 video gốc: câu cửa miệng (= lõi tiêu đề) ở giây 0,7–0,8 · câu khung/lời hứa ở 10,9–29,5s · lõi tiêu đề bỏ【漫画】 27–42 ký tự. Đo lại 10 video 2026-09-30: KENH_GOC_10."
+  },
+  "_note": "Lane O (tên tạm, anh đặt 2026-09-30) — 介護スカッと: chuyển khuôn kênh mẫu 千種テンカ (薬剤師) sang nghề 介護職員. CHƯA CÓ KÊNH/mail (anh báo sau) → publish.upload_channel/sheet_tab = 'Lane-O'. Khi đổi tên: id/slug_dir/tab/channel_dna_dir đổi CÙNG LÚC. Kỹ thuật y hệt Lane K (đa giọng VOICEVOX, @CAST, bóng thoại). Cửa vào: docs/BAT_DAU_LANE/kaigo-sukatto.md. Nghiên cứu: docs/channel_dna/yakkyoku-sukatto/KENH_GOC_10/PHAN_TICH_10_VIDEO_VA_AP_DUNG_KAIGO.md."
+}

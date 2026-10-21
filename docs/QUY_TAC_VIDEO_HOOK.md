@@ -1,11 +1,10 @@
-# QUY TẮC DỰNG VIDEO HOOK 20–30 GIÂY ĐẦU (mọi lane)
+# QUY TẮC DỰNG VIDEO HOOK ĐẦU VIDEO (mọi lane)
 
 Chốt 2026-09-23 sau khi chạy trọn vẹn tập thật đầu tiên: `assets\satori_jp\ep3-sougi` →
 `E:\CLAUDE\YOUTUBE\h2dev\assets\satori_jp\ep3-sougi\final_with_hook.mp4` (30:25, 1920×1080, 30fps).
-Đây là **cách dựng** hook. Cách VIẾT hook (nội dung, cổng chấm, khoá sha256) ở
-`docs\PHUONG_AN_HOOK_VIDEO.md` + `docs\QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
-Nguyên tắc nội dung (10 nguyên tắc + khung 9 kênh mẫu):
-`C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+Đây là **cách dựng** hook. Cách VIẾT hook — Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn)
+(độ dài ≈ hook gốc) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
+Cổng máy + khoá sha256: `docs\QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
 
 ## 0. Luật trên hết
 
@@ -84,7 +83,7 @@ khớp tiêu đề; lệch thì ghi vào `khong_duoc_noi_qua`.
 | 1 | Viết + khoá hook | `pipeline\hook_stage.py --profile <lane> --slug <tập> --mode repair` | `hook\hook_locked.txt` · `hook_lock.json` |
 | 2 | **Lồng tiếng hook TRƯỚC khi vẽ** | `pipeline\tts.py --script hook\hook_locked.txt --out hook\hook_voice.mp3 --profile <lane>` | `hook_voice.mp3` + `.srt` |
 | 3 | Cắt cảnh theo mốc câu THẬT | đọc `hook_voice.srt`, mỗi cảnh = 1 câu, không chia đều | `hook\hook_timeline.json` |
-| 4 | Vẽ ảnh, khoá mặt bằng ảnh CỦA CHÍNH TẬP | `pipeline\gen_images.py --ref <img\NNN.png> --ref2 <img\NNN.png> --quality low --orient landscape` | `hook\img\001..00N.png` |
+| 4 | Vẽ ảnh, khoá mặt bằng ảnh CỦA CHÍNH TẬP (16/10: Google Flow Ultra → cổng bận thì 9router → gpti2; `docs\QUY_TRINH_ANH_HOOK_GOOGLE_FLOW.md`) | `pipeline\anh_hook.py <tập>\hook` (@CAST; kiểu cũ thêm `--ref <img\NNN.png> --ref2 <img\NNN.png>`) | `hook\img\001..00N.png` |
 | 5 | Sinh clip 6 giây | `E:\CLAUDE\YOUTUBE\GROK_VIDEO\grok_batch.py --jobs <csv> --out hook\clip --no-audio --gap 5` | `hook\clip\clip_NN.mp4` |
 | 6 | Cắt + nối + lồng tiếng + cháy phụ đề | ffmpeg (xem §3) | `hook\hook_final.mp4` · `_JP` · `_VI` |
 | 7 | **Cân mức tiếng** rồi ghép vào video cũ | ffmpeg concat, `-c:v copy` | `final_with_hook.mp4` |
@@ -130,19 +129,10 @@ pipeline\srt_from_script.py --srt hook_voice.srt --script hook_locked.txt --out 
 5. **Clip 6 giây nhưng cảnh chỉ dùng 2,6–5,7 giây** — sinh 6 giây rồi cắt đuôi, không kéo giãn, không tua.
    Cảnh ngắn hơn ~3 giây với khán giả lớn tuổi là hơi chớp; cân nhắc mượn thêm 1 giây của cảnh sau.
 
-## 5. Kiểu hook + câu khoá đã khai cho từng lane
-Khai ở `profiles\profiles\<lane>.json` → `script.hook.patterns` / `script.hook.closer`; `hook_stage.py`
-đọc `E:\CLAUDE\YOUTUBE\HOOK_LIBRARY\patterns.json` (130 video · H01–H41 · K01–K23) rồi nối cơ chế +
-khuôn câu + điều cấm vào prompt viết hook.
-
-| Lane | patterns | closer | Câu nghi thức của kênh mẫu |
-|---|---|---|---|
-| `satori-jp-obaa` ✅ đang bật | H22 H23 H38 | K12 | hứa N điều + 'điều cuối đến giờ vẫn khó nói' (15/15) |
-| `toshi-densetsu-jp` | H24 H25 H26 H27 H39 | K13 | 2–3 câu なぜ → 『それでは…最初から辿っていこう』 (8/9) |
-| `irogatatarukioku` | H27 H28 H29 | K16 | 「この写真をカラー化してみる」 + 「N枚の写真で辿っていく」 (9/9, 8/9) |
-| `kenko-chiebukuro` | H30 H31 H32 H33 H34 | K18 | điều kiện của danh sách; **không đọc trước tên món** (kênh 0/6, mình 8/8 sai) |
-| `teinengo-real` | H23 H35 | K19 | 「これは〜という話だ」 |
-| `teinengo-tanoshimi` | H30 H34 | K03 | 「この時の俺はまだ知らなかった」 ở 29–48s (5/7) |
+## 5. Luật VIẾT hook (thay toàn bộ bảng kiểu hook + câu khoá cũ, 17/10/2026)
+> Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`.
+> Luật hook cũ đã xoá: kiểu hook anh viết (cảnh nhục trước), `script.hook.patterns`/`closer` từ HOOK_LIBRARY,
+> câu nghi thức kênh mẫu, độ dài 20–30 giây. Mục dưới đây (5b trở đi) chỉ là luật DỰNG.
 
 ### 5b. CÁCH DỰNG HÌNH — hook là VIDEO SINH (mặc định mọi lane, anh chốt 2026-09-24)
 
@@ -157,7 +147,7 @@ Khai bằng **hai field tách nhau** (trộn vào một field là chỗ sinh l�
 | `script.hook.visual` | **nguồn hình + cách khoá mặt**, riêng từng lane, cấm mượn của nhau. Có code đọc (`dong_goi_may2.py`) và SOP từng lane trỏ vào — đừng đổi tên cho gọn | không |
 | `script.hook.visual_kind` | `"video_sinh"` (mặc định) \| `"anh_tinh"` | ⛔ khác `video_sinh` mà không có `visual_exception` → **DỪNG** |
 | `script.hook.visual_exception` | lý do dùng ảnh tĩnh, viết rõ | ⛔ bắt buộc khi `anh_tinh` |
-| `script.hook.sfx` | `true` — **hiệu ứng âm thanh BẮT BUỘC** | ⛔ thiếu → **DỪNG** |
+| `script.hook.sfx` / `nhac_nen` | `sfx:false` (CẤM tiếng đồ vật) + `nhac_nen:true` (chỉ nhạc nền) — anh chốt 01/10/2026, xem `docs/QUY_TAC_HOOK_DAI_VA_NHAC_NEN.md` | ⛔ sai → **DỪNG** |
 
 **Hai ngoại lệ chính danh** (lý do cứng, KHÔNG phải tiền lệ cho lane khác): `toshi-densetsu-jp` và
 `irogatatarukioku` bán **SỰ THẬT CÓ HỒ SƠ** — đưa clip AI sinh vào hook là tự phá đúng thứ kênh đang
@@ -169,7 +159,7 @@ Hệ quả phải làm theo: (a) mất lợi thế "không có điểm nối" n�
 giải** theo §2; (b) gói giao máy 2 nay đi nhánh "hook là clip riêng" của `dong_goi_may2.py`, tức máy 2
 nhận thêm đơn vẽ ảnh hook; (c) `docs/SOP_LANE_E.md` mục hook cần sửa theo.
 
-**Kịch bản phải đổi theo clip:** 20–30 giây đầu bị ràng buộc bởi thứ dựng được thành clip 5–6 giây —
+**Kịch bản phải đổi theo clip:** lời hook bị ràng buộc bởi thứ dựng được thành clip 5–6 giây —
 một chủ thể, một chuyển động tả được bằng lời. Cấm cảnh cần ≥3 nhân vật cùng hành động, cấm đổi bối
 cảnh giữa một cảnh, cấm chữ/biểu đồ trên hình; chừa chỗ cho tiếng thật của cảnh. Luật này được nhồi
 **tự động** vào prompt của model VIẾT (`qc_goi_dang.khoi_luat_cho_prompt`), không phải dặn tay.
@@ -187,6 +177,7 @@ khác biệt giữa lane chỉ được thể hiện bằng field profile.
 | `irogatatarukioku` | `anh_that_to_mau` | ảnh chiến tranh thật trong `_src_photos\`, tô màu AI, **ảnh đứng yên** | vẽ người bằng AI | ❌ chưa |
 | `kenko-chiebukuro` | `anh_ai_clip_grok` | ảnh AI minh hoạ của tập → clip Grok, nối vào trước `final.mp4` (ĐỔI 2026-09-24 từ `lien_mach_than`) | ảnh thật, hook liền mạch trong script | ❌ chưa |
 | `teinengo-real` · `teinengo-tanoshimi` | `manga_ai_ref` | manga AI, REF-LOCK cùng bộ nhân vật với thân video | ảnh thật | ❌ chưa |
+| `teinengo-fuufu` | `manga_anime_ref_grok` | manga anime, khoá mặt chồng/vợ bằng master CỦA TẬP → clip Grok 6s | ảnh thật, vẽ nhân vật già hơn ~55 | ❌ chưa |
 
 **Vì sao phải tách:** gọi lane satori mà đi lấy tư liệu thật như Lane A là sai hai tầng — kênh satori
 kể chuyện hư cấu nên không có "tư liệu" nào để lấy, và nhân vật trong hook phải khớp mặt với thân
@@ -209,6 +200,7 @@ tập VIẾT MỚI (`lean_script.se_viet_moi`) — tập đã khoá script khôn
 hook thì `hook_stage.py --mode repair`.
 
 ## 6. Việc còn nợ (từ 10 nguyên tắc, chưa code)
+> 17/10/2026: phép (a)–(e) đụng luật VIẾT hook cũ (câu chốt, lõi tiêu đề ≤30–45s, chữ thumbnail trong hook, câu nghi thức) → KHÔNG làm; hook theo `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Chỉ (f) còn giá trị.
 Nguyên tắc 10 đòi cổng đo **THỨ TỰ**, hiện `qc_script*.py` chỉ đo độ dài/nhịp. Sáu phép kiểm tất định
 cần thêm: (a) câu đầu không chào/không tự giới thiệu · (b) câu chốt ≤ N giây (ngưỡng theo kênh) ·
 (c) lõi tiêu đề xuất hiện ≤30–45s · (d) mỗi dòng chữ thumbnail có trong hook hoặc trong 90s ·

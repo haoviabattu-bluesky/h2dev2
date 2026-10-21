@@ -215,7 +215,8 @@ def mechanical(text, lang="ja", gate=None, warn_no_marker=False):
                     "msg": f"{len(ages)} mốc tuổi khác nhau: {sorted(ages)} → soi xem có lệch nhân vật không"})
 
     # đoạn bất thường
-    paras = [p for p in text.split("\n") if p.strip()]
+    # đoạn = khối giữa các dòng trống (04/10: mỗi câu một dòng, dòng trống chỉ khi đổi cảnh → đếm theo dòng sẽ báo vụn sai)
+    paras = [re.sub(r"\s*\n\s*", "", p) for p in re.split(r"\n\s*\n", text) if p.strip()]
     huge = [i + 1 for i, p in enumerate(paras) if len(p) > 900]
     tiny = [i + 1 for i, p in enumerate(paras) if 0 < len(p) < 40]
     if huge:

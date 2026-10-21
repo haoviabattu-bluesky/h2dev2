@@ -1,5 +1,7 @@
 # SOP LANE K — `yakkyoku-sukatto` · 薬局スカッと帳 (sổ tay nhà thuốc hả dạ)
 
+> ⭐ **2026-09-26 — BÌNH LUẬN THẬT + CUNG CẢM XÚC** (anh chốt): trước khi viết tập mới đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\channel_dna\yakkyoku-sukatto\COMMENT_INSIGHT.md` (khối `## ĐƯA VÀO PROMPT` tự vào prompt S2). Tóm tắt: video 307.286 view là video gây giận nhất; khán giả bắt lỗi định mức dược sĩ/みなし残業 (tiền làm thêm khoán); người bị hại không được vô lý. Prompt S2 nay có cung 3 nhịp KÍCH → GIẢI TOẢ → VỊ THA (`script.cung_cam_xuc: true`) — lớp 3 kiểm nửa đầu có làm bực thật không + có câu đạo lý đáng nhớ ở kết không. Luật "không trả thù/không hả hê" của lane GIỮ NGUYÊN (nằm ở nhịp 2). Chi tiết `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2a/§2c.
+
 Runbook sản xuất 1 tập. Cửa vào (định danh, trạng thái): `docs/BAT_DAU_LANE/yakkyoku-sukatto.md`.
 Phương án kỹ thuật: `docs/PHUONG_AN_LANE_K_DA_GIONG_BONG_THOAI.md`. Luồng kịch bản chung: `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md`.
 
@@ -30,7 +32,7 @@ Phương án kỹ thuật: `docs/PHUONG_AN_LANE_K_DA_GIONG_BONG_THOAI.md`. Luồ
 - Mô tả video BẮT BUỘC có khối ▼素材 = `credits_giong.txt` của tập (điều khoản 14 giọng: ghi 「VOICEVOX:tên」).
 
 ## §1b CỘT SHEET TAB `K-yakkyoku-sukatto` (A→K)
-A STT · B NỘI DUNG (tiêu đề JP + dịch) · C FOLDER (ghi ngay khi tạo tập) · D KỊCH BẢN (`Done` khi xong phần máy 1) ·
+A STT · B NỘI DUNG (tiêu đề JP + dịch) · C FOLDER (ghi ngay khi tạo tập) · D KỊCH BẢN (tool tự ghi theo docsTRANG_THAI_COT_D_K.md; xong máy 1 = `Đã giao máy 2`) ·
 E TITLE-DESCRIPTION · F TAGS · G THUMBNAIL · H STATUS-IMG (`cần ảnh (N ảnh, ~Xđ)` = lệnh cho máy 2) · I VIDEO · J LIST · K GHI CHÚ.
 10 tập đầu đã ghi A2:B11 (2026-09-24).
 
@@ -41,6 +43,12 @@ cd E:\CLAUDE\YOUTUBE\h2dev
 ::   (transcript gốc cùng dạng — lấy từ laneK_from_research\data\transcripts), series_ctx.txt ([Dn] có URL +
 ::   SỐ ĐƯỢC PHÉP + QUY ƯỚC ghi BẮT BUỘC 3 lần câu cửa miệng + hậu quả từ cơ chế), title.txt, promise.txt, hook\promise.txt
 py -3.13 -X utf8 pipeline\make_video.py --profile yakkyoku-sukatto --slug epNN-<slug> --den B3G
+```
+> ⛔ **2026-09-27 — SOÁT BẰNG CHATGPT WEB (mặc định, thay máy 3):** lệnh trên tự DỪNG sau khi khoá và in 3 lệnh `soat_kb_gptweb.py --lan1` → thẩm định/phản biện (cổng giữ mở) → `--chot` → viec_tay → `--xong` (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4b). Đoạn máy 3 dưới đây TẠM ẨN.
+> (cũ, tạm ẩn) ⛔ **2026-09-26 — lệnh trên giờ TỰ DỪNG sau khi khoá kịch bản** và gửi máy 3 soát (`FlowHandoff_local\jobs\K-yakkyoku-sukatto\<slug>\review\`,
+> cột D = `Chờ kiểm tra kịch bản`). Chờ anh báo D = `Đã sửa kịch bản` → `py -3.13 -X utf8 pipeline\review_may3.py --nhan --profile yakkyoku-sukatto --slug <slug>`
+> rồi mới đi tiếp B5W/hook/`dong_goi_may2`. Chi tiết: `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §4c.
+```
 ::   → hook khoá (H1–H4) → Fable viết → S3 máy → Sol ×2 → LOCK. Lớp 3: đọc hết script.txt (luật §5).
 :: characters.json (tay, sau khi đọc kịch bản): MỌI vai có thoại hoặc ≥2 cảnh = {id,name,vai,age,gender,look,ref:true,
 ::   voice:{speaker,style}}; nhân vật chính id "shu" + "kuchiguse"; look khác nhau rõ (áo/tóc/kính) để máy nhận mặt.
@@ -48,9 +56,9 @@ py -3.13 -X utf8 pipeline\gan_vai.py --profile yakkyoku-sukatto --slug assets\ya
 py -3.13 -X utf8 pipeline\make_video.py --profile yakkyoku-sukatto --slug epNN-<slug> --only B5W
 py -3.13 -X utf8 pipeline\make_video.py --profile yakkyoku-sukatto --slug epNN-<slug> --only B5P
 :: HOOK (máy 1 làm trọn hình, docs\QUY_TAC_VIDEO_HOOK.md): giọng hook đa vai (tts.py tự chuyển VOICEVOX, cần vai.txt)
-::   → ảnh hook @CAST (gen_images.py --cast-root <tập>) → clip Grok → qc_hook_clip → SFX → hook_timeline.json → HOOK_TAP.md
+::   → ảnh hook @CAST (anh_hook.py <tập>\hook — Google Flow Ultra → 9router → gpti2) → clip Grok → qc_hook_clip → SFX → hook_timeline.json → HOOK_TAP.md
 py -3.13 -X utf8 pipeline\dong_goi_may2.py --job yakkyoku-sukatto epNN-<slug>
-::   (tự vẽ master _ref_<id> nếu thiếu, gói vai.txt + _ref_* + hook\, ghi sheet D=Done, H=cần ảnh)
+::   (tự vẽ master _ref_<id> nếu thiếu, gói vai.txt + _ref_* + hook\, ghi sheet D=Đã giao máy 2 + K=lệnh máy 2, H=cần ảnh)
 ```
 Bundle máy 2 phải có profile lane này (chỉ thêm/ghi đè profile được liệt kê, profile lane khác giữ nguyên):
 `py -3.13 pipeline\dong_goi_may2.py --bundle --profile-list yakkyoku-sukatto`.
@@ -65,7 +73,7 @@ Lệnh đã chạy thật: `make_video.py --den B4Q` → `--den B5Q` (gpti2 136 
 
 ## §3 GATE (profile, đo từ 4 video gốc)
 title 31–46 ký tự (kể cả【漫画】) · 17,5' ≈ 5.469 chữ · 7 chặng `budget.sections` · thoại ≤45% · 0,6–2 phẩy/câu ·
-7–14 chữ/nhịp · `dialogue_own_sentence` · hook H22/H14/H02 + closer K19 (「これは、この男が〜までの話だ」) · gói đăng: câu cửa
+7–14 chữ/nhịp · `dialogue_own_sentence` · hook: luật 21/10 bám sát cấu trúc hook video gốc (`E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`; patterns/closer cũ đã xoá) · gói đăng: câu cửa
 miệng ≤10s, lời hứa ≤30s.
 
 ## §5 LUẬT CỨNG (lớp 3 đọc bản khoá theo đúng danh sách này)
@@ -91,7 +99,7 @@ Fable viết (S2) · Opus vá (S4) + gắn vai (`gan_vai.py`) · Sol chấm (len
 | Sol bắt lỗi logic nhân sự 3 vòng (người né việc lại được làm 管理薬剤師) | hồ sơ S1 tự mâu thuẫn | S1 phải tự hợp lý: hậu quả = điều động bình thường, nhân vật TỰ nhận |
 | Patch Opus bị từ chối vì vượt trần 1,05× | bản đã sát trần ngân sách | viec_tay ghi rõ "bù bằng rút chỗ khác"; khi vẫn bị từ chối → sửa tay đúng chỗ (ESCALATE, chưa khoá) rồi cho Sol chấm |
 | Nối hook lên trước → nghe hook 2 lần | lean flow chép hook vào đầu script.txt | `ghep_hook_noi_truoc.py` tự nhận "script mở bằng hook" → CHẾ ĐỘ THAY HÌNH (phủ clip lên 0–T, giữ tiếng thân, tổng độ dài không đổi) |
-| Hook dính G1/G3 ở B10 (lời hứa 52% trong 30s, câu mâu thuẫn ở giây 23) | hook kể bối cảnh trước khi nêu hậu quả | tập sau: câu thứ 2–3 của hook phải nói ngay "nói câu đó ở buổi phỏng vấn chọn trưởng nhóm → kết quả" (≤15s) |
+| Hook dính G1/G3 ở B10 (lời hứa 52% trong 30s, câu mâu thuẫn ở giây 23) | hook kể bối cảnh trước khi nêu hậu quả | (luật viết hook cũ — đã thay bằng luật 21/10 bám sát cấu trúc hook video gốc) |
 | Hộp lời kể nằm giữa khung che mặt (anh bắt ep01) | vision trả toạ độ mặt trên ảnh trần lệch tới ~20% ngang (005.png) + luật cũ nhắm 72% ngang | `bong_thoai._hoi_anh` kẻ lưới 10% lên ảnh trước khi hỏi (3/3 khớp); `_dat_mep`: SÁT mép phải, mép phải có người → mép trái, không bao giờ đè mặt |
 | Chữ nhỏ khó đọc (40px) | — | anh chốt (so 3 mức, `_mau_chu/`): lời kể 64px cột ≤8 chữ, dài >24 chữ TÁCH nhiều hộp nối tiếp chia thời gian theo số chữ (`tach_loi_ke`); thoại 48px — field `assemble.bubble.font_size_ke/_thoai, max_chars_per_col_ke, ke_split_chars` |
 | Hộp lời kể đè người ở ảnh "cảnh vật" (ep01 giây 300, cô y tá) | `do_mat` chỉ đo ảnh @CAST | nay đo MỌI ảnh img/NNN.png (người lạ = id `khac`); ep01: 136 ảnh, 107 ảnh có người |

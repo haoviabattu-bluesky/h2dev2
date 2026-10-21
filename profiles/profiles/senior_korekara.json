@@ -1,0 +1,386 @@
+{
+  "id": "senior_korekara",
+  "market": "JP",
+  "language": "ja",
+  "source_lang": "ja,en",
+  "_source_lang_note": "Kênh mẫu tiếng Nhật — B2 fetch_script thử phụ đề ja trước (thiếu field này B2 mặc định 'ko,ja,en').",
+  "niche": "シニアの人生これから — đời sống người Nhật 60–75 tuổi SAU KHI NGHỈ VIỆC, manga kể chuyện: mỗi tập MỘT nhân vật mới đối mặt 1 lựa chọn đời thường (việc làm thêm/シルバー人材センター, 婚活・再婚 tuổi già, 移住/bán nhà, viện dưỡng lão, lương hưu thấp, họp lớp/cô đơn) → thực tế phũ phàng dần có số tiền cụ thể → mất một thứ không lấy lại → tia hy vọng từ con người → kết NGHIỆM TÙNG ấm (không quả báo). Kênh rời rạc.",
+  "competitor": "https://www.youtube.com/channel/UCL8PFGotC_jY_UbzfRTnnng",
+  "slug_dir": "assets/N-senior_korekara",
+  "folder_pattern": "ep{nn:02d}-*",
+  "channel_dossier": "docs/channel_dna/CHANNEL_DNA_KOREKARA.md",
+  "channel_dna_dir": "docs/channel_dna/senior_korekara",
+  "narrator": {
+    "gender": "male",
+    "age_band": "60-75",
+    "persona": "定年・引退後の日本人（60〜75歳、エピソードごとに名前・前職・住まい・家族構成を設定）の人生の一場面を、落ち着いた語り手が見守るように語る。主人公は悪人ではなく、真面目に働いてきた普通の人。期待→現実の数字→取り返せない喪失→人とのつながり→静かな受容、の順に声の温度が変わる。感情を叫ばず、短い文で金額・日付・距離・気温を具体的に語る。説教・営業トーン禁止。",
+    "point_of_view": "エピソードごとに二択（characters.json で決める）: (A) 三人称の語り — 冒頭に「これは…の物語です。」と一文で枠を示し、主人公を「○○さん」と名前で呼ぶ（です・ます体）; (B) 一人称の回想 — 「俺は○○、62歳。」のように主人公自身が語る（だ・である体）。女性が主人公の回は一人称「私」も可。会話は「」で短く、1文ずつ独立させる（多声読み上げのため）。冒頭150字以内に「高齢者」「多くの人」「シニアの皆さん」を使わない。",
+    "register": "(A) です・ます体の穏やかな語り / (B) だ・である体の独白。会話文のみ自然な口語。敬語で説明するナレーション・講義口調禁止。",
+    "_note_vi": "ĐO 2026-09-30 trên 10 transcript top: 5/10 ngôi 3 mở bằng 「これは…の物語です」, 5/10 ngôi 1 (俺 — Nam A ở #1 #2 nổ nhất; 私 nữ — #7). Nam B dẫn 7/10 video. narrator.gender=male = giọng dẫn MẶC ĐỊNH (Nam B, F0 mẫu 110 → clone 107 Hz, <165 = nam — skill §6b). Tập ngôi 1 nam/nữ đổi giọng dẫn bằng characters.json id \"ke\" (voice._ke_note)."
+  },
+  "voice": {
+    "provider": "ai33",
+    "_provider_note": "ĐA GIỌNG (anh chọn 2026-09-30 phương án (a) clone giọng kênh mẫu). Đo 10 video (resemblyzer+F0, E:/CLAUDE/YOUTUBE/TRENDING-RESEARCH/scratch_korekara/voice10/voice_report.json): 3 giọng chính — Nam A (dẫn ngôi 1), Nam B (dẫn ngôi 3), Nữ C (dẫn tập nữ + lồng MỌI thoại nữ); thoại nam phụ phần lớn do người dẫn tự đổi giọng. Mẫu gốc + clone thử: assets/N-senior_korekara/_voice_clone/ (compare_clone.html, mau_goc.json, clone_ket_qua.json). Anh DUYỆT Nam B + Nữ C 2026-09-30; Nam A bản đầu (clone_2669054) bị chê → clone lại, anh CHỐT A3 clone_2669111 (30/09). Cả 3 giọng đã duyệt.",
+    "id": "clone_2669055",
+    "_id_note": "= giọng dẫn mặc định (Nam B); để calibrate.py/voice_conf đọc.",
+    "narrator": {
+      "voice_id": "clone_2669055",
+      "name": "Nam B — dẫn ngôi 3 (clone từ KY8NLrQguo0 giây 805, F0 110 → 107 Hz, giống mẫu 0,82) · ANH DUYỆT 30/09"
+    },
+    "fixed_cast": {},
+    "cast_bank": {
+      "語り手・一人称の男性主人公（俺）": [
+        {
+          "voice_id": "clone_2669111",
+          "name": "Nam A — dẫn ngôi 1 俺 (A3: clone từ G5kIPGFNKeY giây 1060, F0 111 → 129 Hz, giống mẫu 0,86) · ANH CHỐT 30/09"
+        }
+      ],
+      "女性（主人公の妻・女性主人公・女性の脇役すべて）": [
+        {
+          "voice_id": "clone_2669056",
+          "name": "Nữ C — mọi nhân vật nữ + dẫn tập nữ ngôi 1 (clone từ SOIklzU69fg giây 185, F0 195 → 181 Hz, giống mẫu 0,86) · ANH DUYỆT 30/09"
+        }
+      ],
+      "男性の脇役（同級生・職員・店主など）": [
+        {
+          "voice_id": "clone_2669055",
+          "name": "Nam B — kênh mẫu để người dẫn tự đổi giọng vai nam phụ; tập ngôi 1 (Nam A dẫn) thì vai nam phụ dùng Nam B để tách giọng"
+        }
+      ]
+    },
+    "_ke_note": "Đổi giọng DẪN theo tập bằng characters.json: thêm {\"id\":\"ke\",\"voice\":{\"voice_id\":\"clone_2669111\"}} (tập ngôi 1 nam, Nam A) hoặc clone_2669056 (tập nữ chính kể ngôi 1 私, Nữ C). tts_voicevox.giong_cua_vai() lấy characters.json[id=ke] đè lên voice.narrator. Vai mới không khớp loại nào → hỏi anh trước khi clone thêm.",
+    "speed": 1.0,
+    "fx": "none",
+    "calib_style": "story",
+    "pace": false,
+    "workers": 8,
+    "_competitor_rate_note": "Kênh mẫu 249–335 chữ/phút trên 15 transcript (trung vị ~300). CHỈ tham chiếu — char_rate phải đo bằng calibrate.py với giọng clone.",
+    "char_rate": 382.8,
+    "char_rate_measured_at": "2026-09-30",
+    "char_rate_note": "đo thật 230 chữ (story) → 36.0s",
+    "char_rate_speed": 1.0
+  },
+  "script": {
+    "the_viet": "~/.claude/skills/youtube-kich-ban/market/THE_VIET_STORY.md",
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 16.0,
+    "_target_note": "64/64 video 11,9–25,3 phút (p25 15,0 · trung vị 16,4 · p75 18,5); top 10 theo view: 19,0/16,2/15,4/15,2/19,3/16,1/15,2/17,4/15,0/13,2. Chọn 16.",
+    "flow": "lean",
+    "two_pass": true,
+    "budget": {
+      "tol": 0.08,
+      "sections": [
+        {
+          "label": "序章（いまの一場面＋名前・年齢・前職・お金の数字＋決断）",
+          "ratio": 0.17
+        },
+        {
+          "label": "最初の現実（期待と違う一つ目の壁、具体的な金額・時間）",
+          "ratio": 0.18
+        },
+        {
+          "label": "二つ目の現実（数字がさらに重くなる、対照の人物が登場）",
+          "ratio": 0.19
+        },
+        {
+          "label": "取り返せないもの（どん底・もう戻れない一点）",
+          "ratio": 0.16
+        },
+        {
+          "label": "人とのつながり（小さな救い・意外な一言）",
+          "ratio": 0.17
+        },
+        {
+          "label": "結び（静かな受容・冒頭の場面の反復・問いかけ・感謝）",
+          "ratio": 0.13
+        }
+      ],
+      "_note": "ĐO 2026-09-30 từ timestamp chương trong mô tả 10 video top (100% có chương có tên, trung vị 6 chương): tỉ lệ chương 1–6 trung bình ≈ 0,17/0,18/0,19/0,16/0,17/0,13. Tên chương KHÔNG đọc trong kịch bản — chỉ để mô tả (B7)."
+    },
+    "structure": "story_life6",
+    "structure_block": "video manga kể chuyện đời MỘT nhân vật chính 60–75 tuổi sau khi nghỉ việc, 6 chặng theo đúng tỉ lệ, KHÔNG đọc tiêu đề chương/số thứ tự:\n   · MỞ (0–17%): câu ĐẦU là một CẢNH hoặc một bảng cân đối 3 con số của nhân vật (「貯金240万円・年金11万円。」) — không thuyết minh chủ đề, không chào. Ngôi 3: câu định khung 「これは…の物語です。」 trong 30 giây đầu nêu đúng TÌNH HUỐNG KẸT của tiêu đề; ngôi 1: 「俺は○○、62歳。」 + con số ngay. Trong 2 câu đầu có TUỔI + NGHỀ CŨ (nghề MỚI do mình đặt, xem luật đổi nghề) + CON SỐ TÀI CHÍNH. Kết chặng bằng QUYẾT ĐỊNH (đăng ký, chuyển đi, đi mai mối, vào viện…) và 1 câu của người thân gieo nghi ngờ.\n   · HIỆN THỰC 1 (17–35%): bức tường đầu tiên khác kỳ vọng — bằng con số CỤ THỂ (giờ làm, tiền công, nhiệt độ, phí mỗi tháng, số lần bị hỏi). Hành vi cụ thể, không nói cảm xúc trừu tượng.\n   · HIỆN THỰC 2 (35–54%): con số nặng thêm; xuất hiện NGƯỜI ĐỐI CHỨNG có tên + tuổi + con số của họ (người giàu hơn, người cùng cảnh nhưng chọn khác). Có ít nhất một người đối xử tệ / lợi dụng nhân vật chính (khán giả chê truyện \"ai cũng tốt\"), nhưng không biến thành phản diện hoạt hình.\n   · ĐIỂM KHÔNG QUAY LẠI (54–70%): mất một thứ không lấy lại được (nhà đã bán, tiền đã tiêu, người đã mất, sức khoẻ) — nói bằng một chi tiết vật lý nhỏ.\n   · NỐI LẠI VỚI NGƯỜI (70–87%): tia hy vọng đến từ CON NGƯỜI và việc nhân vật giỏi làm (tay nghề, thói quen tốt), không từ tiền; một câu nói bất ngờ của ai đó lật cách nhìn. Nhân vật tự nhận ra, không ai giảng đạo.\n   · KẾT NGHIỆM TÙNG (87–100%, ~2 phút): chấp nhận thực tế với lựa chọn nhỏ vừa sức (vd không đăng ký kết hôn nhưng vẫn đi du lịch cùng; ở thuê trước khi mua; đi du lịch thay vì chuyển hẳn); lặp lại gần nguyên văn cảnh/câu mở đầu với nghĩa mới; CÂU HỎI cho khán giả (「あなたなら…ですか？」) + mời kể chuyện của mình trong bình luận; cảm ơn; câu cuối là outro. KHÔNG quả báo, KHÔNG trúng số, KHÔNG con cái cứu.\n   ⛔ LUẬT ĐỔI NGHỀ (anh chốt 2026-09-30): nghề nghiệp của NHÂN VẬT CHÍNH (và người phối ngẫu nếu là nhân vật chính thứ hai) PHẢI KHÁC nghề trong video gốc — đọc dòng NGHỀ CẤM trong series_ctx.txt; đổi luôn số năm làm, dụng cụ, thói quen, câu thoại gắn với nghề; tay nghề mới phải là thứ cứu nhân vật ở chặng 5.\n   MẬT ĐỘ SỐ: mỗi 1–2 phút ít nhất 1 con số tiền/tuổi/ngày/nhiệt độ. Số CHẾ ĐỘ (年金, 税, 保険, 介護, 生活保護, シルバー人材センター の配分金) CHỈ lấy từ TƯ LIỆU; số CÁ NHÂN tự đặt nhưng cộng khớp từ đầu tới cuối. Tuổi nhân vật chính 60–75.",
+    "mode": "fiction_facts",
+    "_mode_note": "Nhân vật/nơi chốn hư cấu; số chế độ (年金, シルバー人材センター 配分金, 老人ホーム 入居一時金/月額, 介護保険, 生活保護, 住民税・国保) phải có trong series_ctx.txt [Dn] kèm URL. Bình luận bắt lỗi kinh tế ngay (「今は売ったら100万マイナス」).",
+    "ctx_label": "TƯ LIỆU CHẾ ĐỘ & CHI PHÍ ĐỜI SỐNG SAU NGHỈ VIỆC Ở NHẬT (年金・シルバー人材センター・老人ホーム・介護・税・保険・住まい — số liệu PHẢI lấy đúng từ đây kèm điều kiện; nhân vật, nơi chốn, số tiền cá nhân là hư cấu)",
+    "fact_exempt_units": [
+      "万円",
+      "円",
+      "歳",
+      "年目",
+      "日目",
+      "回",
+      "時",
+      "分",
+      "泊"
+    ],
+    "_fact_exempt_note": "Miễn số CÁ NHÂN trong truyện (退職金/貯金 của nhân vật, tuổi, ngày thứ N, giờ). KHÔNG miễn %, 年間, 歩 — tỉ lệ/chế độ phải có nguồn. Tiền chế độ (年金 月額 theo chế độ) vẫn do lớp soát GPT web + lớp 3 Claude Code đối chiếu tư liệu vì S3 đã miễn 万円.",
+    "engine": "claude_p",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
+    "final_review_model": "claude-opus-5-5",
+    "_model_note": "Quy trình chuẩn mẫu Lane M (QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §00, anh chốt 2026-09-29): S2 viết Opus 5.5 · S4 vá Opus 5 · Sol tắt, S5L kiểm lời hứa tiêu đề · soát ChatGPT web.",
+    "outro_line": "最後までご覧いただき、ありがとうございました。これからの暮らしを考えるきっかけになりましたら、高評価とチャンネル登録で応援していただけると嬉しいです。",
+    "_outro_note": "Đủ 3 ý: cảm ơn xem hết + 高評価 + チャンネル登録. Câu RIÊNG của lane. Không có「」.",
+    "sol_qc": false,
+    "sol_pass_need": 2,
+    "gate": {
+      "list_item_count": 0,
+      "_list_item_count_note": "0 = lane truyện, không kiểm marker mục (kể cả tập bẻ góc từ video list #2).",
+      "comma_per_sentence": [
+        0.6,
+        2.0
+      ],
+      "chars_per_breath": [
+        6.0,
+        12.0
+      ],
+      "dialogue_ratio_max": 0.3,
+      "dialogue_own_sentence": true,
+      "_dialogue_own_note": "Đa giọng: mỗi câu thoại là 1 câu「…」riêng, không dính lời dẫn — gan_vai.py/tts gắn đúng giọng từng câu (luật Lane L/M).",
+      "require_next_ep_teaser": false,
+      "title_len": [
+        38,
+        56
+      ],
+      "hook_chars": [
+        500,
+        720
+      ],
+      "_gate_note": "ĐO 2026-09-30 trên 15 transcript thật (docs/channel_dna/senior_korekara/_raw/transcripts.json) + 64 tiêu đề. Câu (tách 。？！): trung bình 13,8–16,9 chữ, trung vị 12–16 → comma [0,6;2] + breath [6;12] SUY như Lane F/J (ASR không ghi 、), đo lại sau ep01. dialogue: câu đuôi hội thoại 5–18% (proxy) nhưng giọng nữ thoại chiếm 10–25% thời lượng (voice_report) → 0,30. title_len: 64 tiêu đề 28–58 ký tự kể cả【漫画】(p25 37 · trung vị 41 · p75 47); DNA §5: nhóm VPD cao 68,8% dài >40 ký tự → [38,56]. hook_chars = chữ trong 120 giây đầu: 509–716 (tốc độ 249–335 chữ/phút) → [500,720]."
+    },
+    "hook": {
+      "the_ten": {
+        "bat": true,
+        "kieu": "ruy_bang",
+        "mau": "#c8553d",
+        "mau_phu": "#ffd166",
+        "vi_tri": "tren_trai",
+        "dur_s": 6.0,
+        "toi_da": 4,
+        "_note": "10/10 anh chốt: nhân vật chính trong hook giới thiệu bằng THẺ TÊN ĐỘNG (tên·tuổi·nghề); 14/10 anh sửa: lời hook ĐƯỢC đọc tên-tuổi song song thẻ — docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md, pipeline/the_ten_hook.py"
+      },
+      "model": "claude-fable-5-1",
+      "enabled": true,
+      "visual": "manga_anime_ref_grok",
+      "_visual_note": "Ảnh anime bán thực khoá mặt bằng master của TẬP (@REF nhân vật chính, @REF2 người thứ hai; không xuyên tập) → clip Grok 6s. Mỗi cảnh thấy MẶT + cảm xúc; cấm chữ/biểu đồ trên hình.",
+      "visual_kind": "video_sinh",
+      "sfx": false,
+      "nhac_nen": true,
+      "giay": [
+        12,
+        75
+      ],
+      "giay_mac_dinh": 20,
+      "_luat_hook_note": "21/10/2026 anh chốt: luật hook DUY NHẤT = bám sát CẤU TRÚC hook của video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn; đổi tên họ/nghề/câu thoại theo tập) — docs/HOOK_CAU_TRUC/00_CHUNG.md. Mọi luật hook khác (động cơ chính, khuôn lane huong_dan_cau_truc, mở bằng thoại, cao trào/kịch tính, câu để ngỏ…) đã BỎ."
+    },
+    "soat_gptweb": {
+      "enabled": true,
+      "urls": {
+        "acc2": "https://chatgpt.com/g/g-p-6abc71e16a508191ae5cf82f541f1804-n-senior-korekara/c/6abc7205-c5e8-83ec-88a1-36119abebd12",
+        "acc1": "https://chatgpt.com/g/g-p-6abc72e6fce081918727aec80f044141-n-senior-korekara/c/6abc730c-9850-83ec-ace0-f6f79cb9ba64"
+      },
+      "projects": {
+        "acc2": {
+          "id": "g-p-6abc71e16a508191ae5cf82f541f1804",
+          "ten": "N-senior_korekara"
+        },
+        "acc1": {
+          "id": "g-p-6abc72e6fce081918727aec80f044141",
+          "ten": "N-senior_korekara"
+        }
+      },
+      "_urls_note": "Tạo 2026-09-30 bằng tools\\chatgpt_web\\tao_project_soat.py (Instructions + file CHATGPT_PROJECTS/N-senior_korekara-script); urls = hội thoại giao vai trong Project của lane.",
+      "boi_canh": "Khán giả: người Nhật 60–80 tuổi (nhiều nữ), xem trên điện thoại. Video manga kể chuyện đời MỘT người sau khi nghỉ việc, mỗi tập một nhân vật mới; người dẫn nam (ngôi 3 「これは…の物語です」 hoặc ngôi 1 「俺」), thoại nữ do một giọng nữ đọc. Khán giả tự kể kinh nghiệm sống trong bình luận và bắt lỗi chi phí/chế độ rất nhanh; họ thích kết nghiệm tùng ấm, ghét truyện \"ai cũng tốt\" và ghét bị giảng đạo.",
+      "cau_truc": "mở bằng cảnh/bảng 3 con số + tuổi + nghề cũ + quyết định → hiện thực 1 (con số cụ thể) → hiện thực 2 (người đối chứng có tên/tuổi/số, có người đối xử tệ) → điểm không quay lại (mất một thứ) → nối lại với người (tay nghề/thói quen tốt cứu mình) → kết nghiệm tùng: lặp cảnh mở, câu hỏi cho khán giả, cảm ơn + xin 高評価 (thích) / チャンネル登録 (đăng ký).",
+      "rang_buoc": [
+        "Nghề nghiệp nhân vật chính phải KHÁC nghề trong video gốc (xem NGHỀ CẤM trong series_ctx.txt) — bắt lỗi nếu còn sót nghề cũ hoặc chi tiết nghề cũ.",
+        "Số chế độ (年金, シルバー人材センター, 老人ホーム, 介護, thuế, bảo hiểm) chỉ theo tư liệu kèm điều kiện; không đề nghị thêm số chế độ mới.",
+        "Kết nghiệm tùng, không quả báo, không phép màu; không nội dung chính trị/trợ cấp gây tranh cãi.",
+        "Mỗi câu thoại là một câu「」riêng (đa giọng)."
+      ]
+    },
+    "soat": "may3",
+    "_soat_note": "Mẫu Lane M: soát kịch bản sau B3 bằng ChatGPT web (pipeline/soat_kb_gptweb.py), không máy 3."
+  },
+  "script_qc": {
+    "lens": "plain",
+    "domain_focus": "Manga story hư cấu về đời sống MỘT người Nhật 60–75 tuổi sau khi nghỉ việc (việc làm thêm, mai mối tuổi già, chuyển nơi ở, viện dưỡng lão, lương hưu, họp lớp). Không phải video y khoa, không phải video danh sách, không phải tư vấn tài chính.",
+    "lane_rules": [
+      "Nghề nghiệp nhân vật chính (và người phối ngẫu nếu là nhân vật chính thứ hai) KHÁC nghề trong video gốc — NGHỀ CẤM ghi trong series_ctx.txt; không còn dụng cụ/câu thoại của nghề cũ.",
+      "Số CHẾ ĐỘ chỉ lấy từ tư liệu và nói rõ điều kiện; số CÁ NHÂN tự đặt nhưng phải cộng khớp qua mọi mốc.",
+      "Có người ĐỐI CHỨNG có tên + tuổi + con số; có ít nhất một người đối xử tệ với nhân vật chính (không phải ai cũng tốt).",
+      "Kết nghiệm tùng ấm, nhân vật tự nhận ra; không quả báo, không trúng số, không con cái cứu; câu hỏi cho khán giả ở cuối.",
+      "Không dùng lại tên nhân vật/địa điểm/câu đặc trưng của video gốc kênh シニアの人生これから (岡部, 関口, 増田, マスダサイクル, 篠原, 大久保, 野崎, 王光…)."
+    ]
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "Each episode has its own cast defined PER EPISODE in characters.json and locked by REF-LOCK master portraits: @REF = the main character (Japanese man or woman aged 60-75), @REF2 = the second key character (spouse, partner, rival classmate or helper). Other speaking characters get their own per-episode master (_ref_<id>/001.png). AGE LOOK: draw people their stated age but healthy and well-kept, NEVER older than stated (audience complained a 60s cast looked 80): upright posture, clean neat clothes in clear soft colors, grey or salt-and-pepper hair is fine, no exaggerated wrinkles. Faces never carry over to other episodes (episodic channel). All characters are fictional adults; never resemble a real public figure. At most 3 locked faces per image.",
+    "_character_sheet_note_vi": "Khung thật kênh mẫu (TRENDING-RESEARCH/scratch_korekara/GRID_oZatkpZ0HEc.jpg, 13 khung): anime bán thực, người già tóc bạc xám gọn gàng, quần áo sáng màu, nền nội thất/nơi làm việc chi tiết đẹp. Bình luận KHEN vẽ 27 : CHÊ 6 — 「風景・情景が美しく描かれている」 (phong cảnh vẽ đẹp) 19👍; chê đáng kể duy nhất 「画像は８０代くらい」 (hình trông 80 tuổi) 13👍 → không vẽ già hơn tuổi.",
+    "style_suffix": "Japanese anime illustration, semi-realistic proportions, clean confident line art, soft cel shading, richly detailed beautiful backgrounds (seasonal light, streets, interiors), characters look healthy and neat for their age, warm natural color grading that shifts with the mood, everyday contemporary Japan settings: home living room, dining table, community center, work site, supermarket, nursing home lobby, countryside house in snow, shopping street, station, bus tour; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders, no multiple views), natural five-finger hands, no text, no letters, no numbers, no speech bubbles, no watermark",
+    "_style_suffix_note": "Đo trên 13 khung thật video oZatkpZ0HEc (kênh mẫu). Câu cấm panel/grid mượn Lane F/G/J.",
+    "seconds_per_image": 7.5,
+    "_seconds_note": "ĐO THẬT 2026-09-30 (skill video-chuyen-canh + tách đổi-ẢNH khỏi đổi-CHỮ bằng tỉ lệ điểm ảnh đổi >35%): G5kIPGFNKeY 19,0 phút = 154 ảnh, TB 7,39 s/ảnh (trung vị 7,0, p25–p75 5,1–9,2, min 1,7, max 16,6) · oZatkpZ0HEc 20,2 phút = 152 ảnh, TB 7,98 (trung vị 7,9, p25–p75 5,4–9,9). → 7,5. Số liệu: E:/CLAUDE/YOUTUBE/TRENDING-RESEARCH/scratch_korekara/nhip/.",
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 8,
+    "qc_sample": 10,
+    "b5p_qc": true,
+    "prompts_by": "fable_doan",
+    "characters_from_bible": true,
+    "cast_max_per_image": 3,
+    "sample_gate": 5
+  },
+  "body": {
+    "mode": "ai_images",
+    "chan_buoc2_may1": true,
+    "_chan_buoc2_note": "Mẫu Lane M: máy 1 CẤM chạy B4/B5 (tốn tiền thật) — dừng ở B5P rồi giao máy 2."
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "palette": [
+      "YELLOW",
+      "WHITE",
+      "RED"
+    ],
+    "dedicated_bg": true,
+    "require_face": true,
+    "art_style": "Japanese anime illustration of the episode main character (match characters.json @REF), healthy and neat for their age, one strong emotion (shock, loneliness, quiet relief) in the key setting of the episode, detailed beautiful background, subject in the lower-middle of the frame, top band kept simple for a text strip, no text, no speech bubbles, no watermark",
+    "template": {
+      "bo_cuc": "CHƯA ĐO thumbnail kênh mẫu — TITLE-RESEARCH làm thumbnail (listing_external).",
+      "tiers": [
+        {
+          "color": "YELLOW",
+          "role": "từ khoá lõi (熟年離婚 / 60代夫婦 / 退職金で…)",
+          "max_chars": 6
+        },
+        {
+          "color": "WHITE",
+          "role": "phần còn lại của lõi tiêu đề",
+          "max_chars": 8
+        },
+        {
+          "color": "RED",
+          "role": "câu khoá hook ở đáy",
+          "max_chars": 14
+        }
+      ],
+      "_note": "Chưa FREEZE; tiers tạm chép Lane J."
+    }
+  },
+  "thumbnail_qc": {
+    "claim_focus": "Ngách đời sống sau nghỉ việc — rủi ro: số tiền/tuổi trên thumbnail lệch kịch bản; claim tuyệt đối; gợi ý chuyện có thật (実話); vẽ nhân vật già hơn tuổi.",
+    "image_prompt_constraints": "1. 16:9. 2. Anime bán thực (không photorealistic), đúng nhân vật chính của tập, không già hơn tuổi. 3. Một cảm xúc rõ. 4. Không chữ/số/bong bóng thoại trong ảnh. 5. Dải trên để trống cho chữ."
+  },
+  "assemble": {
+    "zoom": 1.0,
+    "_zoom_note": "⛔ CLAUDE.md: ảnh đứng yên tuyệt đối mọi lane.",
+    "transition": "cut",
+    "xfade": 0.5,
+    "sub_font": "Yu Gothic",
+    "sub_size": 32,
+    "sub_margin": 7,
+    "sub_outline": 3,
+    "burn_subs": false,
+    "qc_sample": 10,
+    "sync": "anchors",
+    "_chu_note": "Mọi câu hiện trên hình bằng hộp/bóng (assemble.bubble) → tắt phụ đề đáy (burn_subs=false) kẻo chữ lặp 2 lần. Kênh mẫu dùng chữ NGANG; anh chốt 30/09 giữ chữ DỌC như Lane M, góc phải, bóng elip có đuôi.",
+    "bubble": {
+      "enabled": true,
+      "tail": true,
+      "font": "Yu Gothic Bold",
+      "font_size": 40,
+      "max_chars_per_col": 10,
+      "max_cols": 3,
+      "title_card_s": 0,
+      "_note": "Anh chốt 2026-09-30: chữ mặc định GÓC PHẢI (hộp lời kể sát mép phải, mép phải vướng người mới sang trái — bong_thoai._dat_mep); lời kể = Ô VUÔNG (hộp chữ nhật trắng viền đen); lời thoại = Ô ELIP có ĐUÔI chỉ về người nói (shape_thoai=elip + tail=true, vị trí miệng lấy từ img_faces.json do bong_thoai.do_mat đọc dòng @CAST). Chữ dọc như Lane M. Chữ ĐẬM hơn Lane M (anh chê M nhạt): font Yu Gothic Bold (YuGothB.ttc) + stroke_chu 1px cùng màu. Cỡ chữ TẠM chép Lane M (kể 72 / thoại 56) — anh CHƯA chốt, xem lại ở video ep01. Ảnh mẫu: assets/N-senior_korekara/_chu_mau/.",
+      "font_size_ke": 72,
+      "font_size_thoai": 56,
+      "max_chars_per_col_ke": 8,
+      "ke_split_chars": 24,
+      "thoai_split_chars": 30,
+      "shape_thoai": "elip",
+      "stroke_chu": 1
+    },
+    "hook_tu_ghep": true,
+    "_note_hook_tu_ghep": "2026-09-26 (như Lane L): B8 tự ghép hook THAY HÌNH. hook_timeline.json máy 1 ghi mốc THEO SỐ CÂU (shots[].cau, sfx[].cau+lech) — ghep_hook_noi_truoc.neo_lai_theo_cau tính lại giây từ voice_roles.json giọng thân máy 2 lồng (ai33 không tất định). Máy 1 KHÔNG lồng giọng hook.",
+    "_transition_note": "ĐO THẬT 2026-09-30 trên 2 video kênh mẫu (G5kIPGFNKeY 166 ranh giới, oZatkpZ0HEc 188): 100% CẮT THẲNG, 0 crossfade/zoom-từ-đen/mờ-vào/đẩy, 0 khung đen. Hộp chữ/bóng thoại đổi theo câu TRÊN cùng một ảnh (13/166 và 37/188 ranh giới chỉ là đổi chữ). Kênh mẫu CÓ zoom chậm trên ảnh ở ~27% cảnh (lớp chữ đứng yên) — Lane N KHÔNG làm vì luật CLAUDE.md cấm zoom >1.0 (ngoại lệ duy nhất Lane K); muốn bật phải anh cho ngoại lệ.",
+    "subscribe": {
+      "enabled": true,
+      "start_times": [
+        180,
+        -120
+      ],
+      "moc_cua_so": 60,
+      "sub_click_style": "1_click_that",
+      "bell_style": "6_moc_cam",
+      "avatar_path": "assets/avatars/senior_korekara.png",
+      "enable_avatar": true,
+      "language": "ja",
+      "thanks_text": null,
+      "position": "bottom_center",
+      "enable_sound": true,
+      "has_subtitles": false
+    },
+    "_subscribe_note": "2026-09-30 (anh hỏi tập 1): phủ nút đăng ký 2 lần/tập như các lane chuẩn (mốc 180s và cuối−120s, chọn lại ±60s, pipeline/nut_dang_ky.py B8n). Chuông RIÊNG 6_moc_cam (mộc cầm 2 nốt Sol5→Mi5, thêm vào tools/subscribe_overlay/so_bells.py) — 5 kiểu cũ đã có lane dùng. enable_avatar=false TẠM vì kênh thật chưa setup: có avatar kênh thì đặt ảnh vào tools/subscribe_overlay/assets/avatars/senior_korekara.png, đổi enable_avatar=true, chạy lại dong_goi_may2.py --bundle."
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse",
+    "real politician",
+    "real celebrity face",
+    "hunched back"
+  ],
+  "publish": {
+    "upload_channel": "Lane-N",
+    "sheet_tab": "Lane-N",
+    "_sheet_tab_note": "Anh tạo tab \"Lane-N\" 2026-09-30 và dùng tab này (tên tạm — anh đổi tên lane sau; khi đổi thì sheet_tab/upload_channel/thư mục/Project đổi CÙNG LÚC). Tab N-senior_korekara em tạo trước đó là bản thừa, không dùng.",
+    "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+    "review_vi": true,
+    "channel_id": "UCqXxSE88mHQiZMvzCdlmk3w",
+    "_channel_id_note": "03/10/2026: kênh シニア暮らし研究所 @senior_kurashi60, mail thienduongly7890@gmail.com (AdsPower k15wbjoo). Anh tự đặt tên+handle; em setup avatar/banner/settings (branding/KENH.json).",
+    "handle": "senior_kurashi60",
+    "hashtags": "#老後 #定年後 #シニア #年金 #漫画",
+    "tags_base": [
+      "老後",
+      "定年後",
+      "シニア",
+      "年金",
+      "老後の暮らし",
+      "シルバー人材センター",
+      "シニア婚活",
+      "老後の移住",
+      "老人ホーム",
+      "漫画"
+    ],
+    "_tags_nguon": "DNA §7 đếm 64 tiêu đề: 【漫画】64 · 老後 26 · 末路 20 · シニア 19 · 万円 18 · 年金 15 · 定年 11 + chủ đề 10 video top. Tránh 末路 đứng một mình (59,4% nhóm VPD thấp).",
+    "listing_external": true,
+    "title_auto": false,
+    "_title_auto_note": "Kênh mới: title_auto TẮT, anh `goi_title.py --bat senior_korekara` mới chạy."
+  },
+  "goi_dang": {
+    "enabled": true,
+    "contradiction_max_s": 60,
+    "title_core_max_s": 60,
+    "promise_window_s": 60,
+    "promise_giu_duoc_max_s": 120,
+    "ritual": [],
+    "title_suffix_ignore": [
+      "【漫画】"
+    ],
+    "title_core_len": [
+      30,
+      46
+    ],
+    "list_mode": false,
+    "_nguon": "15 transcript kênh mẫu (mốc giây thật từ segs): câu mâu thuẫn đầu tiên (だが/のに/と思っていた/しかし/ところが/でも) 6,5–181s, trung vị ~59s → 60 · lõi tiêu đề ≤60s (ngôi 3 nêu tình huống ngay ở câu 「これは…の物語です」) · tiêu đề bỏ【漫画】: 64 tiêu đề p25 33 – p75 43 → [30,46]. ritual trống."
+  },
+  "_note": "Lane N — dựng giai đoạn 2 ngày 2026-09-30 theo quy trình chuẩn mẫu Lane M (khung truyện theo Lane J). Nghiên cứu: TRENDING-RESEARCH scratch_korekara (64/64 video, 15 transcript, 779 bình luận, 3 giọng đo). Anh tự setup kênh (NOTE dòng 11). CHƯA: anh duyệt 3 giọng clone · calibrate char_rate · Project ChatGPT soát · đo nhịp ảnh/chữ ngang. Cửa vào: docs/BAT_DAU_LANE/senior_korekara.md · SOP: docs/SOP_LANE_N.md."
+}

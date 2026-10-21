@@ -192,9 +192,11 @@ def chia_cot(text, max_chu, max_cot):
     return cols
 
 
-def _ve_chu_doc(img, cols, x_phai, y_tren, font, cell, fill=(20, 20, 20, 255)):
+def _ve_chu_doc(img, cols, x_phai, y_tren, font, cell, fill=(20, 20, 20, 255), vien=0):
     """fill = 1 màu, HOẶC danh sách màu theo từng cột/từng chữ (cùng dáng `cols`) — thumbnail Lane K tô đỏ vài cụm
-    (YT-TITLE-RESEARCH thumbnail_engine/dialogue_split.py dùng lại hàm này, không chép code)."""
+    (YT-TITLE-RESEARCH thumbnail_engine/dialogue_split.py dùng lại hàm này, không chép code).
+    vien = số px viền CÙNG MÀU chữ quanh nét (assemble.bubble.stroke_chu, Lane N 2026-09-30: chữ đậm hơn Lane M);
+    0 = như cũ."""
     d = ImageDraw.Draw(img)
     for ci, col in enumerate(cols):
         cx = x_phai - cell * ci - cell / 2
@@ -206,7 +208,7 @@ def _ve_chu_doc(img, cols, x_phai, y_tren, font, cell, fill=(20, 20, 20, 255)):
                 td = ImageDraw.Draw(tmp)
                 bb = td.textbbox((0, 0), ch, font=font)
                 td.text((cell / 2 - (bb[2] - bb[0]) / 2 - bb[0], cell / 2 - (bb[3] - bb[1]) / 2 - bb[1]), ch,
-                        font=font, fill=mau)
+                        font=font, fill=mau, stroke_width=vien, stroke_fill=mau)
                 tmp = tmp.rotate(-90)
                 img.alpha_composite(tmp, (int(cx - cell / 2), int(cy - cell / 2)))
                 continue
@@ -217,7 +219,8 @@ def _ve_chu_doc(img, cols, x_phai, y_tren, font, cell, fill=(20, 20, 20, 255)):
                 dx, dy = cell * 0.30, -cell * 0.30
             elif ch in NHO:
                 dx, dy = cell * 0.10, -cell * 0.08
-            d.text((cx - tw / 2 - bb[0] + dx, cy - th / 2 - bb[1] + dy), ch, font=font, fill=mau)
+            d.text((cx - tw / 2 - bb[0] + dx, cy - th / 2 - bb[1] + dy), ch, font=font, fill=mau,
+                   stroke_width=vien, stroke_fill=mau)
 
 
 # ---------------------------------------------------------------- 3) đặt khung
@@ -276,10 +279,13 @@ def _dat_mep(W, H, bw, bh, mats, le=24):
     return min(ung)                                   # (diện tích đè thân, 0 phải/1 trái, y, hộp)
 
 
-def render_cue(text, la_loi_ke, W, H, mats, mieng=None, font_name="Yu Gothic", size=40, max_chu=11, max_cot=3, duoi=True):
+def render_cue(text, la_loi_ke, W, H, mats, mieng=None, font_name="Yu Gothic", size=40, max_chu=11, max_cot=3, duoi=True,
+               dang="bo_goc", vien=0):
     """→ ảnh RGBA. la_loi_ke: hộp chữ nhật; ngược lại: bóng tròn + đuôi (mieng=None → đuôi chỉ ra mép gần nhất).
     duoi=False (assemble.bubble.tail=false, Lane L 2026-09-24): bóng oval KHÔNG đuôi như kênh mẫu 社会のウラガワ,
-    vẫn đặt gần miệng người nói."""
+    vẫn đặt gần miệng người nói.
+    dang="elip" (assemble.bubble.shape_thoai, Lane N 2026-09-30): bóng thoại ELIP có ĐUÔI chỉ về người nói
+    (dang="bo_goc" = hình chữ nhật bo góc của Lane K, mặc định). vien = viền chữ (px) cho chữ đậm hơn."""
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     chu = cau_vai.bo_ngoac(text)
     for sz in (size, int(size * 0.88), int(size * 0.78)):
@@ -291,7 +297,18 @@ def render_cue(text, la_loi_ke, W, H, mats, mieng=None, font_name="Yu Gothic", s
     pad = int(sz * (0.55 if la_loi_ke else 0.9))
     bw = len(cols) * cell + pad * 2
     bh = max(len(c) for c in cols) * cell + pad * 2
-    oval = (not la_loi_ke) and not duoi
+    oval = (not la_loi_ke) and (not duoi or dang == "elip")
+    if oval and dang == "elip":
+        # Lane N (2026-09-30, đo demo): 2 cột × 10 chữ → elip cao 1000px hẹp như chiếc lá, không đặt được gần người
+        # nói → chọn số chữ/cột cho khối chữ gần VUÔNG (cao/rộng ≈ 1,15) để elip tròn trịa.
+        tot = None
+        for mc in range(max(4, max_chu), 3, -1):
+            cc = chia_cot(chu, mc, 99)
+            tl = (max(len(c) for c in cc)) / len(cc)
+            if len(cc) <= max_cot + 3 and (tot is None or abs(tl - 1.15) < tot[0]):
+                tot = (abs(tl - 1.15), cc)
+        if tot:
+            cols = tot[1]
     if oval:
         # Lane L ep01 (2026-09-24): bóng oval không đuôi — elip NGOẠI TIẾP khối chữ (×√2 mỗi chiều), không phải
         # hình viên thuốc: câu dài 7 cột thì góc khối chữ lòi ra ngoài đường cong (đo thật giây 700).
@@ -324,9 +341,29 @@ def render_cue(text, la_loi_ke, W, H, mats, mieng=None, font_name="Yu Gothic", s
     if la_loi_ke:
         d.rectangle([x0, y0, x1, y1], fill=trang, outline=den, width=3)
     elif oval:
-        d.ellipse([x0 - 3, y0 - 3, x1 + 3, y1 + 3], fill=den)
-        d.ellipse([x0, y0, x1, y1], fill=trang)
-        _ve_chu_doc(img, cols, x1 - (bw - tw) / 2, y0 + (bh - th) / 2, font, cell)
+        if duoi:                                       # elip CÓ đuôi (Lane N): đuôi vẽ trước, elip đè lên gốc đuôi
+            cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+            tx, ty = mieng if mieng else ((W + 60 if cx > W / 2 else -60), cy)
+            goc = math.atan2(ty - cy, tx - cx)
+            a_, b_ = bw / 2, bh / 2                    # điểm trên viền elip theo hướng `goc`
+            r = a_ * b_ / math.hypot(b_ * math.cos(goc), a_ * math.sin(goc)) - 4
+            bx, by = cx + math.cos(goc) * r, cy + math.sin(goc) * r
+            dai = min(math.hypot(tx - bx, ty - by) * 0.62, max(110, sz * 3.2))   # đuôi ngắn gọn, không vắt ngang khung
+            ex, ey = bx + math.cos(goc) * dai, by + math.sin(goc) * dai
+            vg = goc + math.pi / 2
+            rong = max(16, int(sz * 0.5))
+            de = [(bx + math.cos(vg) * rong, by + math.sin(vg) * rong), (bx - math.cos(vg) * rong, by - math.sin(vg) * rong)]
+            d.polygon([de[0], (ex, ey), de[1]], fill=den)
+            d.ellipse([x0 - 3, y0 - 3, x1 + 3, y1 + 3], fill=den)
+            vao = [(de[0][0] + (bx - de[0][0]) * 0.28, de[0][1] + (by - de[0][1]) * 0.28),
+                   (ex - math.cos(goc) * 6, ey - math.sin(goc) * 6),
+                   (de[1][0] + (bx - de[1][0]) * 0.28, de[1][1] + (by - de[1][1]) * 0.28)]
+            d.polygon(vao, fill=trang)
+            d.ellipse([x0, y0, x1, y1], fill=trang)
+        else:
+            d.ellipse([x0 - 3, y0 - 3, x1 + 3, y1 + 3], fill=den)
+            d.ellipse([x0, y0, x1, y1], fill=trang)
+        _ve_chu_doc(img, cols, x1 - (bw - tw) / 2, y0 + (bh - th) / 2, font, cell, vien=vien)
         return img
     else:
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
@@ -352,7 +389,7 @@ def render_cue(text, la_loi_ke, W, H, mats, mieng=None, font_name="Yu Gothic", s
         d.polygon(vao, fill=trang)
         # lấp lại phần đuôi lấn vào trong bóng
         d.rounded_rectangle([x0 + 4, y0 + 4, x1 - 4, y1 - 4], radius=max(1, bo - 4), fill=trang)
-    _ve_chu_doc(img, cols, x1 - pad, y0 + pad, font, cell)
+    _ve_chu_doc(img, cols, x1 - pad, y0 + pad, font, cell, vien=vien)
     return img
 
 
@@ -448,7 +485,8 @@ def build_track(roles_json, timeline, faces_json, out_path, W=1920, H=1080, fps=
                              cfg.get("font", "Yu Gothic"), int(co),
                              int(cfg.get("max_chars_per_col_ke" if ke else "max_chars_per_col", 0)
                                  or cfg.get("max_chars_per_col", 11)), int(cfg.get("max_cols", 3)),
-                             duoi=bool(cfg.get("tail", True)))
+                             duoi=bool(cfg.get("tail", True)), dang=cfg.get("shape_thoai", "bo_goc"),
+                             vien=int(cfg.get("stroke_chu", 0) or 0))
             png = tmp / f"bt_{k:05d}.png"
             img.save(png)
         clip = tmp / f"bt_{k:05d}.mov"

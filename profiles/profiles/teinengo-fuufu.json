@@ -1,0 +1,429 @@
+{
+  "id": "teinengo-fuufu",
+  "_id_note": "Mã lane TẠM giữ teinengo-fuufu (anh 2026-09-30: tên mới J-rougo_futari, 'mã lane để sau anh cho sửa'). Khi đổi: id + slug_dir + publish.* + tên tab sheet + BAT_DAU_LANE + SOP_LANE_J đổi CÙNG LÚC.",
+  "market": "JP",
+  "language": "ja",
+  "source_lang": "ja,en",
+  "_source_lang_note": "Kênh mẫu tiếng Nhật — B2 fetch_script thử phụ đề ja trước (thiếu field này B2 mặc định 'ko,ja,en').",
+  "niche": "定年後の夫婦 — hưu trí Nhật, MANGA kể chuyện ngôi 1「俺」: một CẶP VỢ CHỒNG 60–70 đối mặt 1 quyết định lớn sau hưu (熟年離婚/家庭内別居, 退職金 dùng vào du thuyền/移住, nhà ở, 婚活 tái hôn, đi làm tiếp hay nghỉ) → hậu quả theo mốc thời gian → đối chứng với 1 cặp/người khác → lời thật của vợ → thoả hiệp thực tế. Mỗi tập 1 cặp mới (kênh rời rạc).",
+  "competitor": "https://www.youtube.com/channel/UCxD2Exs2Q4lf7x0Q28OuKvg",
+  "slug_dir": "assets/J-teinengo-fuufu",
+  "folder_pattern": "ep{nn:02d}-*",
+  "channel_dossier": "E:/CLAUDE/YOUTUBE/TRENDING-RESEARCH/scratch_golo/CHANNEL_DNA_GOLO.md",
+  "channel_dna_dir": "docs/channel_dna/rougo-no-goro",
+  "narrator": {
+    "gender": "male",
+    "age_band": "63-70",
+    "persona": "定年退職した日本人男性（63〜70歳、エピソードごとに名前・前職・住まいを設定）が、妻と二人で下したひとつの大きな決断と、その後数年の夫婦の変化を振り返って語る。元は普通の会社員・公務員・自営業。悪人ではないが、長年の「仕事が一番」の癖で妻の本音を読み違えてきた。感情を叫ばず短い文で、しかし金額・日付・妻の一言を具体的に語る。気づき→後悔→夫婦の立て直しへと声の温度が変わる。説教トーン・営業トーン禁止。",
+    "point_of_view": "一人称「俺」の回想体。妻は地の文では「妻」、会話で名前を呼ぶ。妻・対照人物との会話は「」で短く挿入。冒頭150字以内に「彼」「男性」「高齢者」「多くの人」を使わない。",
+    "register": "だ・である体の独白（「〜だった」「〜と思っていた」）。会話文のみ自然な口語。妻の台詞は対等で具体的（家事・体調・お金の数字）。敬語ナレーション禁止。",
+    "_note_vi": "DNA §3 + 4C (47/47 video): ngôi 俺 là bản sắc; ngôi 3 ở 150 chữ đầu = VPD thấp 13,5×; chủ ngữ chung chung thấp 3,7×. Nhân vật chính 63–70 (khán giả lõi 65–70) — CẤM nhân vật trẻ hơn khán giả (video 58 tuổi rel_VPD 0,10). Vợ không phải nền để bị quát (bình luận 336👍 「妻に対して『俺に反抗的』って思う時点で妻を下に見てますよね」 — nghĩ vợ 'chống đối mình' tức là coi vợ thấp hơn)."
+  },
+  "voice": {
+    "provider": "ai33",
+    "id": "clone_2669068",
+    "_status": "2026-09-30 anh DUYỆT: người kể = 1b Saeki (clone_2669068, char_rate 331,0 đo thật) · 1c Suzuki vào cast_bank · nhóm 2–7 em chọn theo _cast_note.",
+    "speed": 1.0,
+    "fx": "none",
+    "calib_style": "story",
+    "pace": false,
+    "workers": 8,
+    "_competitor_rate_note": "Kênh mẫu 275–347 chữ/phút trên 15 transcript ASR (trung vị ~295; ASR rơi chữ nên số thật cao hơn chút). CHỈ để tham chiếu — char_rate phải đo bằng giọng của mình.",
+    "narrator": {
+      "voice_id": "clone_2669068",
+      "name": "Người kể = chồng (clone giọng Saeki 70t, video r4jNE1oTv8Q 571k, F0 mẫu 137 → clone 139 Hz)"
+    },
+    "char_rate": 331.0,
+    "char_rate_measured_at": "2026-09-30",
+    "char_rate_note": "đo thật 230 chữ (story) → 41.7s",
+    "char_rate_speed": 1.0,
+    "cast_bank": {
+      "chồng / nam 65–70 già dặn (chồng của cặp đối chứng, người kể phụ)": [
+        {
+          "voice_id": "clone_2669121",
+          "name": "1c Suzuki 65t — trầm, chậm, tự sự (F0 118→115)"
+        }
+      ],
+      "vợ — dịu dàng, lo cho chồng (mặc định)": [
+        {
+          "voice_id": "clone_2669071",
+          "name": "2a Tomiko (F0 151→158)"
+        }
+      ],
+      "vợ — điềm đạm, cứng rắn (tập ly hôn/ly thân, vợ nói thẳng)": [
+        {
+          "voice_id": "clone_2669070",
+          "name": "2b Naoko (F0 176→165)"
+        }
+      ],
+      "ông lão / người đi trước nói đạo lý": [
+        {
+          "voice_id": "clone_2669073",
+          "name": "3a ông làm vườn — đôn hậu (F0 144→142)"
+        },
+        {
+          "voice_id": "clone_2669074",
+          "name": "3b ông lão bờ sông — từ tốn (F0 164→181)"
+        }
+      ],
+      "bạn cùng tuổi hào sảng": [
+        {
+          "voice_id": "clone_2669077",
+          "name": "4a Susumu (F0 142→163)"
+        }
+      ],
+      "chồng/nam cộc cằn, sĩ diện": [
+        {
+          "voice_id": "clone_2669076",
+          "name": "4b Katsuji (F0 174→205)"
+        }
+      ],
+      "nam trẻ (con trai, đàn em, nhân viên trẻ)": [
+        {
+          "voice_id": "clone_2669062",
+          "name": "5a Kento (F0 186→168)"
+        }
+      ],
+      "nữ phụ lớn tuổi (vợ bạn, hàng xóm)": [
+        {
+          "voice_id": "clone_2669064",
+          "name": "6a Haruko — ấm, thân thiện (F0 180→232)"
+        }
+      ],
+      "nữ nhân viên lịch sự (lễ tân, quầy, văn phòng)": [
+        {
+          "voice_id": "clone_2669078",
+          "name": "6b lễ tân (F0 216→227)"
+        }
+      ],
+      "người dẫn ngôi 3 (lời kết, nếu tập dùng)": [
+        {
+          "voice_id": "clone_2669065",
+          "name": "7a người dẫn lời kết (F0 180→148)"
+        }
+      ]
+    },
+    "_cast_note": "2026-09-30 anh chọn 1b (người kể) + 1c; nhóm 2–7 anh để em tự chọn: giữ a+b ở nhóm 2/3/4/6 vì khác tính cách vai, bỏ 5b (diễn viên nam chính giả giọng trẻ) và 7b (trùng 7a). Đã XOÁ clone 1a/1d/1e/5b/7b trên ai33. characters.json mỗi tập: vai nói thoại → voice {voice_id} lấy theo loại vai ở đây; vai mới không khớp loại nào → hỏi anh trước khi clone thêm. Nghe lại: assets/J-teinengo-fuufu/_voice_clone/compare_clone.html."
+  },
+  "script": {
+    "the_viet": "~/.claude/skills/youtube-kich-ban/market/THE_VIET_STORY.md",
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 22.0,
+    "_target_note": "47/47 video kênh mẫu dài 20,6–26,8' (trung vị ~23,3'); 3 video top (985k/852k/571k) = 21,3' / 20,6' / 23,2'. Chọn 22'.",
+    "flow": "lean",
+    "two_pass": true,
+    "budget": {
+      "tol": 0.08,
+      "sections": [
+        {
+          "label": "フック（衝突の場面＋逆の結末の予告＋名乗り）",
+          "ratio": 0.06
+        },
+        {
+          "label": "決断の日（夫婦の手札の数字＋妻の小さな一言）",
+          "ratio": 0.12
+        },
+        {
+          "label": "現実の一撃（物理的なきっかけ＋時間跳躍）",
+          "ratio": 0.22
+        },
+        {
+          "label": "もう一組（対照の夫婦・同期、名前と数字）",
+          "ratio": 0.18
+        },
+        {
+          "label": "妻の本音（一言の意味が反転する）",
+          "ratio": 0.14
+        },
+        {
+          "label": "立て直し（現実的な妥協・夫婦の新しいルール）",
+          "ratio": 0.18
+        },
+        {
+          "label": "結び（冒頭の言葉の反復＋2〜3択の問い＋感謝）",
+          "ratio": 0.1
+        }
+      ],
+      "_note": "7 chặng = 6 giai đoạn chuẩn của kênh mẫu (DNA §5, 47/47 video) + tách 'lời thật của vợ' thành chặng riêng vì đây là trục vợ chồng của lane (bình luận like cao nhất 447 là chuyện vợ chồng). Tỉ lệ ước theo 4 VIDEO_ANALYSIS phân tích 2026-09-30 (docs/channel_dna/rougo-no-goro/VIDEO_ANALYSIS) — đo lại sau ep01."
+    },
+    "structure": "story_couple7",
+    "structure_block": "video kể chuyện manga ngôi thứ nhất「俺」(chồng 63–70), trục là QUAN HỆ VỢ CHỒNG sau hưu, 7 chặng theo đúng tỉ lệ, KHÔNG có tiêu đề chương/số thứ tự trong bản đọc:\n   · HOOK: đã KHOÁ TRƯỚC — bám sườn + động cơ chính của hook video gốc (docs/HOOK_CAU_TRUC/00_CHUNG.md). Thân bài nối tiếp hook đã khoá, KHÔNG viết lại/lặp hook.\n   · NGÀY QUYẾT ĐỊNH (6–18%): lùi về lúc hai người chọn (ly hôn hay ly thân, bán nhà hay giữ, dùng 退職金 đi du thuyền/chuyển về quê, tái hôn, làm tiếp hay nghỉ). Nêu NGAY 'ván bài' bằng số: 退職金 ◯◯万円, 貯金 ◯◯万円, 年金 hai người mỗi tháng. GIEO 1 câu ngắn của vợ mà chồng hiểu nhầm là đồng ý (「あなたがそう言うなら」「好きにすれば」) — sẽ lật ở chặng 5.\n   · CÚ TÁT HIỆN THỰC (18–40%): một tác nhân VẬT LÝ bất ngờ (phong bì thuế/bảo hiểm năm đầu, hoá đơn sửa nhà cũ, bữa tối im lặng thứ N, cơn chóng mặt khi ở một mình) → hậu quả theo MỐC nhảy cóc: 最初の3ヶ月 → 半年後 → 1年後 → 5年後, mỗi mốc có 1 con số hoặc 1 hành vi cụ thể (không nói 'cô đơn' trừu tượng — nói 「今日話したのはレジの『お願いします』だけだった」 kiểu hành vi). Công sức của vợ bị coi là đương nhiên phải hiện bằng việc cụ thể.\n   · CẶP ĐỐI CHỨNG (40–58%): một cặp/người cùng xuất phát nhưng chọn khác (đồng nghiệp cùng ngày nghỉ hưu, hàng xóm, bạn học cũ) — có TÊN, TUỔI và con số CỦA HỌ; thoại ngắn「」. Họ không hoàn hảo (cặp 'có vẻ hạnh phúc' cũng có vết nứt riêng); họ chỉ ra sai lầm trong CÁCH NGHĨ của 俺 về vợ, không phải trong số tiền. Có thể thêm 1 người đi trước (hàng xóm, chủ quán, bạn cờ) nói đạo lý qua MỘT ẩn dụ bằng đồ vật đời thường (chậu cây, cây bút, bàn cờ…) đúng 1 lần rồi rút lui nhẹ; đồ vật đó quay lại ở cảnh kết. CẤM dùng nhân vật 五郎さん hay ẩn dụ đã có ở kênh mẫu (盆栽の水やり, 万年筆とボールペン, 歩の駒).\n   · LỜI THẬT CỦA VỢ (58–72%): câu của vợ ở chặng 2 được lật — vợ nói rõ điều đã chịu đựng, bằng việc cụ thể (nấu cơm khi đang ốm, việc nhà không được cảm ơn, 'cảm ơn suông mà không làm gì'). 俺 KHÔNG cãi, KHÔNG quát; câu độc thoại nội tâm ngắn, tự nghĩ.\n   · DỰNG LẠI (72–90%): thoả hiệp THỰC TẾ của hai người — quy tắc mới trong nhà (chia việc, mỗi người 1 ngày tự do, ví tiền chung/riêng), việc nhẹ 週2〜3日, cắt chi phí sĩ diện. KHÔNG trúng số, KHÔNG con cái cứu, KHÔNG phép màu; kết không cần 'hàn gắn hoàn hảo' — có thể là khoảng cách mới dễ thở hơn.\n   · KẾT (90–100%, ~2 phút): lặp lại gần nguyên văn CÂU KHOÁ của hook với nghĩa mới; câu đạo lý ngắn, tự đặt (không chép câu kênh mẫu); CÂU HỎI MỞ 2–3 ngã rẽ cho vợ chồng khán giả (「あなたなら…ですか？それとも…？」) + mời kể chuyện nhà mình trong bình luận; cảm ơn đã xem hết; câu cuối là outro của kênh. Không teaser tập sau.\n   MẬT ĐỘ SỐ: mỗi 1–2 phút ít nhất 1 con số tiền/tuổi/ngày. Số CHẾ ĐỘ (年金, 税, 保険, 年金分割, 財産分与, 介護) CHỈ lấy từ TƯ LIỆU; số CÁ NHÂN tự đặt nhưng cộng khớp từ đầu tới cuối. Tuổi nhân vật 63–70; người vợ 60–68.",
+    "mode": "fiction_facts",
+    "_mode_note": "Nhân vật/nơi chốn hư cấu; số chế độ (年金 theo tuổi, 年金分割, 財産分与, 住民税/国民健康保険, 介護保険, 高年齢求職者給付金...) phải có trong series_ctx.txt [Dn] kèm URL. Rủi ro số 1 của lane: khán giả bắt lỗi lương hưu (「年金は手続きしないと振り込まれません」43👍 — phải làm thủ tục mới nhận lương hưu; 「年金600万円？300万円で天井」34👍 — không thể có 600 man).",
+    "ctx_label": "TƯ LIỆU CHẾ ĐỘ HƯU TRÍ & HÔN NHÂN NHẬT (年金・年金分割・財産分与・税・保険・介護 — số liệu PHẢI lấy đúng từ đây kèm điều kiện; nhân vật, nơi chốn, số tiền cá nhân là hư cấu)",
+    "fact_exempt_units": [
+      "万円",
+      "円",
+      "歳",
+      "年目",
+      "日目",
+      "回",
+      "時",
+      "分",
+      "泊",
+      "度"
+    ],
+    "_fact_exempt_note": "Miễn số CÁ NHÂN trong truyện (退職金/貯金 của nhân vật, tuổi, ngày thứ N, giờ). KHÔNG miễn %, 年間, 歩 — tỉ lệ/chế độ phải có nguồn. Tiền chế độ (年金 月額 theo chế độ) vẫn do lớp soát GPT web + lớp 3 Claude Code đối chiếu tư liệu vì S3 đã miễn 万円. · 2026-09-30 ep01 thêm 度: sốt 38度 của nhân vật là chi tiết cá nhân hư cấu (S3 bắt nhầm là dữ kiện chế độ → ép patch 'sua' ôm cả việc NỚI, 2 patch vỡ trần 40%).",
+    "engine": "claude_p",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
+    "final_review_model": "claude-opus-5-5",
+    "_model_note": "Quy trình chuẩn mẫu Lane M (QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §00, anh chốt 2026-09-29): S2 viết Opus 5.5 · S4 vá Opus 5 · Sol tắt, S5L kiểm lời hứa tiêu đề · soát ChatGPT web.",
+    "outro_line": "最後までご覧いただき、本当にありがとうございました。ご夫婦で話すきっかけになりましたら、高評価とチャンネル登録で応援していただけると嬉しいです。",
+    "_outro_note": "Đủ 3 ý: cảm ơn xem hết + 高評価 + チャンネル登録. Câu RIÊNG, không chép outro kênh mẫu 「チャンネル登録と高評価もよろしくお願いいたします。」. Không có「」trong câu.",
+    "sol_qc": false,
+    "sol_pass_need": 2,
+    "gate": {
+      "list_item_count": 0,
+      "_list_item_count_note": "0 = lane truyện, không kiểm marker mục.",
+      "comma_per_sentence": [
+        0.6,
+        2.0
+      ],
+      "chars_per_breath": [
+        6.0,
+        12.0
+      ],
+      "dialogue_ratio_max": 0.3,
+      "require_next_ep_teaser": false,
+      "title_len": [
+        30,
+        48
+      ],
+      "hook_chars": [
+        500,
+        720
+      ],
+      "_gate_note": "ĐO 2026-09-30 trên 15 transcript thật docs/channel_dna/rougo-no-goro/_raw/transcripts.json (8 bản K1 + 7 bản từ TRENDING-RESEARCH transcripts_top15) + 47 tiêu đề all47_full.json. Câu: trung bình 13,9–23,5 chữ (trung vị câu 13–22, p25 8–15, p75 19–30); 12/15 video trung bình 15–18 chữ ≈ Lane F. Phẩy ASR 0,09–0,23/câu = ASR không ghi 、 → comma [0,6;2] + breath [6;12] SUY từ độ dài câu như Lane F, đo lại sau ep01. dialogue_ratio_max 0,30: câu mang đuôi hội thoại (よ/ね/わ/ぞ/ください…) 10–24% (proxy, ASR không có「」); lane trục vợ chồng cần thoại nhiều hơn F (0,20). title_len: 47 tiêu đề 21–66 ký tự kể cả【漫画】, p25 36 · trung vị 42 · p75 45; top15 trung vị 41 → [30,48]. hook_chars = chữ trong 120 giây đầu: 550–693 (tốc độ đọc 275–347 chữ/phút) → [500,720]. Mốc câu mâu thuẫn đầu tiên (だが/のに/と思っていた/しかし/ところが): trung vị 25 giây, 10/15 ≤36 giây.",
+      "dialogue_own_sentence": true,
+      "_dialogue_own_note": "Đa giọng ai33 (voice.provider=ai33 → tts_voicevox): mỗi câu thoại là 1 câu「…」riêng, không dính lời dẫn — gan_vai.py gắn đúng giọng từng câu (luật Lane L/M)."
+    },
+    "hook": {
+      "the_ten": {
+        "bat": true,
+        "kieu": "net_manh",
+        "mau": "#c08552",
+        "mau_phu": "#f6d7a7",
+        "vi_tri": "tren_trai",
+        "dur_s": 6.0,
+        "toi_da": 4,
+        "_note": "10/10 anh chốt: nhân vật chính trong hook giới thiệu bằng THẺ TÊN ĐỘNG (tên·tuổi·nghề); 14/10 anh sửa: lời hook ĐƯỢC đọc tên-tuổi song song thẻ — docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md, pipeline/the_ten_hook.py"
+      },
+      "model": "claude-fable-5-1",
+      "enabled": true,
+      "visual": "manga_anime_ref_grok",
+      "_visual_note": "Ảnh manga anime khoá mặt bằng master của TẬP (@REF chồng · @REF2 vợ, không xuyên tập) → clip Grok 6s. Mỗi cảnh thấy MẶT + cảm xúc của vợ/chồng; cấm chữ/biểu đồ trên hình.",
+      "visual_kind": "video_sinh",
+      "sfx": false,
+      "nhac_nen": true,
+      "_luat_hook_note": "21/10/2026 anh chốt: luật hook DUY NHẤT = bám sát CẤU TRÚC hook của video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn; đổi tên họ/nghề/câu thoại theo tập) — docs/HOOK_CAU_TRUC/00_CHUNG.md. Mọi luật hook khác (động cơ chính, khuôn lane huong_dan_cau_truc, mở bằng thoại, cao trào/kịch tính, câu để ngỏ…) đã BỎ."
+    },
+    "soat_gptweb": {
+      "enabled": true,
+      "urls": {
+        "acc2": "https://chatgpt.com/g/g-p-6abc69b414148191841fed0ce3725140-lane-j/c/6abc7f6f-b3ec-83ec-9bec-43bdd1e8726f",
+        "acc1": "https://chatgpt.com/g/g-p-6abc693e79ec8191a2e203a1533de497-lane-j/c/6abc7f2b-c414-83ec-b335-86fc2c5316c2"
+      },
+      "projects": {
+        "acc2": {
+          "id": "g-p-6abc69b414148191841fed0ce3725140",
+          "ten": "Lane-J"
+        },
+        "acc1": {
+          "id": "g-p-6abc693e79ec8191a2e203a1533de497",
+          "ten": "Lane-J"
+        }
+      },
+      "_urls_note": "Tạo 2026-09-30 bằng tools\\chatgpt_web\\tao_project_soat.py (Instructions + file CHATGPT_PROJECTS/J-teinengo-fuufu-script); urls = hội thoại giao vai trong Project của lane.",
+      "boi_canh": "Khán giả: vợ chồng người Nhật 60–75 tuổi (lõi 65–70), xem trên điện thoại. Video manga kể chuyện, một người kể nam ngôi 1「俺」, vợ và nhân vật đối chứng nói bằng thoại ngắn. Khán giả nữ phản ứng mạnh nhất với chuyện vợ bị coi công sức là đương nhiên; khán giả bắt lỗi số liệu lương hưu rất nhanh.",
+      "cau_truc": "hook bám sườn + động cơ chính hook video gốc → ngày quyết định (số tiền 'ván bài' + câu vợ bị hiểu nhầm) → cú tát hiện thực theo mốc thời gian → cặp đối chứng có tên/tuổi/số → lời thật của vợ (lật câu cũ) → dựng lại bằng thoả hiệp thực tế → kết lặp câu khoá + câu hỏi 2–3 ngã rẽ + cảm ơn + xin 高評価 (thích) / チャンネル登録 (đăng ký).",
+      "rang_buoc": [
+        "Ngôi「俺」xuyên bài; 150 chữ đầu không có 彼/男性/高齢者/多くの人.",
+        "Chồng không quát, không nói trống không, không 'tao nuôi mày' với vợ — sai lầm của anh ta là vô tâm, không phải ác.",
+        "Số chế độ (年金, 年金分割, 財産分与, thuế, bảo hiểm) chỉ theo tư liệu kèm điều kiện; không đề nghị thêm số chế độ mới.",
+        "Kết là thoả hiệp thực tế, không phép màu."
+      ]
+    },
+    "soat": "may3",
+    "_soat_note": "Mẫu Lane M: soát kịch bản sau B3 bằng ChatGPT web (pipeline/soat_kb_gptweb.py), không máy 3."
+  },
+  "script_qc": {
+    "lens": "plain",
+    "domain_focus": "Manga story hư cấu về VỢ CHỒNG Nhật sau nghỉ hưu, ngôi thứ nhất「俺」(chồng 63–70 kể lại một quyết định lớn của hai vợ chồng và vài năm sau đó). Không phải video y khoa, không phải video danh sách, không phải tư vấn tài chính. Thoại vợ–chồng là bình thường.",
+    "lane_rules": [
+      "Nửa đầu cố ý để người vợ chịu thiệt (công sức bị coi là đương nhiên, chồng vô tâm) — đó là thiết kế cung cảm xúc; chỉ bắt khi chồng bị viết thành kẻ ác/quát tháo hoặc khi tình tiết phi lý.",
+      "Số CHẾ ĐỘ (年金 theo tuổi, 年金分割, 財産分与, thuế/bảo hiểm năm đầu) chỉ lấy từ tư liệu và nói rõ điều kiện (額面/手取り, 2 tháng/lần, phải làm thủ tục); số CÁ NHÂN tự đặt nhưng phải cộng khớp qua mọi mốc thời gian.",
+      "Phải có nhân vật/cặp ĐỐI CHỨNG có tên + tuổi + con số của họ; câu khoá hook được lặp lại ở kết.",
+      "Kết là thoả hiệp thực tế giữa hai người (quy tắc mới, việc nhẹ, cắt chi phí sĩ diện), không trúng số, không con cái cứu; câu hỏi cuối 2–3 ngã rẽ là luật lane.",
+      "Không dùng lại câu/chi tiết đặc trưng của kênh mẫu 老後のゴローさん hoặc tập trước của kênh mình (「自由は無料ではない」,「じいじ、また来てね」, tên 田勝/最木たけし/節子, cảnh 家庭内別居の契約書 y hệt)."
+    ]
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "Each episode has TWO main characters defined PER EPISODE in characters.json and locked by REF-LOCK master portraits: @REF = the husband/narrator (Japanese man aged 63-70) and @REF2 = his wife (Japanese woman aged 60-68). A third speaking character (the contrasting friend/couple) gets its own per-episode master (_ref_<id>/001.png). AGE LOCK (01/10/2026): draw every character to VISIBLY match the stated age (a 65-year-old looks 61-69): realistic salt-and-pepper/grey hair at natural density, natural crow's feet and nasolabial folds, healthy upright posture. NEVER de-age or beautify; never write 'N but looks M' or 'looks early 50s' in `look` - write the exact age and age markers instead. Clothing: modern tasteful casual clothes in clear colors (knit, shirt, cardigan, light jacket), NOT drab dark old-people clothes. Faces never carry over to other episodes (episodic channel). All characters are fictional adults; never resemble a real public figure. At most 3 locked faces per image.",
+    "_character_sheet_note_vi": "LUẬT TỪ BÌNH LUẬN (PHAN_TICH_BINH_LUAN_15VIDEO §1): 6/20 bình luận like cao nhất chê kênh mẫu vẽ GIÀ — 「この絵は80歳ですね」 446👍 (hình này 80 tuổi rồi), 「節子さん６２歳なのに８０歳位に見える」 218👍 (62 mà trông như 80), 「服のセンスも見るに耐えない」 144👍 (gu ăn mặc không nhìn nổi) → vẽ ĐÚNG tuổi (AGE LOCK 01/10/2026: dung sai ±4, cấm làm trẻ/“trông trẻ hơn tuổi”); chỉ tránh GIÀ QUÁ TUỔI: cấm tóc bạc trắng toàn đầu + lưng còng + đồ tối kiểu 昭和 — khoẻ, thẳng lưng, đồ hiện đại màu sáng.",
+    "style_suffix": "Japanese anime manga illustration, clean confident line art, soft cel shading, natural adult proportions (not chibi), characters drawn at exactly their stated age, not younger and not older (natural grey/salt-and-pepper hair, visible natural aging, upright posture, modern casual clothing in clear colors), warm natural color grading that shifts with the mood (warm home lamplight, cold blue night, bright daylight), everyday contemporary Japan settings: modern apartment living room, dining table, kitchen, cruise ship deck and cabin, countryside house, real-estate office, city hall counter, station platform, cafe; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders, no multiple views), natural five-finger hands, no text, no letters, no numbers, no speech bubbles, no watermark",
+    "_style_suffix_note": "Kênh mẫu 100% AI manga anime (DNA Phụ lục A). Câu cấm panel/grid mượn Lane F/G (đo thật: thiếu câu này → ảnh ra collage). Chưa xem khung thật để chốt vị trí hộp chữ — việc của ep01 (đo bằng skill video-chuyen-canh).",
+    "seconds_per_image": 13.6,
+    "_seconds_note": "ĐO 2026-09-30 trên video gốc Scnn76gZ8E8 (21,3', 720p): do_chuyen_canh.py dò 253 ranh giới nhưng 160 cái chỉ là ĐỔI CHỮ trên cùng 1 ảnh (chênh điểm ảnh ngoài hộp chữ <0,02 — tách 2 cụm rõ) → 94 ảnh thật: trung bình 13,6 s/ảnh, trung vị 14,0 (p25 10,7 · p75 17,7); 5 phút đầu 12 s/ảnh. Mỗi ảnh ~2,7 lần đổi hộp chữ. 100% cắt thẳng (1 mờ-vào), không Ken Burns. Số liệu: assets/J-teinengo-fuufu/_do_khung/{do.json,diff_boundaries.json}.",
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 8,
+    "qc_sample": 10,
+    "b5p_qc": true,
+    "prompts_by": "fable_doan",
+    "characters_from_bible": true,
+    "cast_max_per_image": 3,
+    "sample_gate": 5
+  },
+  "body": {
+    "mode": "ai_images",
+    "chan_buoc2_may1": true,
+    "_chan_buoc2_note": "Mẫu Lane M: máy 1 CẤM chạy B4/B5 (tốn tiền thật) — dừng ở B5P rồi giao máy 2."
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "palette": [
+      "YELLOW",
+      "WHITE",
+      "RED"
+    ],
+    "dedicated_bg": true,
+    "require_face": true,
+    "art_style": "Japanese anime manga illustration of the episode's married couple (match characters.json @REF husband and @REF2 wife), both drawn at exactly their stated age (60s, natural aging, not de-aged) and well-dressed, clear contrasting emotions (husband stunned, wife calm or resolute), in the key setting of the episode (dining table with a document, cruise deck, countryside house), warm colors with emotional distance between them, subject in the lower-middle of the frame, top band kept simple for a black text strip, no text, no speech bubbles, no watermark",
+    "template": {
+      "bo_cuc": "ĐO 22 thumbnail HD kênh mẫu (DNA §10): dải đen ngang TRÊN chữ khối rất to — từ khoá VÀNG + phần còn lại TRẮNG = lõi tiêu đề viết gọn · dòng ĐỎ gradient viền trắng ở ĐÁY = gần nguyên văn CÂU KHOÁ của hook · bố cục (b) cho 1 cặp: 2 vợ chồng giữa khung cảnh + nhãn tên {họ tên}({tuổi}) + 1 bong bóng thoại. Tấm yếu nhất tụt vì nhồi 2 dòng chữ → 1 dòng chữ lớn mỗi dải.",
+      "tiers": [
+        {
+          "color": "YELLOW",
+          "role": "từ khoá lõi (熟年離婚 / 60代夫婦 / 退職金で…)",
+          "max_chars": 6
+        },
+        {
+          "color": "WHITE",
+          "role": "phần còn lại của lõi tiêu đề",
+          "max_chars": 8
+        },
+        {
+          "color": "RED",
+          "role": "câu khoá hook ở đáy",
+          "max_chars": 14
+        }
+      ],
+      "_note": "Chưa FREEZE — TITLE-RESEARCH làm thumbnail (listing_external)."
+    }
+  },
+  "thumbnail_qc": {
+    "claim_focus": "Ngách VỢ CHỒNG sau hưu — rủi ro: số tiền/tuổi trên thumbnail lệch kịch bản; claim tuyệt đối (必ず不幸/絶対に離婚); gợi ý chuyện có thật (実話); vẽ nhân vật GIÀ quá (khán giả chê nặng nhất).",
+    "image_prompt_constraints": "1. 16:9. 2. Manga anime (không photorealistic), đúng cặp vợ chồng của tập, đúng tuổi, không già quá tuổi (không tóc bạc trắng toàn đầu, không lưng còng, quần áo hiện đại). 3. Hai biểu cảm tương phản rõ. 4. Không chữ/số/bong bóng thoại trong ảnh. 5. Dải trên để trống cho chữ."
+  },
+  "assemble": {
+    "zoom": 1.0,
+    "_zoom_note": "⛔ CLAUDE.md: ảnh đứng yên tuyệt đối mọi lane.",
+    "transition": "xfade",
+    "xfade": 0.5,
+    "sub_font": "Yu Gothic",
+    "sub_size": 32,
+    "sub_margin": 7,
+    "sub_outline": 3,
+    "burn_subs": false,
+    "qc_sample": 10,
+    "sync": "anchors",
+    "bubble": {
+      "enabled": true,
+      "tail": false,
+      "font": "Yu Gothic",
+      "font_size": 40,
+      "max_chars_per_col": 10,
+      "max_cols": 3,
+      "title_card_s": 0,
+      "_note": "ĐO 2026-09-30 kênh mẫu Scnn76gZ8E8: chữ dọc, lời kể hộp chữ nhật + thoại ellipse KHÔNG đuôi — y kiểu Lane M (wG4fI9voims) → chép nguyên bộ số Lane M (lời kể 72px / thoại 56px). Mọi câu hiện trên hình → burn_subs=false.",
+      "font_size_ke": 72,
+      "font_size_thoai": 56,
+      "max_chars_per_col_ke": 8,
+      "ke_split_chars": 24,
+      "thoai_split_chars": 30
+    },
+    "hook_tu_ghep": true,
+    "_note_hook_tu_ghep": "Như Lane L/M (đa giọng ai33): B8 tự ghép hook THAY HÌNH theo hook_timeline.json mốc THEO SỐ CÂU; máy 1 KHÔNG lồng giọng hook.",
+    "_chu_note": "ĐO 2026-09-30 (Scnn76gZ8E8, 18 khung xem bằng mắt): chữ DỌC (縦書き) chữ gothic đậm đen; lời kể = hộp chữ nhật trắng viền đen; thoại「」= bóng ellipse trắng KHÔNG ĐUÔI, đặt cạnh người nói; không phụ đề đáy. Cùng kiểu Lane M/L → chép nguyên khối bubble Lane M. Chuyển cảnh: 100% cắt thẳng — transition xfade 0,5 giữ như cũ là quyết định của bước 3, chưa đổi.",
+    "subscribe": {
+      "enabled": true,
+      "start_times": [
+        180,
+        -120
+      ],
+      "moc_cua_so": 60,
+      "sub_click_style": "1_click_that",
+      "bell_style": "3_hai_not",
+      "avatar_path": "assets/avatars/teinengo-fuufu.png",
+      "language": "ja",
+      "thanks_text": null,
+      "position": "bottom_center",
+      "enable_sound": true,
+      "has_subtitles": false
+    }
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse",
+    "real politician",
+    "real celebrity face",
+    "bald spot",
+    "tonsure",
+    "hunched back",
+    "white-haired old man"
+  ],
+  "publish": {
+    "upload_channel": "teinengo-fuufu",
+    "sheet_tab": "Lane-J",
+    "_sheet_tab_note": "Tab sheet đang có tên 'teinengo-fuufu' (chưa đổi theo quy ước {Lane}-{kênh}). Anh 2026-09-30: tên mới J-rougo_futari — đổi tab + upload_channel cùng lúc với mã lane.",
+    "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+    "review_vi": true,
+    "channel_id": "UCvLpzQtsS8gFAlthT-8YVlQ",
+    "_channel_id_note": "03/10/2026: kênh mới 老後の知恵袋 @rougo_chie60, mail lethientan26061994@gmail.com (AdsPower k15n8xbk). Anh tự đặt tên+handle; em setup avatar/banner/settings (branding/rougo_chie60/KENH.json).",
+    "handle": "rougo_chie60",
+    "hashtags": "#熟年夫婦 #定年後 #60代 #夫婦 #漫画",
+    "tags_base": [
+      "熟年夫婦",
+      "定年後の夫婦",
+      "60代夫婦",
+      "70代夫婦",
+      "熟年離婚",
+      "家庭内別居",
+      "夫婦関係",
+      "定年後",
+      "老後の暮らし",
+      "漫画"
+    ],
+    "_tags_nguon": "DNA §9 từ khoá ăn view (リアル 654k · ６０代 510k · 熟年離婚 128k · 婚活 126k; 老後/年金 đứng một mình yếu 15k) + TAG_STATS.json kênh mẫu (bỏ tag tên kênh).",
+    "listing_external": true,
+    "title_auto": false,
+    "_title_auto_note": "Kênh mới: title_auto TẮT, anh `goi_title.py --bat teinengo-fuufu` mới chạy."
+  },
+  "goi_dang": {
+    "enabled": true,
+    "contradiction_max_s": 40,
+    "title_core_max_s": 45,
+    "promise_window_s": 60,
+    "promise_giu_duoc_max_s": 120,
+    "ritual": [],
+    "title_suffix_ignore": [
+      "【漫画】"
+    ],
+    "title_core_len": [
+      26,
+      44
+    ],
+    "list_mode": false,
+    "_nguon": "15 transcript kênh mẫu 老後のゴローさん (docs/channel_dna/rougo-no-goro/_raw, mốc giây suy từ tốc độ đọc từng video): câu mâu thuẫn đầu tiên (だが/のに/と思っていた/しかし/ところが) trung vị 25s, 10/15 ≤36s → 40 · DNA §4A: câu khoá ở 17–45s (6/6), mốc thời gian + tuổi trong 45s đầu 7/7 video VPD cao → lõi tiêu đề ≤45s · lời hứa nói trong 60s · tiêu đề bỏ【漫画】: 47 tiêu đề p25 32 – p75 41 ký tự → [26,44]. ritual trống: câu kiểu 「この時男は…と思っていた。だが…」 là của kênh mẫu, lane chưa có câu riêng đã chứng minh."
+  },
+  "_note": "Lane J — dựng giai đoạn 2 ngày 2026-09-30 theo quy trình chuẩn mẫu Lane M. Nghiên cứu: TRENDING-RESEARCH scratch_golo (47/47 video, DNA 11 mục, 648 bình luận) + K1+K2 (docs/channel_dna/rougo-no-goro, 15 transcript + VIDEO_ANALYSIS top 10). Kênh anh TỰ setup (NOTE dòng 7). CHƯA: giọng + char_rate · Project ChatGPT soát · đo khung hình/chữ kênh mẫu. Cửa vào: docs/BAT_DAU_LANE/teinengo-fuufu.md · SOP: docs/SOP_LANE_J.md."
+}

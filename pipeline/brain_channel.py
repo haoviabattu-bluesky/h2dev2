@@ -853,7 +853,7 @@ def make_video_one(video, prof, handle, idx, minutes=0, lang="", on_line=None,
                 "và `img_prompts.txt`; chỉ sửa `characters.json` cho ĐÚNG KHUÔN và gen cho đủ ảnh "
                 "master:\n   - " + "\n   - ".join(loi_rl) +
                 '\nKHUÔN BẮT BUỘC: {"video":…, "world":…, "characters":[{"name":…, "age":…, '
-                '"gender":"F"/"M", "master":"_ref/001.png", "look":"<tiếng Anh>"}, …]}  '
+                '"gender":"F"/"M", "master":"_ref/001.png", "look":"<tiếng Anh, ĐÚNG tuổi script, cấm but looks/youthful>"}, …]}  '
                 "— `characters` phải là MẢNG, mỗi nhân vật có @REF trong img_prompts phải có một mục "
                 "ở đây kèm ảnh master đã gen xong (gen_images.py … --quality low). "
                 "Xong in BRAIN_DONE."))

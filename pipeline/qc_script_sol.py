@@ -276,30 +276,62 @@ NOI_TU_HOOK = """
    - Câu hỏi/lời hứa hook mở ra có được TRẢ đúng chỗ trong thân không? Có phá promise của hook không?
    - Lỗi ở mục này = SAI (không phải chưa hay)."""
 
-HOOK_TMPL = """Bạn là biên tập viên chấm HOOK 20–30 GIÂY ĐẦU của video YouTube kể chuyện tiếng Nhật. Có 3 ứng viên;
-hãy chọn 1 và chấm. Đây là LƯỢT DUY NHẤT.
+HOOK_TMPL = """Bạn là biên tập viên chấm HOOK mở đầu của video YouTube kể chuyện tiếng Nhật. Có {so} ứng viên; hãy chọn 1 và chấm.
+Đây là LƯỢT DUY NHẤT.
+LUẬT DUY NHẤT của dự án (anh chốt 2026-10-21): hook BÁM SÁT CẤU TRÚC hook của video gốc — gốc làm thế nào thì làm thế ấy
+(cách mở giây 0, các nhịp theo thứ tự + vai trò, độ dài ≈ gốc); ĐƯỢC thay đổi một chút cho hợp tập/hay hơn. Đổi tên họ, nghề,
+câu thoại theo hồ sơ tập là đủ khác nội dung — giữ cấu trúc gốc KHÔNG phải lỗi trùng lặp. Không chấm theo luật hook nào khác
+(không đòi cao trào/kịch tính, không đòi mở bằng thoại, không đòi câu để ngỏ, không khuôn của kênh).
 
-TIÊU ĐỀ (promise): {title}
-CHỮ THUMBNAIL (promise): {thumb_text}
-LỜI HỨA/SỰ THẬT CỦA TẬP (core_event · payoff · reveal · timeline — hook KHÔNG được bịa ngoài đây, KHÔNG spoil reveal):
+{suon}
+
+{khoi_tieu_de}LỜI HỨA/SỰ THẬT CỦA TẬP (core_event · payoff · reveal · timeline — người/sự kiện trong hook phải khớp đây):
 {promise_text}
 
-3 ỨNG VIÊN:
+{so} ỨNG VIÊN:
 {candidates}
 
 Chấm TỪNG ứng viên theo checklist (mỗi ô PASS/FAIL):
-TITLE_MATCH · THUMB_MATCH · STORY_TRUTH (sự kiện có trong lời hứa/sự thật ở trên) · NO_FAKE_DRAMA · NO_SPOILER ·
-OPEN_LOOP (câu cuối để ngỏ) · EMOTIONAL_STAKE · KHONG_CAN_SETUP (hiểu được ngay) · SU_KIEN_0_5S (3–5 giây đầu đã có
-sự kiện) · KHONG_CHAO_HOI · KHONG_CAU_THUA · DU_4_NHIP (event → contradiction → stake → open loop) ·
-RETENTION ("tắt title/thumb, chỉ nghe 30s: có muốn biết chuyện gì tiếp không?").
+{o_tieu_de}BAM_CAU_TRUC (nghe ra đúng cấu trúc hook gốc: cách mở giây 0 + các nhịp theo thứ tự; lệch NHẸ để hợp/hay hơn
+vẫn PASS, chỉ FAIL khi bỏ/đổi hẳn cấu trúc gốc) · STORY_TRUTH (người/sự kiện/số khớp lời hứa/sự thật ở trên) ·
+DOI_CHI_TIET (đã đổi tên họ/nghề/câu thoại theo tập mình, không chép nguyên câu của hook gốc).
 
 OUTPUT BẮT BUỘC:
-KẾT QUẢ: [PASS / FIX]   (PASS = ứng viên được chọn không FAIL ô nào; FIX = ứng viên tốt nhất còn FAIL ≤3 ô, sửa tại chỗ được)
-CHỌN: [1 / 2 / 3]
+KẾT QUẢ: [PASS / FIX]   (PASS = ứng viên được chọn không FAIL ô nào; FIX = còn FAIL ô nào đó, sửa tại chỗ được)
+CHỌN: [{ds_so}]   (đúng số trong dòng "=== HOOK n ===")
 LÝ DO CHỌN: [1–2 câu]
 CHECKLIST ỨNG VIÊN ĐƯỢC CHỌN: [mỗi ô 1 dòng: TÊN_Ô: PASS/FAIL — lý do ngắn]
-VIỆC PHẢI SỬA (nếu FIX): [đánh số; mỗi việc: trích câu tiếng Nhật | nghĩa Việt → sửa thành gì, ngắn]
+VIỆC PHẢI SỬA (nếu FIX): [đánh số; mỗi việc: trích câu tiếng Nhật | nghĩa Việt → sửa thành gì (giữ cấu trúc gốc), ngắn]
 """
+
+# Mục THÔNG TIN THẬT (anh duyệt 2026-10-07, lấy từ bộ soát chung bonus-tui-check-kb): 6 nhãn + lỗi thiếu ngữ cảnh.
+# Lý do: cổng máy (SỐ ĐƯỢC PHÉP / qc_facts) chỉ kiểm số CÓ trong tư liệu, không kiểm câu dùng số ĐÚNG NGHĨA (số cũ nói như
+# hiện tại, tương quan nói thành nhân quả…). Chèn vào CẢ 3 lens qua {hook_block} (sau NỐI TỪ HOOK nếu có) — không đổi
+# chữ ký run(). Tắt cho lane nào: profile `script_qc.thong_tin_that = false`. {ghi_vao} khác nhau theo lens (GHI_VAO).
+THONG_TIN_THAT = """
+KIỂM TRA THÔNG TIN THẬT — áp cho mọi câu nói về THẾ GIỚI THẬT (số liệu xã hội, lương hưu/thuế/bảo hiểm/chăm sóc, luật,
+y tế, lịch sử, giá cả, tổ chức); KHÔNG áp cho chi tiết hư cấu của nhân vật (tên, tuổi, lương, lời nói của họ).
+Dòng "máy đã kiểm số liệu khớp tư liệu" (nếu có ở trên) chỉ nghĩa là con số CÓ trong tư liệu; máy CHƯA kiểm câu dùng số
+đó đúng nghĩa — mục này VẪN phải làm.
+   - Mỗi tuyên bố đáng ngờ gắn đúng 1 nhãn: Chính xác · Cơ bản đúng · Dễ gây hiểu nhầm · Sai · Chưa đủ căn cứ ·
+     Đang tranh luận. Không ép đúng/sai tuyệt đối khi bằng chứng không cho phép. Không chắc thì "Chưa đủ căn cứ";
+     KHÔNG bịa nguồn, nghiên cứu hay con số.
+   - Soi thiếu ngữ cảnh: thiếu mốc năm (số cũ nói như hiện tại 「今」「現在」), thiếu phạm vi (toàn quốc/vùng, nhóm tuổi,
+     giới), thiếu điều kiện áp dụng, tương quan nói thành nguyên nhân, rủi ro tương đối nói như tuyệt đối, một trường
+     hợp khái quát thành quy luật, ý kiến cá nhân nói như đồng thuận chuyên môn.
+   - Từ quá chắc khi bằng chứng không đủ: 「必ず」「絶対」「誰でも」「証明された」「専門家は皆」「治る」「防げる」.
+   - Tính vào verdict: "Sai" = lỗi SAI/NẶNG. "Dễ gây hiểu nhầm" = VỪA (thành NẶNG nếu người xem cao tuổi làm theo có thể
+     hại sức khoẻ/tiền). "Chưa đủ căn cứ"/"Đang tranh luận" = VỪA nếu câu đang nói chắc, không tính nếu câu đã rào đón.
+     "Chính xác"/"Cơ bản đúng" không liệt kê.
+   - Cách sửa chỉ được: thêm năm/phạm vi/điều kiện/rào đón ngay trong câu, nói định tính, hoặc bỏ câu — không thêm số mới.
+   - Ghi vào output: {ghi_vao} Mỗi điểm: [nhãn] trích câu tiếng Nhật | nghĩa tiếng Việt → thiếu/sai gì → cách sửa ngắn."""
+
+GHI_VAO = {
+    "medical": "thêm mục `THÔNG TIN THẬT:` ngay TRƯỚC dòng `KẾT LUẬN:` (không lỗi thì ghi \"không phát hiện vấn đề\").",
+    "story": "thêm mục `THÔNG TIN THẬT:` ngay TRƯỚC dòng `KẾT LUẬN:` (không lỗi thì ghi \"không phát hiện vấn đề\").",
+    # plain: vòng patch của lean_script chỉ vá "điểm KHÔNG HỢP LÝ được đánh số" → phải nằm CHUNG danh sách đó
+    "plain": "đưa vào CHUNG danh sách ĐIỂM KHÔNG HỢP LÝ (gắn [NẶNG]/[VỪA] như trên, rồi nhãn) — không tạo mục riêng.",
+}
 
 LENS_TMPL = {"medical": PROMPT_TMPL, "story": STORY_TMPL, "plain": PLAIN_TMPL}
 
@@ -332,6 +364,13 @@ def load_domain_focus(profile_id):
     return focus.strip() if focus else DEFAULT_DOMAIN_FOCUS
 
 
+def khoi_thong_tin_that(profile_id, lens):
+    """Khối THÔNG TIN THẬT cho lens; rỗng khi profile khai `script_qc.thong_tin_that = false` (mặc định bật)."""
+    if (_load_profile(profile_id).get("script_qc") or {}).get("thong_tin_that", True) is False:
+        return ""
+    return THONG_TIN_THAT.format(ghi_vao=GHI_VAO[lens])
+
+
 def parse_verdict(text):
     m = re.search(r"KẾT QUẢ\s*[:：]\s*(PASS|FIX|REMAKE)", text, re.IGNORECASE)
     return m.group(1).upper() if m else "UNKNOWN"
@@ -341,12 +380,14 @@ def run(script_text, title, profile_id=None, out=None, extra_note="", hook_block
     """`extra_note` (flow=lean): 1 đoạn nói rõ máy ĐÃ kiểm gì (độ dài/số mục/số liệu) để sol không tốn chỗ lặp lại.
     `hook_block` (2026-09-23, dự án HOOK VIDEO): NOI_TU_HOOK đã .format(hook=...) sẵn từ nơi gọi (lean_script.py) —
     truyền chuỗi RỖNG (mặc định) thì 3 template không đổi MỘT KÝ TỰ nào so với trước khi có tính năng hook, vì
-    {hook_block} chỉ thế chỗ bằng rỗng, không kèm dòng trống thừa nào khác."""
+    {hook_block} chỉ thế chỗ bằng rỗng, không kèm dòng trống thừa nào khác.
+    (2026-10-07) Sau hook_block luôn nối thêm khối THÔNG TIN THẬT, trừ lane khai `script_qc.thong_tin_that = false`."""
     domain_focus = load_domain_focus(profile_id)
     if extra_note:
         domain_focus = (domain_focus + chr(10) + extra_note).strip()
     lens = load_lens(profile_id)
     print(f"[qc_script_sol] lens={lens} profile={profile_id or '-'}", file=sys.stderr)
+    hook_block = hook_block + khoi_thong_tin_that(profile_id, lens)
     prompt = LENS_TMPL[lens].format(title=title, domain_focus=domain_focus, script=script_text, hook_block=hook_block)
     text, usage = sol_client.chat(prompt, max_tokens=6000, timeout=300)
     verdict = parse_verdict(text)
@@ -357,15 +398,23 @@ def run(script_text, title, profile_id=None, out=None, extra_note="", hook_block
     return verdict, text
 
 
-def run_hook(candidates_text, title, thumb_text, promise_text, profile_id=None, out=None):
-    """Chấm 3 ứng viên HOOK 20-30s (lens riêng, KHÔNG đi qua LENS_TMPL/load_lens vì hook được chấm
-    TRƯỚC khi có kịch bản, không phải theo profile.script_qc.lens của toàn văn). Không có REMAKE —
-    xem lý do ở comment khối NOI_TU_HOOK/HOOK_TMPL phía trên. `profile_id` nhận cho ĐỒNG NHẤT chữ ký
-    với run() (Task 7 gọi cả 2 hàm cùng chỗ) nhưng hiện chưa dùng — hook không có domain_focus riêng."""
-    prompt = HOOK_TMPL.format(title=title or "(chưa chốt)", thumb_text=thumb_text or "(chưa có)",
+def run_hook(candidates_text, title, thumb_text, promise_text, profile_id=None, out=None, so=None, khop_tieu_de=False,
+             suon=""):
+    """Chấm N ứng viên HOOK (N = script.hook.so_ung_vien, mặc định 2) — lens riêng, chấm TRƯỚC khi có kịch bản, không REMAKE.
+    2026-10-21 (anh chốt): chấm DUY NHẤT theo luật "bám sát cấu trúc hook video gốc"; `suon` = khối CẤU TRÚC HOOK GỐC do
+    hook_stage.khoi_suon() dựng (cách mở, nhịp, lời gốc). Ô chấm: BAM_CAU_TRUC · STORY_TRUTH · DOI_CHI_TIET (+ khớp tiêu đề
+    nếu bật). Mọi ô theo luật cũ (động cơ chính, cao trào, open loop, retention, no spoiler…) đã xoá. `profile_id` giữ cho
+    đồng nhất chữ ký với run().
+    """
+    ids = re.findall(r"^===\s*HOOK\s*(\d+)\s*===", candidates_text, re.M) or ["1"]
+    khoi_td = (f"TIÊU ĐỀ (promise): {title or '(chưa chốt)'}\nCHỮ THUMBNAIL (promise): {thumb_text or '(chưa có)'}\n"
+               if khop_tieu_de else "")
+    prompt = HOOK_TMPL.format(so=so or len(ids), khoi_tieu_de=khoi_td, suon=suon or "(không có cấu trúc hook gốc — ô BAM_CAU_TRUC "
+                              "tự PASS)",
+                              o_tieu_de="TITLE_MATCH · THUMB_MATCH · " if khop_tieu_de else "", ds_so=" / ".join(ids),
                               promise_text=promise_text or "(không có — dùng tư liệu tập)", candidates=candidates_text)
     text, usage = sol_client.chat(prompt, max_tokens=3000, timeout=240)
-    m = re.search(r"CHỌN\s*[:：]\s*([123])", text)
+    m = re.search(r"CHỌN\s*[:：]\s*(\d)", text)
     chon = int(m.group(1)) if m else 1
     verdict = "PASS" if re.search(r"KẾT QUẢ\s*[:：]\s*PASS", text, re.I) else "FIX"
     print(text)

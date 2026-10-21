@@ -129,7 +129,8 @@ def qc_voice(script_path, srt_path, audio_sec, target_minutes=None):
 
 # ====================================================== B5RQ — ảnh master
 MASTER_SCHEMA = ('{"apparent_age":<int>,"gender":"M"|"F","era_ok":<bool>,"costume_ok":<bool>,'
-                 '"style_ok":<bool>,"matches_description":<bool>,"face_clear":<bool>,"issues":["..."]}')
+                 '"style_ok":<bool>,"matches_description":<bool>,"face_clear":<bool>,'
+                 '"hair_gray_pct":<int 0-100>,"beautified_younger":<bool>,"issues":["..."]}')
 
 
 def qc_master(img_path, spec, world="", models=("gemini-3.8-flash",)):
@@ -159,8 +160,14 @@ def qc_master(img_path, spec, world="", models=("gemini-3.8-flash",)):
     probs = []
     want = spec.get("age")
     got = d.get("apparent_age")
-    if want and isinstance(got, int) and abs(got - int(want)) > qcc.AGE_TOL:
-        probs.append(f"tuổi nhìn ~{got} nhưng thiết kế {want} (lệch {abs(got-int(want))} > {qcc.AGE_TOL})")
+    if want and isinstance(got, int):
+        pl = qcc.phan_loai_tuoi(got, want)
+        if pl == "FAIL":
+            probs.append(f"AGE FAIL → REGENERATE: tuổi nhìn ~{got}, script {want} (delta {got-int(want):+d}, dung sai ±{qcc.age_tol(want)})")
+        elif pl == "BORDERLINE":
+            probs.append(f"vision: tuổi BORDERLINE ~{got} vs script {want} (dung sai ±{qcc.age_tol(want)})")
+    if d.get("beautified_younger") is True and int(want or 0) >= 50:
+        probs.append("BEAUTIFY: mặt/da/tóc trẻ hơn tuổi script → REGENERATE (luật AGE LOCK §10)")
     g = (d.get("gender") or "").upper()[:1]
     if spec.get("gender") and g and g != str(spec["gender"]).upper()[:1]:
         probs.append(f"giới nhìn {g} nhưng thiết kế {spec['gender']}")

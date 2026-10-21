@@ -1,0 +1,1168 @@
+{
+ "schema_version": "1.0",
+ "analysis_type": "youtube_channel_analysis",
+ "channel": {
+  "channel_name": "老後のゴローさん",
+  "channel_url": "https://www.youtube.com/channel/UCxD2Exs2Q4lf7x0Q28OuKvg",
+  "channel_id": "UCxD2Exs2Q4lf7x0Q28OuKvg",
+  "language": "ja",
+  "country": "JP",
+  "subscriber_count": 10900,
+  "total_videos": 47,
+  "channel_age_days": 531,
+  "upload_frequency_per_week": 0.62,
+  "typical_video_duration_seconds": 1330
+ },
+ "data_quality": {
+  "videos_discovered": 47,
+  "videos_used_for_baseline": 47,
+  "videos_deep_analyzed": 15,
+  "transcripts_available": 46,
+  "thumbnails_available": 22,
+  "limitations": [
+   "CHUA do duoc retention (InnerTube API khong tra) -> nguyen nhan tut GIUA video chua kiem chung",
+   "1/47 video (D39bUfMK4jQ) khong lay duoc hook — bi chan IP",
+   "CHUA kiem soat bien thoi diem: 2/5 cap doi chung dang cach nhau hang thang",
+   "Transcript qua proxy co nhieu STT (豪華客戦<-豪華客船; 丁年<-定年)",
+   "Do LUONG THAT: 4 nguyen nhan da kiem chung tren 46 hook, KHONG phai n=5"
+  ],
+  "overall_confidence": "high",
+  "confidence_basis": "47/47 video (100% kenh) cho baseline; 46/47 (98%) co hook de cham 4 tieu chi; 15 video deep-analyze co hook 45s day du. Quy uoc <70% khong duoc la high -> 98% hook + 100% baseline => high."
+ },
+ "verdict": "DANG LAM — CLONE DUOC. ch_mult = 2.65 (dat nguong du an 2.0), trend = 0.85 (= median view <=90 ngay / median toan kenh; cung cua so <=90 ngay thi trend_vpd_90d = 1.11, con <=30 ngay thi trend_vpd_30d = 3.75), median lech mean 4.05x = BINH THUONG voi kenh ngach 60+. Ket luan cu 'KHONG THE CLONE' dua tren 2 loi: (1) so sanh ch_mult 2.65 voi nguong 3.0 cua explore_niches trong khi nguong dung cho lane la 2.0; (2) trend 0.42 KHONG TAI LAP DUOC. Kenh co cong thuc ro rang, 47 video, 1 narrator, 1 dinh dang, 4 nguyen nhan no/tut do duoc tren 46 hook.",
+ "positioning": {
+  "primary_niche": "Manga story huu tri Nhat 60-70 tuoi — doi lap 2 lua chon cuoc doi",
+  "target_audience": "Nam gioi Nhat 60-75 tuoi (loi 65-70), da/can huu, xuat than cong an luong bac trung",
+  "audience_age": "60-75",
+  "audience_problems": [
+   "Khoang trong 5 nam 60->65: co tro cap huu nhung chua den tuoi nhan nen huong",
+   "Thue/bao hiem doi nguoc nam dau mat thu nhap (居民税 4.8000 yen/thang)",
+   "Khong duoc GHEP DOI de so sanh — can mot nguoi cung tuoi cung xuat phat de tu soi minh",
+   "Co don co HANH VI cu the (khong noi truu tuong): 'hom nay toi chua noi chuyen voi ai'",
+   "So song qua tho trong canh kiet que"
+  ],
+  "audience_desires": [
+   "Loi giai thuc te cho bai toan huu tri (nghi 60 hay 65? nhan huu 62 hay 70?)",
+   "TU DINH VI — 'vo chong toi dang o phia nao trong 2 lua chon nay?'",
+   "Giai toa au lo khi thay nguoi khac vo mong y het"
+  ],
+  "channel_promise": "Moi video = 2 nguoi cung xuat phat, 2 lua chon khac nhau, ket cuc NGUOC voi niem tin ban dau",
+  "emotional_tone": "Tram, tu van, chua xot o dau -> tinh ngo, lang dong o cuoi. KHONG BAO GIO ket mau hong",
+  "content_pillars": [
+   {
+    "pillar": "Doi lap 2 lua chon huu tri",
+    "median_view": 570524,
+    "status": "AN NHAT"
+   },
+   {
+    "pillar": "Vo chong tan vo / tai dinh nghia",
+    "median_view": 127589,
+    "status": "AN"
+   },
+   {
+    "pillar": "Tai hon / hon nhan tuoi gia (婚活)",
+    "median_view": 126315,
+    "status": "AN — KHOANG TRONG lane"
+   },
+   {
+    "pillar": "Di cu / nha o tuoi gia",
+    "median_view": 112509,
+    "status": "AN — KHOANG TRONG lane"
+   },
+   {
+    "pillar": "Suc khoe / tuoi tho / nao bo",
+    "median_view": 25125,
+    "status": "trung binh"
+   },
+   {
+    "pillar": "Tien huu / niem tin tai chinh sai",
+    "median_view": 8261,
+    "status": "CHET"
+   }
+  ]
+ },
+ "channel_baseline": {
+  "method": "median_recent_longform_views",
+  "sample_size": 28,
+  "median_views": 28881,
+  "median_duration_seconds": 1330,
+  "trend": 0.85,
+  "hit_rate": 0.319,
+  "ch_mult": 2.65,
+  "mean_views": 116843,
+  "mean_over_median": 4.05,
+  "top1_share_pct": 17.9,
+  "top3_share_pct": 43.8,
+  "vpd_median_all": 877.8,
+  "vpd_median_30d": 3288.1,
+  "trend_vpd_90d": 1.11,
+  "trend_vpd_30d": 3.75
+ },
+ "topic_analysis": {
+  "winning_topics": [
+   {
+    "topic": "Doi lap nghi 60 vs lam 65",
+    "median_view": 570524
+   },
+   {
+    "topic": "熟年離婚 VS 家庭内別居",
+    "median_view": 851708,
+    "video_id": "xxMKVprVh-I"
+   },
+   {
+    "topic": "Du thuyen 14 ngay bang tro cap huu",
+    "median_view": 984960,
+    "video_id": "Scnn76gZ8E8"
+   },
+   {
+    "topic": "老後貧困 — khac biet an uong theo muc huu",
+    "median_view": 324103
+   },
+   {
+    "topic": "婚活シニア — 3 lan lien tiep 0 phieu",
+    "median_view": 126315
+   },
+   {
+    "topic": "Nha o tuoi gia (シニアマンション)",
+    "median_view": 112509
+   }
+  ],
+  "losing_topics": [
+   {
+    "topic": "Liet ke thoi quen tiet kiem / khong lam gi",
+    "median_view": 8261,
+    "ly_do": "khong co doi lap, chi liet ke"
+   },
+   {
+    "topic": "Trai nghiem thoi quen suc khoe chung chung",
+    "median_view": 25125,
+    "ly_do": "khong co nhan vat doi chung"
+   }
+  ],
+  "winning_topic_patterns": [
+   "Moi tieu de co DUNG 2 nguoi cung xuat phat (A vs B / A と B)",
+   "Cau hoi treo ve KET CUC, khong phai meo meo giu bi mat",
+   "Van de o THI HIEN TAI, khong phai tuong lai xa"
+  ]
+ },
+ "title_analysis": {
+  "common_patterns": [
+   "【漫画】 xuat hien 47/47 (100%)",
+   "Do dai toi uu 38-46 ky tu (trung vi 42)",
+   "Co xx歳: 31/47 tieu de",
+   "Co dau ？: 12/15 video uu tien",
+   "Chu so cu the: 12/15"
+  ],
+  "title_formulas": [
+   {
+    "formula": "【漫画】[A] と [B]。[N]年後、[ket cuc nguoc]。〜とは？",
+    "do_dai": "42",
+    "evidence": "4/15 tieu de dung dang nay va 4/4 deu NO",
+    "vi_du": "【漫画】70歳でまだ働く男と、65歳で卒業した男。5年後、差がついた本当の理由とは？",
+    "video_id": "r4jNE1oTv8Q",
+    "rel_vpd": 17.33
+   },
+   {
+    "formula": "【漫画】[doi tuong xx歳]、[N]年後…",
+    "evidence": "dang moc thoi gian",
+    "vi_du": "【漫画】65歳、年金の通帳を妻に渡した夫と、握り続けた夫。1年後に自由だったのは？"
+   }
+  ],
+  "tu_khoa_an_view": {
+   "リアル": 654522,
+   "６０代": 509682,
+   "７０": 489012,
+   "熟年離婚": 127589,
+   "婚活": 126315,
+   "老後": 15499,
+   "年金": 15441
+  },
+  "canh_bao": "NGHICH LY: 老後 (15.499) va 年金 (15.441) — 2 tu tuong la loi ngach — lai YEU NHAT. Chu so SO dung mot minh lam tieu de THUA: 衝撃/暴露/残酷/地獄/悲劇/末路/貧乏/破綻."
+ },
+ "thumbnail_analysis": {
+  "common_patterns": [
+   "Khuon 2 tang: dai den ngang TREN (chu khoi to, tu khoa VANG + phan con lai TRANG)",
+   "Dong do gradient vien trang o DAY = GAN NGUYEN VAN CAU KHOA cua hook",
+   "Bo cuc (b) cho chuyen di/quyet dinh 1 cap: 2 vo chong rau giua khung canh vui tuoi + nhan ten {ho ten}({tuoi})",
+   "Bo cuc (a) cho video 1 nguoi: 1 nhan vat nam, bieu cam mau thuan, 1-2 panel",
+   "Chat lieu bat buoc: so ngan hang (通帳), thong bao thue (通知書), can phong trong, quay sieu thi giam gia"
+  ],
+  "canh_bao": "Da do: thumbnail KHONG khac biet giua nhom VPD cao va nhom view cao. Tam YEU NHAT (1080万 — Cmt/1k=1.85 cao nhat kenh) tut vi NHOI 2 DONG CHU -> 1 dong chu lon, khong nhoi."
+ },
+ "hook_analysis": {
+  "hook_formulas": [
+   "6 nhip: (1) 0-7s CANH hien tai co mau thuan — KHONG mo bang ten; (2) 7-25s nhan vat DOI CHUNG / con so doi minh; (3) 17-45s CAU KHOA noi truoc ket cuc NGUOC, giau nguyen nhan (trung vi ~26s); (4) 26-50s lui ve ngay quyet dinh + ten/tuoi/nghe; (5) 50-120s gieo 1 cau cua vo ma chong hieu sai la 'dong y'; (6) ~-90s lap lai gan nguyen van cau khoa + cau hoi khan gia",
+   "5 ky thuat tu 7 video VPD cao: (1) chi tiet tan nhan (thay 'co don' bang HANH VI cu the); (2) phu dinh lien tiep (2-3 ly do KHONG phai); (3) nghich ly con so nho (400 yen vs mat mat lon); (4) so hoc tu tinh (thu vs chi); (5) tri hoan vo hai ('giai nghi 3 nam troi qua')"
+  ],
+  "average_hook_length_seconds": 45,
+  "common_open_loop_patterns": [
+   "Noi TRUOC ket cuc nguoc, giau NGUYEN NHAN (khong phai giau ket cuc)",
+   "Cau hoi 'tai sao chi minh toi...' o ngoi 俺",
+   "Doi chieu voi nguoi cung xuat phat roi hoi 'the ma tai sao toi...'"
+  ],
+  "root_cause_4": [
+   {
+    "#": 1,
+    "nguyen_nhan": "Mo bang CANH thay vi thuyet minh",
+    "nut": "4/5 thuyet minh",
+    "no": "4/5 = 0 cau",
+    "ty_le": "3.18x",
+    "do_tren": "46 hook: VPD median 905 vs 285"
+   },
+   {
+    "#": 2,
+    "nguyen_nhan": "Co nhan vat DOI CHUNG (同期/同じ日/隣/あいつ)",
+    "nut": "0/5",
+    "no": "3/5",
+    "ty_le": "2.09x",
+    "do_tren": "46 hook: VPD median 1,098 vs 526",
+    "bat_buoc": true
+   },
+   {
+    "#": 3,
+    "nguyen_nhan": "Ngoi thu 3 「彼」 trong 150 ky tu dau",
+    "nut": "co",
+    "no": "khong",
+    "ty_le": "thap 13.5x",
+    "do_tren": "46 hook: VPD 65 vs 878",
+    "cam_tuyet_doi": true
+   },
+   {
+    "#": 4,
+    "nguyen_nhan": "Chu ngu chung chung (男性/方々/高齢者/多くの人)",
+    "nut": "3/5",
+    "no": "0/5",
+    "ty_le": "it 3.7x",
+    "do_tren": "46 hook: 0.13 vs 0.48 chuan hoa",
+    "cam_tuyet_doi": true
+   }
+  ],
+  "yeu_to_da_loai": {
+   "ngoi_ore": "6.9 vs 6.7 lan/1k — KHONG phai nguyen nhan",
+   "so_tuoi": "3.8 vs 4.1 lan/1k — KHONG",
+   "cau_hoi": "6.0 vs 4.8 lan/1k — TUT con nhieu hon => KHONG",
+   "so_tien_cu_the": "3/5 vs 3/5 — bang nhau => KHONG",
+   "do_dai_hook": "dai hon vs ngan hon => KHONG",
+   "the_dinh_danh": "co vs co => KHONG"
+  }
+ },
+ "script_analysis": {
+  "typical_structure": [
+   "1. Khoi dau mau hong — vua nghi huu, nhan hoa, tu do ngu nuong",
+   "2. Cu tat hien thuc — mot tac nhan VAT LY: phong bi thue/bao hiem, thong bao tang phi bao tri, bi tu choi gia han nha, hoac chong mat mot minh",
+   "3. Vung vay + si dien — tiet kiem sai cach, xin viec bi tu choi, om si dien cuu lanh dao",
+   "4. Gap nguoi dan duong / ban dong nien TUONG PHAN  <-- chinh la nhan vat DOI CHUNG",
+   "5. Thuc tinh — thoa hiep thuc te: lam nhe 2 buoi/tuan, 5 van yen bu sinh hoat, cat chi si dien. KHONG BAO GIO trung so/luong cao",
+   "6. Chiem nghiem + cau hoi mo cho khan gia"
+  ]
+ },
+ "logic_analysis": {
+  "common_logic_flow": "2 nguoi CUNG XUAT PHAT (cung ngay dinh, cung luong, cung tro cap) -> 1 quyet dinh khac nhau o cung 1 thoi diem -> sau N nam KET CUC NGUOC voi niem tin ban dau cua nhan vat. Logic nhan qua ro: quyet dinh -> hau qua cu the (so tien, suc khoe, quan he) -> bai hoc."
+ },
+ "retention_analysis": {
+  "observed_devices": [
+   "Moc thoi gian nhay coc co chu dich: 最初の3ヶ月 -> 半年後 -> 1年後 -> 2年後 -> あれから5年が経った",
+   "Mat do tha neo con so: moi 1-2 phut 1 con so that (退職金 1,420万円 / 年金 15万2,000円 / 月5万円)",
+   "Cu huech dao chieu: choang vang phai di vien mot minh; chuong dien thoai bat ngo tu chu nha",
+   "Lap lai gan nguyen van cau khoa o ~90s cuoi"
+  ],
+  "notes": "CHUA DO DUOC retention — InnerTube API khong tra chi so nay. Cac thiet bi tren la QUAN SAT tu transcript, khong phai so do. Canh bao: dung coi la bang chung nhan qua."
+ },
+ "emotional_analysis": {
+  "typical_emotional_arc": [
+   "Bat an & so hai: 長生きするほどお金がなくなっていく / もしここで倒れたら誰が気づくんだ？",
+   "Nhuc nha & sup tu ton: 肩書きがない俺はただの初老の男だった",
+   "Hoi han muon mang: 妻が昔行ってみたいと言っていた場所…気づけば妻は足を悪くしていた",
+   "Am ap khi tim lai ket noi: じいじ、また来てね / いつもありがとうございます"
+  ],
+  "loi_chat_luong_da_do": "4/6 comment che nhan vat AI ve GIA hon tuoi -> khi gen anh, ep AI ve DUNG tuoi xx歳"
+ },
+ "writing_style": {
+  "sentence_style": "Cau ngan, nhip dut khoat, nhieu doc thoai noi tam. Cuc ky chinh xac ve so: Yen, %, so nam, ten thu tuc hanh chinh (高年齢求職者給付金, 任意継続, 修繕積立金). Nhan vat chinh xung 俺; vo goi 妻 (khong dung ten rieng trong hook). Mat do: 俺 6.7-6.9 lan/1k ky tu; tuoi 3.8-4.1 lan/1k."
+ },
+ "cta_analysis": {
+  "cta_style": "KHONG BAO GIO keu goi sub ngay. Luon dat CAU HOI LUA CHON MO cham quyet dinh tai chinh/cuoc doi de kich binh luan: '皆さんなら60歳で自由を取りますか？65歳まで安定を取りますか？' / 'あなたなら給料が半分になっても再雇用を選びますか？'. Outro co dinh: チャンネル登録と高評価もよろしくお願いいたします。"
+ },
+ "videos": [
+  {
+   "video_id": "xxMKVprVh-I",
+   "title": "【漫画】６０代・７０代夫婦の熟年離婚 VS 熟年家庭内別居、どっちが幸せなのか？",
+   "views": 851708,
+   "likes": 1430,
+   "comments": 160,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 193,
+   "view_per_day": 4413.0,
+   "rel_vpd": 28.75,
+   "rel_eng": 0.26,
+   "cmt_1k": 0.19,
+   "performance": "breakout (rel_VPD 28.750622859183895x — hieu qua gap >=5 lan video cung tuoi)",
+   "hook_45s": "おい、今日の昼飯は何だ?はあ。絶望はいつも突然やってくる。これちゃんと読んでサインしてね。は?なんだよこれ。家庭内居に関する契約書。もう限界です。早くサインしてください。離婚じゃなく居。この時男は熟年離婚じゃなくて良かったと思っていた。だが離婚より残酷な現実が男を待ち受けていた。おい、電話が鳴ってるぞ。[音楽]たくしょうがねえな。文句を言いながらソファーから立ち上がるのがその田勝66",
+   "uu_tien_dung": 2
+  },
+  {
+   "video_id": "r4jNE1oTv8Q",
+   "title": "【漫画】70歳でまだ働く男と、65歳で卒業した男。5年後、差がついた本当の理由とは？",
+   "views": 570524,
+   "likes": 3029,
+   "comments": 249,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 66,
+   "view_per_day": 8644.3,
+   "rel_vpd": 17.33,
+   "rel_eng": 0.89,
+   "cmt_1k": 0.44,
+   "performance": "breakout (rel_VPD 17.331424875003126x — hieu qua gap >=5 lan video cung tuoi)",
+   "hook_45s": "70歳の今も俺は毎日円天下の交差点で旗を振っている。体があり余っているからじゃない。その日の飯に困っているからでもない。同じ日に定年したはずの同期は5年も前に仕事をやめてゆうと釣り通たれている。給料も退職金もあいつと俺で大して変わらなかったはずだ。なのになぜ俺だけがまだここに立っているのか。働けるうちは働くのが1番だ。俺はずっとそう自分に言い聞かせてきた。だがその言葉はもっと大事なことから目をそらすための言い訳に過ぎなかった。これはその差の正体に70歳になってようやく気づいた俺の話だ。",
+   "uu_tien_dung": 1
+  },
+  {
+   "video_id": "Scnn76gZ8E8",
+   "title": "【漫画】退職金で豪華クルーズ旅をした65歳夫婦のリアル…14日間で知った現実とは？",
+   "views": 984960,
+   "likes": 2311,
+   "comments": 275,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 30,
+   "view_per_day": 32832.0,
+   "rel_vpd": 11.02,
+   "rel_eng": 0.56,
+   "cmt_1k": 0.28,
+   "performance": "breakout (rel_VPD 11.020559676006302x — hieu qua gap >=5 lan video cung tuoi)",
+   "hook_45s": "豪華客戦の3日目の夜、夕食は指定席で毎晩同じ4人の他人と同じテーブルに座る。笑い声は耐えない。ただ俺と隣の妻の間にだけ会話がない。今日1[音楽]日一言もかわしていない。俺は藤沢後65歳ホームセンターに38年務めた。最後は店長だ。その退職金で憧れの14日間の豪華客線に乗った。これはその船の中が本当はどうだったかという話だ。として俺が14日かけて買ったものが旅ではなかったという話だ。定年の日、退職金の額を見て真っ先に浮かんだのが船だった。店の休憩室にあった旅行雑誌を38年の間に何度めくったか分からない。せ子と一緒に",
+   "uu_tien_dung": 3
+  },
+  {
+   "video_id": "hyLpBbmnvIA",
+   "title": "【漫画】老後貧困のリアル、受け取る年金額による食生活の違い貧富の差がヤバ過ぎる・・・",
+   "views": 324103,
+   "likes": 780,
+   "comments": 59,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 217,
+   "view_per_day": 1493.6,
+   "rel_vpd": 9.73,
+   "rel_eng": 0.38,
+   "cmt_1k": 0.18,
+   "performance": "breakout (rel_VPD 9.730544820018395x — hieu qua gap >=5 lan video cung tuoi)",
+   "hook_45s": "同じ会社で40年働き、同じ日に定年[音楽]退職を迎えた2人の男。それなのに1人の食卓にはバランスの取れた温かい[音楽]食事。もう1人の食卓にはマーガリンを塗った食パンが1枚だけ。なぜここまで差が[音楽]つくのでしょうか?年金額に差があるから。理由はそれ[音楽]だけではないのです。高一さん長い間お疲れ様でした。みんな世話になった。ありがとう。佐藤一60歳は本日を持って定年退職を迎えた。高一が務める東亜総合機株式会社は全国に拠点を持つ業務用機メーカー。ここで40年間花の",
+   "uu_tien_dung": 4
+  },
+  {
+   "video_id": "B9BIhRhlAU4",
+   "title": "【漫画】５０代・６０代の転職と再就職。失敗しない仕事選びとシニア向け「楽なバイト」",
+   "views": 167655,
+   "likes": 921,
+   "comments": 49,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 216,
+   "view_per_day": 776.2,
+   "rel_vpd": 5.06,
+   "rel_eng": 0.87,
+   "cmt_1k": 0.29,
+   "performance": "breakout (rel_VPD 5.056809568206539x — hieu qua gap >=5 lan video cung tuoi)",
+   "hook_45s": "シニア世代でも働けると言われる楽なバイト。代表的なものは[音楽]いくつかあります。経作業、警備員、データ入力、スーパーの品出し。しかし実際に経験した人たちからは[音楽]度々こんな言葉を聞きます。全然楽じゃなかった。実際のところどうなのか私と一緒[音楽]に覗いてみましょう。あ。もう昼になるじゃないか。今日も特にやることがないな。町田小次郎は62歳。低年退職し2年が経った。年金暮らしの独身で子供もいない。台所でお湯を沸かし、インスタントコーヒーを",
+   "uu_tien_dung": 8
+  },
+  {
+   "video_id": "pCmv-S54l2g",
+   "title": "【漫画】65歳、年金の通帳を妻に渡した夫と、握り続けた夫。1年後に自由だったのは？",
+   "views": 109664,
+   "likes": 375,
+   "comments": 41,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 52,
+   "view_per_day": 2108.9,
+   "rel_vpd": 4.23,
+   "rel_eng": 0.57,
+   "cmt_1k": 0.37,
+   "performance": "tot (rel_VPD 4.228292523610368x)",
+   "hook_45s": "丁年になったら家の金は誰が握るのがいいのか。渡せば楽になる。握れば自由になる。俺はずっとそう思っていた。どちらもはれだった。40年通帳は俺が握ってきた。数字は俺の専門だ。その俺が通帳を差し出して妻に突き返された。同期は月20万を自由に使える身のまま1人で牛丼を書き込んでいる。理由だったのは渡した方か握った方か。これは通帳1冊で自分の思い違いに気づいた65歳の俺の話だ。定年の日から3日が過ぎた夜だ。食卓に味噌汁と肉じが並んでいる。この時間に家の椅子に座っているのがまだ落ち着かない",
+   "uu_tien_dung": 6
+  },
+  {
+   "video_id": "OIeZvtYreOg",
+   "title": "【漫画】“脳が10歳若い”シニアが、こっそり楽しんでいる習慣とは？",
+   "views": 246292,
+   "likes": 1375,
+   "comments": 86,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 23,
+   "view_per_day": 10708.3,
+   "rel_vpd": 3.59,
+   "rel_eng": 1.33,
+   "cmt_1k": 0.35,
+   "performance": "tot (rel_VPD 3.594419659138147x)",
+   "hook_45s": "冷蔵庫の前で何を取りに来たのか思い出せない。今週で4回目だ。床屋では同じ話を3度したと言われた。初めてのつもりだった。ノートレは4年で1200ページ毎朝8戦法。その夜ラジオで同い年の男の声を聞いた。ドリルもサプリもやらない男だ。それでいて人の名前も昔の値段も聞かれた旗から出てくる。俺とあいつで一体何が違うんだ。原因はサボっていたことじゃない。きちんと済ませていた方だった。順を追って話す。俺の1日は4年前からずっと同じだ。朝5時50分。目覚ましより先に目が覚める。40年の癖だ。電気メーカーの検索で俺は基盤を見続けた。",
+   "uu_tien_dung": 5
+  },
+  {
+   "video_id": "gpVr3OYPA-E",
+   "title": "【漫画】シニアの婚活バスツアーとは？熟年結婚は本当にあるのか？",
+   "views": 355978,
+   "likes": 1267,
+   "comments": 145,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 165,
+   "view_per_day": 2157.4,
+   "rel_vpd": 2.5,
+   "rel_eng": 0.51,
+   "cmt_1k": 0.41,
+   "performance": "tot (rel_VPD 2.503918247695987x)",
+   "hook_45s": "観光バスの窓際の席。隣は空席だ。車内を見渡すと男たちはネクタイを占め直し、女たちはバスの蛍光灯の下で手鏡をチェックしている。誰もがどこか寝みするような目をしていた。俺はこのバスに3回に乗った。1回目は騙されて、2回目は笑われて、3回目にようやく気づいた。本当に大事なものはずっと隣にあったってことに。話は3ヶ月前に遡る。俺の名前は哲夫。68歳。タクシー運転手を40年やって63歳で引退した。年金は月14万円。都営住宅の2Kに1人暮らし。5年前妻のよがんで",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "YwEjlgrguXc",
+   "title": "【漫画】実は9割のシニアが後悔している、退職後に絶対やってはいけない習慣とは？",
+   "views": 23928,
+   "likes": 118,
+   "comments": 8,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 3,
+   "view_per_day": 7976.0,
+   "rel_vpd": 2.37,
+   "rel_eng": 1.0,
+   "cmt_1k": 0.33,
+   "performance": "tot (rel_VPD 2.3720446096654273x)",
+   "hook_45s": "俺は42年車を直してきた。やめて2年になる。今日俺が声に出したのはレジで言った一言だけだ。袋はいりません。同じ日に辞めた同期の男は来週の予定が3つ埋まっている。同じ日に辞めて同じ町にいてもらっているものも大して変わらない。何が違うんだ?違いはやめた後の毎日で俺がやめなかった7つにやった。始まりは車検の通知が届いた朝だった。は森本達64歳。県内の自動車販売会社で整備士を42年やった。台所のテーブルで風を切った。満料日まであと1ヶ月と書いてある。この車は10年乗っている。通せばあと2年は乗れる。一層買い換えるか。使う予定の",
+   "uu_tien_dung": 9
+  },
+  {
+   "video_id": "nOvG1HsQ0jg",
+   "title": "【漫画】満たされた老後を送るシニアが絶対に行かない場所7選とは？",
+   "views": 161167,
+   "likes": 637,
+   "comments": 34,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 24,
+   "view_per_day": 6715.3,
+   "rel_vpd": 2.25,
+   "rel_eng": 0.94,
+   "cmt_1k": 0.21,
+   "performance": "tot (rel_VPD 2.2540896854985326x)",
+   "hook_45s": "毎日2万歩歩いている。今日も5人とは口を聞いた。それなのに風呂に使って今日を思い出そうとしたら何ひ1つ出てこなかった。その次の日俺は同年の男を知った。明日畑で何を取るかもう決まっていると楽しそうに話す男だ。俺とあいつで一体何が違うんだ。答えは俺が毎日どこへ行っていたかにあった。朝6時。目覚ましない。40年の癖で勝手に起きる。障害掛係かりとして担当地区を自転車と徒歩で回り、通帳を預かりをもらい、また回る。風の翌日は屋根の飛んだ家に声をかけに回った。俺の40年は人の嫌の玄関先にあった。退職の日、",
+   "uu_tien_dung": 13
+  },
+  {
+   "video_id": "Nu-1bKzC6tY",
+   "title": "【漫画】熟年離婚で自由を手にした65歳、5年後に直面した年金と孤独の現実とは？",
+   "views": 177794,
+   "likes": 440,
+   "comments": 32,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 93,
+   "view_per_day": 1911.8,
+   "rel_vpd": 2.22,
+   "rel_eng": 0.36,
+   "cmt_1k": 0.18,
+   "performance": "tot (rel_VPD 2.2187842934111472x)",
+   "hook_45s": "離婚届けの夫のに自分の名前を書いた。たった3文字で40年続いた結婚が終わった。これでいいのね。ああ、お互いこれからは好きに行きよう。あなたは昔からそう自分で決めて自分で先に行く。なんだそれは?いいえ、なんでもない。お元気で。俺は鈴木孝志。あの時65歳。長く務めた銀行を丁年で去り、その半年後に自分から妻と別れた。やっと自由[音楽]になれる。そう本気で思っていた。あれから[音楽]5年、同じ団地に住む昔の同僚夫婦を見るたび、俺は考える",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "Sd9cCGZTDUU",
+   "title": "【漫画】定年後「無趣味で孤独」だった66歳…0円趣味で仲間20人ができたのはなぜか？",
+   "views": 90677,
+   "likes": 473,
+   "comments": 48,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 90,
+   "view_per_day": 1007.5,
+   "rel_vpd": 2.02,
+   "rel_eng": 0.87,
+   "cmt_1k": 0.53,
+   "performance": "tot (rel_VPD 2.0200351194454274x)",
+   "hook_45s": "定年後の趣味は金をかけた方が満たされる。そう思ってはいないでしょうか。かつての俺も全く同じだった。ゴルフと釣りに月き10万円を注ぐ元同僚を横めに無趣味なまま抜け柄のような半年を過ごしかけていた66歳。その俺を変えたのは財布の中身ではなかった。俺は田中浩66歳。1年前、41年務めた中堅メーカーの事務職を定年で知り添いた。退職金1500万円、年金は月17万円。経済的には何の不安もないはずだった。ただ長年これと言って趣味のない男でやってきたことだけが誤参だった。",
+   "uu_tien_dung": 11
+  },
+  {
+   "video_id": "h6HTimQd1rY",
+   "title": "【漫画】人生の終幕に選んだシニアマンション、購入した夫婦のその後とは？",
+   "views": 61358,
+   "likes": 367,
+   "comments": 32,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 65,
+   "view_per_day": 944.0,
+   "rel_vpd": 1.89,
+   "rel_eng": 1.0,
+   "cmt_1k": 0.52,
+   "performance": "tot (rel_VPD 1.8926143322416469x)",
+   "hook_45s": "退職金でついの住かさえ買えば老語は安泰だ。そう思ってはいないだろうか。かつての俺もそう信じて疑わなかった。2800万円を一括で支払うまでは俺の名は中村正尾68歳食卓には今月の請求所が置かれている。合計26万4000円ねえあなたどうしたこれね年金じゃもう足りないわよ。分かってる。私たちずっとここに払い続けられるの?年金は17万、幸子のパートで4万、21万しか入ってこない。請求は26万。毎月貯金から5万を切り崩す計算だ。俺は答えなかった。答える代わりに",
+   "uu_tien_dung": 10
+  },
+  {
+   "video_id": "u067Rg3zCWo",
+   "title": "【漫画】シニアが選ぶべき最高のバイトとは？",
+   "views": 28881,
+   "likes": 110,
+   "comments": 5,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 31,
+   "view_per_day": 931.6,
+   "rel_vpd": 1.87,
+   "rel_eng": 0.64,
+   "cmt_1k": 0.17,
+   "performance": "tot (rel_VPD 1.867905147061621x)",
+   "hook_45s": "深夜レジを回った駅のホームで俺は立てなくなった。右膝が言うことを聞かない。40年伝票しか触ってこなかった手の甲にダンボールの切り傷が並んでいる。旧人表で最初に見たランは時給だった。この年でこれだけ出るのかと思った。同じ髪を見ていた男は400円安い方を差して家から歩いて7分だからと言う。俺は時給の高さで仕事を選び、通帳に残らないものを持っていかれた65歳の俺の話だ。大島年を65歳、食品おろしで40年。伝票と在庫表だけを見てきた。60歳で定年。最古用の5年が終わった日に配られたのは花束と",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "enTu3NuiOIU",
+   "title": "【漫画】退職金を『妻に隠した男』と、『預けた男』。３年後に見つけた夫婦関係の答えとは？",
+   "views": 32479,
+   "likes": 113,
+   "comments": 7,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 37,
+   "view_per_day": 877.8,
+   "rel_vpd": 1.76,
+   "rel_eng": 0.58,
+   "cmt_1k": 0.22,
+   "performance": "tot (rel_VPD 1.7599697822601468x)",
+   "hook_45s": "退職金が振り込まれた日、俺は通帳を妻に見せなかった。隠すつもりはなかった。その日はまだ使い道を何も決めていなかっただけだ。決まってから話せばいい。そう思っているうちに3年が過ぎた。同じ日に同じものを受け取った同機はその日のうちに妻へ通帳を渡していた。これは見せなかった3年の間に俺が何を失っていたのか気づくまでの話だ。俺は高直樹63歳。印刷会社で38年営業をやってきた。60歳で丁年を迎えそのまま最雇用で3年。今日がその最後の日だったダンボールを1箱だけ抱えて帰った湯みと目薬と38年使ったハ。40年近く通った",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "wpzkU08FbpY",
+   "title": "【漫画】高学歴元エリート企業役員だった60代が、警備バイトで働かなければいけない理由とは？",
+   "views": 63991,
+   "likes": 293,
+   "comments": 25,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 13,
+   "view_per_day": 4922.4,
+   "rel_vpd": 1.65,
+   "rel_eng": 1.09,
+   "cmt_1k": 0.39,
+   "performance": "tot (rel_VPD 1.6522731908534807x)",
+   "hook_45s": "朝6時の交差点で俺は誘導灯を振っている。時給1100円。3年目になる。年金は足りている。退職金も残っている。金には1度も困っていない。それでも毎朝5時に起きて今の制服に袖を通す。妻には小遣い稼ぎだと言ってあるが嘘だ。これはいつやめてもいい仕事をやめられなかった65歳の俺がその理由をやっと口に出すまでの話だ。この制服を切る前の話をする。3年半前、俺は役員室の机を殻にした。残っていたのは名刺入れが1つ。40年分の名前が入った川の箱だ。ダンボールを運び出す音が廊下から消えて部屋には俺1人になった。40年1日に30回なっていた電話がその日は1度もならない。翌朝もならない",
+   "uu_tien_dung": 14
+  },
+  {
+   "video_id": "bZp51t9b-_g",
+   "title": "【漫画】退職金で念願の田舎に移住した６５歳の老夫婦…田舎と都会、どっちが幸せなのか？",
+   "views": 220787,
+   "likes": 773,
+   "comments": 170,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 180,
+   "view_per_day": 1226.6,
+   "rel_vpd": 1.42,
+   "rel_eng": 0.5,
+   "cmt_1k": 0.77,
+   "performance": "trung binh",
+   "hook_45s": "タクシーのドアが閉まる音を私は一生忘れないだろう。山合の小民家の前、妻のみ子がスーツケースを引いてタクシーに乗り込んだ。振り返りもしなかった。待ってくれ。走り出した車を追いかけたば砂利道に足を取られて転びそうになる。タクシーはそのまま坂を下り、杉並きの向こうに消えた。残されたのは広すぎる小民家と私だけだった。半年前、私たちは最高の決断をしたはずだったのに、話は7ヶ月前に遡る。お疲れ様。今日で最後だったんでしょ?ああ、40年。あっという間だったな。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "Hgo2qFDF0bM",
+   "title": "【漫画】老後の住まい問題、持ち家にこだわった６５歳夫婦と賃貸を貫いた６８歳独身の末路・・・",
+   "views": 177096,
+   "likes": 1235,
+   "comments": 161,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 149,
+   "view_per_day": 1188.6,
+   "rel_vpd": 1.38,
+   "rel_eng": 1.0,
+   "cmt_1k": 0.91,
+   "performance": "trung binh",
+   "hook_45s": "持ち上こそ老後の勝ち組だ。そう信じて35年ローンに飛び込んだ同期たちを俺はずっと少しだけ羨ましく眺めてきた。独身で家を立てられなかった男。68まで生きてきて[音楽]俺は自分をずっとそう決めつけてきた。だが答えは持ち入か賃貸かじゃなかった。制度を知っているかいないか。たったそれだけだった。俺は25年済んだ部屋を追い出された元数学教師が反省抱えてきた負け組意識を静かに畳むまでの話だ。夕方の2DK夜間を火にかけている時、スマートフォンが鳴った。画面に映ったの",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "DwbR_L0FjSU",
+   "title": "【漫画】老後の保険問題、保険会社に騙されて月３万円を３０年間支払い続け総額１０８０万円払い続けた６５歳の末路…",
+   "views": 38920,
+   "likes": 189,
+   "comments": 52,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 186,
+   "view_per_day": 209.2,
+   "rel_vpd": 1.36,
+   "rel_eng": 0.77,
+   "cmt_1k": 1.34,
+   "performance": "trung binh",
+   "hook_45s": "私がこれまでに保険会社に払った総額は1080万円だ。退職金よりも多い。マイホームの頭金よりも多い。息子の大学の学費よりもはるかに多い。その事実に気づいたのは定年退職してからだった。保険照者の束を前に私は頭を抱えた。なぜ気づけなかったのか。30年ずっと目の前にあったのに話は2ヶ月前に遡る。長い間お疲れ様。ありがとう。これからは2人でのんびりだな。65歳丁年退食の日。よ子が作ってくれたさやかな祝いの夕食。エビフライが3本。普段は2",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "GhFMqnIDSFo",
+   "title": "【漫画】妻の本音に気付かない鈍感すぎる夫。家庭内別居になって知った真実とは？",
+   "views": 25125,
+   "likes": 107,
+   "comments": 7,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 41,
+   "view_per_day": 612.8,
+   "rel_vpd": 1.23,
+   "rel_eng": 0.71,
+   "cmt_1k": 0.28,
+   "performance": "trung binh",
+   "hook_45s": "事表を出したことを俺は妻に3日間黙っていた。言えば止められる。そう思ったからだ。だがやめたと告げた夜、妻は俺を止めなかった。その翌、38年間家にいた妻が働きに出た。同じ月に辞めた同僚の家では夫婦が1つのカレンダーを予定で埋めていた。給料もやめた日も大して変わらなかったはずだ。相談というのは許しをもらうことだと思っていた。俺はその言葉の意味を65歳で取り違いていたと気づいた俺の話だ。作業ジャンパーを来たまま俺は玄関に立っていた。靴も脱がずに台所へ声を投げる。やめてきた。背中は動かない。鍋の前に立ったままを持つだけが止まった。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "Izu2Gel4YNE",
+   "title": "【漫画】60代で\"人が離れていく\"シニアの最悪な口癖7選とは？",
+   "views": 55897,
+   "likes": 260,
+   "comments": 14,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 17,
+   "view_per_day": 3288.1,
+   "rel_vpd": 1.1,
+   "rel_eng": 1.11,
+   "cmt_1k": 0.25,
+   "performance": "trung binh",
+   "hook_45s": "この3年で俺の家の予備輪なったのは4回だ。3回は宅配便で1回は間違いだった。同じ団地に住む同年の男は日曜の朝バス停まで歩く間に3人から呼び止められる。俺は38年1度も怒鳴らなかった。悪口も言わなかった。頼まれたことを断ったこともない。それなのに俺とあいつで一体何が違うんだ。答えは俺が38年1番親切だと思って使ってきた言葉にあった。俺は柴田正一66歳。死英赤台住宅の管理人を38年やって63歳でやめた。300世帯だ。水漏れ、切れた電球、鳩トの巣、ゴミ出しの苦情。全部が俺のところに来た",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "C59Hjd7kcQY",
+   "title": "【漫画】７０歳独身男性のシニア婚活するとどうなるのか？婚活サロンで女性に囲まれて・・・",
+   "views": 126315,
+   "likes": 1067,
+   "comments": 114,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 135,
+   "view_per_day": 935.7,
+   "rel_vpd": 1.09,
+   "rel_eng": 1.21,
+   "cmt_1k": 0.9,
+   "performance": "trung binh",
+   "hook_45s": "70歳で結婚歴0の男に今更老後の家族なんて無理に決まっている。そう俺はずっと自分に言い聞かせてきた。だが答えはエでも運命でもなかった。これは町公務店を畳んだ元職人が70歳にして初めて家族の輪郭を描き直すまでの話だ。夕方の公園いつものベンチに腰を下ろした俺は向いのベンチから目をそらせずにいた。少し離れたベンチに白髪の老夫婦が並んで座っている。夫が妻の手をそっと握り、妻が小さく笑う。ただそれだけの風景だった。俺もああなりたかった。俺の名前は田辺達也。70歳独身だ。この2年夕暮れに",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "QpDD8UQ48-M",
+   "title": "【漫画】７３歳警備員、リボ残高120万円リボ払いが全然減らない…どうしたら全額返済できるのか？",
+   "views": 29317,
+   "likes": 243,
+   "comments": 39,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 191,
+   "view_per_day": 153.5,
+   "rel_vpd": 1.0,
+   "rel_eng": 1.31,
+   "cmt_1k": 1.33,
+   "performance": "trung binh",
+   "hook_45s": "給料と年金だけでは生活は苦しい。そんな風に頭を悩ませる方は少なくないでしょう。もっと収入を増やせばいい。もっと年金がもらえたらそう思ってはいないでしょうか。ですが答えは収入じゃなくて見えない出費でした。俺は足りない分を補うためリボ払いに手を出し恐ろしい現実に匿面した1人の男性の物語です。しるさんお疲れ様です。ああ、今日も暑かったな。本当ですね。ゆうた、これからどうする?え、家に帰りますけど。じゃあちょっとコンビニってくか。川上かしげる",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "TqaVr4-ntZA",
+   "title": "【漫画】婚活パーティーで3回連続ゼロ票だった65歳。翌月、見た目を変えずに選ばれた理由とは？",
+   "views": 16958,
+   "likes": 168,
+   "comments": 23,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 34,
+   "view_per_day": 498.8,
+   "rel_vpd": 1.0,
+   "rel_eng": 1.66,
+   "cmt_1k": 1.36,
+   "performance": "trung binh",
+   "hook_45s": "婚活パーティーの終わりに配られるカードに俺の名前を書いた人は1人もいなかった。3回とも1人もだ。隣の席の男は毎回3人に書かれていた。年齢は同じ65歳。条件なら俺の方が上のはずだった。帰り際にその男が言った。あんた人の話を最後まで聞かないねと。40年俺はその聞き方で仕事をして褒められてきた。俺はたった一言で人が離れることを65歳まで知らなかった俺がその一言を手放すまでの話だ。シャンデリアの下で視界の女がマイクを置いた。白い髪が回収されていく。本日はありがとうございました。カードのご記入がお済みでない方はこちらへお願いいたします。結果は",
+   "uu_tien_dung": 7
+  },
+  {
+   "video_id": "ETTwuUe-esE",
+   "title": "【漫画】実は賢い60代だけが知っている、介護施設に入らず最高の老後を送るための習慣とは？",
+   "views": 6725,
+   "likes": 48,
+   "comments": 1,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 2,
+   "view_per_day": 3362.5,
+   "rel_vpd": 1.0,
+   "rel_eng": 1.45,
+   "cmt_1k": 0.15,
+   "performance": "trung binh",
+   "hook_45s": "38年、俺は1日に300件の玄関を見てきた。どの家が危ないかは見れば分かった。同年の田口は去年この町を出た。同年のもう1人は今も自分の家にいる。同じ町で同じ年まで生きて何[音楽]が違うんだ?違うのは体でも金でもなかった。答えは俺が38年見てきた家の窓にあった。始まりはある朝だった。散歩の帰りに田口の家の前を通った。門の横の郵便受けに白いテープが2本バツの形に貼ってあった。俺は足を止めた。止めてある家の顔だ。そのテープの意味は1つしかない。もうここへは入れないという印だ。長く留守にする家む人がいなくなった家にる。俺は38年その印を見てきた側だ。俺は宮宅国歳。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "PtJmkLPMigQ",
+   "title": "【漫画】定年後に家庭内別居になってしまった熟年夫婦…卒婚した方が幸せなのか？",
+   "views": 127589,
+   "likes": 512,
+   "comments": 44,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 162,
+   "view_per_day": 787.6,
+   "rel_vpd": 0.91,
+   "rel_eng": 0.58,
+   "cmt_1k": 0.34,
+   "performance": "trung binh",
+   "hook_45s": "花束を持って帰ってきた営業1筋38年60歳で丁年を迎え最雇用で3年その最後の日に後輩たちが用意してくれたものだ。おかり。お疲れ様。ああ、ただいま。今日からは毎日この時間に帰れるぞ。明日から俺もずっと家にいるからな。一緒に旅行でも行こう。ゆき子の箸が一瞬止まった。ほんの0.5秒。すぐにいつもの笑顔に戻る。どうした?うん。なんでもない。花綺麗だね。あの日の妻の顔を俺は見逃していた。田中浩。大手メーカーの営業部長を最後に最雇用の3年を含む41年の会社人生を終えた。年金は",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "m2emMRLEwQo",
+   "title": "【漫画】定年後、リゾートマンションに移住した65歳夫婦の理想と現実とは？",
+   "views": 72097,
+   "likes": 209,
+   "comments": 18,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 27,
+   "view_per_day": 2670.3,
+   "rel_vpd": 0.9,
+   "rel_eng": 0.69,
+   "cmt_1k": 0.25,
+   "performance": "trung binh",
+   "hook_45s": "海の見える家に移って半年になる。今日声を出したのは1度だけ。パンを頼むと[音楽]妻に行った。昼過ぎ郵便受けに髪が1枚。転送されてきた前の町内会の階乱だ。アテ名は40年住んだ家の住所のままで俺の名前が印刷されている。誰も棒を直さなかったらしい。1600万払ったこの家に俺の名前はどこにも乗っていない。これは人の家を38年見てきた男が自分の家で見落としていたものの話だ。朝の6時に目が覚める。カーテンを開けると海がある。半年前この景色に1600万を払った。高いとは思わなかった。むしろ安いと思った。山下年65歳住宅設備メーカーの",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "XmUupBpcRf0",
+   "title": "【漫画】６５歳で賃貸アパートを追い出されたらどうなるのか？持ち家がなければ終わりなのか？不動産屋には契約を断わられ続けて・・・",
+   "views": 112509,
+   "likes": 1041,
+   "comments": 207,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 157,
+   "view_per_day": 716.6,
+   "rel_vpd": 0.83,
+   "rel_eng": 1.33,
+   "cmt_1k": 1.84,
+   "performance": "trung binh",
+   "hook_45s": "65歳を過ぎだら賃貸が借りられなくなる。そんな話を聞いたことがあるだろうか。俺はあった。ニュースで何度か見た。でも自分は家賃を滞能したこともないし貯金もある。まさかこだわられるわけがないとずっとそう思っていた。答えは収入でも貯蓄でもなかった。たった1つの数字年齢。それだけで俺は10件の不動産屋に門を閉ざされた。俺は38年間数字を信じてきた俺が数字では測れないものに気づくまでの話だ。建物老朽化のため取り壊しを予定しております。つきましては6ヶ月以内にご代表をお願い申し上げます。25年になる。この部屋に25年済んだ結露の跡が残った窓も少し傾いた本棚も全部この",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "8AWxsZ9kRFs",
+   "title": "【漫画】夫の定年後、3食作りに終わりがなくなった65歳妻。卒キッチンを選んだワケとは？",
+   "views": 18398,
+   "likes": 106,
+   "comments": 9,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 55,
+   "view_per_day": 334.5,
+   "rel_vpd": 0.67,
+   "rel_eng": 0.96,
+   "cmt_1k": 0.49,
+   "performance": "yeu (rel_VPD 0.6706751439385005x)",
+   "hook_45s": "定年から3週間目の昼だった。最後昼何?新聞から顔もあげずに俺はそう言った。台所で妻の手が止まる。振り返った翼ヨ子の顔はいつもの顔じゃなかった。ケ一さん、明日から私はお昼を作りません。聞き間違いかと思った。38年連れそった妻がこんなことを言う人だとは思わなかった。魔け一64歳。印刷会社の工場長を40年務め上げ、先月現場を降りたばかりだ。年金は65歳から月17万円の予定。贅沢はできないが空に困る額でもない。老後の設計図はそう悪くないはずだった。朝は味噌汁の匂いで目が覚める。昼は妻が呼び",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "ehpdsiKjsMY",
+   "title": "【漫画】50代独身が同窓会に行くべき理由とは？",
+   "views": 26500,
+   "likes": 274,
+   "comments": 33,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 88,
+   "view_per_day": 301.1,
+   "rel_vpd": 0.6,
+   "rel_eng": 1.73,
+   "cmt_1k": 1.25,
+   "performance": "yeu (rel_VPD 0.6037643804479517x)",
+   "hook_45s": "50代男性のおよそ4割が友達がいないと答えるそうです。そして同窓会の参加率はわずか4人に1人行かない理由は様々ですが多くの方がこう思っているのではないでしょうか。今更言ったところで惨じめになるだけだと。これはまさにそう思っていた50歳の独身男性佐野た孝志さんの話です。俺は佐野し50歳中堅メーカーの営業課長をしている。学生時代の俺は今とはまるで別人だった。体育祭の応援団長に自分から手をあげるようなクラスの中心にいる人間。放課後は毎日のように仲間と鶴みしがいると盛り上がると言われるのが",
+   "uu_tien_dung": 12
+  },
+  {
+   "video_id": "s98pzTeoiEU",
+   "title": "【漫画】退職金で憧れの豪華キャンピングカー旅をした65歳夫婦の現実とは？",
+   "views": 17140,
+   "likes": 76,
+   "comments": 15,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 10,
+   "view_per_day": 1714.0,
+   "rel_vpd": 0.58,
+   "rel_eng": 1.06,
+   "cmt_1k": 0.88,
+   "performance": "yeu (rel_VPD 0.5753301439045687x)",
+   "hook_45s": "40年、1分の遅れを謝って生きてきた施鉄の駅員だ。始発から終電まで頭を下げるのが仕事だった。その俺が定年してすぐ1000万円の買い物を1度も計算せずに決めた。妻に行ったのは反抗をした後だ。俺は本数を65歳。買ったのは憧れのキャンピングカーだ。これは退職金の半分を憧れに変えた夫婦が2週間でそれを手放して悪かったのは車ではなかったと知るまでの話だ。例年の日、聖防と証笑を返した。最後の8年は著約だ。時計を見ない日は1日もなかった。思ったことは1つだけだ。これからは時間に縛られない。自由とは時間に縛られないことだ。俺はそう信じていた。車を見に行ったのは定年",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "G2ESypZgwh0",
+   "title": "【漫画】定年後に婚活を始めた男と、始めなかった男。3年後についた差とは？",
+   "views": 12057,
+   "likes": 105,
+   "comments": 3,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 45,
+   "view_per_day": 267.9,
+   "rel_vpd": 0.54,
+   "rel_eng": 1.46,
+   "cmt_1k": 0.25,
+   "performance": "yeu (rel_VPD 0.5371938514761961x)",
+   "hook_45s": "定年した男が老後に1番早く失うものをご存知だろうか?金で[音楽]も健康でもない。行く場所だ。妻をなくして5年。俺のカレンダーは3ヶ月先まで真っ白だった。だから俺は63歳で婚活を始めた。結果を先に言う3年通って相手は1人も見つからなかった。全敗だ。それなのに今俺の家の食卓は椅子が足りない。俺はその3年の話だ。あら、初めての方ね。お名前は?谷口です。谷口さん。じゃあそこへどうぞ。今日は8人ね。和室に長机を寄せて女が",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "4aQkJyKhUSA",
+   "title": "【漫画】２０２６年４月から始まる年金カット問題、５０代は見た方が良い働きながら年金をもらうとどうなってしまうのか？",
+   "views": 16214,
+   "likes": 109,
+   "comments": 12,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 218,
+   "view_per_day": 74.4,
+   "rel_vpd": 0.48,
+   "rel_eng": 1.06,
+   "cmt_1k": 0.74,
+   "performance": "yeu (rel_VPD 0.4845599494046883x)",
+   "hook_45s": "2026年4月金をもらいながら働く人のルールが変わります。結論から言うと年金は減らされにくくなります。ただし働けば働くほど手取りがそのまま増えるとは限りません。むしろこんなはずじゃなかったと感じる人も出てくるかもしれません。なぜそんなことが起きるのか。そしてどう働くのが自分に会うのか。これはその答えを探した1人の男性の話です。うん。厚生労働省のホームページっていうのは何でこうも分かりづらいんだ。[音楽]従業員45名の町優勢工業自動車向け密部品を製造している。その営業部の隅に菅原正明はいた。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "OyFdwyhTVVQ",
+   "title": "【漫画】60代になっても老けない長寿体質の人が持っている共通点とは？",
+   "views": 9129,
+   "likes": 44,
+   "comments": 3,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 6,
+   "view_per_day": 1521.5,
+   "rel_vpd": 0.45,
+   "rel_eng": 0.98,
+   "cmt_1k": 0.33,
+   "performance": "yeu (rel_VPD 0.4524907063197026x)",
+   "hook_45s": "私は毎日スーパーまで歩いている。台所には38年経ってきた。それなのに病院の階談で2回止まった。その日私は同い年の人を2人見た。1人は車椅子をしてもらっていた。もう1人は会計も自分で済ませて自分の足で帰っていった。同じ70年を生きて何が違うんだ?違うのは生まれつきでもお金でもない。あの人が毎日どれを1つ選んでいたかだった。10日前の朝市の健康診断の結果が[音楽]届いた。私は岸本ふ子70歳。給食センターの厨房で38年600人分の昼[音楽]を作ってきた。台所のテーブルで風を切って中の髪を",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "7ywQ7iyBQsM",
+   "title": "【漫画】年金だけで生活、食費１日５００円、９０歳まで働いた方が幸せなのか？",
+   "views": 13507,
+   "likes": 109,
+   "comments": 9,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 207,
+   "view_per_day": 65.3,
+   "rel_vpd": 0.43,
+   "rel_eng": 1.27,
+   "cmt_1k": 0.67,
+   "performance": "yeu (rel_VPD 0.42511105080084943x)",
+   "hook_45s": "よいしょ。よいしょっと。寺島三ブ郎70歳。彼は今日もビルの清掃業に従事していた。汗を拭いながら壁のカレンダーに目をやる。今日の日付を見て会ることに気がついたサブ郎。[音楽]ああ、そうだ。今日は俺の誕生日か。今日はビールでも飲むか。たまにはいいだろう。定時になり、ロッカールームで私服に着替えていると清掃会社の社員が近づいてきた。寺島さん少しお話が。はい。何でしょう?実は今月末で契約が満了になりまして。え、それは申し訳ありません。会社の方針でこの現場の契約事態が終了することになりまして。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "2AH5Ez33pes",
+   "title": "【漫画】老後は子に頼る親 VS 頼らない親。3年後、息子が通っていたのはどっち？",
+   "views": 10162,
+   "likes": 73,
+   "comments": 6,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 48,
+   "view_per_day": 211.7,
+   "rel_vpd": 0.42,
+   "rel_eng": 1.2,
+   "cmt_1k": 0.59,
+   "performance": "yeu (rel_VPD 0.42446534575618194x)",
+   "hook_45s": "老後子供に頼るのか頼らないのか頼れば楽になる。頼らなければ迷惑をかけずに住む。俺はずっとそう思っていた。どちらもは外れだった。40[音楽]年バスのハンドルを握ってきた。無事故無違反で勤め上げた人に迷惑をかけないこと。それだけが俺の誇りだ。その俺の息子がある夜電話の向こうで声を詰まらせた。父さん、なんで言ってくれなかったんだ?俺は何ひつ答えられなかった。迷惑をかけ前とした結果、俺は息子を1番深く傷つけていた。これは紙1枚で自分の間違いに気づいた68歳の俺の話だ。郵便受けに死の封筒が",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "hZn0zfvC5QQ",
+   "title": "【漫画】定年後10年、誰とも話さなかった69歳。1匹の保護犬が変えた老後の毎日とは？",
+   "views": 12142,
+   "likes": 87,
+   "comments": 5,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 59,
+   "view_per_day": 205.8,
+   "rel_vpd": 0.41,
+   "rel_eng": 1.2,
+   "cmt_1k": 0.41,
+   "performance": "yeu (rel_VPD 0.4126126162143361x)",
+   "hook_45s": "動物愛子護センターの譲渡会だった。私は刑事の隅で丸くなっている老剣をさしていった。この子をお願いします。はい、ではこちらの申し込み書にご記入を。[音楽]もう書いてきました。これでいいですか?職員の女性が私の書いた申し込み書に目を落とす。そのペン先がある1行でピタリと止まった。大原さん69歳。お1人暮らしなんですね。ええ、それが何か緊急時のご家族の連絡先、ここがクーラになっているんですが、かける相手がいないもので、そこは飛ばしていただけませんか?申し訳ありません。ここが空ですと、この子はお譲りできないんです。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "D39bUfMK4jQ",
+   "title": "【漫画】貯金が正解だと信じ続けた50代の男が、妻に言われて気づいたお金の置くべき場所とは？",
+   "views": 9614,
+   "likes": 24,
+   "comments": 0,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 9,
+   "view_per_day": 1068.2,
+   "rel_vpd": 0.36,
+   "rel_eng": 0.6,
+   "cmt_1k": 0.0,
+   "performance": "yeu (rel_VPD 0.35856502032273585x)",
+   "hook_45s": "",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "SeBAmiF-B2I",
+   "title": "【漫画】熟年離婚、老後の生活がカップ麺・コンビニ弁当ばかりの食生活で、老後に真っ先に変わる体のサイン",
+   "views": 10401,
+   "likes": 66,
+   "comments": 5,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 222,
+   "view_per_day": 46.9,
+   "rel_vpd": 0.31,
+   "rel_eng": 1.0,
+   "cmt_1k": 0.48,
+   "performance": "yeu (rel_VPD 0.305236146539827x)",
+   "hook_45s": "老後に多くの人が年のせいだと思い込んでいる体の変化。しかしそれは毎日の食事が原因で現れる危険なサイン。今日も自宅でカップ面をすっている男性。テレビから流れる健康チェック。インスタント食品が週4回以上。運動不足。彼はどちらも心当たりがありながら年のせいだと考えないようにしていました。老の食生活が引き起こした体からのサイン。そのサインと向き合った時、彼はある大切なことに気づくのです。妻が作った昼食を食べ終え、コーヒーを飲もうとしている。彼は立花春を60歳。週末の午後穏やかな時間",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "uODXcN7yfPY",
+   "title": "【漫画】老後、２０００万円の貯金では足りないのか？老後の２０００万円問題の真実とは？",
+   "views": 8261,
+   "likes": 65,
+   "comments": 4,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 201,
+   "view_per_day": 41.1,
+   "rel_vpd": 0.27,
+   "rel_eng": 1.24,
+   "cmt_1k": 0.48,
+   "performance": "yeu (rel_VPD 0.26776290122196605x)",
+   "hook_45s": "2000万円あれば老は安心。そう信じて貯金をしてきた現場1筋の男。しかしある出来事をきっかけにその常識は崩れ去る。貯金だけでは守れない現実とは何か。そして彼がたどり着いた本当の幸せとは。なあ、昨日言ってた兄さの話聞かせてくれよ。組み立てすか?急にどうしたんすか?昨日は全く興味ないって言ってたのに。建設中の建物の骨組だけが広がる現場。午前中の作業を終えた大工たちが資材の上に腰かけて休憩している。それが昨日の夜。急に嫁が兄を始めるって言い出してよ。俺も知っといた方がいいかと思ったんだ。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "3d0zsSehBVE",
+   "title": "【漫画】年金15万で毎日が充実の69歳 vs 貯金3000万でも退屈な67歳、なぜここまで違うのか？",
+   "views": 7374,
+   "likes": 94,
+   "comments": 6,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 62,
+   "view_per_day": 118.9,
+   "rel_vpd": 0.24,
+   "rel_eng": 2.13,
+   "cmt_1k": 0.81,
+   "performance": "yeu (rel_VPD 0.23846010447062763x)",
+   "hook_45s": "通帳の残高は3000万円。これだけあれば俺の老語は安泰なはずだった。なのに今俺が新底羨んでいるのは年金が月に15万しかないあの男なんだ。金ならあいつの何十倍も持っている。それなのに俺の毎日は空っぽであいつの毎日は笑いで溢れている。俺は貯金3000万をモて余した67歳の俺が年金15万の男に老後の本当の勝ち方を教わるまでの話だ。俺は岡田孝志67歳金属加工の小さな町交場を1台でここまでにした。64歳の",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "epBHjR_41tA",
+   "title": "【漫画】「助けて！」と心が叫んでいる、実は限界を迎えている体のサイン7選とは？",
+   "views": 11589,
+   "likes": 44,
+   "comments": 4,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 20,
+   "view_per_day": 579.5,
+   "rel_vpd": 0.19,
+   "rel_eng": 0.91,
+   "cmt_1k": 0.35,
+   "performance": "yeu (rel_VPD 0.19450119713273184x)",
+   "hook_45s": "定年して5年。健康診断はオールAだ。どこも悪くない。それなのに朝目が覚めた瞬間からもう夕方みたいな気分でいる。その週俺は同い年の男にあった。今日は完全に休む日だと決めてきたからここへ来たのだそうだ。俺には決めるも何もない。5年分全部が休みだ。俺とあいつで一体何が違うんだ?答えは俺の体がとっくに出していたらしい。俺は杉本保つ67歳。郵便局の配達員を40年やって62歳で辞めた。雨の日も正月も出た。1日200件。担当した区域の表は全部覚えていた。俺の40年は人の家の門の前にあった。40年で1度も配達を送らせたことがない。それ",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "xShxPfM35NA",
+   "title": "【漫画】老後の孤独死、元大手商社マン７２歳独身男性が誰にも気づかれぬまま迎えた最期・・・",
+   "views": 18856,
+   "likes": 169,
+   "comments": 13,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 146,
+   "view_per_day": 129.2,
+   "rel_vpd": 0.15,
+   "rel_eng": 1.29,
+   "cmt_1k": 0.69,
+   "performance": "yeu (rel_VPD 0.14989172043188564x)",
+   "hook_45s": "雨の夜最上に50人を超える商の列家の中の俺はどこか乾いた笑を浮かべている。ニュースは孤独士と報じていた。元大手照者マ72歳誰にも見取られずに行った男そう報じられた葬式になぜこれだけの人が涙を流しているのかそれを知るには12年前ダンボール箱を1つだけ抱えて誰もいない会議室を出たあの日まで遡らなければならない。佐野健太郎72歳大手勝者の海外事業部長を最後に60歳で会社を離れた。あれから12年になる。元端の朝、郵便受けから取り出した年賀状の束を今の",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "U8j1kluEHcs",
+   "title": "【漫画】人生後半から大逆転する人の特徴7選とは？",
+   "views": 6834,
+   "likes": 49,
+   "comments": 1,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 16,
+   "view_per_day": 427.1,
+   "rel_vpd": 0.14,
+   "rel_eng": 1.71,
+   "cmt_1k": 0.15,
+   "performance": "yeu (rel_VPD 0.14337099633327824x)",
+   "hook_45s": "38年勤めた学校が来春でなくなる。送られてきた平行記念士の名簿に事務室の人間は1人も入っていなかった。その次の日、俺は同年の男の話を聞いた。来月から新しい役を1つ引き受けるのだと嬉しそうに話していた。同じ66だ。俺は役がなくなる側であいつは増える側だ。何が違うんだ。原因は学校がなくなることじゃない。俺が38年を紙に残ったかどうかで数えていたことだった。俺は山口克66歳。県立赤大高校の事務室で38年やって63歳でやめた。その朝新聞の地域面に学校の名前が出ていた。生徒が減って隣町の高校と一緒になる。来春でおしまいだ。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "uTK-yGFZ8C0",
+   "title": "【漫画】親の介護で会社を辞めた６３歳元大手課長、年収８００万から年金１２万に転落した末路・・・",
+   "views": 14668,
+   "likes": 102,
+   "comments": 11,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 139,
+   "view_per_day": 105.5,
+   "rel_vpd": 0.12,
+   "rel_eng": 1.0,
+   "cmt_1k": 0.75,
+   "performance": "yeu (rel_VPD 0.1224720625051718x)",
+   "hook_45s": "親の介護で会社をやめようか迷ったことはないだろうか。俺は迷った末に辞めた1人だ。58歳で課長を辞め、5年で貯金を1400万とかし、年金は月12万。数字だけ並べればこれが俺の介護離職の末路だった。だが転落の底にいた俺を救ったのは通帳の桁じゃなかった。ある日曜公園でかわしたった1度の会話だった。俺は鈴木浩司58歳。大手自動車部品の開発部課長だ。朝7時玄関で川靴に足を通しているとひ子がコーヒーの紙コップを差し出してくれた。今日も帰り遅いの?ああ、新型バッテリーケースの設計レビューだ。",
+   "uu_tien_dung": null
+  },
+  {
+   "video_id": "8xEY-fMffys",
+   "title": "【漫画】退職金2000万で\"安泰\"のはずが…年金開始まであと数年の58歳、貯金が消えた理由とは？",
+   "views": 4260,
+   "likes": 51,
+   "comments": 7,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 86,
+   "view_per_day": 49.5,
+   "rel_vpd": 0.1,
+   "rel_eng": 2.0,
+   "cmt_1k": 1.64,
+   "performance": "yeu (rel_VPD 0.09931513424411062x)",
+   "hook_45s": "まとまったお金さえあれば老合は安泰だ。そう思っている人はきっと多いと思う。少し前の俺もその1人だった。退職金2000万円を握りしめ、58歳で迷わず会社をやめた。これで一生猶ゆ自だと信じて。あれから数年、今俺は通帳を開くのが怖い。残高の桁が見る度に減っていく。でも追い詰められた答えは金額じゃなかった。これは2000万円もの大金を持ちながら老後の入り口でつまづいた1人の男の話。そう、俺の話だ。俺は沢田浩司58歳。中堅メーカーで総務",
+   "uu_tien_dung": 15
+  },
+  {
+   "video_id": "U5ygHCC7cSA",
+   "title": "【漫画】持ち家35年ローン完済直後、65歳で待っていたのは？",
+   "views": 4062,
+   "likes": 36,
+   "comments": 4,
+   "duration_seconds": 1330,
+   "publish_date": null,
+   "days_since_publish": 95,
+   "view_per_day": 42.8,
+   "rel_vpd": 0.05,
+   "rel_eng": 1.27,
+   "cmt_1k": 0.98,
+   "performance": "yeu (rel_VPD 0.0496246257427878x)",
+   "hook_45s": "家さえ買えば老は安泰だ。そう思ってる人はきっと多い。少し前までの俺もその1人だった。35年ローンを組んで念願のマイホームにハを押した時、これで一生分の安心をまとめて手に入れた気でいた。ところが先月念願の関西を迎えたはずの先輩はなぜか机で電卓を叩いては深いため息きをついていた。あの背中がそのまま35年後の俺の姿だと気づいたのはその夜のことだった。俺は田優太35歳中堅メーカーの係り長だ。先月35年ローンを組んで都心アクセスのいい新築マンションを買った。月々の返済はこれまでの家賃とほとんど変わらない。関西は",
+   "uu_tien_dung": null
+  }
+ ],
+ "channel_dna": {
+  "core_identity": "Manga story huu tri Nhat, ngoi thu nhat 俺, doi lap 2 lua chon cuoc doi — 2 nguoi CUNG XUAT PHAT, 1 quyet dinh khac nhau, N nam sau ket cuc NGUOC.",
+  "audience": "Nam gioi Nhat 60-75 (loi 65-70), da/can huu, cong an luong bac trung",
+  "core_promise": "Thay chinh minh trong 2 lua chon, va biet truoc ket cuc NGUOC voi niem tin ban dau",
+  "hook_formula": "[KHOANH KHAC CU THE O NGOI 'TOI'] -> [PHU DINH LIEN TIEP] -> [DOI CHUNG ⚠️ BAT BUOC] -> [CAU HOI TREO] -> [THE DINH DANH] -> [VAN DE O THI HIEN TAI]",
+  "script_formula": "6 giai doan: mau hong -> cu tat VAT LY -> vung vay+si dien -> gap DOI CHUNG -> thoa hiep thuc te -> cau hoi mo",
+  "retention_formula": "Moc thoi gian nhay coc + tha neo con so moi 1-2 phut + dao chieu o giua + lap cau khoa o cuoi",
+  "emotional_formula": "Bat an -> nhuc nha -> hoi han -> am ap khi tim lai ket noi"
+ },
+ "winning_formula": [
+  {
+   "formula": "【漫画】+ [2 nguoi cung xuat phat, co xx歳] + [lua chon A] と/VS [lua chon B] + 。[N nam/ngay sau] + [ket cuc nguoc] + 〜とは？  —  38-46 ky tu",
+   "evidence_count": 47,
+   "confidence": "high",
+   "ghi_chu": "【漫画】 47/47; dang doi lap 4/15 nhung 4/4 deu NO"
+  },
+  {
+   "formula": "MO BANG CANH (3.18x) + CO DOI CHUNG (2.09x) + Ngoi 俺 (khong 彼) + Khong chu ngu chung chung — 4 tieu chi da kiem chung tren 46 hook",
+   "evidence_count": 46,
+   "confidence": "high"
+  }
+ ],
+ "anti_patterns": [
+  {
+   "pattern": "Mo bang THUYET MINH thay vi canh (nut 4/5, no 0/5) — 3.18x",
+   "confidence": "high"
+  },
+  {
+   "pattern": "KHONG co nhan vat doi chung (nut 0/5, no 3/5) — 2.09x",
+   "confidence": "high"
+  },
+  {
+   "pattern": "Ngoi thu 3 「彼」 trong 150 ky tu dau (thap 13.5x) — CAM TUYET DOI",
+   "confidence": "high"
+  },
+  {
+   "pattern": "Chu ngu chung chung 男性/方々/高齢者/多くの人 (it 3.7x) — CAM TUYET DOI",
+   "confidence": "high"
+  },
+  {
+   "pattern": "Nhan vat TRE hon khan gia (35t) — cap Nha o tut 17x du CAU TRUC DUNG hoan toan",
+   "confidence": "medium"
+  },
+  {
+   "pattern": "Van de o TUONG LAI XA ('tra 35 nam thi 65 tuoi') — khan gia 65t khong thay minh trong do",
+   "confidence": "medium"
+  },
+  {
+   "pattern": "Ke tieng Anh / Ten Trung: tieu de thieu kana",
+   "confidence": "low"
+  },
+  {
+   "pattern": "Nhoi 2 dong chu len thumbnail (tam 1080万 tut du Cmt/1k cao nhat kenh)",
+   "confidence": "medium"
+  }
+ ],
+ "claude_handoff": {
+  "recommended_content_directions": [
+   "Uu tien 1: Doi lap 2 lua chon huu tri (median 570.524) — 7/15 video uu tien thuoc nhom nay",
+   "Uu tien 2: 婚活シニア (126.315) — KHOANG TRONG, chua lane nao lam",
+   "Uu tien 3: 老後の住まい (112.509) — KHOANG TRONG, chua lane nao lam",
+   "Uu tien 4: 熟年離婚・別居 (127.589) — da phu boi Lane J+F, can phoi hop tranh trung"
+  ],
+  "winning_topic_patterns": [
+   "2 nguoi CUNG XUAT PHAT + 1 quyet dinh khac nhau + N nam sau ket cuc NGUOC",
+   "Van de o THI HIEN TAI; nhan vat LA khan gia (60-70t), khong tre hon",
+   "Cau hoi treo ve KET CUC, khong phai meo meo giu bi mat"
+  ],
+  "uncertainties": [
+   "CHUA do duoc retention -> nguyen nhan tut GIUA video chua kiem chung",
+   "CHUA kiem soat bien thoi diem (2/5 cap doi chung dang cach nhau hang thang)",
+   "n=15 video uu tien co hook day du; 1/47 video khong lay duoc hook"
+  ],
+  "suggested_next_action": "Dung video uu tien #1 r4jNE1oTv8Q (rel_VPD 17.33x) lam MAU: no dung ca 4 tieu chi (CANH + DOI CHUNG + ngoi 俺 + khong chung chung). Doc chi tiet tai scratch_golo/CHANNEL_DNA_GOLO.md + ORDER_15_VIDEO_UU_TIEN.md",
+  "file_tham_chieu": {
+   "dna_11_muc": "E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\scratch_golo\\CHANNEL_DNA_GOLO.md",
+   "order_15": "E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\scratch_golo\\ORDER_15_VIDEO_UU_TIEN.md",
+   "video_analysis": "E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\scratch_golo\\VIDEO_ANALYSIS_GOLO",
+   "title_intel": "E:\\CLAUDE\\YOUTUBE\\TRENDING-RESEARCH\\data\\title_intel\\teinengo-fuufu.json"
+  }
+ }
+}

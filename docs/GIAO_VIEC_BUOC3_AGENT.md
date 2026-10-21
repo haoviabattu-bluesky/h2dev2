@@ -293,7 +293,7 @@ lệch, nhưng nếu bạn thấy dòng cảnh báo `⚠️ voice.vi.srt CŨ HƠ
 
 ---
 
-## 9. HOOK 20–30S ĐẦU VIDEO (mọi lane, từ 2026-09-23)
+## 9. HOOK ĐẦU VIDEO (mọi lane, từ 2026-09-23; 17/10: độ dài ≈ hook video gốc, không còn 20–30s)
 
 > Mục này chỉ áp dụng cho tập có `<tập>\hook\hook_storyboard.json` (không phải mọi tập, và KHÔNG
 > phải cứ có thư mục `hook\` là đủ — thư mục `hook\` đã tồn tại SỚM HƠN, ngay lúc khoá hook, chỉ
@@ -439,7 +439,7 @@ với timeline lấy từ mốc `t0`/`t1` của từng shot trong `hook_storyboa
 | Python | `py -3.13` |
 | Tra slug từ số dòng | `pipeline\quet_dong_can_anh.py --cho-ghep` |
 | Ghi cột G (có rào chắn) | `pipeline\ghi_cot_video.py` |
-| Hook 20–30s (nếu tập có) | `<thư mục tập>\hook\` — xem mục 9 |
+| Hook đầu video (nếu tập có) | `<thư mục tập>\hook\` — xem mục 9 |
 | Batch clip Grok cho hook | `E:\CLAUDE\YOUTUBE\GROK_VIDEO\grok_batch.py` |
 | Chuyển cảnh cho hook (fallback ảnh tĩnh) | `C:\Users\admin\.claude\skills\video-chuyen-canh\scripts\ghep_anh_co_chuyen_canh.py` |
 

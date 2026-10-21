@@ -29,7 +29,21 @@ API_KEY = "sk-ue0LE9lhUveoGFrt3Ah2SFJb82nPD9FVoe7jiihO3n6RnMeJ"
 _UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
        "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
 MODELS = ["gemini-3.8-flash", "grok-4.6"]   # gemini-3.8-flash = QC chính (user chốt); grok cross-check
-AGE_TOL = 12                                  # lệch quá 12 tuổi so thiết kế = flag
+AGE_TOL = 12                                  # CŨ — chỉ còn dùng làm dung sai so CHÊNH quan hệ, KHÔNG dùng cho tuổi 1 nhân vật
+
+
+def age_tol(age):
+    """AGE LOCK (anh chốt 01/10/2026, docs/QUY_TAC_REF_NHAN_VAT_TUOI_CAM_XUC.md §12): dung sai tuổi NHÌN THẤY.
+    <=59: ±4 · 60–69: ±4 · 70–79: ±5 · >=80: ±5. Thay cho ±12 cũ (cho lọt REF trẻ hơn 10 tuổi)."""
+    return 4 if int(age) < 70 else 5
+
+
+def phan_loai_tuoi(seen, exp):
+    """PASS (trong dung sai) · BORDERLINE (lệch thêm <=3 → chỉ cảnh báo) · FAIL (→ REGENERATE).
+    VD script 67: PASS 63–71 theo ±4; luật gốc ghi PASS 64–70, BORDERLINE 61–63/71–73, FAIL ≥ lệch 8+."""
+    d = abs(int(seen) - int(exp))
+    tol = age_tol(exp)
+    return "PASS" if d <= tol else ("BORDERLINE" if d <= tol + 3 else "FAIL")
 
 
 # ---------------------------------------------------------------- THANG DỰ PHÒNG VISION
@@ -171,8 +185,12 @@ def qc_char(c, base):
     flags = []
     if age is None:
         return {"name": c["name"], "flags": ["VISION_FAIL"], "raw": raw}
-    if exp_age is not None and abs(age - exp_age) > AGE_TOL:
-        flags.append(f"AGE lệch: nhìn ~{age}, thiết kế {exp_age} (>±{AGE_TOL})")
+    if exp_age is not None:
+        pl = phan_loai_tuoi(age, exp_age)
+        if pl == "FAIL":
+            flags.append(f"AGE FAIL → REGENERATE: nhìn ~{age}, script {exp_age} (delta {age - exp_age:+d}, dung sai ±{age_tol(exp_age)})")
+        elif pl == "BORDERLINE":
+            raw.append(f"BORDERLINE tuổi: nhìn ~{age} vs script {exp_age} (dung sai ±{age_tol(exp_age)})")
     if exp_gender and gender != exp_gender:
         flags.append(f"GIỚI sai: nhìn {gender}, thiết kế {exp_gender}")
     if exp_age is not None and exp_age >= 18 and adult is False:
@@ -193,8 +211,13 @@ def main():
         # exit 2 khi lệch — make_video.masters_from_bible (Lane G, 2026-09-20) đọc mã thoát để quyết vẽ lại master.
         # Trước đây luôn exit 0 (chỉ in cảnh báo) → máy gọi không biết master sai.
         lech = False
-        if args.age and age and abs(age - args.age) > AGE_TOL:
-            print(f"  ⚠ lệch tuổi so thiết kế {args.age}"); lech = True
+        if args.age and age:
+            pl = phan_loai_tuoi(age, args.age)
+            print(f"  AGE_QC: SCRIPT_AGE={args.age} VISUAL={age} DELTA={age - args.age:+d} → {pl}")
+            if pl == "FAIL":
+                print(f"  ⚠ AGE FAIL → REGENERATE (dung sai ±{age_tol(args.age)}; cấm tự hợp lý hoá 'người Nhật trông trẻ')"); lech = True
+            elif pl == "BORDERLINE":
+                print("  ⚠ BORDERLINE — cân nhắc vẽ lại, chưa bắt buộc")
         if args.gender and gender and str(gender)[:1].upper() != str(args.gender)[:1].upper():
             print(f"  ⚠ sai giới so thiết kế {args.gender}"); lech = True
         if args.age and adult is False:

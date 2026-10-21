@@ -2,6 +2,16 @@
 
 > Lane `teinengo-real`. File do tool YT-TITLE-RESEARCH TỰ XUẤT từ repo (E:\CLAUDE\YOUTUBE\YT-TITLE-RESEARCH). Luật ở đây CHỈ áp cho kênh này, không dùng cho kênh khác.
 
+## ⛔ 2026-10-14 — QUY TẮC BẮT BUỘC LANE F (anh duyệt, THẮNG các luật dưới khi mâu thuẫn)
+Nguồn: `E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\results\laneF_quy_tac_bat_buoc_2026-10-14\QUY_TAC_BAT_BUOC_LANE_F.md` §3 + §7.
+- Khuôn BẮT BUỘC: `【漫画】{tuổi}で{lựa chọn A}した俺…{mốc thời gian / đồng kỳ chọn B}、{hệ quả treo}` — tiêu đề là CHÍNH lựa chọn của tập.
+  Mẫu thắng của kênh: `【漫画】60歳で再雇用を選んだ俺…` (ep02) · `【漫画】59歳で早期退職した俺…退職金2000万円で安心した翌月、計算が崩れた` (ep10).
+- Vế đầu (tuổi + lựa chọn A) trọn trong ~20 ký tự đầu. Vế sau = đồng kỳ chọn B + 差, HOẶC niềm tin + 計算が崩れた; vẫn treo ẩn số.
+- Độ dài 35–48 ký tự KỂ CẢ 【漫画】. Số viết chữ số.
+- **Luật 3 dưới (cấm số 退職金 ≥1500万) BỎ cho Lane F** khi con số là cái giá của lựa chọn. **Luật 4 (cấm 独身/元部長)**: không cấm, chỉ không ưu tiên.
+- CẤM tiêu đề cảm xúc không có lựa chọn (kiểu ep06 「退職金が減っても、60代から人生が楽になった本当の理由」). CẤM 「〜7つのこと」「N選」 nếu kịch bản không đếm đủ N mục.
+- Mọi vế grep được trong `script.txt` + có trong hook đã khoá; tuổi trên tiêu đề khớp kịch bản (ep13 ghi 40歳 nhưng kịch bản 48 tuổi = lỗi).
+
 ## Độ dài (ký tự, KHÔNG tính prefix/suffix cố định)
 - mục tiêu 40 · tối đa 48 · tối thiểu 30 · cảnh báo phần đầu 26
 - prefix cố định: `【漫画】` · suffix cố định: ``

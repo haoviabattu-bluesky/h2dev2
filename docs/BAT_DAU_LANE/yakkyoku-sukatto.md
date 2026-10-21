@@ -4,6 +4,17 @@
 > `@lane:yakkyoku-sukatto`, rồi làm ĐÚNG THỨ TỰ mục 4. Không tìm hiểu lại từ đầu, không đoán. File này là "cửa vào";
 > chi tiết vận hành nằm ở SOP (mục 4 giai đoạn 2 sẽ viết). Cập nhật mục 2 mỗi khi trạng thái đổi.
 
+## ⚡ ĐỌC NHANH — "làm tập tiếp theo" (lane đã setup xong, mục 2 TRẠNG THÁI đã ✅ hạ tầng)
+> ⭐ **2026-09-30 anh chốt — THẮNG mọi chỉ dẫn soát ChatGPT web bên dưới:** hook = Fable 5.1 viết 2 phương án theo luật hook 21/10 (bám sát cấu trúc hook video gốc: `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`);
+> `make_video --den B3G` khoá xong là DỪNG, tự giao máy 3/anh soát (D=`Chờ kiểm tra kịch bản`). Anh sửa xong (D=`Đã sửa kịch bản`) →
+> đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\NHAN_KICH_BAN_MAY3.md` để nhận + làm hook/ảnh/giao máy 2.
+
+CHỈ cần đọc: mục 4 **Giai đoạn 3** (lệnh chạy đúng thứ tự) + đúng file mục 4 tự trỏ tới (thường chỉ
+`COMMENT_INSIGHT.md`). KHÔNG cần mở lại toàn bộ mục 3 TÀI LIỆU, SOP đầy đủ, `CHANNEL_DNA.md`,
+`profile.json` — các file đó là cho **Giai đoạn 2 (setup 1 LẦN)** hoặc được chính `pipeline\*.py` tự
+đọc khi chạy lệnh, không phải để Claude nạp vào context mỗi tập. Chỉ mở thêm khi lệnh báo lỗi cần
+quyết định thủ công (thiếu context, xung đột dữ liệu...).
+
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
@@ -56,6 +67,7 @@
 - ✅ 2026-09-25 08:31 TẬP 2 `ep02-mae-no-mise` xong phần máy 1 + ĐÃ GIAO máy 2: kịch bản LOCK PASS (Sol PASS lần 2 sau 1 vòng viec_tay, 5.690 chữ ≈ 18') · vai.txt 300 câu/8 vai · 8 master _ref_<id> · 135 prompt @CAST · hook 6 ảnh + 6 clip Grok (QC PASS hết) + 4 SFX + HOOK_TAP.md PASS · job `FlowHandoff_local\jobs\ep02-mae-no-mise` · sheet C3/D3=Done/H3=cần ảnh · TITLE tự gọi (title_auto BẬT) · máy 2 trả ĐÚNG 2 file final.mp4 (có hook, B8 tự ghép) + final-vietsub.mp4.
 - ✅ 2026-09-25 12:16 vá lỗi hạ tầng máy 2 báo ở ep02 (`YEU_CAU_MAY1_..._thieu_hook_promise.md`): thêm `promise.txt` vào `HOOK_FILES_GOC` (`dong_goi_may2.py`, lỗi chung MỌI tập có `hook\promise.txt` — thiếu file này làm B4 báo HOOK_STALE oan) · chép lại đúng file gốc vào job ep02 đã giao (mã băm khớp `hook_lock.json`, KHÔNG khoá lại hook) · vá `nghiemthu_flow_tool.py` (chuẩn hoá cột `strategy` tránh báo "tụt" oan + `--giao` luôn xuất `.png` tránh app ZIP ra `.jpg` bị pipeline tưởng chưa vẽ) · `--bundle` lại + trả lời `TRA_LOI_MAY1_...md`.
 - ✅ 2026-09-25 13:10 TẬP 3 `ep03-taifu-no-yoru` xong phần máy 1 + ĐÃ GIAO máy 2: kịch bản ESCALATE 1 lần (patch máy claude -p hết quota tuần, tự sửa tay lớp 3 qua 5 vòng Sol FIX rồi PASS×2, 5.962 chữ ≈ 18,8') · characters.json 8 vai (viết sau khi script khoá) · vai.txt 281 câu/8 vai · hook_storyboard.py chạy `--force` để sinh lại đúng ngoại hình shu (storyboard cũ sinh TRƯỚC characters.json nên vẽ nhầm "nhân viên trẻ mặc tạp dề") · 8 master _ref_<id> (đã soi mắt từng ảnh, đúng thiết kế) · 141 prompt @CAST (B5W+B5P) · hook 6 ảnh (1 lượt vẽ lại vì thiếu cảm xúc lo lắng) + 6 clip Grok (3 lượt vẽ lại: lộ logo trên biển hiệu, sai hành động tay cầm điện thoại, Grok lạc đề ra cảnh chợ ngoài trời — QC PASS hết sau sửa) + 4 SFX ai33 + HOOK_TAP.md PASS · job `FlowHandoff_local\jobs\K-yakkyoku-sukatto\ep03-taifu-no-yoru` · sheet C4/D4=Done/H4=cần ảnh (141 ảnh, ~14.790đ) · TITLE tự gọi (title_auto BẬT) · máy 2 trả ĐÚNG 2 file final.mp4 (có hook, B8 tự ghép) + final-vietsub.mp4.
+- ⚠️ 2026-09-30 KÊNH 4 VIDEO CHỈ 8 VIEW, trong khi kênh cùng ngách 白衣のうしろ姿 (@hakuiushiro, lập 20/09) có 80.378 view/5 video — so sánh + chẩn đoán + dữ liệu cho dự án TITLE: `E:\CLAUDE\YOUTUBE\h2dev\docs\channel_dna\hakuiushiro\SO_SANH_LANE_K.md`. Chờ anh xem Studio → Tiếp cận (lượt hiển thị) để chốt lỗi tài khoản hay lỗi gói đăng.
 - ❌ (lịch sử, đã làm) profile JSON · giọng (nghi vấn đa giọng ở mục 1)
   · char-rate · SOP · danh sách tập · bất kỳ kịch bản nào. Anh mới duyệt SETUP KÊNH, chưa ra lệnh giai đoạn 2
   — tab mở phiên mới phải HỎI trước khi bắt đầu mục 4.
@@ -80,8 +92,8 @@
    (luồng lean, hook bắt buộc, cổng S1L) — lane K nên khai `flow="lean"` ngay từ đầu như F/G/satori thay vì
    luồng cũ, vì mọi lane mới sau 2026-09-20 đều dùng lean.
 
-⚠️ Hook 20–30s bắt buộc trước S2 (video sinh Grok/Veo, không phải ảnh render trừ khi khai `visual_exception`) —
-xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b + `docs/QUY_TAC_VIDEO_HOOK.md`. Cổng S1L (hook+gói đăng+
+⚠️ Hook bắt buộc khoá trước S2 (video sinh, không phải ảnh render trừ khi khai `visual_exception`) — Hook (21/10/2026):
+bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn), dài ≈ hook gốc — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`; dựng hook: `docs/QUY_TAC_VIDEO_HOOK.md`. Cổng S1L (hook+gói đăng+
 promise.txt) chặn CỨNG trước khi viết — không né được.
 
 ## 4. QUY TRÌNH — làm bước nào trước
@@ -118,7 +130,7 @@ promise.txt) chặn CỨNG trước khi viết — không né được.
    thuốc hư cấu theo đúng disclaimer kênh mẫu).
 3. `py -3.13 -X utf8 pipeline\make_video.py --profile yakkyoku-sukatto --slug ep<NN>-<slug>` — luồng lean, chạy tới
    mốc anh cho phép (mặc định theo các lane khác: kịch bản + QC, chưa ảnh/video).
-4. Xong tập (phần máy 1) = **GHI SHEET NGAY**: tab `K-yakkyoku-sukatto` cột D = `Done`, cột H = `cần ảnh (N ảnh,
+4. Xong tập (phần máy 1) = **GHI SHEET NGAY**: tab `K-yakkyoku-sukatto` cột D = `Đã giao máy 2` (+ K lệnh máy 2), cột H = `cần ảnh (N ảnh,
    ~Xđ)` khi tới lượt giao máy 2 — `pipeline\dong_goi_may2.py --job` tự ghi cả hai, KHÔNG hỏi "anh bấm giao".
 5. Bước 3 (ghép video) = máy 2 nhận qua `E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\results\video_render\yakkyoku-sukatto\<slug>\` (nguồn chân
    lý = dòng TRẢ HÀNG trong `_BANGIAO.txt`). Claude Code KHÔNG render (trừ hook: máy 1 được vẽ ảnh hook + sinh
@@ -138,6 +150,6 @@ promise.txt) chặn CỨNG trước khi viết — không né được.
   thật, không bịa số vô lý.
 
 ## 6. CỘT SHEET TAB `K-yakkyoku-sukatto` (A→K, giống mọi lane khác)
-A STT (= số ep) · B NỘI DUNG · C FOLDER · D KỊCH BẢN (`Done` khi xong máy 1) · E TITLE-DESCRIPTION · F TAGS
+A STT (= số ep) · B NỘI DUNG · C FOLDER · D KỊCH BẢN (tool tự ghi theo docsTRANG_THAI_COT_D_K.md; xong máy 1 = `Đã giao máy 2`) · E TITLE-DESCRIPTION · F TAGS
 (không làm marker) · G THUMBNAIL · H STATUS-IMG (`cần ảnh (N ảnh, ~Xđ)` khi tới lượt giao máy 2) · I VIDEO ·
 J LIST · K GHI CHÚ.

@@ -65,20 +65,40 @@ def neo_lai_theo_cau(tap: Path) -> bool:
     f = hook / "hook_timeline.json"
     tl = json.loads(f.read_text(encoding="utf-8"))
     shots = tl["shots"]
-    if not shots or not all("cau" in s for s in shots):
+    # 2026-10-12 (Lane L ep15): shot LẶNG (không `cau`, có `lang_s`) — giọng thân đã có sẵn khoảng lặng đó
+    # (tts_voicevox chèn theo cau_vai.lang_hook) → shot lặng kết thúc ngay trước câu kế, shot có lời trước nó dừng ở đầu khoảng lặng.
+    if not shots or not all("cau" in s or s.get("lang_s") for s in shots):
         return False
+    if "cau" not in shots[-1]:
+        sys.exit("✗ hook: shot cuối là shot lặng — shot lặng phải đứng trước 1 câu")
     rf = tap / "voice_roles.json"
     if not rf.exists():
         sys.exit(f"✗ hook neo theo câu cần {rf} (B4 lồng tiếng đa giọng chưa chạy)")
     roles = {int(r["i"]): r for r in json.loads(rf.read_text(encoding="utf-8"))}
+    def _lang_sau(k):   # tổng lang_s các shot lặng liền sau shot k
+        x = 0.0
+        for s2 in shots[k + 1:]:
+            if "cau" in s2:
+                break
+            x += float(s2["lang_s"])
+        return x
     truoc = 0
     for k, s in enumerate(shots):
+        s["t0"] = 0.0 if k == 0 else shots[k - 1]["t1"]
+        if "cau" not in s:
+            if truoc + 1 not in roles:
+                sys.exit(f"✗ hook cảnh {s.get('n')}: shot lặng không có câu theo sau")
+            s["t1"] = round(roles[truoc + 1]["start"] - 0.1 - _lang_sau(k), 3)
+            continue
         a, b = int(s["cau"][0]), int(s["cau"][1])
         if a != truoc + 1 or b < a or b not in roles:
             sys.exit(f"✗ hook cảnh {s.get('n')}: cau={s['cau']} không nối tiếp cảnh trước / vượt số câu thân")
         truoc = b
-        s["t0"] = 0.0 if k == 0 else shots[k - 1]["t1"]
-        s["t1"] = _giua(roles, b)
+        sau = _lang_sau(k)
+        if (sau or s.get("nghi_sau_s")) and b + 1 in roles:   # khoảng lặng thêm sau câu b → cắt ngay trước câu kế / shot lặng
+            s["t1"] = round(roles[b + 1]["start"] - 0.1 - sau, 3)
+        else:
+            s["t1"] = _giua(roles, b)
         if s["t1"] - s["t0"] < 0.5:
             sys.exit(f"✗ hook cảnh {s.get('n')} chỉ {s['t1'] - s['t0']:.2f}s — gộp câu lại ở máy 1")
     for x in tl.get("sfx", []):
@@ -136,7 +156,40 @@ def dung(tap: Path, xem_thu: bool, tate=None, bubble=None):
         ins += ["-i", str(c)]
         vf.append(f"[{i}:v]setpts={k:.4f}*PTS,{COVER},trim=duration={d},setpts=PTS-STARTPTS[v{i}]")
     n = len(shots)
+    # 2026-10-10 (Lane O ep05, anh: giới thiệu nhân vật bằng thẻ chữ trên ảnh, không đọc): shot có `the_ten.file`
+    # = thẻ tên động nền trong suốt (webm VP9 alpha, máy 1 render sẵn) → chồng từ đầu shot (t0 + tre_s).
+    # Giải mã bằng libvpx-vp9 (bộ giải mã mặc định bỏ alpha → ra hộp đen). Cùng cách với clip xem thử máy 1.
+    the = [s for s in shots if (s.get("the_ten") or {}).get("file")]
     vf.append("".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0[vh0]")
+    if the:
+        # 2026-10-12 (Lane L ep15, 4 thẻ, thẻ thứ 3–4 ở giây 30–40): chồng NHIỀU thẻ trong CÙNG một đồ thị ffmpeg làm thẻ
+        # muộn không hiện / ffmpeg treo (đo thật). → dựng hình clip trước ra file tạm, rồi chồng TỪNG thẻ một lượt riêng.
+        tam = hook / "_hinh_hook_tam.mp4"
+        subprocess.run([FF, "-y", "-v", "error", *ins, "-filter_complex", ";".join(vf), "-map", "[vh0]",
+                        "-c:v", "libx264", "-preset", "medium", "-crf", "16", "-pix_fmt", "yuv420p", str(tam)], check=True)
+        for j, s in enumerate(the):
+            f = hook / s["the_ten"]["file"]
+            if not f.exists():
+                sys.exit(f"✗ thiếu thẻ tên {f} — máy 1 phải gửi kèm hook/the_ten/")
+            t = float(s["t0"]) + float(s["the_ten"].get("tre_s") or 0)
+            # 10/10 (Lane O ep06: thẻ 6s tràn sang cảnh sau, chồng thẻ người khác): thẻ dài hơn phần cảnh còn lại → cắt ở
+            # cuối cảnh + mờ dần 0,35s. Thẻ trôi sang cảnh sau là nằm đè người khác.
+            # 12/10 (Lane L ep15): thẻ khai `den_shot` → giữ tới hết cảnh đó (đóng băng + cảnh nhân vật nói ngay sau)
+            den = next((x for x in shots if x.get("n") == s["the_ten"].get("den_shot")), s)
+            L = min(probe(f)[0], float(den["t1"]) - t)
+            # 17/10 (Lane M ep15): `trim` trong nhánh thẻ làm ffmpeg 7.1 TREO vĩnh viễn ở giây thẻ bắt đầu (0% CPU, đo thật)
+            # → bỏ trim, chỉ mờ dần alpha về 0 (sau mốc cắt thẻ trong suốt hoàn toàn = như đã cắt).
+            cat = (f"fade=t=out:st={max(0, L - 0.35):.3f}:d=0.35:alpha=1,"
+                   if L < probe(f)[0] - 0.05 else "")
+            # 16/10 (Lane L ep19, anh: motion thẻ tên bị GIẬT): webm 30fps tb 1/1000 (pts 33/67ms làm tròn) chồng lên video 30fps
+            # → overlay lấy lệch khung (lặp 1 khung, bỏ 1 khung). Ép thẻ về đúng lưới fps của video TRƯỚC khi dời giờ.
+            ra = hook / f"_hinh_hook_tam{j % 2}.mp4"
+            subprocess.run([FF, "-y", "-v", "error", "-i", str(tam), "-c:v", "libvpx-vp9", "-i", str(f), "-filter_complex",
+                            f"[1:v]scale={W}:{H},format=yuva420p,{cat}setpts=PTS-STARTPTS,fps={fps:g},setpts=PTS+{t:.3f}/TB[tt];"
+                            f"[0:v][tt]overlay=0:0:eof_action=pass[v]", "-map", "[v]", "-c:v", "libx264", "-preset", "medium",
+                            "-crf", "16", "-pix_fmt", "yuv420p", str(ra)], check=True)
+            tam = ra
+        ins, vf, n = ["-i", str(tam)], [f"[0:v]{COVER}[vh0]"], 1
     if bubble and not xem_thu:
         # Lane K (2026-09-24): thân video dùng hộp lời kể + BÓNG THOẠI có đuôi (bong_thoai.py) → hook cùng kiểu.
         # Vị trí mặt: hỏi vision trên chính ảnh hook (hook/img/NNN.png), cast lấy từ shot["cast"] của timeline.
@@ -176,11 +229,9 @@ def dung(tap: Path, xem_thu: bool, tate=None, bubble=None):
     ai = n
     ins += ["-i", str(voice)]
     au, mix = [f"[{ai}:a]apad=whole_dur={T}[a0]"], ["[a0]"]
-    for j, s in enumerate(tl.get("sfx", []), 1):
-        ins += ["-i", str(hook / s["file"])]
-        ms = int(s["t"] * 1000)
-        au.append(f"[{ai + j}:a]volume={s['vol']},adelay={ms}|{ms}[a{j}]"); mix.append(f"[a{j}]")
-    j = len(tl.get("sfx", [])) + 1
+    # 01/10/2026 (anh chốt, MỌI lane): CẤM hiệu ứng âm thanh đồ vật (chuông cửa, máy khâu, bước chân…) — hook chỉ có
+    # NHẠC NỀN (`nen`). `tl["sfx"]` còn sót trong timeline cũ thì BỎ QUA. docs/QUY_TAC_HOOK_DAI_VA_NHAC_NEN.md
+    j = 1
     nen = tl.get("nen")
     if nen:
         ins += ["-stream_loop", "-1", "-i", str(hook / nen["file"])]

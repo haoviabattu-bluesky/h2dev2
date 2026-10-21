@@ -65,7 +65,7 @@ import sheet_tab                 # noqa: E402  (tên tab {Lane}-{kênh})
 
 SHEET_ID = "1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU"
 TAB_MAC_DINH = "Satori-Lopezzapa68"     # tab đổi tên 2026-09-24 theo {Lane}-{kênh}
-LANE_MAC_DINH = "satori-jp-obaa"
+LANE_MAC_DINH = ""   # 17/10/2026: lane Satori (satori-jp-obaa) đã BỎ — không còn profile mặc định, phải khai --profile.
 BAO_CAO_DIR = ROOT / "BAO_CAO_BUOC3"
 KHOANG_NGHI = (10, 30, 90)          # loại A: nghỉ giữa các lần thử
 COT_H_TIEU_DE = "GHI CHÚ"           # cột H phải đúng tiêu đề này trước khi ghi (rào, copy từ ghi_don_buoc3)
@@ -205,6 +205,8 @@ def viet_bao_cao(tab, stt, slug, bat_dau, ket_thuc, ket_qua, muc1, muc2, muc3=No
 
 
 def main():
+    if not LANE_MAC_DINH:
+        raise SystemExit("chay_buoc3.py là bộ điều phối riêng lane Satori — lane đã BỎ 17/10/2026, không chạy nữa.")
     ap = argparse.ArgumentParser()
     ap.add_argument("--tab", default=TAB_MAC_DINH, help=f"tên tab kênh (mặc định {TAB_MAC_DINH})")
     ap.add_argument("--dong", required=True, type=int, help="STT ở cột A (KHÔNG phải số dòng sheet)")

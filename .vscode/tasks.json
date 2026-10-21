@@ -1,0 +1,37 @@
+{
+  // Ctrl+Shift+P → "Tasks: Run Task" → chọn task. Mỗi tập = 1 claude -p mới (tools\chay_lo_tap.py).
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Chạy lô tập (THẬT)",
+      "type": "process",
+      "command": "py",
+      "args": ["-3.13", "-X", "utf8", "${workspaceFolder}\\tools\\chay_lo_tap.py",
+               "--profile", "${input:lane}", "--tu", "${input:tu}", "--den", "${input:den}"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "panel": "dedicated", "reveal": "always", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Chạy lô tập (XEM TRƯỚC --dry)",
+      "type": "process",
+      "command": "py",
+      "args": ["-3.13", "-X", "utf8", "${workspaceFolder}\\tools\\chay_lo_tap.py",
+               "--profile", "${input:lane}", "--tu", "${input:tu}", "--den", "${input:den}", "--dry"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "panel": "dedicated", "reveal": "always", "clear": true },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "lane",
+      "type": "pickString",
+      "description": "Lane",
+      "options": ["teinengo-real", "teinengo-tanoshimi", "kokoro-kazoku", "sengoku-uragawa", "teinengo-fuufu",
+                  "yakkyoku-sukatto", "shakai_no_naze", "teinengo-anaba", "senior_korekara", "kaigo-sukatto"]
+    },
+    { "id": "tu", "type": "promptString", "description": "Từ STT (cột A)" },
+    { "id": "den", "type": "promptString", "description": "Đến STT (gồm cả)" }
+  ]
+}

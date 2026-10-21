@@ -112,23 +112,28 @@
     "char_rate_from": "video thật ep01-tantou-janai"
   },
   "script": {
+    "the_viet": "~/.claude/skills/youtube-kich-ban/market/THE_VIET_STORY.md",
     "skill": "skills/youtube-script/SKILL.md",
     "target_minutes": 17.5,
     "_target_minutes_note": "4 video dài kênh mẫu: 16,2' · 17,5' · 18,1' · 19,1' (video 307k view = 17,5').",
     "structure": "shokuba_kuchiguse7",
-    "structure_block": "video kể chuyện manga NƠI LÀM VIỆC (nhà thuốc 調剤薬局), người kể NGÔI 3 gọi nhân vật chính là「彼」/「その男」, xen CÂU NỘI TÂM ngôi 1「俺…」của nhân vật chính (câu độc lập, KHÔNG ngoặc). KHÔNG có tiêu đề chương/số thứ tự trong bản đọc. 7 chặng:\n   · HOOK (≈3%): câu đầu tiên là CÂU CỬA MIỆNG của nhân vật chính, đứng riêng trong「」(vd kênh mẫu 「じゃあ、辞めます」). Rồi 1–2 câu người kể: câu đó là 口ぐせ của một dược sĩ + anh ta đã dùng nó để qua chuyện bao năm. Kết hook bằng câu khung 「これは、この男が〜までの話だ。」(nói ra điểm đến, KHÔNG nói kết quả). Không chào hỏi, không tự giới thiệu kênh.\n   · CON NGƯỜI ĐÓ (≈13%): nhà thuốc nhỏ cụ thể (khu dân cư, bao nhiêu người: 店長・薬剤師・パート・事務さん), nhân vật chính làm ở đây bao lâu, THÓI QUEN XẤU thể hiện bằng HÀNH VI đời thường (đến đúng giờ, về đúng giờ, không đụng việc người khác) + câu nội tâm tự biện minh「俺は〜」. Người kể KHÔNG phán xét, chỉ tả.\n   · LẶP CÂU CỬA MIỆNG (≈37%): câu cửa miệng được dùng 2 lần trong 2 tình huống NGHIỆP VỤ khác nhau (trực chủ nhật・在宅訪問・giao ca・kiểm kho・ca đóng cửa・hướng dẫn người mới…), mỗi lần nặng hơn. Mỗi lần: có người nhờ → nói câu cửa miệng → được nhượng bộ → NGƯỜI KHÁC lặng lẽ gánh thay (người kể cho khán giả thấy cái giá mà nhân vật chính không thấy: 店長 ăn trưa lúc 3 giờ, 事務さん về muộn, con của 店長 chờ ở sân bóng). Nhân vật chính không nhận ra.\n   · NGƯỜI ĐỐI LẬP (≈16%): xuất hiện 1 người làm việc tử tế, lặng lẽ nhận phần việc khó (dược sĩ mới vào giữa chừng / đồng nghiệp trẻ / người giao hàng…). Bệnh nhân và đồng nghiệp dần tìm đến người này. Nhân vật chính coi thường họ trong nội tâm.\n   · LẦN CUỐI + HẬU QUẢ (≈17%): nhân vật chính dùng câu cửa miệng lần cuối trong chuyện quan trọng (thăng chức, hợp đồng, phỏng vấn) — lần này người kia chỉ đáp NGẮN, bình thản, bằng cơ chế tổ chức (「分かりました。退職届を出しておいてください」「次の契約は更新しません」). KHÔNG ai mắng, KHÔNG ai trả thù, KHÔNG cảnh hả hê. Hậu quả đến từ hệ thống/quy định có thật.\n   · SAU ĐÓ CỦA ANH TA (≈6%): nơi mới / buổi phỏng vấn mới — câu cửa miệng không còn tác dụng (vd 「じゃあ…」rồi không nói tiếp được). Anh ta vẫn nghĩ mình không sai.\n   · SAU ĐÓ CỦA NHÀ THUỐC (≈8%): nhà thuốc cũ ấm lại bằng chi tiết nhỏ cụ thể (店長 về kịp xem con đá bóng, 事務さん kịp bữa tối, パート được nghỉ trưa đủ). CÂU CUỐI CÙNG lặp lại đúng câu cửa miệng trong ngữ cảnh 'ở đó không còn ai nói câu ấy nữa' (vd 「じゃあ、辞めます。あの店でその言葉を聞く人は、もういない。」).\n   LUẬT VIẾT BẮT BUỘC (máy đếm câu để gắn giọng từng vai): mỗi câu thoại là MỘT câu riêng chỉ gồm「…」, KHÔNG dính lời dẫn trong cùng câu (cấm「…」と彼は言った / 彼は「…」と言った — muốn nói ai nói thì viết câu người kể riêng TRƯỚC hoặc SAU). Câu nội tâm「俺は〜」viết riêng 1 câu, không ngoặc. NGƯỜI NÓI PHẢI RÕ: trước mỗi lượt thoại mới (đổi người nói) có câu người kể nêu ai lên tiếng hoặc ai đang ở đó (vd「事務さんが受話器を置いて振り向いた。」rồi mới tới「…」) — máy gắn giọng và bóng thoại dựa vào đó, thoại không rõ chủ là lỗi. Chi tiết nghiệp vụ dược (処方箋, 在宅, 管理薬剤師, 調剤報酬, 当番…) phải đúng như tư liệu; nhân vật/nhà thuốc hư cấu.",
+    "structure_block": "video kể chuyện manga NƠI LÀM VIỆC (nhà thuốc 調剤薬局), người kể NGÔI 3 gọi nhân vật chính là「彼」/「その男」, xen CÂU NỘI TÂM ngôi 1「俺…」của nhân vật chính (câu độc lập, KHÔNG ngoặc). KHÔNG có tiêu đề chương/số thứ tự trong bản đọc. 7 chặng:\n   · HOOK: đã KHOÁ TRƯỚC — bám sườn + động cơ chính của hook video gốc (docs/HOOK_CAU_TRUC/00_CHUNG.md). Thân bài nối tiếp hook đã khoá, KHÔNG viết lại/lặp hook.\n   · CON NGƯỜI ĐÓ (≈13%): nhà thuốc nhỏ cụ thể (khu dân cư, bao nhiêu người: 店長・薬剤師・パート・事務さん), nhân vật chính làm ở đây bao lâu, THÓI QUEN XẤU thể hiện bằng HÀNH VI đời thường (đến đúng giờ, về đúng giờ, không đụng việc người khác) + câu nội tâm tự biện minh「俺は〜」. Người kể KHÔNG phán xét, chỉ tả.\n   · LẶP CÂU CỬA MIỆNG (≈37%): câu cửa miệng được dùng 2 lần trong 2 tình huống NGHIỆP VỤ khác nhau (trực chủ nhật・在宅訪問・giao ca・kiểm kho・ca đóng cửa・hướng dẫn người mới…), mỗi lần nặng hơn. Mỗi lần: có người nhờ → nói câu cửa miệng → được nhượng bộ → NGƯỜI KHÁC lặng lẽ gánh thay (người kể cho khán giả thấy cái giá mà nhân vật chính không thấy: 店長 ăn trưa lúc 3 giờ, 事務さん về muộn, con của 店長 chờ ở sân bóng). Nhân vật chính không nhận ra.\n   · NGƯỜI ĐỐI LẬP (≈16%): xuất hiện 1 người làm việc tử tế, lặng lẽ nhận phần việc khó (dược sĩ mới vào giữa chừng / đồng nghiệp trẻ / người giao hàng…). Bệnh nhân và đồng nghiệp dần tìm đến người này. Nhân vật chính coi thường họ trong nội tâm.\n   · LẦN CUỐI + HẬU QUẢ (≈17%): nhân vật chính dùng câu cửa miệng lần cuối trong chuyện quan trọng (thăng chức, hợp đồng, phỏng vấn) — lần này người kia chỉ đáp NGẮN, bình thản, bằng cơ chế tổ chức (「分かりました。退職届を出しておいてください」「次の契約は更新しません」). KHÔNG ai mắng, KHÔNG ai trả thù, KHÔNG cảnh hả hê. Hậu quả đến từ hệ thống/quy định có thật.\n   · SAU ĐÓ CỦA ANH TA (≈6%): nơi mới / buổi phỏng vấn mới — câu cửa miệng không còn tác dụng (vd 「じゃあ…」rồi không nói tiếp được). Anh ta vẫn nghĩ mình không sai.\n   · SAU ĐÓ CỦA NHÀ THUỐC (≈8%): nhà thuốc cũ ấm lại bằng chi tiết nhỏ cụ thể (店長 về kịp xem con đá bóng, 事務さん kịp bữa tối, パート được nghỉ trưa đủ). CÂU CUỐI CÙNG lặp lại đúng câu cửa miệng trong ngữ cảnh 'ở đó không còn ai nói câu ấy nữa' (vd 「じゃあ、辞めます。あの店でその言葉を聞く人は、もういない。」).\n   LUẬT VIẾT BẮT BUỘC (máy đếm câu để gắn giọng từng vai): mỗi câu thoại là MỘT câu riêng chỉ gồm「…」, KHÔNG dính lời dẫn trong cùng câu (cấm「…」と彼は言った / 彼は「…」と言った — muốn nói ai nói thì viết câu người kể riêng TRƯỚC hoặc SAU). Câu nội tâm「俺は〜」viết riêng 1 câu, không ngoặc. NGƯỜI NÓI PHẢI RÕ: trước mỗi lượt thoại mới (đổi người nói) có câu người kể nêu ai lên tiếng hoặc ai đang ở đó (vd「事務さんが受話器を置いて振り向いた。」rồi mới tới「…」) — máy gắn giọng và bóng thoại dựa vào đó, thoại không rõ chủ là lỗi. Chi tiết nghiệp vụ dược (処方箋, 在宅, 管理薬剤師, 調剤報酬, 当番…) phải đúng như tư liệu; nhân vật/nhà thuốc hư cấu.",
     "mode": "fiction_facts",
     "_mode_note": "Nhân vật + nhà thuốc hư cấu; QUY ĐỊNH/nghiệp vụ dược (giờ làm, 管理薬剤師, 在宅, hợp đồng, 36協定…) phải có trong series_ctx.txt kèm nguồn.",
     "ctx_label": "TƯ LIỆU NGHIỆP VỤ NHÀ THUỐC NHẬT (quy định/chế độ/quy trình PHẢI lấy đúng từ đây, kèm nguồn; nhân vật và nhà thuốc là hư cấu)",
     "engine": "claude_p",
     "brain_model": "claude-fable-5-1",
+    "_brain_model_note": "2026-10-05 anh chốt: S2 + hook viết = Fable 5.1 mọi lane (B3R vẫn Opus 5.5, vá = Opus 5). Cũ 2026-09-29: S2 viết + B3R nghiệm thu đều dùng Opus 5.5 cố định (thay Fable 5.1, không đổi qua lại theo quota nữa).",
     "patch_model": "claude-opus-5",
-    "final_review_model": "claude-opus-5",
-    "sol_qc": true,
+    "_patch_model_note": "S4 LUÔN Opus 5 (khác Opus 5.5 ở brain_model) — đã A/B thật 2026-09-22, giữ nguyên.",
+    "final_review_model": "claude-opus-5-5",
+    "sol_qc": false,
+    "_sol_qc_note": "2026-09-29 anh chot TAT cho toan bo (khong con lane suc khoe Lane E bat buoc giu lop nay nua). S5 Sol trong lean_script.py se bo qua, khoa PASS thang sau S3.",
     "flow": "lean",
     "sol_pass_need": 2,
     "budget": {
-      "tol": 0.08,
+      "tol": 0.12,
+      "_tol_note": "0.08→0.10→0.12 ngày 2026-09-27: ep06 2 lần NÉN đều bị máy TỪ CHỐI vì làm mất số liệu duy nhất (ví dụ 三人) khi cố cắt ~500 chữ; ep07 sau nhiều vòng FIX hợp lệ (thêm chi tiết Sol yêu cầu: điều kiện nhân sự, sửa mâu thuẫn nghiệp vụ) lại vượt trần ở 0.10. Nới tiếp lên 0.12 = đúng mức Lane L (shakai_no_naze) đang dùng, thay vì ép cắt nội dung vừa được Sol yêu cầu thêm vào.",
       "sections": [
         {
           "label": "フック（口ぐせ＋これは〜までの話だ）",
@@ -197,21 +202,55 @@
       "repeat_title_quote": true
     },
     "hook": {
+      "the_ten": {
+        "bat": true,
+        "kieu": "bang_ten",
+        "mau": "#1f8a8a",
+        "mau_phu": "#e4572e",
+        "vi_tri": "tren_trai",
+        "dur_s": 6.0,
+        "toi_da": 4,
+        "_note": "10/10 anh chốt: nhân vật chính trong hook giới thiệu bằng THẺ TÊN ĐỘNG (tên·tuổi·nghề); 14/10 anh sửa: lời hook ĐƯỢC đọc tên-tuổi song song thẻ — docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md, pipeline/the_ten_hook.py"
+      },
+      "model": "claude-fable-5-1",
       "enabled": true,
-      "patterns": [
-        "H22",
-        "H14",
-        "H02"
-      ],
-      "closer": "K19",
       "visual": "manga_ai_ref_grok",
       "_visual_note": "Ảnh manga AI khoá mặt bằng master CỦA CHÍNH TẬP (_ref_<id>) → clip Grok 6s. Cấm tư liệu thật, cấm clip stock. Mỗi cảnh thấy MẶT + cảm xúc.",
       "visual_kind": "video_sinh",
-      "sfx": true,
-      "_hook_note": "HOOK_LIBRARY (TRENDING-RESEARCH nạp 4 video gốc 2026-09-24): H22 ×2, H14, H02; closer K19 ×2 (「これは〜までの話です」 ở video 3, 4). Kênh mẫu là ngôi 3 → câu khung là「これは、この男が〜までの話だ」."
+      "sfx": false,
+      "nhac_nen": true,
+      "_luat_hook_note": "21/10/2026 anh chốt: luật hook DUY NHẤT = bám sát CẤU TRÚC hook của video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn; đổi tên họ/nghề/câu thoại theo tập) — docs/HOOK_CAU_TRUC/00_CHUNG.md. Mọi luật hook khác (động cơ chính, khuôn lane huong_dan_cau_truc, mở bằng thoại, cao trào/kịch tính, câu để ngỏ…) đã BỎ."
     },
     "review_may3": true,
-    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c."
+    "_review_may3_note": "Anh chốt 2026-09-26: sau B3 (lock PASS) máy 1 DỪNG, gửi jobs\\<tab>\\<slug>\review\\ cho máy 3 soát/sửa, cột D = 'Cần check kịch bản'; máy 3 trả script.txt về results\review\\<tab>\\<slug>\\ + ghi D = 'Đã sửa kịch bản'; máy 1 `review_may3.py --nhan` dùng NGUYÊN VĂN (không sửa), rút hook từ đầu kịch bản, ký lại lock rồi mới B5W/hook/dong_goi. Vắng field = BẬT (mọi lane mới). Xem pipeline/review_may3.py + docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4c.",
+    "cung_cam_xuc": true,
+    "_cung_cam_xuc_note": "Anh chốt 2026-09-26: prompt S2 thêm cung cảm xúc 3 nhịp KÍCH (ức chế/giận) → GIẢI TOẢ (hệ quả tự nhiên, không hả hê) → VỊ THA (thương cảm + 1 câu đạo lý ngắn). Bằng chứng: kênh mẫu K/L video gây giận nổ 10–100 lần video nhẹ. Text ở lean_script.CUNG_CAM_XUC. Vắng field = BẬT (lane mới).",
+    "soat": "may3",
+    "_soat_note": "Anh chốt 2026-09-27: soát kịch bản sau B3 MẶC ĐỊNH bằng ChatGPT web (pipeline/soat_kb_gptweb.py, 2 tài khoản qua gptweb_pool.py — mở cổng khi rảnh, nhận xong trả lời ĐÓNG cổng ngay), KHÔNG chép sang máy 3, KHÔNG ghi sheet giữa chừng (D = Done do dong_goi_may2). Muốn dùng máy 3 thì đổi thành \"may3\" khi anh nói.",
+    "soat_gptweb": {
+      "enabled": true,
+      "urls": {
+        "acc1": "https://chatgpt.com/g/g-p-6ab884ca028c819180aba797fe48062d/c/6ab885a2-1060-83ec-b68d-2487e860bf4f",
+        "acc2": "https://chatgpt.com/g/g-p-6ab73e63794c81919eb8bd94af463fb5/c/6ab799c4-76d4-83ec-9dde-c3371a3beed4"
+      },
+      "_urls_note": "urls.acc1/acc2 = link HỘI THOẠI soát kịch bản trong Project ChatGPT RIÊNG của lane (đã giao vai nhà văn, GPT trả \"Hiểu.\"). projects.<acc> = id + tên Project (tên = publish.sheet_tab, hoặc sheet_tab + \"-script\" khi tài khoản đó đã có Project trùng tên dùng cho tiêu đề/thumbnail của YT-TITLE-RESEARCH). soat_kb_gptweb.py CHẶN link không nằm trong đúng Project / Project gán trùng lane khác; gptweb_pool CHẶN nếu trang nhảy khỏi Project. Gán 2026-09-27: acc1 F/G/K/L = Project \"-script\" em tạo (INSTRUCTIONS + 11 file từ CHATGPT_PROJECTS\\<lane>\\), L acc2 = hội thoại mới (thay \"Nâng cấp trả lời pro\").",
+      "boi_canh": "Khán giả: người đi làm ở Nhật (nhiều người 40–70 tuổi), thích chuyện công sở 'スカッと' (hả dạ). Video manga ở nhà thuốc 調剤薬局: một dược sĩ có câu cửa miệng xấu, người kể ngôi thứ ba xen câu nội tâm「俺…」, đọc bằng NHIỀU GIỌNG (mỗi vai một giọng), chữ hiện bằng bóng thoại.",
+      "rang_buoc": [
+        "Trước mỗi lượt thoại mới phải có câu người kể nêu rõ ai nói (máy gắn giọng dựa vào câu dẫn đó).",
+        "Nghiệp vụ nhà thuốc (処方箋, 在宅, 管理薬剤師, 当番…) và luật lao động phải đúng như tư liệu.",
+        "Hậu quả đến từ hệ thống/quy định có thật — không ai mắng, trả thù hay hả hê; câu cuối lặp lại câu cửa miệng."
+      ],
+      "projects": {
+        "acc1": {
+          "id": "g-p-6ab884ca028c819180aba797fe48062d",
+          "ten": "K-yakkyoku-sukatto-script"
+        },
+        "acc2": {
+          "id": "g-p-6ab73e63794c81919eb8bd94af463fb5",
+          "ten": "K-yakkyoku-sukatto"
+        }
+      }
+    }
   },
   "script_qc": {
     "lens": "plain",
@@ -229,8 +268,8 @@
   "image": {
     "skill": "skills/youtube-image-prompts/SKILL.md",
     "character_sheet": "Each episode defines its OWN cast in characters.json (id, age, gender, look, ref). Every character with a speaking line or appearing in 2+ images has its own locked master portrait (_ref_<id>/001.png). A single image may show AT MOST 3 locked faces (Flow Tool limit). Characters are fictional pharmacy staff/patients; never resemble a real public figure; faces do not carry over between episodes.",
-    "style_suffix": "clean modern Japanese anime illustration, crisp confident line art, soft cel shading, natural human proportions (not chibi), bright soft daylight, realistic Japanese adults, gentle colors, calm everyday atmosphere; keep a calm, low-detail area beside the speaking person where a speech balloon is added later - at most 15% of the frame width, still part of the room (a wall, a shelf, soft background), NEVER a flat empty panel and NEVER a hard vertical dividing line; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no speech bubbles, no watermark",
-    "_style_suffix_note": "Viết theo khung hình THẬT video gốc JmhcsfXGmfU (docs/channel_dna/yakkyoku-sukatto/_raw/video/khung/sheet_v1.png): anime nét sạch tỉ lệ người thật, ánh sáng ban ngày dịu, nhà thuốc gỗ sáng; chữ/bóng thoại do MÁY vẽ sau (tate_text --bubble) nên ảnh cấm chữ. · 2026-09-24 GỠ cụm bối cảnh 'warm light-wood pharmacy interior (...)' khỏi style: style nối vào MỌI prompt nên kéo cả cảnh ga tàu/sân bóng/phòng họp về quầy thuốc (QC hook ep01 trượt 2/7 ảnh vì lỗi này). Bối cảnh tả trong từng prompt.",
+    "style_suffix": "clean modern Japanese anime illustration, crisp confident line art, soft cel shading, natural human proportions (not chibi), realistic Japanese adults, gentle colors; 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders), no text, no letters, no speech bubbles, no watermark",
+    "_style_suffix_note": "Viết theo khung hình THẬT video gốc JmhcsfXGmfU (docs/channel_dna/yakkyoku-sukatto/_raw/video/khung/sheet_v1.png): anime nét sạch tỉ lệ người thật, nhà thuốc gỗ sáng; chữ/bóng thoại do MÁY vẽ sau (tate_text --bubble) nên ảnh cấm chữ. · 2026-09-24 GỠ cụm bối cảnh 'warm light-wood pharmacy interior (...)' khỏi style: style nối vào MỌI prompt nên kéo cả cảnh ga tàu/sân bóng/phòng họp về quầy thuốc (QC hook ep01 trượt 2/7 ảnh vì lỗi này). Bối cảnh tả trong từng prompt. · 2026-09-27 GỠ TIẾP 'bright soft daylight'/'calm everyday atmosphere'/'beside the speaking person...' (ep05): style nối CƯỠNG BỨC vào MỌI prompt qua code (`prompt_doan._ghi_cast`), không phải chỉ gợi ý cho model — nên mọi cảnh tối/tối (본部 tới sau giờ đóng cửa, hook ban đêm) đều bị ép câu 'ánh sáng ban ngày' + 'không khí bình yên' mâu thuẫn ngay trong 1 prompt (B5P bắt được 3 ảnh, nhưng lỗi này nằm ở 136/136 dòng vì suffix là hằng số). Câu 'chừa chỗ bóng thoại' giờ do model tự viết theo CAST/NONE (xem `prompt_doan.py::_prompt_cast` — chỉ áp cho có mặt khoá, PLAIN thì nói 'ô chú thích' không nhắc người) thay vì ép cứng trong suffix.",
     "seconds_per_image": 8,
     "_seconds_note": "ĐO THẬT 2026-09-24: dò đổi khung 2 video gốc (fps 2) → 129–140 lần đổi / 17,5–18' · trung bình 7,7–8,1s, trung vị 6,5s.",
     "ref_lock": true,
@@ -276,7 +315,24 @@
     "bgm_volume": 0.075,
     "bgm_keep_voice": true,
     "_note_chuyen_canh_nhac": "Anh chốt 2026-09-24 (NGOẠI LỆ riêng Lane K với luật cấm zoom 21/09): giống kênh mẫu đo máy 2 video — mờ chồng 0,3s (9 khung) + mỗi cảnh phóng vào chậm ×1,02–1,03 (88/91 cảnh) → zoom 1.025 zoom_dir=in, dựng bằng warpAffine dưới-pixel (không rung). Nhạc nền: kênh mẫu có 1 bài acoustic guitar đời thường lặp suốt video, nền khoảng lặng thấp hơn giọng ~17,7 dB, KHÔNG SFX (Gemini nghe 3 đoạn + đo mức). bgm_lane_k.mp3 = Suno qua ai33 (bgm_cand1, Gemini chấm 9/10), nối vòng acrossfade 5s thành 20:41; volume 0.075 đo cho chênh ~17,8 dB.",
-    "hook_tu_ghep": true
+    "hook_tu_ghep": true,
+    "subscribe": {
+      "enabled": true,
+      "start_times": [
+        180,
+        -120
+      ],
+      "moc_cua_so": 60,
+      "sub_click_style": "1_click_that",
+      "bell_style": "4_chuong_gio",
+      "avatar_path": "assets/avatars/yakkyoku-sukatto.png",
+      "language": "ja",
+      "thanks_text": null,
+      "position": "bottom_center",
+      "enable_sound": true,
+      "has_subtitles": false
+    },
+    "_subscribe_note": "Anh chốt 2026-09-30: phủ nút đăng ký (chỉ lớp phủ, không đổi thời gian) 2 lần/tập, mốc 180s và cuối−120s, chọn lại ±60s theo khoảng nghỉ/chuyển ảnh/tránh bóng thoại (pipeline/nut_dang_ky.py, B8n). Mỗi lane 1 tiếng chuông riêng (so_bells.py). Chuông 4_chuong_gio (chuông gió). Soi ep01: bóng thoại/khung chữ ở 2 bên, giữa đáy trống."
   },
   "blocklist": [
     "child",
@@ -311,7 +367,7 @@
       "会社員 漫画"
     ],
     "listing_external": true,
-    "title_auto": true,
+    "title_auto": false,
     "_title_auto_note": "2026-09-25 anh BẬT (tập 1 xong video). Từ tập 2 dong_goi_may2.py --job tự gọi goi_title.py → YT-TITLE-RESEARCH (thumb layout dialogue_split). Mô tả PHẢI có khối ▼素材 từ credits_giong.txt của tập.",
     "review_vi_cao": 720,
     "ten_review": "final-vietsub.mp4",

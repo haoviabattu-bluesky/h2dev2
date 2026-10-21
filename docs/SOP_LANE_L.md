@@ -1,5 +1,7 @@
 # SOP LANE L — `shakai_no_naze` · 社会のなぜ研究室 (Phòng nghiên cứu Vì sao của xã hội)
 
+> ⭐ **2026-09-26 — BÌNH LUẬN THẬT + CUNG CẢM XÚC** (anh chốt): trước khi viết tập mới đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\channel_dna\shakai-no-naze\COMMENT_INSIGHT.md` (khối `## ĐƯA VÀO PROMPT` tự vào prompt S2). Tóm tắt: chủ đề có phe để giận nổ 431.117 view vs ngẫm nhẹ 1.026–5.075; ep04 đang nhân bản video yếu nhất kênh (2.324 view, 0 bình luận) → chọn video gốc tập sau từ nhóm nổ. Prompt S2 nay có cung 3 nhịp KÍCH → GIẢI TOẢ → VỊ THA (`script.cung_cam_xuc: true`) — lớp 3 kiểm nửa đầu có làm bực thật không + có câu đạo lý đáng nhớ ở kết không. Luật "không trả thù/không hả hê" của lane GIỮ NGUYÊN (nằm ở nhịp 2). Chi tiết `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2a/§2c.
+
 Runbook sản xuất 1 tập. Cửa vào (định danh, trạng thái, quyết định của anh): `docs/BAT_DAU_LANE/shakai_no_naze.md`.
 Số đo kênh mẫu: `docs/channel_dna/shakai-no-naze/DO_THUC_TE_2026-09-24.md`. Luồng kịch bản chung:
 `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md`. Khuôn kỹ thuật chép từ `docs/SOP_LANE_K.md`.
@@ -47,7 +49,7 @@ Số đo kênh mẫu: `docs/channel_dna/shakai-no-naze/DO_THUC_TE_2026-09-24.md`
 - Cấm vẽ lại ảnh gốc khi đã có tập đầu dùng nó — đổi là lệch mặt giữa các tập.
 
 ## §1b CỘT SHEET TAB `L-shakai-no-naze` (A→K)
-A STT · B NỘI DUNG (tiêu đề JP + dịch) · C FOLDER (ghi ngay khi tạo tập) · D KỊCH BẢN (`Done` khi xong phần máy 1) ·
+A STT · B NỘI DUNG (tiêu đề JP + dịch) · C FOLDER (ghi ngay khi tạo tập) · D KỊCH BẢN (tool tự ghi theo docsTRANG_THAI_COT_D_K.md; xong máy 1 = `Đã giao máy 2`) ·
 E TITLE-DESCRIPTION · F TAGS · G THUMBNAIL · H STATUS-IMG (`cần ảnh (N ảnh, ~Xđ)` = lệnh cho máy 2) · I VIDEO · J LIST · K GHI CHÚ.
 10 tập đầu đã ghi A2:B11 (2026-09-24) — thứ tự ưu tiên: tập 1–3 gần chủ đề video 431k (thế hệ/công sở) nhưng KHÔNG trùng.
 
@@ -61,21 +63,29 @@ cd E:\CLAUDE\YOUTUBE\h2dev
 ::     (ghi BẮT BUỘC: câu hỏi なぜ của tiêu đề được trả lời bằng [Dn] nào; Sakura đóng vai gì).
 ::   title.txt (21–35 ký tự, có【漫画】) · promise.txt (1 câu) · hook\promise.txt
 py -3.13 -X utf8 pipeline\make_video.py --profile shakai_no_naze --slug epNN-<slug> --den B3G
+```
+> ⛔ **2026-09-27 — SOÁT BẰNG CHATGPT WEB (mặc định, thay máy 3):** lệnh trên tự DỪNG sau khi khoá và in 3 lệnh `soat_kb_gptweb.py --lan1` → thẩm định/phản biện (cổng giữ mở) → `--chot` → viec_tay → `--xong` (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4b). Đoạn máy 3 dưới đây TẠM ẨN.
+> (cũ, tạm ẩn) ⛔ **2026-09-26 — lệnh trên giờ TỰ DỪNG sau khi khoá kịch bản** và gửi máy 3 soát (`FlowHandoff_local\jobs\L-shakai-no-naze\<slug>\review\`,
+> cột D = `Chờ kiểm tra kịch bản`). Chờ anh báo D = `Đã sửa kịch bản` → `py -3.13 -X utf8 pipeline\review_may3.py --nhan --profile shakai_no_naze --slug <slug>`
+> rồi mới đi tiếp B5W/hook/`dong_goi_may2`. Chi tiết: `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §4c.
+```
 ::   → S1Q/S1L → hook khoá (H1–H4) → Fable viết → S3 máy → Sol ×2 → LOCK. Lớp 3: đọc hết script.txt (luật §5).
 :: characters.json (tay, sau khi đọc kịch bản): sakura (khuôn §0d) + MỌI vai có thoại hoặc ≥2 cảnh =
 ::   {id,name,vai,age,gender,look,ref:true,voice:{voice_id}} — voice_id chọn trong voice.cast_bank; nhân vật trung tâm "main":true.
 py -3.13 -X utf8 pipeline\gan_vai.py --profile shakai_no_naze --slug assets\shakai_no_naze\epNN-<slug>
 py -3.13 -X utf8 pipeline\make_video.py --profile shakai_no_naze --slug epNN-<slug> --only B5W
 py -3.13 -X utf8 pipeline\make_video.py --profile shakai_no_naze --slug epNN-<slug> --only B5P
-:: HOOK (máy 1 làm trọn HÌNH, docs\QUY_TAC_VIDEO_HOOK.md): ảnh hook @CAST (gen_images.py --cast-root <tập>) → clip Grok
+:: HOOK (máy 1 làm trọn HÌNH, docs\QUY_TAC_VIDEO_HOOK.md): ảnh hook @CAST (anh_hook.py <tập>\hook — Google Flow Ultra → 9router → gpti2) → clip Grok
 ::   → qc_hook_clip → SFX hook → hook_timeline.json → HOOK_TAP.md. Từ tập 2 (2026-09-25): GIỌNG thân do máy 2 lồng (ai33 không
 ::   tất định) nên hook_timeline.json ghi mốc THEO SỐ CÂU, KHÔNG theo giây: shots[].cau=[a,b] (câu a..b của voice_roles, nối
 ::   tiếp từ câu 1, mỗi cảnh nên ≥3s ⇒ gộp câu ngắn), sfx[].cau + lech (giây sau lúc câu bắt đầu). Máy 1 KHÔNG lồng giọng hook.
 ::   B8 máy 2 tự tính lại giây + cắt hook_voice.* từ giọng thân (ghep_hook_noi_truoc.neo_lai_theo_cau) rồi ghép THAY HÌNH.
 py -3.13 -X utf8 pipeline\sfx_than.py --profile shakai_no_naze --slug assets\shakai_no_naze\epNN-<slug> --plan
 ::   (Opus chọn 18–40 chỗ đặt tiếng theo nội dung → sfx_plan.txt; thiếu file này dong_goi DỪNG; B8 máy 2 tự --kho + --tron)
+::   (2026-10-07: số liệu động CHUYỂN SANG MÁY 2 — máy 1 không chạy so_lieu_dong.py nữa, dong_goi không chặn;
+::    máy 2 tự sinh + duyệt theo FlowHandoff_local\shared\motion_graphics\HUONG_DAN_MAY2.md §2 bước 0)
 py -3.13 -X utf8 pipeline\dong_goi_may2.py --job shakai_no_naze epNN-<slug>
-::   (chép _ref_sakura từ ảnh gốc lane, vẽ master vai khác nếu thiếu, gói vai.txt + _ref_* + hook\, ghi sheet D=Done, H=cần ảnh)
+::   (chép _ref_sakura từ ảnh gốc lane, vẽ master vai khác nếu thiếu, gói vai.txt + _ref_* + hook\, ghi sheet D=Đã giao máy 2 + K=lệnh máy 2, H=cần ảnh)
 ```
 Lần giao ĐẦU TIÊN của lane: bundle máy 2 phải có profile + code nhánh ai33 mới:
 `py -3.13 pipeline\dong_goi_may2.py --bundle --profile-list shakai_no_naze`.
@@ -91,8 +101,8 @@ tên `final_with_hook`) + `final-vietsub.mp4` = cùng video cháy phụ đề Vi
 
 ## §3 GATE (profile, đo từ 11 video gốc)
 title 21–35 ký tự (kể cả【漫画】) · 18' ≈ 5.600 chữ · 6 chặng `budget.sections` (chặng 1 đo, 2–6 ước lượng — đo lại sau 2 tập) ·
-thoại ≤65% · 0,6–2 phẩy/câu · 7–14 chữ/nhịp · `dialogue_own_sentence` · hook H41/H22/H26/H13 + closer K23
-(「その答えは、ある〜の物語の中にあった」) · gói đăng: lời hứa ≤60s, câu mâu thuẫn ≤30s, lõi tiêu đề ≤90s, nghi thức 「その答えは」.
+thoại ≤65% · 0,6–2 phẩy/câu · 7–14 chữ/nhịp · `dialogue_own_sentence` · hook: luật 21/10 bám sát cấu trúc hook video gốc
+(`E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`; patterns/closer cũ đã xoá) · gói đăng: lời hứa ≤60s, câu mâu thuẫn ≤30s, lõi tiêu đề ≤90s, nghi thức 「その答えは」.
 
 ## §5 LUẬT CỨNG (lớp 3 đọc bản khoá theo đúng danh sách này)
 1. MỌI số liệu xã hội (%, 倍, 万人, 万円, năm khảo sát) có trong `series_ctx.txt` kèm URL và được diễn giải ĐÚNG NGHĨA
@@ -103,6 +113,9 @@ thoại ≤65% · 0,6–2 phẩy/câu · 7–14 chữ/nhịp · `dialogue_own_se
 5. Không dùng lại nhân vật/tình tiết đặc trưng 11 video gốc (田中の議事録AI, 退職代行, 母親のクレーム電話, 熊谷部長, 神谷…).
 6. Mỗi lượt thoại mới phải rõ ai nói (câu người kể trước/sau) — `gan_vai.py` và bóng thoại dựa vào đó.
 7. Không chữ/biểu đồ/poster trên ảnh (style_suffix đã cấm; soi lại prompt ảnh B5W).
+   (2026-10-06) Số liệu THẬT được hiện bằng **số liệu động** (máy 2 vẽ đè bằng code lên màn hình/tờ giấy TRẮNG hoặc
+   ô trống của ảnh) — từ 2026-10-07 máy 2 tự sinh + duyệt `so_lieu_dong.json` (`FlowHandoff_local\shared\motion_graphics\HUONG_DAN_MAY2.md`
+   §2 bước 0); bước 1 chỉ cần `SỐ ĐƯỢC PHÉP` đủ + đúng. Mẫu: ep03 đoạn 9:38–10:55.
 
 ## §5b PHÂN VAI MODEL
 Fable viết (S2) · Opus vá (S4) + gắn vai (`gan_vai.py`) · Sol chấm (lens plain + `script_qc.lane_rules`) · Fable viết prompt

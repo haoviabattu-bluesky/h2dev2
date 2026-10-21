@@ -5,6 +5,35 @@
 > File này là "cửa vào"; chi tiết vận hành nằm ở SOP (mục 4, giai đoạn 2 sẽ viết). Cập nhật mục 2
 > mỗi khi trạng thái đổi.
 
+## ⛔⛔ QUY TẮC BẮT BUỘC 14/10/2026 (anh duyệt — THẮNG mọi chỉ dẫn bên dưới khi mâu thuẫn)
+Đọc TRƯỚC khi làm bất kỳ tập nào: `E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\results\laneF_quy_tac_bat_buoc_2026-10-14\QUY_TAC_BAT_BUOC_LANE_F.md`
+- Mỗi tập = 1 cặp lựa chọn (俺 chọn A, 同期 có tên chọn B). Ưu tiên: ① bán nhà về quê vs ở lại thành phố ② 退職金 một lần vs nhận dần
+  ③ nghỉ 65 vs làm tới 70 ④ 繰上げ vs 繰下げ qua 2 đồng kỳ. CẤM tập chính không có lựa chọn (tang vợ, 1 thủ tục, "tiền đi đâu").
+- Kịch bản = khung 10 chặng (thay "7 chặng"): đã nạp vào profile `script.structure_block` + `budget.sections` (24', ~6.460 chữ).
+- `series_ctx.txt` mỗi tập PHẢI dán khối `E:\CLAUDE\YOUTUBE\h2dev\docs\LANE_F_KHOI_QUY_UOC_10_CHANG.txt` vào QUY ƯỚC (điền cặp A/B + tên 同期) —
+  thiếu thì S1Q của `make_video` CHẶN (`script.ctx_phai_co`).
+- Video gốc (`video_goc.json`) chỉ để lấy ý đề tài + số tham khảo; khung kịch bản theo quy tắc mới (bỏ luật 25/09 "làm ĐÚNG 1 video gốc").
+- Tiêu đề: `【漫画】{tuổi}で{lựa chọn A}した俺…{同期 chọn B / mốc}、{hệ quả treo}`, 35–48 ký tự; số 退職金 lớn ĐƯỢC ghi (bỏ cấm ≥1500万).
+- Cổng nghiệm thu G1–G9 (§6 file quy tắc): trượt 1 ô = không khoá, không đăng.
+
+## ⚡⚡ TẬP 7–10 (kịch bản đã khoá, chờ soát): làm theo `E:\CLAUDE\YOUTUBE\h2dev\docs\BAT_DAU_LANE\teinengo-real_TAP_TIEP.md`
+Runbook trọn 1 tập theo mẫu tập 6 (soát ChatGPT web thay máy 3 → characters/prompt ảnh → hook ảnh+Grok+SFX → giao máy 2). File đó THẮNG
+mọi chỉ dẫn máy 3 cũ bên dưới.
+**Từ tập 8: mỗi tập có 1 file hướng dẫn riêng, đường dẫn ghi ở CỘT K (GHI CHÚ) dòng của tập đó trong tab `F-teinengo-real`**
+(tập 8 = K9 → `E:\CLAUDE\YOUTUBE\h2dev\docs\BAT_DAU_LANE\teinengo-real_TAP08.md`). Tab mới làm tập N: đọc ô K của dòng N+1 TRƯỚC, rồi mới
+đọc runbook chung. Xong tập N thì viết file cho tập N+1 và ghi vào ô K kế tiếp.
+
+## ⚡ ĐỌC NHANH — "làm tập tiếp theo" (lane đã setup xong, mục 2 TRẠNG THÁI đã ✅ hạ tầng)
+> ⭐ **2026-09-30 anh chốt — THẮNG mọi chỉ dẫn soát ChatGPT web bên dưới:** hook = Fable 5.1 viết 2 phương án theo luật hook 21/10 (bám sát cấu trúc hook video gốc: `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`);
+> `make_video --den B3G` khoá xong là DỪNG, tự giao máy 3/anh soát (D=`Chờ kiểm tra kịch bản`). Anh sửa xong (D=`Đã sửa kịch bản`) →
+> đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\NHAN_KICH_BAN_MAY3.md` để nhận + làm hook/ảnh/giao máy 2.
+
+CHỈ cần đọc: mục 4 **Giai đoạn 3** (lệnh chạy đúng thứ tự) + đúng file mục 4 tự trỏ tới (thường chỉ
+`COMMENT_INSIGHT.md`). KHÔNG cần mở lại toàn bộ mục 3 TÀI LIỆU, SOP đầy đủ, `CHANNEL_DNA.md`,
+`profile.json` — các file đó là cho **Giai đoạn 2 (setup 1 LẦN)** hoặc được chính `pipeline\*.py` tự
+đọc khi chạy lệnh, không phải để Claude nạp vào context mỗi tập. Chỉ mở thêm khi lệnh báo lỗi cần
+quyết định thủ công (thiếu context, xung đột dữ liệu...).
+
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
@@ -20,6 +49,9 @@
 | Giọng | Nam trung niên, hồi ức — **`clone_2658911`** (clone kênh mẫu, anh duyệt 2026-09-20; SOP §0c) · 284,0 chữ/phút @0.95 |
 
 ## 2. TRẠNG THÁI (cập nhật mỗi lần đổi)
+- 📝 2026-10-03 **tập 11 + 12 thêm từ 2 video top view chưa dùng của kênh mẫu** — hồ sơ sẵn (series_ctx/promise/title/video_goc/comment_insight/research), dòng sheet 12–13; tab mới đọc `docs/BAT_DAU_LANE/teinengo-real_TAP11.md` / `_TAP12.md`.
+- ✅ 2026-10-03 tập 9 `ep09-shuu3-shigoto` giao máy 2 (máy 3 anh sửa → `--nhan`; hook khoá tay tới hết cao trào 185 chữ, 11 cảnh ~42s, 11 clip Grok PASS (clip 7 duyệt tay) + piano; clip xem thử giọng+phụ đề VI; 123 prompt ảnh).
+- ✅ 2026-10-01 tập 8 `ep08-kodomo-enjo` giao máy 2 (máy 3 anh sửa → `review_may3 --nhan`; hook 9 cảnh 39s + 9 clip Grok PASS + nhạc nền piano; 136 prompt ảnh). Anh chốt: giọng chậm 0.90 + giãn nhịp, ảnh khớp tuổi. Tập 9: `docs/BAT_DAU_LANE/teinengo-real_TAP09.md`.
 - ✅ 2026-09-13 nghiên cứu kênh xong (TRENDING-RESEARCH, anh duyệt).
 - ✅ 2026-09-16 Channel Analyzer (K1+K2) đã chạy: 8 video, `✓ TỔNG`.
 - ✅ 2026-09-20 setup kênh A+B xong (branding + 6 mục settings, verify reload), tab sheet + header đã tạo.
@@ -35,6 +67,14 @@
 - ⚠️ **PHẠM VI HIỆN TẠI (anh chốt 2026-09-20): chỉ làm tới KỊCH BẢN + QC** (tập 1 `--den B3R`; từ tập 2 `--den B3G`).
   KHÔNG tiêu đề/mô tả/tags/thumbnail, KHÔNG sinh ảnh, KHÔNG video. Phần chuẩn bị ảnh (characters.json,
   img_prompts.txt) chỉ khi anh bảo. Quy trình chi tiết tới mốc này: `docs/SOP_LANE_F.md` §2b.
+- ✅ 2026-09-30 **tập 7 (`ep07-kodoku-kaiwa`) GIAO MÁY 2** — soát ChatGPT web 1 lượt (8,0/10), nhận 18 sửa (sửa sổ tiền cho khớp
+  dự toán 100/100/−50 = 150万, bỏ tuyến cháu của 木戸, cắt số 2040), hook khoá lại (thêm câu "3 năm gần như không nói chuyện với ai");
+  6.452 chữ sha 43714d726f; 136 prompt (sửa tay 3 prompt B5P bắt); hook 7 ảnh + 7 clip Grok (clip 5 duyệt tay) + 6 SFX; D8=Done, H8=cần ảnh.
+  Báo cáo: `assets\teinengo-real\ep07-kodoku-kaiwa\soat_gptweb\BAO_CAO_SUA.md`.
+- ✅ 2026-09-30 **tập 6 (`ep06-shuuzen-tsumitate`) GIAO MÁY 2** — soát ChatGPT web (thay máy 3) 2 lượt, 13 sửa + 3 phản biện thắng,
+  hook khoá lại (đổi câu 3–4); 6.074 chữ sha dd95e244d6; 128 prompt; hook 7 ảnh + 7 clip Grok (tk hotmail dòng 385–391) + 6 SFX;
+  D7=Done, H7=cần ảnh. Báo cáo: `assets\teinengo-real\ep06-shuuzen-tsumitate\soat_gptweb\BAO_CAO_SUA.md`.
+  ⚠️ Bẫy: gptweb đổi HOOK thì phải `hook_stage.khoa()` bản mới TRƯỚC khi chạy lại B3G (S3 ép đầu kịch bản về hook đã khoá).
 - ✅ 2026-09-20 **tập 3 (`ep03-kuriage-koukai`) LEAN → PASS, `Done`** (3 lượt, ~25').
 - 📝 2026-09-21 **PHƯƠNG ÁN bước 2+3 (ảnh + video ở MÁY 2)**: `docs/PHUONG_AN_LANE_F_BUOC2_3.md` — chờ anh chốt 5 điểm (kiểu vẽ theo kênh mẫu · chữ dọc 縦書き · 10s/ảnh · ep01 vẽ 2 chặng · master ở máy 2). Khung hình thật kênh mẫu: `docs/laneF_visual_ref/`. Chưa code, chưa tốn tiền.
 - ✅ 2026-09-20 **tập 2 (`ep02-saikoyou-hanbun`) chạy LEAN → Sol PASS, LOCK, cột D `Done`** — benchmark SOP §2d; tiền đề tập phải ghim đầu series_ctx.
@@ -54,7 +94,7 @@
 6. Luật toàn dự án: `CLAUDE.md` (router + ⛔ CẤM TUYỆT ĐỐI: Claude chỉ làm BƯỚC 1, không render, không tự
    upload-job lần đầu) · `docs\QUY_TRINH_SETUP_KENH.md` (đã làm, chỉ đọc khi cần sửa kênh).
 
-⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+⚠️ Hook bắt buộc khoá trước S2 — Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn), dài ≈ hook gốc — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
 
 ## 4. QUY TRÌNH — làm bước nào trước
 ### Giai đoạn 2 — dựng hạ tầng lane (làm 1 LẦN, theo đúng thứ tự, xong mới sang giai đoạn 3)

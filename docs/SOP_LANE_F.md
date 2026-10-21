@@ -5,6 +5,9 @@
 > `teinengo-real`, mail dòng 7 sheet GMAIL — VirgiliTraino95@gmail.com, GPMLogin cùng tên).
 > Cửa vào lane: `docs/BAT_DAU_LANE/teinengo-real.md` (đọc trước, file này là chi tiết vận hành).
 > Viết 2026-09-20 (giai đoạn 2), theo khuôn `SOP_LANE_E.md`.
+>
+> ⛔ **14/10/2026 anh duyệt — QUY TẮC BẮT BUỘC thắng mọi mục dưới khi mâu thuẫn:** `E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\results\laneF_quy_tac_bat_buoc_2026-10-14\QUY_TAC_BAT_BUOC_LANE_F.md`
+> (mỗi tập = 1 cặp lựa chọn + 同期; khung **10 chặng** thay 7 chặng — đã nạp profile `structure_block`/`budget.sections`; `series_ctx.txt` phải dán `E:\CLAUDE\YOUTUBE\h2dev\docs\LANE_F_KHOI_QUY_UOC_10_CHANG.txt`, thiếu → S1Q chặn; cổng G1–G9).
 
 | Anh nói | Profile | SOP |
 |---|---|---|
@@ -36,7 +39,7 @@ làm `competitor.txt` cho Lane F.
 |---|---|---|---|
 | Người kể | Cụ già ngôi 1 私, tâm tình | Bác sĩ ngôi 2, giải thích | **Nam 60–67 ngôi 1「俺」, hồi ức, だ・である体, KHÔNG kính ngữ** |
 | Giọng | ElevenLabs Ado @0.92 · 270 chữ/ph | MiniMax Dependable Woman @0.88 · 321 chữ/ph | **`clone_2658911`** (clone giọng kênh mẫu, video 294k view) @**0.95** · **284,0 chữ/ph** (đo 2026-09-20) — xem §0c |
-| Cấu trúc | 悟り 3 tầng kết | List đếm ngược 5 mục | **7 chặng story** (`script.structure_block` khai trong profile — hook so sánh số phận → trăng mật + số khởi điểm → cú tát phong bì + tiền tụt theo mốc → nhân vật thứ 2 → ngoặt → payoff thực tế → kết triết lý + câu hỏi 2–3 ngã rẽ) |
+| Cấu trúc | 悟り 3 tầng kết | List đếm ngược 5 mục | **10 chặng story** (14/10, `script.structure_block` — hook (bám sát cấu trúc hook gốc, luật 21/10) → giới thiệu + đồ vật mô-típ → 手札 trước 105s → thiên đường → phong bì chế độ → mốc sổ → quán cà phê 同期 → câu vợ ゼロか百か → đường thứ ba → 'cả hai đúng, cả hai sai' + hỏi 3 đường) |
 | Chế độ script | fiction (đổi tên/nghề tự do) | documentary (số liệu từ tư liệu) | **`fiction_facts`** (MỚI 2026-09-20): nhân vật hư cấu NHƯNG số CHẾ ĐỘ phải có trong `series_ctx.txt` → **B3F CHẠY** |
 | Thời lượng | 30' | 20' | **22' = 6.248 chữ** (kênh mẫu hit 23,7–24,2'; handoff 16–24') |
 | Nhân vật lặp | CÓ (REF-LOCK 1) | KHÔNG | **CÓ, 2 nhân vật TRONG TẬP** (@REF = 俺, @REF2 = người đối lập), KHÔNG xuyên tập |
@@ -61,6 +64,21 @@ sau K3**: bỏ `K8tTrxijqEo` (list), ưu tiên video CÙNG DẠNG STORY và CÙN
 bẫy thủ tục (税/保険/修繕積立金) · #3 sĩ diện cựu quản lý · #4 độc thân & nhà ở · #5 tái thiết, làm
 nhẹ để kết nối. **6 giai đoạn story** của DNA (trăng mật → cú tát phong bì → vùng vẫy → nhân vật
 phản chiếu → tái thiết → chiêm nghiệm) đã gộp vào 7 chặng của `structure_block`.
+
+## 0d. ⭐ ĐA GIỌNG từ 04/10/2026 (anh chốt: máy 2 lồng giọng cho TẤT CẢ nhân vật; áp từ ep10)
+Lane F nay chạy như Lane L/M: `voice.provider="ai33"` · `assemble.hook_tu_ghep=true` · `voice.pace=false`
+(nghỉ câu 0,65s / đoạn 1,5s do `tts_voicevox` chèn) · `gate.dialogue_own_sentence=true`.
+- Người kể/俺 = `clone_2658911` (như cũ). Vai phụ = giọng MiniMax tiếng Nhật CÓ SẴN, chọn theo `voice.cast_bank` của profile
+  (anh chọn "giọng có sẵn", không clone). ai33 không có giọng cụ bà/trẻ em JP → Calm Lady (speed 0.85) / Innocent Boy.
+- Mỗi tập, SAU khi nhận bản máy 3 (§1 `docs/NHAN_KICH_BAN_MAY3.md`), TRƯỚC clip hook xem thử:
+  1. `characters.json`: mỗi nhân vật thêm `id`, `vai`, `voice:{voice_id}` (nhân vật chính `main:true`); GIỮ `ref_marker`
+     @REF/@REF2 (ảnh vẫn nhánh cũ). Người nói 1 câu (hàng xóm, nhân viên quầy, người lạ) cũng phải có mục riêng —
+     không thì gan_vai gán "gần nhất" sai (ep12 lần 1: bà cụ khách day-service bị gán giọng em gái).
+  2. `py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\h2dev\pipeline\gan_vai.py --profile teinengo-real --slug <thư mục tập>` → soát mọi dòng thoại「」.
+  3. Storyboard hook: mỗi cảnh phải khép trọn câu (`shots[].cau`). Cảnh cắt giữa câu → gộp, clip `gop_A_B.mp4` = clip A cắt đúng độ dài + clip B
+     (ep10–12 đã làm; bản cũ `hook\hook_timeline.truoc_gop_cau_20261004.json`). `phu_de_vi.json` đánh số theo vai.txt.
+  4. Chữ đọc sai → `<tập>\yomi.txt` (`表示=読み`), đi kèm job.
+- Đổi profile → `py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\h2dev\pipeline\dong_goi_may2.py --bundle --profile-list teinengo-real`.
 
 ## 0c. K4 — GIỌNG KÊNH MẪU + CLONE (2026-09-20, đo thật, KHÔNG đoán theo văn phong)
 
@@ -132,13 +150,15 @@ I chỉ khi B11 giao xong; K = trạng thái từng cổng.
 | 8 | #3 | 【漫画】60歳で辞めた元課長…息子夫婦への援助で退職金1500万円が3年で消えた (40) | Tiền chảy sang con cái — sĩ diện với gia đình | `ep08-kodomo-enjo` |
 | 9 | #5 | 【漫画】65歳で年金生活を始めた俺…週3日の駐車場の仕事が人生を変えた理由 (37) | Payoff tái thiết làm TRỤC (kênh mẫu chỉ để ở kết) | `ep09-shuu3-shigoto` |
 | 10 | #1/#3 | 【漫画】59歳で早期退職した男…割増退職金2000万円で勝ったと思った2年後の現実 (41) | 早期退職 割増 — chưa có | `ep10-souki-taishoku` |
+| 11 | #2/#3 | 【漫画】酒も博打もしない俺…退職金2800万円が5年で半分以下になった6つの見栄 (40) | Gốc K8tTrxijqEo (list 6選) → kể STORY theo dòng thời gian, vợ + 家計簿; thêm 03/10 | `ep11-mie-no-okane` |
+| 12 | #4/#2 | 【漫画】65歳、独身の俺…入院の日「保証人は？」で147万円の契約書にサインしかけた (42) | Gốc dY3HfjtmvXI → đổi trục sang bảo lãnh nhập viện (tránh trùng tập 6/7); thêm 03/10 | `ep12-mimoto-hoshou` |
 
 Nguyên tắc: mỗi tựa = nhân vật + tuổi + SỐ TIỀN + cảm xúc (luật cứng §3 handoff); tựa cuối do B7
 viết lại theo gate `title_len` [26,44] — tựa trên là ĐỀ TÀI, không phải tựa đăng. **Chỉ tập anh chỉ
 định mới bắt đầu** (memory `chi-chay-dong-duoc-chi-dinh`). Lane F ≠ Lane G: tập nào ngả sang "lối
 sống vui/rẻ N選" là của G, đừng viết ở đây.
 
-⚠️ Hook 20–30s bắt buộc trước S2 — xem `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b.
+⚠️ Hook bắt buộc khoá trước S2 (dài ≈ hook video gốc). Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
 
 ## 2. LỆNH CHẠY (tập đầu tiên)
 
@@ -165,7 +185,7 @@ phải `done`, vì `done` = kịch bản + giọng + prompt ảnh).
 | 0 | Chọn tập | **Anh** | "cho làm tập X" (theo STT tab sheet) | — |
 | 1 | Hồ sơ đề tài | **Claude Code (tab này, Opus)** | Tạo `assets/teinengo-real/ep<NN>-<slug>/`; `competitor.txt` = 1 transcript STORY cùng trụ cột (K3 `retrieve_videos.py` → lọc tay, bỏ bài list); `series_ctx.txt` = số chế độ CÓ NGUỒN (WebSearch 日本年金機構/厚労省/自治体, ghi URL cạnh từng số); ghi cột C | Tự kiểm: mỗi số trong `series_ctx.txt` có nguồn; không có số nào "nhớ mang máng" |
 | 2 | B3 PASS 0 — bóc khung | **Claude `claude -p` FABLE 5.1** (`script.brain_model=claude-fable-5-1`, quota OAuth MAX, 0đ; anh chốt 2026-09-20) qua `claude_p_bridge.py` | Bóc `beats` từ competitor.txt (nhịp sự kiện, KHÔNG chép tên/thoại) | Claude tab này soi `beats` bằng mắt: lọt tên/thoại gốc → sửa |
-| 3 | B3 PASS 1 — viết nháp | **Claude `claude -p` FABLE 5.1** | Viết dài hơn mục tiêu theo `structure_block` 7 chặng + `fiction_facts` + persona 俺; số chế độ lấy từ `series_ctx.txt` | — |
+| 3 | B3 PASS 1 — viết nháp | **Claude `claude -p` FABLE 5.1** | Viết dài hơn mục tiêu theo `structure_block` 10 chặng (14/10) + `fiction_facts` + persona 俺; số chế độ lấy từ `series_ctx.txt` | — |
 | 4 | B3 PASS 2 — nén + nhịp | **Gemini 3.8 Flash (ramclouds, fallback ns24)** — máy 1 | Nén về 6.248 chữ (22' × 284), chèn 、 đúng nhịp; `fix_gate.py` nắn cơ học | **gate_check.py** (máy đo, 0đ): chữ ±12%, 0,6–2,0 phẩy/câu, 6–12 chữ/nhịp, hội thoại ≤20%, không marker/Hàn/Latin |
 | 5 | B3Q — nhất quán | **Gemini 3.8 Flash** (`qc_script.py`) | Mâu thuẫn nội bộ (貯金 lệch giữa các chặng, tuổi/năm sai, lặp câu), tự sửa (`fix`) tối đa `--tries 2` | Verdict ĐẠT / HỎNG; HỎNG sau 2 lượt → dừng, Claude tab này **sửa TẠI CHỖ** (memory `sua-tai-cho-khong-viet-lai`) |
 | 6 | B3F — đúng nguồn | **Gemini 3.8 Flash** (`qc_facts.py`) — CHẠY vì `mode=fiction_facts` | Hỏi "số chế độ này ở ĐÂU ra" đối chiếu `series_ctx.txt`; số cá nhân nhân vật không bị soi | Lỗi dữ kiện → **DỪNG HẲN**, không nối vào vòng viết lại (memory `b3f-khong-duoc-noi-vao-vong-viet-lai`); Claude sửa số hoặc bổ sung nguồn |
@@ -177,6 +197,12 @@ Lệnh:
 ```bash
 cd E:\CLAUDE\YOUTUBE\h2dev
 py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-real --slug ep<NN>-<slug> --den B3G
+```
+> ⛔ **2026-09-27 — SOÁT BẰNG CHATGPT WEB (mặc định, thay máy 3):** lệnh trên tự DỪNG sau khi khoá và in 3 lệnh `soat_kb_gptweb.py --lan1` → thẩm định/phản biện (cổng giữ mở) → `--chot` → viec_tay → `--xong` (docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §4b). Đoạn máy 3 dưới đây TẠM ẨN.
+> (cũ, tạm ẩn) ⛔ **2026-09-26 — lệnh trên giờ TỰ DỪNG sau khi khoá kịch bản** và gửi máy 3 soát (`FlowHandoff_local\jobs\F-teinengo-real\<slug>\review\`,
+> cột D = `Chờ kiểm tra kịch bản`). Chờ anh báo D = `Đã sửa kịch bản` → `py -3.13 -X utf8 pipeline\review_may3.py --nhan --profile teinengo-real --slug <slug>`
+> rồi mới đi tiếp B5W/hook/`dong_goi_may2`. Chi tiết: `docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §4c.
+```
 # (từ tập 2, 2026-09-20: `script.flow="lean"` → 1 lệnh chạy S1Q→S2 Fable→S3 máy→S5 Sol plain→patch ≤2→LOCK; xem
 #  docs/QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md. Hồ sơ tập cần thêm `title.txt` (1 dòng, 26–44 ký tự) và dòng
 #  `SỐ ĐƯỢC PHÉP:` trong series_ctx.txt liệt kê số CHẾ ĐỘ được dùng (%, 歩, 年間…; tiền 万円/円 được miễn).
@@ -272,19 +298,18 @@ ngang) khi anh đã chốt giọng. Chi tiết đầy đủ + 5 quyết định 
   `qc_script.mo_dau` nếu muốn — chưa làm, tránh sửa cổng dùng chung khi chưa có tập nào).
 - Danh sách 10 tập đã ghi tab sheet A2:B11 (2026-09-20).
 
-## HOOK 20–30 GIÂY ĐẦU — CÁCH CỦA RIÊNG LANE NÀY
+## HOOK — LUẬT VIẾT + CÁCH DỰNG CỦA LANE NÀY
 
-> ⚠️ Mỗi lane một kiểu hook khác nhau. **Đừng mượn cách của lane khác.**
+> Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ đã xoá.
+> (Kiểu mở `script.hook.patterns` / câu khoá `script.hook.closer` / độ dài 20–30 giây cũ không còn là luật viết.)
 
 | | |
 |---|---|
-| Kiểu mở (`script.hook.patterns`) | H23 H35 |
-| Câu khoá (`script.hook.closer`) | K19 |
 | Cách dựng hình (`script.hook.visual`) | `manga_ai_ref` |
 | Nguồn hình | manga AI, REF-LOCK cùng bộ nhân vật với thân video |
 | Công tắc (`script.hook.enabled`) | đang TẮT |
 
 Runbook dựng đầy đủ (7 bước + 4 phép kiểm trước khi ghép): `docs\QUY_TAC_VIDEO_HOOK.md`, bảng so sánh
-cách dựng của mọi lane ở §5b. Nguyên tắc nội dung hook: `C:\Users\admin\.claude\skills\youtube-hook-research\references\NGUYEN_TAC_HOOK_GOI_DANG.md`.
+cách dựng của mọi lane ở §5b.
 
 Viết hook: `py -3.13 pipeline\hook_stage.py --profile teinengo-real --slug <tập> --mode repair`

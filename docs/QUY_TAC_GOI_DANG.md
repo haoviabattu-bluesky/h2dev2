@@ -24,6 +24,9 @@ nằm ở đây.
 | G7 | **CHANNEL_ANALYZER.** K2 phải NHÌN ảnh thumbnail thật và chép chữ từng dòng (cấm suy luận), phải có mục "lời hứa của video" và chấm tiêu đề↔thumbnail↔mô tả↔hook. | `channel_analyzer.py` |
 | G8 | **KHÔNG CHÉP NHAU.** Chép CƠ CHẾ của video hit, không chép CÂU; các tập trong cùng lane không mở giống nhau. | `qc_goi_dang.py` |
 
+> ⛔ 17/10/2026: G1–G8 là luật GÓI ĐĂNG (máy đo), KHÔNG phải luật VIẾT hook. Hook bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) —
+> `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`; không viết/sửa hook để chạy theo câu nghi thức kênh, lõi tiêu đề hay 10 nguyên tắc hook cũ.
+
 ---
 
 ## 1b. CỔNG S1L — chặn TRƯỚC KHI VIẾT (anh chốt 2026-09-24)
@@ -36,7 +39,7 @@ là thêm một lượt Sol + một lượt patch. Nên có thêm một cổng *
 
 | Điều kiện | Trượt thì |
 |---|---|
-| `script.hook.enabled: true` trong profile | DỪNG — hook 20–30s là luật MỌI LANE |
+| `script.hook.enabled: true` trong profile | DỪNG — hook đầu video là luật MỌI LANE |
 | `goi_dang.enabled: true` trong profile | DỪNG — lane phải đo ngưỡng từ kênh mẫu của chính nó |
 | `promise.txt` trong thư mục tập, **đúng 1 câu** | DỪNG — lời hứa phải chốt TRƯỚC khi viết |
 
@@ -163,5 +166,6 @@ một dòng bình thường, không có ký hiệu markdown nào. Đã vá bằn
 
 - **G7 (channel_analyzer)** — xem §7 của `docs\QUY_TRINH_NGHIEN_CUU_KENH.md`.
 - **Tập cần sửa cụ thể từng lane** — `FlowHandoff_local\shared\BAO_CAO_H2DEV_HOOK_2026-09-23.md`.
-- **Hook 20–30s đầu** — `docs\QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b (`hook_stage.py`), khác việc
+- **Hook đầu video** — LUẬT VIẾT: Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn) —
+  `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`; máy: `docs\QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md` §2b (`hook_stage.py`), khác việc
   của file này: hook là NỘI DUNG mở đầu, gói đăng là LỜI HỨA bao quanh nó.

@@ -4,6 +4,20 @@
 > báo cáo bằng `@lane:teinengo-anaba`, rồi làm ĐÚNG THỨ TỰ mục 4. File này là "cửa vào"; chi tiết vận hành nằm ở SOP
 > (`docs\SOP_LANE_M.md`, đã viết 2026-09-26). Cập nhật mục 2 mỗi khi trạng thái đổi.
 
+## ⚡ ĐỌC NHANH — "làm tập tiếp theo" (lane đã setup xong, mục 2 TRẠNG THÁI đã ✅ hạ tầng)
+> ⛔ **2026-10-14 anh chốt KHUÔN WIN (ep05+ep06)** — chọn đề + nút thân bài (phần hook trong đó đã XOÁ 17/10): đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\CONG_THUC_WIN_LANE_M.md`
+> ⛔ **2026-10-16 anh chốt: kịch bản BUỘC theo CÔNG THỨC WIN** `E:\CLAUDE\YOUTUBE\h2dev\docs\CONG_THUC_WIN_LANE_M.md` — sau B3G, trước khi giao máy 3 chạy `py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\h2dev\pipeline\kiem_cong_thuc_win.py --profile teinengo-anaba --slug <slug>` + chấm phần kiểm bằng mắt; mục ❌ → vá qua viec_tay rồi kiểm lại tới ĐẠT. ⛔ **Hook (21/10/2026): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn)** — `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`. Luật hook cũ (6 thành phần / kiểu A/B/C hook / câu đầu = thoại) đã xoá. Thân bài: cấm bịa cảnh bị coi thường; 第7位 (hạng 7) trước phút 4.
+> TRƯỚC khi lập hồ sơ tập. **Luật 3 yếu tố (§1): (1) 田島 bị khinh thường = BẮT BUỘC, thiếu thì DỪNG hỏi anh đổi đề · (2) quyết định tự trọng · (3) mất mát bằng số.** Khuôn thân bài đã nạp vào profile (`structure_block`) nên máy tự viết theo.
+> ⭐ **2026-09-30 anh chốt — THẮNG mọi chỉ dẫn soát ChatGPT web bên dưới:** hook = Fable 5.1 viết 2 phương án theo luật hook 21/10 (bám sát cấu trúc hook video gốc: `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`);
+> `make_video --den B3G` khoá xong là DỪNG, tự giao máy 3/anh soát (D=`Chờ kiểm tra kịch bản`). Anh sửa xong (D=`Đã sửa kịch bản`) →
+> đọc `E:\CLAUDE\YOUTUBE\h2dev\docs\NHAN_KICH_BAN_MAY3.md` để nhận + làm hook/ảnh/giao máy 2.
+
+CHỈ cần đọc: mục 4 **Giai đoạn 3** (lệnh chạy đúng thứ tự) + đúng file mục 4 tự trỏ tới (thường chỉ
+`COMMENT_INSIGHT.md`). KHÔNG cần mở lại toàn bộ mục 3 TÀI LIỆU, SOP đầy đủ, `CHANNEL_DNA.md`,
+`profile.json` — các file đó là cho **Giai đoạn 2 (setup 1 LẦN)** hoặc được chính `pipeline\*.py` tự
+đọc khi chạy lệnh, không phải để Claude nạp vào context mỗi tập. Chỉ mở thêm khi lệnh báo lỗi cần
+quyết định thủ công (thiếu context, xung đột dữ liệu...).
+
 ## 1. ĐỊNH DANH (không đổi)
 | Mục | Giá trị |
 |---|---|
@@ -32,6 +46,8 @@
   - SOP `E:\CLAUDE\YOUTUBE\h2dev\docs\SOP_LANE_M.md` (§0b Channel Analyzer, K1–K12 chép nguyên).
   - 10 tập ghi tab `M-teinengo-anaba` A2:B11 + video gốc ở K2:K11.
 - ✅ 2026-09-26 GIỌNG: ĐA GIỌNG — 7 giọng clone từ video gốc tập 1 (anh duyệt cả 7), xem SOP §0c.
+- ✅ 2026-09-30 ep04 `ep04-asa-2jikan` (朝2時間, sheet dòng 5): khoá 6.833 chữ · soát ChatGPT web 8,7/10 · 152 prompt · hook 7 clip Grok · đã giao máy 2 (D5=Done, H5=cần ảnh). Sheet: dời cột B/K dòng 5–11 lên 1 dòng (bỏ đề trùng ep03), dòng 12 trùng dòng 11 chờ anh tự xoá; bản cũ lưu `assets\M-teinengo-anaba\_sheet_backup_A5K12_20260930.json`.
+- ⛔ 2026-10-14 anh chốt BỎ ep11 `ep11-pan-koujou` (dòng 12) + ep13 資格 (dòng 14): không thuộc nhóm win (thiếu "bị khinh thường"). Cột D = `BỎ`; kịch bản ep11 giữ lưu, không làm tiếp.
 - ❌ CHƯA: char-rate · kịch bản · đo `seconds_per_image` kênh mẫu. (`claude -p` Fable + Opus thử lại 26/09 chiều: chạy được.)
 
 ## 3. TÀI LIỆU — đọc theo thứ tự
@@ -62,9 +78,9 @@
 ### Giai đoạn 3 — 1 tập (CHỈ tập anh chỉ định)
 1. Đọc `COMMENT_INSIGHT.md` + bình luận của đúng video gốc trong `COMMENTS_TOP.md` → lỗi dữ kiện khán giả bắt ghi vào QUY ƯỚC `series_ctx.txt`.
 2. Tạo `assets\M-teinengo-anaba\ep<NN>-<slug>\`, ghi cột C. Hồ sơ đề tài: `competitor.txt` (`retrieve_videos.py --dna-dir docs\channel_dna\otonanomouten`) + `series_ctx.txt` (lương giờ/chế độ/giới hạn tuổi CÓ NGUỒN) + `promise.txt`.
-3. `py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug ep<NN>-<slug> --den B3G` → tự dừng sau LOCK (cột D = `Cần check kịch bản`).
+3. `py -3.13 -X utf8 pipeline\make_video.py --profile teinengo-anaba --slug ep<NN>-<slug> --den B3G` → tự dừng sau LOCK (cột D = `Chờ kiểm tra kịch bản`).
    ⭐ **Anh chốt 2026-09-26: Lane M KHÔNG chờ máy 3** — tab lane tự soát bằng ChatGPT web (`pipeline\soat_kb_gptweb.py`, hội thoại ở `profile.script.soat_gptweb.url`) → viec_tay → Opus → Sol ×2 → `BAO_CAO_SUA.md` + D = `Đã sửa kịch bản` → `review_may3.py --nhan`. Chi tiết `docs\SOP_LANE_M.md` §1e + §2.
-4. Nhận bản soát → gan_vai → B5W/B5P (`--only`) → hook → `dong_goi_may2.py --job` (tự ghi D=`Done` + H=`cần ảnh`) → `HOOK_TAP.md` → giao máy 2. Claude Code KHÔNG render.
+4. Nhận bản soát → gan_vai → B5W/B5P (`--only`) → hook → `dong_goi_may2.py --job` (tự ghi D=`Đã giao máy 2` + K=lệnh máy 2 + H=`cần ảnh`) → `HOOK_TAP.md` → giao máy 2. Claude Code KHÔNG render.
 
 ## 5. ⛔ LUẬT KHOÁ CỨNG LANE M (anh chốt 2026-09-26 — vi phạm 1 điều = DỪNG, không tự "linh hoạt")
 **K1 — Tên:** thư mục làm việc = tên tab = thư mục giao hàng = `M-teinengo-anaba` (`assets\M-teinengo-anaba\`,
@@ -91,10 +107,10 @@ khoá mặt XUYÊN TẬP bằng 1 ảnh gốc lane (như Sakura Lane L). Vợ c�
 Cấm dùng 高瀬健一 / 恵子 / câu chốt 「盲点だった。」 / tên kênh mẫu. Nét chibi dễ thương, soát lỗi ảnh AI (tóc, tay).
 **K11 — Giọng:** không dùng chung voice_id với lane nào; clone giọng người thật → HỎI ANH trước khi giữ voice_id; mọi tên riêng
 phải nghe thử qua TTS (kênh mẫu bị chê đọc sai 「シンリコさん」); nhạc nền không được "ngớ ngẩn" (bị chê 12 like).
-**K12 — Luật dự án chung vẫn áp:** Claude chỉ làm BƯỚC 1 (không render); hook 20–30s là video sinh + SFX (cổng S1L); máy 3 soát kịch bản
-sau LOCK; xong tập ghi D=`Done` + H=`cần ảnh`; mọi chữ Nhật trong báo cáo kèm dịch tiếng Việt; báo cáo ghi đường dẫn tuyệt đối.
+**K12 — Luật dự án chung vẫn áp:** Claude chỉ làm BƯỚC 1 (không render); hook (dài ≈ hook video gốc, luật 17/10 `E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md`) là video sinh + SFX (cổng S1L); máy 3 soát kịch bản
+sau LOCK; xong tập ghi D=`Đã giao máy 2` + K=lệnh máy 2 + H=`cần ảnh`; mọi chữ Nhật trong báo cáo kèm dịch tiếng Việt; báo cáo ghi đường dẫn tuyệt đối.
 
 ## 6. CỘT SHEET TAB `M-teinengo-anaba` (A→S)
-A STT (= số ep) · B NỘI DUNG (tựa tập + dịch) · C FOLDER · D KỊCH BẢN (`Cần check kịch bản` → `Đã sửa kịch bản` → `Done`) ·
+A STT (= số ep) · B NỘI DUNG (tựa tập + dịch) · C FOLDER · D KỊCH BẢN (`Đang chạy kịch bản bước 1` → `Chờ kiểm tra kịch bản` → `Đã sửa kịch bản` → `Đang làm Hook` → `Chờ duyệt hook` → `Đã duyệt hook` → `Đã giao máy 2`) ·
 E TITLE-DESCREPTION · F TAGS · G THUMBNAIL · H STATUS-IMG (`cần ảnh (N ảnh, ~Xđ)`) · I VIDEO · J LIST · K GHI CHÚ ·
 L ID KÊNH · M LINK KÊNH · N SỐ NGÀY LIST · O VIEW · P CTR TỔNG · Q CTR 24H · R VIEW CŨ · S CTR 24H CŨ (L→S theo dõi sau khi đăng).

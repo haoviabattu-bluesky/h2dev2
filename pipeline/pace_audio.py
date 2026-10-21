@@ -13,6 +13,7 @@ Luật nghỉ (quyết định bằng CHÍNH VĂN BẢN):
   - cue giữa câu (xuống dòng giữa chừng)      → 0,20s
   - cue là CUỐI ĐOẠN script (trước \\n\\n)    → 1,50s  (chặn trần 25% số cue)
   - 0,5s im lặng đầu video để vào nhịp
+  - SÀN cứng toàn dự án (03/10): câu ≥0,5s, đoạn ≥1,1s — tự dò hệ số không kéo thấp hơn
 Mục tiêu tỉ lệ NÓI 82-87% (TTS thô ~96%). Chèn im lặng SẠCH thay cho khe tự nhiên (giữ đủ tiếng nói).
 
 Dùng (SAU srt_from_script.py, TRƯỚC assemble):
@@ -135,6 +136,15 @@ def decode_pcm(mp3, sr=44100, ch=2):
     return a.reshape(-1, ch), sr
 
 
+# SÀN NGHỈ TOÀN DỰ ÁN (user chốt 2026-10-03): nghỉ câu ≥0,5s, nghỉ đoạn ≥1,0s.
+# Lỗi thật F ep08 + ep09: giọng đọc 0.90 → tỉ lệ NÓI đã dưới sàn target_lo → nhánh tự dò CHIA
+# hệ số xuống (ep09: câu 0,33s · đoạn 0,76s) → B4Q chỉ đếm được 0,12 chỗ nghỉ ≥1,3s/phút, trượt.
+# Đoạn để 1,1s (vẫn ≥1,0 theo luật) vì đó là mức ep08 chỉnh tay đã qua B4Q (5,92 chỗ/phút);
+# 1,0s chưa có số đo chứng minh qua. Sàn đè lên MỌI hệ số k, kể cả giá trị hồ sơ truyền vào.
+SAN_NGHI_CAU = 0.5
+SAN_NGHI_DOAN = 1.1
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--audio", required=True)
@@ -149,6 +159,10 @@ def main():
     ap.add_argument("--mid", type=float, default=0.0)
     ap.add_argument("--para", type=float, default=1.50)
     ap.add_argument("--lead", type=float, default=0.50)
+    ap.add_argument("--min-sentence", type=float, default=SAN_NGHI_CAU,
+                    help="SÀN nghỉ hết câu (giây) — tự dò hệ số không được kéo thấp hơn")
+    ap.add_argument("--min-para", type=float, default=SAN_NGHI_DOAN,
+                    help="SÀN nghỉ cuối đoạn (giây) — tự dò hệ số không được kéo thấp hơn")
     ap.add_argument("--para-cap", type=float, default=0.25, help="trần tỉ lệ cue được nghỉ dài (1,5s)")
     ap.add_argument("--target-hi", type=float, default=0.87,
                     help="tỉ lệ NÓI tối đa; vượt thì tự nhân mức nghỉ lên cho tới khi đạt (0 = tắt)")
@@ -181,7 +195,9 @@ def main():
             return 0.0
         if not het_cau(txt):
             return args.mid * k
-        return (args.para if para[i] else args.sentence) * k
+        if para[i]:
+            return max(args.para * k, args.min_para)
+        return max(args.sentence * k, args.min_sentence)
 
     def extras_for(k):
         out = []
@@ -217,8 +233,8 @@ def main():
             else:
                 hi = k
         k = hi
-        print(f"  tự dò hệ số nghỉ ×{k:.2f} (THIẾU nghỉ) → câu {args.sentence*k:.2f}s · "
-              f"giữa câu {args.mid*k:.2f}s · đoạn {args.para*k:.2f}s")
+        print(f"  tự dò hệ số nghỉ ×{k:.2f} (THIẾU nghỉ) → câu {max(args.sentence*k, args.min_sentence):.2f}s · "
+              f"giữa câu {args.mid*k:.2f}s · đoạn {max(args.para*k, args.min_para):.2f}s")
     elif args.target_lo and r1 < args.target_lo:
         # ratio_for(k) GIẢM khi k TĂNG (nghỉ nhiều hơn = nói ít lại theo tỉ lệ) → tìm k CÀNG GẦN
         # 1.0 CÀNG TỐT (giữ đúng tinh thần mức nghỉ gốc) mà vẫn đạt SÀN target_lo.
@@ -231,7 +247,8 @@ def main():
                 hi = k                # dưới sàn → phải giảm k nữa
         k = lo
         print(f"  tự dò hệ số nghỉ ×{k:.2f} (THỪA nghỉ, {r1:.0%} < sàn {args.target_lo:.0%}) → "
-              f"câu {args.sentence*k:.2f}s · giữa câu {args.mid*k:.2f}s · đoạn {args.para*k:.2f}s")
+              f"câu {max(args.sentence*k, args.min_sentence):.2f}s · giữa câu {args.mid*k:.2f}s · "
+              f"đoạn {max(args.para*k, args.min_para):.2f}s (sàn {args.min_sentence}/{args.min_para}s)")
 
     def sil(sec):
         return np.zeros((int(sec * sr), nch), dtype=np.int16)

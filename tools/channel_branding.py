@@ -149,6 +149,14 @@ def dismiss_dialogs(page):
         if b.count():
             b.first.click()
         page.wait_for_timeout(2000)
+    # Kênh mới tinh (Lane O 08/10): hộp "Welcome to YouTube Studio" KHÔNG phải ytcp-warm-welcome-dialog,
+    # backdrop của nó chặn mọi cú click → bấm mọi nút Continue/Got it đang hiện.
+    for b in page.get_by_role("button", name=RX_CONT).all():
+        try:
+            if b.is_visible():
+                b.click(); page.wait_for_timeout(1500)
+        except Exception:
+            pass
     page.keyboard.press("Escape")
     close = page.get_by_role("button", name=RX_CLOSE)
     if close.count():
@@ -443,6 +451,15 @@ def settings_channel(c: Ctx, cid):
         c.log(f"Keywords mới có {len(have)}/{len(kws)}", False)
     elif kws:
         box = dlg.get_by_placeholder(RX_KW_PH)
+        kwc = dlg.locator("ytcp-form-input-container").filter(has_text=re.compile(r"Keywords|Từ khóa"))
+        if not box.count() and kwc.count() and not have:
+            # Kênh cũ đổi lane (Lane J 08/10 ghi đè 戦国の裏側): ô đang có chip từ khoá lane cũ → mất placeholder.
+            # Không khớp từ nào của lane mới → "Delete all" rồi nhập lại vào input của ô.
+            clr = kwc.first.locator('[aria-label="Delete all"], [aria-label="Xóa tất cả"]')
+            if clr.count():
+                clr.first.click(); page.wait_for_timeout(1000)
+                c.log("Keywords: xoá từ khoá lane cũ (Delete all)", True)
+            box = kwc.first.locator("input")
         if box.count():
             missing = [k for k in kws if k not in body]
             box.first.click()
@@ -517,7 +534,7 @@ def settings_upload_defaults(c: Ctx, cid):
     else:
         done = 0
         for lab in (re.compile(r"Video language|Ngôn ngữ video", re.I),
-                    re.compile(r"Title and description language|Ngôn ngữ tiêu đề", re.I)):
+                    re.compile(r"Title and description language|Ngôn ngữ (của )?tiêu đề", re.I)):
             dd, txt = dropdown(dlg, lab)
             if dd is None:
                 c.log(f"không thấy dropdown {lab.pattern}", False); continue
@@ -599,12 +616,15 @@ def write_sheets(cfg, cid):
 
 
 LANE_TAB_HEADER = ["STT", None, "FOLDER", "KỊCH BẢN", "TITLE-DESCREPTION", "TAGS", "THUMBNAIL",
-                   "STATUS-IMG", "VIDEO", "LIST", "GHI CHÚ"]     # None = ô B ghép từ lane_label + niche
+                   "STATUS-IMG", "VIDEO", "LIST", "GHI CHÚ",
+                   # L→S: theo dõi kênh sau khi đăng (anh chốt 2026-09-26, lấy khuôn tab L-shakai-no-naze)
+                   "ID KÊNH", "LINK KÊNH", "SỐ NGÀY LIST", "VIEW", "CTR TỔNG", "CTR 24H", "VIEW CŨ", "CTR 24H CŨ"]
+# None = ô B ghép "NỘI DUNG - {lane_label}" + xuống dòng + niche
 
 
 def ensure_lane_tab(cfg):
-    """Sau setup kênh: tạo tab sản xuất riêng, dòng 1 header A→K giống tab E-70dai-kenko
-    (anh chốt 2026-09-20). Tab đã có / dòng 1 đã có dữ liệu -> không đụng.
+    """Sau setup kênh: tạo tab sản xuất riêng, dòng 1 header A→S (A→K sản xuất + L→S theo dõi kênh; anh chốt
+    2026-09-20 bản A→K, mở rộng A→S 2026-09-26). Tab đã có / dòng 1 đã có dữ liệu -> không đụng.
     Tên tab = `{Lane}-{tên kênh}` (anh chốt 2026-09-24, vd A-shinya_shiryoshitsu, F-teinengo-real):
     KENH.json khai `sheet_tab` thì dùng nguyên, không thì ghép chữ lane từ `lane_label` ("LANE H" → H)
     + handle. Nhớ khai CÙNG tên đó vào profile `publish.sheet_tab` (pipeline/sheet_tab.py đọc ở đó)."""
@@ -621,14 +641,14 @@ def ensure_lane_tab(cfg):
         svc.spreadsheets().batchUpdate(spreadsheetId=SHEET_ID,
             body={"requests": [{"addSheet": {"properties": {"title": tab}}}]}).execute()
         print(f"    tạo tab {tab}")
-    cur = svc.spreadsheets().values().get(spreadsheetId=SHEET_ID, range=f"{tab}!A1:K1").execute().get("values")
+    cur = svc.spreadsheets().values().get(spreadsheetId=SHEET_ID, range=f"{tab}!A1:S1").execute().get("values")
     if cur and any(cur[0]):
         print(f"    tab {tab}: dòng 1 đã có dữ liệu, giữ nguyên"); return
     b = f"NỘI DUNG - {cfg.get('lane_label', tab)}" + chr(10) + cfg.get('niche', '')
     row = [b if h is None else h for h in LANE_TAB_HEADER]
-    svc.spreadsheets().values().update(spreadsheetId=SHEET_ID, range=f"{tab}!A1:K1",
+    svc.spreadsheets().values().update(spreadsheetId=SHEET_ID, range=f"{tab}!A1:S1",
         valueInputOption="USER_ENTERED", body={"values": [row]}).execute()
-    print(f"    tab {tab}: header A1:K1 OK")
+    print(f"    tab {tab}: header A1:S1 OK")
 
 
 def main():

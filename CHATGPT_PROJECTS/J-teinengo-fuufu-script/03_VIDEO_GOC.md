@@ -1,0 +1,65 @@
+# 03 — 10 VIDEO GỐC CỦA KÊNH MẪU 老後のゴローさん (mỗi tập của kênh mình bám 1 video, ĐỔI nhân vật/tình tiết, KHÔNG chép)
+
+## Tập 1 ← Scnn76gZ8E8 · 【漫画】退職金で豪華クルーズ旅をした65歳夫婦のリアル…14日間で知った現実とは？
+- view 888000
+- hook: Mở đầu trực tiếp vào cảnh tượng nghịch lý trên bàn tiệc du thuyền sang trọng: mọi người cười nói rôm rả nhưng vợ chồng nhân vật chính hoàn toàn im lặng cả ngày.
+- khung: Cấu trúc hành trình vỡ mộng và thức tỉnh: Thực tế phũ phàng trên du thuyền -> Bế tắc tâm lý khi đối diện nhau 24/7 -> Ẩn dụ ngâm nấm hương của người hàng xóm -> Thức tỉnh và bắt đầu giao tiếp lại từ căn bếp.
+
+## Tập 2 ← xxMKVprVh-I · 【漫画】６０代・７０代夫婦の熟年離婚 VS 熟年家庭内別居、どっちが幸せなのか？
+- view 819000
+- hook: Mở đầu trực diện bằng biến cố bất ngờ với tờ hợp đồng ly thân trong nhà kèm lời cảnh tỉnh về hiện thực tàn khốc hơn ly hôn.
+- khung: Mâu thuẫn vợ chồng sau nghỉ hưu -> Vạch trần thực tế tài chính và tư vấn luật lương hưu -> Cuộc sống ly thân ngột ngạt và biến cố thức tỉnh -> Bài học về lòng biết ơn và cái kết hé mở tái gắn kết.
+
+## Tập 3 ← r4jNE1oTv8Q · 【漫画】70歳でまだ働く男と、65歳で卒業した男。5年後、差がついた本当の理由とは？
+- view 514000
+- hook: Mở đầu bằng sự đối lập cay đắng giữa nhân vật chính 70 tuổi vẫn phơi nắng làm bảo vệ và người đồng nghiệp cũ đã thảnh thơi an hưởng tuổi già suốt 5 năm dù tài chính tương đương.
+- khung: Mở đầu với nghịch cảnh tương phản giữa hai người bạn cùng tuổi -> Đối thoại tìm hiểu nguyên nhân và tiếp nhận bài học ẩn dụ về đàn chim di cư -> Về nhà mở lòng với vợ, cân bằng lại công việc và thực hiện lời hứa thời trẻ.
+
+## Tập 4 ← gpVr3OYPA-E · 【漫画】シニアの婚活バスツアーとは？熟年結婚は本当にあるのか？ (Tour xe buýt hẹn hò của người cao tuổi là gì? Kết hôn tuổi già có thật không?)
+- view 355978
+- hook: Mở bằng thuyết minh CẢNH (trong xe buýt tour hẹn hò, ghế bên trống) rồi lập tức tóm tắt cả truyện theo nhịp 3 lần「1回目は騙されて、2回目は笑われて、3回目にようやく気づいた」(lần 1 bị lừa, lần 2 bị cười, lần 3 mới nhận ra) + hé lời hứa「本当に大事なものはずっと隣にあった」(điều quý giá luôn ở ngay bên cạnh) → 「話は3ヶ月前に遡る」(câu chuyện quay về 3 tháng trước); ngôi 1 俺 (tôi, giọng nam bình dân).
+- khung: Hook tóm tắt 3 lần + flash-forward (0–2%) -> Giới thiệu nhân vật & nỗi cô đơn goá vợ, quán cơm định thực, lời dặn của vợ「1人でご飯食べちゃだめよ」(0–10%) -> Thấy tờ rơi tour, do dự vì tiền, quyết đi (10–15%) -> Tour 1: gặp さち子 hào nhoáng, đồng cảm vì cùng goá, gọi điện 2 lần/tuần (15–30%) -> Xin vay 200万, bà chủ quán vạch trần, từ chối, bị cắt liên lạc, lộ ra lý lịch giả (30–38%) -> An ủi ở quán cơm, quyết đi lần 2 (38–40%) -> Tour 2: 緑 vui tính kéo anh kể chuyện taxi, được cười nhiều, rồi phát hiện cô ấy chỉ 'đi chơi', anh là 'chú hề'; はる子 lặng lẽ khen chuyện taxi (40–52%) -> Đáy tuyệt vọng trước bàn thờ vợ, vứt tờ rơi rồi nhặt lại (52–58%) -> Tour 3: nghi ngờ mọi người, tự chán bản thân (58–65%) -> Gặp 五郎さん chơi shogi, ẩn dụ quân 歩 (tốt) và 王手は一手でいい (65–75%) -> Sáng hôm sau nhận ra はる子 có mặt cả 3 lần, ngồi đối diện, xin lỗi & cảm ơn (75–85%) -> Hậu truyện nửa năm: hẹn hò giản dị, trứng cuộn cháy, nikujaga làm run tay, はる子 thắp hương bàn thờ vợ cũ (85–95%) -> Người dẫn ngôi 3 tổng kết bài học + đạo lý (95–99%) -> CTA comment + đăng ký (99–100%)
+- quyết định lớn: Ở tuổi 68 đi tour xe buýt hẹn hò người cao tuổi (1万5000円/chuyến) để tìm bạn đời mới.
+- đối chứng: Hai 'quân cờ hào nhoáng' さち子 (15–38%) và 緑 (40–52%) làm đối chứng với はる子 trầm lặng (lướt qua ở ~50%, lên chính ở 75%). Không có cặp vợ chồng đối chứng riêng.
+- rủi ro/điểm yếu của video gốc (đừng lặp): Toán lương hưu sai: 1万5000円 bị nói là 'hơn 1 ngày lương hưu', 2万 là 'gần 2 ngày' trong khi 14万/tháng ≈ 4.700 yên/ngày — khán giả Nhật tinh ý có thể chê. · Mốc thời gian lẫn: 'vợ mất 5 năm trước' vs '去年…8ヶ月' (nghi phụ đề); mở bài nói 'quay về 3 tháng trước' nhưng truyện trải 3 chuyến tour + hậu truyện nửa năm. · Phản diện nữ khá rập khuôn (phụ nữ hào nhoáng = lừa đảo, phụ nữ vui vẻ = hời hợt) — rủi ro khán giả nữ thấy định kiến. · Kết cục dễ đoán từ ~50% khi はる子 xuất hiện.
+
+## Tập 5 ← hyLpBbmnvIA · 【漫画】老後貧困のリアル、受け取る年金額による食生活の違い貧富の差がヤバ過ぎる・・・
+- view 321000
+- hook: Tạo tương phản trực quan gây sốc giữa bữa ăn thịnh soạn và lát bánh mì quẹt bơ của hai đồng nghiệp cùng ngày về hưu để khơi dậy nỗi sợ nghèo khó tuổi già.
+- khung: Mở đầu bằng cú sốc thực tế về cách tính lương hưu và sự bốc hơi của tiền hưu trí, đẩy nhân vật vào khủng hoảng thể xác lẫn tinh thần do giữ sĩ diện; kết thúc bằng sự thức tỉnh, chữa lành nhờ tình bạn chân thành và lối sống giản dị.
+
+## Tập 6 ← OIeZvtYreOg · 【漫画】“脳が10歳若い”シニアが、こっそり楽しんでいる習慣とは？
+- view 202000
+- hook: Mở đầu bằng tình huống đồng cảm cao về chứng hay quên của tuổi già kết hợp nghịch lý dù chăm chỉ rèn luyện não nhưng trí nhớ vẫn kém hơn người bạn cùng tuổi không tập luyện gì
+- khung: Bắt đầu với khủng hoảng mất trí nhớ và thói quen rập khuôn vô hồn của nhân vật chính, tiếp nối bằng cuộc gặp gỡ bí ẩn tiết lộ 7 thói quen nuôi dưỡng sự tò mò, và kết thúc bằng hành trình chuyển hóa lối sống giúp hồi sinh cảm xúc lẫn mối quan hệ vợ chồng.
+
+## Tập 7 ← bZp51t9b-_g · 【漫画】退職金で念願の田舎に移住した６５歳の老夫婦…田舎と都会、どっちが幸せなのか？ (Cặp vợ chồng già 65 tuổi dùng tiền hưu chuyển về quê như mơ ước… Quê hay phố, bên nào hạnh phúc hơn?)
+- view 220787
+- hook: Mở bằng CẢNH cao trào flash-forward: tiếng cửa taxi đóng, vợ kéo vali bỏ đi không ngoái lại, chồng chạy theo trượt sỏi → câu mỉa「半年前、私たちは最高の決断をしたはずだったのに」(nửa năm trước lẽ ra chúng tôi đã có quyết định tuyệt nhất) → 「話は7ヶ月前に遡る」; ngôi 1 私 (tôi, giọng nam trí thức — cựu giáo viên), độc thoại nội tâm đôi chỗ chuyển 俺.
+- khung: Hook flash-forward vợ bỏ đi (0–2%) -> Ngày nghỉ hưu, tính toán tiền (2200万, tiền nhà 9万/tháng) dẫn tới ý tưởng về quê (2–6%) -> Xem TV, mua nhà cổ sau 1 lần xem, bỏ qua mọi lo lắng của vợ, lơ ông hàng xóm 五郎 (6–19%) -> Chuyển nhà: vợ từ biệt bạn 30 năm, 'そうね' lặp lại (khoảng 15–19%) -> Thực tế sốc: dột, rết, siêu thị 30 phút, vợ không có bằng lái, luật lệ xóm (19–25%) -> Chồng mê ruộng, vợ thu mình, xem thời tiết Tokyo, xin về Tokyo bị gạt 'phí 3万' (25–34%) -> Vợ sụt cân, bữa tối chỉ bát misoshiru, khóc 'もう限界' (34–41%) -> Vợ bỏ đi, câu「あなたが好きなのは田舎暮らしであって私…」(41–46%) -> Cô đơn trong nhà cổ 6 phòng, cơm nhão, nói dối hàng xóm, quả mơ muối vợ làm (46–53%) -> 五郎さん và ẩn dụ bonsai 鉢 (chậu) vs 水 (tưới nước mỗi ngày) (53–62%) -> Lên Tokyo cúi đầu trước nhà em gái vợ, gửi thư (62–69%) -> Quyết bán nhà, viết thư 'ở đâu cũng được, miễn bên em'; chờ 8 ngày (69–74%) -> Điện thoại: vợ nói lý do thật (không phải ghét quê mà vì không được lắng nghe), ra 3 điều kiện (74–82%) -> Hậu truyện: 2 lần/tháng lên Tokyo, ngồi cùng hội bạn vợ, vợ học bonsai với 五郎, 15 phút trà sáng ở hiên (82–95%) -> Người dẫn: số liệu di cư + đạo lý (95–99%) -> CTA (99–100%)
+- quyết định lớn: Dùng tiền hưu mua nhà cổ 50 năm ở vùng núi (700万 + sửa 500万) chuyển về quê, quyết một mình sau 1 lần xem nhà, không hỏi ý vợ.
+- đối chứng: Không có cặp đối chứng đầy đủ; chỉ lướt qua 'cặp vợ chồng hàng xóm cùng cắt cỏ vui vẻ' ở ~50% (hình ảnh 'lẽ ra chúng tôi phải như thế'). 五郎さん là điểm đối chiếu lối sống (kiên nhẫn tưới cây 15 năm) chứ không phải cặp đối chứng.
+- rủi ro/điểm yếu của video gốc (đừng lặp): Mâu thuẫn chi phí đi Tokyo: 3万 khứ hồi (1 người) vs 1万 cho 2 người — lỗi logic dễ bị bắt. · Số liệu cuối (18.000 người/năm, 総務省 30% quay về trong 5 năm) không dẫn nguồn cụ thể — rủi ro 'thông tin không trung thực'. · Người chồng bị viết quá vô tâm ở nửa đầu (không chào hàng xóm, không hỏi 1 câu nào) — một số khán giả nam có thể thấy phi lý hoặc khó đồng cảm. · Tên vợ trong phụ đề lẫn lộn (み子/みち子/い子) — chỉ là lỗi phụ đề, nhưng nhắc rằng tên nhân vật cần dễ đọc cho TTS/STT.
+
+## Tập 8 ← Nu-1bKzC6tY · 【漫画】熟年離婚で自由を手にした65歳、5年後に直面した年金と孤独の現実とは？
+- view 177794
+- hook: Mở bằng CẢNH + THOẠI (cold open): nam chính ký đơn ly hôn, đối đáp ngắn lạnh lùng với vợ; ngay sau đó tự giới thiệu ngôi 1 「俺は鈴木孝志」(tôi là Suzuki Takashi) + nhảy vọt 5 năm sau đặt câu hỏi 'tự do đổi lấy gì'. Ngôi kể: 俺 (tôi, nam).
+- khung: Cold open ký đơn ly hôn + tự giới thiệu + câu hỏi 5 năm sau (0–4%) -> Hồi tưởng lý do ly hôn: về hưu, vợ chồng hết chuyện để nói, anh chọn trốn chạy (4–10%) -> Tự do hả hê ngắn (10–11%) -> Cú sốc tiền: thông báo lương hưu 19万→13万, ra văn phòng lương hưu nghe giải thích 年金分割 (chia lương hưu khi ly hôn) (11–22%) -> Cô đơn năm 1: siêu thị, đồng nghiệp từ chối, con trai gọi, bỏ về trước cửa trung tâm văn hoá (22–31%) -> Đối chứng: vợ chồng đồng nghiệp Takeda dìu nhau đi viện → ghen tị, rồi thấy Takeda cãi vợ → 'vợ chồng chưa chắc hạnh phúc' (31–44%) -> Gặp 五郎さん (ông Gorō) ở vườn rau thị dân, ẩn dụ 'cây trong chậu vs cây hạ thổ' (44–55%) -> Tự vỡ lẽ: không phải vì ly hôn mà vì không tự bén rễ (55–59%) -> Hành động: thuê ô đất, thu hoạch cà chua, kết nối cộng đồng, tư vấn tiền bạc tình nguyện 2 lần/tháng (59–73%) -> Vợ cũ gọi điện: 'giọng anh đổi rồi', nói chuyện hoà nhã (73–79%) -> Cảm ơn Gorō, 'một mình nhưng không cô đơn' (79–84%) -> Vợ chồng Takeda ghé vườn, tổng kết 3 lối sống; gửi cà chua cho con, hẹn cháu tới (84–96%) -> Người dẫn ngôi 3 tổng kết + câu hỏi khán giả + CTA đăng ký (96–100%)
+- quyết định lớn: Tự mình đề nghị ly hôn nửa năm sau khi về hưu (熟年離婚 — ly hôn tuổi xế chiều) để 'được tự do'.
+- đối chứng: Vợ chồng Takeda (không ly hôn) — xuất hiện ~31% (ghen tị), ~38% (họ cũng cãi nhau), quay lại ~84–91% (tổng kết). Thêm đối chứng thứ ba là chính vợ cũ: ly hôn mà vẫn vui (~26% qua lời con, ~73% qua điện thoại).
+- rủi ro/điểm yếu của video gốc (đừng lặp): Tương tác thấp bất thường: 440 like / 32 bình luận trên 177k view (~0,25%) — kém hẳn Hgo2qFDF0bM (1.235 like / 161 bình luận); có thể khán giả khó đồng cảm với người chồng chủ động bỏ vợ · Phi lý: cựu trưởng chi nhánh ngân hàng 'đã tư vấn hàng nghìn ca lương hưu' mà không biết 年金分割 cắt tới mức nào — kịch bản tự thừa nhận nhưng khán giả có thể chê · Gorō xuất hiện muộn (~44%); nửa đầu thiên về than thở, dễ rớt người xem giữa bài · Phụ đề nhiều lỗi đồng âm (鉢→蜂, 定年→丁年, 支店長→四店長, 厚生→構成, tên vợ cũ không rõ) — số 19万/13万 nghe rõ nhưng tỉ lệ giảm cần kiểm khi viết lại
+
+## Tập 9 ← Hgo2qFDF0bM · 【漫画】老後の住まい問題、持ち家にこだわった６５歳夫婦と賃貸を貫いた６８歳独身の末路・・・
+- view 177096
+- hook: Mở bằng THUYẾT MINH NỘI TÂM ngôi 1 「俺」: nêu niềm tin phổ biến 「持ち家こそ老後の勝ち組」 (có nhà riêng mới là người thắng khi về già), tự nhận 'kẻ thua', rồi tiết lộ trước đáp án 'không phải nhà riêng hay nhà thuê mà là có biết chế độ hay không' + tóm tắt câu chuyện; sau đó mới vào cảnh cuộc gọi của chủ nhà.
+- khung: Hook thuyết minh: niềm tin 'nhà riêng = thắng', tự nhận thua, tiết lộ đáp án 'biết chế độ' (0–3%) -> Cảnh: chủ nhà gọi báo không gia hạn hợp đồng sau 25 năm, anh cười bình thản (3–8%) -> Tự giới thiệu + bảng số: tiền thuê 8万, lương hưu 17万, tiết kiệm 1500万; so 25 năm thuê 2400万 vs mua 4500万, nhưng vẫn tự thấy 'thua' (8–13%) -> Thư mời họp lớp, giới thiệu học trò cũ Hiroshi 'người thắng' có nhà ở Chiba (13–19%) -> Họp lớp: gặp vợ chồng Hiroshi–Kiyoko, thấy mình thua (19–27%) -> Lật: quán cà phê, vợ chồng đưa báo giá sửa nhà 800万, tiết kiệm chỉ 900万, vợ rơm rớm (27–35%) -> Về nhà tính lại: tài sản thật 1500万 nhờ NISA/iDeCo, 'thua chỉ trong đầu mình' (35–41%) -> Tiệm bút máy, gặp Gorō: ẩn dụ bút máy vs bút bi — đều là 'công cụ' (41–57%) -> Tra chế độ: nhà ở safety net, nhà thuê ưu đãi người cao tuổi của Tokyo, UR, trợ cấp gia cố chống động đất (57–62%) -> Gọi Hiroshi: 'phân rã, xếp ưu tiên, giải từng phần như toán' — cả hai cùng thú nhận 'ngừng suy nghĩ' (62–72%) -> 10 ngày sau thăm nhà Hiroshi: đã xin trợ cấp, chỉ làm gia cố trước, vợ khóc vì nhẹ nhõm (72–80%) -> Chuyển tới nhà thuê ưu đãi, tiền thuê rẻ hơn 1万; nhận ra 'độc thân' chính là công cụ của mình (80–86%) -> Đoạn đạo lý dài: nhà hay thuê chỉ là công cụ, thứ đắt nhất là tự cho mình thua (86–91%) -> Bưu thiếp của Hiroshi: sửa xong thực chi 115万; bút máy đầu tiên trên bàn (91–96%) -> Người dẫn ngôi 3 tổng kết + CTA (96–100%)
+- quyết định lớn: Satō: cả đời thuê nhà, không mua (quyết định quá khứ); Hiroshi: mua nhà rồi dùng tiền hưu trả hết nợ sớm, còn lại ít tiền mặt.
+- đối chứng: Vợ chồng Hiroshi–Kiyoko (phe nhà riêng) là đối chứng chính: giới thiệu qua thư mời ~13%, trực tiếp ~19–35%, rồi ~62–80% và bưu thiếp ~91%. Cấu trúc 2 tuyến song song chứ không phải đối chứng phụ.
+- rủi ro/điểm yếu của video gốc (đừng lặp): So sánh 2400万 (25 năm thuê) vs 4500万 (tổng 35 năm vay) là khập khiễng, lại bỏ qua việc người thuê vẫn trả tiền thuê suốt tuổi già — phe có nhà dễ bắt lỗi · Con số trợ cấp chống động đất tự mâu thuẫn (最大100万前後 → 最大80万), dự tính 120万 vs kết quả 115万 — cần thống nhất nếu tái dùng · Tiêu đề 「末路・・・」 (kết cục thê thảm) nhưng cả hai bên đều kết ổn → rủi ro cảm giác bị câu view · Đoạn đạo lý kết (86–91%) dài, lặp ý 'công cụ', 'biết chế độ' → dễ rơi người xem ở cuối; phụ đề lỗi (2DK/2LDK, 井で子=iDeCo, 塩時き=潮時)
+
+## Tập 10 ← B9BIhRhlAU4 · 【漫画】５０代・６０代の転職と再就職。失敗しない仕事選びとシニア向け「楽なバイト」
+- view 167655
+- hook: Mở bằng CẢNH (không thuyết minh) · Có nhân vật ĐỐI CHỨNG · ⚠️ Chủ ngữ chung chung ×1
+- khung: ✅ 0–7s CẢNH mâu thuẫn | ✅ 7–25s nhân vật ĐỐI CHỨNG | ✅ 17–45s câu khoá (6/6 video có) | 🟡 26–50s thẻ định danh | ✅ 50–120s câu vợ bị hiểu sai | ✅ ~−90s lặp câu khoá + câu hỏi
+
+⚠️ Kênh mẫu có nhân vật cố định 五郎さん (ông Gorō) nói đạo lý bằng ẩn dụ đồ vật (盆栽の水やり, 万年筆とボールペン, 歩の駒). Kênh mình CẤM dùng nhân vật/ẩn dụ này.

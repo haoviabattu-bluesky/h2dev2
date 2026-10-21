@@ -140,3 +140,22 @@ khác đang mở song song — càng gọi liên tiếp càng chậm dần rồi
 sửa từng vòng xem lịch sử chat, kết quả cuối: cả 2 tập verdict B3S = FIX (không REMAKE), sẵn sàng cho
 B4. `docs/SOP_LANE_E.md` §4b giữ phần khai báo riêng của lane này (cờ `sol_qc`, chưa khai
 `domain_focus` riêng).
+
+## Mục THÔNG TIN THẬT — thêm 2026-10-07 (anh duyệt)
+
+Lấy từ bộ soát chung `bonus-tui-check-kb`. Khối `THONG_TIN_THAT` trong `pipeline/qc_script_sol.py` nối vào CẢ 3 lens
+(sau mục NỐI TỪ HOOK nếu có), bắt Sol:
+- gắn 1 trong 6 nhãn cho từng tuyên bố về thế giới thật: Chính xác · Cơ bản đúng · Dễ gây hiểu nhầm · Sai · Chưa đủ căn cứ · Đang tranh luận
+  (KHÔNG áp cho chi tiết hư cấu của nhân vật);
+- soi thiếu ngữ cảnh: số cũ nói như hiện tại, thiếu phạm vi/điều kiện, tương quan → nhân quả, rủi ro tương đối nói như
+  tuyệt đối, một ca → quy luật, ý kiến → đồng thuận; từ quá chắc 「必ず」「絶対」「治る」…;
+- vì sao cần: cổng máy (`SỐ ĐƯỢC PHÉP`, `qc_facts`) chỉ kiểm số CÓ trong tư liệu, không kiểm câu dùng số ĐÚNG NGHĨA.
+
+Ghi output: lens `plain` → vào chung danh sách ĐIỂM KHÔNG HỢP LÝ (vì vòng patch lean chỉ vá danh sách đó);
+lens `medical`/`story` → mục riêng `THÔNG TIN THẬT:` trước `KẾT LUẬN:`. Tính verdict: Sai = NẶNG; Dễ gây hiểu nhầm = VỪA
+(NẶNG nếu người già làm theo có thể hại sức khoẻ/tiền); Chưa đủ căn cứ/Đang tranh luận = VỪA nếu câu nói chắc.
+Tắt cho lane nào: `profile.script_qc.thong_tin_that = false`. Test: `pipeline/tests/test_qc_sol_thong_tin_that.py`.
+Chạy thật 07/10 trên `assets/shakai_no_naze/ep13-atama-ii-hitori` (lens plain): Sol trả 3 điểm có nhãn
+(mẫu số 29,6% bị nói rộng thành toàn bộ người lao động, tương quan tuổi–cô đơn bị gán nguyên nhân, luận đề
+"người thông minh" chưa đủ căn cứ). Lưu ý: S5 Sol đang TẮT ở mọi lane sản xuất (`script.sol_qc=false` từ 29/09) —
+khối này chỉ chạy khi gọi tay `qc_script_sol.py` hoặc khi lane bật lại `sol_qc`.

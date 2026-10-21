@@ -221,11 +221,15 @@ Phụ đề: lane không cháy chữ (`burn_subs=false`) giao `voice.srt` (cho f
 Xong thì ghi cột trạng thái trên Google Sheet theo quy ước của lane (lane E: cột H, một ô,
 `Video done - <slug>` + xuống dòng + đường dẫn).
 
-⛔ **CỘT SHEET KHI MÁY 1 GIAO (anh chốt 2026-09-24, MỌI lane):** tập xong phần máy 1 → **cột D (KỊCH BẢN) = `Done`**
+⛔ **CỘT SHEET KHI MÁY 1 GIAO (anh chốt 2026-09-24, MỌI lane):** tập xong phần máy 1 → **cột D (KỊCH BẢN) = `Đã giao máy 2`** (cũ `Done`, đổi 03/10 — `docs/TRANG_THAI_COT_D_K.md`)
 (để mọi người biết tập đã xong) + **cột H (STATUS-IMG) = `cần ảnh (...)`** = LỆNH GIAO VIỆC cho máy 2.
 `dong_goi_may2.py --job` tự ghi cả hai (không đè ô đã có chữ khác).
 
 ## 7. Tiêu đề · mô tả · tags · thumbnail — TỰ gọi dự án YT-TITLE-RESEARCH (2026-09-24)
+
+> ⛔ **2026-10-01 anh chốt: TẮT TOÀN BỘ lane, không tự bật lại.** Công tắc tổng `TAT_TOAN_DU_AN = True` trong
+> `E:\CLAUDE\YOUTUBE\h2dev\pipeline\goi_title.py` thắng mọi `publish.title_auto` (đã đặt false cả 6 lane từng bật);
+> `goi()` trả về ngay, `--bat`/`--worker` bị từ chối. Chỉ anh tự sửa hằng đó mới mở lại. Phần dưới là lịch sử.
 
 `pipeline/goi_title.py` được gọi TỰ ĐỘNG ở cuối cả 3 đường giao máy 2
 (`dong_goi_may2.py --job`, `drive_handoff.py upload-job`, `goi_buoc2_3.py`) — anh không gõ tay nữa.

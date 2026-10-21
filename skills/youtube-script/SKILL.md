@@ -30,11 +30,14 @@ SOURCE:   [dán transcript đối thủ (clone 70/30) | chủ đề | "tự tìm
 4. ⚠️ **GIỚI GIỌNG PHẢI KHỚP NGƯỜI KỂ** (bà cụ→nữ, ông cụ→nam). Bug đã dính nhiều lần: người kể nữ gán giọng nam.
 5. **Nhất quán nhân vật:** đặt TÊN + tuổi rõ cho người kể + nhân vật chính (để [[youtube-image-prompts]] dựng
    character bible + REF-LOCK). Toán tuổi hợp lý (con = cha mẹ − 25..35).
+6. **HOOK (mở đầu) — luật DUY NHẤT (anh chốt 21/10/2026):** bám sát CẤU TRÚC hook của video gốc — gốc làm thế nào làm
+   thế ấy (cách mở, thứ tự nhịp, độ dài ≈ gốc), được đổi một chút cho hợp/hay hơn; đổi tên họ, nghề, câu thoại theo tập
+   mình. KHÔNG có luật hook nào khác (không bắt cold open, mở bằng thoại, cao trào, kịch tính, câu để ngỏ).
 
 ## 6 PHASE
-1. **Topic Lock** — chốt chủ đề + hook + bài học/悟り/twist.
+1. **Topic Lock** — chốt chủ đề + bài học/悟り/twist. (Hook KHÔNG chốt ở đây — xem quy tắc 6.)
 2. **Research/Analyze** — nếu clone: phân tích cốt truyện/nhân vật/bài học đối thủ. Nếu lịch sử: research bank (độ chính xác).
-3. **Outline** — cold open điện ảnh (thời gian+nơi+cử chỉ) → gieo伏線 → cao trào → bài học 1 câu → 3 kết + comment-bait.
+3. **Outline** — (mở đầu = hook theo quy tắc 6) → gieo伏線 → cao trào → bài học 1 câu → 3 kết + comment-bait.
 4. **Draft** theo từng phần.
 5. **Humanization** — nhịp tự nhiên, "you"/gần gũi, xoá giọng AI.
 6. **Final Clean** — bỏ mọi marker → prose thuần ngôn ngữ đích. Đếm ký tự → xác nhận khớp LENGTH.
@@ -42,9 +45,9 @@ SOURCE:   [dán transcript đối thủ (clone 70/30) | chủ đề | "tự tìm
 ## HỒ SƠ NICHE (chọn theo NICHE, mở rộng khi có ngách mới)
 - **satori-elderly** (悟り系, người già JP/KR): ngôi 1 người già tự kể chuyện đời, bọc 1 bài học sống; ấm áp,
   giữ nhân phẩm; RPM cao, khán giả già xem lâu → nên DÀI. JP hoá: 縁側/仏壇/四十九日/年金/相続/終活; luật chính xác.
-- **ww2-history** (EN documentary): 4 title archetype, cinematic cold open 20s, 1 human anchor, chính xác lịch
+- **ww2-history** (EN documentary): 4 title archetype, 1 human anchor, chính xác lịch
   sử tuyệt đối, "you" language, show-don't-tell. Giọng nam trầm tư liệu.
-- **money/retirement, relationships...**: hook "điều người ta né nói", chuyên gia/nhân vật kể, bài học tài chính/tình cảm rõ.
+- **money/retirement, relationships...**: chuyên gia/nhân vật kể, bài học tài chính/tình cảm rõ.
 
 ## SAU KỊCH BẢN
 → [[youtube-image-prompts]] (prompt ảnh + character consistency) · [[youtube-thumbnail]] · [[youtube-series-builder]]

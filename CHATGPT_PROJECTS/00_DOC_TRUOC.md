@@ -44,6 +44,8 @@ Bản trước khi sửa: `_bak_20260926\`. Project đã tạo trên ChatGPT: d�
 | `H-kokoro-kazoku` | kokoro-kazoku (tâm lý gia đình) | **BẢN NHÁP** — lane chưa có tập, rút từ DNA kênh mẫu |
 | `I-sengoku-uragawa` | sengoku-uragawa (lịch sử Chiến quốc) | **BẢN NHÁP** — như trên |
 | `J-teinengo-fuufu` | teinengo-fuufu (vợ chồng sau hưu trí) | **BẢN NHÁP** — như trên |
+| `M-teinengo-anaba` | teinengo-anaba (việc làm tuổi 60) | **DỰNG TAY 2026-09-26** — lane chưa có trong bộ sinh của YT-TITLE-RESEARCH (`config\lanes\` không có `teinengo-anaba.json`), nên rút tay từ DNA kênh mẫu `otonanomouten` + `profiles\profiles\teinengo-anaba.json` + `docs\SOP_LANE_M.md`. Có đủ 00→10. Khi YT-TITLE thêm lane M thì xuất lại và thay cả thư mục. |
+| `O-kaigo-sukatto-script` | kaigo-sukatto (介護スカッと, tên tạm Lane-O) | **DỰNG TAY 2026-10-03** — Project SOÁT KỊCH BẢN (khuôn J/N `-script`: INSTRUCTIONS + 00_KENH, 01_CAU_TRUC_VA_LUAT, 02_BINH_LUAN_THAT, 03_VIDEO_GOC). Rút từ `profiles\profiles\kaigo-sukatto.json` + `docs\SOP_LANE_O.md` + `docs\channel_dna\kaigo-sukatto\COMMENT_INSIGHT.md` + `docs\channel_dna\yakkyoku-sukatto\KENH_GOC_10\`. Tên Project = `Lane-O` (trùng thì `Lane-O-script`). |
 
 ## Lưu ý
 

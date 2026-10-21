@@ -56,6 +56,12 @@ TITLE_CLI = TITLE_ROOT / "cli.py"
 TITLE_CONFIG = TITLE_ROOT / "config" / "lanes"
 PROFILE_DIR = ROOT / "profiles" / "profiles"
 
+# ⛔ 2026-10-01 (anh chốt): tiêu đề · mô tả · thumbnail TẮT TOÀN BỘ các lane, KHÔNG tự bật lại. Công tắc tổng này
+# thắng mọi `publish.title_auto` — giao máy 2 / drive_handoff / goi_buoc2_3 gọi vào đều trả về ngay, `--bat` bị từ
+# chối, `--worker` không chạy. Chỉ ANH được mở lại: tự sửa hằng này thành False (Claude không được tự đổi).
+TAT_TOAN_DU_AN = True
+LY_DO_TAT = "TITLE (tiêu đề/mô tả/thumbnail) đã TẮT toàn dự án từ 2026-10-01 theo lệnh anh — không gọi"
+
 
 # ============================================================== nhận diện lane
 def _detect_lane(job_dir: Path):
@@ -81,13 +87,31 @@ def _detect_lane(job_dir: Path):
 
 
 # ============================================================== cổng trước khi chạy
+def _title_lane(profile_id):
+    """Mã lane BÊN TITLE cho profile h2dev. Thường trùng id, nhưng lane mới đặt cấu hình TITLE theo TÊN TAB
+    (Lane M: config/lanes/M-teinengo-anaba.json, khai `h2dev_profile: teinengo-anaba`). Gọi CLI TITLE bằng id
+    h2dev khi đó = TITLE không thấy cấu hình → rơi về luật satori (_default.json). Đo thật ep04 Lane M 30/09."""
+    if (TITLE_CONFIG / f"{profile_id}.json").exists():
+        return profile_id
+    for f in sorted(TITLE_CONFIG.glob("*.json")):
+        if f.stem.startswith("_") or ".bak" in f.name:
+            continue
+        try:
+            if json.loads(f.read_text(encoding="utf-8")).get("h2dev_profile") == profile_id:
+                return f.stem
+        except Exception:
+            continue
+    return profile_id
+
+
 def _gates(profile_id, prof, job_dir: Path):
     """Trả list lỗi (rỗng = đủ điều kiện chạy). KHÔNG tự sửa/tự đoán — thiếu gì báo đúng cái đó."""
     errs = []
     if not (job_dir / "script.txt").exists():
         errs.append(f"thiếu script.txt trong {job_dir}")
-    lane_json = TITLE_CONFIG / f"{profile_id}.json"
-    thumb_yaml = TITLE_CONFIG / f"{profile_id}.thumb.yaml"
+    tl = _title_lane(profile_id)
+    lane_json = TITLE_CONFIG / f"{tl}.json"
+    thumb_yaml = TITLE_CONFIG / f"{tl}.thumb.yaml"
     if not lane_json.exists():
         errs.append(f"lane '{profile_id}' CHƯA có cấu hình bên YT-TITLE-RESEARCH: {lane_json} "
                     f"(chưa tạo → TITLE sẽ rơi về luật satori, KHÔNG được chạy)")
@@ -206,7 +230,7 @@ def worker(profile_id, job_dir: Path):
     status_f = research / "TU_DONG_TITLE.json"
     main_log = research / "TU_DONG_TITLE.log"
     log = _Log(main_log)
-    sl = ["--slug", str(job_dir), "--profile", profile_id]
+    sl = ["--slug", str(job_dir), "--profile", _title_lane(profile_id)]   # mã lane BÊN TITLE (có thể = tên tab)
 
     def status(state, note=""):
         status_f.write_text(json.dumps(
@@ -317,6 +341,9 @@ def worker(profile_id, job_dir: Path):
 
 # ============================================================== entrypoint gọi từ đường giao máy 2
 def goi(job_dir_str, profile_id=None, dry=False, wait=False):
+    if TAT_TOAN_DU_AN:
+        print(f"[goi_title] {LY_DO_TAT}")
+        return False
     job_dir = Path(job_dir_str).resolve()
     if not job_dir.is_dir():
         print(f"[goi_title] ✗ không thấy thư mục tập: {job_dir}")
@@ -367,6 +394,8 @@ def goi(job_dir_str, profile_id=None, dry=False, wait=False):
 
 # ============================================================== bật/tắt công tắc lane
 def dat_cong_tac(profile_id, bat):
+    if bat and TAT_TOAN_DU_AN:
+        raise SystemExit(f"✗ {LY_DO_TAT}. --bat bị từ chối (công tắc tổng TAT_TOAN_DU_AN trong {Path(__file__).resolve()})")
     f = PROFILE_DIR / f"{profile_id}.json"
     if not f.exists():
         raise SystemExit(f"✗ không thấy profile {f}")
@@ -389,6 +418,7 @@ def dat_cong_tac(profile_id, bat):
 
 
 def trang_thai():
+    print(f"  CÔNG TẮC TỔNG: {'TẮT TOÀN DỰ ÁN (2026-10-01)' if TAT_TOAN_DU_AN else 'mở — theo từng lane'}")
     for pid in profiles.list_ids():
         if pid.startswith("_"):
             continue
@@ -422,6 +452,8 @@ def main():
     if not a.slug:
         ap.error("cần --slug (hoặc --bat/--tat/--trang-thai)")
     if a.worker:
+        if TAT_TOAN_DU_AN:
+            raise SystemExit(f"[goi_title] {LY_DO_TAT}")
         if not a.profile:
             raise SystemExit("--worker cần --profile")
         worker(a.profile, Path(a.slug).resolve())

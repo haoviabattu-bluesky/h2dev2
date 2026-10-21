@@ -62,6 +62,23 @@ cookie giữ login h2dev:
 4. Verify login: body KHÔNG chứa "Đăng nhập" + có ~5 cookie h2dev. ĐÃ TEST: login GIỮ NGUYÊN qua graceful close.
 → Làm định kỳ mỗi ~10 bài để grab luôn ổn định.
 
+## TÀI LIỆU LIÊN QUAN (dọn từ CLAUDE.md 2026-09-29)
+- `docs/COURSE_NOTES.md` — TOÀN BỘ kiến thức đã bóc từ khoá học (mô hình, quy trình, checklist,
+  kho ngách, index tài sản). Mọi task content/kênh phải bám tài liệu này.
+- `docs/VIDEO_NOTES.md` — ghi chú CHI TIẾT từng video đã NGHE (nội dung thực, không chỉ tên bài).
+- `docs/PROGRESS.md` — sổ theo dõi đã học/chưa học. Học xong bài nào đánh `[x]`, KHÔNG nghe lại.
+- `docs/transcripts/` — transcript gốc từng video.
+- `docs/catalog.json` — danh mục 131 bài học (tên, slug, thời lượng, FREE/PRO, mô tả).
+- `docs/desc_links.json` — toàn bộ link tài nguyên gốc (prompt docs, sheets, drive, tools).
+- Khoá học cập nhật key mới liên tục (module 4 hiện 88 video) → định kỳ chạy lại bóc catalog để lấy
+  bài mới + prompt mới (so sánh với `docs/catalog.json` cũ).
+- Tool hỗ trợ của H2Dev: h2devtool.com (dịch SRT + voice Việt). Hotline/zalo H2Dev: 0777682597.
+
+## TOOL .EXE ĐÓNG GÓI (đang làm, đọc 3 file trước khi code tool)
+`docs/REPORT_RAMCLOUDS_HERMES.md` (provider/model nào dùng được, bẫy stream) ·
+`docs/AB_SCRIPT_MODELS.md` (A/B thật 8 model + kiến trúc 2 PASS cho bước viết script) ·
+`docs/PROFILE_ARCHITECTURE.md` (đa nhân vật: profile JSON per kênh, char-rate đo theo giọng, VOICE_FX).
+
 ## ⛔ KHÔNG TỰ RESTART CHROME QUA SCRIPT (2026-09-06)
 Restart Chrome tự động (kể cả graceful Browser.close qua script) ĐÃ LÀM MẤT LOGIN h2dev lần 2 (cookie phiên
 không flush kịp khi script disconnect + relaunch race). → KHÔNG dùng restart_and_grab tự động. Khi grab

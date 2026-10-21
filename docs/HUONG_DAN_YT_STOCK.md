@@ -85,7 +85,7 @@ py -3.13 yt_stock.py credits --tap "E:\CLAUDE\YOUTUBE\h2dev\assets\toshi-densets
 
 ## 5c. Tư liệu của HOOK phải tự khai để được ghi nguồn
 
-Hook 20–30s đầu không nằm trong `scenes.json` của thân video ⇒ `credits.txt` không thấy nó. Script
+Hook đầu video không nằm trong `scenes.json` của thân video ⇒ `credits.txt` không thấy nó. Script
 dựng hook phải ghi `<tập>\hook\hook_shots.json` = `[{"file": "<tên file trong kho>", "n": <số cảnh>}]`;
 `yt_stock.py credits` tự gộp vào. Thiếu bước này là **thiếu ghi nguồn cho CC BY** ở đúng 30 giây mà
 người xem gặp đầu tiên. Mẫu chạy thật:

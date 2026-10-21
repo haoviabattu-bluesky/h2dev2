@@ -1,0 +1,445 @@
+{
+  "id": "zz-ep16-thoi-quen",
+  "market": "JP",
+  "language": "ja",
+  "source_lang": "ja,en",
+  "_source_lang_note": "Kênh mẫu tiếng Nhật — B2 fetch_script thử phụ đề ja trước. Thiếu field này B2 mặc định 'ko,ja,en' → ep01 lần đầu kéo về bản Hàn rác (26/09).",
+  "niche": "定年後の穴場ノート — hưu trí Nhật, MANGA CHIBI ngôi 1 + xếp hạng N選 VIỆC LÀM tuổi 60 (アルバイト・パート · 再就職 · 再雇用 · thu nhập đi làm vs 年金), nhân vật chính CỐ ĐỊNH xuyên tập",
+  "competitor": "https://www.youtube.com/@otonanomouten",
+  "slug_dir": "assets/M-teinengo-anaba",
+  "folder_pattern": "ep{nn:02d}-*",
+  "channel_dossier": "E:/CLAUDE/YOUTUBE/TRENDING-RESEARCH/docs/GIAO_VIEC_OTONANOMOUTEN_2026-09-26.md",
+  "channel_dna_dir": "docs/channel_dna/otonanomouten",
+  "narrator": {
+    "gender": "male",
+    "age_band": "63",
+    "persona": "田島誠（たじま まこと）63歳。中堅文具メーカーの総務課に38年勤め、60歳定年後に再雇用で3年働き、この春退職。真面目で几帳面、人が好くて少しお人好し。試した仕事は全部、緑のポケットノート（穴場ノート）に時給・時間・体の負担・向き不向きを書き込む。威張らない、妻に怒鳴らない、失敗を正直に笑える。妻・春江（はるえ）61歳はスーパーの品出しパート歴12年、職場の現実をよく知る頼れる相棒で、はっきり意見を言う。",
+    "point_of_view": "一人称「俺」の回想体。地の文（心の声）と会話「」を交互に進める漫画ストーリー。妻との会話は対等で自然な口語（「春江、どう思う？」「あなた、それは時給しか見てないわよ」）。",
+    "register": "だ・である調の独白＋会話は自然な口語。短い文。職場用語（シフト・時給・再雇用・在職老齢年金・扶養）は自然に使うが、初出で一言かみくだく。",
+    "_note_vi": "Nhân vật RIÊNG của lane (K10): KHÔNG dùng 高瀬健一/恵子/「盲点だった。」 của kênh mẫu. Tên đã nghe thử qua TTS 4 giọng 2026-09-26 (whisper nghe lại đúng たじままこと · はるえ · しなだし · さいこよう · ざいしょくろうれいねんきん). Cựu 総務 (không phải 信用金庫 — khán giả kênh mẫu chê 'nhân viên quỹ tín dụng cứng nhắc'). Vợ có chính kiến, chồng không quát (COMMENT_INSIGHT §2.6)."
+  },
+  "voice": {
+    "provider": "ai33",
+    "_provider_note": "ĐA GIỌNG (anh duyệt 2026-09-26): mỗi nhân vật 1 giọng clone từ video gốc tập 1 wG4fI9voims (92k) — cơ chế Lane L (tts_voicevox.py nhánh ai33 + vai.txt do gan_vai.py sinh ở máy 1). Mẫu gốc + bản clone thử: assets/M-teinengo-anaba/_voice_clone/ (compare_clone.html, mau_goc.json, clone_ket_qua.json).",
+    "id": "clone_2665004",
+    "_id_note": "= giọng người kể; chỉ để calibrate.py/voice_conf đọc được. Giọng từng vai lấy từ narrator/fixed_cast/characters.json[].voice.",
+    "narrator": {
+      "voice_id": "clone_2665004",
+      "name": "Người kể = 田島誠 (clone giọng 高瀬 kênh mẫu, F0 mẫu 129 → clone 139 Hz)"
+    },
+    "fixed_cast": {
+      "harue": {
+        "voice_id": "clone_2664998",
+        "name": "Vợ 春江 (clone giọng 恵子 kênh mẫu, F0 205 → 208 Hz)",
+        "vai": "vợ — mọi tập"
+      }
+    },
+    "cast_bank": {
+      "主任・上司（職場の管理者、シフトを決める人）": [
+        {
+          "voice_id": "clone_2664997",
+          "name": "clone 三宅主任 (tổng đài) — F0 151 → 162 Hz"
+        }
+      ],
+      "現場責任者・親切な先輩男性": [
+        {
+          "voice_id": "clone_2664999",
+          "name": "clone 森本 (trưởng kho) — F0 152 → 145 Hz"
+        }
+      ],
+      "年配の女性同僚・パート仲間": [
+        {
+          "voice_id": "clone_2665001",
+          "name": "clone 井上 (nữ 69 tuổi) — F0 216 → 208 Hz"
+        }
+      ],
+      "怒る客・強い口調の女性": [
+        {
+          "voice_id": "clone_2665002",
+          "name": "clone khách nữ nổi giận — F0 239 → 232 Hz"
+        }
+      ],
+      "相談員・案内役（年配女性、落ち着いた説明役）": [
+        {
+          "voice_id": "clone_2664996",
+          "name": "clone 黒田 (cố vấn việc làm) — F0 168 → 198 Hz, anh duyệt đạt · khung thật: 黒田 là bà tóc bạc"
+        }
+      ]
+    },
+    "_cast_note": "Anh chốt 2026-09-26: duyệt CẢ 7 giọng · 井上 và khách giận để RIÊNG 2 giọng (dù âm sắc gần nhau) · vai cố vấn (黒田) đạt. characters.json của tập: makoto dùng voice narrator, harue dùng fixed_cast, vai phụ chọn voice_id trong cast_bank theo loại vai. Vai mới không khớp loại nào → hỏi anh trước khi clone thêm (K11).",
+    "speed": 1.0,
+    "fx": "none",
+    "calib_style": "story",
+    "pace": false,
+    "workers": 8,
+    "_rate_note": "calibrate.py đo bằng giọng người kể (voice.id) — số KHỞI ĐIỂM. Đo lại từ video thật ep01 (có nghỉ giữa câu, đổi giọng) như Lane L rồi ghi char_rate_from.",
+    "char_rate": 314.6,
+    "char_rate_measured_at": "2026-09-27",
+    "char_rate_speed": 1.0,
+    "char_rate_from": "video thật ep03-shizuka-shigoto"
+  },
+  "script": {
+    "the_viet": "~/.claude/skills/youtube-kich-ban/market/THE_VIET_LIST.md",
+    "skill": "skills/youtube-script/SKILL.md",
+    "target_minutes": 23.0,
+    "_target_note": "Kênh mẫu 27,7–40,4' (6 video; hit 92k = 31,4') nhưng khán giả chê 'mục ra quá muộn' và verdict hồ sơ giao việc §4 = 18–24'. Chọn 22' + ép mục đầu trước phút 4 (K8). 2026-09-26: nâng 23' (vẫn trong 18–24') sau vòng soát ChatGPT web ep01 — các chỗ bổ sung hợp lệ (tiêu chí xếp hạng, ai hợp/không hợp hạng 1, xác nhận chỗ ngồi) đẩy bài lên ~7.650 chữ > trần 22' (7.610), và S3 khi vượt trần đòi nén về ĐÍCH (−600 chữ) → Opus xoá cả dữ kiện [D7] 20時間.",
+    "flow": "lean",
+    "two_pass": true,
+    "budget": {
+      "tol": 0.08,
+      "sections": [
+        {
+          "label": "導入（フック＋自己紹介＋自嘲＋送別会＋餞別の時計＋止まった時計＋三上の一言＋年賀状＋妻に促されて店へ）",
+          "ratio": 0.245
+        },
+        {
+          "label": "一つ目 ゼンマイ（朝6時半・3分）",
+          "ratio": 0.104
+        },
+        {
+          "label": "二つ目 歯車（肩書きの外で頼まれごと月1つ）",
+          "ratio": 0.146
+        },
+        {
+          "label": "三つ目 風防（目・耳・歯を痛くなる前に／三上の再オファーと拒否）",
+          "ratio": 0.152
+        },
+        {
+          "label": "四つ目 文字盤（誰にも会わない日も髭と襟）",
+          "ratio": 0.115
+        },
+        {
+          "label": "五つ目 リューズ（止まったら翌朝20回・⑤なし）",
+          "ratio": 0.058
+        },
+        {
+          "label": "師の傷（大隅の48年）",
+          "ratio": 0.014
+        },
+        {
+          "label": "帯状疱疹（3日動けず・5日休む・自力で巻き直す）",
+          "ratio": 0.035
+        },
+        {
+          "label": "半年後のモンタージュ（6行・各1つの習慣＋小さい数字）",
+          "ratio": 0.035
+        },
+        {
+          "label": "円環（58歳の客が同じ姿で入ってくる）",
+          "ratio": 0.039
+        },
+        {
+          "label": "総括（5つを読み返す）",
+          "ratio": 0.026
+        },
+        {
+          "label": "結び（論旨＋戻らない損失＋コメント問いかけ＋締め）",
+          "ratio": 0.027
+        }
+      ],
+      "_note": "Tỉ lệ đo từ chính video gốc VOx2qqJpEHQ (8969 chữ): dẫn 25,0% · 5 thói quen 57,5% · khủng hoảng 3,5% · montage 3,5% · vòng tròn 3,9% · tổng kết 2,6% · luận đề+CTA 2,7%."
+    },
+    "cong_thuc_win": {
+      "_note": "TẮT cho tập 16: khuôn 5 thói quen không có 第N位/A/B/C (hồ sơ bàn giao §5). Không chạy kiem_cong_thuc_win.py.",
+      "moc": []
+    },
+    "structure": "manga_rank_job",
+    "structure_block": "KHUÔN TẬP 16 — 5 THÓI QUEN (KHÔNG dùng khuôn 7選). MÓN HÀNG = 5 THÓI QUEN; chiếc腕時計 chỉ là CÁCH GIẢNG.\nMANGA CHIBI ngôi 1「俺」田島誠 63 (総務38年, 60定年, 再雇用3年, nay đã hết) + vợ 春江 61. Thợ 大隅源治 76 (時計店48年).\nĐỒ VẬT NEO: 1 chiếc腕時計 automatic, quà chia tay của 9 người, khắc 裏蓋「田島さんへ 総務一同」, đã dừng 4 năm.\nMỞ BẰNG CẢNH: 田島 ngồi trước TV, đồng hồ trong hộp giấy; rồi tự giới thiệu; rồi 三上課長41歳 báo qua màn hình「65歳で、更新は終わりです」; rồi 送別会9人/部長40人, 年賀状21→9; rồi 春江 đẩy đi sửa đồng hồ.\nVÀO TIỆM: 大隅 mở nắp, 「どこも壊れていませんよ」, giảng máy tự lên dây (4–5% bài, KHÔNG được cắt), 2 loại khách, định nghĩa 一流 (đặt tên nhưng KHÔNG nói câu lật nghĩa ở đây), hẹn 10 ngày sau lấy, tháo 90 bộ phận.\n5 THÓI QUEN, MỖI CÁI ĐÚNG 5 NHỊP: ① vật + cơ chế → ② 大隅 HỎI NGƯỢC 田島 1 câu về ĐỜI SỐNG → ③ mệnh lệnh 1 câu ngắn → ④ 1 ví dụ THUẬN + 1 PHẢN VÍ DỤ (tuổi + nghề cũ + 1 chi tiết lạ) → ⑤ 田島 TỰ LÀM ngay (1 cảnh + 1 chi tiết trong nhà). Mỗi mục mở bằng「一つ目」「二つ目」「三つ目」「四つ目」「五つ目」.\nTHÓI QUEN 5 THIẾU NHỊP ⑤ (cố ý) — nhịp \"làm ngay\" của nó nằm ở KHỦNG HOẢNG (帯状疱疹, 3 ngày không ngồi dậy, nghỉ 5 ngày, nghe lại giọng cũ trong đầu, tự lên dây 20 vòng). CẤM CẮT KHỦNG HOẢNG.\nSAU KHỦNG HOẢNG: montage nửa năm (6 dòng, mỗi dòng 1 thói quen + 1 số nhỏ) → 円環: khách 58 tuổi, 2 ngày râu, bước vào tiệm y hệt 田島 ở phút 0, 田島 lặp lại đúng câu 大隅 từng nói → TỔNG KẾT 5 câu → LUẬN ĐỀ + mất mát không lấy lại + CTA.\nCẤM: 第N位 · đếm ngược · A/B/C · 「俺の答えは、最後に言う」 · 緑のノート. CẤM biến bài thành chuyện cấu tạo đồng hồ. CẤM chép câu thoại gốc / tên gốc / số gốc.",
+    "_structure_note": "Dùng structure_block (field-driven, hàng rào #2) — KHÔNG dùng nhánh manga_list của Lane G vì nhánh đó ép 'mentor + mục cuối hướng nội + hướng VUI/RẺ, không kịch tính' — trái K6 (KÍCH) và K8 (con số + bẫy + ai hợp mỗi mục). 'structure' chỉ là nhãn.",
+    "mode": "fiction_facts",
+    "_mode_note": "Nhân vật/chỗ làm hư cấu; lương giờ/chế độ 年金/giới hạn tuổi/bảo hiểm/luật cắt ca = SỐ CHẾ ĐỘ phải có trong series_ctx.txt [Dn] kèm URL (K9).",
+    "ctx_label": "TƯ LIỆU VIỆC LÀM & CHẾ ĐỘ NHẬT (lương giờ, 在職老齢年金, giới hạn tuổi, bảo hiểm, luật ca làm — CHỈ lấy đúng từ đây kèm điều kiện; nhân vật, chỗ làm và tình tiết là hư cấu)",
+    "fact_exempt_units": [
+      "歳",
+      "回",
+      "分",
+      "時",
+      "年目",
+      "日目",
+      "枚",
+      "部屋"
+    ],
+    "_fact_exempt_note": "Chỉ miễn số CÁ NHÂN trong truyện (63歳, 3回目, 7時, 2日目, 12部屋). KHÔNG miễn 円, 万円, %, 時給 — lương/tiền chế độ phải có nguồn (K9).",
+    "engine": "claude_p",
+    "brain_model": "claude-fable-5-1",
+    "patch_model": "claude-opus-5",
+    "final_review_model": "claude-opus-5-5",
+    "_model_note": "2026-09-29 anh chốt: S2 viết + B3R nghiệm thu dùng Opus 5.5 cố định (thay Fable 5.1). S4 vá vẫn Opus 5 (khác Opus 5.5) — đã A/B thật 2026-09-22, giữ nguyên. §0a QUY_TRINH_TAO_KICH_BAN_MOI_LANE.",
+    "outro_line": "最後までご覧いただき、本当にありがとうございました。少しでも参考になったら高評価とチャンネル登録で、また穴場ノートを一緒にめくってください。",
+    "_outro_note": "K7: đủ 3 ý cảm ơn xem hết (ありがとう) + 高評価 + チャンネル登録 — _ket_thieu() kiểm 15% cuối. Câu RIÊNG kênh (nhắc 穴場ノート), không chép CTA kênh mẫu. Không có ngoặc「」 trong câu (bài học Lane L ep01: ngoặc giữa câu người kể bị bắt là thoại dính lời dẫn).",
+    "sol_qc": false,
+    "_sol_qc_note": "2026-09-29 anh chot TAT cho toan bo (khong con lane suc khoe Lane E bat buoc giu lop nay nua). S5 Sol trong lean_script.py se bo qua, khoa PASS thang sau S3.",
+    "sol_pass_need": 2,
+    "gate": {
+      "comma_per_sentence": [
+        0.4,
+        2.0
+      ],
+      "chars_per_breath": [
+        7.0,
+        20.0
+      ],
+      "dialogue_ratio_max": 0.45,
+      "require_next_ep_teaser": false,
+      "list_item_count": 5,
+      "list_order": "ascending",
+      "hook_marker": [
+        "一つ目"
+      ],
+      "hook_chars": [
+        750,
+        1150
+      ],
+      "hook_anchor_per_1000": 12.0,
+      "title_len": [
+        40,
+        56
+      ],
+      "dialogue_own_sentence": true,
+      "_gate_note": "Tập 16 khuôn 5 thói quen: 5 mục đếm XUÔI 一つ目→五つ目 (gốc không xếp hạng). Không cta_mid (bản gốc không có CTA giữa bài). Các ngưỡng nhịp giữ nguyên đo của lane M."
+    },
+    "hook": {
+      "the_ten": {
+        "bat": true,
+        "kieu": "mem",
+        "mau": "#2b7bb9",
+        "mau_phu": "#bfe3ff",
+        "vi_tri": "tren_trai",
+        "dur_s": 6.0,
+        "toi_da": 4,
+        "_note": "10/10 anh chốt: nhân vật chính trong hook giới thiệu bằng THẺ TÊN ĐỘNG (tên·tuổi·nghề); 14/10 anh sửa: lời hook ĐƯỢC đọc tên-tuổi song song thẻ — docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md, pipeline/the_ten_hook.py"
+      },
+      "model": "claude-fable-5-1",
+      "enabled": true,
+      "visual": "manga_chibi_fixed_ref_grok",
+      "_visual_note": "Ảnh manga chibi khoá mặt bằng ảnh gốc LANE (image.fixed_refs: makoto + harue) + master của tập cho vai phụ → clip Grok 6s. Mỗi cảnh thấy MẶT + cảm xúc; cấm chữ/biểu đồ trên hình.",
+      "visual_kind": "video_sinh",
+      "sfx": false,
+      "nhac_nen": true,
+      "giay": [
+        15,
+        90
+      ],
+      "giay_mac_dinh": 80,
+      "_luat_hook_note": "21/10/2026 anh chốt: luật hook DUY NHẤT = bám sát CẤU TRÚC hook của video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn; đổi tên họ/nghề/câu thoại theo tập) — docs/HOOK_CAU_TRUC/00_CHUNG.md. Mọi luật hook khác (động cơ chính, khuôn lane huong_dan_cau_truc, mở bằng thoại, cao trào/kịch tính, câu để ngỏ…) đã BỎ.",
+      "_note_tap16": "Hook bám sườn hook gốc VOx2qqJpEHQ (4 nhịp, ~17s): châm ngôn về ĐỒ VẬT → ai nói + tuổi + số năm nghề → chia 2 loại người + mốc 5 năm + đặt tên → tự chiếu vào mình. CẤM nhắc 5 thói quen, cấm nhắc 65歳, cấm tên bộ phận."
+    },
+    "soat_gptweb": {
+      "enabled": true,
+      "urls": {
+        "acc1": "https://chatgpt.com/g/g-p-6ab7b6307fcc81918a542065f7c6cd85/c/6ab7b795-063c-83ec-b11b-3c7f8cc99d7e",
+        "acc2": "https://chatgpt.com/g/g-p-6ab88066732081919a6cc2a6534d41c8/c/6ab88095-7b00-83ec-af19-72ad5a71eb77"
+      },
+      "_urls_note": "urls.acc1/acc2 = link HỘI THOẠI soát kịch bản trong Project ChatGPT RIÊNG của lane (đã giao vai nhà văn, GPT trả \"Hiểu.\"). projects.<acc> = id + tên Project (tên = publish.sheet_tab, hoặc sheet_tab + \"-script\" khi tài khoản đó đã có Project trùng tên dùng cho tiêu đề/thumbnail của YT-TITLE-RESEARCH). soat_kb_gptweb.py CHẶN link không nằm trong đúng Project / Project gán trùng lane khác; gptweb_pool CHẶN nếu trang nhảy khỏi Project. Gán 2026-09-27: acc1 F/G/K/L = Project \"-script\" em tạo (INSTRUCTIONS + 11 file từ CHATGPT_PROJECTS\\<lane>\\), L acc2 = hội thoại mới (thay \"Nâng cấp trả lời pro\").",
+      "boi_canh": "Khán giả: người Nhật 60+ đang/sắp đi làm thêm, xem trên điện thoại. Video manga, đọc bằng NHIỀU GIỌNG (người kể = nhân vật chính, vợ, các vai phụ). Chữ hiện bằng bóng thoại dọc.",
+      "cau_truc": "HOOK bám sườn + động cơ chính hook video gốc (docs/HOOK_CAU_TRUC/M_teinengo-anaba.md) · 第7位 trước phút 4 (~8–17%) → đếm ngược 第七位→第一位, mỗi mục là thẻ sổ xanh: tên việc · thời gian/điều kiện có nguồn · thể lực · ưu điểm · cạm bẫy · ai hợp/không hợp + 1 cảnh thật → mạch truyện song song: ~38–40% người gây bất công quay lại/biến cố mới · ~42–47% câu hỏi A/B/C +「答えは最後に言う」· ~55–60% cao trào quyết định tự trọng · ~76–80% 第1位 trả đúng lời nhá ở hook · ~95% trả lời A/B/C → kết vị tha → cảm ơn + xin 高評価 (thích) / チャンネル登録 (đăng ký).",
+      "rang_buoc": [
+        "KHÔNG nêu lương giờ cụ thể từng việc (trừ khi tư liệu có).",
+        "Giữ đúng 7 việc và thứ tự hạng.",
+        "Nhân vật chính không quát / nói trống không với vợ.",
+        "Soát thân bài theo mốc: nút ~38–40%, A/B/C 42–47% kèm hứa trả lời, cao trào 55–60%, 第1位 trả lời lời nhá → ghi thành lỗi cụ thể; nếu có người gây bất công thì không được ác/パワハラ.",
+        "HOOK (17/10): chấm theo luật duy nhất — bám sườn + động cơ chính của hook video gốc. Bắt lỗi: bịa sự kiện/xung đột không có trong dữ kiện, lộ hạng 1, trôi khỏi chuyện việc làm."
+      ],
+      "_note_cu": "Anh chốt 2026-09-26: Lane M MẶC ĐỊNH soát kịch bản bằng ChatGPT web trong hội thoại này, KHÔNG chờ máy 3 (review_may3 vẫn bật làm cổng: soát xong ghi BAO_CAO_SUA.md + D=Đã sửa kịch bản rồi --nhan). Tool: pipeline/soat_kb_gptweb.py; quy trình SOP_LANE_M §1e.",
+      "projects": {
+        "acc1": {
+          "id": "g-p-6ab7b6307fcc81918a542065f7c6cd85",
+          "ten": "M-teinengo-anaba"
+        },
+        "acc2": {
+          "id": "g-p-6ab88066732081919a6cc2a6534d41c8",
+          "ten": "M-teinengo-anaba"
+        }
+      }
+    },
+    "soat": "may3",
+    "_soat_note": "Anh chốt 2026-09-27: soát kịch bản sau B3 MẶC ĐỊNH bằng ChatGPT web (pipeline/soat_kb_gptweb.py, 2 tài khoản qua gptweb_pool.py — mở cổng khi rảnh, nhận xong trả lời ĐÓNG cổng ngay), KHÔNG chép sang máy 3, KHÔNG ghi sheet giữa chừng (D = Done do dong_goi_may2). Muốn dùng máy 3 thì đổi thành \"may3\" khi anh nói.",
+    "kiem_loi_hua": true,
+    "review_may3": true,
+    "_review_may3_note": "Tập 16 chạy theo lệnh anh 19/10: bỏ QC công thức + không gửi máy 3 tự động; anh soát trực tiếp trong chat."
+  },
+  "script_qc": {
+    "lens": "plain",
+    "domain_focus": "Video manga chibi kể chuyện ngôi thứ nhất「俺」(田島誠, 63 tuổi, vừa hết 再雇用) thử và xếp hạng 7 việc làm thêm cho người 60+, có vợ 春江 đồng hành; thoại 2 người là bình thường. Đây KHÔNG phải video y khoa.",
+    "lane_rules": [
+      "Nửa đầu được phép gây ức chế KHI tập có xung đột thật (quản lý cắt ca tuỳ tiện, nơi tuyển coi người 60 là đồ bỏ) — không đề nghị làm dịu; nhưng tập không có xung đột thì KHÔNG đề nghị thêm phản diện/cảnh bẽ mặt. Chỉ bắt khi phi lý/không nhất quán.",
+      "Lương giờ/chế độ (在職老齢年金, giới hạn tuổi, bảo hiểm, cắt ca) phải khớp tư liệu và nói rõ điều kiện; kết luận 'trái luật' khi tư liệu không nói chắc là lỗi.",
+      "Mỗi mục phải có: tên việc cụ thể · ÍT NHẤT MỘT con số hoặc điều kiện cụ thể (giờ/ngày/ca trên tờ tuyển dụng của truyện, HOẶC điều kiện chế độ/luật có nguồn như giờ mở cửa 投票所, giới hạn シルバー, 20時間 研修) · ưu điểm · cái bẫy · ai hợp/không hợp. Không bắt mọi mục phải có đủ giờ bắt đầu–kết thúc. LƯƠNG GIỜ TỪNG VIỆC CỐ Ý KHÔNG NÊU (không có nguồn) — chỉ nói mức sàn 最低賃金; ĐỪNG đề nghị thêm lương giờ.",
+      "Nhân vật 60+ không được yếu phi thực tế (vd 2 người khiêng 5kg) — khán giả là người đang đi làm thật.",
+      "HOOK (17/10): đã khoá theo luật bám sườn + động cơ chính hook video gốc — FIX khi: bịa xung đột không có trong dữ kiện, lộ hạng 1, 第7位 sau phút 4, nỗi đau không dẫn về việc làm.",
+      "Thân bài: mạch truyện song song với nút ~38–40%, câu A/B/C ~42–47% kèm hứa trả lời cuối bài, cao trào ~55–60%, 第1位 trả đúng lời nhá ở hook; kết cân bằng, vẫn còn 1 giới hạn/mất mát thật. Nếu tập dùng kiểu B: cấp trên trẻ hơn, lạnh không ác, cuối tập xin lỗi; 1 người cùng tuổi chọn ngược. Thiếu = FIX."
+    ]
+  },
+  "image": {
+    "skill": "skills/youtube-image-prompts/SKILL.md",
+    "character_sheet": "Two recurring characters are locked ACROSS ALL EPISODES with the lane master portraits (image.fixed_refs): 'makoto' = 田島誠, Japanese man 63, salt-and-pepper grey swept-back hair, thin silver rectangular glasses, mustard-yellow knit cardigan over white collared shirt, beige chinos, carries a small dark-green pocket notebook; 'harue' = 田島春江, Japanese woman 61, short dark-brown bob with grey strands, pearl stud earrings, lavender blouse + beige cardigan (work scenes: supermarket apron over it). Outfits may change with the scene (work uniform, coat) but faces/hair/glasses never change. Every other character with a speaking line or 2+ images (managers, co-workers, interviewers) has its own per-episode master (_ref_<id>/001.png). At most 3 locked faces per image (Flow Tool limit). All characters are fictional adults; never resemble a real public figure.",
+    "style_suffix": "Japanese manga illustration, cute chibi-leaning proportions (slightly large heads), clean bold black outlines, soft cel shading, bright warm color palette, everyday Japanese workplaces for seniors (supermarket backroom, bicycle parking lot, apartment building lobby, exam hall, small office, warehouse, home kitchen), 16:9, ONE single full-frame scene only (NOT a comic page: no panels, no grid, no borders, no multiple views), natural five-finger hands, natural hair density for the stated age (no Xavier-tonsure bald patch artefact unless the script says so), no text, no letters, no numbers, no speech bubbles, no watermark",
+    "_style_suffix_note": "Theo thumbnail/khung thật kênh mẫu (chibi đầu to, khán giả khen 頭身がマンガチック で可愛い) + lỗi ảnh AI khán giả bắt (「ザビエル禿げ」 hói kiểu Xavier) → câu 'full head of hair' + 'five-finger hands'. Cảnh test 2 người khoá mặt ĐẠT 2026-09-26: assets/M-teinengo-anaba/_ref_kenh/_thu/canh_thu.png.",
+    "seconds_per_image": 8.6,
+    "_seconds_note": "ĐO THẬT 2026-09-26 bằng skill video-chuyen-canh trên wG4fI9voims (31,4'): 218 cảnh · trung bình 8,6 s/cảnh (trung vị 9,3 · p25 5,5 · p75 11,5) · 95% cắt thẳng, 5% blur-in/xfade · Ken Burns trung vị 1,01 (gần như đứng yên). Khung thật: manga bán thực + BÓNG THOẠI CHỮ DỌC không đuôi (chưa bật ở lane — chờ anh quyết).",
+    "ref_lock": true,
+    "ref_quality": "low",
+    "workers": 8,
+    "qc_sample": 10,
+    "b5p_qc": true,
+    "prompts_by": "fable_doan",
+    "characters_from_bible": true,
+    "cast_max_per_image": 3,
+    "sample_gate": 5,
+    "fixed_refs": {
+      "makoto": "assets/M-teinengo-anaba/_ref_kenh/makoto/001.png",
+      "harue": "assets/M-teinengo-anaba/_ref_kenh/harue/001.png"
+    },
+    "_fixed_refs_note": "K10 (anh chốt 2026-09-26): ông chính + vợ khoá mặt XUYÊN TẬP bằng 1 ảnh gốc lane (cơ chế Sakura Lane L). characters.json mỗi tập phải kiểu CAST {id, ref:true} với id đúng 'makoto'/'harue' → masters_from_bible chép ảnh gốc vào _ref_<id>/001.png. Ông vẽ bằng gpti2 edit TỪ avatar kênh (branding/avatar_raw.png) nên mặt khớp avatar; QC qc_character: makoto ~64/M, harue ~58/F. CẤM vẽ lại ảnh gốc sau khi tập đầu đã dùng. Ảnh toàn thân tham khảo: _ref_kenh/makoto/full.png."
+  },
+  "body": {
+    "mode": "ai_images",
+    "chan_buoc2_may1": true,
+    "_chan_buoc2_note": "Vá 2026-09-27 sau sự cố ep03: máy 1 lỡ tự chạy B4 (lồng giọng) + B5 (vẽ 158 ảnh gpti2) tốn tiền thật thay vì dừng ở B5P giao máy 2. make_video.py::_chan_buoc2_o_may1 chặn cứng B4/B5 trên máy 1 khi field này bật (trừ máy 2 chạy từ bundle buoc2_3_tool, hoặc set H2DEV_MAY1_CHO_PHEP_BUOC2=1 khi anh xác nhận)."
+  },
+  "thumbnail": {
+    "skill": "skills/youtube-thumbnail/SKILL.md",
+    "palette": [
+      "YELLOW",
+      "WHITE",
+      "RED"
+    ],
+    "dedicated_bg": true,
+    "require_face": true,
+    "art_style": "Japanese manga chibi illustration of 田島誠 (fixed lane master) with a clear strong expression, in a senior part-time workplace, bright colors, clean bold lines, no text, no speech bubbles",
+    "template": {
+      "bo_cuc": "ĐỌC TỪ 6 THUMBNAIL THẬT kênh mẫu (CHANNEL_DNA §BỔ SUNG TAY): băng đen trên (「60代」vàng + từ khoá đỏ) → 4 khung xếp hạng 第5位→第2位 nhãn màu → băng đen dưới「N選」đỏ; 第1位 LUÔN giấu. Biến thể hit 92k: 2 khung to 第3位/第2位 + cột chữ dọc giữa nền đen (「60代」đỏ「穴場」vàng「バイト」đỏ) + ô chữ dọc trắng ghi lợi ích (「午後は自由」「座れて快適」).",
+      "tiers": [
+        {
+          "color": "YELLOW",
+          "role": "đối tượng 「60代」/「定年後」",
+          "max_chars": 4
+        },
+        {
+          "color": "RED",
+          "role": "từ khoá lợi ích/móc tiết kiệm (穴場バイト / 0円で始める)",
+          "max_chars": 7
+        },
+        {
+          "color": "WHITE",
+          "role": "lợi ích cụ thể trong ô dọc (午後は自由)",
+          "max_chars": 6
+        }
+      ],
+      "_note": "Chữ thumbnail KHÔNG chép tiêu đề, ≤12 ký tự, cảm xúc mạnh hơn. Nhân vật CƯỜI (hit tích cực) thắng nhăn nhó (10k). Chưa FREEZE — TITLE-RESEARCH làm thumbnail (listing_external)."
+    }
+  },
+  "thumbnail_qc": {
+    "claim_focus": "Ngách VIỆC LÀM tuổi 60 — rủi ro chính: hứa thu nhập quá tay (月10万円確実…) hoặc 楽/0円 không đúng nội dung; số N選 trên thumbnail khớp số mục; 第1位 phải bị giấu.",
+    "image_prompt_constraints": "1. 16:9. 2. Manga chibi (không photorealistic), nhân vật chính 田島誠 đúng ảnh gốc lane (tóc muối tiêu, kính gọng mảnh bạc, áo len vàng mù tạt). 3. Biểu cảm tích cực rõ. 4. Không chữ/số/bong bóng thoại trong ảnh. 5. Sáng, không tối."
+  },
+  "assemble": {
+    "zoom": 1.0,
+    "_zoom_note": "⛔ CLAUDE.md: ảnh đứng yên tuyệt đối mọi lane (không Ken Burns).",
+    "transition": "xfade",
+    "xfade": 0.5,
+    "sub_font": "Yu Gothic",
+    "sub_size": 32,
+    "sub_margin": 7,
+    "sub_outline": 3,
+    "burn_subs": false,
+    "qc_sample": 10,
+    "sync": "anchors",
+    "_bgm_note": "K11: kênh mẫu bị chê 「BGMがマヌケやな」(12 like) → nhạc nền nhẹ, trầm, không ngớ ngẩn/hài lố.",
+    "bubble": {
+      "enabled": true,
+      "tail": false,
+      "font": "Yu Gothic",
+      "font_size": 40,
+      "max_chars_per_col": 10,
+      "max_cols": 3,
+      "title_card_s": 0,
+      "_note": "Anh chốt 2026-09-26: Lane M BẮT BUỘC bóng thoại. Kênh mẫu wG4fI9voims (đo khung thật 26/09): chữ dọc, bóng KHÔNG đuôi — cùng kiểu Lane L nên chép nguyên bộ số mức C của Lane L (lời kể 72px / thoại 56px). Mọi câu hiện trên hình → tắt phụ đề đáy (burn_subs=false) kẻo chữ lặp 2 lần.",
+      "font_size_ke": 72,
+      "font_size_thoai": 56,
+      "max_chars_per_col_ke": 8,
+      "ke_split_chars": 24,
+      "thoai_split_chars": 30
+    },
+    "hook_tu_ghep": true,
+    "_note_hook_tu_ghep": "2026-09-26 (như Lane L): B8 tự ghép hook THAY HÌNH. hook_timeline.json máy 1 ghi mốc THEO SỐ CÂU (shots[].cau, sfx[].cau+lech) — ghep_hook_noi_truoc.neo_lai_theo_cau tính lại giây từ voice_roles.json giọng thân máy 2 lồng (ai33 không tất định). Máy 1 KHÔNG lồng giọng hook.",
+    "subscribe": {
+      "enabled": true,
+      "start_times": [
+        180,
+        -120
+      ],
+      "moc_cua_so": 60,
+      "sub_click_style": "1_click_that",
+      "bell_style": "5_kim_loai",
+      "avatar_path": "assets/avatars/teinengo-anaba.png",
+      "language": "ja",
+      "thanks_text": null,
+      "position": "bottom_center",
+      "enable_sound": true,
+      "has_subtitles": false
+    },
+    "_subscribe_note": "Anh chốt 2026-09-30: phủ nút đăng ký (chỉ lớp phủ, không đổi thời gian) 2 lần/tập, mốc 180s và cuối−120s, chọn lại ±60s theo khoảng nghỉ/chuyển ảnh/tránh bóng thoại (pipeline/nut_dang_ky.py, B8n). Mỗi lane 1 tiếng chuông riêng (so_bells.py). Chuông 5_kim_loai (keng triangle). Soi ep01: có bóng thoại elip xuống tận giữa đáy (1378s) → dựa vào so_moc tránh vùng trắng."
+  },
+  "blocklist": [
+    "child",
+    "children",
+    "baby",
+    "infant",
+    "naked",
+    "nude",
+    "blood",
+    "gore",
+    "corpse",
+    "real politician",
+    "real celebrity face",
+    "bald spot",
+    "tonsure"
+  ],
+  "publish": {
+    "upload_channel": "M-teinengo-anaba",
+    "sheet_tab": "M-teinengo-anaba",
+    "upload_dir": "E:\\CLAUDE\\YOUTUBE\\CHANEL",
+    "review_vi": true,
+    "channel_id": "",
+    "_channel_id_note": "Anh tự setup kênh (K2) — chưa có ID; điền khi anh báo.",
+    "handle": "@teinengo-anaba",
+    "hashtags": "#定年後 #60代 #アルバイト #シニアの仕事 #再就職",
+    "tags_base": [
+      "定年後の仕事",
+      "60代の仕事",
+      "60代アルバイト",
+      "60代パート",
+      "60代再就職",
+      "シニアの仕事",
+      "シニア求人",
+      "老後の働き方",
+      "無理なく続く仕事",
+      "漫画"
+    ],
+    "_tags_nguon": "TAG_STATS.json kênh mẫu — tag lặp nhiều video + tag của video hit 92k (bỏ tag tên kênh 大人の盲点).",
+    "listing_external": true,
+    "title_auto": false,
+    "_title_auto_note": "Kênh mới: title_auto TẮT, anh `goi_title.py --bat teinengo-anaba` mới chạy (memory tu-goi-title-research-goi-title-py)."
+  },
+  "goi_dang": {
+    "enabled": true,
+    "contradiction_max_s": 45,
+    "title_core_max_s": 60,
+    "promise_window_s": 60,
+    "promise_giu_duoc_max_s": 120,
+    "ritual": [],
+    "title_suffix_ignore": [
+      "【漫画】"
+    ],
+    "title_core_len": [
+      37,
+      52
+    ],
+    "list_mode": true,
+    "list_preview_ban_s": 120,
+    "list_order": "countdown",
+    "_nguon": "6 video 大人の盲点 @otonanomouten (segments có mốc giây, docs/channel_dna/otonanomouten/_raw/segments): câu mâu thuẫn đầu tiên (だが/のに/と思っていた/なぜ) ở 3,4–63s, 5/6 ≤46s → 45 · số mục 'N選/Nつの' nói ra ở 33–67s ở 4/6 video (hit 92k: 155s — bị chê 'ra muộn') → lõi tiêu đề ≤60s, lời hứa ≤60s · tự giới thiệu 64歳 ở 34–58s · tiêu đề bỏ【漫画】 37–52 ký tự · 5/5 video có marker đếm ngược 第N位, 第1位 giấu trên 6/6 thumbnail. ritual để trống: câu nghi thức của kênh mẫu 「盲点だった。」 bị CẤM (K10), lane chưa có câu riêng đã chứng minh."
+  },
+  "_note": "Lane M — mở 2026-09-26 (giai đoạn 2). Nghiên cứu: TRENDING-RESEARCH GIAO_VIEC_OTONANOMOUTEN_2026-09-26 + Channel Analyzer K1+K2 6 video (docs/channel_dna/otonanomouten/) + COMMENT_INSIGHT 53 bình luận. Kênh thật 定年後の穴場ノート【漫画】 @teinengo-anaba (mail haoviabattu@gmail.com, anh TỰ setup — K2). KHÔNG khai research (không nhận hàng SPACE_RESEARCH). cung_cam_xuc / cam_on_cuoi / review_may3 cố ý VẮNG = BẬT (K6/K7/K12). Cửa vào: docs/BAT_DAU_LANE/teinengo-anaba.md · SOP: docs/SOP_LANE_M.md."
+}

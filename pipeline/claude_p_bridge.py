@@ -43,6 +43,13 @@ def patch_model_of(prof):
     return ((prof.get("script", {}) or {}).get("patch_model") or brain_model_of(prof))
 
 
+def prompt_model_of(prof):
+    """Model viết PROMPT ẢNH (B5W, prompt_doan.py): `profile.image.prompt_model`, không khai = claude-opus-5.
+    Anh chốt 2026-09-26: B5W không cần Fable — chuyển Opus để dành hạn mức Fable (tính riêng) cho viết kịch bản S2
+    và kịch bản quay hook (hook_storyboard, vẫn brain_model = Fable)."""
+    return ((prof.get("image", {}) or {}).get("prompt_model") or "claude-opus-5")
+
+
 def _claude_version(path):
     """Trả tuple version của 1 binary claude (vd (2,1,278)); lỗi → (0,)."""
     try:
@@ -109,7 +116,9 @@ def ask(prompt, system=None, model=None, timeout=1800, min_chars=0, require_sent
     try:
         r = subprocess.run(cmd, input=prompt, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                            text=True, encoding="utf-8", errors="replace", timeout=timeout,
-                           env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+                           # 2026-10-03 (Lane F ep09 B5W): câu trả lời dài vượt trần output mặc định → CLI tự "continue"
+                           # và `--output-format text` chỉ in KHÚC CUỐI (bắt đầu từ dòng 400/444) → "trả quá ngắn". Nâng trần.
+                           env={"CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000", **os.environ, "PYTHONIOENCODING": "utf-8"})
     except subprocess.TimeoutExpired:
         raise LLMError(f"claude -p quá thời gian ({timeout}s)") from None
     except Exception as e:

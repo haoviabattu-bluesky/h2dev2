@@ -1,7 +1,11 @@
-"""hook_stage.py — HOOK 20–30 GIÂY ĐẦU, artifact thượng nguồn của mọi tập (anh chốt 2026-09-23).
+"""hook_stage.py — HOOK đầu video, artifact thượng nguồn của mọi tập.
 
-Luồng: S0 hồ sơ → H1 bóc 0–30s + title/mô tả/thumb video nguồn → H2 soi khung hình → H3 khớp promise nguồn
-→ viết 3 hook cho tập mình (brain_model) → check() tất định + Sol lens hook → LOCK (sha256 + promise snapshot)
+LUẬT DUY NHẤT (anh chốt 2026-10-21, thay luật 17/10): hook BÁM SÁT CẤU TRÚC hook của video gốc — gốc làm thế nào mình làm
+thế ấy, được đổi một chút cho hợp/hay hơn (docs/HOOK_CAU_TRUC/00_CHUNG.md). KHÔNG còn luật viết hook nào khác: không phân loại
+động cơ, không khuôn riêng lane, không đòi mở bằng thoại/cao trào/kịch tính/câu để ngỏ. Đổi tên họ, nghề, câu thoại theo hồ sơ
+tập mình là đủ khác nội dung; giữ cấu trúc hook gốc không bị coi là trùng lặp.
+Luồng: H1 bóc lời 0–150s + meta video gốc → H2 soi khung hình → H3 tách CẤU TRÚC hook gốc (phan_tich_cau_truc: cách mở,
+nhịp, giây kết) → H4 viết N phương án cùng cấu trúc (brain_model) → check() tất định + Sol chấm bám cấu trúc → LOCK (sha256)
 → S2 viết thân NỐI từ hook. Hook là pure prose (TTS đọc mọi ký tự) — marker/visual nằm ở JSON riêng.
 Repair mode (tập chưa đăng, có script.txt): nguồn = chính script.txt, không chạy S2, chỉ thêm hook đầu video.
 """
@@ -13,37 +17,33 @@ import ai_steps, profiles  # noqa: E402
 
 HOOK_DIR = "hook"
 MAX_PATCH_HOOK = 2
-# 2026-09-23 (Việc 1, nối kho hook vào PROMPT_VIET): kho nằm ở DỰ ÁN KHÁC
-# (E:\CLAUDE\YOUTUBE\HOOK_LIBRARY, dự án nghiên cứu — không thuộc h2dev) — khai hằng cấp module
-# để test thay được (monkeypatch HS.HOOK_LIBRARY_PATH) và để doc_kho_hook() không hardcode đường dẫn
-# rải rác nhiều chỗ. Thiếu file này KHÔNG được làm gãy dây chuyền viết hook ở đây (xem doc_kho_hook).
-HOOK_LIBRARY_PATH = Path(r"E:\CLAUDE\YOUTUBE\HOOK_LIBRARY\patterns.json")
+ROOT_DIR = Path(__file__).resolve().parent.parent
+# Lời video gốc có mốc thời gian do TRENDING-RESEARCH tải sẵn (data/<kênh>/transcripts/<id>.json) — _nguon_tu_video_goc đọc trước.
+TRENDING_DATA = Path(r"E:\CLAUDE\YOUTUBE\TRENDING-RESEARCH\data")
+# Cửa sổ lời gốc dùng để tách sườn hook (hook gốc Lane L dài tới ~105s).
+GIAY_LOI_GOC = 150.0
+# Sàn kỹ thuật độ dài hook (dưới mức này không dựng nổi 1 cảnh clip hook).
+GIAY_SAN = 6.0
 MAC_DINH = {
-    # 2026-09-23 (Việc 2, vá review cuối): công tắc BẬT/TẮT tính năng hook THEO TỪNG KÊNH — mặc
-    # định TẮT, kênh nào muốn dùng phải tự khai `script.hook.enabled: true` trong profile. Trước
-    # đây tính năng tự áp dụng cho MỌI kênh chỉ cần `script.flow == "lean"` — tập kế tiếp của cả 6
-    # kênh sẽ cùng lúc là "tập thật đầu tiên" chạy tính năng mới, không bật dần được.
+    # 2026-09-23: công tắc BẬT/TẮT hook THEO TỪNG KÊNH — mặc định TẮT, kênh phải tự khai `script.hook.enabled: true`.
     "enabled": False,
-    # 2026-09-23 (Việc thêm field script.hook.model): hook do model VIẾT viết (viet_candidates →
-    # ai_steps._writer_chat → mặc định lấy `script.brain_model` của kênh — đúng nguyên tắc "model
-    # viết kịch bản thì viết luôn hook"). Trường NÀY chỉ để GHIM model viết HOOK khác với model viết
-    # THÂN kịch bản khi kênh cần — rỗng ("") = im lặng dùng brain_model như trước, không đổi hành vi
-    # cũ. Lý do có trường: A/B thật cùng hồ sơ teinengo-tanoshimi, chỉ đổi model viết hook — Opus
-    # viết: cả 3 phương án vượt trần độ dài (259/232/221 chữ, trần 185) → phải vá cứu (2 vòng chấm +
-    # 2 lượt vá); Fable viết: cả 3 qua cổng máy ngay lần đầu (1 vòng chấm, 0 lượt vá, hook cuối 158
-    # chữ). Trường này KHÔNG đụng brain_model/patch_model của kênh — mọi lượt SỬA hook (patch_hook,
-    # tức S4) vẫn dùng patch_model như luật chung, không đọc trường này.
+    # Ghim model VIẾT hook khác brain_model khi cần; rỗng = dùng brain_model. Lượt SỬA hook luôn dùng patch_model.
     "model": "",
-    # 2026-09-23 (Việc 1): id kiểu hook (patterns) + id thiết bị khoá hook (closer) tra trong kho
-    # HOOK_LIBRARY_PATH. Mặc định rỗng = KHÔNG chèn khối kho vào PROMPT_VIET, hành vi y hệt trước
-    # khi có tính năng này (xem doc_kho_hook + viet_candidates).
-    "patterns": [], "closer": "",
-    "ratio_30s": 0.5, "tol": 0.15, "neo_ratio": 0.4,
+    # Số phương án hook H4 viết (mặc định 2) — mọi phương án CÙNG một sườn, khác nhau ở cách thực thi.
+    "so_ung_vien": 2,
+    # 2026-10-21: độ dài hook = đúng giây kết hook của video gốc (chỉ kẹp sàn/trần kỹ thuật GIAY_SAN..GIAY_LOI_GOC).
+    # `giay` [tối thiểu, tối đa] + `giay_mac_dinh` CHỈ dùng khi tập không có lời hook gốc. Field `huong_dan_cau_truc`
+    # (khuôn hook riêng lane) đã BỎ 21/10 — profile còn khai thì bị bỏ qua.
+    "giay": [15, 90],
+    "giay_mac_dinh": 30,
+    "tol": 0.25,
+    # model ĐỌC CHỮ ở H1–H3 (phân tích lời video gốc). Phần NHÌN khung hình dùng Sol.
+    "analysis_model": "claude-opus-5",
+    # Chỉ cấm xin đăng ký/cảm ơn xem ở hook (CTA chỉ 1 lần ở cuối bài) — không còn luật cấm cách mở nào khác.
     "banned_openers": {
-        "ja": ["こんにちは", "こんばんは", "皆さん", "みなさん", "チャンネル登録", "ご視聴", "私の名前は", "俺の名前は",
-               "と申します", "今回は", "今日のテーマ"],
-        "ko": ["안녕하세요", "여러분", "구독", "오늘은"],
-        "en": ["hello", "hi everyone", "welcome", "subscribe", "in this video", "my name is"]},
+        "ja": ["チャンネル登録", "ご視聴"],
+        "ko": ["구독"],
+        "en": ["subscribe"]},
 }
 NEO = re.compile(r"[0-9０-９〇一二三四五六七八九十百千万億]+[年月日歳円人回分秒時km]|「[^」]{2,}」|[ァ-ヴー]{3,}|[A-Z][a-z]+")
 CAND_PAT = re.compile(r"^===\s*HOOK\s*(\d+)\s*===\s*$", re.M)
@@ -65,8 +65,40 @@ def is_enabled(prof):
     return bool(cau_hinh(prof).get("enabled"))
 
 
-def so_chu_muc_tieu(prof):
-    return int(round(profiles.char_rate(prof) * float(cau_hinh(prof)["ratio_30s"])))
+def so_ung_vien(prof):
+    """Số phương án hook H4 viết (field `script.hook.so_ung_vien`, mặc định 2 — anh chốt 2026-09-30), kẹp 1..3."""
+    return max(1, min(3, int(cau_hinh(prof).get("so_ung_vien") or 2)))
+
+
+def _so_giay(x):
+    """'64' / '60-65' / 64.0 → số giây (lấy mốc CUỐI của khoảng); không đọc được → None."""
+    so = re.findall(r"\d+(?:\.\d+)?", str(x if x is not None else ""))
+    return float(so[-1]) if so else None
+
+
+def giay_hook(prof, src=None):
+    """Độ dài hook (giây) = giây kết hook của video gốc (src.cau_truc_hook.giay_ket_hook) — gốc dài bao nhiêu làm bấy nhiêu,
+    chỉ kẹp sàn/trần kỹ thuật [GIAY_SAN, GIAY_LOI_GOC]. Không có hook gốc → `script.hook.giay_mac_dinh` kẹp trong `giay`."""
+    h = cau_hinh(prof)
+    g = _so_giay(((src or {}).get("cau_truc_hook") or {}).get("giay_ket_hook"))
+    if g:
+        return max(GIAY_SAN, min(GIAY_LOI_GOC, g))
+    lo, hi = (list(h.get("giay") or [15, 90]) + [90])[:2]
+    return max(float(lo), min(float(hi), float(h.get("giay_mac_dinh") or 30)))
+
+
+def so_chu_muc_tieu(prof, src=None):
+    """Số chữ mục tiêu của hook = char_rate (chữ/phút) × giay_hook / 60."""
+    return int(round(profiles.char_rate(prof) * giay_hook(prof, src) / 60.0))
+
+
+def muc_cua_tap(d, prof):
+    """Số chữ mục tiêu theo `hook/source.json` đã phân tích của tập (không có → mặc định lane). Không gọi mạng/LLM."""
+    try:
+        src = json.loads((Path(d) / HOOK_DIR / "source.json").read_text(encoding="utf-8"))
+    except Exception:
+        src = None
+    return so_chu_muc_tieu(prof, src)
 
 
 def cat_0_30s(segments, sec=30.0):
@@ -83,23 +115,41 @@ def _sach(t):
     return re.sub(r"[\s、。「」！？…・ー－\-,.!?\"']", "", t)
 
 
-def check(text, prof, ctx=""):
-    """Phép đo tất định 0 LLM. Trả list việc phải sửa (rỗng = đạt)."""
+def check(text, prof, ctx="", muc=None, cam_ho=None):
+    """Phép đo tất định 0 LLM. Trả list việc phải sửa (rỗng = đạt). `muc` = số chữ mục tiêu của tập (theo giây hook gốc);
+    vắng → mặc định lane. Chỉ đo kỹ thuật (độ dài ≈ gốc, marker, CTA, thoại tách câu cho TTS, số ngoài tư liệu) — không có
+    luật cách viết hook nào ở đây (21/10: cách viết = bám cấu trúc hook gốc, Sol chấm)."""
     h = cau_hinh(prof)
     viec = []
     n = ai_steps.measure(text)["chars"]
-    muc = so_chu_muc_tieu(prof)
+    muc = int(muc or so_chu_muc_tieu(prof))
     lo, hi = int(muc * (1 - h["tol"])), int(muc * (1 + h["tol"]))
     if not (lo <= n <= hi):
-        viec.append(f"độ dài {n} chữ ngoài {lo}–{hi} (≈30 giây với char_rate {profiles.char_rate(prof):.0f})")
-    dau = text[:max(40, int(len(text) * 0.5))]
+        viec.append(f"độ dài {n} chữ ngoài {lo}–{hi} (≈ độ dài hook video gốc, char_rate {profiles.char_rate(prof):.0f})")
     for w in h["banned_openers"]:
-        if w.lower() in dau.lower():
-            viec.append(f"chào hỏi/giới thiệu bị cấm trong hook: 「{w}」")
-    if not NEO.search(text[:max(40, int(len(text) * h["neo_ratio"]))]):
-        viec.append(f"{int(h['neo_ratio']*100)}% đầu hook không có neo cụ thể (số/thoại「」/tên riêng) — đang nói suông")
+        if w.lower() in text.lower():
+            viec.append(f"hook không được xin đăng ký/cảm ơn xem (CTA chỉ ở cuối bài): 「{w}」")
     if ai_steps.MARKER_PAT.search(text):
         viec.append("hook chứa marker/ký hiệu — phải là pure prose")
+    if cam_ho:
+        # 2026-10-21 (Lane L ep23): hook tự do lấy lại họ 佐野 của ep04. cam_ho = kiem_hook_goc.ho_da_dung(tập).
+        import kiem_hook_goc
+        for x in kiem_hook_goc.ho_trung(text, cam_ho):
+            viec.append(f"họ nhân vật đã dùng ở tập trước: {x} — đổi họ khác (lấy họ trong hồ sơ tập mình)")
+    # 2026-09-26 (Lane M ep01): lane ĐA GIỌNG khai gate.dialogue_own_sentence — S3 (lean_script) bắt mọi「…」dính lời
+    # dẫn, nhưng hook khoá ở đây KHÔNG bị kiểm luật đó → hook khoá chứa 「はい」とだけ答えた, S3 vừa đòi chép NGUYÊN VĂN
+    # hook vừa đòi tách thoại → 2 patch đá nhau, ESCALATE. Cùng một luật phải kiểm ở cả hai cổng.
+    if profiles.gate(prof).get("dialogue_own_sentence"):
+        import cau_vai
+        _cs = cau_vai.tach_cau(text)
+        manh = [c["text"] for k, c in enumerate(_cs)
+                if not cau_vai.la_thoai(c["text"]) and (
+                    not re.search(r"[。！？!?」]$", c["text"].strip())
+                    or (k and cau_vai.la_thoai(_cs[k - 1]["text"]) and _cs[k - 1]["para"] == c["para"]
+                        and re.match(r"^[とっ、]", c["text"].strip())))]
+        if manh:
+            viec.append(f"THOẠI DÍNH LỜI DẪN (lane đa giọng): {len(manh)} chỗ, vd「{manh[0][:30]}」— mỗi「…」là 1 câu riêng, "
+                        f"lời dẫn viết thành câu người kể riêng kết bằng 。")
     if ctx:
         # 2026-09-23 (Việc 3b, vá review cuối): trước đây gọi KHÔNG truyền exempt_units, trong khi
         # lean_script.py (đo thân bài) truyền sc.get("fact_exempt_units") — 2 cổng CÙNG một hàm mà
@@ -169,12 +219,30 @@ def promise_snapshot(d, mode="upstream"):
     return snap
 
 
+def cau_truc_cua_tap(d):
+    """cau_truc_hook đã tách của tập (hook/source.json) — None khi chưa có/không có nhịp."""
+    try:
+        ct = json.loads((Path(d) / HOOK_DIR / "source.json").read_text(encoding="utf-8")).get("cau_truc_hook") or {}
+    except Exception:
+        return None
+    return ct if ct.get("nhip") else None
+
+
 def khoa(d, text, mode="upstream", extra=None):
     import datetime as _dt
     d = Path(d)
     hd = d / HOOK_DIR
     hd.mkdir(exist_ok=True)
-    text = text.strip() + ("\n" if not text.endswith("\n") else "")
+    # 2026-10-21 (anh chốt): không có cấu trúc hook gốc = CẤM khoá hook, kể cả khoá tay (Lane L ep23 bị khoá hook tự do).
+    ct = cau_truc_cua_tap(d)
+    if not ct:
+        raise SystemExit(f"✗ KHÔNG khoá hook: {hd / 'source.json'} chưa có cấu trúc hook gốc (cau_truc_hook) — "
+                         f"cấm hook viết tự do. Kiểm: py -3.13 -X utf8 {ROOT_DIR / 'pipeline' / 'kiem_hook_goc.py'} --tap {d}")
+    extra = {"so_nhip_goc": len(ct["nhip"]), **(extra or {})}
+    # 2026-10-11 (Lane L ep14): bản vá hook từng giữ nhãn「=== HOOK ===」ở đầu → S3 báo 'script không bắt đầu bằng
+    # hook đã khoá' 2 lượt rồi ESCALATE. Bỏ nhãn ứng viên trước khi khoá.
+    text = re.sub(r"^===\s*HOOK[^=\n]*===\s*", "", text.strip())
+    text = text.strip() +("\n" if not text.endswith("\n") else "")
     (hd / "hook_locked.txt").write_text(text, encoding="utf-8")
     meta = {"state": "LOCKED", "mode": mode, "at": _dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
             "sha256": _sha_text(text), "chars": ai_steps.measure(text)["chars"],
@@ -248,31 +316,59 @@ def kiem_stale(d):
 
 
 # ── H1–H3: bóc hook video NGUỒN (phan_tich_nguon, Task 5, 2026-09-23) ──────────
-PROMPT_NGUON = """Bạn phân tích 30 GIÂY ĐẦU của một video YouTube (video NGUỒN mà tập mới sẽ nhân bản 70/30).
-TIÊU ĐỀ NGUỒN: {title}
-MÔ TẢ NGUỒN (rút gọn): {description}
-CHỮ TRÊN THUMBNAIL NGUỒN (nếu đọc được): {thumb_text}
-LỜI 0–30 GIÂY (nguyên văn): {t30}
-
-Trả ĐÚNG 1 JSON (không bọc ```):
-{{"hook_4_nhip": {{"event": "sự kiện cụ thể ở 0–5s hoặc null", "contradiction": "vì sao bất thường, 5–12s hoặc null",
-                  "stake": "mất mát/cảm xúc 12–20s hoặc null", "open_loop": "câu hỏi để ngỏ 20–30s hoặc null"}},
- "hook_kind": "A|B|C|D|E|none  (A biến cố bất thường · B câu nói sốc · C mâu thuẫn · D hậu quả chưa rõ nguyên nhân · E hé reveal 20–40%)",
- "score_0_12": 0,
- "promise_match": {{"title": "PASS|FAIL", "thumb": "PASS|FAIL|NA", "description": "PASS|FAIL|NA", "verdict": "PASS|FAIL",
-                    "ly_do": "1 câu: hook nguồn có bán CÙNG lời hứa với tiêu đề/thumbnail không"}}}}
-Chấm score_0_12 = tổng 6 tiêu chí 0–2: liên quan title · liên quan thumbnail · có bất thường · có câu hỏi mở · có cảm xúc · dựng hình được."""
-
 PROMPT_KHUNG = """Đây là lưới {n} khung hình lấy đều trong 30 giây đầu của một video YouTube kể chuyện.
 Trả JSON: {{"so_shot_uoc": <số bố cục khác nhau>, "co_chu_tren_hinh": true/false, "co_nhan_vat": true/false,
 "hinh_bam_loi": "manh|yeu|khong", "verdict": "manh|yeu|khong", "ly_do": "1 câu"}}
 verdict = manh khi ≥3 bố cục khác nhau VÀ có nhân vật/vật thể gây chú ý; yeu khi 1–2 bố cục; khong khi chỉ ảnh nền/logo/chữ giới thiệu."""
 
 
+def _nguon_tu_video_goc(d, proxy=None):
+    """(2026-09-26, anh duyệt) Tập KHÔNG có `competitor.segments.json` (competitor.txt đưa vào dạng file sẵn) nhưng CÓ
+    `video_goc.json` → tự tải lời có mốc thời gian (youtube-transcript-api, rồi phụ đề yt-dlp; KHÔNG whisper vì chỉ cần
+    30 giây đầu) + meta, cache ở `hook/source_segments.json`. Trước bản vá: 4/6 tập gần nhất (L ep04–06, F ep05) ra
+    phân tích hook RỖNG trong im lặng dù video_goc.json có đủ mã video. Không bao giờ ném — hỏng thì trả None."""
+    d = Path(d)
+    cache = d / HOOK_DIR / "source_segments.json"
+    if cache.exists():
+        try:
+            j = json.loads(cache.read_text(encoding="utf-8"))
+            return j if j.get("video_id") else None
+        except Exception:
+            pass
+    try:
+        vg = json.loads((d / "video_goc.json").read_text(encoding="utf-8")).get("video_goc") or {}
+    except Exception:
+        return None
+    vid = (vg.get("id") or "").strip()
+    if not vid:
+        return None
+    import fetch_script, kiem_hook_goc
+    # Ưu tiên bản lời CÓ SẴN ở máy (TRENDING-RESEARCH / cache data\loi_goc — không mạng, không dính 429; đo thật
+    # 2026-09-26: tải mạng video AjEK9D_JjxQ bị chặn IP ở cả 2 đường phụ đề). 2026-10-21: thêm đường whisper (không đụng
+    # phụ đề) — lời gốc là ĐIỀU KIỆN BẮT BUỘC để viết hook (ensure_locked chặn cứng khi thiếu).
+    segs, cach = kiem_hook_goc.tim_loi(vid, d, proxy=proxy)
+    if not segs:
+        print(f"  ! không có lời hook video gốc {vid}: {cach}")
+        cach = ""
+    try:
+        m = fetch_script.lay_meta_video(vid, proxy=proxy)
+    except Exception:
+        m = {"title": vg.get("tieu_de", ""), "description": "", "thumbnail_url": ""}
+    j = {"video_id": vid, "source": cach or "khong_co_loi", "title": m.get("title") or vg.get("tieu_de", ""),
+         "description": m.get("description", ""), "thumbnail_url": m.get("thumbnail_url", ""),
+         "segments": [{"start": float(s["start"]), "duration": float(s.get("duration", 0)), "text": s["text"]}
+                      for s in segs if float(s.get("start", 0)) < GIAY_LOI_GOC]}
+    (d / HOOK_DIR).mkdir(parents=True, exist_ok=True)
+    if j["segments"]:   # KHÔNG cache bản rỗng lời — lần sau (hết 429) còn thử tải lại
+        cache.write_text(json.dumps(j, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"  ✓ nguồn hook lấy từ video_goc.json: {vid} · {len(j['segments'])} đoạn lời ({cach or 'không có lời'})")
+    return j
+
+
 def nguon_cua_tap(d):
     p = Path(d) / "competitor.segments.json"
     if not p.exists():
-        return None
+        return _nguon_tu_video_goc(d)
     try:
         j = json.loads(p.read_text(encoding="utf-8"))
     except Exception as e:
@@ -280,6 +376,20 @@ def nguon_cua_tap(d):
         # KHÔNG BAO GIỜ được ném — coi như chưa có video nguồn, không phải lỗi chặn cả tập.
         print(f"  ! competitor.segments.json hỏng, coi như chưa có video nguồn: {type(e).__name__} {str(e)[:100]}")
         return None
+    if isinstance(j, list):
+        # 2026-10-15: lô Lane O tập 11–22 (TRENDING-RESEARCH) ghi competitor.segments.json dạng MẢNG trần
+        # [{start, end, text}] (whisper), không có video_id/meta → bọc lại bằng video_goc.json của tập.
+        try:
+            vg = json.loads((Path(d) / "video_goc.json").read_text(encoding="utf-8")).get("video_goc") or {}
+        except Exception:
+            vg = {}
+        if not (vg.get("id") or "").strip():
+            return None
+        j = {"video_id": vg["id"].strip(), "source": "competitor.segments.json (mảng whisper)",
+             "title": vg.get("tieu_de", ""), "description": "", "thumbnail_url": "",
+             "segments": [{"start": float(s["start"]),
+                           "duration": float(s.get("duration", float(s.get("end", s["start"])) - float(s["start"]))),
+                           "text": s["text"]} for s in j if s.get("text")]}
     return j if j.get("video_id") else None
 
 
@@ -489,13 +599,15 @@ def phan_tich_nguon(d, prof, proxy=None, force=False):
     # thứ tự so với nhánh short-circuit cache.
     _ffmpeg_tren_path()
     src = {"video_id": None, "url": None, "title": "", "description": "", "thumb_path": None, "transcript_0_30s": "",
-           "hook_4_nhip": {}, "hook_kind": "none", "score_0_12": 0, "video_hook_verdict": "khong_soi_duoc",
+           "transcript_0_90s": "", "hook_4_nhip": {}, "hook_kind": "none", "score_0_12": 0, "video_hook_verdict": "khong_soi_duoc",
            "promise_match": {"verdict": "NA", "ly_do": "không có video nguồn"}}
     j = nguon_cua_tap(d)
     if j:
         vid = j["video_id"]
         src.update(video_id=vid, url=f"https://www.youtube.com/watch?v={vid}", title=j.get("title", ""),
-                   description=j.get("description", ""), transcript_0_30s=cat_0_30s(j.get("segments") or []))
+                   description=j.get("description", ""), transcript_0_30s=cat_0_30s(j.get("segments") or []),
+                   transcript_0_90s=cat_0_30s(j.get("segments") or [], 90.0),
+                   transcript_hook=_loi_co_moc(j.get("segments") or []))
         # 2026-09-23 (Task 5 V2): lay_meta_video/tai_anh hợp đồng "không ném" nhưng vẫn là lời gọi
         # mạng ngoài tầm kiểm soát → bọc để 1 lỗi mạng không kéo sập cả phan_tich_nguon.
         try:
@@ -510,117 +622,180 @@ def phan_tich_nguon(d, prof, proxy=None, force=False):
         # H2 — khung hình
         grid = khung_hinh_0_30s(vid, hd / "frames", proxy=proxy)
         if grid:
+            # (c) 2026-09-26 anh duyệt: NHÌN khung hình = GPT-5.6-sol (sol_client, 3 đường dự phòng); lỗi thì rơi về
+            # qc_visual._vision (thang Gemini cũ). Opus qua claude -p KHÔNG nhìn được ảnh (bridge tắt mọi tool).
+            v = None
             try:
-                v = qc_visual._vision(PROMPT_KHUNG.format(n=6), grid)
+                import sol_client
+                import qc_character as qcc
+                txt, _u = sol_client.chat(PROMPT_KHUNG.format(n=6), grid, max_tokens=400, timeout=120)
+                v = qcc._parse_json(txt)
+                src["khung_hinh_model"] = "gpt-5.6-sol"
+            except Exception as e:
+                print(f"  ! Sol nhìn khung hình lỗi ({type(e).__name__} {str(e)[:80]}) → thử thang Gemini")
+                try:
+                    v = qc_visual._vision(PROMPT_KHUNG.format(n=6), grid)
+                    src["khung_hinh_model"] = "qc_visual._vision"
+                except Exception as e2:
+                    print(f"  ! vision khung hình lỗi: {e2}")
+            if isinstance(v, dict):
                 src["video_hook_verdict"] = v.get("verdict", "khong_soi_duoc")
                 src["khung_hinh"] = v
-            except Exception as e:
-                print(f"  ! vision khung hình lỗi: {e}")
-        # H1 + H3 — 4 nhịp + promise
-        if src["transcript_0_30s"]:
-            r = llm_client.chat(PROMPT_NGUON.format(title=src["title"], description=src["description"][:800],
-                                                    thumb_text="(chưa đọc)", t30=src["transcript_0_30s"]),
-                                task="short", max_tokens=1500, temperature=0.2, verbose=False)
-            try:
-                a = json.loads(re.sub(r"^```[a-z]*\n?|\n?```$", "", r.text.strip()))
-                src.update(hook_4_nhip=a.get("hook_4_nhip") or {}, hook_kind=a.get("hook_kind", "none"),
-                           score_0_12=int(a.get("score_0_12") or 0), promise_match=a.get("promise_match") or {})
-            except Exception as e:
-                print(f"  ! JSON phân tích nguồn hỏng: {e}")
+        # H1 cũ (4 nhịp A–E + promise) đã bỏ 17/10 — sườn hook gốc do phan_tich_cau_truc() tách ngay bên dưới.
     out_p.write_text(json.dumps(src, ensure_ascii=False, indent=2), encoding="utf-8")
+    phan_tich_cau_truc(d, prof, src)
     return src
 
 
-# ── Việc 1 (2026-09-23): nối KHO KIỂU HOOK (dự án khác) vào PROMPT_VIET ──────────
-KHOI_KHO_HOOK_TIEU = ("KHO KIỂU HOOK ĐÃ ĐO ĐƯỢC ĐANG ĂN Ở CHÍNH NGÁCH NÀY (chọn 1 kiểu cho MỖI phương án, bám "
-                      "đúng khuôn của nó; mục \"tránh\" là điều CẤM):\n")
+# ── H3 (anh chốt 2026-10-21): tách CẤU TRÚC hook video gốc — luật duy nhất "hook gốc thế nào mình làm thế ấy" ──
+PROMPT_CAU_TRUC = """Bạn tách CẤU TRÚC HOOK của một video YouTube tiếng Nhật (video GỐC — tập mới sẽ viết hook bám sát cấu trúc này).
+Chỉ MÔ TẢ hook gốc làm gì, theo thứ tự nào — không đánh giá, không xếp loại, không áp luật hook nào.
+TIÊU ĐỀ GỐC: {title}
+LỜI 0–150 GIÂY CỦA VIDEO GỐC (phụ đề tự động, có thể sai chính tả; [số] = giây):
+{loi}
+
+Trả ĐÚNG 1 JSON (không bọc ```):
+{{"mo_dau": "1 câu tiếng Việt: giây 0 gốc mở bằng gì (vd câu thoại, tả cảnh, câu hỏi người dẫn, số liệu, người kể ngôi 1…)",
+ "giay_ket_hook": <số giây hook gốc kết thúc và bắt đầu kể tuyến tính>,
+ "nhip": [{{"tu": 0, "den": 5, "vai_tro": "vai trò nhịp (tiếng Việt)", "cach_lam": "gốc làm cụ thể thế nào (tiếng Việt)",
+           "cau_goc": "trích ngắn tiếng Nhật", "dich": "nghĩa tiếng Việt"}}],
+ "giu_chan_bang": "1 câu tiếng Việt: hook gốc giữ người xem bằng gì"}}
+Nhịp = từng bước của hook theo đúng thứ tự (bao nhiêu nhịp tuỳ gốc), CHỈ tới giây kết hook."""
 
 
-def doc_kho_hook(ids, closer_id=""):
-    """Đọc kho HOOK_LIBRARY_PATH (dự án nghiên cứu KHÁC, E:\\CLAUDE\\YOUTUBE\\HOOK_LIBRARY — không
-    thuộc h2dev) → trả 1 chuỗi đã định dạng sẵn, chèn thẳng vào PROMPT_VIET. Với mỗi id trong
-    `ids` (khớp `patterns[].id` trong kho): in `id · name · kind`, `mechanism`, `template`, `avoid`.
-    Nếu có `closer_id` (khớp `closers[].id`): thêm `mechanism` + `template` của thiết bị khoá đó.
-
-    Kho không tồn tại / JSON hỏng → in CẢNH BÁO tiếng Việt rồi trả chuỗi RỖNG, KHÔNG NÉM — kho nằm
-    ở dự án khác, thiếu/hỏng kho không được phép làm gãy dây chuyền viết hook ở đây (cùng triết lý
-    với `phan_tich_nguon`/`nguon_cua_tap` trong file này).
-
-    NGOẠI LỆ (2026-09-23): kho ĐỌC ĐƯỢC mà KHÔNG id nào của kênh khớp thì DỪNG HẲN (SystemExit).
-    Đó là lỗi khai profile (gõ "H2" thay "H22"), không phải sự cố hạ tầng — im lặng trả rỗng thì
-    hook vẫn viết ra bình thường và cả lane chạy như thể chưa bật kho, cảnh báo chỉ hiện thoáng ở
-    console rồi mất. Khớp được MỘT PHẦN thì vẫn chạy, chỉ cảnh báo id hỏng."""
-    ids = list(ids or [])
-    if not ids and not closer_id:
-        return ""
-    try:
-        kho = json.loads(HOOK_LIBRARY_PATH.read_text(encoding="utf-8"))
-    except Exception as e:
-        print(f"  ! không đọc được kho hook {HOOK_LIBRARY_PATH}: {type(e).__name__} {str(e)[:100]}")
-        return ""
-    pats = {p.get("id"): p for p in kho.get("patterns") or []}
-    closers = {c.get("id"): c for c in kho.get("closers") or []}
-    khoi = []
-    for pid in ids:
-        p = pats.get(pid)
-        if not p:
-            print(f"  ! kiểu hook {pid!r} không có trong kho hook, bỏ qua")
+def _loi_co_moc(segments, sec=GIAY_LOI_GOC):
+    """Lời gốc kèm mốc giây thưa (mỗi ~10s một mốc) cho prompt tách sườn — đủ để model biết nhịp rơi vào giây nào."""
+    out, moc = [], -99.0
+    for s in segments or []:
+        t = float(s.get("start", 0))
+        if t >= sec:
+            break
+        txt = re.sub(r"\s+", " ", str(s.get("text", ""))).strip()
+        if not txt:
             continue
-        khoi.append(f"- {p.get('id')} · {p.get('name')} · kind {p.get('kind')}\n"
-                    f"  mechanism: {p.get('mechanism', '')}\n"
-                    f"  template: {p.get('template', '')}\n"
-                    f"  tránh: {p.get('avoid', '(không ghi)')}")
-    phan_closer = ""
-    if closer_id:
-        c = closers.get(closer_id)
-        if c:
-            phan_closer = (f"\nTHIẾT BỊ KHOÁ HOOK (câu chuyển 30–90s biến mở đầu thành câu hỏi cả video): "
-                          f"{c.get('id')} · {c.get('name')}\n  mechanism: {c.get('mechanism', '')}\n"
-                          f"  template: {c.get('template', '')}")
+        if t - moc >= 10:
+            out.append(f"[{int(t)}]{txt}")
+            moc = t
         else:
-            print(f"  ! thiết bị khoá hook {closer_id!r} không có trong kho hook, bỏ qua")
-    if ids and not khoi:
-        raise SystemExit(f"LỖI KHAI PROFILE: không kiểu hook nào trong {ids} có trong kho "
-                         f"{HOOK_LIBRARY_PATH}. Sửa script.hook.patterns trong profile "
-                         f"(id đúng dạng H01..H23), hoặc để rỗng nếu không muốn dùng kho.")
-    return ("\n".join(khoi) + phan_closer).strip()
+            out.append(txt)
+    return " ".join(out).strip()
 
 
-# ── Task 7 (2026-09-23): viết 3 hook + Sol chọn/vá + ensure_locked() orchestrator ──
-PROMPT_VIET = """NHIỆM VỤ: viết 3 ỨNG VIÊN HOOK 20–30 giây cho phần MỞ ĐẦU của một video YouTube kể chuyện ({lang}).
-Hook = nội dung ĐẦU TIÊN người xem nghe. Nó phải giữ chân người vừa click tiêu đề/thumbnail.
+def _loi_hook_goc(d, src):
+    """Lời 0–150s video gốc (ưu tiên bản có mốc giây). Bản source.json cũ chỉ lưu 0–90s → đọc lại segments ở file local
+    (competitor.segments.json / hook/source_segments.json), KHÔNG gọi mạng; không có thì dùng bản chữ đang có."""
+    if src.get("transcript_hook"):
+        return src["transcript_hook"]
+    for p in (Path(d) / "competitor.segments.json", Path(d) / HOOK_DIR / "source_segments.json"):
+        try:
+            j = json.loads(p.read_text(encoding="utf-8"))
+            segs = j if isinstance(j, list) else (j.get("segments") or [])
+            t = _loi_co_moc(segs)
+            if t:
+                return t
+        except Exception:
+            continue
+    return src.get("transcript_0_90s") or src.get("transcript_0_30s") or ""
 
-TIÊU ĐỀ (lời hứa): {title}
-CHỮ THUMBNAIL (lời hứa): {thumb_text}
-HOOK CỦA VIDEO NGUỒN (đã phân tích — MƯỢN LOẠI hook và VỊ TRÍ giây 0, KHÔNG chép sự kiện/câu thoại/tên):
-  loại: {hook_kind} · điểm nguồn: {score}/12 · hình nguồn: {video_verdict}
-  4 nhịp nguồn: {nhip}
-{khoi_nguon_yeu}
-HỒ SƠ / LỜI HỨA CỦA TẬP MÌNH (sự kiện, payoff, reveal — hook chỉ được dùng thứ có ở đây, hé reveal tối đa 20–40%):
+
+def phan_tich_cau_truc(d, prof, src, force=False):
+    """H3: tách cấu trúc hook gốc → src['cau_truc_hook'] (ghi lại hook/source.json). Đã có thì dùng lại (trừ force; bản
+    17/10 còn trường dong_co_chinh/khuon_lane thì khoi_suon() bỏ qua 2 trường đó). Không có lời gốc → None (ensure_locked chặn tập, cấm viết tự do).
+    Lỗi model/JSON → None + cảnh báo, không ném."""
+    if src.get("cau_truc_hook") and not force:
+        return src["cau_truc_hook"]
+    import kiem_hook_goc
+    ct = kiem_hook_goc.doc_hook_goc_json(d, src.get("video_id") or "")
+    if ct:   # 2026-10-21: TRENDING-RESEARCH giao sẵn cấu trúc hook gốc (hook_goc.json) → dùng luôn, không cần tải lời/LLM
+        src["cau_truc_hook"], src["cau_truc_nguon"] = ct, "hook_goc.json"
+        p = Path(d) / HOOK_DIR / "source.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(src, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"[H3] cấu trúc hook gốc từ hook_goc.json: {len(ct['nhip'])} nhịp · kết ~{ct.get('giay_ket_hook')}s")
+        return ct
+    loi = _loi_hook_goc(d, src)
+    if not loi:
+        return None
+    q = PROMPT_CAU_TRUC.format(title=src.get("title") or "(không rõ)", loi=loi[:5000])
+    model_ptich = cau_hinh(prof).get("analysis_model") or "claude-opus-5"
+    try:
+        import claude_p_bridge
+        r = claude_p_bridge.ask(q, model=model_ptich, timeout=600, min_chars=50)
+    except Exception as e:
+        print(f"  ! {model_ptich} tách sườn hook gốc lỗi ({type(e).__name__} {str(e)[:80]}) → Gemini")
+        try:
+            import llm_client
+            r = llm_client.chat(q, task="short", max_tokens=2500, temperature=0.2, verbose=False)
+        except Exception as e2:
+            print(f"  ! Gemini tách sườn hook gốc cũng lỗi ({type(e2).__name__} {str(e2)[:80]}) → viết không có cấu trúc gốc")
+            return None
+    try:
+        t = r.text.strip()
+        mj = re.search(r"\{.*\}", t, re.S)
+        ct = json.loads(mj.group(0) if mj else t)
+        if not ct.get("nhip"):
+            raise ValueError(f"thiếu nhip: {str(ct)[:120]}")
+    except Exception as e:
+        print(f"  ! JSON sườn hook gốc hỏng: {type(e).__name__} {str(e)[:120]}")
+        return None
+    src["cau_truc_hook"] = ct
+    p = Path(d) / HOOK_DIR / "source.json"
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(src, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[H3] cấu trúc hook gốc: mở {ct.get('mo_dau')} · {len(ct['nhip'])} nhịp · kết ~{ct.get('giay_ket_hook')}s")
+    return ct
+
+
+def khoi_suon(d, src):
+    """Khối CẤU TRÚC HOOK GỐC chèn vào prompt viết + prompt Sol chấm."""
+    ct = (src or {}).get("cau_truc_hook")
+    if not ct:
+        # 2026-10-21: nhánh "viết hook tự do" đã BỎ — ensure_locked chặn trước khi tới đây.
+        raise SystemExit("✗ KHÔNG CÓ CẤU TRÚC HOOK GỐC — cấm viết hook tự do")
+    nhip = "\n".join(
+        f"  {i}. {n.get('tu', '?')}–{n.get('den', '?')}s · {n.get('vai_tro', '')} · {n.get('cach_lam', '')}"
+        + (f" · gốc:「{n['cau_goc']}」({n.get('dich', '')})" if n.get("cau_goc") else "")
+        for i, n in enumerate(ct.get("nhip") or [], 1))
+    loi = _loi_hook_goc(d, src)
+    return (f"CẤU TRÚC HOOK VIDEO GỐC CỦA TẬP NÀY (máy đã tách — BÁM SÁT):\n"
+            f"- cách mở giây 0: {ct.get('mo_dau', '')}\n"
+            f"- hook gốc kết ở ~{ct.get('giay_ket_hook', '?')} giây · giữ chân bằng: {ct.get('giu_chan_bang', '')}\n"
+            f"- các nhịp theo thứ tự:\n{nhip}\n"
+            + (f"LỜI HOOK VIDEO GỐC (nguyên văn — để bám cấu trúc; câu chữ phải đổi theo hồ sơ tập mình):\n{loi[:3000]}"
+               if loi else ""))
+
+
+PROMPT_VIET = """NHIỆM VỤ: viết {n} PHƯƠNG ÁN HOOK cho phần MỞ ĐẦU một video YouTube kể chuyện ({lang}).
+
+LUẬT DUY NHẤT (anh chốt 2026-10-21): hook BÁM SÁT CẤU TRÚC hook của video gốc — gốc làm thế nào mình làm thế ấy.
+- Giữ như gốc: cách mở giây 0 · các nhịp theo thứ tự + vai trò từng nhịp · độ dài ≈ hook gốc ({muc} chữ ±{tol}%).
+- ĐƯỢC thay đổi một chút cho hợp tập mình hơn / hay hơn (gộp, tách, chỉnh một nhịp; đổi cách nói), nhưng tổng thể nghe
+  ra vẫn đúng cấu trúc hook gốc.
+- Đổi tên họ, tuổi, công việc/ngành nghề, câu thoại, chi tiết theo HỒ SƠ tập mình — không chép nguyên câu của gốc.
+  Giữ cấu trúc hook gốc là ĐƯỢC PHÉP (không bị coi là trùng lặp nội dung).
+- Ngoài điều trên KHÔNG có luật hook nào khác: không bắt mở bằng thoại, không bắt cao trào/kịch tính, không bắt câu để
+  ngỏ, không khuôn nào của kênh — gốc có thì có, gốc không có thì không.
+- Người/sự kiện/số phải khớp HỒ SƠ tập mình (để hook không vênh với thân bài).
+- {n} phương án CÙNG một cấu trúc, khác nhau ở cách thực thi (chi tiết, câu chữ).
+
+{suon}
+
+HỒ SƠ / LỜI HỨA CỦA TẬP MÌNH (sự kiện, payoff, reveal — hook chỉ dùng thứ có ở đây):
 {promise}
 {khoi_repair}
-LUẬT VIẾT (SOP hook):
-- Đúng {muc} chữ (±{tol}%; không tính xuống dòng). Pure prose, không marker, không ngoặc vuông, không tiêu đề.
-- 4 nhịp theo thứ tự: 0–5s SỰ KIỆN cụ thể (câu thoại「」/con số/hành động) → 5–12s VÌ SAO BẤT THƯỜNG → 12–20s MẤT MÁT/CẢM XÚC
-  → 20–30s CÂU HỎI ĐỂ NGỎ rồi DỪNG (không giải thích).
-- CẤM: chào hỏi, giới thiệu kênh, xin đăng ký, tả thời tiết/mùa/phong cảnh mở màn, tên-tuổi-nghề người kể, câu triết lý
-  suông, tóm tắt cả video, spoil reveal, phóng đại khác bản chất, dữ kiện không có trong hồ sơ.
-- Câu ngắn, có chỗ nghỉ, dễ nghe (khán giả lớn tuổi). Ngôi kể/văn thể: {narrator}.
-- Mỗi ứng viên chọn 1 loại khác nhau trong A biến cố bất thường · B câu nói sốc · C mâu thuẫn · D hậu quả chưa rõ
-  nguyên nhân · E hé reveal.
+KỸ THUẬT (cho TTS):
+- Pure prose, không marker, không ngoặc vuông, không tiêu đề. Mỗi câu một dòng, mỗi「…」một dòng, không dòng trống trong hook.
+- Không xin đăng ký/cảm ơn xem ở hook. Ngôi kể/văn thể: {narrator}.
 
-OUTPUT ĐÚNG KHUÔN, không giải thích thêm:
-=== HOOK 1 ===
-<hook>
-=== HOOK 2 ===
-<hook>
-=== HOOK 3 ===
-<hook>"""
+OUTPUT ĐÚNG KHUÔN ({n} khối), không giải thích thêm:
+{khuon}"""
 
-KHOI_NGUON_YEU = ("⚠️ Video nguồn hook YẾU/KHÔNG có hook (verdict {v}) → KHÔNG bắt chước mở đầu nguồn; tự dựng hook từ "
-                  "CLIMAX/REVEAL của tập mình (anh chốt 2026-09-23).")
 KHOI_REPAIR = ("CHẾ ĐỘ REPAIR: kịch bản tập đã có sẵn và KHÔNG được sửa. Hook sẽ được ghép TRƯỚC đoạn 1 hiện có (dưới đây). "
                "Câu cuối hook phải là CÂU CẦU NỐI để đoạn 1 nghe như setup, không như bắt đầu lại:\nĐOẠN 1 HIỆN CÓ: {doan1}")
+
+KHOI_THE_TEN = """THẺ TÊN ĐỘNG (luật dựng hình, docs/QUY_TAC_THE_TEN_NHAN_VAT_HOOK.md): tên + tuổi + nghề nhân vật chính hiện bằng
+motion graphics lúc họ xuất hiện lần đầu. Lời hook ĐƯỢC đọc tên-tuổi(-nghề) bằng 1 câu ngắn ĐÚNG nhịp sườn có nhân vật
+xuất hiện/giới thiệu — KHÔNG thêm nhịp mới chỉ để đọc tên, không đọc cả lý lịch dài."""
 
 
 def _promise_text(d, ctx, mode):
@@ -635,43 +810,27 @@ def _promise_text(d, ctx, mode):
 
 def viet_candidates(d, prof, src, title, ctx, mode="upstream"):
     d = Path(d)
-    thumb = (d / "thumb_text.txt").read_text(encoding="utf-8").strip() if (d / "thumb_text.txt").exists() else ""
     n = prof.get("narrator", {}) or {}
-    yeu = src.get("video_hook_verdict") in ("yeu", "khong") or int(src.get("score_0_12") or 0) < 6
     doan1 = ""
     if mode == "repair":
         doan1 = next((p.strip() for p in (d / "script.txt").read_text(encoding="utf-8").split("\n\n") if p.strip()), "")
-    muc = so_chu_muc_tieu(prof)
+    muc = so_chu_muc_tieu(prof, src)
+    so = so_ung_vien(prof)
     prompt = PROMPT_VIET.format(
-        lang=ai_steps.LANG_NAME.get(prof.get("language", "ja"), "Japanese"), title=title or _title(d) or "(chưa chốt)",
-        thumb_text=thumb or "(chưa có)", hook_kind=src.get("hook_kind", "none"), score=src.get("score_0_12", 0),
-        video_verdict=src.get("video_hook_verdict", "?"), nhip=json.dumps(src.get("hook_4_nhip") or {}, ensure_ascii=False),
-        khoi_nguon_yeu=KHOI_NGUON_YEU.format(v=src.get("video_hook_verdict")) if yeu else "",
-        promise=_promise_text(d, ctx, mode), khoi_repair=KHOI_REPAIR.format(doan1=doan1) if mode == "repair" else "",
+        lang=ai_steps.LANG_NAME.get(prof.get("language", "ja"), "Japanese"), n=so,
+        khuon="\n".join(f"=== HOOK {i} ===\n<hook>" for i in range(1, so + 1)),
+        suon=khoi_suon(d, src), promise=_promise_text(d, ctx, mode),
+        khoi_repair=KHOI_REPAIR.format(doan1=doan1) if mode == "repair" else "",
         muc=muc, tol=int(cau_hinh(prof)["tol"] * 100),
         narrator=f"{n.get('persona','')} · {n.get('point_of_view','')} · {n.get('register','')}")
-    # Việc 1 (2026-09-23): chèn khối KHO KIỂU HOOK ngay TRƯỚC "LUẬT VIẾT (SOP hook):" — bằng
-    # str.replace() thay vì thêm placeholder cấp-dòng vào PROMPT_VIET, để khi `patterns` rỗng (mặc
-    # định) prompt GIỮ NGUYÊN VĂN như trước khi có tính năng này, không thêm dòng trống nào.
-    h = cau_hinh(prof)
-    kho = doc_kho_hook(h.get("patterns") or [], h.get("closer") or "")
-    if kho:
-        prompt = prompt.replace("LUẬT VIẾT (SOP hook):", KHOI_KHO_HOOK_TIEU + kho + "\n\nLUẬT VIẾT (SOP hook):", 1)
-    # script.hook.model (2026-09-23): ghim model VIẾT hook khác brain_model khi kênh cần (xem chú
-    # thích MAC_DINH["model"]). Rỗng ("", mặc định) → KHÔNG truyền `model`, y hệt hành vi cũ:
-    # _writer_chat tự setdefault bằng claude_p_bridge.brain_model_of(prof) ở nhánh engine=claude_p;
-    # ở nhánh Gemini (llm_client.chat) `model` chỉ có tác dụng khi đi kèm `provider` — lane không
-    # khai `provider` thì đây vẫn là no-op an toàn giống trước, không phải cách chọn model đầy đủ
-    # cho nhánh đó (xem báo cáo task, mục kiểm chữ ký 2 nhánh).
+    import the_ten_hook
+    if the_ten_hook.is_enabled(prof):
+        prompt = prompt.replace("KỸ THUẬT (cho TTS):", KHOI_THE_TEN + "\n\nKỸ THUẬT (cho TTS):", 1)
     kwargs_viet = {"system": ai_steps._skill_text(prof, "script"), "task": "short",
                    "min_chars": muc * 2, "max_chars": muc * 6}
     model_hook = cau_hinh(prof).get("model") or ""
     if model_hook:
         if (prof.get("script", {}) or {}).get("engine") != "claude_p":
-            # 2026-09-23 (vá review cuối, Việc 4): kênh khai script.hook.model mà KHÔNG dùng
-            # engine="claude_p" thì tham số này bị bỏ qua LẶNG LẼ (nhánh Gemini/llm_client.chat()
-            # chỉ dùng `model` khi đi kèm `provider`, xem chú thích ngay trên) — người khai tưởng
-            # đã ghim đúng model mà thật ra không đổi gì. In cảnh báo để không ai tưởng nhầm.
             print(f"  ! script.hook.model={model_hook!r} bị BỎ QUA — kênh không khai script.engine="
                   f"\"claude_p\" (đang ở nhánh Gemini, model chỉ có tác dụng khi đi kèm `provider`)")
         kwargs_viet["model"] = model_hook
@@ -684,8 +843,9 @@ def viet_candidates(d, prof, src, title, ctx, mode="upstream"):
 def patch_hook(prof, text, viec):
     import claude_p_bridge
     ds = "\n".join(f"- {v}" for v in viec)
-    prompt = (f"SỬA TẠI CHỖ đoạn hook 20–30 giây dưới đây đúng các điểm sau, mọi thứ khác giữ nguyên từng chữ; "
-              f"pure prose, không marker, giữ 4 nhịp và câu cuối để ngỏ.\nCÁC ĐIỂM PHẢI SỬA:\n{ds}\n\n"
+    prompt = (f"SỬA TẠI CHỖ đoạn hook dưới đây đúng các điểm sau, mọi thứ khác giữ nguyên từng chữ; pure prose, không "
+              f"marker, GIỮ cấu trúc hook gốc (cách mở, thứ tự + vai trò từng nhịp).\n"
+              f"CÁC ĐIỂM PHẢI SỬA:\n{ds}\n\n"
               f"OUTPUT: chỉ đoạn hook sau khi sửa, không lời dẫn.\n\n=== HOOK ===\n{text}")
     r = claude_p_bridge.ask(prompt, model=claude_p_bridge.patch_model_of(prof), timeout=600,
                             min_chars=int(len(text) * 0.6), max_chars=int(len(text) * 1.6), require_sentence_end=True)
@@ -708,11 +868,26 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
             return doc_hook(d)
         print("[H4] HOOK_STALE: " + " · ".join(ly_do) + " → chạy lại H1–H4")
     src = phan_tich_nguon(d, prof, proxy=proxy, force=force)
-    print(f"[H1-H3] nguồn {src.get('video_id') or '(không có)'} · loại {src.get('hook_kind')} · {src.get('score_0_12')}/12 · "
-          f"hình {src.get('video_hook_verdict')} · promise nguồn {(src.get('promise_match') or {}).get('verdict', 'NA')}")
+    phan_tich_cau_truc(d, prof, src)   # source.json cũ (trước 17/10) chưa có sườn → tách bổ sung, không tải lại video
+    if not (src.get("cau_truc_hook") or {}).get("nhip") and not force and not _loi_hook_goc(d, src):
+        # source.json từ lượt trước lưu bản RỖNG lời (dính 429) → tìm lời lại 1 lần (có thể đã có ở TRENDING/cache).
+        src = phan_tich_nguon(d, prof, proxy=proxy, force=True)
+    ct = src.get("cau_truc_hook") or {}
+    if not ct.get("nhip"):
+        # 2026-10-21 (anh chốt, Lane L ep23 佐野稔): không có cấu trúc hook gốc = KHÔNG viết hook, KHÔNG dựng tập.
+        (hd / "hook_qc.json").write_text(json.dumps({"state": "NO_HOOK_GOC", "video_id": src.get("video_id")},
+                                                    ensure_ascii=False, indent=2), encoding="utf-8")
+        raise SystemExit(f"✗ H3: KHÔNG CÓ CẤU TRÚC HOOK GỐC (video {src.get('video_id') or 'không có'}) — CẤM viết hook tự do, "
+                         f"tập DỪNG. Gỡ: có lời 0–150s video gốc (TRENDING-RESEARCH transcripts / competitor.segments.json) "
+                         f"rồi chạy lại; kiểm: py -3.13 -X utf8 {ROOT_DIR / 'pipeline' / 'kiem_hook_goc.py'} --tap {d}")
+    import kiem_hook_goc
+    cam_ho = kiem_hook_goc.ho_da_dung(d)
+    muc = so_chu_muc_tieu(prof, src)
+    print(f"[H1-H3] nguồn {src.get('video_id')} · {len(ct['nhip'])} nhịp gốc · "
+          f"mục tiêu {muc} chữ (~{giay_hook(prof, src):.0f}s) · cấm {len(cam_ho)} họ tập trước")
     title = title or _title(d)
     cands_text = viet_candidates(d, prof, src, title, ctx, mode)
-    cands = tach_candidates(cands_text)
+    cands = tach_candidates(cands_text)[:so_ung_vien(prof)]
     if len(cands) < 1:
         # V2 (vá review, 2026-09-23): model bỏ khuôn === HOOK n === là kiểu thất bại HAY GẶP NHẤT
         # trong sản xuất — trước đây raise thẳng, không để lại dấu vết gì. Ghi hook_qc.json trước
@@ -728,7 +903,7 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
     # tất định trước, Sol chỉ thấy ứng viên qua máy
     hop = []
     for i, c in enumerate(cands, 1):
-        v = check(c, prof, ctx)
+        v = check(c, prof, ctx, muc, cam_ho)
         qc["check"][str(i)] = v
         if not v:
             hop.append((i, c))
@@ -744,16 +919,17 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
             # raise, kẻo mất luôn dấu vết vì sao BLOCK.
             qc["log"].append(f"patch cứu thất bại: {type(e).__name__}: {e}")
             (hd / "hook_qc.json").write_text(json.dumps({**qc, "state": "BLOCK"}, ensure_ascii=False, indent=2), encoding="utf-8")
-            raise SystemExit(f"✗ H3': cả 3 ứng viên trượt phép đo tất định, vá cứu cũng lỗi: {qc['check']}") from e
+            raise SystemExit(f"✗ H3': mọi ứng viên trượt phép đo tất định, vá cứu cũng lỗi: {qc['check']}") from e
         qc["patches"] += 1
-        if check(c2, prof, ctx):
+        if check(c2, prof, ctx, muc, cam_ho):
             (hd / "hook_qc.json").write_text(json.dumps({**qc, "state": "BLOCK"}, ensure_ascii=False, indent=2), encoding="utf-8")
-            raise SystemExit(f"✗ H3': cả 3 ứng viên trượt phép đo tất định: {qc['check']}")
+            raise SystemExit(f"✗ H3': mọi ứng viên trượt phép đo tất định: {qc['check']}")
         hop = [(i, c2)]
     cands_hop = "\n".join(f"=== HOOK {i} ===\n{c}" for i, c in hop)
     text = None
     for vong in range(1, MAX_PATCH_HOOK + 2):
         verdict, chon, rep = qc_script_sol.run_hook(cands_hop, title, thumb, promise, profile_id=prof["id"],
+                                                    so=len(hop), khop_tieu_de=False, suon=khoi_suon(d, src),
                                                     out=str(hd / f"hook_sol_report_{vong}.txt"))
         qc["sol_rounds"] = vong
         chosen = dict(hop).get(chon) or hop[0][1]
@@ -778,7 +954,7 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
             qc["log"].append(f"patch{vong} lỗi ({type(e).__name__}: {e}) → giữ bản trước")
             text = chosen; qc["state"] = "PASS_PATCH_ERROR"; break
         qc["patches"] += 1
-        if check(new, prof, ctx):
+        if check(new, prof, ctx, muc, cam_ho):
             qc["log"].append(f"patch{vong} trượt tất định, giữ bản trước")
             new = chosen
         hop = [(chon, new)]
@@ -786,7 +962,8 @@ def ensure_locked(d, prof, ctx="", title="", mode="upstream", force=False, proxy
     qc.setdefault("state", "PASS")
     (hd / "hook_qc.json").write_text(json.dumps(qc, ensure_ascii=False, indent=2), encoding="utf-8")
     meta = khoa(d, text, mode=mode, extra={"sol_rounds": qc["sol_rounds"], "patches": qc["patches"],
-                                          "source_video_id": src.get("video_id")})
+                                          "source_video_id": src.get("video_id"),
+                                          "so_nhip_goc": len(ct.get("nhip") or [])})
     print(f"[H4] HOOK_LOCKED {meta['chars']} chữ · sol {qc['sol_rounds']} vòng · vá {qc['patches']}")
     return text
 
@@ -804,7 +981,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="H1–H4 hook 20–30s (upstream) hoặc repair mode cho tập đã có script")
+    ap = argparse.ArgumentParser(description="H1–H4 hook bám sát cấu trúc hook video gốc (upstream) hoặc repair mode cho tập đã có script")
     ap.add_argument("--profile", required=True)
     ap.add_argument("--slug", required=True)
     ap.add_argument("--mode", default="upstream", choices=["upstream", "repair"])
@@ -828,7 +1005,7 @@ def main(argv=None):
               file=sys.stderr)
     if a.only == "source":
         src = phan_tich_nguon(d, prof, proxy=a.proxy or None, force=a.force)
-        print(json.dumps({k: src[k] for k in ("video_id", "hook_kind", "score_0_12", "video_hook_verdict", "promise_match")},
+        print(json.dumps({k: src.get(k) for k in ("video_id", "hook_kind", "score_0_12", "video_hook_verdict", "cau_truc_hook")},
                          ensure_ascii=False, indent=1))
         return
     ctx = (d / "series_ctx.txt").read_text(encoding="utf-8") if (d / "series_ctx.txt").exists() else ""

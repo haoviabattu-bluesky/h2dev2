@@ -11,9 +11,10 @@ import json, os, re, subprocess, sys
 from pathlib import Path
 
 GV = Path(r"E:\CLAUDE\YOUTUBE\GROK_VIDEO")
-HOOK = Path(sys.argv[1]); LAN = int(sys.argv[2]) if len(sys.argv) > 2 else 12
+HOOK = Path(sys.argv[1]).resolve(); LAN = int(sys.argv[2]) if len(sys.argv) > 2 else 12
 PY = ["py", "-3.13", "-X", "utf8"]
 ENV = dict(os.environ, PYTHONIOENCODING="utf-8")
+ENV.setdefault("GROK_SHEET_ID", "1xu4iNudIPanWrUxlTODqIySGf9YxLy7rpTq9OtXDMOU")  # GROK_VIDEO đọc từ env (25/09), thiếu = KeyError
 
 
 def run(cmd, env=ENV, timeout=900):
@@ -36,7 +37,8 @@ def lech_anh(img, clip):
 
 def thieu():
     ids = [f"clip_{s['n']:02d}" for s in json.loads((HOOK / "hook_timeline.json").read_text(encoding="utf-8"))["shots"]]
-    return [i for i in ids if not ((HOOK / "clip" / f"{i}.mp4").exists() and (HOOK / "clip" / f"{i}.mp4").stat().st_size > 10240)]
+    return [i for i in ids if not ((HOOK / "clip" / f"{i}.mp4").exists() and (HOOK / "clip" / f"{i}.mp4").stat().st_size > 10240)
+            and (HOOK / "img" / f"{int(i.split('_')[1]):03d}.png").exists()]  # ảnh chưa vẽ → bỏ, kẻo khoá oan tài khoản
 
 
 for _ in range(LAN):
@@ -66,6 +68,8 @@ for _ in range(LAN):
                 print(f"  ✗ {t[0]} SAI CẢNH (lệch ảnh gốc {d:.0f} > 15 — Grok không gắn ảnh) → bỏ, chạy tài khoản khác", flush=True)
             else:
                 print(f"  ✓ {t[0]} khớp ảnh gốc (lệch {d:.1f})", flush=True)
+        else:
+            print("  ✗ không ra clip — đuôi log grok_batch:\n  " + "\n  ".join(o.strip().splitlines()[-12:]), flush=True)
     finally:
         print("  " + run(PY + [str(GV / "gpm_grok_mo.py"), "--close", pid, row], timeout=120).strip().splitlines()[-1], flush=True)
 print("còn thiếu:", thieu())

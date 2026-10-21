@@ -1,0 +1,27 @@
+{
+  "topics": [
+    "老後の住まい",
+    "持ち家",
+    "賃貸",
+    "リフォーム費用",
+    "耐震改修補助金",
+    "高齢者向け優良賃貸住宅",
+    "老後資金",
+    "独身の老後"
+  ],
+  "hook_type": "Mở đầu bằng định kiến đối chiếu kẻ thắng - người thua (mua nhà vs thuê nhà) gắn liền với cú sốc bị đơn phương chấm dứt hợp đồng thuê sau 25 năm.",
+  "structure": "Cấu trúc 3 màn đối chiếu: Mở đầu bằng khủng hoảng song song của hai số phận (người thuê nhà bị đuổi và người mua nhà cạn tiền tu sửa); cao trào giác ngộ qua ẩn dụ triết lý đời sống kết hợp giải pháp chính sách thực tế; kết thúc bằng sự an yên và tháo gỡ hoàn toàn định kiến tâm lý.",
+  "emotional_beats": [
+    "Mặc cảm tự ti",
+    "Khủng hoảng bế tắc",
+    "Đồng cảm xót xa",
+    "Khai sáng thông suốt",
+    "Thanh thản viên mãn"
+  ],
+  "title_formula": "【漫画】+ [Vấn đề nhức nhối tuổi già] + [Đối tượng A mang định kiến/lựa chọn 1] + [Đối tượng B mang lựa chọn 2] + [Từ khóa kết cục giật gân (末路...)]",
+  "notes": "Điểm sáng kịch bản nằm ở hình ảnh ẩn dụ đắt giá giữa 'bút máy' và 'bút bi' để hóa giải nhị nguyên đúng-sai; đồng thời cung cấp giá trị thông tin thực tế cao thông qua các chính sách trợ cấp nhà ở có thật tại Nhật Bản.",
+  "video_id": "Hgo2qFDF0bM",
+  "title": "【漫画】老後の住まい問題、持ち家にこだわった６５歳夫婦と賃貸を貫いた６８歳独身の末路・・・",
+  "view_count": 174000,
+  "duration_min": 25.8
+}

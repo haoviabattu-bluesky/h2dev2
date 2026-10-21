@@ -1,0 +1,41 @@
+KHUNG 10 CHẶNG LANE F (anh duyệt 14/10/2026 — THẮNG mọi dòng QUY ƯỚC khác của tập khi mâu thuẫn; nguồn: E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\results\laneF_quy_tac_bat_buoc_2026-10-14\QUY_TAC_BAT_BUOC_LANE_F.md):
+- Tập = MỘT CẶP LỰA CHỌN: 俺 chọn A, một 同期 (có tên, có lá bài số riêng) chọn B. Cả hai đều mất, nhưng mất thứ khác nhau (tiền / tiếng nói / thời gian / sức khoẻ / cháu).
+  Cặp của tập này: A = {điền} · B = {điền} · 同期 = {tên}. CẤM tập không có lựa chọn (tang vợ, 1 thủ tục đơn lẻ, "tiền đi đâu" một mình).
+- Thứ tự 10 chặng, KHÔNG đảo (mốc tính ở 260–290 chữ/phút):
+  ① HOOK (luật 17/10, đã khoá trước S2 — thân bài KHÔNG viết lại hook): bám sát cấu trúc hook video gốc (gốc thế nào làm thế ấy, được đổi chút cho hợp/hay hơn), dài ≈ hook gốc
+     (E:\CLAUDE\YOUTUBE\h2dev\docs\HOOK_CAU_TRUC\00_CHUNG.md + F_teinengo-real.md). Luật hook cũ đã xoá.
+  ② ngay sau hook — GIỚI THIỆU bằng chi tiết: nơi sống, nghề, vợ, và MỘT ĐỒ VẬT MÔ-TÍP có thật trong đời nghề (máy tính cầm tay cũ / mũ bảo hộ vàng / thìa đường).
+     Đồ vật quay lại ≥3 lần và ĐỔI NGHĨA ở cảnh kết.
+  ③ TRƯỚC GIÂY 105 — LÁ BÀI 手札: dùng đúng 「手札は、こうだった。」 hoặc 「ここで、手札を言っておく。」, đủ 6 số: 退職金 · nợ nhà · 貯金 · thu nhập của vợ ·
+     lương hưu (bao nhiêu, từ mấy tuổi, 額面/手取り) · chi tiêu tháng.
+  ④ 2–4 phút MỘT THÁNG THIÊN ĐƯỜNG: 3–5 hình ảnh ngắn cụ thể (rạp ngày thường 4 khán giả, bia lúc trời còn sáng, du lịch ngày thường).
+  ⑤ 4–8 phút PHONG BÌ CHẾ ĐỘ THẬT: mỗi phong bì 1 chế độ có [Dn], định tính, chừa đường lui 「条件によって」「人によって違う」, không đọc công thức.
+  ⑥ XUYÊN SUỐT — MỐC SỔ TIẾT KIỆM: ≥4 mốc (3か月 · 半年 · 1年 · 1年半…), mỗi mốc 1 số dư cụ thể, cộng trừ khớp lá bài ③ (bảng dòng thời gian: tuổi 俺 · tuổi vợ · năm · số dư).
+  ⑦ ~40–50% QUÁN CÀ PHÊ: gặp 同期, lật lá bài của 同期 (đủ số). Kết cảnh bằng 1 câu hỏi đau của 同期 (vd 「で、お前の自由は、月いくらだ」).
+  ⑧ ~55% CÂU CHỐT CỦA VỢ, đúng ý 「二人とも、ゼロか百かでしか、考えてないのよ」 (hai người chỉ nghĩ 0 hoặc 100).
+  ⑨ ~60–90% CON ĐƯỜNG THỨ BA: việc nhỏ có số (週3日・月◯万円), 1 vai trò trong khu phố, khoảnh khắc lần đầu được nói 「ありがとう」, phép tính mới cho thấy
+     cầm cự được tới mốc lương hưu. Không phép màu, không giàu lên.
+  ⑩ CUỐI: 「どちらも正しく、どちらも間違っていた」 (hoặc tương đương) → hỏi người xem chọn 1 trong 3 đường (A / B / đường thứ ba), mời viết comment → đúng 1 CTA.
+- Định dạng đọc: mỗi câu một dòng; DÒNG TRỐNG CHỈ KHI ĐỔI CẢNH (không để dòng trống sau mỗi câu). Độ dài 6.000–7.200 chữ.
+- Số chế độ chỉ dùng dòng [Dn]; chọn năm sinh nhân vật TRƯỚC khi viết số. Bẫy phải tra lại: 加給年金 (không trả trong thời gian chờ 繰下げ) · tỉ lệ 繰上げ/繰下げ theo năm sinh
+  · 退職金 nhận dần tính vào thu nhập năm → 住民税/国保/介護保険料 có thể tăng (KHÔNG nói "phong bì thuế cư trú năm sau" cho khoản nhận một lần) · 在職老齢年金 (ngưỡng đổi từ 4/2026)
+  · 高年齢雇用継続給付 hết ở 65 · sau 65 thất nghiệp = 高年齢求職者給付金 (một lần) · bán nhà ở: 居住用財産の特別控除 có điều kiện; chi phí quê: xe, dầu sưởi, tuyết, khám xa, 自治会費.
+- Nhân vật phải "có thật": không chi tiết khiến khán giả chê "làm gì có ai như vậy".
+- Mọi vế tiêu đề phải grep được trong script; tuổi trên tiêu đề khớp kịch bản.
+BỔ SUNG 7 VIDEO MẪU (14/10/2026, từ ep18 — thêm vào khung 10 chặng, KHÔNG thay; mâu thuẫn thì khung 10 chặng + luật anh chốt thắng;
+nguồn: E:\CLAUDE\YOUTUBE\h2dev\FlowHandoff_local\results\laneF_video_mau_2026-10-14\HO_SO_7_VIDEO_MAU_LANE_F.md §8):
+- HOOK: luật viết = ① ở trên (H-a/H-b/H-c cũ đã xoá 17/10). Hook đọc chậm hơn thân bài (ghi chú cho bước giọng: nghỉ câu ~0,7s trong khối hook).
+- T1 QUÁN CÀ PHÊ ⑦: sau khi lật lá bài số của 同期, thêm 1 lượt HAI BÊN THÚ NHẬN đã ghen tị nhau (俺 ghen cái 同期 có, 同期 ghen cái 俺 có),
+  mỗi bên 1–2 câu, không ôm nhau khóc. Không để chỉ một bên khổ. Câu hỏi đau của 同期 vẫn kết cảnh.
+- T2 VỢ: nửa đầu bài vợ có 1 CÂU CỬA MIỆNG lặp ≥3 lần cùng một tông (ngắn, đời thường — tự đặt theo tập, KHÔNG dùng 「そうね」 làm câu duy nhất
+  nếu tập trước đã dùng); ~45–55% vợ nói 1 câu bùng ra về CHÍNH VỢ (vợ đã chờ/đã mất gì), ngay sau đó mới tới câu chốt ⑧ "0 hoặc 100".
+- T3 CƠ THỂ: 1 cảnh báo cơ thể GÀI ở 25–35% (nhỏ, nhân vật giấu/bỏ qua) → TRẢ ở 45–55% (hậu quả vừa phải). Không cấp cứu kịch tính, không chết.
+- T4 (tuỳ chọn) NGƯỜI THỨ BA nói 1 ẩn dụ lấy từ NGHỀ của nhân vật chính (≤4 lượt thoại). CẤM ẩn dụ bonsai / chim di trú / mài dao.
+- T5 CẢNH KẾT: đặt ở CÙNG địa điểm hoặc CÙNG hành động với cảnh hook, đồ vật mô-típ ĐỔI NGHĨA (khớp ② và ⑩).
+- Lá bài ③: nên đặt ĐIỀU KIỆN CHUNG của 2 người trước (cùng xưởng/cùng 退職金/cùng lương hưu…) rồi chỉ khác MỘT lựa chọn.
+- Chất liệu căng (chọn 2–4, tự đặt chi tiết mới): chuỗi nhục nhỏ có số (danh thiếp mất chức danh, gọi cấp dưới cũ là sếp, 年賀状 giảm) ·
+  chuỗi cô đơn (câu đầu tiên trong ngày là của người lạ, gọi đàn em bị cắt máy) · 1 cú sốc tiền đúng MỘT con số.
+- ĐỜI THẬT người 60–70: dậy sớm (không "ngủ tới 10 giờ"), đi khám định kỳ, đau gối/lưng, tiền thuốc — khán giả bắt lỗi chi tiết sai.
+- Kết ⑩: giữ "không có đáp án đúng / cả hai đúng, cả hai sai" (comment thưởng ý này); không giảng một phe ("cứ làm đến chết" bị chê).
+- CẤM CHÉP (K3) từ 7 video mẫu: tên nhân vật (杉山 野口 野村 高橋正夫 佐々木修一 佐伯 三浦 美智子 荒汐 ケント…), câu 「声を出すのが3日ぶり」,
+  5 việc của 源さん, vẫy cờ ở ngã tư + cần câu làm cặp hình hook, chìa khoá xe làm mô-típ, ẩn dụ bonsai/chim/mài dao. Số khảo sát chỉ dùng khi có [Dn].

@@ -26,6 +26,7 @@ Dùng:
 import argparse
 import datetime
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -77,7 +78,15 @@ JOB_FILES = ["script.txt", "script.lock.json", "characters.json", "img_prompts.t
              # 2026-09-24 Lane K (đa giọng): vai.txt = câu nào ai đọc (máy 1 gắn, máy 2 lồng tiếng + vẽ bóng thoại theo đó)
              "vai.txt", "yomi.txt",
              # 2026-09-24 Lane L: chỗ đặt hiệu ứng âm thanh thân video (máy 1 chọn theo nội dung, máy 2 B8 trộn)
-             "sfx_plan.txt"]
+             "sfx_plan.txt",
+             # 2026-10-06 (anh chốt, skill motion_graphics): số liệu động TRÊN ảnh. Từ 2026-10-07 máy 2 tự sinh +
+             # duyệt file này (shared\motion_graphics\HUONG_DAN_MAY2.md); máy 1 có sẵn bản cũ thì vẫn gửi kèm.
+             "so_lieu_dong.json",
+             # 2026-10-11 (anh: "áp dụng thật nhiều motion graphic"): ý đồ motion giải thích (bảng/sơ đồ/timeline)
+             # máy 1 viết ở bước 1 theo cụm neo trong kịch bản; máy 2 dựng sau final.mp4, cụm neo mất thì bỏ mục.
+             "mg_y_do.md",
+             # 2026-10-11 (anh chốt Lane L ep14): thẻ tên động ở THÂN bài + giây nghỉ sau câu neo (tts_voicevox đọc file này)
+             "the_ten_than.json"]
 
 # 2026-09-23 (vá review HOOK, Việc 2): file TRONG thư mục con `hook/` cần cho máy 2 vẽ ẢNH SHOT HOOK
 # (xem docs/GIAO_VIEC_BUOC3_AGENT.md mục 9.1 — `hook/flow_prompts/shot_NN.txt` + `hook/grok_jobs.csv`
@@ -95,7 +104,8 @@ HOOK_FILES_GOC = ["hook_locked.txt", "hook_lock.json", "hook_storyboard.json", "
                   "hook_voice.srt", "hook_vi.srt", "ghep_hook_thay_hinh.py", "dung_hook_preview.py", "ghep_hook_noi_truoc.py",
                   # 2026-09-24 Lane G ep01: phụ đề Nhật đã nắn (cháy chữ) + script dựng/nối riêng lane cháy phụ đề
                   "hook_jp.srt", "dung_hook.py", "hook_tts.txt"]
-HOOK_DIRS = ["flow_prompts", "img", "clip", "sfx", "qc"]     # thư mục con của hook/ gửi kèm (bỏ qua _cu/)
+HOOK_DIRS = ["flow_prompts", "img", "clip", "sfx", "qc",   # thư mục con của hook/ gửi kèm (bỏ qua _cu/)
+             "the_ten"]   # 10/10 Lane O ep05: thẻ tên động (webm alpha) shot `the_ten` trong hook_timeline.json
 
 
 def svc(doc_thoi=True):
@@ -128,6 +138,18 @@ def _bundle_pipeline():
             shutil.copy2(f, dst / ten)
             n_them += 1
     print(f"  pipeline/: {n_them} file .txt/.md phu (khuon Flow Tool + README)")
+
+
+def _bundle_tools():
+    # 2026-09-30 (máy 2 giao, anh chốt): B8n nut_dang_ky.py tìm tool ở <gốc bundle>/tools/subscribe_overlay —
+    # thiếu là B8 dừng "không thấy tools/subscribe_overlay". Bỏ cache (tool tự tạo) + _nghe_chuong (file nghe thử).
+    src = ROOT / "tools" / "subscribe_overlay"
+    if not src.is_dir():
+        raise SystemExit(f"✗ không thấy {src} — B8n (nút đăng ký) cần tool này")
+    dst = BUNDLE / "tools" / "subscribe_overlay"
+    shutil.copytree(src, dst, dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns("cache", "_nghe_chuong", "__pycache__"))
+    print(f"  tools/subscribe_overlay → {dst}")
 
 
 def _bundle_profiles(profile_ids):
@@ -180,6 +202,7 @@ def _bundle_profiles(profile_ids):
 def cmd_bundle(profile_ids):
     print(f"[dong_goi_may2 --bundle] → {BUNDLE}")
     _bundle_pipeline()
+    _bundle_tools()
     _bundle_profiles(profile_ids)
     (BUNDLE / "requirements.txt").write_text(REQUIREMENTS, encoding="utf-8")
     print(f"✓ bundle sẵn sàng — máy 2 chạy: cd {BUNDLE}\\pipeline && pip install -r ..\\requirements.txt")
@@ -210,28 +233,45 @@ def _stt_theo_slug(tab, slug):
 
 COT_D = "D"
 TIEU_DE_COT_D = "KỊCH BẢN"
+DA_GIAO = "Đã giao máy 2"      # 2026-10-03 anh chốt thay "Done" (docs\TRANG_THAI_COT_D_K.md)
+CHO_DUNG = "Chờ dựng video"    # 2026-10-21: máy 2 làm A→Z — hook duyệt xong thì chính máy 2 dựng luôn, không giao ai
+
+
+def tai_cho():
+    """21/10 (anh chốt): máy 2 làm 100% A→Z từ checkout git h2dev (MAY.local=2) → --job KHÔNG đóng gói sang jobs\\,
+    viết _BANGIAO.txt ngay trong thư mục tập với lệnh chạy TẠI CHỖ. Bundle cũ buoc2_3_tool không dùng nhánh này."""
+    import may_hien_tai
+    return may_hien_tai.la_may2() and "buoc2_3_tool" not in str(HERE)
+
+
+def nhan_d_xong():
+    return CHO_DUNG if tai_cho() else DA_GIAO
 
 
 def _ghi_cot_d_done(s, tab, dong):
-    """Anh chốt 2026-09-24 (MỌI lane): máy 1 làm xong tập (kịch bản khoá + hook + prompt ảnh) → cột D = `Done`
-    để người khác biết tập đã xong phần máy 1; cột H = "cần ảnh" là LỆNH GIAO VIỆC cho máy 2. Hai ô ghi CÙNG
-    lúc đóng gói, không để ai nhớ tay. D đã có chữ khác (vd ESCALATE) thì KHÔNG đè — in ra để người xem."""
+    """Anh chốt 2026-09-24 (MỌI lane): máy 1 làm xong tập (kịch bản khoá + hook + prompt ảnh) → cột D báo đã xong
+    phần máy 1 (2026-10-03: chữ `Đã giao máy 2`, cũ `Done`); cột H = "cần ảnh" là LỆNH GIAO VIỆC cho máy 2. Hai ô ghi
+    CÙNG lúc đóng gói, không để ai nhớ tay. D đã có chữ khác (vd ESCALATE) thì KHÔNG đè — in ra để người xem."""
     hd = s.values().get(spreadsheetId=SHEET_ID, range=f"{tab}!{COT_D}1").execute().get("values", [[""]])
     ten = (hd[0][0] if hd and hd[0] else "").strip().upper()
     if not ten.startswith(TIEU_DE_COT_D):
         raise SystemExit(f"cột {COT_D} dòng 1 đang là '{ten or '(trống)'}', không phải '{TIEU_DE_COT_D}' → cột đã đổi chỗ, DỪNG.")
     cur = s.values().get(spreadsheetId=SHEET_ID, range=f"{tab}!{COT_D}{dong}").execute().get("values", [[]])
     cu = (cur[0][0] if cur and cur[0] else "").strip()
-    if cu.lower() == "done":
-        print(f"  ô {tab}!{COT_D}{dong} đã 'Done'")
+    dau = cu.splitlines()[0].strip() if cu else ""      # ô có thể kèm đường dẫn ở dòng 2
+    nhan = nhan_d_xong()
+    if dau == nhan:
+        print(f"  ô {tab}!{COT_D}{dong} đã '{nhan}'")
         return
-    # 2026-09-26: chặng máy 3 — "Đã sửa kịch bản" là trạng thái đúng ngay trước khi giao máy 2 → được đè thành Done.
-    if cu and cu != "Đã sửa kịch bản":
-        print(f"  ⚠️ ô {tab}!{COT_D}{dong} đang là '{cu}' → KHÔNG đè thành Done, người xem quyết")
+    # 2026-09-26: chặng máy 3 — "Đã sửa kịch bản" là trạng thái đúng ngay trước khi giao máy 2.
+    # 2026-10-02: thêm chặng anh duyệt hook — "Đã duyệt hook". 2026-10-03: "Đang làm Hook" (lane không có chặng duyệt
+    # hook) + "Done" (tập giao trước 03/10, đóng gói lại → đổi sang chữ mới).
+    if dau and dau not in ("Đã sửa kịch bản", "Đang làm Hook", "Đã duyệt hook", "Done", DA_GIAO):
+        print(f"  ⚠️ ô {tab}!{COT_D}{dong} đang là '{cu}' → KHÔNG đè thành {nhan}, người xem quyết")
         return
     svc(doc_thoi=False).values().update(spreadsheetId=SHEET_ID, range=f"{tab}!{COT_D}{dong}",
-                                        valueInputOption="USER_ENTERED", body={"values": [["Done"]]}).execute()
-    print(f"  ✓ ghi {tab}!{COT_D}{dong} = Done")
+                                        valueInputOption="USER_ENTERED", body={"values": [[nhan]]}).execute()
+    print(f"  ✓ ghi {tab}!{COT_D}{dong} = {nhan}")
 
 
 def _ghi_sheet_h(prof, slug, n, cost):
@@ -261,7 +301,7 @@ def _ghi_sheet_h(prof, slug, n, cost):
     print(f"  ✓ ghi {tab}!{COT_H}{dong} = {gia_tri}")
 
 
-def _dong_goi_hook(job_dir: Path, dst: Path, _visual: str = "") -> int:
+def _dong_goi_hook(job_dir: Path, dst: Path, _visual: str = "", chi_kiem: bool = False) -> int:
     """Copy các file trong `hook/` (nếu tập thật sự có) vào gói giao máy 2 — lý do ở HOOK_FILES_GOC.
 
     2026-09-23 (vá review HOOK, Việc 2): áp đúng luật "vận chuyển phải tự chứng minh" của dự án
@@ -280,6 +320,9 @@ def _dong_goi_hook(job_dir: Path, dst: Path, _visual: str = "") -> int:
         return 0
     src_hook = job_dir / "hook"
     if not src_hook.is_dir():
+        return 0
+    if chi_kiem:          # 21/10 máy 2 làm A→Z tại chỗ: không chép đi đâu, chỉ giữ cổng "đủ clip hook"
+        _kiem_clip_hook(src_hook)
         return 0
     dst_hook = dst / "hook"
     dst_hook.mkdir(parents=True, exist_ok=True)
@@ -301,8 +344,20 @@ def _dong_goi_hook(job_dir: Path, dst: Path, _visual: str = "") -> int:
                 d = fp_dst / f.name
                 shutil.copy2(f, d)
                 can_doi_chieu.append((f, d))
-    # 2026-09-24: hook = VIDEO do MÁY 1 sinh sẵn. Có hook_timeline.json mà thiếu clip nào → KHÔNG giao
-    # (giao thiếu = máy 2 hoặc tự vẽ bù, hoặc thay ảnh tĩnh — cả hai đều sai luật).
+    _kiem_clip_hook(src_hook)
+    # Tự kiểm: thiếu 1 file ở đây là máy 2 vẽ THIẾU ảnh shot hook mà không cổng nào biết cho tới
+    # tận lúc nghiệm thu B10 (hoặc tệ hơn, không ai biết luôn vì B10 chỉ soi final_with_hook.mp4).
+    thieu = [str(d.relative_to(dst)) for s, d in can_doi_chieu
+             if not d.exists() or d.stat().st_size != s.stat().st_size]
+    if thieu:
+        raise SystemExit(f"✗ đóng gói hook THẤT BẠI, {len(thieu)} file không khớp sau khi copy: "
+                         f"{', '.join(thieu)}")
+    return len(can_doi_chieu)
+
+
+def _kiem_clip_hook(src_hook: Path):
+    # 2026-09-24: hook = VIDEO sinh sẵn TRƯỚC khi dựng thân. Có hook_timeline.json mà thiếu clip nào → KHÔNG giao
+    # (giao thiếu = tự vẽ bù, hoặc thay ảnh tĩnh — cả hai đều sai luật).
     tl_f = src_hook / "hook_timeline.json"
     if tl_f.exists():
         import json as _json
@@ -318,14 +373,27 @@ def _dong_goi_hook(job_dir: Path, dst: Path, _visual: str = "") -> int:
                 qc_fail.append(x["n"])
         if qc_fail:
             print(f"  ⚠ hook: cảnh {qc_fail} chưa có QC PASS (pipeline/qc_hook_clip.py) — giao kèm, nhưng phải được anh duyệt")
-    # Tự kiểm: thiếu 1 file ở đây là máy 2 vẽ THIẾU ảnh shot hook mà không cổng nào biết cho tới
-    # tận lúc nghiệm thu B10 (hoặc tệ hơn, không ai biết luôn vì B10 chỉ soi final_with_hook.mp4).
-    thieu = [str(d.relative_to(dst)) for s, d in can_doi_chieu
-             if not d.exists() or d.stat().st_size != s.stat().st_size]
-    if thieu:
-        raise SystemExit(f"✗ đóng gói hook THẤT BẠI, {len(thieu)} file không khớp sau khi copy: "
-                         f"{', '.join(thieu)}")
-    return len(can_doi_chieu)
+
+
+def _k_giao_may2(dst, tab, slug, lenh, prof):
+    """Ô K dòng tập vừa giao: anh chép nguyên ô này dán cho máy 2. Đường dẫn máy 2 tính từ FlowHandoff_local của máy 2.
+    2026-10-04 (anh chốt): KHÔNG kèm dòng hướng dẫn tập kế — cái đó nằm ở ô K DÒNG TẬP KẾ (huong_dan_tab_moi)."""
+    import review_may3
+    lane, ep = review_may3.ma_tap(prof, slug)
+    so = re.match(r"ep(\d+)", ep)
+    if tai_cho():
+        L = [f"Lane {lane} tập {int(so.group(1)) if so else ep} - máy 2 tự dựng A→Z (21/10)",
+             f"Làm theo {Path(dst) / '_BANGIAO.txt'}"]
+        return "\n".join(L + (["Lệnh chặng 1:"] + lenh if lenh else []))
+    L = [f"Lane {lane} tập {int(so.group(1)) if so else ep} - giao máy 2 thực hiện",
+         f"Làm theo FlowHandoff_local\\jobs\\{tab}\\{slug}\\_BANGIAO.txt (đọc trước shared\\QUY_TRINH_GIAO_VIEC_MAY2.md).",
+         ]
+    if lenh:
+        L += ["Lệnh chặng 1 (chạy trong thư mục FlowHandoff_local của máy 2):"] + lenh
+    else:
+        L += ["Tập đã có final.mp4 — chỉ làm mục HOOK trong _BANGIAO.txt, KHÔNG chạy lại make_video."]
+    L += [f"Máy 1: {Path(dst) / '_BANGIAO.txt'}"]
+    return "\n".join(L)
 
 
 def cmd_job(profile_id, slug, no_title=False):
@@ -341,6 +409,9 @@ def cmd_job(profile_id, slug, no_title=False):
     # phẳng theo slug — slug trùng giữa 2 lane khác nhau (vd 2 lane cùng đặt "ep01-...") từng có nguy
     # cơ đè job của nhau vì jobs/<slug>/ không phân biệt lane. Một nguồn chân lý DUY NHẤT: sheet_tab.py.
     tab = (prof.get("publish") or {}).get("sheet_tab") or (prof.get("publish") or {}).get("upload_channel") or profile_id
+    # 2026-10-02 (anh chốt): clip hook đầy đủ (giọng + phụ đề Việt) phải được anh DUYỆT rồi mới giao máy 2.
+    import duyet_hook
+    duyet_hook.cong(prof, job_dir, "dong_goi_may2 --job", dst=JOBS / tab / slug)
     ok, msg, level = gate_common.kiem_lock(job_dir)
     if level == "FAIL":
         raise SystemExit(f"✗ CHƯA đóng gói — kịch bản chưa khoá đúng: {msg}")
@@ -400,23 +471,25 @@ def cmd_job(profile_id, slug, no_title=False):
         if m.exists() and m not in ref_masters:
             ref_masters.append(m)
 
-    dst = JOBS / tab / slug
+    o_cho = tai_cho()
+    dst = job_dir if o_cho else JOBS / tab / slug
     dst.mkdir(parents=True, exist_ok=True)
     n_copied = 0
-    for name in JOB_FILES:
+    for name in ([] if o_cho else JOB_FILES):
         src = job_dir / name
         if src.exists():
             shutil.copy2(src, dst / name)
             n_copied += 1
-    for m in ref_masters:
+    for m in ([] if o_cho else ref_masters):
         rel = m.relative_to(job_dir)          # vd _ref/001.png
         (dst / rel).parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(m, dst / rel)
         n_copied += 1
-    if (job_dir / "logs").is_dir():
+    if (job_dir / "logs").is_dir() and not o_cho:
         shutil.copytree(job_dir / "logs", dst / "logs", dirs_exist_ok=True)
 
-    n_hook = _dong_goi_hook(job_dir, dst, ((prof.get('script') or {}).get('hook') or {}).get('visual', ''))
+    n_hook = _dong_goi_hook(job_dir, dst, ((prof.get('script') or {}).get('hook') or {}).get('visual', ''),
+                            chi_kiem=o_cho)
     n_copied += n_hook
 
     n, n_face, cost = _dem_anh(job_dir)
@@ -433,6 +506,15 @@ def cmd_job(profile_id, slug, no_title=False):
     # không theo id (make_video máy 2 tìm tập ở ROOT/slug_dir/<slug>).
     adir = (prof.get("slug_dir") or f"assets/{profile_id}").replace("/", "\\")
     da_xong = (ROOT / "FlowHandoff_local" / "results" / "video_render" / kenh / slug / "final.mp4").exists()
+    # 21/10 tại chỗ (máy 2 A→Z): đứng ở h2dev\\pipeline của CHÍNH máy này, tập nằm sẵn trong slug_dir — không xcopy.
+    cd_lenh = f"cd /d {HERE}" if o_cho else "cd shared\\buoc2_3_tool\\pipeline"
+    tap_rel = str(job_dir) if o_cho else f"..\\{adir}\\{slug}"
+    _pub = prof.get("publish") or {}
+    tra_hang = (Path(_pub["upload_dir"]) / kenh / slug if o_cho and _pub.get("upload_dir")
+                else ROOT / "FlowHandoff_local" / "results" / "video_render" / kenh / slug)
+    da_xong = da_xong or (tra_hang / "final.mp4").exists()
+    chep = [] if o_cho else [f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\{adir}\\{slug}"]
+    lenh_may2 = []        # 2026-10-03: các dòng lệnh chính, chép lên cột K cho anh đưa máy 2
     if da_xong:
         khoi_lenh = (
             "## ⚠️ TẬP NÀY ĐÃ CÓ final.mp4 (chặng A+B đã xong) — ĐỪNG chạy lại make_video.py\n"
@@ -442,11 +524,11 @@ def cmd_job(profile_id, slug, no_title=False):
         _img_flow = (prof.get("image") or {}).get("flow_tool", True)
         _dung_flow_tool = _img_flow and n > 0
         if _dung_flow_tool:
+            lenh_may2 = [cd_lenh] + chep + [
+                         f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice --den B4Q"]
             khoi_lenh = (
                 "## CHẶNG 1 — LỒNG TIẾNG (DỪNG TRƯỚC khi vẽ ảnh)\n"
-                "cd shared\\buoc2_3_tool\\pipeline\n"
-                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\{adir}\\{slug}\n"
-                f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice --den B4Q\n\n"
+                + "\n".join(lenh_may2) + "\n\n"
                 "Lệnh này CHỈ lồng tiếng → nắn phụ đề theo kịch bản rồi DỪNG "
                 "(KHÔNG vẽ ảnh, KHÔNG dựng video).\n"
                 "B0–B3 (kịch bản) máy 1 đã xong và đã khoá sha256.\n"
@@ -471,9 +553,9 @@ def cmd_job(profile_id, slug, no_title=False):
                    "mỗi lô ≤ 5 nhân vật xuất hiện trong lô đó — vượt là "
                    "don_flow_tool.py tự dừng và in danh sách id, tách --dong nhỏ hơn là xong.\n"
                    if cast_lane else "")
-                + (f"py -3.13 don_flow_tool.py --job ..\\{adir}\\{slug} --dong <lô> --ten {slug}-lo<k> [--kiem]\n"
+                + (f"py -3.13 don_flow_tool.py --job {tap_rel} --dong <lô> --ten {slug}-lo<k> [--kiem]\n"
                    "py -3.14 chay_flow_tool.py --bo3 \"<thư mục bộ 3 của lô>\" --port <cổng lấy từ sổ cổng>\n"
-                   f"py -3.13 nghiemthu_flow_tool.py <zip> --bo3 \"<bộ 3>\" --giao \"..\\{adir}\\{slug}\\img\"\n"
+                   f"py -3.13 nghiemthu_flow_tool.py <zip> --bo3 \"<bộ 3>\" --giao \"{tap_rel}\\img\"\n"
                    f"→ lặp lại cho từng lô, đếm đủ {n} ảnh NNN trong img\\ mới sang CHẶNG 3\n\n")
                 + f"gpti2 chỉ là dự phòng khi Flow Tool hỏng (≈ {cost:,}đ). Báo lại cách đã dùng + "
                   "số tiền THẬT đã tiêu nếu phải sa về gpti2.\n\n"
@@ -483,11 +565,11 @@ def cmd_job(profile_id, slug, no_title=False):
                 + f"py -3.13 make_video.py --profile {profile_id} --slug {slug}\n\n"
             )
         else:
+            lenh_may2 = [cd_lenh] + chep + [
+                         f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice"]
             khoi_lenh = (
                 "## MỘT LỆNH DUY NHẤT (lane này không dùng Flow Tool — xem image.flow_tool trong profile)\n"
-                "cd shared\\buoc2_3_tool\\pipeline\n"
-                f"xcopy /E /I ..\\..\\..\\jobs\\{tab}\\{slug} ..\\{adir}\\{slug}\n"
-                f"py -3.13 make_video.py --profile {profile_id} --slug {slug} --redo-voice\n\n"
+                + "\n".join(lenh_may2) + "\n\n"
                 "Lệnh này tự làm: lồng tiếng → nắn phụ đề theo kịch bản"
                 + (f" → vẽ {n} ảnh" if n > 0 else "") + " → dựng final.mp4.\n"
                 "B0–B3 (kịch bản) máy 1 đã xong và đã khoá sha256.\n\n"
@@ -504,12 +586,38 @@ def cmd_job(profile_id, slug, no_title=False):
         f"l\u00ean \u0111o\u1ea1n m\u1edf \u0111\u1ea7u (gi\u1eef ti\u1ebfng th\u00e2n) \u2192 B10 nghi\u1ec7m thu \u2192 B11 giao. \u0110\u1eebng ch\u1ea1y ghep_hook_noi_truoc.py b\u1eb1ng tay.\n"
         f"T\u1ef1 ki\u1ec3m: xem 40 gi\u00e2y \u0111\u1ea7u final.mp4 trong th\u01b0 m\u1ee5c tr\u1ea3 h\u00e0ng \u2014 clip hook c\u00f3 b\u00f3ng tho\u1ea1i, h\u00ecnh kh\u1edbp l\u1eddi, kh\u00f4ng khung \u0111en.\n"
         f"Xong ghi c\u1ed9t I (VIDEO) d\u00f2ng t\u1eadp n\u00e0y: Video done - {slug} + xu\u1ed1ng d\u00f2ng + \u0111\u01b0\u1eddng d\u1eabn th\u01b0 m\u1ee5c tr\u1ea3 h\u00e0ng.\n\n")
-    bg = (
+    # 2026-10-07 (anh chốt): chọn + duyệt số chuyển hẳn sang máy 2 (so_lieu_dong.py chạy ở bundle) để mọi tập
+    # của lane bật mg.so_lieu_dong đi cùng một đường QC — máy 1 không sinh/duyệt, không chặn ở đây.
+    import so_lieu_dong
+    khoi_mg = (
+        f"## SỐ LIỆU ĐỘNG (lane bật mg.so_lieu_dong) — LÀM SAU KHI ĐÃ CÓ final.mp4\n"
+        f"Đọc shared\\motion_graphics\\HUONG_DAN_MAY2.md (cài skill motion_graphics 1 lần). Gọi Claude máy 2:\n"
+        f"  \"Dùng skill motion_graphics, làm số liệu động cho tập {slug} lane {profile_id} theo "
+        f"shared\\motion_graphics\\HUONG_DAN_MAY2.md mục 2 (bước 0 tự sinh + duyệt so_lieu_dong.json).\"\n"
+        f"Chỉ hiện ĐÚNG các số trong so_lieu_dong.json đã duyệt, không thêm số. Trả thêm final_mg.mp4 + "
+        f"mg_so_sanh_*.mp4 cạnh final.mp4 (final.mp4 GIỮ NGUYÊN).\n"
+        + (f"CÓ mg_y_do.md (ý đồ motion giải thích máy 1 viết): làm thêm các mục trong đó theo skill motion_graphics "
+           f"references/mg_giai_thich.md, cùng lượt ghép final_mg.mp4; cụm neo không còn trong script.txt thì bỏ mục, ghi lý do.\n"
+           if (job_dir / "mg_y_do.md").exists() else "")
+        + (f"CÓ the_ten_than.json (thẻ tên nhân vật ở THÂN bài, không đọc bằng lời): giọng đã tự nghỉ thêm sau câu neo; "
+           f"chồng thẻ cùng kiểu thẻ hook của lane (pipeline\\the_ten_hook.py html_the) đúng câu neo, hiện suốt khoảng nghỉ, "
+           f"không che mặt — làm cùng lượt final_mg.mp4.\n"
+           if (job_dir / "the_ten_than.json").exists() else "")
+        + "\n"
+    ) if so_lieu_dong.bat(prof) else ""
+    dau_bg = (
+        f"# VI\u1ec6C D\u1ef0NG VIDEO (m\u00e1y 2 t\u1ef1 l\u00e0m A\u2192Z, 21/10) \u2014 {profile_id} / {slug}\n"
+        f"Vi\u1ebft l\u00fac: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
+        f"K\u1ecbch b\u1ea3n + hook \u0111\u00e3 duy\u1ec7t xong NGAY TR\u00caN M\u00c1Y N\u00c0Y. Ch\u1ea1y t\u1ea1i ch\u1ed7 trong {HERE} \u2014 kh\u00f4ng xcopy, kh\u00f4ng bundle.\n"
+        f"Quy tr\u00ecnh \u0111\u1ee7: {ROOT / 'docs' / 'MAY2_LAM_A_DEN_Z.md'}\n\n"
+    ) if o_cho else (
         f"# \u0110\u01a0N GIAO VI\u1ec6C M\u00c1Y 2 \u2014 {profile_id} / {slug}\n"
         f"\u0110\u00f3ng g\u00f3i l\u00fac: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
         f"\u0110\u1eccC TR\u01af\u1edaC: shared\\QUY_TRINH_GIAO_VIEC_MAY2.md (ranh gi\u1edbi m\u00e1y 1 / m\u00e1y 2, 2 c\u1ed5ng b\u1eaft bu\u1ed9c)\n"
         f"M\u1ecdi \u0111\u01b0\u1eddng d\u1eabn d\u01b0\u1edbi \u0111\u00e2y T\u00cdNH T\u1eea th\u01b0 m\u1ee5c Syncthing `FlowHandoff_local\\` c\u1ee7a CH\u00cdNH M\u00c1Y B\u1ea0N\n"
-        f"(m\u00e1y 1 \u0111\u1ec3 \u1edf h2dev\\FlowHandoff_local, m\u00e1y 2 \u1edf ch\u1ed7 kh\u00e1c \u2014 \u0111\u1eebng ch\u00e9p nguy\u00ean \u0111\u01b0\u1eddng d\u1eabn tuy\u1ec7t \u0111\u1ed1i c\u1ee7a nhau).\n\n"
+        f"(m\u00e1y 1 \u0111\u1ec3 \u1edf h2dev\\FlowHandoff_local, m\u00e1y 2 \u1edf ch\u1ed7 kh\u00e1c \u2014 \u0111\u1eebng ch\u00e9p nguy\u00ean \u0111\u01b0\u1eddng d\u1eabn tuy\u1ec7t \u0111\u1ed1i c\u1ee7a nhau).\n\n")
+    bg = (
+        dau_bg
         + khoi_lenh
         + f"## HAI C\u1ed4NG KH\u00d4NG \u0110\u01af\u1ee2C T\u1eaeT\n"
         f"1. C\u1ed5ng PH\u1ee6 CH\u1eee (tts.py::kiem_phu_chu) \u2014 so s\u1ed1 ch\u1eef ph\u1ee5 \u0111\u1ec1 server tr\u1ea3 v\u1ec1 v\u1edbi K\u1ecaCH B\u1ea2N G\u1ed0C,\n"
@@ -531,11 +639,18 @@ def cmd_job(profile_id, slug, no_title=False):
            f"## HOOK — MÁY 1 ĐÃ LÀM XONG HÌNH, MÁY 2 CHỈ GHÉP\n"
             f"hook\\ đã có đủ: img\\ (ảnh) · clip\\ (clip Grok, QC PASS) · sfx\\ · hook_voice.mp3 · hook_timeline.json.\n"
             f"KHÔNG vẽ ảnh, KHÔNG sinh clip, KHÔNG thay clip bằng ảnh tĩnh. Thiếu gì → DỪNG, báo máy 1.\n"
-            f"1. Chép nguyên thư mục hook\\ sang CẠNH final.mp4 (chỗ máy 2 đã trả hàng thân video):\n"
-            f"   xcopy /E /I /Y FlowHandoff_local\\jobs\\{tab}\\{slug}\\hook FlowHandoff_local\\results\\video_render\\{kenh}\\{slug}\\hook\n"
-            f"2. Chạy TỪ CÂY BUNDLE (không phải h2dev\\pipeline):\n"
-            f"   cd FlowHandoff_local\\shared\\buoc2_3_tool\\pipeline\n"
-            f"   py -3.13 ghep_hook_noi_truoc.py --tap ..\\..\\..\\results\\video_render\\{kenh}\\{slug} --profile {profile_id}\n"
+            + (f"1. Chép nguyên thư mục hook\\ sang CẠNH final.mp4 (chỗ trả hàng thân video):\n"
+               f"   xcopy /E /I /Y {job_dir}\\hook {tra_hang}\\hook\n"
+               f"2. Chạy tại chỗ:\n"
+               f"   {cd_lenh}\n"
+               f"   py -3.13 ghep_hook_noi_truoc.py --tap {tra_hang} --profile {profile_id}\n"
+               if o_cho else
+               f"1. Chép nguyên thư mục hook\\ sang CẠNH final.mp4 (chỗ máy 2 đã trả hàng thân video):\n"
+               f"   xcopy /E /I /Y FlowHandoff_local\\jobs\\{tab}\\{slug}\\hook FlowHandoff_local\\results\\video_render\\{kenh}\\{slug}\\hook\n"
+               f"2. Chạy TỪ CÂY BUNDLE (không phải h2dev\\pipeline):\n"
+               f"   cd FlowHandoff_local\\shared\\buoc2_3_tool\\pipeline\n"
+               f"   py -3.13 ghep_hook_noi_truoc.py --tap ..\\..\\..\\results\\video_render\\{kenh}\\{slug} --profile {profile_id}\n")
+            +
             f"   → final_with_hook.mp4 + phude_with_hook.srt, tự khớp khổ/fps/mức tiếng, nối không khung đen,\n"
             f"     hộp chữ dọc cho đoạn hook nếu lane bật assemble.tate. final.mp4 + phude.srt cũ GIỮ NGUYÊN.\n"
             f"3. Tự kiểm: công cụ in độ dài = hook + thân (lệch > 0,5s là nó tự DỪNG) và mức tiếng đoạn hook ≈ thân.\n"
@@ -546,14 +661,18 @@ def cmd_job(profile_id, slug, no_title=False):
            f"D\u1ef1ng xong n\u1ed1i v\u00e0o TR\u01af\u1edaC final.mp4 \u2192 final_with_hook.mp4, qua 4 ph\u00e9p ki\u1ec3m \u1edf\n"
            f"shared\\QUY_TAC_VIDEO_HOOK.md \u00a72 (m\u1ee9c ti\u1ebfng \u00b7 fps \u00b7 ki\u1ec3u ph\u1ee5 \u0111\u1ec1 \u00b7 \u0111i\u1ec3m n\u1ed1i).\n\n"
            if visual else "")
+        + khoi_mg
         + f"## TR\u1ea2 H\u00c0NG\n"
         + (f"\u0110\u00daNG 2 VIDEO (anh ch\u1ed1t 2026-09-25): final.mp4 = b\u1ea3n \u0110\u0102NG, \u0110\u00c3 C\u00d3 HOOK (100% video giao b\u1eaft bu\u1ed9c c\u00f3 hook\n"
            f"n\u00ean KH\u00d4NG c\u00f2n file t\u00ean final_with_hook) + final-vietsub.mp4 = c\u00f9ng video, ch\u00e1y ph\u1ee5 \u0111\u1ec1 TI\u1ebeNG VI\u1ec6T cho anh \u0111\u1ecdc.\n"
            f"B11 t\u1ef1 \u0111\u1eb7t t\u00ean + ch\u00e9p c\u1ea3 hai (k\u00e8m phude.srt, tomtat.txt). Th\u1ea5y file t\u00ean *with_hook* trong th\u01b0 m\u1ee5c tr\u1ea3 h\u00e0ng = SAI.\n"
            if tu_ghep else "")
-        + f"results\\video_render\\{kenh}\\{slug}\\ \u2014 \u0111\u00fang \u0111\u01b0\u1eddng gi\u00e1o_hang.py t\u1ef1 ghi (theo publish.upload_channel\n"
+        + (f"{tra_hang}\\ \u2014 \u0111\u00fang ch\u1ed7 giao_hang.py (B11) t\u1ef1 ghi theo publish.upload_dir/upload_channel c\u1ee7a profile.\n"
+           if o_cho else "")
+        + ("" if o_cho else
+        f"results\\video_render\\{kenh}\\{slug}\\ \u2014 \u0111\u00fang \u0111\u01b0\u1eddng gi\u00e1o_hang.py t\u1ef1 ghi (theo publish.upload_channel\n"
         f"= `{kenh}`, KH\u00d4NG ph\u1ea3i t\u00ean tab sheet `{tab}` \u2014 2 c\u00e1i kh\u00e1c nhau, \u0111\u1eebng nh\u1ea7m; \u0111\u00e3 verify th\u1eadt\n"
-        f"tr\u00ean 3 t\u1eadp Lane F 2026-09-24). Syncthing t\u1ef1 mang v\u1ec1 m\u00e1y 1.\n"
+        f"tr\u00ean 3 t\u1eadp Lane F 2026-09-24). Syncthing t\u1ef1 mang v\u1ec1 m\u00e1y 1.\n")
     )
     (dst / "_BANGIAO.txt").write_text(bg, encoding="utf-8")
     print(f"✓ đóng gói {dst} ({n_copied} file + logs/) · {n} ảnh ≈ {cost:,}đ")
@@ -565,6 +684,33 @@ def cmd_job(profile_id, slug, no_title=False):
         _ghi_sheet_h(prof, slug, n, cost)
     except SystemExit as e:
         print(f"  ⚠️ chưa ghi được cột H: {e}")
+
+    # 2026-10-19 (anh chốt): tập nào chạy kịch bản thì link VIDEO GỐC phải nằm ở CỘT T của tab lane.
+    # B2 đã ghi rồi (video_goc.ghi_video_goc), đây là lần ghi lại lúc đóng gói — idempotent (ô đã
+    # đúng link thì thôi), phòng trường hợp tập cũ chưa qua B2 mới. Lỗi KHÔNG chặn giao hàng.
+    try:
+        import ghi_cot_video_goc
+        r = ghi_cot_video_goc.ghi_tu_ep(job_dir)
+        print(f"  cột T (video gốc): {r['ly_do']}")
+    except Exception as e:
+        print(f"  ⚠️ chưa ghi được cột T (video gốc): {type(e).__name__} {e}")
+
+    # 2026-10-01 (anh chốt): giao máy 2 xong thì ĐỒNG THỜI viết file hướng dẫn cho tab mới làm tập kế
+    # (<slug_dir>\HUONG_DAN_TAP_TIEP_THEO.md) + ghi đè cột K (GHI CHÚ) dòng tập kế. Lỗi ở đây không chặn giao hàng.
+    try:
+        import huong_dan_tab_moi
+        huong_dan_tab_moi.an_toan("tiep", prof, slug)
+    except ImportError as e:
+        print(f"  ⚠️ thiếu huong_dan_tab_moi.py — CHƯA viết hướng dẫn tập kế: {e}")
+
+    # 2026-10-03 (anh chốt, mọi lane): cột K DÒNG TẬP NÀY = câu lệnh + đường dẫn để anh đưa sang máy 2.
+    try:
+        import review_may3
+        review_may3.ghi_k(prof, slug, _k_giao_may2(dst, tab, slug, lenh_may2, prof))
+    except Exception as e:
+        print(f"  ⚠️ chưa ghi được cột K (lệnh máy 2): {e}")
+    import tong_hop
+    tong_hop.ghi(prof, slug, tong_hop.GIAO_MAY2)
 
     # 2026-09-24 (anh chốt): giao máy 2 xong thì TỰ gọi dự án YT-TITLE-RESEARCH viết tiêu đề/mô
     # tả/tags/thumbnail cho ĐÚNG lane — không cần anh gõ tay. Chạy NỀN (không chặn lệnh này); lane

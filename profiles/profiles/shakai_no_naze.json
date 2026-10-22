@@ -107,6 +107,8 @@
     "ctx_label": "TƯ LIỆU SỐ LIỆU XÃ HỘI NHẬT (thống kê/khảo sát/thuật ngữ PHẢI lấy đúng từ đây, kèm nguồn; nhân vật và công ty là hư cấu)",
     "engine": "claude_p",
     "brain_model": "claude-fable-5-1",
+    "write_model": "claude-opus-5-5",
+    "_write_model_note": "2026-10-22 anh chốt: Fable (brain_model) viết hook + KHUNG SƯỜN (khung_suon.txt), Opus 5.5 (write_model) viết kịch bản theo khung sườn đó (lean_script.viet).",
     "_brain_model_note": "2026-10-05 anh chot: S2 + hook viet = Fable 5.1 moi lane (B3R van Opus 5.5, va = Opus 5). Cu 2026-09-29: S2 viet + B3R nghiem thu deu dung Opus 5.5 co dinh (thay Fable 5.1, khong doi qua lai theo quota nua).",
     "patch_model": "claude-opus-5",
     "_patch_model_note": "S4 LUON Opus 5 (khac Opus 5.5 o brain_model) - da A/B that 2026-09-22, giu nguyen.",

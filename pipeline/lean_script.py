@@ -197,6 +197,43 @@ def _insight_tap(d):
         return None
 
 
+KHOI_KHUNG_SUON = """=== LƯỢT NÀY CHỈ VIẾT KHUNG SƯỜN — CHƯA VIẾT VĂN ===
+Mọi yêu cầu phía trên là luật cho BẢN VĂN CUỐI. Bản văn sẽ do một người viết khác viết, bám ĐÚNG khung sườn của bạn.
+Lượt này chỉ xuất KHUNG SƯỜN CHI TIẾT, viết bằng tiếng Việt (tên riêng, câu thoại đắt, thuật ngữ giữ nguyên ngôn ngữ đích):
+1. NHÂN VẬT: tên, tuổi, nghề/quan hệ, tính cách 1 dòng, cách xưng hô — KHỚP hook đã khoá và hồ sơ.
+2. Đi theo ĐÚNG các phần/chặng của ngân sách độ dài ở trên, theo thứ tự. Mỗi phần ghi:
+   · tên phần + số chữ mục tiêu
+   · sự kiện CỤ THỂ theo thứ tự (3–6 gạch đầu dòng: ai làm gì, ở đâu, chi tiết đời thường đắt giá)
+   · 1–3 câu thoại đắt viết sẵn bằng ngôn ngữ đích
+   · nhịp cảm xúc của phần + con số dùng (CHỈ số được phép trong hồ sơ)
+   · câu/ý chuyển sang phần sau
+3. Phần đầu nối tiếp NGAY sau hook đã khoá (không kể lại hook).
+4. Ghi rõ chỗ trả lời hứa tiêu đề/payoff, câu đạo lý chốt và CTA cuối (CTA chỉ 1 lần ở cuối).
+Không viết văn kể liền mạch, không giải thích ngoài khung."""
+
+KHUNG_SUON_DA_CHOT = ("KHUNG SƯỜN CHI TIẾT ĐÃ CHỐT (ưu tiên hơn khung sự kiện trên): nhân vật, tên, sự kiện, thứ tự, thoại đắt, "
+                      "con số đã chốt — dùng ĐÚNG, không đổi, không thêm sự kiện lớn mới. Việc của bạn: viết thành BẢN VĂN "
+                      "hoàn chỉnh đúng ngân sách từng phần, giàu chi tiết và cảm xúc, theo mọi luật ở trên.")
+
+
+def tach_khung_suon(prof):
+    """True khi lane khai write_model KHÁC brain_model (engine claude_p) → S2 tách 2 lượt: brain viết khung sườn, write viết văn."""
+    return ((prof.get("script", {}) or {}).get("engine") == "claude_p"
+            and claude_p_bridge.write_model_of(prof) != claude_p_bridge.brain_model_of(prof))
+
+
+def viet_khung_suon(prof, prompt, skill, ns, log, d=None):
+    """S2a' — brain_model (Fable) viết KHUNG SƯỜN chi tiết cho tập mới (anh chốt 2026-10-22). Ghi khung_suon.txt."""
+    r = ai_steps._writer_chat(prof, prompt + "\n\n" + KHOI_KHUNG_SUON, system=skill, task="short",
+                              min_chars=400, max_chars=max(4000, int(ns["target"] * 0.8)))
+    khung = r.text.strip()
+    if d is not None:
+        (Path(d) / "khung_suon.txt").write_text(khung, encoding="utf-8")
+    log.append(f"S2a' khung sườn {r.provider}:{r.model} {len(khung):,} ký tự {r.elapsed:.0f}s")
+    print(f"[S2a'] khung sườn {r.model} {len(khung):,} ký tự → {Path(d) / 'khung_suon.txt' if d is not None else '(không ghi)'}")
+    return khung
+
+
 def viet(prof, competitor: str, ctx: str, minutes: float, ns, log: list, hook: str = "", luat: str = "", d=None):
     """S2a khung (giấu bản gốc) + S2b viết đúng ngân sách. Trả text đã normalize.
     hook: đoạn mở đầu đã khoá ở H1-H4 (hook_stage.py, bám sườn hook video gốc) — S2 viết THÂN nối tiếp từ đây, không viết lại mở đầu.
@@ -217,11 +254,18 @@ def viet(prof, competitor: str, ctx: str, minutes: float, ns, log: list, hook: s
         log.append(f"S2 khối thêm: cung_cam_xuc={'có' if CUNG_CAM_XUC in them else 'không'} · "
                    f"insight kênh={'có' if 'KHÁN GIẢ THẬT' in them else 'không'} · insight tập={'có' if ins_tap else 'không'} · "
                    f"thẻ viết={'có' if KHOI_THE_VIET_S2 in them else 'không'}")
-    prompt = ai_steps._pass1_prompt(prof, source, minutes, ctx_prompt, budget_block=budget_block(ns),
-                                    hook_locked=hook, luat_goi_dang=luat, comment_insight=ins_tap, khoi_them=them)
-    r = ai_steps._writer_chat(prof, prompt, system=skill, task="script",
+    def _prompt(src):
+        return ai_steps._pass1_prompt(prof, src, minutes, ctx_prompt, budget_block=budget_block(ns),
+                                      hook_locked=hook, luat_goi_dang=luat, comment_insight=ins_tap, khoi_them=them)
+    kw = {}
+    if tach_khung_suon(prof):
+        # 2026-10-22 anh chốt: brain_model (Fable) viết KHUNG SƯỜN → write_model (Opus 5.5) viết văn theo khung sườn.
+        khung = viet_khung_suon(prof, _prompt(source), skill, ns, log, d)
+        source = source + "\n\n" + KHUNG_SUON_DA_CHOT + "\n" + khung
+        kw["model"] = claude_p_bridge.write_model_of(prof)
+    r = ai_steps._writer_chat(prof, _prompt(source), system=skill, task="script",
                               min_chars=int(ns["target"] * 0.6), max_chars=int(ns["target"] * 1.45),
-                              require_sentence_end=True)
+                              require_sentence_end=True, **kw)
     text = ai_steps.normalize_paragraphs(ai_steps.strip_markers(r.text))
     log.append(f"S2b viết {r.provider}:{r.model} {ai_steps.measure(text)['chars']:,} chữ {r.elapsed:.0f}s")
     return text
@@ -819,10 +863,12 @@ def run(job, force=False):
         text = sf.read_text(encoding="utf-8")
         print(f"[S2] dùng script.txt đã có ({ai_steps.measure(text)['chars']:,} chữ) — chạy tiếp S3→Sol (không viết lại)")
     else:
-        print(f"[S2] Fable viết đúng ngân sách …")
+        tach = tach_khung_suon(prof)
+        print(f"[S2] {claude_p_bridge.brain_model_of(prof)} viết khung sườn → {claude_p_bridge.write_model_of(prof)} viết văn đúng ngân sách …"
+              if tach else f"[S2] {claude_p_bridge.brain_model_of(prof)} viết đúng ngân sách …")
         text = viet(prof, competitor, ctx, minutes, ns, log, hook=hook,
                     luat=qc_goi_dang.khoi_luat_cho_prompt(d, prof), d=d)
-        bench["fable_calls"] += 2 if not (prof.get("script", {}) or {}).get("use_raw_source") else 1
+        bench["fable_calls"] += (2 if not (prof.get("script", {}) or {}).get("use_raw_source") else 1) + (1 if tach else 0)
         (d / "script_pass1_raw.txt").write_text(text, encoding="utf-8")
         sf.write_text(text, encoding="utf-8")
     title = _title(d)

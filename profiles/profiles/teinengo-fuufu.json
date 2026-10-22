@@ -166,6 +166,8 @@
     "_fact_exempt_note": "Miễn số CÁ NHÂN trong truyện (退職金/貯金 của nhân vật, tuổi, ngày thứ N, giờ). KHÔNG miễn %, 年間, 歩 — tỉ lệ/chế độ phải có nguồn. Tiền chế độ (年金 月額 theo chế độ) vẫn do lớp soát GPT web + lớp 3 Claude Code đối chiếu tư liệu vì S3 đã miễn 万円. · 2026-09-30 ep01 thêm 度: sốt 38度 của nhân vật là chi tiết cá nhân hư cấu (S3 bắt nhầm là dữ kiện chế độ → ép patch 'sua' ôm cả việc NỚI, 2 patch vỡ trần 40%).",
     "engine": "claude_p",
     "brain_model": "claude-fable-5-1",
+    "write_model": "claude-opus-5-5",
+    "_write_model_note": "2026-10-22 anh chốt: Fable (brain_model) viết hook + KHUNG SƯỜN (khung_suon.txt), Opus 5.5 (write_model) viết kịch bản theo khung sườn đó (lean_script.viet).",
     "patch_model": "claude-opus-5",
     "final_review_model": "claude-opus-5-5",
     "_model_note": "Quy trình chuẩn mẫu Lane M (QUY_TRINH_TAO_KICH_BAN_MOI_LANE.md §00, anh chốt 2026-09-29): S2 viết Opus 5.5 · S4 vá Opus 5 · Sol tắt, S5L kiểm lời hứa tiêu đề · soát ChatGPT web.",

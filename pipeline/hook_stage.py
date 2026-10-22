@@ -34,8 +34,10 @@ MAC_DINH = {
     # 2026-10-21: độ dài hook = đúng giây kết hook của video gốc (chỉ kẹp sàn/trần kỹ thuật GIAY_SAN..GIAY_LOI_GOC).
     # `giay` [tối thiểu, tối đa] + `giay_mac_dinh` CHỈ dùng khi tập không có lời hook gốc. Field `huong_dan_cau_truc`
     # (khuôn hook riêng lane) đã BỎ 21/10 — profile còn khai thì bị bỏ qua.
-    "giay": [15, 90],
+    "giay": [15, 60],
     "giay_mac_dinh": 30,
+    # 2026-10-22 anh chốt: hook NGẮN GỌN, tối đa 60 giây — hook gốc dài hơn thì rút gọn (giữ cách mở + thứ tự nhịp).
+    "giay_tran": 60,
     "tol": 0.25,
     # model ĐỌC CHỮ ở H1–H3 (phân tích lời video gốc). Phần NHÌN khung hình dùng Sol.
     "analysis_model": "claude-opus-5",
@@ -78,13 +80,25 @@ def _so_giay(x):
 
 def giay_hook(prof, src=None):
     """Độ dài hook (giây) = giây kết hook của video gốc (src.cau_truc_hook.giay_ket_hook) — gốc dài bao nhiêu làm bấy nhiêu,
-    chỉ kẹp sàn/trần kỹ thuật [GIAY_SAN, GIAY_LOI_GOC]. Không có hook gốc → `script.hook.giay_mac_dinh` kẹp trong `giay`."""
+    kẹp sàn GIAY_SAN và trần `script.hook.giay_tran` (mặc định 60s, anh chốt 22/10: hook ngắn gọn ≤60s).
+    Không có hook gốc → `script.hook.giay_mac_dinh` kẹp trong `giay`."""
     h = cau_hinh(prof)
+    tran = giay_tran(prof)
     g = _so_giay(((src or {}).get("cau_truc_hook") or {}).get("giay_ket_hook"))
     if g:
-        return max(GIAY_SAN, min(GIAY_LOI_GOC, g))
-    lo, hi = (list(h.get("giay") or [15, 90]) + [90])[:2]
-    return max(float(lo), min(float(hi), float(h.get("giay_mac_dinh") or 30)))
+        return max(GIAY_SAN, min(tran, GIAY_LOI_GOC, g))
+    lo, hi = (list(h.get("giay") or [15, 60]) + [60])[:2]
+    return max(float(lo), min(float(hi), tran, float(h.get("giay_mac_dinh") or 30)))
+
+
+def giay_tran(prof):
+    """Trần độ dài hook (giây): `script.hook.giay_tran`, mặc định 60."""
+    return float(cau_hinh(prof).get("giay_tran") or 60)
+
+
+def giay_goc(src):
+    """Giây kết hook của video GỐC (chưa kẹp) — để báo 'gốc dài X giây, rút gọn còn Y'. Không có → None."""
+    return _so_giay(((src or {}).get("cau_truc_hook") or {}).get("giay_ket_hook"))
 
 
 def so_chu_muc_tieu(prof, src=None):
@@ -124,8 +138,9 @@ def check(text, prof, ctx="", muc=None, cam_ho=None):
     n = ai_steps.measure(text)["chars"]
     muc = int(muc or so_chu_muc_tieu(prof))
     lo, hi = int(muc * (1 - h["tol"])), int(muc * (1 + h["tol"]))
+    hi = min(hi, int(profiles.char_rate(prof) * giay_tran(prof) / 60.0))  # trần cứng 60s (22/10)
     if not (lo <= n <= hi):
-        viec.append(f"độ dài {n} chữ ngoài {lo}–{hi} (≈ độ dài hook video gốc, char_rate {profiles.char_rate(prof):.0f})")
+        viec.append(f"độ dài {n} chữ ngoài {lo}–{hi} (≈ hook gốc, trần {giay_tran(prof):.0f}s, char_rate {profiles.char_rate(prof):.0f})")
     for w in h["banned_openers"]:
         if w.lower() in text.lower():
             viec.append(f"hook không được xin đăng ký/cảm ơn xem (CTA chỉ ở cuối bài): 「{w}」")
@@ -768,7 +783,8 @@ def khoi_suon(d, src):
 PROMPT_VIET = """NHIỆM VỤ: viết {n} PHƯƠNG ÁN HOOK cho phần MỞ ĐẦU một video YouTube kể chuyện ({lang}).
 
 LUẬT DUY NHẤT (anh chốt 2026-10-21): hook BÁM SÁT CẤU TRÚC hook của video gốc — gốc làm thế nào mình làm thế ấy.
-- Giữ như gốc: cách mở giây 0 · các nhịp theo thứ tự + vai trò từng nhịp · độ dài ≈ hook gốc ({muc} chữ ±{tol}%).
+- Giữ như gốc: cách mở giây 0 · các nhịp theo thứ tự + vai trò từng nhịp.
+- ĐỘ DÀI (anh chốt 22/10): NGẮN GỌN, TỐI ĐA {tran} GIÂY ≈ {muc} chữ (±{tol}%, không vượt trần). {rut_gon}
 - ĐƯỢC thay đổi một chút cho hợp tập mình hơn / hay hơn (gộp, tách, chỉnh một nhịp; đổi cách nói), nhưng tổng thể nghe
   ra vẫn đúng cấu trúc hook gốc.
 - Đổi tên họ, tuổi, công việc/ngành nghề, câu thoại, chi tiết theo HỒ SƠ tập mình — không chép nguyên câu của gốc.
@@ -816,12 +832,16 @@ def viet_candidates(d, prof, src, title, ctx, mode="upstream"):
         doan1 = next((p.strip() for p in (d / "script.txt").read_text(encoding="utf-8").split("\n\n") if p.strip()), "")
     muc = so_chu_muc_tieu(prof, src)
     so = so_ung_vien(prof)
+    tran, goc = giay_tran(prof), giay_goc(src)
+    rut_gon = (f"Hook gốc dài ~{goc:.0f}s > {tran:.0f}s → RÚT GỌN: giữ cách mở + đủ các nhịp chính theo đúng thứ tự, "
+               f"bỏ câu phụ/giải thích, gộp nhịp nhỏ; mỗi câu ngắn, đi thẳng vào việc."
+               if goc and goc > tran else "Câu ngắn, đi thẳng vào việc, không câu đệm.")
     prompt = PROMPT_VIET.format(
         lang=ai_steps.LANG_NAME.get(prof.get("language", "ja"), "Japanese"), n=so,
         khuon="\n".join(f"=== HOOK {i} ===\n<hook>" for i in range(1, so + 1)),
         suon=khoi_suon(d, src), promise=_promise_text(d, ctx, mode),
         khoi_repair=KHOI_REPAIR.format(doan1=doan1) if mode == "repair" else "",
-        muc=muc, tol=int(cau_hinh(prof)["tol"] * 100),
+        muc=muc, tol=int(cau_hinh(prof)["tol"] * 100), tran=int(tran), rut_gon=rut_gon,
         narrator=f"{n.get('persona','')} · {n.get('point_of_view','')} · {n.get('register','')}")
     import the_ten_hook
     if the_ten_hook.is_enabled(prof):

@@ -164,6 +164,8 @@
     "_fact_exempt_note": "Chỉ miễn số CÁ NHÂN trong truyện (63歳, 3回目, 7時, 2日目, 12部屋). KHÔNG miễn 円, 万円, %, 時給 — lương/tiền chế độ phải có nguồn (K9).",
     "engine": "claude_p",
     "brain_model": "claude-fable-5-1",
+    "write_model": "claude-opus-5-5",
+    "_write_model_note": "2026-10-22 anh chốt: Fable (brain_model) viết hook + KHUNG SƯỜN (khung_suon.txt), Opus 5.5 (write_model) viết kịch bản theo khung sườn đó (lean_script.viet).",
     "patch_model": "claude-opus-5",
     "final_review_model": "claude-opus-5-5",
     "_model_note": "2026-09-29 anh chốt: S2 viết + B3R nghiệm thu dùng Opus 5.5 cố định (thay Fable 5.1). S4 vá vẫn Opus 5 (khác Opus 5.5) — đã A/B thật 2026-09-22, giữ nguyên. §0a QUY_TRINH_TAO_KICH_BAN_MOI_LANE.",

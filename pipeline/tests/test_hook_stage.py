@@ -192,10 +192,11 @@ def test_so_chu_muc_tieu_va_cau_hinh():
     assert HS.so_chu_muc_tieu(PROF) == 150
     p2 = {**PROF, "script": {"hook": {"giay_mac_dinh": 24, "giay": [15, 90], "banned_openers": ["X"]}}}
     assert HS.so_chu_muc_tieu(p2) == 120 and HS.cau_hinh(p2)["banned_openers"] == ["X"]
-    # 2026-10-21: độ dài = đúng giây kết hook của video gốc (không kẹp theo script.hook.giay), chỉ sàn 6s / trần 150s
-    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": "60-64"}}) == 320
-    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 120}}) == 600
-    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 300}}) == 750
+    # 2026-10-22: độ dài = giây kết hook gốc, kẹp sàn 6s / trần script.hook.giay_tran (mặc định 60s)
+    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": "50-54"}}) == 270
+    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 120}}) == 300
+    assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 300}}) == 300
+    assert HS.so_chu_muc_tieu({**p2, "script": {"hook": {"giay_tran": 90}}}, {"cau_truc_hook": {"giay_ket_hook": 120}}) == 450
     assert HS.so_chu_muc_tieu(p2, {"cau_truc_hook": {"giay_ket_hook": 3}}) == 30
     # không có hook gốc → giay_mac_dinh kẹp trong script.hook.giay
     assert HS.so_chu_muc_tieu({**PROF, "script": {"hook": {"giay_mac_dinh": 5, "giay": [15, 90]}}}) == 75
@@ -307,7 +308,7 @@ def test_phan_tich_nguon(monkeypatch, tmp_path):
     assert luu["cau_truc_hook"]["mo_dau"] == "câu thoại" and src["video_hook_verdict"] == "khong_soi_duoc"
     # 2026-10-21: prompt tách cấu trúc KHÔNG còn phân loại động cơ / khuôn lane
     assert "CAO_TRAO" not in goi["prompt"] and "khuon_lane" not in goi["prompt"]
-    assert HS.so_chu_muc_tieu(PROF, luu) == 320   # 300 chữ/phút × 64s
+    assert HS.so_chu_muc_tieu(PROF, luu) == 300   # 300 chữ/phút × min(64s, trần 60s)
     assert "CẤU TRÚC HOOK VIDEO GỐC" in HS.khoi_suon(d, luu) and "câu sốc" in HS.khoi_suon(d, luu)
     assert "động cơ" not in HS.khoi_suon(d, luu)
 

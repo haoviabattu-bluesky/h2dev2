@@ -43,6 +43,13 @@ def patch_model_of(prof):
     return ((prof.get("script", {}) or {}).get("patch_model") or brain_model_of(prof))
 
 
+def write_model_of(prof):
+    """Model VIẾT VĂN thân kịch bản (S2b): `profile.script.write_model`, không khai = brain_model (hành vi cũ).
+    Anh chốt 2026-10-22: Fable (brain_model) viết hook + KHUNG SƯỜN, Opus 5.5 (write_model) viết kịch bản theo khung sườn
+    đó — khác brain_model thì lean_script.viet tự tách 2 lượt (khung_suon.txt → văn)."""
+    return ((prof.get("script", {}) or {}).get("write_model") or brain_model_of(prof))
+
+
 def prompt_model_of(prof):
     """Model viết PROMPT ẢNH (B5W, prompt_doan.py): `profile.image.prompt_model`, không khai = claude-opus-5.
     Anh chốt 2026-09-26: B5W không cần Fable — chuyển Opus để dành hạn mức Fable (tính riêng) cho viết kịch bản S2

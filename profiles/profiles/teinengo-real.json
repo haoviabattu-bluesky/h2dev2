@@ -171,6 +171,8 @@
       "_list_item_count_note": "0 = lane truyện, lean không kiểm marker mục (lean_script._markers_thieu)."
     },
     "brain_model": "claude-fable-5-1",
+    "write_model": "claude-opus-5-5",
+    "_write_model_note": "2026-10-22 anh chốt: Fable (brain_model) viết hook + KHUNG SƯỜN (khung_suon.txt), Opus 5.5 (write_model) viết kịch bản theo khung sườn đó (lean_script.viet).",
     "patch_model": "claude-opus-5",
     "_patch_model_note": "S4 (patch tại chỗ theo Sol/máy, lean_script.patch) dùng Opus 5 CỐ ĐỊNH (khác Opus 5.5 ở brain_model) — đã A/B thật 2026-09-22 (9 lượt patch replay, Sol PASS 7/9, 2 FIX do Sol không tất định chứ không phải lỗi model patch), giữ nguyên.",
     "_brain_model_note": "2026-10-05 anh chốt: S2 + hook viết = Fable 5.1 mọi lane (B3R vẫn Opus 5.5, vá = Opus 5). Cũ 2026-09-29: S2 viết + B3R nghiệm thu đều dùng Opus 5.5 cố định (thay Fable 5.1, không đổi qua lại theo quota nữa — lịch sử đổi qua lại Fable↔Opus 5 ngày 20-23/09 đã hết hiệu lực).",

@@ -37,6 +37,9 @@ def main():
     hd = Path(a.hook); tap = hd.parent
     prof = json.loads((ROOT / "profiles" / "profiles" / f"{a.profile}.json").read_text(encoding="utf-8"))
     v = prof["voice"]
+    if (tap / "characters.json").exists():   # 22/10: giọng vai theo kho chung khung tuổi (y máy 2 lồng thân bài) trước khi đọc thử
+        import kho_giong
+        kho_giong.chan(dict(prof, id=prof.get("id") or a.profile), tap / "characters.json")
     speed = float(v.get("speed", 1.0))
     # 2026-10-03 (Lane O ep01): lane VOICEVOX (voice.provider) không có voice_id ai33 → đọc bằng engine local :50021,
     # giọng theo speaker/style của characters.json (tts_voicevox.giong_cua_vai), y như máy 2 lồng giọng thân.

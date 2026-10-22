@@ -177,6 +177,9 @@ def chay(script, out, prof, vai_path=None, chars_path=None, workers=3):
     doan_them = cau_vai.doan_hook(script.parent, cau)
     nghi_the = cau_vai.nghi_the_ten(script.parent, cau)   # 11/10: thẻ tên thân bài → nghỉ thêm cho kịp đọc
     lang = cau_vai.lang_hook(script.parent, cau)   # 12/10: shot hook LẶNG (lang_s) / giữ hình (nghi_sau_s) → chèn lặng
+    if chars_path and Path(chars_path).exists():   # 22/10: giọng vai phải hợp tuổi theo kho chung (cụ bà ≠ giọng trẻ)
+        import kho_giong
+        kho_giong.chan(prof, chars_path)
     ban = giong_cua_vai(prof, chars_path)
     thieu = sorted({i for i in ids if i not in ban})
     if thieu:

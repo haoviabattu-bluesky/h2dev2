@@ -1,0 +1,365 @@
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep01-jaa-yamemasu\characters.json
+   - ishiguro 石黒誠 (M,45): VV:白上虎太郎/ふつう → 夜語トバリ [VV_M_tobari] — lý do: giọng không hợp tuổi/giới này
+   - tomita 富田ヨシ (F,92): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - mensetsu 面接官の女性 (F,48): VV:離途/ノーマル → No.7 [VV_F_no7] — lý do: 離途 là giọng NAM — cấm vai nữ (Lane O ep13, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep02-shigoto-dekirunde\characters.json
+   - dansei_nyukyo 男性入居者 (M,84): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+   - asai 浅井 (F,55): VV:離途/ノーマル → No.7 [VV_F_no7] — lý do: 離途 là giọng NAM — cấm vai nữ (Lane O ep13, 17/10)
+   - musuko 早瀬の息子 (M,9): VV:小夜/SAYO/ノーマル → Innocent Boy — trẻ em (bé gái dùng tạm) [MF_treem] — lý do: giọng ngoài kho
+   - saeki 佐伯さん (F,89): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - saeki_musume 佐伯さんの娘 (F,60): VV:九州そら/ノーマル → 東北イタコ [VV_F_itako] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep03-teiji-nande\characters.json
+   - miyauchi 宮内 (F,55): VV:離途/ノーマル → No.7 [VV_F_no7] — lý do: 離途 là giọng NAM — cấm vai nữ (Lane O ep13, 17/10)
+   - sakamoto 坂本さん (F,87): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep04-kawari-ikurademo\characters.json
+   - noguchi 野口キヨさん (F,88): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - yuzuriha_obaa ゆずりはの入居者の女性 (F,84): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep05-sonna-kotomo\characters.json
+   - tsuruta 鶴田さん (M,86): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+   - hatsu 戸井田ハツ (F,91): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - paato 新しいパート (F,38): VV:離途/ノーマル → No.7 [VV_F_no7] — lý do: 離途 là giọng NAM — cấm vai nữ (Lane O ep13, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep06-tanto-janai\characters.json
+   - urabe 浦部政吉さん (M,84): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+   - tomi 瀬川トミさん (F,89): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - shige 小松シゲさん (F,90): VV:冥鳴ひまり/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: giọng không hợp tuổi/giới này
+   - noriko 小松典子 (F,62): VV:波音リツ/ノーマル → 東北イタコ [VV_F_itako] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep07-kazoku-no-mae\characters.json
+   - shu 須藤玲子（彼女） (F,54): VV:離途/ノーマル → No.7 [VV_F_no7] — lý do: 離途 là giọng NAM — cấm vai nữ (Lane O ep13, 17/10)
+   - fumi 大森フミさん (F,87): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - haha 須藤の母（22年前） (F,80): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - kazoku 別の入居者の家族 (F,55): VV:四国めたん/ノーマル → もち子さん — CHỈ dưới 65 [VV_F_mochiko] — lý do: giọng không hợp tuổi/giới này
+   - nyukyo 別の入居者の女性 (F,85): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep08-chotto-mattete\characters.json
+   - sumie 芦田澄江さん (F,84): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - okabe 岡部美佐子 (F,58): VV:離途/ノーマル → No.7 [VV_F_no7] — lý do: 離途 là giọng NAM — cấm vai nữ (Lane O ep13, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep09-setsumei-warui\characters.json
+   - kiichi 永井喜一さん (M,86): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+   - fuku 森田ふくさん (F,89): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+   - keiko 中島圭子 (F,62): VV:波音リツ/ノーマル → 東北イタコ [VV_F_itako] — lý do: giọng không hợp tuổi/giới này
+   - kazoku 家族（面会・新しい入居者の娘） (F,54): VV:四国めたん/ノーマル → No.7 [VV_F_no7] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep10-hantoshigo\characters.json
+   - hana 松尾ハナ (F,91): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep11-buchou-dattanda\characters.json
+   - nobukichi 伸吉さん (M,84): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep12-kiitenai\characters.json
+   - okamoto 岡本絹子 (F,63): VV:冥鳴ひまり/ノーマル → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+   - kaori 江口香織 (F,60): VV:波音リツ/ノーマル → 東北イタコ [VV_F_itako] — lý do: giọng không hợp tuổi/giới này
+   - ai アイさん (F,89): VV:もち子さん/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep13-machigaenai\characters.json
+   - chiba 千葉貞子 (F,63): VV:冥鳴ひまり/ノーマル → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+   - sae 末永紗英 (F,66): VV:四国めたん/ノーマル → 6a Haruko — ấm, thân thiện [F_trungcao_haruko] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep14-mae-no-shisetsu\characters.json
+   - tani 谷宗一 (M,86): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+   - shida 志田貴子 (F,60): VV:四国めたん/ノーマル → 東北イタコ [VV_F_itako] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\O-kaigo-sukatto\ep15-osoi-shinjin\characters.json
+   - hagiwara 萩原信子 (F,83): VV:春歌ナナ/ノーマル → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: giọng ngoài kho
+   - musume 福井さんの娘 (F,55): VV:四国めたん/ノーマル → No.7 [VV_F_no7] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep01-silver-haibunkin\characters.json
+   - sudo 須藤保 (M,66): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - oba 大場 (M,71): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - shujin2 七月の家の主人 (M,70): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - obaasan 最初の家のおばあさん (F,82): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - madoguchi ハローワークの担当者 (M,30): clone_2669055 → Kenji — nam 20–30 [M_kenji] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep02-baito-go-shoku\characters.json
+   - ke 語り（久保田誠・一人称） (M,65): giữ Nam A (Lane N dẫn ngôi 1 俺), thêm speed 0.85 (vai ≥65)
+   - kubota 久保田誠 (M,65): giữ Nam A (Lane N dẫn ngôi 1 俺), thêm speed 0.85 (vai ≥65)
+   - katagiri 片桐 (M,66): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - sogishi 喪服を探す年配の男 (M,70): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - noriko 久保田典子 (F,65): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - asano 浅野 (M,68): elevenlabs_JBFqnCBsd6RMkjVDRZzb → PiropiroRX chậm 0.85 — khàn, kiêu ngạo, mỉa [M_gia_piropiro] — lý do: George — anh chê 'yếu và trẻ quá' cho ông 74 (Lane N ep05) và 'quá hiền' cho ông 70 (ep04)
+   - eguchi 江口 (M,29): clone_2669055 → Kenji — nam 20–30 [M_kenji] — lý do: giọng không hợp tuổi/giới này
+   - wakamono 配送の若者 (M,20): clone_2669055 → Sporty Student [M_student] — lý do: giọng không hợp tuổi/giới này
+   - gakusei 就活生 (M,22): clone_2669055 → Kenji — nam 20–30 [M_kenji] — lý do: giọng không hợp tuổi/giới này
+   - kodomo 通学の子ども (M,9): clone_2669055 → Innocent Boy — trẻ em (bé gái dùng tạm) [MF_treem] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep03-konkatsu-wagashi\characters.json
+   - otani 大谷修 (M,70): giữ Nam A (Lane N dẫn ngôi 1 俺), thêm speed 0.85 (vai ≥65)
+   - sakamoto 隣の坂本さん (M,72): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - omiai1 パーティーの男性（料理は得意ですか） (M,66): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - omiai3 パーティーの男性（決まった時間に食事） (M,69): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - gonakama 村瀬の碁仲間 (M,70): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - fumiyo 宮下文代 (F,67): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - murase 村瀬剛 (M,71): elevenlabs_JBFqnCBsd6RMkjVDRZzb → Nam A (Lane N dẫn ngôi 1 俺) [M_gia_namA] — lý do: George — anh chê 'yếu và trẻ quá' cho ông 74 (Lane N ep05) và 'quá hiền' cho ông 70 (ep04)
+   - michiko 佐伯道子 (F,68): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - kodomo 公民館の子ども (F,7): clone_2669056 → Innocent Boy — trẻ em (bé gái dùng tạm) [MF_treem] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep04-dousoukai-shashinkan\characters.json
+   - yasuo 杉本康夫 (M,69): giữ Nam A (Lane N dẫn ngôi 1 俺), thêm speed 0.85 (vai ≥65)
+   - noguchi 野口浩一 (M,70): giữ Nam B (Lane N dẫn ngôi 3 / nam phụ), thêm speed 0.85 (vai ≥65)
+   - ritsuko 杉本律子 (F,67): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - noguchi_haha 野口の母 (F,70): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - doukyusei_onna 同級生の女性 (F,70): clone_2669056 → clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208 [F_gia_inoue] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep05-hokkaido-iju\characters.json
+   - osamu 浅野修 (M,68): giữ Nam A (Lane N dẫn ngôi 1 俺), thêm speed 0.85 (vai ≥65)
+   - keiko 浅野恵子 (F,68): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - tonari_okusan 隣の家の奥さん (F,72): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - ko 放課後教室の男の子 (M,9): clone_2669056 → Innocent Boy — trẻ em (bé gái dùng tạm) [MF_treem] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep06-nenkin-kutsunaoshi\characters.json
+   - shinya 長谷川信也 (M,73): elevenlabs_JBFqnCBsd6RMkjVDRZzb → Nam A (Lane N dẫn ngôi 1 俺) [M_gia_namA] — lý do: George — anh chê 'yếu và trẻ quá' cho ông 74 (Lane N ep05) và 'quá hiền' cho ông 70 (ep04)
+   - harue 相沢春江 (F,66): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - tae 山口タエ (F,91): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - kayoko 長谷川佳代子 (F,71): clone_2669056 → clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208 [F_gia_inoue] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - wakai_otoko 駅の向こうの若い男 (M,28): clone_2669055 → Kenji — nam 20–30 [M_kenji] — lý do: giọng không hợp tuổi/giới này
+   - nu_phu 団地の女性・常連客 (F,70): clone_2669056 → 6a Haruko — ấm, thân thiện [F_trungcao_haruko] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep07-taiken-ikebana\characters.json
+   - sugano 菅野良枝 (F,64): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+   - kiyo 小坂キヨ (F,86): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep08-koukyu-home\characters.json
+   - kazuko 岸本和子 (F,73): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - mukai 向かいの奥さん (F,70): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep09-konkatsu-tenko\characters.json
+   - chizuru 三浦千鶴 (F,64): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep10-campingcar-isshuu\characters.json
+   - toki 高木トキ (F,89): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - miyo 片山美代 (F,70): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep14-saikoyou-sukima\characters.json
+   - miho 杉浦美穂 (F,65): clone_2669056 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\N-senior_korekara\ep15-home-7-omoikomi\characters.json
+   - ke 語り（林房江・一人称） (F,74): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - fusae 林房江 (F,74): clone_2669056 → giọng của ke (cùng một người) — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+   - kiyo 小柳キヨ (F,86): clone_2669056 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep01-shusse-shitakunai\characters.json
+   - takahashi 高橋 (M,27): minimax_303589579907151 → Kisakuna Takuya [M_takuya] — lý do: Shiryobukai F0 88 Hz nghe như ông già — cấm vai trẻ (Lane F ep16, 11/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep04-kasuhara-futsuu-no-hito\characters.json
+   - sano 佐野 (M,67): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+   - tsuma 佐野の妻 (F,65): minimax_209536448462914 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep06-fukugyou-kyuuzou\characters.json
+   - tenshu 居酒屋の店主 (M,48): minimax_209536448462922 → Dominant Man (MiniMax) — uy, cứng [M_dominant] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep08-nengajou-jimai\characters.json
+   - shigeo 宮下重雄 (M,72): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+   - murai 村井 (M,72): giữ Serious Commander — nghiêm, cứng, thêm speed 0.85 (vai ≥65)
+   - oba 伯母 (F,67): minimax_303591230320707 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep11-gojuudai-tanoshikunai\characters.json
+   - shacho 深山木材の社長 (M,72): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep12-konkatsu-dansei-kieru\characters.json
+   - haha 相葉の母 (F,66): minimax_303591230320707 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep14-revenge-taishoku\characters.json
+   - kaicho 会長 (M,75): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+   - owner オーナー (M,66): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep16-souki-taishoku\characters.json
+   - aite 近隣の住人 (F,65): minimax_303591230320707 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep17-ikusei-cancel\characters.json
+   - hamaoka 浜岡 (M,74): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+   - haha 黛の母 (F,80): minimax_209536448462914 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: giọng không hợp tuổi/giới này
+   - haisha 配車担当 (M,45): minimax_303592971526209 → Gentle Butler [M_butler] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep18-futsuu-no-hito\characters.json
+   - haha 真帆の母 (F,65): minimax_303591230320707 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep21-motobuchou-konkatsu\characters.json
+   - hasebe 長谷部 (M,65): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - shida 志田 (M,72): giữ 3a ông làm vườn — đôn hậu, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep22-izakaya-hitode\characters.json
+   - gen 源さん (M,70): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\shakai_no_naze\ep23-shajou-seikatsu\characters.json
+   - uketsuke RVパークの受付の男 (M,65): giữ Intellectual Senior (MiniMax), thêm speed 0.85 (vai ≥65)
+   - jinji 人事の担当者 (M,45): minimax_303592971526209 → Dominant Man (MiniMax) — uy, cứng [M_dominant] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep01-suwatte-anaba\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - seito 塾の生徒 (F,16): clone_2665002 → Nữ C (Lane N) — CHỈ vai nữ dưới 65 [F_tre_trungnien_nuC] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep02-shuu3-gozen\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - saeki 佐伯 (M,68): clone_2664999 → Nam A (Lane N dẫn ngôi 1 俺) [M_gia_namA] — lý do: giọng không hợp tuổi/giới này
+   - untenshu 送迎の運転手 (M,70): clone_2664999 → 1c Suzuki 65t — trầm, chậm [M_gia_suzuki] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep03-shizuka-shigoto\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - okano 岡野 (M,65): giữ clone 森本 trưởng kho — tử tế, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep04-asa-2jikan\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - matsuo 松尾 (M,68): clone_2664999 → Nam A (Lane N dẫn ngôi 1 俺) [M_gia_namA] — lý do: giọng không hợp tuổi/giới này
+   - gomi_otoko ゴミ出しの男性 (M,72): clone_2664999 → 1c Suzuki 65t — trầm, chậm [M_gia_suzuki] — lý do: giọng không hợp tuổi/giới này
+   - ojiisan 食堂のおじいさん (M,80): clone_2664999 → Nam B (Lane N dẫn ngôi 3 / nam phụ) [M_namB] — lý do: giọng không hợp tuổi/giới này
+   - kaigo_shokuin 介護職員 (F,30): clone_2665001 → Nữ C (Lane N) — CHỈ vai nữ dưới 65 [F_tre_trungnien_nuC] — lý do: giọng không hợp tuổi/giới này
+   - kodomo ランドセルの子 (M,8): clone_2665002 → Innocent Boy — trẻ em (bé gái dùng tạm) [MF_treem] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep05-saikoyou-kotowaru\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - kancho 館長 (M,65): giữ clone 森本 trưởng kho — tử tế, thêm speed 0.85 (vai ≥65)
+   - tsue_josei 杖の女性 (F,80): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - sakai_okusan 坂井の奥さん (F,68): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - senpai_chousain 先輩の調査員 (F,66): clone_2665002 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+   - sakai_shacho 坂井社長 (M,72): clone_2664999 → 1c Suzuki 65t — trầm, chậm [M_gia_suzuki] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep06-kezurarenai\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - shukuchoku_shokuin 施設の職員 (F,38): clone_2665001 → Nữ C (Lane N) — CHỈ vai nữ dưới 65 [F_tre_trungnien_nuC] — lý do: giọng không hợp tuổi/giới này
+   - otokonoko 学童の男の子 (M,8): clone_2665002 → Innocent Boy — trẻ em (bé gái dùng tạm) [MF_treem] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep07-mensetsu-shitsumon\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - shacho 製本所の社長 (M,70): clone_2664999 → Henry - Smoky + old-mild + punch, 0.9 — cựu quản lý 60+, bề trên [M_betren_henry] — lý do: giọng không hợp tuổi/giới này
+   - joren_kyaku 常連客 (M,68): clone_2664999 → PiropiroRX chậm 0.85 — khàn, kiêu ngạo, mỉa [M_gia_piropiro] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep08-soumu-buki\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - yoshizumi 吉住 (M,70): clone_2664999 → 1c Suzuki 65t — trầm, chậm [M_gia_suzuki] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep09-nenkin-herasazu\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - koga 古賀 (F,68): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - hibino 日比野 (M,67): giữ clone 森本 trưởng kho — tử tế, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep10-jitensha-10pun\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - sugiura 杉浦 (F,66): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - gakusei 学生 (M,20): clone_2664999 → Kenji — nam 20–30 [M_kenji] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep12-keibi-tatteru\characters.json
+   - yanase 柳瀬 (F,66): giữ clone 黒田 (bà tóc bạc, cố vấn) F0 198, thêm speed 0.85 (vai ≥65)
+   - obaasan 手押し車のおばあさん (F,82): clone_2665001 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep14-silver-shigoto\characters.json
+   - murase 村瀬 (M,65): giữ clone 森本 trưởng kho — tử tế, thêm speed 0.85 (vai ≥65)
+   - umeda 梅田 (F,76): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - nu_phu 女性たち (F,80): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - kitamura 北村 (F,37): clone_2664996 → Nữ C (Lane N) — CHỈ vai nữ dưới 65 [F_tre_trungnien_nuC] — lý do: giọng không hợp tuổi/giới này
+   - ogata 尾形 (M,72): clone_2664999 → 1c Suzuki 65t — trầm, chậm [M_gia_suzuki] — lý do: giọng không hợp tuổi/giới này
+   - nam_phu 男性会員たち (M,68): clone_2664997 → Nam A (Lane N dẫn ngôi 1 俺) [M_gia_namA] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep15-70sai-anaba\characters.json
+   - yoshie 芳江 (F,70): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - tomioka 富岡 (F,78): giữ clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208, thêm speed 0.85 (vai ≥65)
+   - kajiyama 梶山 (M,72): clone_2664999 → 4b Katsuji — cộc cằn, sĩ diện [M_cuc_katsuji] — lý do: giọng không hợp tuổi/giới này
+   - nakabayashi 中林 (M,72): clone_2664997 → 1c Suzuki 65t — trầm, chậm [M_gia_suzuki] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\M-teinengo-anaba\ep16-mitsumori\characters.json
+   - osumi 大隅源治 (M,76): clone_2664999 → 1c Suzuki 65t — trầm, chậm [M_gia_suzuki] — lý do: giọng không hợp tuổi/giới này
+   - wakate 若い社員 (M,26): clone_2664997 → Kenji — nam 20–30 [M_kenji] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep01-sekai-isshuu\characters.json
+   - shuzo 真壁修三 (M,66): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - tadahiko 岩瀬忠彦 (M,68): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - tomie 岩瀬登美江 (F,65): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep02-sotsukon\characters.json
+   - susumu 杉浦進 (M,66): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - sawatari 沢渡浩二 (M,66): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - oba 瑞枝の叔母 (F,72): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep03-hataraku-nanajuu\characters.json
+   - takashi 浅沼隆 (M,70): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - kazuyo 和代 (F,67): giữ 2a Tomiko — vợ dịu dàng, thêm speed 0.85 (vai ≥65)
+   - haruo 野々村晴夫 (M,70): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - misako 野々村美佐子 (F,68): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep04-jukunen-saikon\characters.json
+   - akihiko 久保田昭彦 (M,67): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - minoru 大槻稔 (M,70): giữ 3a ông làm vườn — đôn hậu, thêm speed 0.85 (vai ≥65)
+   - kuniko 邦子 (F,65): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+   - tokoya 床屋の親父 (M,70): giữ 4a Susumu — hào sảng, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep05-shokutaku-no-sa\characters.json
+   - yoshiyuki 坂口義之 (M,68): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - noriko 典子 (F,65): giữ 2a Tomiko — vợ dịu dàng, thêm speed 0.85 (vai ≥65)
+   - yasuo 村井康夫 (M,67): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - ob 銀行OB (M,68): giữ 4a Susumu — hào sảng, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep06-asa-juppun\characters.json
+   - masaru 小野寺勝 (M,68): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - sawako 佐和子 (F,65): giữ 2a Tomiko — vợ dịu dàng, thêm speed 0.85 (vai ≥65)
+   - shigeru 宮内茂 (M,70): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - michiyo 宮内道代 (F,67): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep07-tsuma-no-shima\characters.json
+   - katsumi 早瀬克己 (M,66): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - fumio 竹内文雄 (M,68): giữ 4a Susumu — hào sảng, thêm speed 0.85 (vai ≥65)
+   - hatsu 岡野ハツ (F,75): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+   - oyaji 漁師の親父さん (M,70): giữ 3a ông làm vườn — đôn hậu, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep08-hitori-gonen\characters.json
+   - mamoru 長谷部守 (M,68): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - masayo 長谷部昌代 (F,65): giữ 2b Naoko — vợ điềm đạm, cứng rắn (không fx), thêm speed 0.85 (vai ≥65)
+   - tsuyoshi 野口剛 (M,71): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - keiko 野口恵子 (F,68): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep09-musume-no-chikaku\characters.json
+   - masato 片桐正人 (M,69): giữ Saeki 70t (người kể Lane J), thêm speed 0.85 (vai ≥65)
+   - hiromi 片桐弘美 (F,67): giữ 2a Tomiko — vợ dịu dàng, thêm speed 0.85 (vai ≥65)
+   - makoto 岩崎誠 (M,70): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - teruko 岩崎照子 (F,69): clone_2669070 → 6a Haruko — ấm, thân thiện [F_trungcao_haruko] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\J-teinengo-fuufu\ep10-onaji-supa\characters.json
+   - toshio 宇野敏夫 (M,70): giữ 1c Suzuki 65t — trầm, chậm, thêm speed 0.85 (vai ≥65)
+   - fusae 宇野房江 (F,68): giữ 6a Haruko — ấm, thân thiện, thêm speed 0.85 (vai ≥65)
+   - joren 常連の奥さん (F,65): clone_2669078 → 6a Haruko — ấm, thân thiện [F_trungcao_haruko] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\teinengo-real\ep11-mie-no-okane\characters.json
+   - hanbai 販売店の営業 (M,30): minimax_303589579907151 → Kisakuna Takuya [M_takuya] — lý do: Shiryobukai F0 88 Hz nghe như ông già — cấm vai trẻ (Lane F ep16, 11/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\teinengo-real\ep13-datsusara-gyakuten\characters.json
+   - kyaku 昔の客 (M,70): minimax_303587477463165 → PiropiroRX chậm 0.85 — khàn, kiêu ngạo, mỉa [M_gia_piropiro] — lý do: giọng không hợp tuổi/giới này
+   - joushi 若い上司 (M,35): minimax_303589579907151 → Steady Satoshi [M_satoshi] — lý do: Shiryobukai F0 88 Hz nghe như ông già — cấm vai trẻ (Lane F ep16, 11/10)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\teinengo-real\ep14-kokyou-kakure-hi\characters.json
+   - seto 瀬戸 (M,72): minimax_209536448462915 → Intellectual Senior (MiniMax) [M_gia_intellectual] — lý do: giọng không hợp tuổi/giới này
+   - tonari 隣の奥さん (F,70): minimax_303591230320707 → Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn [F_gia_naoko_oldmild] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\teinengo-real\ep17-ie-utte-inaka\characters.json
+   - tonari 隣の主人 (M,68): minimax_209536448462915 → Intellectual Senior (MiniMax) [M_gia_intellectual] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\teinengo-real\ep18-nanajuu-made\characters.json
+   - hori 堀 (M,72): minimax_209536448462915 → Intellectual Senior (MiniMax) [M_gia_intellectual] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\teinengo-real\ep19-tokai-nokoru\characters.json
+   - kimie 根岸君江 (F,64): minimax_303591230320707 → clone 黒田 (bà tóc bạc, cố vấn) F0 198 [F_trungcao_kuroda] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\teinengo-real\ep20-kuriage-60\characters.json
+   - denwa 電話の男 (M,28): elevenlabs_j2wQfRuM1ojMkh3iMJ1c → Kisakuna Takuya [M_takuya] — lý do: giọng ngoài kho
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\yakkyoku-sukatto\ep01-tantou-janai\characters.json
+   - rojin 常連の老人 (M,80): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+   - shinjimu 新しい店の事務さん (F,63): VV:四国めたん/ノーマル → 東北イタコ [VV_F_itako] — lý do: giọng không hợp tuổi/giới này
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\yakkyoku-sukatto\ep02-mae-no-mise\characters.json
+   - rojin 常連の老人 (M,78): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\yakkyoku-sukatto\ep03-taifu-no-yoru\characters.json
+   - rojin 常連の老人 (M,76): giữ ちび式じい — cụ ông, thêm speed 0.85 (vai ≥65)
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\yakkyoku-sukatto\ep06-machidasete\characters.json
+   - tanabe 田辺 (F,79): VV:小夜/SAYO/ノーマル sai (giọng ngoài kho) và kho KHÔNG có giọng F 79 tuổi cho lane này — lane VOICEVOX: bật voice.ai33_cho_vai trong profile để dùng giọng già ai33 → thêm giọng vào E:\CLAUDE\YOUTUBE\h2dev\pipeline\kho_giong.json
+
+E:\CLAUDE\YOUTUBE\h2dev\assets\yakkyoku-sukatto\ep09-honbu-tougou\characters.json
+   - segawa 瀬川さん (F,42): VV:春日部つむぎ/ノーマル → 九州そら [VV_F_sora] — lý do: giọng không hợp tuổi/giới này
+
+→ 76 tập có vai lệch tuổi giọng (CHỈ BÁO, chưa sửa).

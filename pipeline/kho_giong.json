@@ -1,0 +1,1130 @@
+{
+  "_doc": "KHO GIỌNG CHUNG theo KHUNG TUỔI × GIỚI (anh yêu cầu 22/10/2026: cấm mỗi tập lại đi tìm/duyệt giọng, cấm vai già lấy giọng trẻ). Gom từ mọi characters.json đã làm + giọng anh đã chốt. pipeline\\kho_giong.py đọc file này để TỰ ĐIỀN/TỰ SỬA voice trong characters.json (gan_vai.py, xem_thu_hook_giong.py, tts_voicevox.py đều gọi). tuoi = [từ, đến] tuổi NHÂN VẬT mà giọng nghe đúng. duyet: anh = anh đã nghe và chốt · da_dung = đã dùng ở tập thật, anh không chê · du_phong = chỉ dùng khi không còn giọng khác. lanes = lane đã dùng (được ưu tiên để giữ màu kênh); rỗng = mọi lane. chi_khi_tu_khoa = giọng đặc thù (quát/hách dịch), chỉ chọn khi vai/name của nhân vật chứa 1 từ trong tu_khoa. fx = tên preset trong pipeline\\tts.py VOICE_FX (ghép nhiều preset bằng dấu +). Thêm giọng anh vừa chốt: py -3.13 -X utf8 E:\\CLAUDE\\YOUTUBE\\h2dev\\pipeline\\kho_giong.py --them ...",
+  "khung_tuoi": {
+    "tre_em": [
+      0,
+      12
+    ],
+    "thieu_nien": [
+      13,
+      19
+    ],
+    "tre": [
+      20,
+      34
+    ],
+    "trung_nien": [
+      35,
+      49
+    ],
+    "trung_cao": [
+      50,
+      64
+    ],
+    "gia": [
+      65,
+      79
+    ],
+    "rat_gia": [
+      80,
+      120
+    ]
+  },
+  "toc_do_gia": {
+    "_note": "vai ≥65 tuổi chưa khai speed → đặt 0.85 (anh chốt 05/10 Lane N ep06: người già không nói nhanh)",
+    "tu_tuoi": 65,
+    "speed": 0.85
+  },
+  "cam": [
+    {
+      "voice_id": "clone_2669056",
+      "gioi": "F",
+      "tu_tuoi": 65,
+      "ly_do": "Nữ C — anh chê 'nghe trẻ quá' cho bà 72 (Lane N ep07, 06/10)"
+    },
+    {
+      "speaker": "もち子さん",
+      "gioi": "F",
+      "tu_tuoi": 65,
+      "ly_do": "anh chê 'nghe trẻ quá' cho cụ bà 88 (Lane O ep11, 17/10)"
+    },
+    {
+      "speaker": "離途",
+      "gioi": "F",
+      "tu_tuoi": 0,
+      "ly_do": "離途 là giọng NAM — cấm vai nữ (Lane O ep13, 17/10)"
+    },
+    {
+      "voice_id": "minimax_303589579907151",
+      "tu_tuoi": 0,
+      "den_tuoi": 49,
+      "ly_do": "Shiryobukai F0 88 Hz nghe như ông già — cấm vai trẻ (Lane F ep16, 11/10)"
+    },
+    {
+      "voice_id": "elevenlabs_JBFqnCBsd6RMkjVDRZzb",
+      "gioi": "M",
+      "tu_tuoi": 65,
+      "ly_do": "George — anh chê 'yếu và trẻ quá' cho ông 74 (Lane N ep05) và 'quá hiền' cho ông 70 (ep04)"
+    }
+  ],
+  "giong": [
+    {
+      "ma": "F_gia_naoko_oldmild",
+      "provider": "ai33",
+      "voice_id": "clone_2669070",
+      "ten": "Naoko (clone Lane J) + fx old-mild, chậm 0.85 — khàn, già, buồn",
+      "gioi": "F",
+      "tuoi": [
+        65,
+        100
+      ],
+      "speed": 0.85,
+      "fx": "old-mild",
+      "lanes": [],
+      "duyet": "anh",
+      "nguon": "anh chọn bản D 06/10 Lane N ep07 (千代子 72); dùng lại Lane O ep11 ヒサ 88 (17/10)"
+    },
+    {
+      "ma": "F_gia_calmlady",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462918",
+      "ten": "Calm Lady (MiniMax) chậm 0.85",
+      "gioi": "F",
+      "tuoi": [
+        70,
+        95
+      ],
+      "speed": 0.85,
+      "lanes": [
+        "teinengo-real"
+      ],
+      "duyet": "du_phong",
+      "nguon": "Lane F cast_bank 高齢女性 80代 — 'gần nhất', anh chưa chốt"
+    },
+    {
+      "ma": "F_gia_inoue",
+      "provider": "ai33",
+      "voice_id": "clone_2665001",
+      "ten": "clone 井上 (nữ 69 tuổi kênh mẫu Lane M) F0 208",
+      "gioi": "F",
+      "tuoi": [
+        60,
+        78
+      ],
+      "lanes": [
+        "teinengo-anaba"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane M cast_bank 年配の女性同僚"
+    },
+    {
+      "ma": "F_trungcao_kuroda",
+      "provider": "ai33",
+      "voice_id": "clone_2664996",
+      "ten": "clone 黒田 (bà tóc bạc, cố vấn) F0 198",
+      "gioi": "F",
+      "tuoi": [
+        55,
+        75
+      ],
+      "lanes": [
+        "teinengo-anaba"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane M — anh duyệt đạt"
+    },
+    {
+      "ma": "F_trungcao_haruko",
+      "provider": "ai33",
+      "voice_id": "clone_2669064",
+      "ten": "6a Haruko — ấm, thân thiện",
+      "gioi": "F",
+      "tuoi": [
+        55,
+        72
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J nữ phụ lớn tuổi"
+    },
+    {
+      "ma": "F_trungcao_tomiko",
+      "provider": "ai33",
+      "voice_id": "clone_2669071",
+      "ten": "2a Tomiko — vợ dịu dàng",
+      "gioi": "F",
+      "tuoi": [
+        50,
+        68
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J vợ mặc định"
+    },
+    {
+      "ma": "F_trungcao_naoko",
+      "provider": "ai33",
+      "voice_id": "clone_2669070",
+      "ten": "2b Naoko — vợ điềm đạm, cứng rắn (không fx)",
+      "gioi": "F",
+      "tuoi": [
+        45,
+        64
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J vợ nói thẳng"
+    },
+    {
+      "ma": "F_tre_trungnien_nuC",
+      "provider": "ai33",
+      "voice_id": "clone_2669056",
+      "ten": "Nữ C (Lane N) — CHỈ vai nữ dưới 65",
+      "gioi": "F",
+      "tuoi": [
+        20,
+        60
+      ],
+      "lanes": [
+        "senior_korekara"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane N anh duyệt 30/09 cho vai nữ; 06/10 anh chê dùng cho bà 72"
+    },
+    {
+      "ma": "F_kindlady",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462916",
+      "ten": "Kind Lady (MiniMax)",
+      "gioi": "F",
+      "tuoi": [
+        40,
+        64
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane L người dẫn; Lane F nữ gia đình"
+    },
+    {
+      "ma": "F_dependable",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462914",
+      "ten": "Dependable Woman (MiniMax)",
+      "gioi": "F",
+      "tuoi": [
+        35,
+        60
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L nữ chuyên môn, mẹ"
+    },
+    {
+      "ma": "F_akane_sac",
+      "provider": "ai33",
+      "voice_id": "minimax_303591230320707",
+      "ten": "Tsuyoki na Akane — sắc sảo",
+      "gioi": "F",
+      "tuoi": [
+        35,
+        60
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L"
+    },
+    {
+      "ma": "F_khach_gian",
+      "provider": "ai33",
+      "voice_id": "clone_2665002",
+      "ten": "clone khách nữ nổi giận F0 232",
+      "gioi": "F",
+      "tuoi": [
+        30,
+        60
+      ],
+      "lanes": [
+        "teinengo-anaba"
+      ],
+      "duyet": "da_dung",
+      "chi_khi_tu_khoa": true,
+      "tu_khoa": [
+        "怒",
+        "クレーム",
+        "客",
+        "giận",
+        "quát"
+      ],
+      "nguon": "Lane M"
+    },
+    {
+      "ma": "F_aoi",
+      "provider": "ai33",
+      "voice_id": "minimax_303589579907179",
+      "ten": "Odayaka na Aoi — nhẹ, ấm",
+      "gioi": "F",
+      "tuoi": [
+        28,
+        45
+      ],
+      "lanes": [
+        "teinengo-real"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F nữ quầy 30代"
+    },
+    {
+      "ma": "F_letan_J",
+      "provider": "ai33",
+      "voice_id": "clone_2669078",
+      "ten": "6b lễ tân lịch sự",
+      "gioi": "F",
+      "tuoi": [
+        22,
+        45
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J"
+    },
+    {
+      "ma": "F_haruka",
+      "provider": "ai33",
+      "voice_id": "minimax_303591230320750",
+      "ten": "Fresh Haruka",
+      "gioi": "F",
+      "tuoi": [
+        18,
+        34
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L nữ trẻ"
+    },
+    {
+      "ma": "F_mizuki",
+      "provider": "ai33",
+      "voice_id": "minimax_303591230320723",
+      "ten": "Reserved Mizuki",
+      "gioi": "F",
+      "tuoi": [
+        20,
+        35
+      ],
+      "lanes": [
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane L"
+    },
+    {
+      "ma": "F_maiden",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462924",
+      "ten": "Graceful Maiden",
+      "gioi": "F",
+      "tuoi": [
+        18,
+        30
+      ],
+      "lanes": [
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane L さくら 23–25"
+    },
+    {
+      "ma": "M_gia_piropiro",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_YkUoVuNq2782tso28g8Q",
+      "ten": "PiropiroRX chậm 0.85 — khàn, kiêu ngạo, mỉa",
+      "gioi": "M",
+      "tuoi": [
+        62,
+        85
+      ],
+      "speed": 0.85,
+      "lanes": [],
+      "duyet": "anh",
+      "chi_khi_tu_khoa": true,
+      "tu_khoa": [
+        "威張",
+        "自慢",
+        "頑固",
+        "嫌味",
+        "見栄",
+        "kiêu",
+        "khoe",
+        "hách",
+        "mỉa"
+      ],
+      "nguon": "anh chốt Lane N ep04 黒川"
+    },
+    {
+      "ma": "M_gia_piropiro_to",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_YkUoVuNq2782tso28g8Q",
+      "ten": "PiropiroRX + fx punch — ông già nói to, cộc",
+      "gioi": "M",
+      "tuoi": [
+        62,
+        85
+      ],
+      "speed": 1.0,
+      "fx": "punch",
+      "lanes": [],
+      "duyet": "anh",
+      "chi_khi_tu_khoa": true,
+      "tu_khoa": [
+        "怒鳴",
+        "大声",
+        "命令",
+        "会長",
+        "nói to",
+        "quát"
+      ],
+      "nguon": "anh chốt Lane N ep05 工藤"
+    },
+    {
+      "ma": "M_sep_masafumi",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_nkmkwBCNHgzLGGnbmMTD",
+      "ten": "Masafumi + fx punch — sếp văn phòng quát",
+      "gioi": "M",
+      "tuoi": [
+        38,
+        62
+      ],
+      "speed": 1.05,
+      "fx": "punch",
+      "lanes": [],
+      "duyet": "anh",
+      "chi_khi_tu_khoa": true,
+      "tu_khoa": [
+        "部長",
+        "課長",
+        "上司",
+        "社長",
+        "怒鳴",
+        "パワハラ",
+        "quát",
+        "hách"
+      ],
+      "nguon": "anh chốt Lane L ep09 権藤"
+    },
+    {
+      "ma": "M_betren_henry",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_2UGDsJpBJAiAlF0jQQ7x",
+      "ten": "Henry - Smoky + old-mild + punch, 0.9 — cựu quản lý 60+, bề trên",
+      "gioi": "M",
+      "tuoi": [
+        55,
+        70
+      ],
+      "speed": 0.9,
+      "fx": "old-mild+punch",
+      "lanes": [
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung",
+      "chi_khi_tu_khoa": true,
+      "tu_khoa": [
+        "元部長",
+        "部長",
+        "施設長",
+        "社長",
+        "理事長",
+        "営業部長",
+        "hách",
+        "bề trên"
+      ],
+      "nguon": "Lane O ep04 志村, ep11 蓮見"
+    },
+    {
+      "ma": "M_gia_ongvuon",
+      "provider": "ai33",
+      "voice_id": "clone_2669073",
+      "ten": "3a ông làm vườn — đôn hậu",
+      "gioi": "M",
+      "tuoi": [
+        65,
+        85
+      ],
+      "speed": 0.85,
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J ông lão nói đạo lý"
+    },
+    {
+      "ma": "M_gia_onglao",
+      "provider": "ai33",
+      "voice_id": "clone_2669074",
+      "ten": "3b ông lão bờ sông — từ tốn",
+      "gioi": "M",
+      "tuoi": [
+        70,
+        95
+      ],
+      "speed": 0.85,
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J cast_bank"
+    },
+    {
+      "ma": "M_gia_intellectual",
+      "provider": "ai33",
+      "voice_id": "minimax_209533299589242",
+      "ten": "Intellectual Senior (MiniMax)",
+      "gioi": "M",
+      "tuoi": [
+        62,
+        85
+      ],
+      "speed": 0.85,
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L ông 70+ ôn hoà"
+    },
+    {
+      "ma": "M_gia_namA",
+      "provider": "ai33",
+      "voice_id": "clone_2669111",
+      "ten": "Nam A (Lane N dẫn ngôi 1 俺)",
+      "gioi": "M",
+      "tuoi": [
+        55,
+        80
+      ],
+      "lanes": [
+        "senior_korekara"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane N anh chốt 30/09; ≥65 đọc 0.85"
+    },
+    {
+      "ma": "M_namB",
+      "provider": "ai33",
+      "voice_id": "clone_2669055",
+      "ten": "Nam B (Lane N dẫn ngôi 3 / nam phụ)",
+      "gioi": "M",
+      "tuoi": [
+        40,
+        80
+      ],
+      "lanes": [
+        "senior_korekara"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane N anh duyệt 30/09"
+    },
+    {
+      "ma": "M_gia_suzuki",
+      "provider": "ai33",
+      "voice_id": "clone_2669121",
+      "ten": "1c Suzuki 65t — trầm, chậm",
+      "gioi": "M",
+      "tuoi": [
+        60,
+        78
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane J anh chọn 1c"
+    },
+    {
+      "ma": "M_gia_saeki",
+      "provider": "ai33",
+      "voice_id": "clone_2669068",
+      "ten": "Saeki 70t (người kể Lane J)",
+      "gioi": "M",
+      "tuoi": [
+        60,
+        78
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane J người kể"
+    },
+    {
+      "ma": "M_gia_susumu",
+      "provider": "ai33",
+      "voice_id": "clone_2669077",
+      "ten": "4a Susumu — hào sảng",
+      "gioi": "M",
+      "tuoi": [
+        60,
+        75
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J bạn cùng tuổi"
+    },
+    {
+      "ma": "M_cuc_katsuji",
+      "provider": "ai33",
+      "voice_id": "clone_2669076",
+      "ten": "4b Katsuji — cộc cằn, sĩ diện",
+      "gioi": "M",
+      "tuoi": [
+        55,
+        72
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "chi_khi_tu_khoa": true,
+      "tu_khoa": [
+        "ぶっきらぼう",
+        "頑固",
+        "見栄",
+        "cộc",
+        "sĩ diện"
+      ],
+      "nguon": "Lane J"
+    },
+    {
+      "ma": "M_gia_F_ke",
+      "provider": "ai33",
+      "voice_id": "clone_2658911",
+      "ten": "người kể 俺 Lane F",
+      "gioi": "M",
+      "tuoi": [
+        58,
+        75
+      ],
+      "lanes": [
+        "teinengo-real"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane F người kể"
+    },
+    {
+      "ma": "M_trungcao_tajima",
+      "provider": "ai33",
+      "voice_id": "clone_2665004",
+      "ten": "田島 người kể Lane M",
+      "gioi": "M",
+      "tuoi": [
+        55,
+        72
+      ],
+      "lanes": [
+        "teinengo-anaba"
+      ],
+      "duyet": "anh",
+      "nguon": "Lane M người kể"
+    },
+    {
+      "ma": "M_trungcao_commander",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462912",
+      "ten": "Serious Commander — nghiêm, cứng",
+      "gioi": "M",
+      "tuoi": [
+        50,
+        72
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L"
+    },
+    {
+      "ma": "M_garyu",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_xeizJaHsHrlfQdJJQmlK",
+      "ten": "Garyu — điềm tĩnh",
+      "gioi": "M",
+      "tuoi": [
+        45,
+        65
+      ],
+      "lanes": [
+        "teinengo-real"
+      ],
+      "duyet": "du_phong",
+      "nguon": "Lane F 1 tập"
+    },
+    {
+      "ma": "M_george",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_JBFqnCBsd6RMkjVDRZzb",
+      "ten": "George — nói phẳng, hiền (CẤM ông già nói to)",
+      "gioi": "M",
+      "tuoi": [
+        45,
+        64
+      ],
+      "lanes": [
+        "senior_korekara"
+      ],
+      "duyet": "du_phong",
+      "nguon": "Lane N — anh chê cho vai 70+"
+    },
+    {
+      "ma": "M_dominant",
+      "provider": "ai33",
+      "voice_id": "minimax_209533299589246",
+      "ten": "Dominant Man (MiniMax) — uy, cứng",
+      "gioi": "M",
+      "tuoi": [
+        45,
+        62
+      ],
+      "lanes": [
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane L 課長/黛"
+    },
+    {
+      "ma": "M_butler",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462915",
+      "ten": "Gentle Butler",
+      "gioi": "M",
+      "tuoi": [
+        40,
+        60
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L trung niên"
+    },
+    {
+      "ma": "M_morimoto",
+      "provider": "ai33",
+      "voice_id": "clone_2664999",
+      "ten": "clone 森本 trưởng kho — tử tế",
+      "gioi": "M",
+      "tuoi": [
+        35,
+        64
+      ],
+      "lanes": [
+        "teinengo-anaba"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane M"
+    },
+    {
+      "ma": "M_miyake",
+      "provider": "ai33",
+      "voice_id": "clone_2664997",
+      "ten": "clone 三宅主任",
+      "gioi": "M",
+      "tuoi": [
+        35,
+        60
+      ],
+      "lanes": [
+        "teinengo-anaba"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane M"
+    },
+    {
+      "ma": "M_satoshi",
+      "provider": "ai33",
+      "voice_id": "minimax_303587477463165",
+      "ten": "Steady Satoshi",
+      "gioi": "M",
+      "tuoi": [
+        30,
+        55
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L"
+    },
+    {
+      "ma": "M_kento",
+      "provider": "ai33",
+      "voice_id": "clone_2669062",
+      "ten": "5a Kento — nam trẻ",
+      "gioi": "M",
+      "tuoi": [
+        20,
+        42
+      ],
+      "lanes": [
+        "teinengo-fuufu"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane J con trai/đàn em"
+    },
+    {
+      "ma": "M_kenji",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_j2wQfRuM1ojMKh3iMJ1c",
+      "ten": "Kenji — nam 20–30",
+      "gioi": "M",
+      "tuoi": [
+        20,
+        34
+      ],
+      "lanes": [],
+      "duyet": "anh",
+      "nguon": "anh chọn 11/10 Lane F ep16"
+    },
+    {
+      "ma": "M_takuya",
+      "provider": "ai33",
+      "voice_id": "minimax_303592971526209",
+      "ten": "Kisakuna Takuya",
+      "gioi": "M",
+      "tuoi": [
+        20,
+        35
+      ],
+      "lanes": [
+        "teinengo-real",
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F/L"
+    },
+    {
+      "ma": "M_kaito",
+      "provider": "ai33",
+      "voice_id": "elevenlabs_fumz37wr3YJ8VD5HWENG",
+      "ten": "Kaito — dự phòng Kenji",
+      "gioi": "M",
+      "tuoi": [
+        20,
+        32
+      ],
+      "lanes": [],
+      "duyet": "du_phong",
+      "nguon": "dự phòng 11/10"
+    },
+    {
+      "ma": "M_student",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462922",
+      "ten": "Sporty Student",
+      "gioi": "M",
+      "tuoi": [
+        13,
+        22
+      ],
+      "lanes": [
+        "shakai_no_naze"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane L"
+    },
+    {
+      "ma": "MF_treem",
+      "provider": "ai33",
+      "voice_id": "minimax_209536448462923",
+      "ten": "Innocent Boy — trẻ em (bé gái dùng tạm)",
+      "gioi": "MF",
+      "tuoi": [
+        3,
+        12
+      ],
+      "speed": 1.0,
+      "lanes": [
+        "teinengo-real"
+      ],
+      "duyet": "da_dung",
+      "nguon": "Lane F con/cháu"
+    },
+    {
+      "ma": "VV_F_tsumugi",
+      "provider": "voicevox",
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "ten": "春日部つむぎ",
+      "gioi": "F",
+      "tuoi": [
+        18,
+        30
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_F_metan",
+      "provider": "voicevox",
+      "speaker": "四国めたん",
+      "style": "ノーマル",
+      "ten": "四国めたん",
+      "gioi": "F",
+      "tuoi": [
+        20,
+        40
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_F_ritsu",
+      "provider": "voicevox",
+      "speaker": "波音リツ",
+      "style": "ノーマル",
+      "ten": "波音リツ",
+      "gioi": "F",
+      "tuoi": [
+        25,
+        45
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_F_sora",
+      "provider": "voicevox",
+      "speaker": "九州そら",
+      "style": "ノーマル",
+      "ten": "九州そら",
+      "gioi": "F",
+      "tuoi": [
+        30,
+        50
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_F_himari",
+      "provider": "voicevox",
+      "speaker": "冥鳴ひまり",
+      "style": "ノーマル",
+      "ten": "冥鳴ひまり",
+      "gioi": "F",
+      "tuoi": [
+        28,
+        58
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_F_no7",
+      "provider": "voicevox",
+      "speaker": "No.7",
+      "style": "ノーマル",
+      "ten": "No.7",
+      "gioi": "F",
+      "tuoi": [
+        30,
+        58
+      ],
+      "lanes": [
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung",
+      "nguon": "thay 離途 17/10"
+    },
+    {
+      "ma": "VV_F_itako",
+      "provider": "voicevox",
+      "speaker": "東北イタコ",
+      "style": "ノーマル",
+      "ten": "東北イタコ",
+      "gioi": "F",
+      "tuoi": [
+        40,
+        62
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_F_mochiko",
+      "provider": "voicevox",
+      "speaker": "もち子さん",
+      "style": "ノーマル",
+      "ten": "もち子さん — CHỈ dưới 65",
+      "gioi": "F",
+      "tuoi": [
+        30,
+        55
+      ],
+      "lanes": [
+        "kaigo-sukatto"
+      ],
+      "duyet": "du_phong",
+      "nguon": "anh chê trẻ cho cụ bà 88"
+    },
+    {
+      "ma": "VV_M_kotaro",
+      "provider": "voicevox",
+      "speaker": "白上虎太郎",
+      "style": "ふつう",
+      "ten": "白上虎太郎",
+      "gioi": "M",
+      "tuoi": [
+        18,
+        35
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_M_saehaku",
+      "provider": "voicevox",
+      "speaker": "黒沢冴白",
+      "style": "ノーマル",
+      "ten": "黒沢冴白",
+      "gioi": "M",
+      "tuoi": [
+        20,
+        45
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_M_tobari",
+      "provider": "voicevox",
+      "speaker": "夜語トバリ",
+      "style": "ノーマル",
+      "ten": "夜語トバリ",
+      "gioi": "M",
+      "tuoi": [
+        35,
+        60
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_M_rito",
+      "provider": "voicevox",
+      "speaker": "離途",
+      "style": "ノーマル",
+      "ten": "離途 (giọng NAM)",
+      "gioi": "M",
+      "tuoi": [
+        30,
+        55
+      ],
+      "lanes": [],
+      "duyet": "du_phong"
+    },
+    {
+      "ma": "VV_M_wakamatsu",
+      "provider": "voicevox",
+      "speaker": "雀松朱司",
+      "style": "ノーマル",
+      "ten": "雀松朱司 (nhẹ — không dùng vai hách dịch)",
+      "gioi": "M",
+      "tuoi": [
+        40,
+        64
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_M_sorin",
+      "provider": "voicevox",
+      "speaker": "麒ヶ島宗麟",
+      "style": "ノーマル",
+      "ten": "麒ヶ島宗麟",
+      "gioi": "M",
+      "tuoi": [
+        50,
+        75
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    },
+    {
+      "ma": "VV_M_jii",
+      "provider": "voicevox",
+      "speaker": "ちび式じい",
+      "style": "ノーマル",
+      "ten": "ちび式じい — cụ ông",
+      "gioi": "M",
+      "tuoi": [
+        70,
+        100
+      ],
+      "lanes": [
+        "yakkyoku-sukatto",
+        "kaigo-sukatto"
+      ],
+      "duyet": "da_dung"
+    }
+  ]
+}

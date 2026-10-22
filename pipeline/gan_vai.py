@@ -26,6 +26,7 @@ import age_lock_guard     # noqa: E402
 import cau_vai            # noqa: E402
 import claude_p_bridge    # noqa: E402
 import gate_common        # noqa: E402
+import kho_giong          # noqa: E402
 import profiles           # noqa: E402
 from llm_client import LLMError  # noqa: E402
 
@@ -91,6 +92,8 @@ def chay(prof, slug):
     cf = d / "characters.json"
     if not cf.exists():
         raise SystemExit(f"✗ thiếu {cf} — lớp 1 viết characters.json (id, name, vai, age, gender, look, ref, voice) trước")
+    # 22/10 (anh): giọng vai lấy theo KHO GIỌNG chung theo khung tuổi — tự điền/sửa, cụ bà không được giọng trẻ
+    kho_giong.chan(prof, cf)
     chars = json.loads(cf.read_text(encoding="utf-8")).get("characters") or []
     age_lock_guard.chan(chars, str(cf))
     cau = cau_vai.tach_cau((d / "script.txt").read_text(encoding="utf-8"))

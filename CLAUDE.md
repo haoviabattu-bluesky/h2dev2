@@ -59,6 +59,7 @@ Lane A/D/E đã BỎ 29/09, Satori (`satori-jp-obaa`) BỎ 17/10 — không tái
 - ⛔ Máy 2 trả hàng `results\{img_render|video_render}\<sheet_tab>\<slug>\` (tra `pipeline\duong_ket_qua.py`); `results\` ở máy 1 là receiveonly — cấm tự `mv`.
 - ⛔ Xong phần máy 1: cột D=`Đã giao máy 2` + K=lệnh cho máy 2 + H=`cần ảnh (N ảnh, ~Xđ)` (`pipeline\dong_goi_may2.py --job` tự ghi).
 - ⛔ (03/10) Cột D/K ghi công việc đang làm, tool tự ghi: `Đang chạy kịch bản bước 1` → `Chờ kiểm tra kịch bản` (+K lệnh nhận) → `Đang làm Hook` → `Đã giao máy 2` (+K lệnh máy 2): `docs/TRANG_THAI_COT_D_K.md`.
+- ⛔ (22/10) GIỌNG VAI theo KHO CHUNG khung tuổi `pipeline\kho_giong.json` — máy tự điền/sửa (gan_vai/xem_thu_hook_giong/tts_voicevox), cấm tự đi tìm giọng hay bắt anh duyệt lại, cấm vai già giọng trẻ: `docs/KHO_GIONG_THEO_TUOI.md`.
 - ⛔ (03/10) Nghỉ khi đọc: câu ≥0,5s, đoạn ≥1,0s (code ghim sàn 0,5/1,1s trong `pipeline\pace_audio.py`, tự dò hệ số không kéo thấp hơn).
 - ⛔ (10/10) Sinh ảnh: **ima2 trước tiên**, ima2 lỗi mới sang gpti2 → ckey/vilao/imgstudio (`docs/QUY_TAC_CHUNG_DU_AN.md` §THỨ TỰ PROVIDER ẢNH).
 - ⛔ (16/10) ẢNH HOOK: Google Flow profile Ultra nguyenquoctuan (cổng 9350) → cổng bận → 9router → gpti2, 1 lệnh `pipeline\anh_hook.py <tập>\hook`; các tập KHÔNG chạy profile song song (khoá `pipeline\khoa_ultra.py`, chung với `vids_hook.py`): `docs/QUY_TRINH_ANH_HOOK_GOOGLE_FLOW.md`.

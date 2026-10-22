@@ -45,7 +45,7 @@ Tool tự: kiểm D = `Đã sửa kịch bản` (chạy lại khi D = `Đang là
   → rút luật, ghi `C:\Users\admin\.claude\skills\youtube-kich-ban\BAI_HOC.md` (skill `youtube-kich-ban` §5), báo anh 3–5 dòng.
 
 ## 2. Cast + giọng
-`characters.json` theo mục nhân vật của SOP lane (vai chính khoá mặt xuyên tập + vai phụ, voice_id từ cast_bank) → gán vai từng câu (`vai.txt`):
+`characters.json` theo mục nhân vật của SOP lane (vai chính khoá mặt xuyên tập + vai phụ; MỌI vai có lời phải khai `age` + `gender`, vai già tách riêng khỏi vai nhóm) → gán vai từng câu (`vai.txt`). ⛔ (22/10) Giọng vai KHÔNG tự tìm, KHÔNG hỏi anh duyệt: `gan_vai.py` tự gọi `pipeline\kho_giong.py` lấy giọng theo KHUNG TUỔI từ kho chung `E:\CLAUDE\YOUTUBE\h2dev\pipeline\kho_giong.json` (cụ bà ≥65 = Naoko + old-mild + 0.85…) — xem `docs/KHO_GIONG_THEO_TUOI.md`:
 ```bat
 py -3.13 -X utf8 E:\CLAUDE\YOUTUBE\h2dev\pipeline\gan_vai.py --profile <lane> --slug <thư mục tập>
 ```

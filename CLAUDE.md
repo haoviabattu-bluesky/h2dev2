@@ -44,6 +44,7 @@ Lane A/D/E đã BỎ 29/09, Satori (`satori-jp-obaa`) BỎ 17/10 — không tái
 6. Gói đăng 1 lời hứa ở 4 chỗ (`pipeline/qc_goi_dang.py`) · 7. ⛔ Cổng S1L trước khi viết.
 8. ⛔ Hook = video sinh (Google Vids chính `tools\hook_lane_g\vids_hook.py` từ 16/10, Grok dự phòng), ảnh tĩnh phải khai `script.hook.visual_exception` · 9. ⛔ Hình hook máy 1 làm, máy 2 chỉ ghép · 10. ⛔ Có `HOOK_TAP.md` (`pipeline\hook_tap_md.py`).
 12. (01/10) Hook CHỈ nhạc nền (CẤM SFX đồ vật), kiểm bối cảnh cảnh (gọi điện ≠ gặp mặt): `docs/QUY_TAC_HOOK_DAI_VA_NHAC_NEN.md`.
+17. (23/10) ⛔ Nhạc nền + nhạc hook: CẤM Suno/ai33 — CHỈ Thư viện âm thanh YouTube Studio (giấy phép YouTube), mỗi kênh bài riêng (sổ chung `FlowHandoff_local\shared\nhac_audio_library\so_dang_ky_bai.json`): `docs/QUY_TAC_NHAC_NEN.md`.
 13. (01/10, sửa 03/10) ⛔ Mốc giao máy 3: KHÔNG viết file riêng tập — nhận bản sửa theo 1 file chung `docs/NHAN_KICH_BAN_MAY3.md`; cột K dòng tập = lệnh nhận (tool tự ghi). Mốc giao máy 2: `HUONG_DAN_TAP_TIEP_THEO.md` + đè cột K (`pipeline\huong_dan_tab_moi.py --loai tiep`, tab bổ sung `--ghi-chu-file`).
 15. (02/10) ⛔ Trước khi giao máy 2: dựng CLIP HOOK XEM THỬ có giọng + phụ đề Việt (`tools\hook_lane_g\xem_thu_hook_giong.py`) → `pipeline\duyet_hook.py --gui` (D=`Chờ duyệt hook`) → DỪNG; anh duyệt mới `--nhan` + `dong_goi_may2` (cổng chặn cứng).
 14. (01/10) ⛔ Tiêu đề/mô tả/thumbnail TẮT toàn bộ lane (`goi_title.py` `TAT_TOAN_DU_AN=True`) — cấm gọi TITLE/`--bat`; chỉ anh tự mở lại.

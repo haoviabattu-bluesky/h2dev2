@@ -12,6 +12,7 @@ Flow (verify thật 2026-09-07):
 
 Giọng Satori JP: elevenlabs_7arouBAZXrSnH9IwDlWQ (Enishi - Deep Japanese Storyteller).
 """
+import os
 import time
 
 import requests
@@ -220,7 +221,13 @@ def _music_audio_url(meta):
 
 
 def generate_music(prompt, instrumental=True, create_mode="simple", tags="", title="", timeout=MUSIC_POLL_TIMEOUT):
-    """Sinh nhạc Suno (mặc định INSTRUMENTAL cho BGM). Trả bytes mp3 của bài đầu tiên."""
+    """Sinh nhạc Suno (mặc định INSTRUMENTAL cho BGM). Trả bytes mp3 của bài đầu tiên.
+    ⛔ KHOÁ từ 2026-10-23 (anh chốt): nhạc Suno qua ai33 không có chứng từ giấy phép → dễ bị claim.
+    Dùng Thư viện âm thanh YouTube: pipeline/bgm_audio_library.py + pipeline/nhac_hook_tu_thu_vien.py
+    (luật docs/QUY_TAC_NHAC_NEN.md). Chỉ mở lại khi anh cho phép: env H2DEV_CHO_PHEP_SUNO=1."""
+    if os.environ.get("H2DEV_CHO_PHEP_SUNO") != "1":
+        raise RuntimeError("Suno đã CẤM từ 2026-10-23 — dùng pipeline/nhac_hook_tu_thu_vien.py (hook) / "
+                           "pipeline/bgm_audio_library.py (bài lane). Luật: docs/QUY_TAC_NHAC_NEN.md")
     payload = {"create_mode": create_mode, "make_instrumental": bool(instrumental)}
     if create_mode == "simple":
         payload["gpt_description_prompt"] = prompt

@@ -13,8 +13,9 @@
 - Profile: `script.hook.sfx: false` + `script.hook.nhac_nen: true` (cổng `qc_goi_dang.cong_truoc_khi_viet` chặn nếu sai). Body video: `assemble.sfx.enabled: false`.
 - `hook_timeline.json`: `"sfx": []` + `"nen": {"file":"sfx/99_nhac_buon.mp3","loai":"nhac",...}`. `ghep_hook_noi_truoc.py` và `tools\hook_lane_g\xem_thu_hook.py` BỎ QUA mọi `sfx[]` còn sót ở tập cũ.
 - Sinh nhạc: **CẤM dùng `sfx.py` (sound-effect) làm nhạc nền** — ra đoạn 1,54s lặp "ting tong" gây đau đầu (anh chê ep02 Lane J, 01/10).
-  Dùng **Suno** `openspeaker_tts.generate_music()` (~3.600 credit/bài 3 phút), mẫu: `assets\J-teinengo-fuufu\_bgm\tao_nhac_hook.py`
-  (piano solo thật nhẹ, chậm, không chuông/hộp nhạc/trống) → cắt 1 đoạn liền ≥ độ dài hook (không lặp), fade-in 2s, loudnorm -16 LUFS → `hook\sfx\99_nhac_piano.mp3`.
+  ⛔ **(23/10) CẤM Suno** (`openspeaker_tts.generate_music()` đã khoá, `tao_nhac_hook.py` bỏ). Nhạc hook = cắt 1 đoạn liền ≥ độ dài hook
+  (không lặp), fade-in 2s, −16 LUFS từ **bài Thư viện âm thanh YouTube của lane**: `py -3.13 -X utf8 pipeline\nhac_hook_tu_thu_vien.py
+  --tap <tập> --lane <mã lane> --giay <độ dài hook>` → `hook\sfx\99_nhac_piano.mp3` (+ `.nguon.json`). Luật đầy đủ: `docs/QUY_TAC_NHAC_NEN.md`.
 
 ## 3. TRƯỚC KHI lập storyboard: kiểm bối cảnh thật của từng câu
 - Đọc kịch bản xác định cảnh là **gọi điện thoại** hay **gặp mặt**. Gọi điện → mỗi cảnh chỉ MỘT người, có điện thoại trong tay, hai người ở hai nơi, KHÔNG chung khung hình.
